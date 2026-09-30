@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "purpose": "村口向南｜20260831-010324-village-south-text-v1｜仅改版规划。目标 workspace=/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace。竞品观察来自固定源码或官方介绍，不冒充竞品自然游玩；rules 是本作拟议规则，不是对竞品精确实现的断言。",
+  "evidence": [
+    {
+      "id": "life-restart-core",
+      "competitor": "人生重开模拟器（VickScarlet/remake 固定重构版源码）",
+      "sourceRefs": ["https://github.com/VickScarlet/remake/blob/a3e81b668e68465afbac70cf7b08aee6b6a89845/packages/core/src/game.ts", "https://github.com/VickScarlet/remake/blob/a3e81b668e68465afbac70cf7b08aee6b6a89845/packages/core/src/event.ts"],
+      "observed": ["开局天赋处理、按年龄推进、状态条件筛选和加权事件抽取、事件条件分支、终局检测、总结和局外 profile 更新均在固定源码中存在。", "压力来自生命/属性和条件事件；年龄递进改变可用事件集合；结局由状态触发，而不只用固定文案。", "源码可以追溯事件导致的状态变化；但没有在本轮实玩其 UI，不能确认玩家可见的预警与失败解释是否充分。"],
+      "inferred": ["开局组合和条件事件会形成对下一局的好奇，是可迁移假设，不是本次测得的留存数据。", "未知：经典版本和该重构版本的完整差异、自然玩家感知、当前具体平衡值及商业表现。"],
+      "applicability": "adapt",
+      "applicabilityRationale": "借鉴开局差异→条件化人生→终局→局外记忆的循环；本作保留关键时刻的主动选择，不照搬纯自动看命运。",
+      "rejectExpression": ["不复制代码、天赋名称、事件文本、修仙梗、UI、素材或数值。", "不将突然死亡、极端猎奇或纯随机淘汰直接移入乡土题材。"],
+      "confidence": "high"
+    },
+    {
+      "id": "reigns-official",
+      "competitor": "Reigns",
+      "sourceRefs": ["https://store.steampowered.com/app/474750/Reigns/?l=english"],
+      "observed": ["官方介绍明确左右二择、维持多方平衡、决策有后续后果，以及目标解锁内容和王朝延续。", "压力是不同利益之间的冲突；请求持续到来，后果可能危及统治；重新统治和解锁内容构成继续游玩的结构。", "官方文字不足以证明每类预警动画、精确上下限、全部死亡归因和难度曲线。"],
+      "inferred": ["本作可用少量选择和清晰冲突替代增加操作量；机会代价能形成压力，不必引入反应速度或刷数值。", "未知：具体界面信号、精确升级规则和不同结局的自然体验。本轮未进行竞品实玩。"],
+      "applicability": "adapt",
+      "applicabilityRationale": "仅迁移有冲突的二择、延迟后果和目标反馈；不迁移四条同时不能太高也不能太低的政治规则。",
+      "rejectExpression": ["不复制君主、教会、人物剪影、滑卡界面、音乐、事件或阈值。", "不设置乡情太高或本事太高必然惩罚这样的无因果规则。"],
+      "confidence": "medium"
+    },
+    {
+      "id": "chinese-parents-official",
+      "competitor": "中国式家长",
+      "sourceRefs": ["https://store.steampowered.com/app/736190/Chinese_Parents/?l=english"],
+      "observed": ["官方介绍将成长中的学习、生活和社交选择联系到阶段目标与职业结局，并说明下一代会承接前代成果。", "阶段目标、有限成长时间与学习/轻松生活的取舍提供压力；结算与下一代提供回收和再玩结构。", "官方介绍未提供足以复核的全部压力数值、预警形式、失败定义或结局归因算法。"],
+      "inferred": ["本作应让重要人物记住选择，并让结果体现生活去向，而不是把财富最高视为唯一胜利。", "未知：各职业的平衡、玩家对代际积累的感受、真实留存。没有依据要求本作立即扩大家谱或代际系统。"],
+      "applicability": "adapt",
+      "applicabilityRationale": "借鉴生活关系与成长结果的连接；本作使用本人重开和卷宗收藏，不新增完整育儿或家谱玩法。",
+      "rejectExpression": ["不复制养成日程、碎片小游戏、面子系统、人物、台词、事件或数值。"],
+      "confidence": "medium"
+    }
+  ],
+  "rules": [
+    {
+      "id": "visible-opportunity-cost",
+      "pressureType": "wrong_choice",
+      "trigger": "在关键节点选择读书离乡或留乡谋生等互有代价的行动，临近相关机会关闭。",
+      "playerSignal": "路线节点与临近关闭的机会卡显示时间刻度、图标和高亮变化；短文解释什么将失去，不能只依赖一段小字。",
+      "escalation": "同一目标经历铺垫→临近→兑现/错失，条件随已做选择收紧；不新增第五条常驻资源。",
+      "failureOutcome": "当前愿望未实现，但转入可游玩的替代路线；不得用经济较低自动判定人生失败。",
+      "attribution": "结果指出导致机会改变的具体选择和当时可见条件；选择之外的随机因素单独标注。",
+      "recovery": "当局有不同代价的补救；结算给出下局可尝试的方向，不提供唯一正确攻略。",
+      "sourceEvidenceRefs": ["reigns-official", "chinese-parents-official"],
+      "implementationImplications": ["用现有 flags、事件池和结果页承载，不引入独立经营子系统。", "每条关键机会需要自然输入可到达的满足/错失/恢复证据。"]
+    },
+    {
+      "id": "attributable-delayed-echo",
+      "pressureType": "resource_loss",
+      "trigger": "透支、负担或承诺进入现有延迟回响队列。",
+      "playerSignal": "结果卡上可见来源选择、待兑现图标和剩余节点；重要风险同时使用形状与文字，不能只变色。",
+      "escalation": "提示从待发生到临近兑现；高风险必须有事前信号，随机惊喜不等于无预警惩罚。",
+      "failureOutcome": "可能受损、失去机会或被迫改走另一条路，具体损失能在当前事件中解释。",
+      "attribution": "显式连接 sourceEventId/sourceChoiceId 与已兑现回响，并在卷宗里留下因果记录。",
+      "recovery": "允许通过另一个有成本的选择修正；同一回响只能结算一次，刷新不重复惩罚。",
+      "sourceEvidenceRefs": ["reigns-official", "life-restart-core"],
+      "implementationImplications": ["现有回响结构补来源和呈现信息；保持事务式一次提交，不由 UI 修改数值。", "存档迁移、分支可达性、一次结算与自然感知都需要单独验收。"]
+    },
+    {
+      "id": "finite-life-and-specific-replay",
+      "pressureType": "other",
+      "trigger": "有限关键决定用尽，封卷结算，随后重开。",
+      "playerSignal": "进度表示人生切片中的当前位置，结局标题和两条因果证据突出显示，下一局的新机会有可见预告。",
+      "escalation": "从建立身份到承诺冲突再到结果兑现；不通过无限重复事件或单纯抬高阈值加压。",
+      "failureOutcome": "既有有成就也有遗憾的多维收尾，失败指明确愿望或承诺落空，不是对人生价值做单一排名。",
+      "attribution": "封卷判词取自运行时真实状态并展示来源，不让玩家只看到统一章节文案。",
+      "recovery": "保持有上限的继承，优先解锁新可能与未走路线；重复同一选择也可看到可解释的局外差异。",
+      "sourceEvidenceRefs": ["life-restart-core", "chinese-parents-official"],
+      "implementationImplications": ["实际 UI restart 流程必须验证，而非换构造器参数伪装第二局。", "先检验现有六步切片，体验成立后再决定是否扩大人生跨度。"]
+    }
+  ],
+  "noCopyBoundary": ["所有事件、人物、身份、画面、声音和叙事表达必须原创。", "仅迁移抽象循环和可验证的行为原则；不复制竞品代码或平衡值。", "研究未观察到的内容保持未知；官方介绍和静态源码不是竞品实玩录像。", "本轮没有用户提供媒体，未使用其他 run 的截图或附近录像。"]
+}

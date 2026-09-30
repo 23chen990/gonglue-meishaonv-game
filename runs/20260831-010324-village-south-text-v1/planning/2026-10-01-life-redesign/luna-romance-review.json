@@ -1,0 +1,20 @@
+{
+  "schemaVersion":1,
+  "targetGame":"村口向南",
+  "runId":"20260831-010324-village-south-text-v1",
+  "workspace":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "role":"redesign-challenge",
+  "workspaceModified":false,
+  "sources":[
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-request.json","lines":"1-16","claim":"用户要求更直接的多女主恋爱攻略方向；本轮仅规划。"},
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-plan.md","lines":"7-35,37-90,94-104（复核时草稿）","claim":"命名诚实、成人边界与多人关系方向成立；记忆逐角色证明与存档隔离需收紧。"}
+  ],
+  "findings":[
+    {"id":"R01-per-character-memory-proof","priority":"P1","evidenceLevel":"source-observation","observation":"原验收未明确两位角色分别完成专属记忆响应。","playerConsequence":"可能只做主线女主的记忆，另一位仅共享统一对白。","recommendation":"逐角色建立 choiceId、memoryId、responseId 与自然可见回应证据。","acceptance":["每位角色均有专属跨局记忆与回应，缺一即不通过。","两种主线正常完成并重开；新局前两次交互分别呈现两位角色回应，共同一句不能重复计数。"]},
+    {"id":"R02-romance-save-boundary","priority":"P1","evidenceLevel":"source-observation","observation":"原文要求旧档不能误载，但未写成明确命名空间/版本验收契约。","playerConsequence":"可能把乡土属性和 flags 错当成关系与记忆状态。","recommendation":"批准前明确恋爱存档命名空间、版本、旧档只读隔离、默认入口与迁移策略。","acceptance":["新鲜浏览器和有旧档浏览器均进入明确恋爱旅程，旧档不静默转换或清除。","覆盖刷新、两周目记忆、旧档隔离和版本升级，不能当普通 UI 小修。"]}
+  ],
+  "keep":["工作名不冒充市场验证或最终批准。","两位成年原创角色各有目标与共同关系线，不退回单女主。","两女主三日六次选择四种原型收尾的有界范围。","旧题材四属性与美术可以重设计；三端发布仍待证据。"],
+  "avoid":["高好感自动覆盖角色意愿。","共享台词伪装成两位角色记忆。","混用乡土旧档和恋爱新档。","声称命名或新美术已验证吸引力。"],
+  "gaps":["无真人标题/首屏测试或重名核验。","无恋爱运行时、角色美术、存档隔离实现与两周目证据。","无平台审核、构建或真机发布证据。"],
+  "validation":{"schema":"PlanningReviewSchema","passed":true}
+}

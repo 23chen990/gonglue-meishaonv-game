@@ -1,0 +1,21 @@
+{
+  "schemaVersion":1,
+  "targetGame":"村口向南",
+  "runId":"20260831-010324-village-south-text-v1",
+  "workspace":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "role":"redesign-challenge",
+  "workspaceModified":false,
+  "sources":[
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/plan.md","lines":"20-45,61-67,103-162（修订前草稿）","claim":"需明确事实/假设、愿望范围及复玩归因验收。"},
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json","lines":"1-30 and journeys","claim":"五局为自动化正常输入，横屏仅一局。"}
+  ],
+  "findings":[
+    {"id":"C01-fact-inference-labeling","priority":"P1","evidenceLevel":"source-observation","observation":"原草稿已核实表混合流程事实和玩家理解假设。","playerConsequence":"可能把未测动机当作已复现缺陷。","recommendation":"分离源码事实、运行观察、体验假设，未测理解保留 BLOCKED。","acceptance":["体验结论标明证据等级。","五局不当作五位真人或留存证据。"]},
+    {"id":"C02-desire-scope-guard","priority":"P1","evidenceLevel":"source-observation","observation":"愿望没有明确属于展示文案还是新持久化字段。","playerConsequence":"可能暗中扩成第五系统或未批准存档变更。","recommendation":"愿望只能是既有状态派生展示，新增系统和字段须另外批准。","acceptance":["保持四项属性、六次决定，无新增愿望持久化字段。","提示可追溯到既有事件、选择、flags 或回响。"]},
+    {"id":"C03-replay-provenance-gate","priority":"P0","evidenceLevel":"source-observation","observation":"现有两条真实重开策略都重复各自标题，未来变化需证明由上局历史而非换 seed 产生。","playerConsequence":"表面新内容可能掩盖没有跨局记忆的问题。","recommendation":"补复玩 provenance matrix，覆盖三视口真实 restart。","acceptance":["同时记录首局事件/选择、持久化上局历史、第二局前两节点与可见回访来源。","三视口都自然重开；工程对照不能代替自然流程。"]}
+  ],
+  "keep":["仅批准下一轮窄范围六步切片。","保留现有分支与四属性。","保持 formal-fixer、双轨 QA 和三端发布证据边界。"],
+  "avoid":["把五局当五人。","愿望成为第五资源。","用独立构造器制造第二局。"],
+  "gaps":["无真人理解、归因和重开意愿证据。","横屏仅一局。","无正式 FIX 复验及三端发布证据。"],
+  "validation":{"schema":"PlanningReviewSchema","passed":true}
+}

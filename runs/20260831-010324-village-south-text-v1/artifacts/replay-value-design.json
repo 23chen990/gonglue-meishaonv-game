@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "replay_value_vertical_slice_design",
+  "runId": "20260831-010324-village-south-text-v1",
+  "targetGame": "村口向南",
+  "targetWorkspace": "runs/20260831-010324-village-south-text-v1/workspace/game",
+  "generatedAt": "2026-08-31T03:46:49.000Z",
+  "sourceArtifacts": {
+    "narrativePrototype": "artifacts/narrative-life-prototype.json",
+    "choiceAudit": "artifacts/narrative-choice-audit.json",
+    "iaaReview": "artifacts/iaa-monetization-review.json",
+    "openSourceResearch": "artifacts/open-source-research.json",
+    "visualComparison": "artifacts/ui-visual-comparison.json",
+    "humanDecision": "human/replay-value-decision.yaml"
+  },
+  "scope": {
+    "visibleStats": ["economy", "skill", "health", "bonds"],
+    "noNewVisibleSystems": true,
+    "decisionsPerRun": 6,
+    "choicesPerDecision": 2,
+    "familyConditionCount": 6,
+    "eventPoolSize": 12,
+    "secondRunDifferenceByDecision": 2
+  },
+  "familyConditions": [
+    {
+      "id": "condition_county_relative",
+      "title": "县城有个远房舅舅",
+      "summary": "地址写在旧烟盒背面，遇到难事时至少知道该往哪里问。",
+      "effects": { "bonds": 2 },
+      "setFlag": "condition_county_relative"
+    },
+    {
+      "id": "condition_fertilizer_debt",
+      "title": "家里欠着一笔化肥款",
+      "summary": "春耕不能等，账却会跟着每一次花钱的决定一起出现。",
+      "effects": { "economy": -1, "skill": 1 },
+      "setFlag": "condition_fertilizer_debt"
+    },
+    {
+      "id": "condition_old_craft",
+      "title": "父亲会修农具",
+      "summary": "院角那只木箱里没有好工具，却藏着许多能救急的办法。",
+      "effects": { "skill": 2 },
+      "setFlag": "condition_old_craft"
+    },
+    {
+      "id": "condition_studious_sister",
+      "title": "妹妹是村里最会读书的孩子",
+      "summary": "她的成绩让全家骄傲，也让每一笔学费显得更沉。",
+      "effects": { "bonds": 1, "skill": 1 },
+      "setFlag": "condition_studious_sister"
+    },
+    {
+      "id": "condition_distant_field",
+      "title": "分家的田在山坳背后",
+      "summary": "路远、土薄，但别人不愿接的活也可能成为自家的机会。",
+      "effects": { "economy": 1, "health": -1 },
+      "setFlag": "condition_distant_field"
+    },
+    {
+      "id": "condition_southern_letter",
+      "title": "抽屉里压着一封南方来信",
+      "summary": "寄信人已经两年没回村，信里那条路仍让人忍不住多看一眼。",
+      "effects": { "bonds": 2 },
+      "setFlag": "condition_southern_letter"
+    }
+  ],
+  "eventSlots": [
+    { "slot": 1, "year": 1978, "beat": "开局机会", "variantIds": ["event_01", "event_01_alt_agritech"], "selectionRule": "seeded_by_run_number_and_family_condition" },
+    { "slot": 2, "year": 1979, "beat": "土地与协作", "variantIds": ["event_02", "event_02_alt_riverland"], "selectionRule": "seeded_by_run_number_and_family_condition" },
+    { "slot": 3, "year": 1979, "beat": "手艺与取舍", "variantIds": ["event_03", "event_03_alt_thresher"], "selectionRule": "seeded_by_run_number_and_family_condition" },
+    { "slot": 4, "year": 1980, "beat": "第一次交易", "variantIds": ["event_04", "event_04_alt_eggs"], "selectionRule": "seeded_by_run_number_and_family_condition" },
+    { "slot": 5, "year": 1980, "beat": "家庭责任", "variantIds": ["event_05", "event_05_alt_medicine"], "selectionRule": "seeded_by_run_number_and_family_condition" },
+    { "slot": 6, "year": 1981, "beat": "个人与集体", "variantIds": ["event_06", "event_06_alt_canal"], "selectionRule": "seeded_by_run_number_and_family_condition" }
+  ],
+  "verdicts": [
+    { "id": "verdict_night_lamp", "title": "灯下那页书没有白翻", "conditionHint": "学习路线与本事占优" },
+    { "id": "verdict_field_accountant", "title": "会算账的庄稼人", "conditionHint": "承包路线与家底占优" },
+    { "id": "verdict_village_repairer", "title": "村里第一个修理手", "conditionHint": "修理路线或本事突出" },
+    { "id": "verdict_market_pathfinder", "title": "敢把担子挑到县城的人", "conditionHint": "主动交易并积下家底" },
+    { "id": "verdict_people_gatherer", "title": "把人心聚起来的人", "conditionHint": "互助路线与人情占优" },
+    { "id": "verdict_steady_household", "title": "先把一家人的日子守稳", "conditionHint": "稳健与家庭路线兜底" }
+  ],
+  "inheritances": [
+    { "id": "experience_accounting", "stat": "economy", "title": "会盘算", "nextRunEffects": { "economy": 1 } },
+    { "id": "experience_craft", "stat": "skill", "title": "手上有活", "nextRunEffects": { "skill": 1 } },
+    { "id": "experience_pacing", "stat": "health", "title": "知道留力", "nextRunEffects": { "health": 1 } },
+    { "id": "experience_reciprocity", "stat": "bonds", "title": "人情记在心", "nextRunEffects": { "bonds": 1 } }
+  ],
+  "visualLock": {
+    "baseDirection": "direction_c_modern_archive",
+    "revision": "modern_archive_system_impact_v3",
+    "referencePath": "art-review/ui-concepts/ui-revision-system-impact-v3.png",
+    "standardFactoryStyleLockCreated": false,
+    "reason": "The run does not have standard game-blueprint/art-directions inputs; this run-specific approval must not be misrepresented as the factory StyleLockSchema.",
+    "implementationRules": [
+      "顶部只保留紧凑的游戏名、章节和年份，不放独立大章节轴。",
+      "四项状态改为 2×2 主仪表区，数值、上限、名称和量表同时可见。",
+      "选择卡使用文字、正负号和固定系统标记共同表达影响，不能只靠颜色。",
+      "每个选择将眼下效果与两次选择后的回响效果分行展示。",
+      "事件画面只做代码生成的辅助档案插图，不压缩状态和选择区域。",
+      "真实文案全部由代码渲染，不使用概念图里的伪文字和徽记。",
+      "360×800 到 430×932 保持两个选择可读，触控目标至少 44 像素。"
+    ]
+  },
+  "feedback": {
+    "choicePressMs": 120,
+    "statPulseMs": 320,
+    "resultRevealMs": 520,
+    "reducedMotionSupported": true,
+    "layers": ["button_press", "stat_direction", "result_stamp", "delayed_echo_stamp"]
+  },
+  "saveMigration": {
+    "fromVersion": 2,
+    "toVersion": 3,
+    "preservesInProgressRun": true,
+    "futureVersionPolicy": "fail_closed_to_fresh_v3",
+    "corruptPolicy": "fail_closed_to_fresh_v3"
+  },
+  "iaa": {
+    "provider": "browser_mock_only",
+    "firstRun": "no_mid_chapter_ads",
+    "optionalPlacement": "chapter_complete_route_clue_from_run_2",
+    "noAdLockedChoices": true,
+    "maxAdsPerRun": 2,
+    "maxAdsPerSession": 3,
+    "minMinutesBetweenAds": 6
+  },
+  "acceptance": [
+    "首局直接揭示家况并在一个屏幕内完成纪念物选择。",
+    "连续两局的前两个事件至少有一个不同。",
+    "每局仍然只有六个决策点且每个决策恰好两个选择。",
+    "每个选择至少改变属性、flag、延迟回响或章末判词资格中的两项。",
+    "选择卡同时展示即时效果和两次选择后的回响方向。",
+    "两次选择后的 delayed echo 数值与 flag 只结算一次。",
+    "章末判词引用玩家路线并给出两个最高属性对应的经验二选一。",
+    "选定经验后下一局立即生效并写入版本三存档。",
+    "版本二进行中存档迁移后不丢失当前事件、属性、flags、回响和历史。",
+    "损坏存档与未来版本存档安全回到全新版本三状态。",
+    "第二局起章末可自愿观看浏览器广告 mock 获取未走路线提示。",
+    "360×800、390×844、430×932 无横向滚动、无 console error 或 pageerror。"
+  ]
+}

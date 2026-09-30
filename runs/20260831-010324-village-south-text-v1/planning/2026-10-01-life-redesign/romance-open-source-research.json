@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "researchId": "village-south-romance-pivot-2026-10-01",
+  "targetGame": "村口向南",
+  "targetWorkspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "researchedAt": "2026-09-30T18:06:43.815Z",
+  "candidates": [
+    {
+      "name": "inkjs",
+      "repositoryUrl": "https://github.com/y-lohse/inkjs",
+      "immutableRevision": "edccead8700e9f21be9825d87d8645d8c82a9936",
+      "version": "2.4.0",
+      "directLicenseEvidence": "https://github.com/y-lohse/inkjs/blob/edccead8700e9f21be9825d87d8645d8c82a9936/LICENSE.md",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "官方仓库提供 JavaScript 运行时，适合浏览器文本原型。"
+        },
+        "wechatMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "douyinMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        }
+      },
+      "maintenanceRisk": "MEDIUM",
+      "securityRisk": "MEDIUM",
+      "attributionDuties": [
+        "在第三方许可清单保留 MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "MIT license was fetched at the pinned revision in this session. Inkjs is relevant to a larger visual novel but is not approved for the initial bounded slice: migration cost and three-platform integration remain unverified. This is not a blanket rejection for future production."
+    },
+    {
+      "name": "Life Restart / remake",
+      "repositoryUrl": "https://github.com/VickScarlet/remake",
+      "immutableRevision": "a3e81b668e68465afbac70cf7b08aee6b6a89845",
+      "version": "commit-20260831",
+      "directLicenseEvidence": "https://github.com/VickScarlet/remake/blob/a3e81b668e68465afbac70cf7b08aee6b6a89845/LICENSE",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "官方 README 提供浏览器版本的本地运行方式。"
+        },
+        "wechatMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "douyinMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        }
+      },
+      "maintenanceRisk": "MEDIUM",
+      "securityRisk": "MEDIUM",
+      "attributionDuties": [
+        "若复用代码须保留 MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "本次已重新获取固定 revision 的 MIT 许可证。仅作机制研究，拒绝复制竞品代码、事件、天赋文本、UI 和数值；不作为目标游戏基础设施。维护和安全风险为未经完整审计的保守评估。"
+    }
+  ],
+  "conclusion": {
+    "approvedCandidateNames": [],
+    "rejectedCandidateNames": [
+      "inkjs",
+      "Life Restart / remake"
+    ],
+    "noSuitablePlatformAdapter": true,
+    "architectureDecision": "For the requested adult multi-character romance pivot, the first two-character, six-choice slice can reuse the run-owned TypeScript state/content/presentation separation. Do not reuse rural story content as romance or approve a new runtime dependency. Re-evaluate inkjs if approved multi-chapter authoring complexity exceeds the small data-driven runner; no three-platform adapter is verified."
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "researchId": "village-south-oss-20260831-v1",
+  "targetGame": "村口向南",
+  "targetWorkspace": "runs/20260831-010324-village-south-text-v1/workspace/game",
+  "researchedAt": "2026-08-31T01:03:24+08:00",
+  "candidates": [
+    {
+      "name": "inkjs",
+      "repositoryUrl": "https://github.com/y-lohse/inkjs",
+      "immutableRevision": "edccead8700e9f21be9825d87d8645d8c82a9936",
+      "version": "2.4.0",
+      "directLicenseEvidence": "https://github.com/y-lohse/inkjs/blob/edccead8700e9f21be9825d87d8645d8c82a9936/LICENSE.md",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "官方仓库提供 JavaScript 运行时，适合浏览器文本原型。"
+        },
+        "wechatMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "无官方微信小游戏适配证据；必须先验证包体、动态加载与无 DOM 环境。"
+        },
+        "douyinMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "无官方抖音小游戏适配证据；需对目标运行时执行兼容性尖峰。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "无官方 TapTap 小游戏适配证据；不能从浏览器可运行推定可发布。"
+        }
+      },
+      "maintenanceRisk": "MEDIUM",
+      "securityRisk": "LOW",
+      "attributionDuties": [
+        "在第三方许可清单保留 MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "Ink 的编写体验有价值，但本原型仅 24 个事件，现有原创 JSON 图已足够；在三平台兼容性未验证前引入依赖得不偿失。"
+    },
+    {
+      "name": "Cocos Engine",
+      "repositoryUrl": "https://github.com/cocos/cocos-engine",
+      "immutableRevision": "411f98df047c25902f93440d4b22925c2fb65461",
+      "version": "3.8.8",
+      "directLicenseEvidence": "https://github.com/cocos/cocos-engine/blob/411f98df047c25902f93440d4b22925c2fb65461/LICENSE.md",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "官方 3.8 发布文档覆盖 Web 构建，但这不等同于当前工厂 web-lite 模板。"
+        },
+        "wechatMiniGame": {
+          "verdict": "APPROVED",
+          "evidence": "Cocos Creator 3.8 官方发布面板包含微信小游戏构建目标。"
+        },
+        "douyinMiniGame": {
+          "verdict": "APPROVED",
+          "evidence": "Cocos Creator 3.8 官方发布面板包含字节系小游戏构建目标。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "TapTap 文档提供 Cocos 插件接入，仍需版本组合和真机验证。"
+        }
+      },
+      "maintenanceRisk": "MEDIUM",
+      "securityRisk": "MEDIUM",
+      "attributionDuties": [
+        "分发时保留引擎 MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "三端覆盖潜力最高，但仓库当前叙事原型没有 Cocos 2D 模板，且 TapTap 仍依赖额外插件；先做文本验证，不提前锁定高成本工具链。"
+    },
+    {
+      "name": "Phaser",
+      "repositoryUrl": "https://github.com/phaserjs/phaser",
+      "immutableRevision": "a9965625f49cf366584f454556b039e06e8adad6",
+      "version": "3.90.0",
+      "directLicenseEvidence": "https://github.com/phaserjs/phaser/blob/a9965625f49cf366584f454556b039e06e8adad6/LICENSE.md",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "仓库已有 Phaser 依赖，适合浏览器 QA 和交互原型。"
+        },
+        "wechatMiniGame": {
+          "verdict": "REJECTED",
+          "evidence": "未找到该固定版本的官方微信小游戏发布适配与维护承诺。"
+        },
+        "douyinMiniGame": {
+          "verdict": "REJECTED",
+          "evidence": "未找到该固定版本的官方抖音小游戏发布适配与维护承诺。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "REJECTED",
+          "evidence": "TapTap 官方引擎适配文档未证明 Phaser 3.90.0 可直接产出可发布包。"
+        }
+      },
+      "maintenanceRisk": "LOW",
+      "securityRisk": "LOW",
+      "attributionDuties": [
+        "分发时保留 Phaser MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "适合 web-lite 开发证据，但浏览器构建不能证明微信、抖音和 TapTap 三端可发布，不能作为生产运行时。"
+    },
+    {
+      "name": "Life Restart / remake",
+      "repositoryUrl": "https://github.com/VickScarlet/remake",
+      "immutableRevision": "a3e81b668e68465afbac70cf7b08aee6b6a89845",
+      "version": "commit-20260831",
+      "directLicenseEvidence": "https://github.com/VickScarlet/remake/blob/a3e81b668e68465afbac70cf7b08aee6b6a89845/LICENSE",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "官方 README 提供浏览器版本的本地运行方式。"
+        },
+        "wechatMiniGame": {
+          "verdict": "REJECTED",
+          "evidence": "当前仓库主线没有固定版本的微信小游戏发布证据。"
+        },
+        "douyinMiniGame": {
+          "verdict": "REJECTED",
+          "evidence": "当前仓库主线没有固定版本的抖音小游戏发布证据。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "REJECTED",
+          "evidence": "当前仓库主线没有固定版本的 TapTap 小游戏发布证据。"
+        }
+      },
+      "maintenanceRisk": "MEDIUM",
+      "securityRisk": "MEDIUM",
+      "attributionDuties": [
+        "若复用代码须保留 MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "它是重要竞品和机制参考，但代码结构紧贴其既有事件、天赋与表现；复用会带来表达相似和内容边界风险，本项目只吸收“短局重开”的通用机制。"
+    }
+  ],
+  "conclusion": {
+    "approvedCandidateNames": [],
+    "rejectedCandidateNames": [
+      "inkjs",
+      "Cocos Engine",
+      "Phaser",
+      "Life Restart / remake"
+    ],
+    "noSuitablePlatformAdapter": true,
+    "architectureDecision": "文本尖峰采用仓库自有 Zod 数据契约和纯 TypeScript 结局解析器，零新增生产依赖。若人类评审通过，再单独创建三端运行时兼容性尖峰；在微信、抖音、TapTap 真机与包体测试前不锁定引擎。"
+  }
+}

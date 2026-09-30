@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "validatedArtifacts": [
+    "triage.json",
+    "romance-pivot-triage.json",
+    "reproduction-matrix.json",
+    "failure-pressure-contract.json",
+    "romance-failure-pressure-contract.json",
+    "open-source-research.json",
+    "romance-open-source-research.json",
+    "luna-review.json",
+    "luna-challenge-review.json",
+    "luna-romance-review.json",
+    "luna-story-review.json",
+    "luna-story-retest.json",
+    "story-graph.json"
+  ],
+  "count": 13,
+  "passed": true
+}

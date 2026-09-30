@@ -1,0 +1,77 @@
+[
+  {
+    "name": "planning-schema-lint",
+    "command": [
+      "pnpm",
+      "exec",
+      "eslint",
+      "--no-ignore",
+      "--ignore-pattern",
+      "!runs/**",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/review-contract.ts"
+    ],
+    "exitCode": 0,
+    "seconds": 1.72,
+    "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/planning-schema-lint.log"
+  },
+  {
+    "name": "runtime-harness-syntax",
+    "command": [
+      "node",
+      "--check",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/inspect-runtime.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 0.05,
+    "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-harness-syntax.log"
+  },
+  {
+    "name": "planning-schema-typecheck",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsc",
+      "--noEmit",
+      "--target",
+      "ES2022",
+      "--module",
+      "NodeNext",
+      "--moduleResolution",
+      "NodeNext",
+      "--skipLibCheck",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/review-contract.ts"
+    ],
+    "exitCode": 0,
+    "seconds": 1.14,
+    "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/planning-schema-typecheck.log"
+  },
+  {
+    "name": "existing-game-typecheck",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsc",
+      "--noEmit",
+      "-p",
+      "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game/tsconfig.json"
+    ],
+    "exitCode": 0,
+    "seconds": 1.52,
+    "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/existing-game-typecheck.log"
+  },
+  {
+    "name": "existing-game-unit-tests",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--root",
+      "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game",
+      "--no-cache"
+    ],
+    "exitCode": 0,
+    "seconds": 0.99,
+    "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/existing-game-unit-tests.log"
+  }
+]

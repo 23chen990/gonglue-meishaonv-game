@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "村口向南",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "generatedAt": "2026-09-30T18:13:17.219Z",
+  "scope": "planning-only; adult romance pivot proposal; no game implementation or release claim",
+  "workspaceIntegrity": {
+    "checkedFiles": 14,
+    "changedOrMissing": [],
+    "added": [],
+    "passed": true
+  },
+  "checks": [
+    {
+      "name": "planning-schema-lint",
+      "command": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "--no-ignore",
+        "--ignore-pattern",
+        "!runs/**",
+        "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/review-contract.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 1.72,
+      "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/planning-schema-lint.log"
+    },
+    {
+      "name": "runtime-harness-syntax",
+      "command": [
+        "node",
+        "--check",
+        "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/inspect-runtime.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.05,
+      "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-harness-syntax.log"
+    },
+    {
+      "name": "planning-schema-typecheck",
+      "command": [
+        "pnpm",
+        "exec",
+        "tsc",
+        "--noEmit",
+        "--target",
+        "ES2022",
+        "--module",
+        "NodeNext",
+        "--moduleResolution",
+        "NodeNext",
+        "--skipLibCheck",
+        "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/review-contract.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 1.14,
+      "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/planning-schema-typecheck.log"
+    },
+    {
+      "name": "existing-game-typecheck",
+      "command": [
+        "pnpm",
+        "exec",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game/tsconfig.json"
+      ],
+      "exitCode": 0,
+      "seconds": 1.52,
+      "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/existing-game-typecheck.log"
+    },
+    {
+      "name": "existing-game-unit-tests",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--root",
+        "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game",
+        "--no-cache"
+      ],
+      "exitCode": 0,
+      "seconds": 0.99,
+      "log": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/existing-game-unit-tests.log"
+    }
+  ],
+  "ruralBaseline": {
+    "naturalInputRounds": 5,
+    "humanParticipants": 0,
+    "unitTestsPassed": 11,
+    "notRomanceEvidence": true
+  },
+  "reviewRouting": {
+    "requestedRole": "luna_worker",
+    "roleLaunchIssue": "preset max unsupported for gpt-5.6-luna",
+    "executedModel": "gpt-5.6-luna",
+    "executedReasoning": "xhigh",
+    "readOnly": true
+  },
+  "originalPlanReviewResolutions": {
+    "C01": "Separated source facts, runtime observations and hypotheses.",
+    "C02": "Restricted wishes to derived non-persistent display and separate approval for schema expansion.",
+    "C03": "Required history-provenance matrix and true restart in three viewports."
+  },
+  "remainingGaps": [
+    "No romance runtime, new character artwork, human playtest, or platform release evidence.",
+    "Names are working titles, not collision-checked or approved.",
+    "Future source changes require approved contracts, test-first work and dual-track QA."
+  ],
+  "structuredArtifacts": [
+    {
+      "file": "triage.json",
+      "status": "PASS"
+    },
+    {
+      "file": "romance-pivot-triage.json",
+      "status": "PASS"
+    },
+    {
+      "file": "reproduction-matrix.json",
+      "status": "PASS"
+    },
+    {
+      "file": "failure-pressure-contract.json",
+      "status": "PASS"
+    },
+    {
+      "file": "romance-failure-pressure-contract.json",
+      "status": "PASS"
+    },
+    {
+      "file": "open-source-research.json",
+      "status": "PASS"
+    },
+    {
+      "file": "romance-open-source-research.json",
+      "status": "PASS"
+    },
+    {
+      "file": "luna-review.json",
+      "status": "PASS"
+    },
+    {
+      "file": "luna-challenge-review.json",
+      "status": "PASS"
+    },
+    {
+      "file": "luna-romance-review.json",
+      "status": "PASS"
+    }
+  ],
+  "romanceReviewResolutions": {
+    "R01": "Per-character choice-memory-response chain required for both heroines.",
+    "R02": "New save namespace/version with read-only rural save isolation and startup regression checks."
+  },
+  "activePlan": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-plan.md",
+  "activePlanSha256": "f6121b31de68170c2d14d63fd4f1e68f0465202dc041b90957c98a33050c2540"
+}

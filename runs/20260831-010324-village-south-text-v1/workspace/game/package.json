@@ -1,0 +1,21 @@
+{
+  "name": "village-south-chapter-one",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint src tests vite.config.ts --config ../../../../eslint.config.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:mobile": "tsx tests/mobile-playwright.ts",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "@playwright/test": "^1.62.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
+  }
+}

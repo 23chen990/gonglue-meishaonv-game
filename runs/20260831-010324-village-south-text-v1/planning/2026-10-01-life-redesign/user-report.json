@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "村口向南",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "request": "这个游戏现在做的不好，你参考人生重开模拟器这些游戏看看如何修改，先写个规划",
+  "executionPreference": "记得lunawork：使用 luna_worker 做有边界的独立只读审查。",
+  "scope": "诊断、参考研究和改版规划；不修改游戏代码，不启动 FIX，不改其他游戏或共享工厂。",
+  "mediaSupplied": false,
+  "planningDate": "2026-10-01"
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "status": "STORY_FIRST",
+  "userDirection": "我觉得这个美术可以，但是先不画美术，先把具体的剧情想好吧",
+  "date": "2026-10-01",
+  "artGenerationPaused": true,
+  "implementationPaused": true,
+  "productionRuntimeModified": false,
+  "draftTests": "implementation/romance-v1/romance.test.ts.draft",
+  "testStatus": "保留新题材测试草稿与红阶段日志；草稿已移出默认测试目录，待具体剧情锁定后修订 API/分支断言。旧版运行时代码未更改。",
+  "artStatus": "用户认可当前风格；两张生成图是待处理色键源，不是已通过 alpha 检验的成品。停止新增绘制与抠图。",
+  "next": "ChatGPT planning and story/reader review. Art generation and runtime implementation remain paused until a later user instruction.",
+  "fixAttempts": 0,
+  "storyStatus": "AUTHORING_REVIEW_COMPLETE",
+  "currentTitle": "攻略美少女",
+  "independentStoryReview": "planning/2026-10-01-life-redesign/luna-story-retest.json",
+  "sourcePublication": "publication/gonglue-meishaonv-game",
+  "formalFixCompleted": false
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "checks": [
+    {
+      "name": "full-path-a-six-events",
+      "passed": true,
+      "evidence": "keepsake_pliers -> event_01_choice_b -> event_02_choice_a -> event_03_choice_a -> event_04_choice_a -> event_05_choice_a -> event_06_choice_a; chapter-complete; final stats economy=10 skill=12 health=6 bonds=21; history=6"
+    },
+    {
+      "name": "full-path-b-six-events",
+      "passed": true,
+      "evidence": "keepsake_book -> event_01_choice_a -> event_02_choice_b -> event_03_choice_b -> event_04_choice_b -> event_05_choice_b -> event_06_choice_b; chapter-complete; final stats economy=11 skill=11 health=11 bonds=19; history=6"
+    },
+    {
+      "name": "opposite-choice-coverage",
+      "passed": true,
+      "evidence": "Two natural paths jointly covered study/farming, contract/cooperate, repair/purchase, county sale/village collection, tuition available/unavailable, and storm mutual-aid/self-protection"
+    },
+    {
+      "name": "tuition-gate-available-path-a",
+      "passed": true,
+      "evidence": "At event_05 path A economy=12; event_05_choice_a available=true and was selected"
+    },
+    {
+      "name": "tuition-gate-unavailable-path-b",
+      "passed": true,
+      "evidence": "At event_05 path B economy=6; event_05_choice_a available=false with reason: 家底不足，眼下还凑不齐学费。; event_05_choice_b remained available"
+    },
+    {
+      "name": "delayed-echo-after-two-events",
+      "passed": true,
+      "evidence": "Both paths scheduled event_01 echo at completedChoices=3; no echo at choices 1-2; event_01 echo and echoed flag appeared at choice 3. Event_02/03/04 echoes then appeared at choices 4/5/6 respectively"
+    },
+    {
+      "name": "natural-path-stat-bounds",
+      "passed": true,
+      "evidence": "Every before/after state stayed within economy 0..60, skill 0..40, health 0..20, bonds 0..80"
+    },
+    {
+      "name": "stat-clamp-and-flag-dedup",
+      "passed": true,
+      "evidence": "Injected boundary state economy=0 skill=40 health=0 bonds=80 with duplicate keepsake flag; event_01_choice_a kept all values clamped at their limits and normalized flags to unique values"
+    },
+    {
+      "name": "refresh-restores-exact-result",
+      "passed": true,
+      "evidence": "After path A event 3, reload restored the complete result state byte-for-byte, including stats, pending echoes, recent echo, flags and three history entries"
+    },
+    {
+      "name": "save-fail-closed-corrupt-and-future",
+      "passed": true,
+      "evidence": "Malformed JSON and a version=999 save both reopened as version=2 screen=keepsake completedChoices=0 with initial stats 5/5/12/10"
+    },
+    {
+      "name": "chapter-complete",
+      "passed": true,
+      "evidence": "Both natural paths reached screen=chapter-complete only after completedChoices=6 and retained six ordered history records"
+    },
+    {
+      "name": "vertical-viewports-and-screenshots",
+      "passed": true,
+      "evidence": "Six screenshots verified at exact 360x800, 390x844 and 430x932 dimensions; SHA-256: 9bd08a65f23aefd1436a3bd3a240e35b5f64d7d7c1bd41694a69a6dc983531a7, 8ede02f4361d466d5182be0edab24a7f2bd902fafaf7749ed8c7ba8e764cec1b, c20aed2e5369906f85d1ae0e2b676fb401a116d5719d1f87b8cc076ee1e6abec, 8803acd4f5261401533f6ce9b02026982c14d170fac3b979789da072ff32b62a, 92159e562c0d57f01b39c74bc2982946dd662404bb868a0f18daf3af369f5324, 6652a0333dcee5262d3ef8d1a3204848bfcfc4721c986c4d4d02b258c0105b8b"
+    },
+    {
+      "name": "zero-console-and-pageerror",
+      "passed": true,
+      "evidence": "Across both natural paths, save fixtures and all viewport changes: console errors=0; page errors=0"
+    },
+    {
+      "name": "run-state-reconciliation-observed",
+      "passed": true,
+      "evidence": "state.json sha256=ea026f3d144dbfaed60aa5cabe460e2c4316066b547050b099e78493a230f173 still records stage=WAITING_FOR_PROTOTYPE_APPROVAL status=waiting, while human/prototype-decision.yaml sha256=caf4411aaf2cd6a423e094c21190230fc4f90a9ba0038f800a422d70c2a6c22e exists with decision=APPROVE"
+    }
+  ],
+  "issues": [
+    {
+      "id": "run-state-reconciliation",
+      "severity": "warning",
+      "message": "The human prototype approval exists, but state.json remains at WAITING_FOR_PROTOTYPE_APPROVAL.",
+      "evidence": "Safe recommendation: add or use a dedicated, idempotent narrative-prototype state transition that validates human/prototype-decision.yaml and the narrative build/QA artifacts. Do not hand-edit state.json and do not resume the incompatible shop-game pipeline that may overwrite workspace/game."
+    }
+  ],
+  "screenshots": [
+    "screenshots/full-chapter-path-a-start-360x800.png",
+    "screenshots/full-chapter-path-a-tuition-available-390x844.png",
+    "screenshots/full-chapter-path-a-complete-360x800.png",
+    "screenshots/full-chapter-path-b-start-430x932.png",
+    "screenshots/full-chapter-path-b-tuition-unavailable-390x844.png",
+    "screenshots/full-chapter-path-b-complete-430x932.png"
+  ],
+  "consoleLog": "logs/console.log",
+  "testedAt": "2026-08-30T19:41:40.000Z"
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260831-010324-village-south-text-v1",
+  "targetWorkspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "generationPausedByUser": true,
+  "processingPausedByUser": true,
+  "sources": [
+    {
+      "name": "zhixia-chroma-source",
+      "sourcePath": "/Users/kker/.codex/generated_images/01a0f35c-cda0-7dc2-9296-40e8e0dd8c5c/call_9udUPeJTNYFtmjh5Q6fHdLWV.png",
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/implementation/romance-v1/art-exploration/zhixia-chroma-source.png",
+      "sha256": "fb5756bebd975d52c0754d4b53d98ef96d48720f8e5e4e1feb610bf14f5498ed",
+      "status": "STYLE_REFERENCE_ONLY",
+      "alphaApproved": false,
+      "usableAsRuntimeAsset": false
+    },
+    {
+      "name": "wenxi-chroma-source",
+      "sourcePath": "/Users/kker/.codex/generated_images/01a0f35c-cda0-7dc2-9296-40e8e0dd8c5c/call_2WOGLgIQvRw6JVVgrJ137Kg9.png",
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/implementation/romance-v1/art-exploration/wenxi-chroma-source.png",
+      "sha256": "b80c3c9909f742560f71ba380c802e6808590c8c80d97d4efe60366dae6a4f3f",
+      "status": "STYLE_REFERENCE_ONLY",
+      "alphaApproved": false,
+      "usableAsRuntimeAsset": false
+    }
+  ]
+}

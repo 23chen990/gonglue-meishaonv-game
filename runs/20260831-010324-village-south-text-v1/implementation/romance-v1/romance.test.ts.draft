@@ -1,0 +1,117 @@
+// Paused by the user: finalize story before implementation. API and route names are provisional.
+import { beforeAll, describe, expect, it } from 'vitest';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+type Module = typeof import('../src/romance-engine.js');
+let api: Module;
+beforeAll(async () => {
+  const file = fileURLToPath(new URL('../src/romance-engine.ts', import.meta.url));
+  expect(existsSync(file), 'The approved romance runtime must exist, not the old rural default').toBe(true);
+  api = await import('../src/romance-engine.js');
+});
+const routes = {
+  zhixia: ['go-cafe', 'explain', 'keep-boundary', 'ask-first', 'choose-zhixia', 'honest-zhixia'],
+  wenxi: ['go-gallery', 'explain', 'keep-boundary', 'ask-first', 'choose-wenxi', 'honest-wenxi'],
+  together: ['go-cafe', 'explain', 'keep-boundary', 'ask-first', 'invite-both', 'honest-together'],
+  open: ['go-gallery', 'cover', 'take-over', 'surprise', 'leave-alone', 'honest-alone'],
+};
+function decision(game: InstanceType<Module['RomanceEngine']>) {
+  for (let i = 0; i < 20 && !game.canChoose(); i++) game.advanceLine();
+  expect(game.canChoose()).toBe(true);
+}
+function play(game: InstanceType<Module['RomanceEngine']>, path: string[]) {
+  if (game.getState().screen === 'title') game.start();
+  for (const id of path) { decision(game); game.choose(id); game.continue(); }
+}
+describe('approved adult romance core', () => {
+  it('starts in a romance title with two adults, no rural stats', () => {
+    const game = new api.RomanceEngine(api.memoryStorage());
+    expect(game.getState().screen).toBe('title');
+    expect(api.CHARACTERS.every(c => c.age >= 22)).toBe(true);
+    expect(game.getState()).not.toHaveProperty('stats');
+  });
+  for (const [ending, choices] of Object.entries(routes)) {
+    it(`naturally resolves ${ending} after exactly six consequential choices`, () => {
+      const game = new api.RomanceEngine(api.memoryStorage());
+      play(game, choices);
+      expect(game.getState().screen).toBe('ending');
+      expect(game.getState().ending).toBe(ending);
+      expect(game.getState().history).toHaveLength(6);
+      expect(game.getEnding().reasons.length).toBeGreaterThanOrEqual(2);
+    });
+  }
+  it('does not unlock a shared relationship by affinity without trust and communication', () => {
+    const game = new api.RomanceEngine(api.memoryStorage());
+    game.start();
+    for (const id of routes.open.slice(0, 4)) { decision(game); game.choose(id); game.continue(); }
+    decision(game);
+    const shared = game.getScene().choices.find(c => c.id === 'invite-both')!;
+    expect(shared.available).toBe(false);
+    const before = game.getState();
+    game.choose('invite-both');
+    expect(game.getState()).toEqual(before);
+  });
+  it('requires separate consent for both characters in the shared ending', () => {
+    const game = new api.RomanceEngine(api.memoryStorage()); play(game, routes.together);
+    expect(game.getState().flags).toEqual(expect.arrayContaining(['consent-zhixia', 'consent-wenxi']));
+    expect(game.getEnding().paragraphs.join(' ')).toContain('知夏');
+    expect(game.getEnding().paragraphs.join(' ')).toContain('闻溪');
+  });
+  it('changes later dialogue for both opening decisions, not just numbers', () => {
+    const scene = (choice: string) => { const game = new api.RomanceEngine(api.memoryStorage()); game.start(); decision(game);game.choose(choice);game.continue();return game.getScene().lines.map(l=>l.text).join(' '); };
+    expect(scene('go-cafe')).not.toBe(scene('go-gallery'));
+  });
+  it('ignores stale or double-submitted choices and does not double-apply effects', () => {
+    const game = new api.RomanceEngine(api.memoryStorage()); game.start();
+    const initial=game.getState(); game.choose('go-cafe'); expect(game.getState()).toEqual(initial);
+    decision(game);game.choose('go-cafe');const after=game.getState();game.choose('go-cafe');expect(game.getState()).toEqual(after);
+  });
+  for (const route of ['zhixia','wenxi'] as const) {
+    it(`actual ${route} ending → restart gives each heroine a source-specific memory`, () => {
+      const store=api.memoryStorage();const game=new api.RomanceEngine(store);play(game,routes[route]);
+      const previous=game.getState().history;game.restart();game.start();
+      expect(game.getState().runNumber).toBe(2);
+      for (const id of ['zhixia','wenxi'] as const) {
+        const memory=game.getState().memories[id]!;
+        expect(memory.characterId).toBe(id);
+        expect(previous.some(h=>h.choiceId===memory.sourceChoiceId)).toBe(true);
+        expect(memory.sourceRun).toBe(1);
+      }
+      const first=game.getScene().memoryResponses;
+      expect(first.some(m=>m.characterId==='zhixia')).toBe(true);
+      decision(game);game.choose('go-cafe');game.continue();
+      const second=game.getScene().memoryResponses;
+      expect(second.some(m=>m.characterId==='wenxi')).toBe(true);
+      expect(first[0].text).not.toBe(second[0].text);
+      const restored=new api.RomanceEngine(store);
+      expect(restored.getState()).toEqual(game.getState());
+    });
+  }
+  it('preserves an old rural save byte-for-byte and starts a new independent romance save', () => {
+    const store=api.memoryStorage();const old=JSON.stringify({version:3,screen:'chapter-complete',stats:{economy:999}});
+    store.setItem('village-south-save',old);const game=new api.RomanceEngine(store);
+    expect(game.legacySavePresent).toBe(true);expect(game.getState().screen).toBe('title');game.start();
+    expect(store.getItem('village-south-save')).toBe(old);expect(store.getItem(api.ROMANCE_SAVE_KEY)).toBeTruthy();
+  });
+  it('preserves unsupported future saves without silently overwriting them', () => {
+    const store=api.memoryStorage();const future=JSON.stringify({schemaVersion:999,screen:'story'});store.setItem(api.ROMANCE_SAVE_KEY,future);
+    const game=new api.RomanceEngine(store);game.start();expect(game.saveNotice).toBeTruthy();
+    expect(store.getItem(api.ROMANCE_SAVE_KEY)).toBe(future);
+  });
+  it('recovers from malformed state and can run when storage writes are denied', () => {
+    const store={getItem:()=>'{bad',setItem:()=>{throw new Error('denied');},removeItem:()=>{throw new Error('denied');}};
+    const game=new api.RomanceEngine(store);expect(()=>game.start()).not.toThrow();expect(game.saveNotice).toBeTruthy();
+  });
+  it('resumes the exact line and does not skip unread dialogue or choices', () => {
+    const store=api.memoryStorage();const game=new api.RomanceEngine(store);game.start();const first=game.getState();
+    game.skipRead();expect(game.getState().lineIndex).toBe(first.lineIndex);
+    game.advanceLine();const restored=new api.RomanceEngine(store);expect(restored.getState()).toEqual(game.getState());
+    decision(restored);const before=restored.getState();restored.skipRead();expect(restored.getState()).toEqual(before);
+  });
+  it('can complete a second whole loop and never rewinds into the retired rural entry', () => {
+    const game=new api.RomanceEngine(api.memoryStorage());play(game,routes.zhixia);game.restart();play(game,routes.wenxi);
+    expect(game.getState()).toMatchObject({screen:'ending',runNumber:2,ending:'wenxi'});
+    expect(game.getState().unlockedEndings).toEqual(expect.arrayContaining(['zhixia','wenxi']));
+  });
+});

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "title": "攻略美少女",
+  "runId": "20260831-010324-village-south-text-v1",
+  "scope": "authoring-only",
+  "paths": 128,
+  "endingCounts": {
+    "zhixia": 10,
+    "open": 104,
+    "wenxi": 10,
+    "together": 4
+  },
+  "openReasonCounts": {
+    "player-slow": 48,
+    "consent-declined-or-pending": 12,
+    "partial-shared-consent": 12,
+    "no-invite": 32
+  },
+  "memoryIds": [
+    "mz-romance",
+    "mw-call",
+    "mz-arrived",
+    "mw-romance",
+    "mz-shared",
+    "mw-shared",
+    "mw-waited",
+    "mw-returned",
+    "mw-arrived",
+    "mz-call",
+    "mz-returned",
+    "mz-waited"
+  ],
+  "inputs": [
+    {
+      "file": "story-graph.json",
+      "sha256": "7cea611c094238f56e2e885432e294de4dd0e7f94714c9ab8b052017d6b65d57"
+    },
+    {
+      "file": "story-bible.md",
+      "sha256": "b48aad0e580181b7f3e88b59ca6252468c727aa05846573debfa44ed2779ac75"
+    },
+    {
+      "file": "story-schema.ts",
+      "sha256": "d7fc3301b4394ef60590557145902949c10eb4460e3bf12374db7f2ae914c371"
+    },
+    {
+      "file": "story-validation.ts",
+      "sha256": "59fee570156b2c4c690b46abb3de9538bd5bc78f98f427bdc324597d15358798"
+    },
+    {
+      "file": "luna-story-retest.json",
+      "sha256": "a3145049a77a4eb4efa554f33e0a6a3e052d5dea8f8110ee6993cea64c53f7d8"
+    }
+  ],
+  "romanceRuntimeImplemented": false,
+  "readerExperienceVerified": false
+}

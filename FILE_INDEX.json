@@ -1,0 +1,921 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260831-010324-village-south-text-v1",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 226,
+      "sha256": "dfd4d9577ab55ceb62cb6e64de8d1c06aedc0a1ab727cffe5722a0af076e1a32"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 4044,
+      "sha256": "30571da58407f1c8b0c9ab0dc75e54248ec621be46924bbf80938f69721a41a3"
+    },
+    {
+      "path": "CHATGPT_NEXT_STEP_PROMPT.md",
+      "bytes": 2206,
+      "sha256": "d5c9ccfeba349be8c583e14b88885d09f0a0e367e3ef32f8f229c3933f7da891"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 3922,
+      "sha256": "e4d917d5b93e8a1a0e36a68596f4a4253b2cfc6d616ab19229aaa3161aa0e79f"
+    },
+    {
+      "path": "PUBLICATION_SOURCE_MAP.json",
+      "bytes": 48981,
+      "sha256": "507aebaa4704915fb50c6c986e16e9aa4a68c380d6d7313e570f8b131b6f3cc8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3176,
+      "sha256": "3774d00b778119f0fcabb1819c8b7b9226e9cea3fca93d39b60741a5be17ddf5"
+    },
+    {
+      "path": "eslint.config.js",
+      "bytes": 326,
+      "sha256": "7f842fb3aa3f718ec3f1b0dbf172a8a8542086c2db6db8f54bb216261ea4b133"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2218,
+      "sha256": "d819687ef1e406ae545ce59ecd49049746716d586931cffab684921822a1c725"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 65232,
+      "sha256": "11002f16c1a2bcda876993052a258a814cc9c6ce08a904445cbdd45f22674b3e"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "bytes": 297,
+      "sha256": "5bcee9f01d0bd2411270eb6f3013bb6d7f0256f1b0b1b033f80ffe10d0972926"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/art-review/replay-value-design.schema.ts",
+      "bytes": 5217,
+      "sha256": "9ba4f7016e0e2319546dcfcb2c19ee8d66fa773ca96da8a8a2d346b87438a01a"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/README.md",
+      "bytes": 1651,
+      "sha256": "2cb7dfa56be3031694e52f9fb9fdb526bca99ab251f3be6c34f115016c460674"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-layout-options-v4/README.md",
+      "bytes": 1131,
+      "sha256": "0807b37682642fad6e5e8a20ebc313f83fc3f3c6354f2d1cc65a40b36352dfd6"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-visual-comparison.schema.ts",
+      "bytes": 5708,
+      "sha256": "bc7644bf7e23c62d7627d075717079c006d992985811a6eda304a31eab76eb6d"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/art-review/validate-replay-value-design.ts",
+      "bytes": 1073,
+      "sha256": "c47a2928890b207da8d6c4ddee0f5957cec00f7bcf95ee8dc017c84c930905f7"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/art-review/validate-ui-visual-comparison.ts",
+      "bytes": 843,
+      "sha256": "a7e7da5587601f6e27c1e8a363e64db81eabb4c59247f455e3e4eb4e20914bdc"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/build-report.json",
+      "bytes": 616,
+      "sha256": "4b54a9fe5d6a96f60bc9d7444a580a424e3bca887c744ab6384dfedb04122bef"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/competitor-research.json",
+      "bytes": 4632,
+      "sha256": "05577b1f3e5dcce79715a6c6f21ecb373dc76459a93b65489dcc938d383cb15c"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/full-chapter-qa-report.json",
+      "bytes": 5086,
+      "sha256": "c98a974d3190a5740aa481d85d9a7ba37369556a58ff0e703ff40c2563821cd3"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/iaa-monetization-review.json",
+      "bytes": 2989,
+      "sha256": "0860b06a20f1ea7c4945ec3d70849a6c8eb77f2af71abc2a0cb80740a2f0e7c5"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/narrative-agency-fix-evidence.json",
+      "bytes": 2326,
+      "sha256": "2572d306ecf2f77fce50221d731a661cff2b5edcf9fd0e486e34625c43d6a770"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/narrative-agency-qa-report.json",
+      "bytes": 1250,
+      "sha256": "c88182cbcb748e7fcd8a8d40f29d4bbe7128c0f32270e9154b1c8e62301da500"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/narrative-choice-audit.json",
+      "bytes": 26059,
+      "sha256": "6e7ee9f6ef95a45d8564f1bca7d9c1874ac34555637988fb192777389ee9d3b6"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/narrative-life-prototype.json",
+      "bytes": 93183,
+      "sha256": "9d520d67bc5443d461ac958abb0ce0830d1a6a0ff3c26b9c1cbbeab5e6f5e713"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/open-source-research.json",
+      "bytes": 6746,
+      "sha256": "03e8dfb7b69bacdf7ca2d862521fefd703fd5bf30329abb2b4a86a4fc19f6033"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/production-cost-review.json",
+      "bytes": 1410,
+      "sha256": "9f7677828e2decaa8eaf0bf449f8383e4457449fb60d2abb4817e83f955ea034"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/qa-report.json",
+      "bytes": 2228,
+      "sha256": "02d5fdc98e90974a8d74a4c6859a286f75607cf3dea50501040b4af8bdcc6eaa"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/replay-value-build-report.json",
+      "bytes": 560,
+      "sha256": "2f19b09518a8fbf106fd02f868ff5976b05f328b85b8610f5a8a3cf00ea392b5"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/replay-value-design.json",
+      "bytes": 7793,
+      "sha256": "855546bd9b10f41a55903fe6d3dc84f1bdc0666794cbb7e274e1ae684295bf5b"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/replay-value-qa-report.json",
+      "bytes": 703,
+      "sha256": "e7b6dd2e8e9305933190b516f8241c06f06827cded573f209488066b8f80b874"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/artifacts/ui-visual-comparison.json",
+      "bytes": 15333,
+      "sha256": "06b9bb91ae2cae603476fea518017a94592d8fafaea501ca5a434482caca30f4"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/human/card-deck.md",
+      "bytes": 20533,
+      "sha256": "c09031e2ec8d4d003d13e0e0cb3d9b68c4a3a84c1917bf7098444a527f57782c"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/human/choice-audit-summary.md",
+      "bytes": 2459,
+      "sha256": "e180ae73fc5412aeb2b83301699692fd7012284de91bca13b9742d0b241e79f7"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/human/mobile-system-design.md",
+      "bytes": 1427,
+      "sha256": "9a8f33704f42ef6b775a1fc0982d43f0af2c136c0ad0a1c4ccdd57f6636cc96e"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/human/prototype-decision.yaml",
+      "bytes": 145,
+      "sha256": "caf4411aaf2cd6a423e094c21190230fc4f90a9ba0038f800a422d70c2a6c22e"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/human/prototype-review.md",
+      "bytes": 957,
+      "sha256": "719086a3a0a0100e4dcd26e1f2ecd48faac48784a8ed5c4e751cac9906cd411e"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/human/replay-value-decision.yaml",
+      "bytes": 438,
+      "sha256": "0a44afe9f449344eb9720916b67cff30baa4063d5f8429c336f083e57cb9e0dd"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/implementation/romance-v1/art-exploration/provenance.json",
+      "bytes": 1364,
+      "sha256": "503fca90cb0710ebfc1d040db6ec7bec5261fc39d1ba0e9c68983221738f28b4"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/implementation/romance-v1/build-contract.json",
+      "bytes": 2086,
+      "sha256": "13b98cf78050d4d7aff63335ed1574569295dbf52429aef0732e0db7ac4888d6"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/implementation/romance-v1/checkpoint.json",
+      "bytes": 1285,
+      "sha256": "e9c250eb97e389cda8fccad628d207da5de1d09324088b65b510707d7147dc9e"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/implementation/romance-v1/romance.test.ts.draft",
+      "bytes": 7296,
+      "sha256": "64f071e4471fc279cb7d219fdff0b17dda751a75571436be2a1c4e50f883a189"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/input/generate-artifacts.ts",
+      "bytes": 75204,
+      "sha256": "3bf2f527f6bae27415c85baceec4309d543a701d5a8db28c1d46d7a43bb4ee02"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/check-results.json",
+      "bytes": 2414,
+      "sha256": "fb2f341ebd538c81b5d5769c90b97774984f0e8495609a7efada40e8607177a1"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/evidence-provenance.json",
+      "bytes": 20577,
+      "sha256": "ecc9b3f976e0d10213652df137f6368ccacc980640c45d6b2dcfc26493e04e22"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/failure-pressure-contract.json",
+      "bytes": 8327,
+      "sha256": "620f1387c9d0ea6a3ff879da9f02c7b0bc8f32a44f3642b5828e908bb13645ae"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/inspect-runtime.mjs",
+      "bytes": 4684,
+      "sha256": "92abfa16db6a56defffa5587c0e788bc1900f4103b07bdd2807b40638e36ba5d"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-challenge-review.json",
+      "bytes": 2814,
+      "sha256": "d443c8c86eb62d444c5035bb4ff2da000a2d0cabfa59c2e1885416fb7dc3a32f"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-review.json",
+      "bytes": 6265,
+      "sha256": "fe371f9fa1bc1643921f5734a63727458a0b0d3f8669179c144e40acde15ee3e"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-romance-review.json",
+      "bytes": 2820,
+      "sha256": "ffe8f1c52c36b17502ee08ddbb670c640b1cb9ab84d0b5d5799a47d6c5126a70"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-story-retest.json",
+      "bytes": 3956,
+      "sha256": "a3145049a77a4eb4efa554f33e0a6a3e052d5dea8f8110ee6993cea64c53f7d8"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-story-review.json",
+      "bytes": 4074,
+      "sha256": "250479b365afd3edd486a1507047075739bd07fbcb186003b5079bba4c92d6a6"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/open-source-research.json",
+      "bytes": 4449,
+      "sha256": "e8d9344c9734634a80864e6119757d30fdd5f56a4223bc5bdf6f061be4660f6b"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/plan.md",
+      "bytes": 20132,
+      "sha256": "abfa81467357e9475fc2b4bbc2282ed435063233bdc936055a21041fb17c8fb2"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/reproduction-matrix.json",
+      "bytes": 15905,
+      "sha256": "0d3b9723b0aa6f2ddeb80c903e3d14d90addb61c9b54bceb7af51e7792367fc8"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/review-contract.ts",
+      "bytes": 1180,
+      "sha256": "d5b894eb66b2d4716c34fd3fb2564c8eed57a74815b06e649aeacbc39aec1830"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-failure-pressure-contract.json",
+      "bytes": 7563,
+      "sha256": "e479bc5659c859f6e92425d371a3137cef1f2118013267e8746704941e570726"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-open-source-research.json",
+      "bytes": 4492,
+      "sha256": "ba64d4bead9b943de5edcd3aa90f07b2584b0fcafa92fbdaf093fd3129bb3ada"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-plan.md",
+      "bytes": 12004,
+      "sha256": "fdfab5549848414db024e261856190f051f0cf0c2c05080dd4cb4c6c9e6410a7"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-request.json",
+      "bytes": 1069,
+      "sha256": "b2560475fb9829b2227c8318df20bb1ef7b2033a78379c7f35c53c3414960660"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-triage.json",
+      "bytes": 2266,
+      "sha256": "dd03653d9b2deb6a9b726ebbcd2e76ef1aaa248a19e406bfe60ee8a38395b76a"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-bible.md",
+      "bytes": 27659,
+      "sha256": "b48aad0e580181b7f3e88b59ca6252468c727aa05846573debfa44ed2779ac75"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-finalization-report.json",
+      "bytes": 4719,
+      "sha256": "274b9a5169a91897c89b929e9e6c9044798ffb53993958c87c8f15b904cda76f"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-graph.json",
+      "bytes": 16717,
+      "sha256": "7cea611c094238f56e2e885432e294de4dd0e7f94714c9ab8b052017d6b65d57"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-request.json",
+      "bytes": 743,
+      "sha256": "a7bf3e537a79d715609ce466707dcf0a607809e7eff2028b8db75839057e5bc3"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-review-resolutions.json",
+      "bytes": 1215,
+      "sha256": "2a57415435339e00c04cb6bbdfcfe0f66b1192b9f8b9e2068526783d00eedcef"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-schema.ts",
+      "bytes": 8597,
+      "sha256": "d7fc3301b4394ef60590557145902949c10eb4460e3bf12374db7f2ae914c371"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.test.ts",
+      "bytes": 8439,
+      "sha256": "26568c2abecb4299223819124376513107f040702619348f7851f3536fb181b7"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.ts",
+      "bytes": 3887,
+      "sha256": "59fee570156b2c4c690b46abb3de9538bd5bc78f98f427bdc324597d15358798"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/triage.json",
+      "bytes": 2904,
+      "sha256": "440da6f2728993513938f9f1a0911a3b5bbccb1b199d152371bab2cde1a0b769"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/user-report.json",
+      "bytes": 640,
+      "sha256": "0926354f6a46844eb962e7a0ec0dfc856081c5b2d87c4fc059e25b6ee5f46d37"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/validation-report.json",
+      "bytes": 5322,
+      "sha256": "46bf827d6f35836957b824ff992ec80c15705ea392d8b604b9304b8bee6b7025"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/workspace-before.json",
+      "bytes": 2859,
+      "sha256": "cca65224cd3b1d2a4c6bb2bbc0c7b1afd9c312bdb88d176d521ef02994fbf873"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/workspace-integrity-final.json",
+      "bytes": 329,
+      "sha256": "2ffb5dddc26cec689b732de1d9e13cc4468abe13265da99254998608a275dd75"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/state.json",
+      "bytes": 3071,
+      "sha256": "ea026f3d144dbfaed60aa5cabe460e2c4316066b547050b099e78493a230f173"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/index.html",
+      "bytes": 584,
+      "sha256": "0cdeab2fc0bef255dce9d9a6e67ced3b7c5d8463b9af635bfd56dce2fdc319fa"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/package.json",
+      "bytes": 535,
+      "sha256": "bf386d38831fd51489a01777f324336dcfd9f34709ca36fad777c4ebf65a7f8b"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/src/ad-service.ts",
+      "bytes": 1628,
+      "sha256": "266c46e56ccc3d6dffa893aca01699fb3ade415db3f06eea084c0c3707c29f87"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/src/chapter-data.ts",
+      "bytes": 13325,
+      "sha256": "520d0aae0de6812a956899b30b9cf62137d44f888bda88db3913a9d6da2dbe24"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/src/game.ts",
+      "bytes": 10570,
+      "sha256": "e55ba6f7750bd5e69c232ca32f18d37e8b8476b7da83baff83b9de8a6e53b36f"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts",
+      "bytes": 12652,
+      "sha256": "2c6711bdb01986deed1210665fa332662e84bb3308fcbd3609cd82afac5df893"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/src/style.css",
+      "bytes": 8068,
+      "sha256": "f59cfbbbc4d645b42df67a68101145523fb35d952ca6dfb1558ed701a5fdc512"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/tests/game.test.ts",
+      "bytes": 8488,
+      "sha256": "5525b448203992f3a579eea266fdf6a5da3878192c559d9232d28fe8a3669da8"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/tests/mobile-playwright.ts",
+      "bytes": 6391,
+      "sha256": "f6fd95cfb67ffa5aa44048b96770e0f5755ddd7a24a31b2aa45d31930bc6b26f"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/tsconfig.json",
+      "bytes": 352,
+      "sha256": "b71b19d15ec9132a7b2a647d3707c068e78a9c664fcf4801d51d686b5f663a91"
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/vite.config.ts",
+      "bytes": 1428,
+      "sha256": "b5ec0f32ddc94d74290971afe0bcab2507c1d7f1a3042359646dcf1ed2a04963"
+    },
+    {
+      "path": "src/core/preview-presentation-disclosure.ts",
+      "bytes": 2402,
+      "sha256": "05639730352cd99ac70167f5829bd46465c3717e01ba529452df2e17952fba5b"
+    },
+    {
+      "path": "src/schemas/acceptance-artifacts.ts",
+      "bytes": 5779,
+      "sha256": "0f052f4cb22fc1a5c1596a4185922f8bc091d87f2d05f3368a56e701a3ef6908"
+    },
+    {
+      "path": "src/schemas/account-capacity.ts",
+      "bytes": 3948,
+      "sha256": "8da8257c6c7b01445bd7175bff49c82c660a5c0f365a51ee402302ab4fedaaee"
+    },
+    {
+      "path": "src/schemas/art-quality.ts",
+      "bytes": 2063,
+      "sha256": "2799f2503cc814010c779e7cc73b65c760c57aa30a249da4b60ff2e403625141"
+    },
+    {
+      "path": "src/schemas/artifact-ledger.ts",
+      "bytes": 943,
+      "sha256": "28a4bdc173898e56b93c1eee09367d74ce258ab8259295fe29c86926764df67d"
+    },
+    {
+      "path": "src/schemas/artifact-metadata.ts",
+      "bytes": 3808,
+      "sha256": "f3c834eb30de045322279486dce138fa6a96e4dae9e4e3a430f6ce04d56580f9"
+    },
+    {
+      "path": "src/schemas/blind-playtest.ts",
+      "bytes": 615,
+      "sha256": "06b8e31866cd129290115c1507a43e1834d69f6e04810a55fe917ad84d739e66"
+    },
+    {
+      "path": "src/schemas/business-strategy.ts",
+      "bytes": 2295,
+      "sha256": "38d4175c660ceca1d14297b5579f2f7f838cec8807a03ecf52f0ebbf6d96fd5d"
+    },
+    {
+      "path": "src/schemas/content-expansion.ts",
+      "bytes": 1289,
+      "sha256": "0fcb4a61ff0100431a2122d27778ba2384b501db98b2c99fd563d8c3d3ed382d"
+    },
+    {
+      "path": "src/schemas/content-variation.ts",
+      "bytes": 1400,
+      "sha256": "e4afaba0459429875b0ca8e6b826cd7cc2673f156bd67265ceae6adfa2aaf061"
+    },
+    {
+      "path": "src/schemas/cost-accounting.ts",
+      "bytes": 4362,
+      "sha256": "cf1d9d51b7c64fce6de85062e5f0cc3910110f10064d4b21fc56d866cda26839"
+    },
+    {
+      "path": "src/schemas/cost-budget-authorization.ts",
+      "bytes": 2120,
+      "sha256": "cc0df2fe7757af13ef0897149bc4d77f422c204895d785dd1e18614c3e3421b5"
+    },
+    {
+      "path": "src/schemas/dependency-policy.ts",
+      "bytes": 1809,
+      "sha256": "0589e6d6c0ac3b4fa830412873ec9d86651d618ef70b563ca2588d45cc80908f"
+    },
+    {
+      "path": "src/schemas/differentiation.ts",
+      "bytes": 899,
+      "sha256": "0720af5e948aef658d5a421198256868474c50335b5fae5aea11ebc326757574"
+    },
+    {
+      "path": "src/schemas/evidence-claims.ts",
+      "bytes": 1564,
+      "sha256": "8d11aaa69823fd67686ecdcb858e7e27350e4ce4bb1669f0fc118ebcdfed316b"
+    },
+    {
+      "path": "src/schemas/evidence-provenance.ts",
+      "bytes": 3882,
+      "sha256": "7d69a520d1d085413e8079d10c7b61a912aee854b1a5385e6005f74f688fc408"
+    },
+    {
+      "path": "src/schemas/experience-complaint.ts",
+      "bytes": 3254,
+      "sha256": "857d237a57a933dab83c8a96fe395e8c867a447de6fcb297c983d3227c5da82a"
+    },
+    {
+      "path": "src/schemas/experience-contract.ts",
+      "bytes": 3433,
+      "sha256": "7458d14f7c406635ae0336703939b5fa8479ab031e8f4ba4b65b95374c99a77e"
+    },
+    {
+      "path": "src/schemas/experience-hypothesis.ts",
+      "bytes": 1297,
+      "sha256": "a0e29f013d737b5036ef0fa90a7eb6c69399ef3bd0ff7890cd44baa480af1a20"
+    },
+    {
+      "path": "src/schemas/experience-profile.ts",
+      "bytes": 3211,
+      "sha256": "ade25362cf3eb4be8932360200047795c39f200fd691cc707ba214e88c4b9e04"
+    },
+    {
+      "path": "src/schemas/factory-constitution.ts",
+      "bytes": 2068,
+      "sha256": "1077e87cf37060a53681dc16a9f6e5ac173350dc2b0b416132b17d0def192648"
+    },
+    {
+      "path": "src/schemas/factory-operating.ts",
+      "bytes": 24719,
+      "sha256": "bcd53f6f0a5a7db89d8be587d6ef5f1695d00a4cb0f20834461d1b1487e788e7"
+    },
+    {
+      "path": "src/schemas/failure-pressure-contract.ts",
+      "bytes": 2353,
+      "sha256": "f19ae673cc933a3f1ebeba6ec5fe16891ad399bfabca09c6814d7a780f2b3148"
+    },
+    {
+      "path": "src/schemas/feedback.ts",
+      "bytes": 2821,
+      "sha256": "1a6e8ab4f35d084e41fe56c317f0bfbd135aee5ba6899d5399c1d1c414c64034"
+    },
+    {
+      "path": "src/schemas/formal-prototype-constraints.ts",
+      "bytes": 8845,
+      "sha256": "49356cfc6e4a84925479bec94c8abb8bf4f6034015d0800b638f5dfaa1d6d3ca"
+    },
+    {
+      "path": "src/schemas/game-identity.ts",
+      "bytes": 2623,
+      "sha256": "c3554ae1258c1c43477579c3a9adf1734039a97447e4ff5a924a665aee39f056"
+    },
+    {
+      "path": "src/schemas/gameplay-revision.ts",
+      "bytes": 25739,
+      "sha256": "b9e4f917295ba19ee486b26ce3f00431a122e8ec4ac027e96f3c2f885eb0457c"
+    },
+    {
+      "path": "src/schemas/generated-alpha-validation.ts",
+      "bytes": 1850,
+      "sha256": "2a29a5d747943146642d0dc8c109a310889a6312fc98811f17009d67e47e4925"
+    },
+    {
+      "path": "src/schemas/human-approval.ts",
+      "bytes": 8106,
+      "sha256": "037ee3599d60b9b0c2403e18d6e21c4ec8a4394c32fe4c92184b07ae75a30946"
+    },
+    {
+      "path": "src/schemas/hybrid-3d-assets.ts",
+      "bytes": 4721,
+      "sha256": "095675a6142b456a19788a2355d96ce8637b6a95333fe37ee8fd3f8e6616ca30"
+    },
+    {
+      "path": "src/schemas/iaa-contract.ts",
+      "bytes": 2897,
+      "sha256": "4503c34d141526e4ae3320ae24825c7373d0d4b0ceb017e6bc1d601416a027fd"
+    },
+    {
+      "path": "src/schemas/index.ts",
+      "bytes": 37278,
+      "sha256": "d1543a7faaf6c71a893138b6edf20aa64ca0ecffce737d7506d67479aa718808"
+    },
+    {
+      "path": "src/schemas/interaction-continuity.ts",
+      "bytes": 7299,
+      "sha256": "c1edeb6c343c5e5b2b05d1ecde8e36c474ebc141e23026aa21a929214a675038"
+    },
+    {
+      "path": "src/schemas/launch-operations.ts",
+      "bytes": 6883,
+      "sha256": "6cacd091061fcca47f574ed407ea4c59a69d9b71ad384b5c1d082ae7a5432f19"
+    },
+    {
+      "path": "src/schemas/live-verification.ts",
+      "bytes": 1858,
+      "sha256": "8187ba5691508c22378208bd764480134969ea55faa96a7fd3a4d2124726cbd5"
+    },
+    {
+      "path": "src/schemas/model-policy.ts",
+      "bytes": 2190,
+      "sha256": "fcc73066ff9daaa2aa9beb5b390924fe11dc6342012ca1cf9a9e1fe68becb090"
+    },
+    {
+      "path": "src/schemas/narrative-choice-audit.ts",
+      "bytes": 17391,
+      "sha256": "df174ba0301eb08c48aab98b2e061f0ec74412af8fd5faab943cefeb3639190f"
+    },
+    {
+      "path": "src/schemas/narrative-life-prototype.ts",
+      "bytes": 18165,
+      "sha256": "8a95873d6c1cd65524922a43769df029c67d4be522472ae66ff7be460b063b4c"
+    },
+    {
+      "path": "src/schemas/natural-flow.ts",
+      "bytes": 2403,
+      "sha256": "e52675971d67d7fc35b06c75c7e5285cff14b2a8630e34058e2953ba0a3eea50"
+    },
+    {
+      "path": "src/schemas/natural-input-policy.ts",
+      "bytes": 1587,
+      "sha256": "18f4561db708d7030e82d2d8814097c51661b9dec4c413ea446b94ccf9580669"
+    },
+    {
+      "path": "src/schemas/open-source-research.ts",
+      "bytes": 3539,
+      "sha256": "eaab46d875cc202991b5c0b33e3a68af8a27f4c34310adc94ae814fe315d2bea"
+    },
+    {
+      "path": "src/schemas/operating-profile.ts",
+      "bytes": 5667,
+      "sha256": "a43afb61cf500905c8ccef486c591d58c3cdb3daf5f3033bcbf1191e1170b116"
+    },
+    {
+      "path": "src/schemas/originality.ts",
+      "bytes": 1324,
+      "sha256": "42ec2cd94e4354faef483d89b8309132300f602aae27661fe7afb4fabb9b18d2"
+    },
+    {
+      "path": "src/schemas/permission-manifest.ts",
+      "bytes": 2636,
+      "sha256": "c3f0d2032ec3d4ca1f4b67145e54eb5e33d51ca99702c84efb12973afe22d2fd"
+    },
+    {
+      "path": "src/schemas/pipeline-plan.ts",
+      "bytes": 2856,
+      "sha256": "91cee678a72e1d24255c3a13def5d1e4975a1b570558e73fca6882595b5f01aa"
+    },
+    {
+      "path": "src/schemas/platform-package.ts",
+      "bytes": 3698,
+      "sha256": "3809be3556e7ce2901708665ec33a5b40e8df01691decd5538f178fc7bc3d15f"
+    },
+    {
+      "path": "src/schemas/platform-policy.ts",
+      "bytes": 5115,
+      "sha256": "3ec692c58dcd5e5d01018f4bf426a15b204c47795f4729305cf0c1f686520bed"
+    },
+    {
+      "path": "src/schemas/platform-spine.ts",
+      "bytes": 4307,
+      "sha256": "381dbfe8304ad026b973c6c4c8f009849eba7403568d8de4ab0f112786f685e1"
+    },
+    {
+      "path": "src/schemas/portfolio-strategy.ts",
+      "bytes": 3278,
+      "sha256": "a2a9b79fb7d174e304d531301c61b944e4e4f6fd3a2f4404422b18c7f8c0b0ef"
+    },
+    {
+      "path": "src/schemas/presentation-evidence.ts",
+      "bytes": 1263,
+      "sha256": "89609ae1e712958da6fbfe6cd5f5c862fa0fc4e2dd819b9a2be99efae9217eca"
+    },
+    {
+      "path": "src/schemas/product-experience.ts",
+      "bytes": 7070,
+      "sha256": "50d2ab67a47cc29ccf48ab3cd7a022e885b50852aedd4aa5e480d9f2f9c23f68"
+    },
+    {
+      "path": "src/schemas/production-line-qa.ts",
+      "bytes": 2577,
+      "sha256": "67fdec14d1252b093d981e2de47e4e39c569d60c4dd4d654831d225005a00dfd"
+    },
+    {
+      "path": "src/schemas/production-line-resolution.ts",
+      "bytes": 1574,
+      "sha256": "d72e1271a338ea2430c3cac4f6a0c59989aa7c9009012d8c23f881bcb8dbceef"
+    },
+    {
+      "path": "src/schemas/production-line.ts",
+      "bytes": 1808,
+      "sha256": "ba00e351e2e869eda0b364c295669228a189bdb3e1803af4828c195cb91313ad"
+    },
+    {
+      "path": "src/schemas/profile-contract.ts",
+      "bytes": 1935,
+      "sha256": "10d9c3bc0dbd478792a3866f01a852f9206a48d0057195f8cbac0e249ed3cc92"
+    },
+    {
+      "path": "src/schemas/profile-qa.ts",
+      "bytes": 1524,
+      "sha256": "7dfec492127071094e3202e6b3e499d713406d8e00881b515e8e1ae75ee96274"
+    },
+    {
+      "path": "src/schemas/profile-stage.ts",
+      "bytes": 3865,
+      "sha256": "7b99669cffa0861e9f166dea4e9e4e6d76f7801af4973985e20e45ab319db4ea"
+    },
+    {
+      "path": "src/schemas/quality-baseline.ts",
+      "bytes": 2092,
+      "sha256": "dae8ecd41fb2c96b41860a9e6e7e587b8991eba9a7cd75dbfcafdf2ca46e5ba5"
+    },
+    {
+      "path": "src/schemas/quality-gates.ts",
+      "bytes": 3655,
+      "sha256": "6a1527fc3930705da8b307bc1d0c84af474607c3ec350f017b30710b5f253fdb"
+    },
+    {
+      "path": "src/schemas/randomness.ts",
+      "bytes": 991,
+      "sha256": "33a953209c6a237e4c9c7662974aaed5c1d2b56334ca4b4053f669abe870b8f0"
+    },
+    {
+      "path": "src/schemas/reference-core-gameplay-research.ts",
+      "bytes": 14117,
+      "sha256": "08ccb3e47a516954a335a002553d13c0635c4fc0f48dca8c2b274654711474dc"
+    },
+    {
+      "path": "src/schemas/reference-evidence.ts",
+      "bytes": 5190,
+      "sha256": "23b94b2968152a487d405c80311a9aa76a969b26db25e0d44f880fa83dbcc5d5"
+    },
+    {
+      "path": "src/schemas/reference-fidelity.ts",
+      "bytes": 4802,
+      "sha256": "b5b7c1ae587b2ea681cb6d404f1214594966d6a25f8e805136e25f2ca3bf5547"
+    },
+    {
+      "path": "src/schemas/reference-level-runtime.ts",
+      "bytes": 5642,
+      "sha256": "72e21b071f620e39a8703ff3d796e02d44057464ed070f745e6ec8012b02754f"
+    },
+    {
+      "path": "src/schemas/reference-mechanic.ts",
+      "bytes": 2662,
+      "sha256": "f7f4d31b6bbe405949e7a61c7041d9953674c9dda9142bd2562ace573fa28fa3"
+    },
+    {
+      "path": "src/schemas/reference-object-review.ts",
+      "bytes": 5812,
+      "sha256": "e2894c06c924b57c69e1cc7a28bc08f40b4e87b13847e14288e22c883887f651"
+    },
+    {
+      "path": "src/schemas/reference-quality-audit.ts",
+      "bytes": 6172,
+      "sha256": "03c079c53b88ce14df22bce2e09a75d3f9137009acfdee3ad55697a5bfcd44c2"
+    },
+    {
+      "path": "src/schemas/reference-recording.ts",
+      "bytes": 30647,
+      "sha256": "979a86c5fecb8c8365117364a92732964633f6c55250884f72624ec6bf9a5094"
+    },
+    {
+      "path": "src/schemas/reference-resolution.ts",
+      "bytes": 3170,
+      "sha256": "6ac4a96dd72d052aa27c0a2036ed81c3029c703e17f5b0d43b05033013b78b24"
+    },
+    {
+      "path": "src/schemas/release-lifecycle.ts",
+      "bytes": 804,
+      "sha256": "b6a3c51729e7d29d9ea1270d233054602904dec879a712809d7d9a5cf0107d60"
+    },
+    {
+      "path": "src/schemas/research-evidence.ts",
+      "bytes": 1840,
+      "sha256": "5e1f7776e20c57574f9b083832662be307bbd8d4f96a19ba7d5e8bef0072fe6e"
+    },
+    {
+      "path": "src/schemas/research-sandbox.ts",
+      "bytes": 662,
+      "sha256": "14dbea3def8d20303a00b8f5efa54f3b08a6ebe317a27d82887bec658fef5000"
+    },
+    {
+      "path": "src/schemas/schema-migrations.ts",
+      "bytes": 228,
+      "sha256": "06db665aaab9038f8b3fe6f7cd4bd55691466b359c4a09edd163e73ccae14e3c"
+    },
+    {
+      "path": "src/schemas/side-effect-journal.ts",
+      "bytes": 4813,
+      "sha256": "b3bff8723b8e4eebf8e4fb12699caa6e883bb50ec5fcfe259c83dfc06f2ba0f2"
+    },
+    {
+      "path": "src/schemas/side-effect.ts",
+      "bytes": 1098,
+      "sha256": "519d73672df7ca1fb47663fe356ef83dd0cc13604444bd7dd13586a81b8b25fb"
+    },
+    {
+      "path": "src/schemas/spatial-shop.ts",
+      "bytes": 8202,
+      "sha256": "0beb3f2662e2008ee247ba155ccb69ded92c76fd5d07624b910b519f39fb7196"
+    },
+    {
+      "path": "src/schemas/stage-contracts.ts",
+      "bytes": 5722,
+      "sha256": "3bf745bed1d873da908582b411cffae7093f043c178109d5b2b5710634d1c286"
+    },
+    {
+      "path": "src/schemas/stage-name.ts",
+      "bytes": 2168,
+      "sha256": "a7d9a9445ee8c3118374815aa3512bddf8ed81b37cb28cd846581d9a9c3e02cc"
+    },
+    {
+      "path": "src/schemas/state-transition.ts",
+      "bytes": 1125,
+      "sha256": "303dbdb6ff264c8ed9868d21e6d7bf58a1f08791a2fbf166a520bdb9799d142a"
+    },
+    {
+      "path": "src/schemas/supply-chain.ts",
+      "bytes": 2876,
+      "sha256": "c55489bffd93a6ea26d2f7a54a9d2d81d96061d37406331a8e293dc45c96307d"
+    },
+    {
+      "path": "src/schemas/ui-animation-standard.ts",
+      "bytes": 2461,
+      "sha256": "3a64c60762719edef76d6c36b57f06ff9e1daa9463c23447c16ff4111fa78525"
+    },
+    {
+      "path": "src/schemas/ui-skeleton.ts",
+      "bytes": 863,
+      "sha256": "2f2c9e805dc3bbec8d63f99131bbe71b5e79c55c5a04c655668fef90f792d59d"
+    },
+    {
+      "path": "src/schemas/unknowns.ts",
+      "bytes": 3383,
+      "sha256": "0d236bbbbe166893a04a7238cc56dcd0e06523650ca55582f44ed6c18fe28d8b"
+    },
+    {
+      "path": "src/schemas/variation-coverage.ts",
+      "bytes": 1544,
+      "sha256": "44af574392832bb67af096a2ffb9a87bf0135f39302a008e513b881536fda958"
+    },
+    {
+      "path": "tools/validate-story.ts",
+      "bytes": 1996,
+      "sha256": "6b1c48191282edb69ac37462c8f7d100e5215e4057d2ce783960e328963481dc"
+    },
+    {
+      "path": "verification/build-attempt-1.log",
+      "bytes": 2255,
+      "sha256": "db37dfcc34e1b7beca68013da24b41b0c3e8adc92adfc81db139b707b3cc6eb1"
+    },
+    {
+      "path": "verification/build.log",
+      "bytes": 434,
+      "sha256": "2b94a10f113ce666d6777d89f725b9e816bde4d432cef24b3caf6f725707b2b1"
+    },
+    {
+      "path": "verification/legacy-startup-smoke.json",
+      "bytes": 428,
+      "sha256": "ef80f1cfbb0ca97c693dbd4d94dd889ed2f9cad850ef65ab4e8b93f707b799df"
+    },
+    {
+      "path": "verification/lint.log",
+      "bytes": 345,
+      "sha256": "31e6253ec3d7d1fc9814041359a247f6502542a6da92818d0e72092b33a1064a"
+    },
+    {
+      "path": "verification/package-before-build-cwd-fix.json",
+      "bytes": 2294,
+      "sha256": "cf6bb0c3e7d1b0ff03e36a81f81122aaaa1470670653c2ac389f4255380e1d74"
+    },
+    {
+      "path": "verification/publication-audit.json",
+      "bytes": 243,
+      "sha256": "89ffcb22e9cc90a7733b9892d45d7c4c5b77def249d45ec23a8bbd3ea8dbb32a"
+    },
+    {
+      "path": "verification/source-verification-attempt-1.json",
+      "bytes": 1204,
+      "sha256": "170f9a33c3412e5da82c82f844a9ca08951f079b3e230c06afd2e3b9f78fbdf8"
+    },
+    {
+      "path": "verification/source-verification.json",
+      "bytes": 3364,
+      "sha256": "1d0dab3ee70beb77f5e99e2e9ed79c6b3f8d259827bd69bfc13912460ba16634"
+    },
+    {
+      "path": "verification/story-authoring-summary.json",
+      "bytes": 1370,
+      "sha256": "b0e659feda5c9f9722e14575c78468974441950d3de4f3dfdfe29bb8b634dac8"
+    },
+    {
+      "path": "verification/story-validate.log",
+      "bytes": 1400,
+      "sha256": "11b862ce4265cdcaffc86a2df4cf7aab0cd323214e3b1fc974f35ae14c178fff"
+    },
+    {
+      "path": "verification/structured-artifact-validation.json",
+      "bytes": 504,
+      "sha256": "d0599fc87d86f48380fc693edfa760ebbdbf11974731be7295a70df6fe645369"
+    },
+    {
+      "path": "verification/test.log",
+      "bytes": 978,
+      "sha256": "5dc4513c27ec665353e86ebdfcb0eac01c5a2bad80c63a86bec2a0ab07d46394"
+    },
+    {
+      "path": "verification/typecheck.log",
+      "bytes": 508,
+      "sha256": "eae4f6853be1c1d4c414a61d243409b758ca4ef3257f75660b40855b0d8e49ab"
+    }
+  ]
+}

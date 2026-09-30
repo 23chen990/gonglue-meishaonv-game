@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "narrative_agency_fix_evidence",
+  "runId": "20260831-010324-village-south-text-v1",
+  "targetWorkspace": "runs/20260831-010324-village-south-text-v1/workspace/game",
+  "attempt": 1,
+  "tdd": {
+    "red": "新增三项行为测试后首次运行 11 项中 3 项失败：后续事件未分叉、回响未提供可执行资格、三路线结构未区分。",
+    "green": "实现 GameEngine 的旗标驱动事件解析、回响资源资格以及路线判词优先级后，11/11 通过。"
+  },
+  "changes": [
+    {
+      "file": "workspace/game/src/game.ts",
+      "behaviors": [
+        "每次继续前按已选旗标重写下一槽事件：学习→河滩合约，承包/荒地→打谷机，修理→鸡蛋交易，县城市场→药费抉择，邻里协作→修渠。",
+        "延迟回响结算后暴露 echo_resource 资格，形成后续可操作资源信号，而非仅文本。",
+        "章末判词优先读取修理、市场、互助路线旗标，保留属性兜底。"
+      ]
+    },
+    {
+      "file": "workspace/game/src/chapter-data.ts",
+      "behaviors": ["ChoiceRequirement 支持 flags 条件，为后续资源/关系门槛保留数据接口。"]
+    },
+    {
+      "file": "workspace/game/tests/game.test.ts",
+      "behaviors": ["覆盖事件结构分叉、回响资格与三条路线的不同事件序列。"]
+    }
+  ],
+  "verification": {
+    "commands": [
+      "pnpm test",
+      "pnpm lint",
+      "pnpm typecheck",
+      "pnpm build",
+      "pnpm test:mobile"
+    ],
+    "results": {
+      "unit": "11 passed",
+      "lint": "passed",
+      "typecheck": "passed",
+      "build": "passed",
+      "mobile": "passed; 360x800, 390x844, 430x932; no issues"
+    },
+    "sourceSha256": {
+      "workspace/game/src/game.ts": "e55ba6f7750bd5e69c232ca32f18d37e8b8476b7da83baff83b9de8a6e53b36f",
+      "workspace/game/src/chapter-data.ts": "520d0aae0de6812a956899b30b9cf62137d44f888bda88db3913a9d6da2dbe24",
+      "workspace/game/tests/game.test.ts": "5525b448203992f3a579eea266fdf6a5da3878192c559d9232d28fe8a3669da8"
+    }
+  },
+  "residualIssues": [
+    "本次只修复第一章的事件结构与资源资格；完整六章内容仍未扩展。",
+    "旧的 full-chapter QA artifact 仍反映修复前路径，应以本证据及下一轮 QA 为准。"
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "ui_visual_candidate_comparison",
+  "runId": "20260831-010324-village-south-text-v1",
+  "targetGame": "村口向南",
+  "targetWorkspace": "runs/20260831-010324-village-south-text-v1/workspace/game",
+  "generatedAt": "2026-08-31T02:49:50+08:00",
+  "scope": {
+    "mode": "read_only_production_support",
+    "candidateCount": 4,
+    "gameWorkspaceModified": false,
+    "comparisonBasis": [
+      "手机竖屏信息层级与安全区",
+      "四项核心系统的持续可见性",
+      "选择与即时、延迟后果之间的可扫描关系",
+      "微信、抖音、TapTap 小游戏可分层实现成本"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "direction_a_rural_ledger_collage",
+      "label": "乡村账本拼贴",
+      "image": {
+        "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-a-rural-ledger-collage.png",
+        "sha256": "d826d03c53f78db9a5778ef04a11c8032e0a4169649ca2e239d481ff1dcab5dd",
+        "dimensions": { "width": 916, "height": 1717, "orientation": "portrait" },
+        "transparency": {
+          "required": false,
+          "validation": "not_applicable_fullscreen_opaque_mockup",
+          "reason": "完整竖屏 UI 合成稿不需要透明背景。"
+        }
+      },
+      "visualLanguage": "旧账本、米纸、蓝墨水、磨损布签与暖色水粉插画，生活史质感最强。",
+      "interactionStructure": {
+        "hierarchy": ["标题与年份", "四项横排状态", "四章进度轴", "大幅事件插画与正文", "两个堆叠选择按钮"],
+        "suitableFor": ["叙事优先、低频决策的事件卡流程", "强调家庭档案和手记感的章节过场"],
+        "choiceImpactVisibility": "not_shown"
+      },
+      "mobileReadability": {
+        "overall": 3,
+        "systemVisibility": 2,
+        "choiceConsequenceClarity": 1,
+        "touchTargetConfidence": 4,
+        "strengths": ["标题和两个大按钮清晰", "米纸与深蓝字在手机上有稳定对比"],
+        "risks": ["装饰边缘和插画占比过高", "四项系统与章节轴都偏小", "选择没有显示会影响哪些系统"]
+      },
+      "productionFit": {
+        "score": 3,
+        "strengths": ["可拆成纸张底纹、9-slice 边框、事件插画和代码文字"],
+        "risks": ["磨损纸边与多层拼贴会增加适配和切图工作", "过多纹理会干扰低端机上的文字清晰度"]
+      },
+      "limitations": ["AI 生成的正文、票据和书本文字不可作为真实 UI 文案", "当前稿没有系统变化预览", "不可整屏烘焙后直接上线"]
+    },
+    {
+      "id": "direction_b_woodcut_lianhuanhua",
+      "label": "复古版画连环画",
+      "image": {
+        "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-b-woodcut-lianhuanhua.png",
+        "sha256": "d99f5c07f887c143a792d720afe192522c8c8abdc2a3e72e1cd0ba4141009573",
+        "dimensions": { "width": 941, "height": 1672, "orientation": "portrait" },
+        "transparency": {
+          "required": false,
+          "validation": "not_applicable_fullscreen_opaque_mockup",
+          "reason": "完整竖屏 UI 合成稿不需要透明背景。"
+        }
+      },
+      "visualLanguage": "高对比原创木刻线条、套色印刷感、砖红与芥末黄，识别力和动作感最强。",
+      "interactionStructure": {
+        "hierarchy": ["大标题与年份", "四项横排状态", "四章进度轴", "版画事件卡", "两个高对比选择按钮"],
+        "suitableFor": ["节奏更快、每张卡强调二选一冲突的流程", "需要强封面感和章节海报感的传播素材"],
+        "choiceImpactVisibility": "not_shown"
+      },
+      "mobileReadability": {
+        "overall": 4,
+        "systemVisibility": 2,
+        "choiceConsequenceClarity": 1,
+        "touchTargetConfidence": 5,
+        "strengths": ["大色块选择按钮触控目标明确", "黑、米白、红黄对比在小屏上有力"],
+        "risks": ["粗颗粒版画纹理会吞掉小字号", "系统仍只是窄状态条", "强海报感压过模拟器的信息密度"]
+      },
+      "productionFit": {
+        "score": 4,
+        "strengths": ["有限色板便于压缩", "按钮和卡框可用少量 9-slice 资产复用"],
+        "risks": ["需要严格控制纹理密度和不同分辨率下的线条锐度", "容易被误读为宣传画而不是生活模拟 UI"]
+      },
+      "limitations": ["AI 生成的正文和票据文字不可作为真实 UI 文案", "当前稿未展示即时或延迟系统后果", "必须避免真实徽记、口号和宣传画构图"]
+    },
+    {
+      "id": "direction_c_modern_archive",
+      "label": "现代档案馆",
+      "image": {
+        "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-c-modern-archive.png",
+        "sha256": "df83e572ac6990f96cacba870084502f921e543f4cdadd4bb472a1ea1bbb2062",
+        "dimensions": { "width": 941, "height": 1672, "orientation": "portrait" },
+        "transparency": {
+          "required": false,
+          "validation": "not_applicable_fullscreen_opaque_mockup",
+          "reason": "完整竖屏 UI 合成稿不需要透明背景。"
+        }
+      },
+      "visualLanguage": "深海军蓝、奶油档案纸、暖金细线与克制的纪录片插画，庄重但不宣传化。",
+      "interactionStructure": {
+        "hierarchy": ["标题与年份", "四项横排状态", "章节轴", "档案事件卡", "两个深色选择按钮"],
+        "suitableFor": ["以长期系统成长承载生活史叙事的模拟器", "需要大量事件卡、系统面板和历史资料页的可扩展框架"],
+        "choiceImpactVisibility": "not_shown"
+      },
+      "mobileReadability": {
+        "overall": 4,
+        "systemVisibility": 2,
+        "choiceConsequenceClarity": 1,
+        "touchTargetConfidence": 4,
+        "strengths": ["深蓝与奶油纸对比稳定", "细金线能建立清楚的容器层级", "最适合代码字体和可复用组件"],
+        "risks": ["原稿顶部与事件卡视觉割裂", "大插画挤压系统和决策信息", "四项系统过于像装饰性 HUD"]
+      },
+      "productionFit": {
+        "score": 5,
+        "strengths": ["可拆成低数量底纹、9-slice 框、独立图标、代码文字和事件插画", "适合容器布局和跨平台安全区适配"],
+        "risks": ["若金线和小字过细，在低分辨率设备上会丢失", "必须用新的系统驱动布局修正原稿层级"]
+      },
+      "limitations": ["AI 生成的正文、报纸、准考证和教材文字不可作为真实 UI 文案", "基础候选只锁定视觉语言，不锁定原始布局", "选择后果必须在运行时用代码组件明确显示"]
+    },
+    {
+      "id": "direction_d_warm_pixel_narrative",
+      "label": "温暖像素叙事",
+      "image": {
+        "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-d-warm-pixel-narrative.png",
+        "sha256": "ff57805e060a59ee4169d861943e9647ff135f567922abe90476f12570694a00",
+        "dimensions": { "width": 941, "height": 1672, "orientation": "portrait" },
+        "transparency": {
+          "required": false,
+          "validation": "not_applicable_fullscreen_opaque_mockup",
+          "reason": "完整竖屏 UI 合成稿不需要透明背景。"
+        }
+      },
+      "visualLanguage": "深夜蓝与煤油灯琥珀色的精细像素画，怀旧、亲切、较游戏化。",
+      "interactionStructure": {
+        "hierarchy": ["织物标题牌与年份", "四项横排状态", "章节轴", "像素事件卡", "两个彩色选择按钮"],
+        "suitableFor": ["轻量叙事、像素插画驱动的事件卡游戏", "面向偏休闲用户的低门槛版本"],
+        "choiceImpactVisibility": "not_shown"
+      },
+      "mobileReadability": {
+        "overall": 4,
+        "systemVisibility": 2,
+        "choiceConsequenceClarity": 1,
+        "touchTargetConfidence": 4,
+        "strengths": ["像素轮廓清楚", "绿色与橙色大按钮易定位", "夜景插画情绪直观"],
+        "risks": ["系统仍局限在顶部小卡", "像素风容易让严肃生活史显得偏轻", "高密度像素背景可能干扰正文"]
+      },
+      "productionFit": {
+        "score": 4,
+        "strengths": ["有限色板和像素资产可控", "按钮与边框便于复用"],
+        "risks": ["需要统一像素倍率，避免跨分辨率发虚", "中文正文不应使用生成图内的伪像素字"]
+      },
+      "limitations": ["AI 生成的小字和像素字不可作为真实 UI 文案", "当前稿没有显示选择影响的系统", "必须由代码字体和独立图标重建"]
+    }
+  ],
+  "selectionEvidence": {
+    "status": "user_selected_base_visual_direction",
+    "selectedCandidateId": "direction_c_modern_archive",
+    "ordinalStatement": "第二张图作为视觉定稿吧",
+    "screenshot": {
+      "path": "runs/20260831-010324-village-south-text-v1/art-review/evidence/user-selected-modern-archive-crop.png",
+      "sha256": "2e643a511fdfa0ee500360ec6b176df3d10012336965865b0ecbff6f08460c82",
+      "dimensions": { "width": 1024, "height": 346, "orientation": "landscape" },
+      "transparency": {
+        "required": false,
+        "validation": "not_applicable_fullscreen_opaque_mockup",
+        "reason": "用户选择证据是界面截图，不需要透明背景。"
+      }
+    },
+    "screenshotMatch": {
+      "matchedCandidatePath": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-c-modern-archive.png",
+      "basis": "manual_visual_match_of_header_crop",
+      "confidence": "high",
+      "note": "用户写了“第二张图”，但所附截图中的深海军蓝标题、细金线状态卡和章节轴与候选 C 一致；以截图内容确认候选身份。"
+    },
+    "subsequentFeedback": [
+      {
+        "statement": "顶部和下面很割裂，有点浪费空间",
+        "designImplication": "应压缩标题、状态和章节区域，并让事件卡与顶部形成连续容器。"
+      },
+      {
+        "statement": "感觉整体的排版布局很奇怪，做的每一个选择，应该都会影响到那些相关系统，所以相关系统不应该这么不明显",
+        "designImplication": "四项系统必须成为主要信息区，选择卡应直接显示即时与延迟的系统影响。"
+      }
+    ],
+    "approvalBoundary": "只记录用户对候选 C 基础视觉语言的明确选择；v2 与 v3 布局修订均未获得新的用户批准，不写入 human approval。"
+  },
+  "revisions": [
+    {
+      "id": "modern_archive_integrated_v2",
+      "basedOnCandidateId": "direction_c_modern_archive",
+      "image": {
+        "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-final-modern-archive-integrated-v2.png",
+        "sha256": "3178b1bcadc19b6aab532aadce66c19c720e6e884462beefb81346586acd4164",
+        "dimensions": { "width": 941, "height": 1672, "orientation": "portrait" },
+        "transparency": {
+          "required": false,
+          "validation": "not_applicable_fullscreen_opaque_mockup",
+          "reason": "完整竖屏 UI 合成稿不需要透明背景。"
+        }
+      },
+      "intent": "压缩顶部并将章节轴并入事件卡，解决上下割裂和空间浪费。",
+      "status": "superseded_by_user_feedback",
+      "evidence": ["后续用户明确指出整体布局仍怪异，四项相关系统过于不明显。"]
+    },
+    {
+      "id": "modern_archive_system_impact_v3",
+      "basedOnCandidateId": "direction_c_modern_archive",
+      "image": {
+        "path": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-revision-system-impact-v3.png",
+        "sha256": "3d5df79eb8bbb980a2b68ca164fe2ba21d2396ad953e410985b82889d8e917f2",
+        "dimensions": { "width": 941, "height": 1672, "orientation": "portrait" },
+        "transparency": {
+          "required": false,
+          "validation": "not_applicable_fullscreen_opaque_mockup",
+          "reason": "完整竖屏 UI 合成稿不需要透明背景。"
+        }
+      },
+      "intent": "将四项系统提升为 2×2 主仪表区，缩小事件插画，并在每张选择卡中显示眼下与后续效果。",
+      "status": "recommended_layout_revision_not_human_approved",
+      "evidence": ["使用 narrative-life-prototype.json 的事件 01 数值：读书为家底 -1、本事 +2、身体 -1；秋收为家底 +2、人情 +1、身体 -1，并展示两次选择后的延迟效果。"]
+    }
+  ],
+  "recommendation": {
+    "candidateId": "direction_c_modern_archive",
+    "status": "recommended_and_user_selected_base_direction",
+    "implementationReferencePath": "runs/20260831-010324-village-south-text-v1/art-review/ui-concepts/ui-revision-system-impact-v3.png",
+    "rationale": [
+      "候选 C 已有用户选择截图证据。",
+      "现代档案馆的深蓝、奶油纸和细金线最适合大量系统数据、事件卡和历史资料页共存。",
+      "组件可拆成少量底纹、9-slice 框、图标、事件插画与代码文字，跨三端落地成本最低。",
+      "v3 的系统驱动层级直接回应最新反馈，同时保持被选中的基础视觉语言。"
+    ],
+    "requiredImplementationRules": [
+      "顶部只保留紧凑的游戏名、章节和年份，不再放独立大章节轴。",
+      "家底、本事、身体、人情使用 2×2 主仪表区，名称、图标、数值和量表同时可见。",
+      "每个选择卡必须用同一系统图标和形状显示即时增减，不只依赖颜色。",
+      "延迟后果与即时后果分行显示，并使用明确的触发时机标签。",
+      "事件插画退居辅助层，不能再占近半屏或压缩系统信息。",
+      "所有真实 UI 文字必须由代码渲染并支持容器自适应、中文字体回退和安全区。",
+      "触控目标至少约 9 毫米，低分辨率下仍保留图标、正负号和文本三重反馈。"
+    ],
+    "humanApprovalWritten": false
+  },
+  "globalLimitations": [
+    "所有候选都是 AI 生成的视觉草图，不是可直接发布的运行时界面。",
+    "生成图中的正文、报纸、准考证、教材、数字和按钮字可能失真，禁止直接当作真实 UI 文案或数据。",
+    "正式实现必须把背景纹理、9-slice 边框、系统图标、事件插画和代码文字分层。",
+    "候选仅证明浏览器式视觉方向，不证明微信小游戏、抖音小游戏或 TapTap 小游戏包可发布。",
+    "正式实现需要在三端分别验证安全区、字体、触控尺寸、内存、纹理压缩和低端机清晰度。",
+    "这些全屏 RGB 合成稿不需要透明背景；若后续拆出透明图标或装饰切图，必须验证 meaningful alpha，并在浅色、深色和高饱和背景上检查网格、底色、光晕和毛边。",
+    "任何后续选择或样式锁定都必须由真实 human approval 产生，不能从推荐字段推断。"
+  ],
+  "validation": {
+    "validator": "zod",
+    "schemaPath": "runs/20260831-010324-village-south-text-v1/art-review/ui-visual-comparison.schema.ts",
+    "command": "pnpm exec tsx runs/20260831-010324-village-south-text-v1/art-review/validate-ui-visual-comparison.ts",
+    "validatedAt": "2026-08-31T02:49:50+08:00",
+    "success": true
+  }
+}

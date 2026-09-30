@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "村口向南（原运行身份；新名称尚未落地）",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "request": "我感觉这个游戏看起来没有那么有吸引力，例如中国式家长这个名字听起来就非常有吸引力，你觉得我们改成 攻略美少女 这种名字如何？改成攻略后宫文字游戏",
+  "requestedDirection": "评估命名与吸引力，转向多女主恋爱攻略文字游戏的规划。",
+  "currentTurnBoundary": "延续先写规划的任务；不启动游戏改造、不改 run 身份、不更换已批准素材。",
+  "conservativeDefaults": ["主角和可攻略角色全部明确成年，建议22岁以上。","原创都市轻喜剧、多角色恋爱、非露骨内容。","保留多角色关系结局的可能，不退化为单女主固定剧情；关系建立与共同结局需要相互意愿。"],
+  "mediaSupplied": false,
+  "date": "2026-10-01"
+}

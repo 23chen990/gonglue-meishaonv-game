@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "村口向南",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "role": "runtime-source-audit",
+  "workspaceModified": false,
+  "sources": [
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game/index.html","lines":"1-13","claim":"默认入口加载 src/main.ts。"},
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts","lines":"43-72,79-170,216-226","claim":"默认流程是家况→纪念物→选择/结果→封卷→继承/重开；结算未渲染 verdict。"},
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game/src/game.ts","lines":"6-35","claim":"引擎具备 flags、回响、历史、previousRunEventIds、inheritance 与 verdict；跨局事件历史未用于选择或呈现。"},
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game/src/chapter-data.ts","lines":"16-46","claim":"六种家况、三件纪念物、六个基础与六个替代事件已经存在。"},
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace/game/tests/game.test.ts","lines":"16-25,39-55,74-99,110-121","claim":"现有测试验证部分分支和回响；第二局测试不是完整 UI restart 路径。"},
+    {"path":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/artifacts/replay-value-design.json","lines":"16-23,69-75,130-142","claim":"已批准六决策、双选项、事件池、回响、判词和继承设计，与当前部分内容存在漂移。"}
+  ],
+  "findings": [
+    {"id":"F01-default-loop-contract","priority":"P0","evidenceLevel":"source-observation","observation":"首屏没有集中表达本局长度、目标和封卷/重开的收益。","playerConsequence":"玩家可能只知道连续点卡片，尚不知道追求什么。","recommendation":"保留家况与纪念物，在同一首屏用结构表达六次决定、回声和封卷。","acceptance":["小屏首屏可辨当前任务、下一步动作和封卷回报。","关键规则不能仅藏在正文。"]},
+    {"id":"F02-choice-agency-depth","priority":"P1","evidenceLevel":"source-observation","observation":"已有少量 flags 会改写后续事件，但并非每个关键选择都有可见回访。","playerConsequence":"选择可能退化为属性优化，而不是可理解的人生分叉。","recommendation":"先打磨三组锚点 A/B 的后续标题、正文或可选项差异。","acceptance":["每组 A/B 自然路径均显示可指认差异。","结算能展示对应因果，且不增加第五项常驻属性。"]},
+    {"id":"F03-delayed-echo-legibility","priority":"P1","evidenceLevel":"source-observation","observation":"回响按两次选择后结算，但缺少来源 choiceId，呈现用统一提示。","playerConsequence":"玩家难以把后果归因到自己先前的决定。","recommendation":"补来源与兑现状态，轻量时间线标记，不另起新系统。","acceptance":["不翻查历史也能辨别回响来源与剩余决定数。","每条回响一次结算，源码测试与自然路径均验证。"]},
+    {"id":"F04-verdict-not-visible","priority":"P0","evidenceLevel":"source-observation","observation":"引擎计算 state.verdict，但 renderComplete 未展示判词与原因。","playerConsequence":"身份结算已存在却对玩家不可见。","recommendation":"将判词提升为封卷主标题，并用关键选择和回响解释。","acceptance":["六个判词逐一验证自然可达并在 UI 可见。","选继承后新局显示来源与真实作用，未选时不误显示。"]},
+    {"id":"F05-replay-memory-unused","priority":"P0","evidenceLevel":"source-observation","observation":"previousRunEventIds 只存储和传递，没有驱动后续抽取或渲染；旧测试以独立构造器模拟第二局。","playerConsequence":"上局记忆无法向玩家兑现为下一局的新机会。","recommendation":"用封卷→继承→restart 的真实路径验收，把历史接到合适的未走路线。","acceptance":["两个手机视口从真实重开进入前两次决定，观察到上局导致的可见变化。","验证实际 restart、继承与刷新恢复，不用独立构造器替代。"]},
+    {"id":"F06-design-source-drift","priority":"P1","evidenceLevel":"source-observation","observation":"批准设计与当前部分家况、年份、效果内容不一致。","playerConsequence":"可能继续围绕不存在于默认旅程的旧内容开发验收。","recommendation":"先输出差异表并锁定 canonical content contract。","acceptance":["逐项对齐年份、标题、效果、flags 与验收。","在锁定前不扩写大型新事件池。"]},
+    {"id":"F07-archive-style-risk","priority":"P1","evidenceLevel":"hypothesis","observation":"卷宗、HUD 和移动断点是可保留资产；它们不能单独证明玩家能感知因果与压力。","playerConsequence":"只加视觉精细度可能仍然像静态阅读器。","recommendation":"优先强化风险、回响、判词和重开收益的可见状态。","acceptance":["小屏自然观察能辨风险、回响和下一步动作。","保持四属性、移动触达与减少动态偏好。"]}
+  ],
+  "keep": ["卷宗原创视觉与四属性 HUD。","家况、纪念物、现有事件池、即时后果与延迟回响。","存档迁移基础和不强制广告约束。"],
+  "avoid": ["先扩大人生阶段、事件数量和第五属性。","复制竞品表达、代码和数值。","把旧 QA、单测或 fixture 当作自然体验验收。"],
+  "gaps": ["Luna 本次仅做源码审查，没有独立浏览器观察；主线程 runtime-observations.json 提供另一路有限自然输入诊断。","尚无真人理解、重开意愿或精确分支的完整感知验收。","全部判词自然可达性、压力和补救仍待验证。","内容契约漂移尚未修复，本轮只规划。"],
+  "validation": {"schema":"PlanningReviewSchema","passed":true}
+}

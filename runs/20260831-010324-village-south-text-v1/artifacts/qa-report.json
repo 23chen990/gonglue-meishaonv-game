@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "checks": [
+    {
+      "name": "deterministic-test-api",
+      "passed": true,
+      "evidence": "setRandomSeed(42) established deterministic state; all seven __GAME_TEST__ controls executed"
+    },
+    {
+      "name": "compatibility-loop",
+      "passed": true,
+      "evidence": "spawnCustomer, completeOrder and grantCurrency produced currency=1000000000 and customerWaiting=false"
+    },
+    {
+      "name": "upgrade-loop",
+      "passed": true,
+      "evidence": "upgradeStation advanced compatibility level from 1 to 2"
+    },
+    {
+      "name": "canvas-visible",
+      "passed": true,
+      "evidence": "Decorative archive canvas visible at 1280x900 through Vite preview"
+    },
+    {
+      "name": "packaged-webkit-load",
+      "passed": true,
+      "evidence": "dist/index.html executed __GAME_TEST__ through WebKit file://"
+    },
+    {
+      "name": "packaged-canvas-visible",
+      "passed": true,
+      "evidence": "Packaged decorative canvas visible through WebKit file://"
+    },
+    {
+      "name": "packaged-hud-visible",
+      "passed": true,
+      "evidence": "Packaged four-stat HUD visible through WebKit file://"
+    },
+    {
+      "name": "mobile-choice-layout-360x800",
+      "passed": true,
+      "evidence": "Exactly two choices; both inside viewport; each 286x85.64px"
+    },
+    {
+      "name": "mobile-choice-layout-390x844",
+      "passed": true,
+      "evidence": "Exactly two choices; both inside viewport; each 298x89.64px"
+    },
+    {
+      "name": "refresh-save-recovery",
+      "passed": true,
+      "evidence": "After event_01_choice_a, reload restored screen=result, completedChoices=1 and stats economy=4 skill=9 health=11 bonds=10 byte-for-byte"
+    },
+    {
+      "name": "mobile-choice-layout-430x932",
+      "passed": true,
+      "evidence": "Exactly two choices; both inside viewport; each 338x89.64px"
+    }
+  ],
+  "issues": [],
+  "screenshots": [
+    "screenshots/gameplay.png",
+    "screenshots/gameplay-file-webkit.png",
+    "screenshots/chapter-one-360x800.png",
+    "screenshots/chapter-one-390x844.png",
+    "screenshots/chapter-one-430x932.png"
+  ],
+  "consoleLog": "logs/console.log",
+  "testedAt": "2026-08-30T18:59:43.000Z"
+}

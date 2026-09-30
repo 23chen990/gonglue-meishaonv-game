@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "success": true,
+  "runtime": "web-lite",
+  "template": "narrative-life-chapter-one-v1",
+  "workspace": "workspace/game",
+  "webBuild": "workspace/game/dist",
+  "files": [
+    "assets/index-Bq9PGFva.js",
+    "assets/style-6Zeit7to.css",
+    "index.html"
+  ],
+  "verification": [
+    "tdd:red-missing-engine-observed",
+    "lint:passed",
+    "typecheck:passed",
+    "test:6-passed",
+    "build:passed",
+    "playwright:standard-7-passed",
+    "playwright:mobile-4-passed",
+    "save:refresh-recovery-passed",
+    "package:file-protocol-passed"
+  ],
+  "builtAt": "2026-08-30T18:59:43.000Z"
+}

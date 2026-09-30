@@ -1,0 +1,1086 @@
+{
+  "schemaVersion": 1,
+  "auditVersion": "choice-audit-v1",
+  "prototypeId": "village-south-text-v2",
+  "method": {
+    "plotlessReview": true,
+    "deterministic": true,
+    "note": "报告不复制剧情正文或结果文案，只检查数值权衡、条件可达性、四系统参与度、移动端字数与结局分布。"
+  },
+  "thresholds": {
+    "bodyMaxChars": 90,
+    "choiceLabelMaxChars": 18,
+    "resultMaxChars": 90,
+    "rareGateRate": 0.08,
+    "trivialGateRate": 0.92,
+    "endingConcentrationRate": 0.45
+  },
+  "summary": {
+    "score": 100,
+    "recommendation": "PASS",
+    "greenEvents": 24,
+    "yellowEvents": 0,
+    "redEvents": 0,
+    "p1Issues": 0,
+    "p2Issues": 0,
+    "p3Issues": 0
+  },
+  "globalIssues": [],
+  "systemInfluence": [
+    {
+      "statId": "economy",
+      "eventCount": 23,
+      "choiceCount": 42
+    },
+    {
+      "statId": "skill",
+      "eventCount": 22,
+      "choiceCount": 32
+    },
+    {
+      "statId": "health",
+      "eventCount": 24,
+      "choiceCount": 33
+    },
+    {
+      "statId": "bonds",
+      "eventCount": 24,
+      "choiceCount": 48
+    }
+  ],
+  "events": [
+    {
+      "eventId": "event_01",
+      "year": 1978,
+      "title": "煤油灯下的准考证",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_01_choice_a",
+          "label": "把夜里的时间留给书本",
+          "totalEffects": {
+            "economy": -1,
+            "skill": 3,
+            "health": -1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_01_choice_b",
+          "label": "先把家里的秋收顶下来",
+          "totalEffects": {
+            "economy": 2,
+            "skill": 1,
+            "health": -1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_02",
+      "year": 1979,
+      "title": "分到手的田",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_02_choice_a",
+          "label": "接下最远的那块薄田",
+          "totalEffects": {
+            "economy": 3,
+            "skill": 1,
+            "health": -1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_02_choice_b",
+          "label": "先跟着邻里合做一年",
+          "totalEffects": {
+            "bonds": 4
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_03",
+      "year": 1979,
+      "title": "哑火的手电筒",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_03_choice_a",
+          "label": "拆开看看毛病在哪",
+          "totalEffects": {
+            "economy": -1,
+            "skill": 4,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_03_choice_b",
+          "label": "去县里换一支能用的",
+          "totalEffects": {
+            "economy": 1,
+            "health": 1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_04",
+      "year": 1980,
+      "title": "第一担早菜",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_04_choice_a",
+          "label": "自己挑到县城试卖",
+          "totalEffects": {
+            "economy": 3,
+            "health": -1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_04_choice_b",
+          "label": "卖给进村收货的人",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_05",
+      "year": 1980,
+      "title": "妹妹的学费",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_05_choice_a",
+          "label": "先让妹妹把书读下去",
+          "totalEffects": {
+            "economy": -2,
+            "skill": 1,
+            "health": -1,
+            "bonds": 4
+          },
+          "requirement": "家底≥8",
+          "availabilityRate": 0.6297747306562194
+        },
+        {
+          "choiceId": "event_05_choice_b",
+          "label": "先保住明年的收成",
+          "totalEffects": {
+            "economy": 4
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_06",
+      "year": 1981,
+      "title": "暴雨后的田埂",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_06_choice_a",
+          "label": "先喊人一起堵最低的缺口",
+          "totalEffects": {
+            "health": -2,
+            "bonds": 4
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_06_choice_b",
+          "label": "先守住自家的秧苗",
+          "totalEffects": {
+            "economy": 3,
+            "health": -1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_07",
+      "year": 1982,
+      "title": "旧仓房里的机声",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_07_choice_a",
+          "label": "去修配点从学徒做起",
+          "totalEffects": {
+            "economy": -1,
+            "skill": 5,
+            "health": -1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_07_choice_b",
+          "label": "留在家里把两季庄稼做好",
+          "totalEffects": {
+            "economy": 2,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_08",
+      "year": 1982,
+      "title": "县城的摊位证",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_08_choice_a",
+          "label": "把名字写进登记簿",
+          "totalEffects": {
+            "economy": 3,
+            "health": -1,
+            "bonds": 3
+          },
+          "requirement": "家底≥10",
+          "availabilityRate": 0.8248210023866348
+        },
+        {
+          "choiceId": "event_08_choice_b",
+          "label": "仍旧逢集才来，卖完就走",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_09",
+      "year": 1983,
+      "title": "乡镇厂招工表",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_09_choice_a",
+          "label": "报名进厂",
+          "totalEffects": {
+            "economy": 2,
+            "skill": 3,
+            "health": -1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_09_choice_b",
+          "label": "留在村里照顾农忙",
+          "totalEffects": {
+            "economy": 2,
+            "health": -1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_10",
+      "year": 1983,
+      "title": "信用社的借条",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_10_choice_a",
+          "label": "签借条买胶轮车",
+          "totalEffects": {
+            "economy": 4,
+            "skill": 1
+          },
+          "requirement": "人情≥24",
+          "availabilityRate": 0.5580597746202842
+        },
+        {
+          "choiceId": "event_10_choice_b",
+          "label": "不借钱，继续用旧木车",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 1,
+            "health": 1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_11",
+      "year": 1984,
+      "title": "县城来的一封信",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_11_choice_a",
+          "label": "背上铺盖去试三个月",
+          "totalEffects": {
+            "skill": 3,
+            "health": -1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_11_choice_b",
+          "label": "回信道谢，等更稳的机会",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_12",
+      "year": 1984,
+      "title": "三十里外的送货",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_12_choice_a",
+          "label": "请邻居帮工，按时送到",
+          "totalEffects": {
+            "economy": 2,
+            "health": -1,
+            "bonds": 3
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_12_choice_b",
+          "label": "先顾插秧，托人说明晚一天",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 1,
+            "health": -1,
+            "bonds": 3
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_13",
+      "year": 1985,
+      "title": "南下的硬座票",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_13_choice_a",
+          "label": "买一张向南的硬座票",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 3,
+            "health": -2,
+            "bonds": -1
+          },
+          "requirement": "家底≥15 · 身体≥8",
+          "availabilityRate": 0.1603727317312408
+        },
+        {
+          "choiceId": "event_13_choice_b",
+          "label": "留在镇厂等下次机会",
+          "totalEffects": {
+            "economy": 2,
+            "skill": 1,
+            "bonds": 3
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_14",
+      "year": 1986,
+      "title": "车间里那台旧机器",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_14_choice_a",
+          "label": "留下来把说明书啃懂",
+          "totalEffects": {
+            "skill": 5,
+            "health": -2
+          },
+          "requirement": "本事≥12 · 身体≥4",
+          "availabilityRate": 0.9155812831644959
+        },
+        {
+          "choiceId": "event_14_choice_b",
+          "label": "先多加几班把钱寄回家",
+          "totalEffects": {
+            "economy": 3,
+            "skill": 1,
+            "health": -2,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_15",
+      "year": 1986,
+      "title": "宿舍里的合伙话",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_15_choice_a",
+          "label": "先把分工和分账讲明白",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 1,
+            "health": -1,
+            "bonds": 4
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_15_choice_b",
+          "label": "只拿自己的工钱，不问客户",
+          "totalEffects": {
+            "economy": 2,
+            "skill": 1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_16",
+      "year": 1987,
+      "title": "汇款单与存折",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_16_choice_a",
+          "label": "寄一半，另一半留作本钱",
+          "totalEffects": {
+            "economy": 4,
+            "skill": 1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_16_choice_b",
+          "label": "把大部分钱寄回家修屋顶",
+          "totalEffects": {
+            "economy": 1,
+            "health": 1,
+            "bonds": 5
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_17",
+      "year": 1987,
+      "title": "停转十分钟",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_17_choice_a",
+          "label": "按下停机，把防护罩固定好",
+          "totalEffects": {
+            "economy": -1,
+            "skill": 1,
+            "health": 2,
+            "bonds": 5
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_17_choice_b",
+          "label": "先把这一批做完再修",
+          "totalEffects": {
+            "economy": 2,
+            "skill": 2,
+            "health": -2,
+            "bonds": -1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_18",
+      "year": 1988,
+      "title": "父亲摔了一跤",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_18_choice_a",
+          "label": "辞掉提拔，回家照看一季",
+          "totalEffects": {
+            "economy": -1,
+            "health": 2,
+            "bonds": 6
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_18_choice_b",
+          "label": "寄钱请亲戚帮忙，留下接任",
+          "totalEffects": {
+            "economy": 2,
+            "skill": 2,
+            "health": -1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_19",
+      "year": 1989,
+      "title": "车站边的修理棚",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_19_choice_a",
+          "label": "挂起“东坪修理”木牌",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 2,
+            "health": -1,
+            "bonds": 2
+          },
+          "requirement": "家底≥28 · 本事≥22",
+          "availabilityRate": 0.5066535239034007
+        },
+        {
+          "choiceId": "event_19_choice_b",
+          "label": "去运输站做固定维修工",
+          "totalEffects": {
+            "economy": 3,
+            "skill": 1,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_20",
+      "year": 1990,
+      "title": "要不要添第二间门面",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_20_choice_a",
+          "label": "添下门面，先只卖熟悉的货",
+          "totalEffects": {
+            "economy": 5,
+            "health": -1,
+            "bonds": 1
+          },
+          "requirement": "家底≥25 · 人情≥18",
+          "availabilityRate": 0.9009950248756219
+        },
+        {
+          "choiceId": "event_20_choice_b",
+          "label": "不扩张，先把欠账收齐",
+          "totalEffects": {
+            "economy": 3,
+            "health": 1,
+            "bonds": 2
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_21",
+      "year": 1990,
+      "title": "新法子先教谁",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_21_choice_a",
+          "label": "拿半亩田做给大家看",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 1,
+            "health": -1,
+            "bonds": 5
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_21_choice_b",
+          "label": "先在自家再试完整一年",
+          "totalEffects": {
+            "economy": 1,
+            "skill": 3,
+            "bonds": 1
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_22",
+      "year": 1991,
+      "title": "村小学缺一张讲桌",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_22_choice_a",
+          "label": "修讲桌，也来教两晚",
+          "totalEffects": {
+            "skill": 3,
+            "health": -1,
+            "bonds": 3
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_22_choice_b",
+          "label": "出木料，请别人来教",
+          "totalEffects": {
+            "health": 1,
+            "bonds": 4
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_23",
+      "year": 1991,
+      "title": "三户人家的工具钱",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_23_choice_a",
+          "label": "把账目贴在墙上，三家一起做",
+          "totalEffects": {
+            "economy": 3,
+            "skill": 1,
+            "health": -1,
+            "bonds": 4
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_23_choice_b",
+          "label": "先各做各的，缺工具再互借",
+          "totalEffects": {
+            "skill": 1,
+            "bonds": 3
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    },
+    {
+      "eventId": "event_24",
+      "year": 1992,
+      "title": "村口向南",
+      "status": "GREEN",
+      "tradeoff": "BALANCED",
+      "affectedSystems": [
+        "economy",
+        "skill",
+        "health",
+        "bonds"
+      ],
+      "choices": [
+        {
+          "choiceId": "event_24_choice_a",
+          "label": "记下教训，从最小的活重新做起",
+          "totalEffects": {
+            "skill": 2,
+            "bonds": 3
+          },
+          "requirement": null,
+          "availabilityRate": null
+        },
+        {
+          "choiceId": "event_24_choice_b",
+          "label": "停下扩张，守住已有的日子",
+          "totalEffects": {
+            "economy": 1,
+            "health": 2,
+            "bonds": 5
+          },
+          "requirement": null,
+          "availabilityRate": null
+        }
+      ],
+      "issues": []
+    }
+  ],
+  "simulation": {
+    "sampleRuns": 4096,
+    "seed": 1978,
+    "gatedChoiceAvailability": [
+      {
+        "choiceId": "event_05_choice_a",
+        "attempted": 2042,
+        "available": 1286,
+        "availableRate": 0.6297747306562194
+      },
+      {
+        "choiceId": "event_08_choice_a",
+        "attempted": 2095,
+        "available": 1728,
+        "availableRate": 0.8248210023866348
+      },
+      {
+        "choiceId": "event_10_choice_a",
+        "attempted": 2041,
+        "available": 1139,
+        "availableRate": 0.5580597746202842
+      },
+      {
+        "choiceId": "event_13_choice_a",
+        "attempted": 2039,
+        "available": 327,
+        "availableRate": 0.1603727317312408
+      },
+      {
+        "choiceId": "event_14_choice_a",
+        "attempted": 2073,
+        "available": 1898,
+        "availableRate": 0.9155812831644959
+      },
+      {
+        "choiceId": "event_19_choice_a",
+        "attempted": 2029,
+        "available": 1028,
+        "availableRate": 0.5066535239034007
+      },
+      {
+        "choiceId": "event_20_choice_a",
+        "attempted": 2010,
+        "available": 1811,
+        "availableRate": 0.9009950248756219
+      }
+    ],
+    "endingRates": [
+      {
+        "endingId": "ending_teacher",
+        "count": 969,
+        "rate": 0.236572265625
+      },
+      {
+        "endingId": "ending_new_farmer",
+        "count": 784,
+        "rate": 0.19140625
+      },
+      {
+        "endingId": "ending_repair_shop",
+        "count": 331,
+        "rate": 0.080810546875
+      },
+      {
+        "endingId": "ending_family_anchor",
+        "count": 363,
+        "rate": 0.088623046875
+      },
+      {
+        "endingId": "ending_township_technician",
+        "count": 460,
+        "rate": 0.1123046875
+      },
+      {
+        "endingId": "ending_store_owner",
+        "count": 256,
+        "rate": 0.0625
+      },
+      {
+        "endingId": "ending_transport_operator",
+        "count": 138,
+        "rate": 0.03369140625
+      },
+      {
+        "endingId": "ending_south_supervisor",
+        "count": 67,
+        "rate": 0.016357421875
+      },
+      {
+        "endingId": "ending_trusted_partner",
+        "count": 195,
+        "rate": 0.047607421875
+      },
+      {
+        "endingId": "ending_return_leader",
+        "count": 126,
+        "rate": 0.03076171875
+      },
+      {
+        "endingId": "ending_second_start",
+        "count": 82,
+        "rate": 0.02001953125
+      },
+      {
+        "endingId": "ending_ordinary_life",
+        "count": 325,
+        "rate": 0.079345703125
+      }
+    ]
+  },
+  "humanSpotCheck": {
+    "required": true,
+    "testers": 5,
+    "cardsPerTester": 8,
+    "passRules": [
+      "至少 80% 的选择能在 8 秒内完成，不需要展开剧情说明。",
+      "同一张卡的选择理由不能有 80% 以上都归结为“这项数值更高”。",
+      "至少 4/5 位测试者能说清选项影响的是哪一到两个系统。",
+      "至少 3/5 位测试者愿意重开一次验证另一条人生路线。"
+    ]
+  }
+}

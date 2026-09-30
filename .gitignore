@@ -1,0 +1,16 @@
+node_modules/
+**/dist/
+**/.vite/
+.env
+.env.*
+!.env.example
+*.log
+!verification/*.log
+.DS_Store
+test-results/
+playwright-report/
+**/screenshots/
+**/runtime-evidence/
+**/reference-evidence/
+**/art-exploration/*.png
+**/research/

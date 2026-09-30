@@ -1,0 +1,21 @@
+$ pnpm test:game && pnpm test:story
+$ vitest run --root runs/20260831-010324-village-south-text-v1/workspace/game
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  03:58:47
+   Duration  155ms (transform 37ms, setup 0ms, import 48ms, tests 7ms, environment 0ms)
+
+$ vitest run --root runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign story-validation.test.ts
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign
+
+
+ Test Files  1 passed (1)
+      Tests  18 passed (18)
+   Start at  03:58:47
+   Duration  189ms (transform 32ms, setup 0ms, import 73ms, tests 23ms, environment 0ms)
+

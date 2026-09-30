@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Adult multi-character romance pivot planning for village-south run 20260831-010324-village-south-text-v1, same exact workspace. Reference observations remain primary-source research, not new competitor playtests. Proposed rules are original design hypotheses.",
+  "evidence": [
+    {
+      "id": "life-restart-core",
+      "competitor": "人生重开模拟器（VickScarlet/remake 固定重构版源码）",
+      "sourceRefs": [
+        "https://github.com/VickScarlet/remake/blob/a3e81b668e68465afbac70cf7b08aee6b6a89845/packages/core/src/game.ts",
+        "https://github.com/VickScarlet/remake/blob/a3e81b668e68465afbac70cf7b08aee6b6a89845/packages/core/src/event.ts"
+      ],
+      "observed": [
+        "开局天赋处理、按年龄推进、状态条件筛选和加权事件抽取、事件条件分支、终局检测、总结和局外 profile 更新均在固定源码中存在。",
+        "压力来自生命/属性和条件事件；年龄递进改变可用事件集合；结局由状态触发，而不只用固定文案。",
+        "源码可以追溯事件导致的状态变化；但没有在本轮实玩其 UI，不能确认玩家可见的预警与失败解释是否充分。"
+      ],
+      "inferred": [
+        "开局组合和条件事件会形成对下一局的好奇，是可迁移假设，不是本次测得的留存数据。",
+        "未知：经典版本和该重构版本的完整差异、自然玩家感知、当前具体平衡值及商业表现。"
+      ],
+      "applicability": "adapt",
+      "applicabilityRationale": "Adapt only abstract choice, consequence and replay principles to adult romance. Do not reuse rural or competitor expression, characters, assets or tuning.",
+      "rejectExpression": [
+        "不复制代码、天赋名称、事件文本、修仙梗、UI、素材或数值。",
+        "不将突然死亡、极端猎奇或纯随机淘汰直接移入乡土题材。"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "reigns-official",
+      "competitor": "Reigns",
+      "sourceRefs": [
+        "https://store.steampowered.com/app/474750/Reigns/?l=english"
+      ],
+      "observed": [
+        "官方介绍明确左右二择、维持多方平衡、决策有后续后果，以及目标解锁内容和王朝延续。",
+        "压力是不同利益之间的冲突；请求持续到来，后果可能危及统治；重新统治和解锁内容构成继续游玩的结构。",
+        "官方文字不足以证明每类预警动画、精确上下限、全部死亡归因和难度曲线。"
+      ],
+      "inferred": [
+        "本作可用少量选择和清晰冲突替代增加操作量；机会代价能形成压力，不必引入反应速度或刷数值。",
+        "未知：具体界面信号、精确升级规则和不同结局的自然体验。本轮未进行竞品实玩。"
+      ],
+      "applicability": "adapt",
+      "applicabilityRationale": "Adapt only abstract choice, consequence and replay principles to adult romance. Do not reuse rural or competitor expression, characters, assets or tuning.",
+      "rejectExpression": [
+        "不复制君主、教会、人物剪影、滑卡界面、音乐、事件或阈值。",
+        "不设置乡情太高或本事太高必然惩罚这样的无因果规则。"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "chinese-parents-official",
+      "competitor": "中国式家长",
+      "sourceRefs": [
+        "https://store.steampowered.com/app/736190/Chinese_Parents/?l=english"
+      ],
+      "observed": [
+        "官方介绍将成长中的学习、生活和社交选择联系到阶段目标与职业结局，并说明下一代会承接前代成果。",
+        "阶段目标、有限成长时间与学习/轻松生活的取舍提供压力；结算与下一代提供回收和再玩结构。",
+        "官方介绍未提供足以复核的全部压力数值、预警形式、失败定义或结局归因算法。"
+      ],
+      "inferred": [
+        "本作应让重要人物记住选择，并让结果体现生活去向，而不是把财富最高视为唯一胜利。",
+        "未知：各职业的平衡、玩家对代际积累的感受、真实留存。没有依据要求本作立即扩大家谱或代际系统。"
+      ],
+      "applicability": "adapt",
+      "applicabilityRationale": "Adapt only abstract choice, consequence and replay principles to adult romance. Do not reuse rural or competitor expression, characters, assets or tuning.",
+      "rejectExpression": [
+        "不复制养成日程、碎片小游戏、面子系统、人物、台词、事件或数值。"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "rules": [
+    {
+      "id": "competing-commitments",
+      "pressureType": "wrong_choice",
+      "trigger": "Two adult characters request incompatible uses of the same time slot.",
+      "playerSignal": "Visible schedule overlap, speaker portraits and commitment icons, reinforced with concise dialogue.",
+      "escalation": "An accepted promise approaches its event; earlier choices change what can still be fulfilled.",
+      "failureOutcome": "A missed promise changes trust and the scene, not a universal moral score or automatic relationship death.",
+      "attribution": "The scene names the actual promise and action that changed it; random events are distinguished.",
+      "recovery": "Honest communication and later concrete actions can repair trust without erasing the other character agency.",
+      "sourceEvidenceRefs": [
+        "reigns-official",
+        "chinese-parents-official"
+      ],
+      "implementationImplications": [
+        "Use a bounded event/choice/commitment graph; no extra money or gift-grinding system.",
+        "Test both conflict branches and a repair branch using normal input."
+      ]
+    },
+    {
+      "id": "character-specific-replay-memory",
+      "pressureType": "other",
+      "trigger": "A completed loop records a small number of actual pivotal interactions for each adult character.",
+      "playerSignal": "On real replay, dialogue, expression or an available action refers to that interaction; a memory indicator explains the source.",
+      "escalation": "Memory changes expectations and later choices, not arbitrary permanent punishment or exponential stat inflation.",
+      "failureOutcome": "A desired romantic outcome may not occur; the cause is understandable and another valid continuation or ending remains.",
+      "attribution": "Persisted character memory points to a real prior eventId and choiceId, and the visible response points back to that memory.",
+      "recovery": "New actions may resolve a misunderstanding; replay cannot override a character explicit refusal or skip consent.",
+      "sourceEvidenceRefs": [
+        "life-restart-core",
+        "chinese-parents-official"
+      ],
+      "implementationImplications": [
+        "Both pilot heroines need a natural first-loop-to-second-loop response; generic I remember you text does not pass.",
+        "Preserve primary source observations, inferred benefits and unknown human attraction separately."
+      ]
+    }
+  ],
+  "noCopyBoundary": [
+    "所有事件、人物、身份、画面、声音和叙事表达必须原创。",
+    "仅迁移抽象循环和可验证的行为原则；不复制竞品代码或平衡值。",
+    "研究未观察到的内容保持未知；官方介绍和静态源码不是竞品实玩录像。",
+    "本轮没有用户提供媒体，未使用其他 run 的截图或附近录像。"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "replay_value_mobile_qa_report",
+  "runId": "20260831-010324-village-south-text-v1",
+  "passed": true,
+  "checks": [
+    { "name": "mobile-choice-layout-360x800", "passed": true },
+    { "name": "mobile-choice-layout-390x844", "passed": true },
+    { "name": "mobile-choice-layout-430x932", "passed": true },
+    { "name": "refresh-save-recovery", "passed": true },
+    { "name": "console-and-pageerror", "passed": true, "evidence": "logs/mobile-console.log" }
+  ],
+  "screenshots": [
+    "screenshots/chapter-one-360x800.png",
+    "screenshots/chapter-one-390x844.png",
+    "screenshots/chapter-one-430x932.png"
+  ],
+  "testedAt": "2026-08-31T04:06:14.902Z"
+}

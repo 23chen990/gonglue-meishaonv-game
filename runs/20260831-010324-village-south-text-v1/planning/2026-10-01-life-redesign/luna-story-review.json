@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "村口向南",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "role": "redesign-challenge",
+  "workspaceModified": false,
+  "sources": [
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-bible.md", "lines": "125-168,216-239,289-402（最终校验前版本）", "claim": "Luna只读复核具体剧情的分支、同意、回访与周目规则。"},
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-graph.json", "lines": "15-77（最终校验前版本）", "claim": "原图缺实际同意结果、开放原因与二周目事件条件。"},
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-schema.ts", "lines": "13-37（最终校验前版本）", "claim": "原校验主要覆盖ID存在和模板数量。"}
+  ],
+  "findings": [
+    {"id": "ROMANCE-MEMORY-CONSENT-GATE", "priority": "P1", "evidenceLevel": "source-observation", "observation": "原稿恋爱记忆仅列邀请与确认choiceId，没有实际同意/结局谓词。", "playerConsequence": "可能记起未发生的关系。", "recommendation": "恋爱记忆需要实际成立的对应结局，并保留实际回答。", "acceptance": ["拒绝或部分共同同意不能生成恋爱或共同恋爱记忆。", "双方分别同意且确认，才进入共同结局及对应记忆。"]},
+    {"id": "ROMANCE-SECOND-LOOP-MISSING-GRAPH-BRANCH", "priority": "P1", "evidenceLevel": "source-observation", "observation": "原图只有自由文本responseSlots，没有完整的二周目q4与主动邀请接线。", "playerConsequence": "二周目可能重放原场景并遗漏另一位角色。", "recommendation": "补逐角色responseId、二周目q4和主动邀请事件。", "acceptance": ["前两次交互分别有两位角色自己的可追溯回应。", "二周目q4有不同语义；周六两人分别主动留约。"]},
+    {"id": "ROMANCE-OPEN-REASON-LOSS", "priority": "P1", "evidenceLevel": "source-observation", "observation": "主动慢下来、无邀请、拒绝/暂缓、共同部分同意均并入open且没有原因键。", "playerConsequence": "结尾可能错误归因。", "recommendation": "保留四种顶层结局，开放结尾分四种原因。", "acceptance": ["player-slow、no-invite、consent-declined-or-pending、partial-shared-consent可区分。", "共同部分同意保留分别回答，不自动转单人线。"]},
+    {"id": "ROMANCE-Q3-UNSELECTED-CALLBACK-GAP", "priority": "P2", "evidenceLevel": "source-observation", "observation": "正文承诺未选角色仍有回应，原图未给具体回调。", "playerConsequence": "未选角色可能消失。", "recommendation": "为q3两支补不同的未选角色回访。", "acceptance": ["两支分别指向另一角色，并保留其独立工作。", "有未兑现约定时不以普通调侃覆盖失约。"]},
+    {"id": "ROMANCE-ATTRACTION-READER-EVIDENCE-GAP", "priority": "P2", "evidenceLevel": "hypothesis", "observation": "暂无真实读者阅读测试。", "playerConsequence": "逻辑有效仍不一定产生恋爱吸引力。", "recommendation": "后续做盲读或正常输入阅读评估。", "acceptance": ["读者分别说出两人的吸引点、独立目标与边界。", "读懂个人恋爱、共同恋爱和开放收尾的实际原因。"]}
+  ],
+  "keep": ["三日六次决定、四种结局、双成年女主及共同恋爱线。", "最近一轮和自己亲历的记忆边界；物品不穿越。"],
+  "avoid": ["邀请自动当作同意。", "把共同恋爱降为普通友谊或让未选角色消失。"],
+  "gaps": ["仅写作复核，不是恋爱运行时、自然输入、读者体验或平台发布证据。"],
+  "validation": {"schema": "PlanningReviewSchema", "passed": true}
+}

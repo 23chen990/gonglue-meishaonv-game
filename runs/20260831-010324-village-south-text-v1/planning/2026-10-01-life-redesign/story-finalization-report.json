@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "story-finalization-report",
+  "targetGame": "攻略美少女",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "generatedAt": "2026-09-30T20:09:20.962928+00:00",
+  "scope": "story-authoring-and-source-publication",
+  "status": "AUTHORING_COMPLETE_RUNTIME_PAUSED",
+  "workspaceIntegrity": {
+    "schemaVersion": 1,
+    "runId": "20260831-010324-village-south-text-v1",
+    "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+    "checkedFiles": 14,
+    "changedOrMissing": [],
+    "passed": true,
+    "runtimeModified": false,
+    "fixAttemptsUnchanged": true
+  },
+  "structuredArtifacts": {
+    "schemaVersion": 1,
+    "validatedArtifacts": [
+      "triage.json",
+      "romance-pivot-triage.json",
+      "reproduction-matrix.json",
+      "failure-pressure-contract.json",
+      "romance-failure-pressure-contract.json",
+      "open-source-research.json",
+      "romance-open-source-research.json",
+      "luna-review.json",
+      "luna-challenge-review.json",
+      "luna-romance-review.json",
+      "luna-story-review.json",
+      "luna-story-retest.json",
+      "story-graph.json"
+    ],
+    "count": 13,
+    "passed": true
+  },
+  "sourceVerification": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "lint",
+        "command": [
+          "pnpm",
+          "lint"
+        ],
+        "exitCode": 0,
+        "seconds": 2.497,
+        "log": "verification/lint.log"
+      },
+      {
+        "name": "typecheck",
+        "command": [
+          "pnpm",
+          "typecheck"
+        ],
+        "exitCode": 0,
+        "seconds": 2.353,
+        "log": "verification/typecheck.log"
+      },
+      {
+        "name": "test",
+        "command": [
+          "pnpm",
+          "test"
+        ],
+        "exitCode": 0,
+        "seconds": 3.767,
+        "log": "verification/test.log"
+      },
+      {
+        "name": "build",
+        "command": [
+          "pnpm",
+          "build"
+        ],
+        "exitCode": 0,
+        "seconds": 1.205,
+        "log": "verification/build.log"
+      },
+      {
+        "name": "story:validate",
+        "command": [
+          "pnpm",
+          "story:validate"
+        ],
+        "exitCode": 0,
+        "seconds": 2.52,
+        "log": "verification/story-validate.log"
+      }
+    ],
+    "testCounts": [
+      11,
+      18
+    ]
+  },
+  "authoring": {
+    "schemaVersion": 1,
+    "title": "攻略美少女",
+    "runId": "20260831-010324-village-south-text-v1",
+    "scope": "authoring-only",
+    "paths": 128,
+    "endingCounts": {
+      "zhixia": 10,
+      "open": 104,
+      "wenxi": 10,
+      "together": 4
+    },
+    "openReasonCounts": {
+      "player-slow": 48,
+      "consent-declined-or-pending": 12,
+      "partial-shared-consent": 12,
+      "no-invite": 32
+    },
+    "memoryIds": [
+      "mz-romance",
+      "mw-call",
+      "mz-arrived",
+      "mw-romance",
+      "mz-shared",
+      "mw-shared",
+      "mw-waited",
+      "mw-returned",
+      "mw-arrived",
+      "mz-call",
+      "mz-returned",
+      "mz-waited"
+    ],
+    "inputs": [
+      {
+        "file": "story-graph.json",
+        "sha256": "7cea611c094238f56e2e885432e294de4dd0e7f94714c9ab8b052017d6b65d57"
+      },
+      {
+        "file": "story-bible.md",
+        "sha256": "b48aad0e580181b7f3e88b59ca6252468c727aa05846573debfa44ed2779ac75"
+      },
+      {
+        "file": "story-schema.ts",
+        "sha256": "d7fc3301b4394ef60590557145902949c10eb4460e3bf12374db7f2ae914c371"
+      },
+      {
+        "file": "story-validation.ts",
+        "sha256": "59fee570156b2c4c690b46abb3de9538bd5bc78f98f427bdc324597d15358798"
+      },
+      {
+        "file": "luna-story-retest.json",
+        "sha256": "a3145049a77a4eb4efa554f33e0a6a3e052d5dea8f8110ee6993cea64c53f7d8"
+      }
+    ],
+    "romanceRuntimeImplemented": false,
+    "readerExperienceVerified": false
+  },
+  "independentReview": "planning/2026-10-01-life-redesign/luna-story-retest.json",
+  "route": "planning-only",
+  "routeRationale": "Latest user direction stopped art and runtime implementation; finalize authored plot, validate it, and publish source for later planning.",
+  "omittedContext": [
+    "Other games and unrelated factory edits",
+    "Private chat screenshot from public export",
+    "Unverified art and raw competitor downloads",
+    "Provisional runtime-test assertions as acceptance requirements"
+  ],
+  "remainingGaps": [
+    "Human reader response",
+    "Romance default runtime journey and separate natural/perceptual QA",
+    "Platform packages"
+  ],
+  "formalFixCompleted": false,
+  "fixAttempts": 0
+}

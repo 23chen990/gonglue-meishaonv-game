@@ -1,0 +1,12 @@
+schemaVersion: 1
+runId: 20260831-010324-village-south-text-v1
+decision: APPROVE
+approvedScope:
+  - replay_value_vertical_slice
+  - modern_archive_system_impact_v3
+sourceQuote: 做吧，你是总策划，你来指挥，直接做成最好的样子交付给我
+constraints:
+  - 不增加第五项常驻系统
+  - 不把广告作为唯一合理选择
+  - 不把 AI 概念图中的文字烘焙进运行时
+recordedAt: 2026-08-31T03:46:49.000Z

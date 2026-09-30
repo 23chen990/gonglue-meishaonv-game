@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "experience-complaint-triage",
+  "targetGame": "村口向南",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "report": "我感觉这个游戏看起来没有那么有吸引力，例如中国式家长这个名字听起来就非常有吸引力，你觉得我们改成 攻略美少女 这种名字如何？改成攻略后宫文字游戏",
+  "classification": [
+    "core-experience",
+    "visual-hierarchy"
+  ],
+  "scope": {
+    "route": "formal-fixer",
+    "rationale": "Planning-only genre pivot. Future work changes core narrative, presentation, relationship state and saves; no direct-builder repair and no FIX started.",
+    "generatedWorkspaceModified": false,
+    "contextIntentionallyOmitted": [
+      "其他 run 的代码、素材和记录",
+      "未绑定本 run 的截图或录像",
+      "密钥与无关仓库历史"
+    ]
+  },
+  "reproduction": {
+    "status": "NOT_REPRODUCED",
+    "steps": [
+      "Evaluate title promise and adult multi-character romance positioning.",
+      "Test a complete original romance slice before expanding routes."
+    ],
+    "observed": [
+      "User prefers a more immediately attractive romance premise. This is a product direction request, not measured title conversion.",
+      "Existing five browser runs describe the old rural prototype only; no romance build exists."
+    ],
+    "evidence": [
+      {
+        "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-request.json",
+        "sha256": "b2560475fb9829b2227c8318df20bb1ef7b2033a78379c7f35c53c3414960660",
+        "kind": "user-report",
+        "provenance": "verified-run-artifact"
+      }
+    ]
+  },
+  "acceptanceCriteria": [
+    "Explain naming tradeoffs without invented audience or click-through data.",
+    "Define adult original cast, meaningful relationships, multiple romance routes, replay memory and bounded scope.",
+    "Keep generated workspace untouched; preserve prior documents and run identity.",
+    "No claims of new runtime, perceptual, platform or release success."
+  ],
+  "status": "OPEN",
+  "createdAt": "2026-09-30T18:06:43.811Z"
+}

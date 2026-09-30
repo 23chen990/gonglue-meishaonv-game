@@ -1,0 +1,27 @@
+$ vite build runs/20260831-010324-village-south-text-v1/workspace/game --config runs/20260831-010324-village-south-text-v1/workspace/game/vite.config.ts
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 12 modules transformed.
+rendering chunks...
+computing gzip size...
+runs/20260831-010324-village-south-text-v1/workspace/game/dist/index.html                  0.68 kB │ gzip:  0.45 kB
+runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/style-Dr-i3v1V.css   7.77 kB │ gzip:  2.52 kB
+runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/index-FUaXZ3Qr.js   29.40 kB │ gzip: 11.78 kB
+
+✓ built in 558ms
+error during build:
+Error: ENOENT: no such file or directory, open '/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/dist/index.html'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async PluginContextImpl.closeBundle (file:///Users/kker/Documents/ChatGPT/%E5%A6%96%E6%80%AA%E5%A4%9C%E5%B8%82/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game/node_modules/.vite-temp/vite.config.ts.timestamp-1790798329228-dc239032f1873.mjs:12:15)
+    at async plugin (file:///Users/kker/Documents/ChatGPT/%E5%A6%96%E6%80%AA%E5%A4%9C%E5%B8%82/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/node_modules/.pnpm/rolldown@1.2.6/node_modules/rolldown/dist/shared/bindingify-input-options-4JJxbZl2.mjs:1723:3)
+    at async plugin.<computed> (file:///Users/kker/Documents/ChatGPT/%E5%A6%96%E6%80%AA%E5%A4%9C%E5%B8%82/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/node_modules/.pnpm/rolldown@1.2.6/node_modules/rolldown/dist/shared/bindingify-input-options-4JJxbZl2.mjs:2127:12) {
+  errno: -2,
+  code: 'PLUGIN_ERROR',
+  syscall: 'open',
+  path: '/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/dist/index.html',
+  pluginCode: 'ENOENT',
+  plugin: 'inline-for-file-protocol',
+  hook: 'closeBundle'
+}
+[ELIFECYCLE] Command failed with exit code 1.

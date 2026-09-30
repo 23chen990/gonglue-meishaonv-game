@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scope": "legacy-startup-only",
+  "mode": "fresh-browser-normal-clicks",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "title": "村口向南 · 第一章",
+  "actions": [
+    "reveal-family",
+    "select-first-keepsake"
+  ],
+  "choiceVisible": true,
+  "errors": [],
+  "passed": true,
+  "romanceRuntimeImplemented": false,
+  "fullJourneyVerified": false,
+  "perceptualGatePassed": false
+}

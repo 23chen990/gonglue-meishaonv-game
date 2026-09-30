@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "experience-complaint-triage",
+  "targetGame": "村口向南",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "report": "这个游戏现在做的不好，你参考人生重开模拟器这些游戏看看如何修改，先写个规划",
+  "classification": [
+    "core-experience",
+    "reference-fidelity"
+  ],
+  "scope": {
+    "route": "formal-fixer",
+    "rationale": "体验方向与核心循环可能变更，不能走局部 direct-builder。本轮仅规划；formal-fixer 是后续修复候选路线，尚未创建 QA 修复任务或启动 FIX。",
+    "generatedWorkspaceModified": false,
+    "contextIntentionallyOmitted": [
+      "其他 run 的代码、素材和记录",
+      "未绑定本 run 的截图或录像",
+      "密钥与无关仓库历史"
+    ]
+  },
+  "reproduction": {
+    "status": "PARTIALLY_REPRODUCED",
+    "steps": [
+      "核实当前默认入口和已批准设计",
+      "分别检查首局、分支选择、结算和重玩，区分源码发现与自然游玩观察",
+      "在目标手机视口复核关键行为，不用旧 QA 报告代替新体验验收"
+    ],
+    "observed": [
+      "用户对整体体验不满意，要求参考人生重开模拟器，先出规划；未提供具体失败复现或媒体。",
+      "Five automated normal-input rounds completed in the existing rural game, not five human playtests. Two policies each repeated their event-title sequence on actual UI restart; all five showed the same settlement heading.",
+      "User later requested an adult multi-character romance pivot; see separate romance-pivot-triage.json. Old findings are not evidence that the unbuilt romance game works."
+    ],
+    "evidence": [
+      {
+        "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/user-report.json",
+        "sha256": "0926354f6a46844eb962e7a0ec0dfc856081c5b2d87c4fc059e25b6ee5f46d37",
+        "kind": "user-report",
+        "provenance": "verified-run-artifact"
+      },
+      {
+        "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+        "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+        "kind": "runtime-capture",
+        "provenance": "verified-run-artifact"
+      }
+    ]
+  },
+  "acceptanceCriteria": [
+    "规划明确当前事实、设计推断、未知项，不伪报玩家体验测试",
+    "提出保留、删除、核心循环改造、最小验证范围和分阶段验收",
+    "参考研究形成逐来源失败压力契约，保持原创表达边界",
+    "所有材料绑定目标 run，游戏 workspace 内容不变"
+  ],
+  "status": "OPEN",
+  "createdAt": "2026-09-30T17:33:29.822Z"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "story-review-resolutions",
+  "runId": "20260831-010324-village-south-text-v1",
+  "scope": "story-authoring-only",
+  "reviewArtifact": "luna-story-review.json",
+  "resolutions": [
+    {"findingId": "ROMANCE-MEMORY-CONSENT-GATE", "status": "RESOLVED_IN_AUTHORING", "evidence": "memoryTemplates.requiredEndingId and characterAnswers; refusal, partial-consent and slow-down tests"},
+    {"findingId": "ROMANCE-SECOND-LOOP-MISSING-GRAPH-BRANCH", "status": "RESOLVED_IN_AUTHORING", "evidence": "secondLoop.responseEvents, decisionOverrides, initiatives and 12 separate response IDs"},
+    {"findingId": "ROMANCE-OPEN-REASON-LOSS", "status": "RESOLVED_IN_AUTHORING", "evidence": "openReasons, openReason trace and separate character responseIds"},
+    {"findingId": "ROMANCE-Q3-UNSELECTED-CALLBACK-GAP", "status": "RESOLVED_IN_AUTHORING", "evidence": "q3Callbacks, waitedSourceChoices and Saturday callback scene"},
+    {"findingId": "ROMANCE-ATTRACTION-READER-EVIDENCE-GAP", "status": "DEFERRED_READER_EVIDENCE", "evidence": "No human reader or romance runtime evidence; retained as the next-stage product gate"}
+  ],
+  "runtimeModified": false,
+  "formalFixCompleted": false
+}

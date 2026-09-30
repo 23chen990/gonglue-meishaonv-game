@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "村口向南",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "externalUserMediaSupplied": false,
+  "usedOtherRunMedia": false,
+  "entries": [
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/check-results.json",
+      "sha256": "fb2f341ebd538c81b5d5769c90b97774984f0e8495609a7efada40e8607177a1",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/existing-game-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/existing-game-unit-tests.log",
+      "sha256": "1c6fd1fbc4b777c26b74f55d41eb0b17968ee9f4ca308e824d84c0bf47d73144",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/failure-pressure-contract.json",
+      "sha256": "620f1387c9d0ea6a3ff879da9f02c7b0bc8f32a44f3642b5828e908bb13645ae",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/inspect-runtime.mjs",
+      "sha256": "92abfa16db6a56defffa5587c0e788bc1900f4103b07bdd2807b40638e36ba5d",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-challenge-review.json",
+      "sha256": "d443c8c86eb62d444c5035bb4ff2da000a2d0cabfa59c2e1885416fb7dc3a32f",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-review.json",
+      "sha256": "fe371f9fa1bc1643921f5734a63727458a0b0d3f8669179c144e40acde15ee3e",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/luna-romance-review.json",
+      "sha256": "ffe8f1c52c36b17502ee08ddbb670c640b1cb9ab84d0b5d5799a47d6c5126a70",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/open-source-research.json",
+      "sha256": "e8d9344c9734634a80864e6119757d30fdd5f56a4223bc5bdf6f061be4660f6b",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/plan.md",
+      "sha256": "abfa81467357e9475fc2b4bbc2282ed435063233bdc936055a21041fb17c8fb2",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/planning-schema-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/planning-schema-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/reproduction-matrix.json",
+      "sha256": "0d3b9723b0aa6f2ddeb80c903e3d14d90addb61c9b54bceb7af51e7792367fc8",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/review-contract.ts",
+      "sha256": "d5b894eb66b2d4716c34fd3fb2564c8eed57a74815b06e649aeacbc39aec1830",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-failure-pressure-contract.json",
+      "sha256": "e479bc5659c859f6e92425d371a3137cef1f2118013267e8746704941e570726",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-open-source-research.json",
+      "sha256": "ba64d4bead9b943de5edcd3aa90f07b2584b0fcafa92fbdaf093fd3129bb3ada",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-plan.md",
+      "sha256": "f6121b31de68170c2d14d63fd4f1e68f0465202dc041b90957c98a33050c2540",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-request.json",
+      "sha256": "b2560475fb9829b2227c8318df20bb1ef7b2033a78379c7f35c53c3414960660",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/romance-pivot-triage.json",
+      "sha256": "dd03653d9b2deb6a9b726ebbcd2e76ef1aaa248a19e406bfe60ee8a38395b76a",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-harness-syntax.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+      "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/triage.json",
+      "sha256": "440da6f2728993513938f9f1a0911a3b5bbccb1b199d152371bab2cde1a0b769",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/user-report.json",
+      "sha256": "0926354f6a46844eb962e7a0ec0dfc856081c5b2d87c4fc059e25b6ee5f46d37",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/validation-report.json",
+      "sha256": "46bf827d6f35836957b824ff992ec80c15705ea392d8b604b9304b8bee6b7025",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/workspace-before.json",
+      "sha256": "cca65224cd3b1d2a4c6bb2bbc0c7b1afd9c312bdb88d176d521ef02994fbf873",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/README-zh_CN.md",
+      "sha256": "7ace8c3a309c9648fcf7cd862df1ff5652b129f2c62cb77314111758674d594c",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/chinese-parents-official-description.txt",
+      "sha256": "4c2227d243cac074360cbe2bab9ab6cbb3612d6803a1b26bd63549273f7f5283",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/chinese-parents-official.html",
+      "sha256": "ffba5a2404f969fd9f31ddc76d881e4985a11f986e87e8495845f026128ee7b7",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/inkjs-license.txt",
+      "sha256": "040e957a77e3e19432e265cb549d5c3b4ca6f3551e24d22b81785ffd1bc2b67b",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/life-restart-license.txt",
+      "sha256": "ea6495157c707b1b56b01dd5ccbcc121ff673379b600e7d6fbf92db0307b93cb",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/life-restart-tree.txt",
+      "sha256": "98d861871b9208ed8b96e826541cce0ef5e7b097426541e00e3ef437c9de0a6e",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/official-descriptions-fetch.json",
+      "sha256": "2c9982fc8777d228ce7e985d1ac31347eec78ae8ba44b9cc887ea4cc1d61929c",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/packages__core__src__event.ts",
+      "sha256": "befd8d321069d2bb71ae3baddedc9314260ec9c24c187ce9b44f4273f39ca737",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/packages__core__src__game.ts",
+      "sha256": "9f78d59d0b242f48698e198778f0e502e8649928542ff94fe2795f213fa0ebba",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/packages__core__src__state.ts",
+      "sha256": "6dba05778ce80a116a855f28476a5aeb9ebb9c8d967f14c2326ba02db4a4ddb9",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/packages__core__src__talent.ts",
+      "sha256": "b9e413fa74a0cf90b3d59085d3d34ecd7ccb07875b3a594e0f365b05119769c8",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/reigns-official-description.txt",
+      "sha256": "fa868f8c1e1d2966c0f6c33a55c89179dbe056d25a60911acea24f106e1b2b72",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/reigns-official.html",
+      "sha256": "e5416b63af6afd143b94e169609150e3ba9909b466f99326251d16719d3162e0",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/research/source-fetch.json",
+      "sha256": "b9b37e00591b98dbec454559a5ab1b2784db74c21d477b7b7a6afb617d3c40e0",
+      "kind": "planning-or-research",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/landscape-round-1-choice.png",
+      "sha256": "e812a709234f8f8899926c72ed839cd41560cd6930e9a8ea8ee82885e1307618",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/landscape-round-1-family.png",
+      "sha256": "ed3d2fc9b503603fea47f59572b84d29011b5c3f3c74a3b78d8f826ac6cd0a9a",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/landscape-round-1-settlement.png",
+      "sha256": "319201d221e827e9b7123a4f3803a9ca44537893b2589ebbc841b37de330d192",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/small-first-round-1-choice.png",
+      "sha256": "ee7ec37d62a734e981e2eea6225873ccfd5de657d045bdb29d181f27e2fb02ad",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/small-first-round-1-family.png",
+      "sha256": "647a7b75d8a010a5516e6f2da082b8e31931bc0bac3d08f23b3ec88c7c4eaa21",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/small-first-round-1-settlement.png",
+      "sha256": "10e284808efcc61c7f9c2ade4c2a67ae6e0d4dd209ded782abd54cfe2471a588",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/small-first-round-2-settlement.png",
+      "sha256": "a8d18e52defc4f84ed904f9c135b0c6de849ae6ed0976c7e4f7f6957011a74c2",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/standard-last-round-1-choice.png",
+      "sha256": "b3d49cc2a379fa6049c1036b07089f7431d6a1a4e03c5a17f3de9a51d5f568c4",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/standard-last-round-1-family.png",
+      "sha256": "9c8ee827f3ec1150a3956cf957e0c35d20000fd9bc3199322e4b19f8ef33bcb2",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/standard-last-round-1-settlement.png",
+      "sha256": "2a63fd1e88ade8c1390795618e4e4f268e5206edbbd82c1696293f92fdf59b42",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    },
+    {
+      "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-evidence/standard-last-round-2-settlement.png",
+      "sha256": "0b898830811e352bd802b572ad11ebe1dbddeb9e1ab932fc1b5798a88ffe3039",
+      "kind": "rural-runtime-capture",
+      "sourceScope": "This run only; rural observations do not validate the proposed romance game."
+    }
+  ]
+}

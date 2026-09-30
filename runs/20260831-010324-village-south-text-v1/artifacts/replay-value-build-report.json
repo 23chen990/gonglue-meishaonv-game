@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "replay_value_build_report",
+  "runId": "20260831-010324-village-south-text-v1",
+  "targetWorkspace": "runs/20260831-010324-village-south-text-v1/workspace/game",
+  "passed": true,
+  "verification": {
+    "tddRedObserved": true,
+    "lint": "passed",
+    "typecheck": "passed",
+    "tests": "8 passed",
+    "build": "passed",
+    "mobilePlaywright": "passed"
+  },
+  "scope": { "visibleStats": 4, "eventsPerRun": 6, "variants": 12, "choicesPerDecision": 2, "saveVersion": 3 },
+  "builtAt": "2026-08-31T04:06:14.902Z"
+}

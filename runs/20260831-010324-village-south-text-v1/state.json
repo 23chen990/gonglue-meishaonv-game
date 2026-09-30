@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260831-010324-village-south-text-v1",
+  "runKind": "game",
+  "stage": "WAITING_FOR_PROTOTYPE_APPROVAL",
+  "status": "waiting",
+  "createdAt": "2026-08-31T01:03:24+08:00",
+  "updatedAt": "2026-08-31T01:21:07+08:00",
+  "fixAttempts": 0,
+  "prototypeBatch": 1,
+  "providerMode": "mock",
+  "stages": {
+    "COMPETITOR_RESEARCH": {
+      "stage": "COMPETITOR_RESEARCH",
+      "status": "completed",
+      "startedAt": "2026-08-31T01:03:24+08:00",
+      "finishedAt": "2026-08-31T01:03:24+08:00",
+      "attempts": 1,
+      "inputArtifacts": [
+        "input/generate-artifacts.ts"
+      ],
+      "outputArtifacts": [
+        "artifacts/competitor-research.json"
+      ],
+      "errors": [],
+      "evidence": [
+        "zod:CompetitorResearchSchema",
+        "web-research:2026-08-31"
+      ],
+      "providerCalls": {
+        "agent": 0,
+        "image": 0
+      },
+      "tokenUsage": {
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "totalTokens": 0
+      }
+    },
+    "OPEN_SOURCE_RESEARCH": {
+      "stage": "OPEN_SOURCE_RESEARCH",
+      "status": "completed",
+      "startedAt": "2026-08-31T01:03:24+08:00",
+      "finishedAt": "2026-08-31T01:03:24+08:00",
+      "attempts": 1,
+      "inputArtifacts": [
+        "input/generate-artifacts.ts"
+      ],
+      "outputArtifacts": [
+        "artifacts/open-source-research.json"
+      ],
+      "errors": [],
+      "evidence": [
+        "zod:OpenSourceResearchArtifactSchema",
+        "immutable-revisions:git-ls-remote"
+      ],
+      "providerCalls": {
+        "agent": 0,
+        "image": 0
+      },
+      "tokenUsage": {
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "totalTokens": 0
+      }
+    },
+    "PRODUCTION_COST_REVIEW": {
+      "stage": "PRODUCTION_COST_REVIEW",
+      "status": "completed",
+      "startedAt": "2026-08-31T01:03:24+08:00",
+      "finishedAt": "2026-08-31T01:03:24+08:00",
+      "attempts": 1,
+      "inputArtifacts": [
+        "input/generate-artifacts.ts"
+      ],
+      "outputArtifacts": [
+        "artifacts/production-cost-review.json"
+      ],
+      "errors": [],
+      "evidence": [
+        "zod:ProductionCostReviewSchema"
+      ],
+      "providerCalls": {
+        "agent": 0,
+        "image": 0
+      },
+      "tokenUsage": {
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "totalTokens": 0
+      }
+    },
+    "IAA_MONETIZATION_REVIEW": {
+      "stage": "IAA_MONETIZATION_REVIEW",
+      "status": "completed",
+      "startedAt": "2026-08-31T01:03:24+08:00",
+      "finishedAt": "2026-08-31T01:03:24+08:00",
+      "attempts": 1,
+      "inputArtifacts": [
+        "input/generate-artifacts.ts"
+      ],
+      "outputArtifacts": [
+        "artifacts/iaa-monetization-review.json"
+      ],
+      "errors": [],
+      "evidence": [
+        "zod:IaaMonetizationReviewSchema",
+        "TapTap-ad-policy:reviewed"
+      ],
+      "providerCalls": {
+        "agent": 0,
+        "image": 0
+      },
+      "tokenUsage": {
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "totalTokens": 0
+      }
+    }
+  }
+}

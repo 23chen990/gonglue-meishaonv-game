@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "source-publication-verification",
+  "runId": "20260831-010324-village-south-text-v1",
+  "scope": "source-snapshot-and-authoring-only",
+  "generatedAt": "2026-09-30T19:58:49.852591+00:00",
+  "passed": false,
+  "checks": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 2.497,
+      "log": "verification/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 2.353,
+      "log": "verification/typecheck.log"
+    },
+    {
+      "name": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitCode": 0,
+      "seconds": 3.767,
+      "log": "verification/test.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 1,
+      "seconds": 1.606,
+      "log": "verification/build.log"
+    }
+  ],
+  "testCounts": [
+    11,
+    18
+  ],
+  "authoring": {},
+  "romanceRuntimeImplemented": false,
+  "naturalRomanceJourneyVerified": false,
+  "perceptualRomanceGatePassed": false,
+  "platformReleaseVerified": false
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "村口向南",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "role": "redesign-challenge",
+  "workspaceModified": false,
+  "sources": [
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-bible.md", "lines": "1-16,310-318,320-409", "claim": "名称、后宫向定位、周目规则、主动邀约与剧情编写合同已一致。"},
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-graph.json", "lines": "224-374,385-523", "claim": "记忆结局谓词、独立回答、四种openReason、未选角色回访与二周目事件齐备。"},
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-schema.ts", "lines": "23-34,44-84", "claim": "结构校验覆盖实际结局谓词、四种原因、角色自己的事件与responseId唯一性。"},
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.ts", "lines": "15-51,60-64", "claim": "编写路径按照被邀请对象、实际回答和确认计算结局与记忆；二周目q4显示新语义。"},
+    {"path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.test.ts", "lines": "55-149", "claim": "18条编写测试覆盖拒绝、部分同意、慢下来、兑现/等待、开放原因、二周目与回访。"}
+  ],
+  "findings": [
+    {"id": "ROMANCE-ATTRACTION-READER-EVIDENCE-GAP", "priority": "P2", "evidenceLevel": "hypothesis", "observation": "剧情和结构校验通过，但尚无真实读者、恋爱运行时或自然输入证据。", "playerConsequence": "分支正确仍不保证读者记住角色魅力或感到重开的亲密回报。", "recommendation": "下一阶段分别开展盲读、恋爱运行时与正常输入阅读验证。", "acceptance": ["读者分别说出两人的具体吸引事件、独立目标与边界。", "读懂个人恋爱、共同恋爱、部分同意及主动慢下来的区别。", "运行时正常输入分别验证默认旅程、两周目回应与回访可读性；之前不宣称已好玩。"]}
+  ],
+  "keep": [
+    "ROMANCE-MEMORY-CONSENT-GATE已在编写结构闭合：requiredEndingId约束记忆；独立characterAnswers仍保留实际yes/pending/not-asked。拒绝、部分同意和q6-slow不会产生虚假恋爱记忆。",
+    "ROMANCE-SECOND-LOOP-MISSING-GRAPH-BRANCH已闭合：前两次事件绑定自己的六个memoryTemplateId，q4有新语义，两位角色各有主动邀约。",
+    "ROMANCE-OPEN-REASON-LOSS已闭合：四种开放原因分别有键和文本，partial-shared-consent不转个人线。",
+    "ROMANCE-Q3-UNSELECTED-CALLBACK-GAP已闭合：两支分别回访未选角色，等待条件与兑现条件不混淆，保留独立工作。",
+    "正式名称《攻略美少女》与后宫向多女主恋爱定位一致，个人恋爱和共同恋爱均保留。",
+    "独立复核运行RomanceStorySchema解析与18/18编写测试通过；这不等于运行时或自然玩家体验。"
+  ],
+  "avoid": ["不能把编写测试通过报告为恋爱版已实现、formal FIX已完成或游戏已好玩。", "不能拿图中responseEvents代替默认旅程接线证据。", "普通回访不能覆盖waitedText，开放原因不能被统一结尾吞掉。"],
+  "gaps": ["无恋爱运行时、正常输入、真人读者、美术感知或三端平台包证据。", "只能报告四项RESOLVED_IN_AUTHORING；恋爱吸引力继续等待读者证据。"],
+  "validation": {"schema": "PlanningReviewSchema", "passed": true}
+}

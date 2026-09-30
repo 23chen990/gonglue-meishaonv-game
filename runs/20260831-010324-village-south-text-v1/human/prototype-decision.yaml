@@ -1,0 +1,3 @@
+decision: APPROVE
+notes:
+  - 批准 BuilderAgent 构建《村口向南》叙事交互原型；三端运行时与广告 SDK 另做兼容性尖峰

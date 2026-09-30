@@ -1,0 +1,2768 @@
+{
+  "schemaVersion": 1,
+  "prototypeId": "village-south-text-v2",
+  "targetGame": "村口向南",
+  "targetWorkspace": "runs/20260831-010324-village-south-text-v1/workspace/game",
+  "targetPlatforms": [
+    "wechat-minigame",
+    "douyin-minigame",
+    "taptap-minigame"
+  ],
+  "prototypeQuestion": "玩家能否在手机上一眼读懂四个状态如何限制选择，并相信改革开放初期的人生既可能扎根，也可能跨省经商、承包办厂或失败后再起？",
+  "format": "throwaway_text_spike",
+  "timeboxMinutes": 180,
+  "sessionMinutes": {
+    "min": 10,
+    "max": 15
+  },
+  "mobileUiPolicy": {
+    "visibleStatIds": [
+      "economy",
+      "skill",
+      "health",
+      "bonds"
+    ],
+    "maxPrimaryChoices": 2,
+    "unavailableChoiceBehavior": "disabled_with_short_reason",
+    "hiddenContext": [
+      "年代跟随四章自动推进，不占状态栏。",
+      "地点、职业、负债和生产资料使用隐藏标签记录，只在相关事件中露出。",
+      "每张事件卡固定两个主按钮；条件不足时保留禁用按钮并显示一行短原因。"
+    ]
+  },
+  "historicalFrame": {
+    "startYear": 1978,
+    "endYear": 1992,
+    "fictionalSetting": "架空的河湾县东坪村；不使用真实人物和真实村镇作为剧情角色或场景。",
+    "disclaimers": [
+      "人物、村镇、商号与具体遭遇均为原创架空，不影射真实个人。",
+      "年代变化依据公开史料校对，但单个家庭的经历不宣称代表所有地区。",
+      "不把贫困、升学、务工或经商结果归结为单一品德；每个选择都同时有收益、代价和不可控环境。"
+    ],
+    "sourceIds": [
+      "hist_gaokao",
+      "hist_rural_reform",
+      "hist_individual_business",
+      "hist_township_enterprise",
+      "hist_mobility",
+      "hist_special_zones"
+    ]
+  },
+  "sources": [
+    {
+      "id": "hist_gaokao",
+      "kind": "historical",
+      "title": "教育部：恢复高考——中国改革的先声",
+      "url": "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/s3580/moe_2448/moe_2470/tnull_41368.html",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "hist_rural_reform",
+      "kind": "historical",
+      "title": "中国人大网：农村改革启大幕",
+      "url": "https://www.npc.gov.cn/WZWSREL3pncmR3L25wYy9sZnp0L3JseXcvMjAxOC0xMi8yOC9jb250ZW50XzIwNjk0NzkuaHRt",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "hist_individual_business",
+      "kind": "historical",
+      "title": "市场监管总局：服务改革开放，企业注册改革勇往直前",
+      "url": "https://www.samr.gov.cn/djzcj/gzdt/art/2023/art_84467713b557457c8c5964266941f8da.html",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "hist_township_enterprise",
+      "kind": "historical",
+      "title": "国家统计局：乡镇企业异军突起",
+      "url": "https://www.stats.gov.cn/zt_18555/ztfx/xzg50nxlfxbg/202303/t20230301_1920444.html",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "hist_mobility",
+      "kind": "historical",
+      "title": "国家统计局：农村劳动力流动政策与就业增长",
+      "url": "https://www.stats.gov.cn/zt_18555/ztfx/jnggkf30n/202303/t20230301_1920465.html",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "hist_special_zones",
+      "kind": "historical",
+      "title": "中国人大网：经济特区与改革开放历程",
+      "url": "https://www.npc.gov.cn/zgrdw/npc/xinwen/rdlt/sd/2010-09/27/content_1597319.htm",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "comp_life_restart",
+      "kind": "competitor",
+      "title": "TapTap：人生重开模拟器",
+      "url": "https://www.taptap.cn/app/223281",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "comp_100m_goal",
+      "kind": "competitor",
+      "title": "TapTap：一亿小目标",
+      "url": "https://www.taptap.cn/app/79900",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "comp_contemporary_life",
+      "kind": "competitor",
+      "title": "TapTap：当代人生",
+      "url": "https://www.taptap.cn/app/228286",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "comp_work_life",
+      "kind": "competitor",
+      "title": "App Store：打工生活模拟器",
+      "url": "https://apps.apple.com/cn/app/%E6%89%93%E5%B7%A5%E7%94%9F%E6%B4%BB%E6%A8%A1%E6%8B%9F%E5%99%A8-%E6%A8%A1%E6%8B%9F/id1611685440",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    },
+    {
+      "id": "policy_taptap_ads",
+      "kind": "platform-policy",
+      "title": "TapTap 小游戏广告审核规范",
+      "url": "https://developer.taptap.cn/minigameapidoc/tap-operation/operation-standards/minigame-ad-policy/",
+      "accessedAt": "2026-08-31T01:03:24+08:00"
+    }
+  ],
+  "locale": "zh-CN",
+  "strings": {
+    "stat_economy": "家底",
+    "stat_skill": "本事",
+    "stat_health": "身体",
+    "stat_bonds": "人情",
+    "keepsake_book_name": "缺封面的代数书",
+    "keepsake_book_description": "书页里夹着旧演算纸。开局更有本事，也更容易坚持学习。",
+    "keepsake_pliers_name": "父亲的旧钳子",
+    "keepsake_pliers_description": "钳口已经磨平。开局更有本事，也多一点能换钱的手艺。",
+    "keepsake_address_name": "写着南方地址的信封",
+    "keepsake_address_description": "地址可能过时，人情仍在。开局多一点人情，也更敢迈出村口。",
+    "chapter_1_title": "第一章：田埂松动了（1978—1981）",
+    "chapter_2_title": "第二章：县城街面热起来（1982—1984）",
+    "chapter_3_title": "第三章：火车开往南边（1985—1988）",
+    "chapter_4_title": "第四章：回家还是留下（1989—1992）",
+    "event_01_title": "煤油灯下的准考证",
+    "event_01_body": "县里贴出恢复招生考试的消息。白天要下地，夜里只剩半盏煤油，你手里还有一本缺了封面的代数书。",
+    "event_01_a_label": "把夜里的时间留给书本",
+    "event_01_a_result": "你托人抄来复习提纲，困了就用凉水洗脸。家里的活落下一点，但你重新相信读书能开一扇门。",
+    "event_01_a_echo": "两年后，村小学缺代课人，老校长想起你总在灯下做题。",
+    "event_01_b_label": "先把家里的秋收顶下来",
+    "event_01_b_result": "你把书压在箱底，陪父亲抢收。粮囤满了一点，心里却总记得那张告示。",
+    "event_01_b_echo": "后来有人来借你的旧书，你发现自己仍能讲清几道题。",
+    "event_02_title": "分到手的田",
+    "event_02_body": "东坪村讨论把收成责任落到户。有人怕担风险，也有人说庄稼终于能自己盘算。父亲让你表态。",
+    "event_02_a_label": "接下最远的那块薄田",
+    "event_02_a_result": "你画下田界，也把收成好坏背到自家肩上。全家第一次围着一张纸认真算来年。",
+    "event_02_a_echo": "薄田没有立刻变肥，却逼着你学会记工、看天和留种。",
+    "event_02_b_label": "先跟着邻里合做一年",
+    "event_02_b_result": "你没有抢先，把力气投进大家商量好的活计里，也把每户的难处看得更清楚。",
+    "event_02_b_echo": "来年重新分工时，几户人家愿意听你的折中办法。",
+    "event_03_title": "哑火的手电筒",
+    "event_03_body": "生产队留下的手电筒坏了，夜里巡渠不方便。你在桌上摊开螺丝和铁皮，没人保证还能装回去。",
+    "event_03_a_label": "拆开看看毛病在哪",
+    "event_03_a_result": "你折腾到后半夜，用罐头皮垫住松掉的触片。灯亮时，屋里的人都笑了。",
+    "event_03_a_echo": "此后坏收音机、旧锁头都被人送来，你的手艺从小物件上长出来。",
+    "event_03_b_label": "去县里换一支能用的",
+    "event_03_b_result": "你用两天零工换回一支旧手电，事情办得稳妥，只是没弄懂里面为何会亮。",
+    "event_03_b_echo": "手电又坏时，你已知道县里哪家铺子肯给熟人便宜。",
+    "event_04_title": "第一担早菜",
+    "event_04_body": "自留地的早菜比往年多。县城逢集，天不亮就得挑担走二十里，价钱和销路都说不准。",
+    "event_04_a_label": "自己挑到县城试卖",
+    "event_04_a_result": "你第一次在街边开口叫卖，午前卖掉大半，也记住了什么菜先有人问。",
+    "event_04_a_echo": "下个集日，两个老主顾远远就认出你的竹筐。",
+    "event_04_b_label": "卖给进村收货的人",
+    "event_04_b_result": "价钱低一些，却不用误一天农活。你把现钱交给母亲，家里都松了口气。",
+    "event_04_b_echo": "收货人后来压过一次价，你开始明白省事也有代价。",
+    "event_05_title": "妹妹的学费",
+    "event_05_body": "妹妹考进县中学，学费、车钱和住处都要花钱。家里刚攒下买化肥的款，父亲整夜没说话。",
+    "event_05_a_label": "先让妹妹把书读下去",
+    "event_05_a_result": "你推迟买化肥，又接了几趟挑货的活。妹妹把录取通知夹进了家里的账本。",
+    "event_05_a_echo": "几年后，妹妹替家里写信、看合同，也替你挡过一次含糊的账。",
+    "event_05_a_unavailable": "家底不足，眼下还凑不齐学费。",
+    "event_05_b_label": "先保住明年的收成",
+    "event_05_b_result": "你买下化肥，答应妹妹来年再想办法。田里见了起色，饭桌上却安静了许多。",
+    "event_05_b_echo": "妹妹留在村里帮忙，做事利落，却很少再提县城学校。",
+    "event_06_title": "暴雨后的田埂",
+    "event_06_body": "一夜暴雨冲开了两段田埂。自家的稻田在进水，隔壁孤寡老人的田口更低。",
+    "event_06_a_label": "先喊人一起堵最低的缺口",
+    "event_06_a_result": "你敲遍半条村，大家先保住连成一片的低田，再回头补各家的埂。",
+    "event_06_a_echo": "秋后修水渠时，出工的人比往年齐，没人忘记那场雨。",
+    "event_06_b_label": "先守住自家的秧苗",
+    "event_06_b_result": "你和父亲抢回大半秧苗，等腾出手时，隔壁的水已经漫过田边。",
+    "event_06_b_echo": "老人没有责怪你，只在来年换工时少问了一句。",
+    "event_07_title": "旧仓房里的机声",
+    "event_07_body": "村外旧仓房改成了农机修配点，师傅招一个肯从扫铁屑做起的学徒，头三个月工钱很少。",
+    "event_07_a_label": "去修配点从学徒做起",
+    "event_07_a_result": "你白天递扳手，夜里把零件形状画在废纸上，手上的油污总洗不净。",
+    "event_07_a_echo": "师傅病了一周，你第一次独自让一台停摆的脱粒机重新转动。",
+    "event_07_b_label": "留在家里把两季庄稼做好",
+    "event_07_b_result": "你没有去等那份低工钱，靠精细安排换来一季稳收。",
+    "event_07_b_echo": "修配点后来扩大时，你已经成了常来送活的熟客。",
+    "event_08_title": "县城的摊位证",
+    "event_08_body": "县里开始给固定摊位登记。办证要交费、守时，也意味着你得把卖菜这件事当成正经生意。",
+    "event_08_a_label": "把名字写进登记簿",
+    "event_08_a_result": "你按下手印，领到一张薄薄的凭证。以后不必见人就收摊，也得对短斤少两负责。",
+    "event_08_a_echo": "老顾客愿意把下周要的东西提前告诉你，你第一次有了能预估的生意。",
+    "event_08_a_unavailable": "家底不足，摊位登记和押金还承担不起。",
+    "event_08_b_label": "仍旧逢集才来，卖完就走",
+    "event_08_b_result": "你省下固定费用，忙完农活才挑货进城，赚多赚少都不压在肩上。",
+    "event_08_b_echo": "摊位排满以后，你常要在街尾重新找地方。",
+    "event_09_title": "乡镇厂招工表",
+    "event_09_body": "镇上的小厂扩招，做的是农具零件。工钱按月发，但农忙时不能随便回家。",
+    "event_09_a_label": "报名进厂",
+    "event_09_a_result": "你在表格上写下名字，第一次按钟声上工。稳定工资背后，是每天重复到手臂发酸的工序。",
+    "event_09_a_echo": "半年后，领班发现你能听出机器异响，让你开始带新工。",
+    "event_09_b_label": "留在村里照顾农忙",
+    "event_09_b_result": "你把招工表让给了别人，家里的春种没误，也继续保有自己安排时间的自由。",
+    "event_09_b_echo": "厂里的人每月领工资时，你会多看一眼自家粮囤。",
+    "event_10_title": "信用社的借条",
+    "event_10_body": "旧木车跑一趟只能拉半担货。信用社愿意贷一笔钱买胶轮车，若两季生意不好，债也不会消失。",
+    "event_10_a_label": "签借条买胶轮车",
+    "event_10_a_result": "你一笔一画签下名字，车轮滚得轻快，胸口却多了一本每天都要算的账。",
+    "event_10_a_echo": "赶上一个好季节，胶轮车把邻村的货也带进县城，借款开始一点点变薄。",
+    "event_10_a_unavailable": "人情不足，信用社暂时不肯批这笔借款。",
+    "event_10_b_label": "不借钱，继续用旧木车",
+    "event_10_b_result": "你走得慢些，每趟赚得少些，晚上却不用盯着还款日。",
+    "event_10_b_echo": "旧车轴断过一次，你用三天工钱换来一段更结实的木料。",
+    "event_11_title": "县城来的一封信",
+    "event_11_body": "堂兄来信说，城里做活的人多起来，修车铺正缺帮手。信末写着：来了不保证留下。",
+    "event_11_a_label": "背上铺盖去试三个月",
+    "event_11_a_result": "你把回程钱缝进衣角，坐上清晨班车。县城没有给你承诺，只给了一个拥挤铺位。",
+    "event_11_a_echo": "三个月后铺子没留你，但你带回一套做活规矩和几张新地址。",
+    "event_11_b_label": "回信道谢，等更稳的机会",
+    "event_11_b_result": "你把信收进木箱，继续做眼前能算清的活。母亲知道后明显安心。",
+    "event_11_b_echo": "堂兄又寄来一封信，这一次只说城里变化很快。",
+    "event_12_title": "三十里外的送货",
+    "event_12_body": "邻镇有人订了二十件农具，约好后天送到。偏偏家里插秧缺人，晚一天也许就没人买单。",
+    "event_12_a_label": "请邻居帮工，按时送到",
+    "event_12_a_result": "你付出换工的人情，把货在约定时辰送到。对方没多夸一句，只当场结清了钱。",
+    "event_12_a_echo": "秋后，那家铺子把你介绍给了更远的一位客人。",
+    "event_12_b_label": "先顾插秧，托人说明晚一天",
+    "event_12_b_result": "自家秧苗没误时节，订货人却只收了一半，说另一半已经另找了人。",
+    "event_12_b_echo": "你后来每接一单都会先在日历上画出农忙的日子。",
+    "event_13_title": "南下的硬座票",
+    "event_13_body": "汽车站有人招工去南方，车费要先交一半。你只知道那里厂房多、口音杂，没人认识东坪村。",
+    "event_13_a_label": "买一张向南的硬座票",
+    "event_13_a_result": "你带着搪瓷缸、铺盖和家里的地址上了车。窗外的田一块块退到身后。",
+    "event_13_a_echo": "第一次领到异乡工资时，你终于知道那张车票值多少钱，也知道孤单值多少钱。",
+    "event_13_a_unavailable": "盘缠或身体不足，暂时走不了这趟远路。",
+    "event_13_b_label": "留在镇厂等下次机会",
+    "event_13_b_result": "你把车费留作家用，在熟悉的机器声里继续上班。远方变成工友口中的故事。",
+    "event_13_b_echo": "镇厂接到一批新订单，你成了少数能稳住老机器的人。",
+    "event_14_title": "车间里那台旧机器",
+    "event_14_body": "南方车间换了设备，说明书没人看得顺。学新机器要占休息时间，加班则能立刻多拿钱。",
+    "event_14_a_label": "留下来把说明书啃懂",
+    "event_14_a_result": "你对着图一点点试，错了就记在烟盒纸背面。几晚后，你能让机器少停一次。",
+    "event_14_a_echo": "新线开工时，主管把一串钥匙交给你，让你负责交接班。",
+    "event_14_a_unavailable": "本事或身体不足，暂时啃不下这台新机器。",
+    "event_14_b_label": "先多加几班把钱寄回家",
+    "event_14_b_result": "你把能接的班都接了，工资袋厚一些，脑子里仍只有自己那道工序。",
+    "event_14_b_echo": "旺季过去后，加班减少，你开始借别人的说明书来看。",
+    "event_15_title": "宿舍里的合伙话",
+    "event_15_body": "同宿舍的老周接到一批私活，缺一个懂修理的人。他愿意分账，却不肯把客户地址写下来。",
+    "event_15_a_label": "先把分工和分账讲明白",
+    "event_15_a_result": "你们在饭票背面写下各自负责的事，也约定谁都不能绕开另一人接单。",
+    "event_15_a_echo": "第一单出了返工，老周按约一起赔钱；第二单开始，客户直接来找你们俩。",
+    "event_15_b_label": "只拿自己的工钱，不问客户",
+    "event_15_b_result": "你做完手上的部分就收钱，关系简单，也没有机会知道整单生意怎么谈。",
+    "event_15_b_echo": "老周后来换了搭档，你偶尔仍替他们解决最难的故障。",
+    "event_16_title": "汇款单与存折",
+    "event_16_body": "这一年工资涨了。家里想修屋顶，你也想攒一笔回乡做事的本钱，两个数写在同一张纸上。",
+    "event_16_a_label": "寄一半，另一半留作本钱",
+    "event_16_a_result": "你在信里解释了打算，也给自己留下一点能改变方向的钱。父亲回信只有一句：账要算清。",
+    "event_16_a_echo": "屋顶先补了最漏的一角，你的存折则慢慢够买第一套旧工具。",
+    "event_16_b_label": "把大部分钱寄回家修屋顶",
+    "event_16_b_result": "家里赶在雨季前换好瓦，你的存折几乎清空，心里却踏实。",
+    "event_16_b_echo": "母亲寄来一张全家站在新屋檐下的照片，你把它放进工具箱。",
+    "event_17_title": "停转十分钟",
+    "event_17_body": "工友发现防护罩松了，领班催着赶产量。停线会让整班少做一批货，不停也许什么都不会发生。",
+    "event_17_a_label": "按下停机，把防护罩固定好",
+    "event_17_a_result": "车间安静了十分钟，领班脸色难看。你和工友重新开机时，谁都没少一根手指。",
+    "event_17_a_echo": "月底你没拿到最多奖金，却被安排给新工讲第一堂安全课。",
+    "event_17_b_label": "先把这一批做完再修",
+    "event_17_b_result": "机器撑到交班，产量没有落下。你把松动处写在交接本上，整夜没睡稳。",
+    "event_17_b_echo": "下一班及时换了螺栓，没人受伤，但工友以后会先自己检查设备。",
+    "event_18_title": "父亲摔了一跤",
+    "event_18_body": "妹妹来信说父亲修屋梁时摔伤，能下地但干不了重活。厂里正准备提你做小组长。",
+    "event_18_a_label": "辞掉提拔，回家照看一季",
+    "event_18_a_result": "你把工牌交回去，带着行李回到东坪村。父亲骂你傻，吃饭时却把唯一的鸡腿夹给你。",
+    "event_18_a_echo": "父亲恢复后，把家里最重要的账和人情都交给你拿主意。",
+    "event_18_b_label": "寄钱请亲戚帮忙，留下接任",
+    "event_18_b_result": "你寄回药费和工钱，留在厂里带班。每封家书都写得比以前更长。",
+    "event_18_b_echo": "提拔让你站稳了脚跟，也让你错过父亲重新下地的第一天。",
+    "event_19_title": "车站边的修理棚",
+    "event_19_body": "县车站边空出一间漏雨棚，租金不高。你会修车和小电器，但开门第一天不一定有人来。",
+    "event_19_a_label": "挂起“东坪修理”木牌",
+    "event_19_a_result": "你用旧门板写了招牌，第一天只修好一把伞。第三天，有人推来一辆链条断掉的自行车。",
+    "event_19_a_echo": "半年后，候车的人会顺手问一句：师傅，收音机也能看吗？",
+    "event_19_a_unavailable": "本钱或手艺不足，修理棚还开不起来。",
+    "event_19_b_label": "去运输站做固定维修工",
+    "event_19_b_result": "你领一份按月发的工资，不必天天等客，也不能挑自己想接的活。",
+    "event_19_b_echo": "运输站的司机都认识你，私下也会带来家里的旧电器。",
+    "event_20_title": "要不要添第二间门面",
+    "event_20_body": "隔壁门面要转租，拿下后能摆更多货，也会让租金和进货款同时翻上去。家里刚有一点余钱。",
+    "event_20_a_label": "添下门面，先只卖熟悉的货",
+    "event_20_a_result": "你没有追最热闹的商品，只把顾客常问的零件和日用品摆齐。账本从一页变成两页。",
+    "event_20_a_echo": "新门面头两月没有赚大钱，却让老客不必再跑第二家。",
+    "event_20_a_unavailable": "家底或客情不足，扩门面会把日子压垮。",
+    "event_20_b_label": "不扩张，先把欠账收齐",
+    "event_20_b_result": "你谢绝房东，把赊账一本本理清。铺子仍小，手里的现金却更稳。",
+    "event_20_b_echo": "市场冷过一阵时，你没有因为租金关门。",
+    "event_21_title": "新法子先教谁",
+    "event_21_body": "你试出一套省水省肥的种法，邻居来问细节。全说出去会少一点自己的先手，也可能让全村一起稳产。",
+    "event_21_a_label": "拿半亩田做给大家看",
+    "event_21_a_result": "你把每道工序和花费都写在木板上，让愿意的人自己比较。没人被要求照做。",
+    "event_21_a_echo": "来年有五户人家改了种法，大家凑钱修了一段共用水渠。",
+    "event_21_b_label": "先在自家再试完整一年",
+    "event_21_b_result": "你把风险留在自家田里，也把每次用水和收成都记得更细。",
+    "event_21_b_echo": "第二年再有人来问时，你拿得出一整年的账。",
+    "event_22_title": "村小学缺一张讲桌",
+    "event_22_body": "村小学漏雨，代课老师也短缺。校长问你能不能每周来两晚，给高年级孩子补算术。",
+    "event_22_a_label": "修讲桌，也来教两晚",
+    "event_22_a_result": "你把旧木板刨平，晚上站到煤油灯曾照过的那群孩子面前。第一堂课讲的是怎样看一张账。",
+    "event_22_a_echo": "多年后，有学生在县城替你认出了一个算错的小数点。",
+    "event_22_b_label": "出木料，请别人来教",
+    "event_22_b_result": "你送去够做讲桌的木料，坦白自己晚上离不开家里的活。",
+    "event_22_b_echo": "新讲桌用了很多年，桌角还留着你量尺寸时画错的一道线。",
+    "event_23_title": "三户人家的工具钱",
+    "event_23_body": "三户邻居想合钱办一个小修配组：一家出屋，一家出钱，你出手艺和订单。谁也拿不出足够抵押。",
+    "event_23_a_label": "把账目贴在墙上，三家一起做",
+    "event_23_a_result": "你们把工具、工时、损耗都写清，每月底当面核账。争执没有消失，但不再藏在心里。",
+    "event_23_a_echo": "第一名学徒出师后留在村里，修配组终于不只靠你一个人的双手。",
+    "event_23_b_label": "先各做各的，缺工具再互借",
+    "event_23_b_result": "你没有把三家的钱拴在一起，合作慢一点，人情也暂时简单。",
+    "event_23_b_echo": "订单多时，互借工具常撞期，你们开始重新谈那张合伙账。",
+    "event_24_title": "村口向南",
+    "event_24_body": "一笔生意判断错了，你赔掉多年积蓄的一部分。村口仍有人上车南下，也有人下车回家。你翻到空白账页。",
+    "event_24_a_label": "记下教训，从最小的活重新做起",
+    "event_24_a_result": "你没有把亏损撕掉，而是在下一页列出还能用的工具、还肯信你的人和明天能接的第一件活。",
+    "event_24_a_echo": "后来你不再把“翻身”说成一夜之间，而说成每天把一件事重新做好。",
+    "event_24_b_label": "停下扩张，守住已有的日子",
+    "event_24_b_result": "你关掉最冒险的一摊生意，把欠款和人情一笔笔结清。日子没有传奇，却重新能睡安稳觉。",
+    "event_24_b_echo": "村口的车仍来来去去，你不再觉得每一辆都必须赶上。",
+    "ending_teacher_title": "从代课人到乡镇夜校校长",
+    "ending_teacher_summary": "你从煤油灯下的旧课本起步，先在村小学代课，后来把夜班课堂办成乡里的技术夜校。教室从一间扩到三间，来学识字、算账和看图纸的人里，既有年轻人，也有已经当上个体户的老同学。",
+    "ending_teacher_reflection": "你没有去追风口，却把更多人送到了风口前。",
+    "ending_teacher_path": "在第 1、22 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_new_farmer_title": "包下荒坡的种养大户",
+    "ending_new_farmer_summary": "你从责任田的第一本账起步，敢试新种法，也敢把几户人的水渠和销路合起来。后来你承包荒坡，建起养殖棚，旺季请来村里的季节工，成了河湾县最早一批靠土地扩大经营的种养大户。",
+    "ending_new_farmer_reflection": "你没有离开土地，却把土地做成了自己的事业。",
+    "ending_new_farmer_path": "在第 2、21 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_repair_shop_title": "机电修理厂老板",
+    "ending_repair_shop_summary": "从一支坏手电到车站边的修理棚，你把别人不敢接的农机一台台修活。订单越过邻镇后，你租下旧仓房，带出几名学徒，门口终于挂上“东坪机电修理厂”的牌子。",
+    "ending_repair_shop_reflection": "别人看到的是老板，你记得一切始于第一次敢把机器拆开。",
+    "ending_repair_shop_path": "在第 3、19 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_family_anchor_title": "家书从未断过",
+    "ending_family_anchor_summary": "你错过过提拔，也推迟过添置，但妹妹读完了书，父亲伤后有人照看。多年后家人提起你，先说的不是赚过多少钱，而是每次难处你都在。",
+    "ending_family_anchor_reflection": "你成为了家里那根看不见、却一直绷着的绳。",
+    "ending_family_anchor_path": "在第 5、18 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_township_technician_title": "承包乡镇厂的厂长",
+    "ending_township_technician_summary": "你从扫铁屑的学徒做起，摸透了厂里每台老机器。厂子订单下滑时，你押上积蓄接下承包责任，跑销路、改工序、按件算工钱。几年后，旧仓房扩成两排厂房，大家开始叫你厂长。",
+    "ending_township_technician_reflection": "你不再只修机器，也开始决定一座厂怎样活下去。",
+    "ending_township_technician_path": "在第 7、9 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_store_owner_title": "跑南北货的批发商",
+    "ending_store_owner_summary": "你从集市边的一只竹筐起步，把摊位做成门面，又第一次坐长途车去南方看货。到九十年代初，县里不少小店都从你的仓库进货，账本上写的不再是一篮菜，而是一车车跨省运来的商品。",
+    "ending_store_owner_reflection": "你学会了在价格、眼光和信用之间押注，成了真正的生意人。",
+    "ending_store_owner_path": "在第 8、20 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_transport_operator_title": "第一支民营车队的老板",
+    "ending_transport_operator_summary": "一张借条先换来胶轮车，准时送货又换来更多订单。你把赚到的钱押进第一辆旧货车，后来雇了司机、添了第二辆车，路线从邻镇延伸到几个县，东坪村有了第一支私人货运车队。",
+    "ending_transport_operator_reflection": "你卖的从来不只是运力，也是别人愿意托付整车货物的信用。",
+    "ending_transport_operator_path": "在第 10、12 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_south_supervisor_title": "从打工仔到小厂老板",
+    "ending_south_supervisor_summary": "你带着一张硬座票南下，在车间里学机器、盯订单，也看懂了老板怎样算交期和损耗。后来你和两个工友租下小厂房，接来第一批零件单；到一九九二年，门口已经等着十几名来上班的人。",
+    "ending_south_supervisor_reflection": "你曾经站在流水线末端，后来亲手决定一条流水线从哪里开始。",
+    "ending_south_supervisor_path": "在第 13、14 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_trusted_partner_title": "工友合办厂的掌舵人",
+    "ending_trusted_partner_summary": "你把机会分给工友，也曾为安全停下整条线。后来几个人凑钱合办加工厂，最难的不是买机器，而是把出资、分红和伤病责任写清楚。订单起落几次，合伙人仍愿意让你掌舵。",
+    "ending_trusted_partner_reflection": "你证明了敢闯不等于只顾自己，合伙也可以把账写在明处。",
+    "ending_trusted_partner_path": "在第 15、17 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_return_leader_title": "返乡办厂的第一代厂主",
+    "ending_return_leader_summary": "你把南方攒下的本钱、订单习惯和机器经验一起带回东坪村。三户人的修配组先接零活，后来扩成小厂，产品卖到外省；曾经送你去车站的人，又把自家孩子送来当学徒。",
+    "ending_return_leader_reflection": "你走出村口看见机会，又把一部分机会带回了村口。",
+    "ending_return_leader_path": "在第 16、23 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_second_start_title": "破产后再起的个体老板",
+    "ending_second_start_summary": "县城没有第一次就留下你，后来一笔生意又赔掉大半积蓄。你关过门、躲过债主，也把每笔损失重新写进账本。再开张时店面更小、账更清楚；几年后，人们只记得你是那个倒下后又站起来的老板。",
+    "ending_second_start_reflection": "这个年代允许人突然成功，也允许你在失败后重新定义成功。",
+    "ending_second_start_path": "在第 11、24 张事件卡选择 A，其余选择 B，可验证该结局独立可达。",
+    "ending_ordinary_life_title": "在村口把日子过稳",
+    "ending_ordinary_life_summary": "你没有走出一条能被报纸写下的路，却把欠账还清，把家人照顾好，也在每次变化来时做了当时能承担的选择。村口车来车往，你知道普通日子同样需要本事。",
+    "ending_ordinary_life_reflection": "你成为了千千万万没有名字、却真正走过那个年代的人。",
+    "ending_ordinary_life_path": "每一张事件卡都选择较稳妥的 B 项，验证普通生活结局不是失败态，而是明确的兜底人生。"
+  },
+  "stats": [
+    {
+      "id": "economy",
+      "labelTextId": "stat_economy",
+      "initial": 5,
+      "min": 0,
+      "max": 60
+    },
+    {
+      "id": "skill",
+      "labelTextId": "stat_skill",
+      "initial": 5,
+      "min": 0,
+      "max": 40
+    },
+    {
+      "id": "health",
+      "labelTextId": "stat_health",
+      "initial": 12,
+      "min": 0,
+      "max": 20
+    },
+    {
+      "id": "bonds",
+      "labelTextId": "stat_bonds",
+      "initial": 10,
+      "min": 0,
+      "max": 80
+    }
+  ],
+  "keepsakes": [
+    {
+      "id": "keepsake_book",
+      "nameTextId": "keepsake_book_name",
+      "descriptionTextId": "keepsake_book_description",
+      "effects": {
+        "skill": 2
+      },
+      "setFlags": [
+        "keepsake_book"
+      ]
+    },
+    {
+      "id": "keepsake_pliers",
+      "nameTextId": "keepsake_pliers_name",
+      "descriptionTextId": "keepsake_pliers_description",
+      "effects": {
+        "skill": 1,
+        "economy": 1
+      },
+      "setFlags": [
+        "keepsake_pliers"
+      ]
+    },
+    {
+      "id": "keepsake_address",
+      "nameTextId": "keepsake_address_name",
+      "descriptionTextId": "keepsake_address_description",
+      "effects": {
+        "bonds": 2
+      },
+      "setFlags": [
+        "keepsake_address"
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "chapter_1",
+      "titleTextId": "chapter_1_title",
+      "eventIds": [
+        "event_01",
+        "event_02",
+        "event_03",
+        "event_04",
+        "event_05",
+        "event_06"
+      ]
+    },
+    {
+      "id": "chapter_2",
+      "titleTextId": "chapter_2_title",
+      "eventIds": [
+        "event_07",
+        "event_08",
+        "event_09",
+        "event_10",
+        "event_11",
+        "event_12"
+      ]
+    },
+    {
+      "id": "chapter_3",
+      "titleTextId": "chapter_3_title",
+      "eventIds": [
+        "event_13",
+        "event_14",
+        "event_15",
+        "event_16",
+        "event_17",
+        "event_18"
+      ]
+    },
+    {
+      "id": "chapter_4",
+      "titleTextId": "chapter_4_title",
+      "eventIds": [
+        "event_19",
+        "event_20",
+        "event_21",
+        "event_22",
+        "event_23",
+        "event_24"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "event_01",
+      "chapterId": "chapter_1",
+      "year": 1978,
+      "titleTextId": "event_01_title",
+      "bodyTextId": "event_01_body",
+      "sourceIds": [
+        "hist_gaokao"
+      ],
+      "choices": [
+        {
+          "id": "event_01_choice_a",
+          "labelTextId": "event_01_a_label",
+          "resultTextId": "event_01_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "skill": 2,
+            "health": -1
+          },
+          "setFlags": [
+            "kept_studying",
+            "event_01_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_01_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_01_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_01_choice_b",
+          "labelTextId": "event_01_b_label",
+          "resultTextId": "event_01_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 1,
+            "health": -1
+          },
+          "setFlags": [
+            "event_01_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_01_b_echo",
+            "effects": {
+              "skill": 1
+            },
+            "setFlags": [
+              "event_01_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_02",
+      "chapterId": "chapter_1",
+      "year": 1979,
+      "titleTextId": "event_02_title",
+      "bodyTextId": "event_02_body",
+      "sourceIds": [
+        "hist_rural_reform"
+      ],
+      "choices": [
+        {
+          "id": "event_02_choice_a",
+          "labelTextId": "event_02_a_label",
+          "resultTextId": "event_02_a_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 1,
+            "health": -1
+          },
+          "setFlags": [
+            "took_land_contract",
+            "event_02_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_02_a_echo",
+            "effects": {
+              "economy": 1,
+              "skill": 1
+            },
+            "setFlags": [
+              "event_02_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_02_choice_b",
+          "labelTextId": "event_02_b_label",
+          "resultTextId": "event_02_b_result",
+          "immediateEffects": {
+            "bonds": 3
+          },
+          "setFlags": [
+            "event_02_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_02_b_echo",
+            "effects": {
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_02_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_03",
+      "chapterId": "chapter_1",
+      "year": 1979,
+      "titleTextId": "event_03_title",
+      "bodyTextId": "event_03_body",
+      "sourceIds": [
+        "hist_rural_reform"
+      ],
+      "choices": [
+        {
+          "id": "event_03_choice_a",
+          "labelTextId": "event_03_a_label",
+          "resultTextId": "event_03_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "skill": 3
+          },
+          "setFlags": [
+            "learned_repair",
+            "event_03_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_03_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_03_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_03_choice_b",
+          "labelTextId": "event_03_b_label",
+          "resultTextId": "event_03_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 1,
+            "health": 1
+          },
+          "setFlags": [
+            "event_03_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_03_b_echo",
+            "effects": {
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_03_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_04",
+      "chapterId": "chapter_1",
+      "year": 1980,
+      "titleTextId": "event_04_title",
+      "bodyTextId": "event_04_body",
+      "sourceIds": [
+        "hist_individual_business",
+        "hist_rural_reform"
+      ],
+      "choices": [
+        {
+          "id": "event_04_choice_a",
+          "labelTextId": "event_04_a_label",
+          "resultTextId": "event_04_a_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 1,
+            "health": -1
+          },
+          "setFlags": [
+            "event_04_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_04_a_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_04_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_04_choice_b",
+          "labelTextId": "event_04_b_label",
+          "resultTextId": "event_04_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 2
+          },
+          "setFlags": [
+            "event_04_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_04_b_echo",
+            "effects": {
+              "skill": 1
+            },
+            "setFlags": [
+              "event_04_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_05",
+      "chapterId": "chapter_1",
+      "year": 1980,
+      "titleTextId": "event_05_title",
+      "bodyTextId": "event_05_body",
+      "sourceIds": [
+        "hist_gaokao",
+        "hist_rural_reform"
+      ],
+      "choices": [
+        {
+          "id": "event_05_choice_a",
+          "labelTextId": "event_05_a_label",
+          "resultTextId": "event_05_a_result",
+          "immediateEffects": {
+            "economy": -2,
+            "bonds": 3,
+            "health": -1
+          },
+          "setFlags": [
+            "paid_sibling_tuition",
+            "event_05_a_chosen"
+          ],
+          "requirements": {
+            "stats": {
+              "economy": {
+                "min": 8
+              }
+            }
+          },
+          "unavailableTextId": "event_05_a_unavailable",
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_05_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_05_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_05_choice_b",
+          "labelTextId": "event_05_b_label",
+          "resultTextId": "event_05_b_result",
+          "immediateEffects": {
+            "economy": 3,
+            "bonds": -1
+          },
+          "setFlags": [
+            "event_05_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_05_b_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_05_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_06",
+      "chapterId": "chapter_1",
+      "year": 1981,
+      "titleTextId": "event_06_title",
+      "bodyTextId": "event_06_body",
+      "sourceIds": [
+        "hist_rural_reform"
+      ],
+      "choices": [
+        {
+          "id": "event_06_choice_a",
+          "labelTextId": "event_06_a_label",
+          "resultTextId": "event_06_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "bonds": 3,
+            "health": -2
+          },
+          "setFlags": [
+            "event_06_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_06_a_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_06_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_06_choice_b",
+          "labelTextId": "event_06_b_label",
+          "resultTextId": "event_06_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 1,
+            "health": -1
+          },
+          "setFlags": [
+            "event_06_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_06_b_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": -1
+            },
+            "setFlags": [
+              "event_06_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_07",
+      "chapterId": "chapter_2",
+      "year": 1982,
+      "titleTextId": "event_07_title",
+      "bodyTextId": "event_07_body",
+      "sourceIds": [
+        "hist_township_enterprise"
+      ],
+      "choices": [
+        {
+          "id": "event_07_choice_a",
+          "labelTextId": "event_07_a_label",
+          "resultTextId": "event_07_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "skill": 3,
+            "health": -1
+          },
+          "setFlags": [
+            "learned_machine",
+            "event_07_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_07_a_echo",
+            "effects": {
+              "skill": 2,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_07_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_07_choice_b",
+          "labelTextId": "event_07_b_label",
+          "resultTextId": "event_07_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 1
+          },
+          "setFlags": [
+            "event_07_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_07_b_echo",
+            "effects": {
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_07_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_08",
+      "chapterId": "chapter_2",
+      "year": 1982,
+      "titleTextId": "event_08_title",
+      "bodyTextId": "event_08_body",
+      "sourceIds": [
+        "hist_individual_business"
+      ],
+      "choices": [
+        {
+          "id": "event_08_choice_a",
+          "labelTextId": "event_08_a_label",
+          "resultTextId": "event_08_a_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 2,
+            "health": -1
+          },
+          "setFlags": [
+            "registered_stall",
+            "event_08_a_chosen"
+          ],
+          "requirements": {
+            "stats": {
+              "economy": {
+                "min": 10
+              }
+            }
+          },
+          "unavailableTextId": "event_08_a_unavailable",
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_08_a_echo",
+            "effects": {
+              "economy": 2,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_08_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_08_choice_b",
+          "labelTextId": "event_08_b_label",
+          "resultTextId": "event_08_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 1
+          },
+          "setFlags": [
+            "event_08_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_08_b_echo",
+            "effects": {
+              "skill": 1
+            },
+            "setFlags": [
+              "event_08_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_09",
+      "chapterId": "chapter_2",
+      "year": 1983,
+      "titleTextId": "event_09_title",
+      "bodyTextId": "event_09_body",
+      "sourceIds": [
+        "hist_township_enterprise"
+      ],
+      "choices": [
+        {
+          "id": "event_09_choice_a",
+          "labelTextId": "event_09_a_label",
+          "resultTextId": "event_09_a_result",
+          "immediateEffects": {
+            "economy": 2,
+            "skill": 2,
+            "bonds": -1,
+            "health": -1
+          },
+          "setFlags": [
+            "joined_township_factory",
+            "event_09_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_09_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_09_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_09_choice_b",
+          "labelTextId": "event_09_b_label",
+          "resultTextId": "event_09_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 2,
+            "health": -1
+          },
+          "setFlags": [
+            "event_09_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_09_b_echo",
+            "effects": {
+              "economy": 1
+            },
+            "setFlags": [
+              "event_09_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_10",
+      "chapterId": "chapter_2",
+      "year": 1983,
+      "titleTextId": "event_10_title",
+      "bodyTextId": "event_10_body",
+      "sourceIds": [
+        "hist_rural_reform",
+        "hist_individual_business"
+      ],
+      "choices": [
+        {
+          "id": "event_10_choice_a",
+          "labelTextId": "event_10_a_label",
+          "resultTextId": "event_10_a_result",
+          "immediateEffects": {
+            "economy": 2,
+            "skill": 1,
+            "bonds": -1
+          },
+          "setFlags": [
+            "borrowed_for_cart",
+            "event_10_a_chosen"
+          ],
+          "requirements": {
+            "stats": {
+              "bonds": {
+                "min": 24
+              }
+            }
+          },
+          "unavailableTextId": "event_10_a_unavailable",
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_10_a_echo",
+            "effects": {
+              "economy": 2,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_10_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_10_choice_b",
+          "labelTextId": "event_10_b_label",
+          "resultTextId": "event_10_b_result",
+          "immediateEffects": {
+            "bonds": 2,
+            "health": 1
+          },
+          "setFlags": [
+            "event_10_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_10_b_echo",
+            "effects": {
+              "economy": 1,
+              "skill": 1
+            },
+            "setFlags": [
+              "event_10_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_11",
+      "chapterId": "chapter_2",
+      "year": 1984,
+      "titleTextId": "event_11_title",
+      "bodyTextId": "event_11_body",
+      "sourceIds": [
+        "hist_mobility"
+      ],
+      "choices": [
+        {
+          "id": "event_11_choice_a",
+          "labelTextId": "event_11_a_label",
+          "resultTextId": "event_11_a_result",
+          "immediateEffects": {
+            "skill": 2,
+            "bonds": -1,
+            "health": -1
+          },
+          "setFlags": [
+            "followed_city_letter",
+            "event_11_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_11_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_11_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_11_choice_b",
+          "labelTextId": "event_11_b_label",
+          "resultTextId": "event_11_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 2
+          },
+          "setFlags": [
+            "event_11_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_11_b_echo",
+            "effects": {
+              "skill": 1
+            },
+            "setFlags": [
+              "event_11_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_12",
+      "chapterId": "chapter_2",
+      "year": 1984,
+      "titleTextId": "event_12_title",
+      "bodyTextId": "event_12_body",
+      "sourceIds": [
+        "hist_mobility",
+        "hist_township_enterprise"
+      ],
+      "choices": [
+        {
+          "id": "event_12_choice_a",
+          "labelTextId": "event_12_a_label",
+          "resultTextId": "event_12_a_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 2,
+            "health": -1
+          },
+          "setFlags": [
+            "kept_delivery_promise",
+            "event_12_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_12_a_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_12_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_12_choice_b",
+          "labelTextId": "event_12_b_label",
+          "resultTextId": "event_12_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 2,
+            "health": -1
+          },
+          "setFlags": [
+            "event_12_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_12_b_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_12_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_13",
+      "chapterId": "chapter_3",
+      "year": 1985,
+      "titleTextId": "event_13_title",
+      "bodyTextId": "event_13_body",
+      "sourceIds": [
+        "hist_mobility",
+        "hist_special_zones"
+      ],
+      "choices": [
+        {
+          "id": "event_13_choice_a",
+          "labelTextId": "event_13_a_label",
+          "resultTextId": "event_13_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "skill": 2,
+            "bonds": -1,
+            "health": -2
+          },
+          "setFlags": [
+            "went_south",
+            "event_13_a_chosen"
+          ],
+          "requirements": {
+            "stats": {
+              "economy": {
+                "min": 15
+              },
+              "health": {
+                "min": 8
+              }
+            }
+          },
+          "unavailableTextId": "event_13_a_unavailable",
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_13_a_echo",
+            "effects": {
+              "economy": 2,
+              "skill": 1
+            },
+            "setFlags": [
+              "event_13_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_13_choice_b",
+          "labelTextId": "event_13_b_label",
+          "resultTextId": "event_13_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 2
+          },
+          "setFlags": [
+            "event_13_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_13_b_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_13_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_14",
+      "chapterId": "chapter_3",
+      "year": 1986,
+      "titleTextId": "event_14_title",
+      "bodyTextId": "event_14_body",
+      "sourceIds": [
+        "hist_special_zones"
+      ],
+      "choices": [
+        {
+          "id": "event_14_choice_a",
+          "labelTextId": "event_14_a_label",
+          "resultTextId": "event_14_a_result",
+          "immediateEffects": {
+            "skill": 3,
+            "bonds": -1,
+            "health": -2
+          },
+          "setFlags": [
+            "studied_machine",
+            "event_14_a_chosen"
+          ],
+          "requirements": {
+            "stats": {
+              "skill": {
+                "min": 12
+              },
+              "health": {
+                "min": 4
+              }
+            }
+          },
+          "unavailableTextId": "event_14_a_unavailable",
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_14_a_echo",
+            "effects": {
+              "skill": 2,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_14_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_14_choice_b",
+          "labelTextId": "event_14_b_label",
+          "resultTextId": "event_14_b_result",
+          "immediateEffects": {
+            "economy": 3,
+            "bonds": 1,
+            "health": -2
+          },
+          "setFlags": [
+            "event_14_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_14_b_echo",
+            "effects": {
+              "skill": 1
+            },
+            "setFlags": [
+              "event_14_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_15",
+      "chapterId": "chapter_3",
+      "year": 1986,
+      "titleTextId": "event_15_title",
+      "bodyTextId": "event_15_body",
+      "sourceIds": [
+        "hist_special_zones",
+        "hist_individual_business"
+      ],
+      "choices": [
+        {
+          "id": "event_15_choice_a",
+          "labelTextId": "event_15_a_label",
+          "resultTextId": "event_15_a_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 2,
+            "health": -1
+          },
+          "setFlags": [
+            "shared_opportunity",
+            "event_15_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_15_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 2
+            },
+            "setFlags": [
+              "event_15_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_15_choice_b",
+          "labelTextId": "event_15_b_label",
+          "resultTextId": "event_15_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 1
+          },
+          "setFlags": [
+            "event_15_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_15_b_echo",
+            "effects": {
+              "skill": 1
+            },
+            "setFlags": [
+              "event_15_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_16",
+      "chapterId": "chapter_3",
+      "year": 1987,
+      "titleTextId": "event_16_title",
+      "bodyTextId": "event_16_body",
+      "sourceIds": [
+        "hist_mobility"
+      ],
+      "choices": [
+        {
+          "id": "event_16_choice_a",
+          "labelTextId": "event_16_a_label",
+          "resultTextId": "event_16_a_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 2
+          },
+          "setFlags": [
+            "saved_seed_capital",
+            "event_16_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_16_a_echo",
+            "effects": {
+              "economy": 2,
+              "skill": 1
+            },
+            "setFlags": [
+              "event_16_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_16_choice_b",
+          "labelTextId": "event_16_b_label",
+          "resultTextId": "event_16_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 3,
+            "health": 1
+          },
+          "setFlags": [
+            "event_16_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_16_b_echo",
+            "effects": {
+              "bonds": 2
+            },
+            "setFlags": [
+              "event_16_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_17",
+      "chapterId": "chapter_3",
+      "year": 1987,
+      "titleTextId": "event_17_title",
+      "bodyTextId": "event_17_body",
+      "sourceIds": [
+        "hist_special_zones"
+      ],
+      "choices": [
+        {
+          "id": "event_17_choice_a",
+          "labelTextId": "event_17_a_label",
+          "resultTextId": "event_17_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "bonds": 3,
+            "health": 1
+          },
+          "setFlags": [
+            "protected_workers",
+            "event_17_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_17_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 2,
+              "health": 1
+            },
+            "setFlags": [
+              "event_17_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_17_choice_b",
+          "labelTextId": "event_17_b_label",
+          "resultTextId": "event_17_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "skill": 1,
+            "health": -1
+          },
+          "setFlags": [
+            "event_17_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_17_b_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": -1,
+              "health": -1
+            },
+            "setFlags": [
+              "event_17_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_18",
+      "chapterId": "chapter_3",
+      "year": 1988,
+      "titleTextId": "event_18_title",
+      "bodyTextId": "event_18_body",
+      "sourceIds": [
+        "hist_mobility"
+      ],
+      "choices": [
+        {
+          "id": "event_18_choice_a",
+          "labelTextId": "event_18_a_label",
+          "resultTextId": "event_18_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "bonds": 3,
+            "health": 1
+          },
+          "setFlags": [
+            "returned_for_parent",
+            "event_18_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_18_a_echo",
+            "effects": {
+              "bonds": 3,
+              "health": 1
+            },
+            "setFlags": [
+              "event_18_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_18_choice_b",
+          "labelTextId": "event_18_b_label",
+          "resultTextId": "event_18_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "skill": 2,
+            "bonds": -1,
+            "health": -1
+          },
+          "setFlags": [
+            "event_18_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_18_b_echo",
+            "effects": {
+              "bonds": 2
+            },
+            "setFlags": [
+              "event_18_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_19",
+      "chapterId": "chapter_4",
+      "year": 1989,
+      "titleTextId": "event_19_title",
+      "bodyTextId": "event_19_body",
+      "sourceIds": [
+        "hist_individual_business",
+        "hist_mobility"
+      ],
+      "choices": [
+        {
+          "id": "event_19_choice_a",
+          "labelTextId": "event_19_a_label",
+          "resultTextId": "event_19_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "skill": 2,
+            "bonds": 1,
+            "health": -1
+          },
+          "setFlags": [
+            "opened_repair_shop",
+            "event_19_a_chosen"
+          ],
+          "requirements": {
+            "stats": {
+              "economy": {
+                "min": 28
+              },
+              "skill": {
+                "min": 22
+              }
+            }
+          },
+          "unavailableTextId": "event_19_a_unavailable",
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_19_a_echo",
+            "effects": {
+              "economy": 2,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_19_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_19_choice_b",
+          "labelTextId": "event_19_b_label",
+          "resultTextId": "event_19_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "skill": 1
+          },
+          "setFlags": [
+            "event_19_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_19_b_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_19_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_20",
+      "chapterId": "chapter_4",
+      "year": 1990,
+      "titleTextId": "event_20_title",
+      "bodyTextId": "event_20_body",
+      "sourceIds": [
+        "hist_individual_business"
+      ],
+      "choices": [
+        {
+          "id": "event_20_choice_a",
+          "labelTextId": "event_20_a_label",
+          "resultTextId": "event_20_a_result",
+          "immediateEffects": {
+            "economy": 3,
+            "health": -1
+          },
+          "setFlags": [
+            "expanded_shop",
+            "event_20_a_chosen"
+          ],
+          "requirements": {
+            "stats": {
+              "economy": {
+                "min": 25
+              },
+              "bonds": {
+                "min": 18
+              }
+            }
+          },
+          "unavailableTextId": "event_20_a_unavailable",
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_20_a_echo",
+            "effects": {
+              "economy": 2,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_20_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_20_choice_b",
+          "labelTextId": "event_20_b_label",
+          "resultTextId": "event_20_b_result",
+          "immediateEffects": {
+            "economy": 2,
+            "bonds": 2,
+            "health": 1
+          },
+          "setFlags": [
+            "event_20_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_20_b_echo",
+            "effects": {
+              "economy": 1
+            },
+            "setFlags": [
+              "event_20_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_21",
+      "chapterId": "chapter_4",
+      "year": 1990,
+      "titleTextId": "event_21_title",
+      "bodyTextId": "event_21_body",
+      "sourceIds": [
+        "hist_rural_reform",
+        "hist_township_enterprise"
+      ],
+      "choices": [
+        {
+          "id": "event_21_choice_a",
+          "labelTextId": "event_21_a_label",
+          "resultTextId": "event_21_a_result",
+          "immediateEffects": {
+            "skill": 1,
+            "bonds": 3,
+            "health": -1
+          },
+          "setFlags": [
+            "shared_new_method",
+            "event_21_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_21_a_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": 2
+            },
+            "setFlags": [
+              "event_21_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_21_choice_b",
+          "labelTextId": "event_21_b_label",
+          "resultTextId": "event_21_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "skill": 2
+          },
+          "setFlags": [
+            "event_21_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_21_b_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_21_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_22",
+      "chapterId": "chapter_4",
+      "year": 1991,
+      "titleTextId": "event_22_title",
+      "bodyTextId": "event_22_body",
+      "sourceIds": [
+        "hist_gaokao",
+        "hist_rural_reform"
+      ],
+      "choices": [
+        {
+          "id": "event_22_choice_a",
+          "labelTextId": "event_22_a_label",
+          "resultTextId": "event_22_a_result",
+          "immediateEffects": {
+            "skill": 2,
+            "bonds": 1,
+            "health": -1
+          },
+          "setFlags": [
+            "supported_school",
+            "event_22_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_22_a_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 2
+            },
+            "setFlags": [
+              "event_22_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_22_choice_b",
+          "labelTextId": "event_22_b_label",
+          "resultTextId": "event_22_b_result",
+          "immediateEffects": {
+            "bonds": 3,
+            "health": 1
+          },
+          "setFlags": [
+            "event_22_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 2,
+            "textId": "event_22_b_echo",
+            "effects": {
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_22_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_23",
+      "chapterId": "chapter_4",
+      "year": 1991,
+      "titleTextId": "event_23_title",
+      "bodyTextId": "event_23_body",
+      "sourceIds": [
+        "hist_township_enterprise",
+        "hist_individual_business"
+      ],
+      "choices": [
+        {
+          "id": "event_23_choice_a",
+          "labelTextId": "event_23_a_label",
+          "resultTextId": "event_23_a_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 3,
+            "health": -1
+          },
+          "setFlags": [
+            "formed_home_workshop",
+            "event_23_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 1,
+            "textId": "event_23_a_echo",
+            "effects": {
+              "economy": 2,
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_23_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_23_choice_b",
+          "labelTextId": "event_23_b_label",
+          "resultTextId": "event_23_b_result",
+          "immediateEffects": {
+            "bonds": 2
+          },
+          "setFlags": [
+            "event_23_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "after_events",
+            "afterEvents": 1,
+            "textId": "event_23_b_echo",
+            "effects": {
+              "skill": 1,
+              "bonds": 1
+            },
+            "setFlags": [
+              "event_23_b_echoed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "event_24",
+      "chapterId": "chapter_4",
+      "year": 1992,
+      "titleTextId": "event_24_title",
+      "bodyTextId": "event_24_body",
+      "sourceIds": [
+        "hist_mobility",
+        "hist_individual_business"
+      ],
+      "choices": [
+        {
+          "id": "event_24_choice_a",
+          "labelTextId": "event_24_a_label",
+          "resultTextId": "event_24_a_result",
+          "immediateEffects": {
+            "economy": -1,
+            "skill": 2,
+            "bonds": 1
+          },
+          "setFlags": [
+            "chose_restart",
+            "event_24_a_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "summary",
+            "textId": "event_24_a_echo",
+            "effects": {
+              "economy": 1,
+              "bonds": 2
+            },
+            "setFlags": [
+              "event_24_a_echoed"
+            ]
+          }
+        },
+        {
+          "id": "event_24_choice_b",
+          "labelTextId": "event_24_b_label",
+          "resultTextId": "event_24_b_result",
+          "immediateEffects": {
+            "economy": 1,
+            "bonds": 3,
+            "health": 1
+          },
+          "setFlags": [
+            "event_24_b_chosen"
+          ],
+          "delayedEcho": {
+            "trigger": "summary",
+            "textId": "event_24_b_echo",
+            "effects": {
+              "bonds": 2,
+              "health": 1
+            },
+            "setFlags": [
+              "event_24_b_echoed"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "id": "ending_teacher",
+      "titleTextId": "ending_teacher_title",
+      "summaryTextId": "ending_teacher_summary",
+      "reflectionTextId": "ending_teacher_reflection",
+      "outcomeProfile": {
+        "trajectory": "UPWARD",
+        "economicAgency": "PUBLIC_SERVICE",
+        "geographicReach": "COUNTY",
+        "riskLevel": "MEDIUM"
+      },
+      "priority": 110,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "kept_studying",
+          "supported_school"
+        ],
+        "stats": {
+          "skill": {
+            "min": 12
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_new_farmer",
+      "titleTextId": "ending_new_farmer_title",
+      "summaryTextId": "ending_new_farmer_summary",
+      "reflectionTextId": "ending_new_farmer_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "OWNER",
+        "geographicReach": "COUNTY",
+        "riskLevel": "HIGH"
+      },
+      "priority": 109,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "took_land_contract",
+          "shared_new_method"
+        ],
+        "stats": {
+          "economy": {
+            "min": 10
+          },
+          "bonds": {
+            "min": 14
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_repair_shop",
+      "titleTextId": "ending_repair_shop_title",
+      "summaryTextId": "ending_repair_shop_summary",
+      "reflectionTextId": "ending_repair_shop_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "OWNER",
+        "geographicReach": "REGIONAL",
+        "riskLevel": "HIGH"
+      },
+      "priority": 108,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "learned_repair",
+          "opened_repair_shop"
+        ],
+        "stats": {
+          "skill": {
+            "min": 11
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_family_anchor",
+      "titleTextId": "ending_family_anchor_title",
+      "summaryTextId": "ending_family_anchor_summary",
+      "reflectionTextId": "ending_family_anchor_reflection",
+      "outcomeProfile": {
+        "trajectory": "ROOTED",
+        "economicAgency": "HOUSEHOLD",
+        "geographicReach": "VILLAGE",
+        "riskLevel": "LOW"
+      },
+      "priority": 107,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "paid_sibling_tuition",
+          "returned_for_parent"
+        ],
+        "stats": {
+          "bonds": {
+            "min": 18
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_township_technician",
+      "titleTextId": "ending_township_technician_title",
+      "summaryTextId": "ending_township_technician_summary",
+      "reflectionTextId": "ending_township_technician_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "COLLECTIVE",
+        "geographicReach": "REGIONAL",
+        "riskLevel": "HIGH"
+      },
+      "priority": 106,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "learned_machine",
+          "joined_township_factory"
+        ],
+        "stats": {
+          "skill": {
+            "min": 12
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_store_owner",
+      "titleTextId": "ending_store_owner_title",
+      "summaryTextId": "ending_store_owner_summary",
+      "reflectionTextId": "ending_store_owner_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "OWNER",
+        "geographicReach": "CROSS_PROVINCE",
+        "riskLevel": "HIGH"
+      },
+      "priority": 105,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "registered_stall",
+          "expanded_shop"
+        ],
+        "stats": {
+          "economy": {
+            "min": 12
+          },
+          "bonds": {
+            "min": 14
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_transport_operator",
+      "titleTextId": "ending_transport_operator_title",
+      "summaryTextId": "ending_transport_operator_summary",
+      "reflectionTextId": "ending_transport_operator_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "OWNER",
+        "geographicReach": "REGIONAL",
+        "riskLevel": "HIGH"
+      },
+      "priority": 104,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "borrowed_for_cart",
+          "kept_delivery_promise"
+        ],
+        "stats": {
+          "economy": {
+            "min": 10
+          },
+          "bonds": {
+            "min": 15
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_south_supervisor",
+      "titleTextId": "ending_south_supervisor_title",
+      "summaryTextId": "ending_south_supervisor_summary",
+      "reflectionTextId": "ending_south_supervisor_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "OWNER",
+        "geographicReach": "CROSS_PROVINCE",
+        "riskLevel": "HIGH"
+      },
+      "priority": 103,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "went_south",
+          "studied_machine"
+        ],
+        "stats": {
+          "skill": {
+            "min": 13
+          },
+          "health": {
+            "min": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_trusted_partner",
+      "titleTextId": "ending_trusted_partner_title",
+      "summaryTextId": "ending_trusted_partner_summary",
+      "reflectionTextId": "ending_trusted_partner_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "COLLECTIVE",
+        "geographicReach": "REGIONAL",
+        "riskLevel": "HIGH"
+      },
+      "priority": 102,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "shared_opportunity",
+          "protected_workers"
+        ],
+        "stats": {
+          "bonds": {
+            "min": 20
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_return_leader",
+      "titleTextId": "ending_return_leader_title",
+      "summaryTextId": "ending_return_leader_summary",
+      "reflectionTextId": "ending_return_leader_reflection",
+      "outcomeProfile": {
+        "trajectory": "BREAKOUT",
+        "economicAgency": "OWNER",
+        "geographicReach": "CROSS_PROVINCE",
+        "riskLevel": "HIGH"
+      },
+      "priority": 101,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "saved_seed_capital",
+          "formed_home_workshop"
+        ],
+        "stats": {
+          "economy": {
+            "min": 11
+          },
+          "bonds": {
+            "min": 18
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_second_start",
+      "titleTextId": "ending_second_start_title",
+      "summaryTextId": "ending_second_start_summary",
+      "reflectionTextId": "ending_second_start_reflection",
+      "outcomeProfile": {
+        "trajectory": "RECOVERY",
+        "economicAgency": "SELF_EMPLOYED",
+        "geographicReach": "COUNTY",
+        "riskLevel": "HIGH"
+      },
+      "priority": 100,
+      "fallback": false,
+      "conditions": {
+        "allFlags": [
+          "followed_city_letter",
+          "chose_restart"
+        ],
+        "stats": {
+          "skill": {
+            "min": 10
+          },
+          "bonds": {
+            "min": 15
+          }
+        }
+      }
+    },
+    {
+      "id": "ending_ordinary_life",
+      "titleTextId": "ending_ordinary_life_title",
+      "summaryTextId": "ending_ordinary_life_summary",
+      "reflectionTextId": "ending_ordinary_life_reflection",
+      "outcomeProfile": {
+        "trajectory": "ROOTED",
+        "economicAgency": "HOUSEHOLD",
+        "geographicReach": "VILLAGE",
+        "riskLevel": "LOW"
+      },
+      "priority": 0,
+      "fallback": true,
+      "conditions": {}
+    }
+  ],
+  "reachability": [
+    {
+      "endingId": "ending_teacher",
+      "choiceIds": [
+        "event_01_choice_a",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_a",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_teacher_path"
+    },
+    {
+      "endingId": "ending_new_farmer",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_a",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_a",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_new_farmer_path"
+    },
+    {
+      "endingId": "ending_repair_shop",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_a",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_a",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_repair_shop_path"
+    },
+    {
+      "endingId": "ending_family_anchor",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_a",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_a",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_family_anchor_path"
+    },
+    {
+      "endingId": "ending_township_technician",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_a",
+        "event_08_choice_b",
+        "event_09_choice_a",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_township_technician_path"
+    },
+    {
+      "endingId": "ending_store_owner",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_a",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_a",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_store_owner_path"
+    },
+    {
+      "endingId": "ending_transport_operator",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_a",
+        "event_11_choice_b",
+        "event_12_choice_a",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_transport_operator_path"
+    },
+    {
+      "endingId": "ending_south_supervisor",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_a",
+        "event_14_choice_a",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_south_supervisor_path"
+    },
+    {
+      "endingId": "ending_trusted_partner",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_a",
+        "event_16_choice_b",
+        "event_17_choice_a",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_trusted_partner_path"
+    },
+    {
+      "endingId": "ending_return_leader",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_a",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_a",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_return_leader_path"
+    },
+    {
+      "endingId": "ending_second_start",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_a",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_a"
+      ],
+      "rationaleTextId": "ending_second_start_path"
+    },
+    {
+      "endingId": "ending_ordinary_life",
+      "choiceIds": [
+        "event_01_choice_b",
+        "event_02_choice_b",
+        "event_03_choice_b",
+        "event_04_choice_b",
+        "event_05_choice_b",
+        "event_06_choice_b",
+        "event_07_choice_b",
+        "event_08_choice_b",
+        "event_09_choice_b",
+        "event_10_choice_b",
+        "event_11_choice_b",
+        "event_12_choice_b",
+        "event_13_choice_b",
+        "event_14_choice_b",
+        "event_15_choice_b",
+        "event_16_choice_b",
+        "event_17_choice_b",
+        "event_18_choice_b",
+        "event_19_choice_b",
+        "event_20_choice_b",
+        "event_21_choice_b",
+        "event_22_choice_b",
+        "event_23_choice_b",
+        "event_24_choice_b"
+      ],
+      "rationaleTextId": "ending_ordinary_life_path"
+    }
+  ],
+  "iaaPrototypePolicy": {
+    "included": false,
+    "rationale": "本轮只验证“选择—延迟回声—人生结算”是否成立；任何广告都会污染核心玩法的首轮可理解性和再开意愿数据。"
+  },
+  "keepCriteria": [
+    "5 名新玩家中至少 4 名能在 30 秒内说清家底、本事、身体、人情各自影响什么。",
+    "条件不足的按钮仍可读，且玩家无需打开说明页就能理解为何暂时不可选。",
+    "5 名新玩家中至少 4 名在 30 秒内说清“当前收益可能在以后回响”。",
+    "5 名新玩家中至少 3 名结算后能复述两次早期选择如何影响后来事件或人生评价。",
+    "5 名新玩家中至少 4 名在不看结局列表时，能说出自己可能成为老板、厂长、承包人或跨省生意人，而不只是在原职业中缓慢升迁。",
+    "5 名新玩家中至少 3 名不经引导主动点击“再走一次”，或明确说出下一局想改哪两个选择。",
+    "单局中位完成时长位于 10—15 分钟，且没有事件卡被多数玩家认为只是同义数值按钮。"
+  ],
+  "killCriteria": [
+    "玩家需要同时查看超过四个常驻数值，或一张卡出现超过两个主选择。",
+    "禁用按钮只显示数值门槛，玩家不理解它与当前人生处境的关系。",
+    "玩家只盯四项数值，不读即时结果和延迟回声。",
+    "多数玩家认为结局由最后一张卡决定，无法感受到早期选择的长期作用。",
+    "为了让路线可懂而必须在界面上暴露隐藏结局条件。",
+    "历史背景只像换皮装饰，去掉年代后体验没有实质变化。",
+    "突破型结局少于 6 个，或玩家普遍认为无论怎样选择最终都只会得到一份更稳定的工作。"
+  ]
+}

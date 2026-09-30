@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "researchId": "village-south-life-redesign-2026-10-01",
+  "targetGame": "村口向南",
+  "targetWorkspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "researchedAt": "2026-09-30T17:44:56.861Z",
+  "candidates": [
+    {
+      "name": "inkjs",
+      "repositoryUrl": "https://github.com/y-lohse/inkjs",
+      "immutableRevision": "edccead8700e9f21be9825d87d8645d8c82a9936",
+      "version": "2.4.0",
+      "directLicenseEvidence": "https://github.com/y-lohse/inkjs/blob/edccead8700e9f21be9825d87d8645d8c82a9936/LICENSE.md",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "官方仓库提供 JavaScript 运行时，适合浏览器文本原型。"
+        },
+        "wechatMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "douyinMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        }
+      },
+      "maintenanceRisk": "MEDIUM",
+      "securityRisk": "MEDIUM",
+      "attributionDuties": [
+        "在第三方许可清单保留 MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "本次已重新获取固定 revision 的 MIT 许可证。当前已有纯 TypeScript 事件/状态分离结构；新增叙事运行时不能解决重复事件和选择后果问题，暂不引入。维护和安全风险为未经完整审计的保守评估，不代表已发现漏洞。"
+    },
+    {
+      "name": "Life Restart / remake",
+      "repositoryUrl": "https://github.com/VickScarlet/remake",
+      "immutableRevision": "a3e81b668e68465afbac70cf7b08aee6b6a89845",
+      "version": "commit-20260831",
+      "directLicenseEvidence": "https://github.com/VickScarlet/remake/blob/a3e81b668e68465afbac70cf7b08aee6b6a89845/LICENSE",
+      "licenseSpdx": "MIT",
+      "targetPlatformFit": {
+        "webLite": {
+          "verdict": "APPROVED",
+          "evidence": "官方 README 提供浏览器版本的本地运行方式。"
+        },
+        "wechatMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "douyinMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        },
+        "tapTapMiniGame": {
+          "verdict": "CONDITIONAL",
+          "evidence": "本轮没有该固定 revision 对应平台的构建、SDK 与真机验证；不是技术不可能的断言，不能视为可发布适配器。"
+        }
+      },
+      "maintenanceRisk": "MEDIUM",
+      "securityRisk": "MEDIUM",
+      "attributionDuties": [
+        "若复用代码须保留 MIT 许可证与版权声明。"
+      ],
+      "decision": "REJECT",
+      "approvedScope": [],
+      "rationale": "本次已重新获取固定 revision 的 MIT 许可证。仅作机制研究，拒绝复制竞品代码、事件、天赋文本、UI 和数值；不作为目标游戏基础设施。维护和安全风险为未经完整审计的保守评估。"
+    }
+  ],
+  "conclusion": {
+    "approvedCandidateNames": [],
+    "rejectedCandidateNames": [
+      "inkjs",
+      "Life Restart / remake"
+    ],
+    "noSuitablePlatformAdapter": true,
+    "architectureDecision": "先保留本 run 已有的自有 TypeScript 数据、状态、呈现分层和 Zod 校验；本轮不批准任何新增开源生产依赖。竞品只借鉴抽象玩法，沿用既有纪念物/家况/结算资产作为改版输入而不是复制外部内容。三端适配是独立待验证闸门，不以 DOM 浏览器原型充当发布证明。"
+  }
+}

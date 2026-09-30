@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "audienceFit": "适合偏剧情、怀旧和轻模拟用户；题材可能吸引成年玩家，也必须按未成年人可接触产品设计，不使用现金、红包、焦虑倒计时或道德绑架广告。",
+  "sessionFit": "high",
+  "placements": [
+    {
+      "format": "rewarded",
+      "trigger": "完整人生结算后，玩家主动点“看看如果当时选另一边”；只改写一张已选卡并展示反事实短结局，不增加属性或保证稀有结局。",
+      "playerValue": "满足对关键选择的好奇，同时不抹掉第一次人生记录；广告失败时允许取消，不阻断再开。",
+      "frequencyCap": "首个人生结算即可出现；每局最多 1 次；若观看，本次结算不再展示插屏。"
+    },
+    {
+      "format": "rewarded",
+      "trigger": "从第二个人生开始，第二章结束后可主动查看一条未来机会线索；线索不增加属性、不保证特定结局，也不打断当前选择。",
+      "playerValue": "帮助玩家理解早期选择可能打开的方向，同时保留是否采纳线索的自主权。",
+      "frequencyCap": "每局最多 1 次；首个人生不展示；与上一条广告至少间隔 6 分钟。"
+    },
+    {
+      "format": "interstitial",
+      "trigger": "完整人生总结页关闭、返回村口主界面之后的自然断点；仅当本次结算未观看激励视频时展示，绝不插在事件正文、选择确认或延迟回声之间。",
+      "playerValue": "不交换数值，仅用于维持免费体验；展示后直接回到可操作主界面。",
+      "frequencyCap": "首个人生完成后即可展示；每局最多 1 次；两次广告间隔不少于 6 分钟；单次会话最多 3 次广告。"
+    }
+  ],
+  "deliveryRules": {
+    "firstRun": "ENDING_ONLY",
+    "endingAdPolicy": "REWARDED_OR_INTERSTITIAL",
+    "minMinutesBetweenAds": 6,
+    "maxAdsPerRun": 2,
+    "maxAdsPerSession": 3,
+    "targetImpressionsPerCompletedLife": {
+      "min": 0.8,
+      "max": 1.3
+    }
+  },
+  "retentionRisk": "medium",
+  "revenuePotential": "medium",
+  "complianceRisks": [
+    "TapTap 规范要求首次启动 60 秒或首关内不展示广告，并要求激励规则事先明确；本方案整段首个人生不在剧情中展示广告，只在完整结算后提供机会。",
+    "不得把“改写人生”“回到过去”包装成真实现金、必得成功或能撤销现实损失。",
+    "历史与家庭题材的情绪节点不适合紧贴强制广告，必须在总结关闭后的自然断点展示。",
+    "微信、抖音、TapTap 的广告组件、频控和审核文案需按提审时最新规则分别复核。"
+  ],
+  "recommendation": "test_cautiously",
+  "rationale": "12—15 分钟完整人生提供结算断点，首局结算即可产生一次互斥广告机会；后续人生最多增加一次章节线索，使目标曝光达到每个完整人生 0.8—1.3 次，同时避免在剧情阅读中强插广告。"
+}

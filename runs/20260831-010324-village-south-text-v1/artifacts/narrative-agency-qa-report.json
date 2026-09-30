@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "narrative_agency_qa",
+  "runId": "20260831-010324-village-south-text-v1",
+  "passed": true,
+  "checks": [
+    { "name": "route-event-branching", "passed": true, "evidence": "study=[event_01,event_02_alt_riverland,event_03_alt_thresher]; contract=[event_01,event_02,event_03_alt_thresher]; mutual=[event_01,event_02,event_03]" },
+    { "name": "delayed-echo-actionable", "passed": true, "evidence": "event_01 echo resolves at completedChoices=3, sets echoed flag, and choice cards expose qualificationFlags including echo_resource" },
+    { "name": "automated-regression", "passed": true, "evidence": "pnpm test: 11 passed; pnpm lint; pnpm typecheck; pnpm build all exit 0" },
+    { "name": "mobile-natural-play", "passed": true, "evidence": "pnpm test:mobile passed at 360x800, 390x844, 430x932; two choices remain in viewport, touch targets valid, console/page errors 0" }
+  ],
+  "screenshots": [
+    "screenshots/chapter-one-360x800.png",
+    "screenshots/chapter-one-390x844.png",
+    "screenshots/chapter-one-430x932.png"
+  ],
+  "testedAt": "2026-08-31T14:23:00+08:00",
+  "residualIssues": [
+    "需要下一轮完整章节 QA 重新记录动态 eventIds 与所有自然路线的结局分布。"
+  ]
+}

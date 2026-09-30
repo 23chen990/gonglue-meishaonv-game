@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "experience-reproduction-matrix",
+  "targetGame": "村口向南",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "axes": {
+    "objectTypes": [
+      "new-life-entry",
+      "life-choice",
+      "consequence",
+      "settlement",
+      "replay"
+    ],
+    "lifecycleStateBranches": [
+      "fresh-start",
+      "available-and-gated-options",
+      "immediate-and-delayed-outcomes",
+      "chapter-terminal",
+      "fresh-replay-and-persistence"
+    ],
+    "rendererPaths": [
+      "default-browser-entry/natural-input"
+    ],
+    "viewports": [
+      {
+        "label": "mobile-small",
+        "width": 360,
+        "height": 800
+      },
+      {
+        "label": "mobile-standard",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "label": "mobile-landscape",
+        "width": 844,
+        "height": 390
+      }
+    ]
+  },
+  "cells": [
+    {
+      "id": "branch-1-viewport-1",
+      "objectType": "new-life-entry",
+      "lifecycleStateBranch": "fresh-start",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-small",
+        "width": 360,
+        "height": 800
+      },
+      "status": "PASS",
+      "expected": "Fresh default browser entry is visible and normal actions reach the chapter.",
+      "observed": "Observed at this viewport without state injection; not a perception pass.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-1-viewport-2",
+      "objectType": "new-life-entry",
+      "lifecycleStateBranch": "fresh-start",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-standard",
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "expected": "Fresh default browser entry is visible and normal actions reach the chapter.",
+      "observed": "Observed at this viewport without state injection; not a perception pass.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-1-viewport-3",
+      "objectType": "new-life-entry",
+      "lifecycleStateBranch": "fresh-start",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-landscape",
+        "width": 844,
+        "height": 390
+      },
+      "status": "PASS",
+      "expected": "Fresh default browser entry is visible and normal actions reach the chapter.",
+      "observed": "Observed at this viewport without state injection; not a perception pass.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-2-viewport-1",
+      "objectType": "life-choice",
+      "lifecycleStateBranch": "available-and-gated-options",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-small",
+        "width": 360,
+        "height": 800
+      },
+      "status": "BLOCKED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Some natural paths observed, but exact gated/echo/attribution branches and perception are not fully verified.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-2-viewport-2",
+      "objectType": "life-choice",
+      "lifecycleStateBranch": "available-and-gated-options",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-standard",
+        "width": 390,
+        "height": 844
+      },
+      "status": "BLOCKED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Some natural paths observed, but exact gated/echo/attribution branches and perception are not fully verified.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-2-viewport-3",
+      "objectType": "life-choice",
+      "lifecycleStateBranch": "available-and-gated-options",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-landscape",
+        "width": 844,
+        "height": 390
+      },
+      "status": "BLOCKED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Some natural paths observed, but exact gated/echo/attribution branches and perception are not fully verified.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-3-viewport-1",
+      "objectType": "consequence",
+      "lifecycleStateBranch": "immediate-and-delayed-outcomes",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-small",
+        "width": 360,
+        "height": 800
+      },
+      "status": "BLOCKED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Some natural paths observed, but exact gated/echo/attribution branches and perception are not fully verified.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-3-viewport-2",
+      "objectType": "consequence",
+      "lifecycleStateBranch": "immediate-and-delayed-outcomes",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-standard",
+        "width": 390,
+        "height": 844
+      },
+      "status": "BLOCKED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Some natural paths observed, but exact gated/echo/attribution branches and perception are not fully verified.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-3-viewport-3",
+      "objectType": "consequence",
+      "lifecycleStateBranch": "immediate-and-delayed-outcomes",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-landscape",
+        "width": 844,
+        "height": 390
+      },
+      "status": "BLOCKED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Some natural paths observed, but exact gated/echo/attribution branches and perception are not fully verified.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-4-viewport-1",
+      "objectType": "settlement",
+      "lifecycleStateBranch": "chapter-terminal",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-small",
+        "width": 360,
+        "height": 800
+      },
+      "status": "REPRODUCED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Normal inputs reach the six-choice chapter ending with the common visible heading; all verdict branches remain unobserved.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-4-viewport-2",
+      "objectType": "settlement",
+      "lifecycleStateBranch": "chapter-terminal",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-standard",
+        "width": 390,
+        "height": 844
+      },
+      "status": "REPRODUCED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Normal inputs reach the six-choice chapter ending with the common visible heading; all verdict branches remain unobserved.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-4-viewport-3",
+      "objectType": "settlement",
+      "lifecycleStateBranch": "chapter-terminal",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-landscape",
+        "width": 844,
+        "height": 390
+      },
+      "status": "REPRODUCED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Normal inputs reach the six-choice chapter ending with the common visible heading; all verdict branches remain unobserved.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-5-viewport-1",
+      "objectType": "replay",
+      "lifecycleStateBranch": "fresh-replay-and-persistence",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-small",
+        "width": 360,
+        "height": 800
+      },
+      "status": "REPRODUCED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "True settlement/inheritance/restart reached a second round; event titles repeat the same policy first round.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-5-viewport-2",
+      "objectType": "replay",
+      "lifecycleStateBranch": "fresh-replay-and-persistence",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-standard",
+        "width": 390,
+        "height": 844
+      },
+      "status": "REPRODUCED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "True settlement/inheritance/restart reached a second round; event titles repeat the same policy first round.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    },
+    {
+      "id": "branch-5-viewport-3",
+      "objectType": "replay",
+      "lifecycleStateBranch": "fresh-replay-and-persistence",
+      "rendererPath": "default-browser-entry/natural-input",
+      "viewport": {
+        "label": "mobile-landscape",
+        "width": 844,
+        "height": 390
+      },
+      "status": "BLOCKED",
+      "expected": "以默认入口和正常输入检查对应状态；未观察前不采信兄弟分支通过。",
+      "observed": "Landscape observed for one round only; restart not tested.",
+      "evidence": [
+        {
+          "path": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/runtime-observations.json",
+          "sha256": "07b7accfeeaa33fbaede970d178024751e9be46b0fe71c3c7c25f33474b2428c",
+          "kind": "runtime-capture",
+          "provenance": "verified-run-artifact"
+        }
+      ]
+    }
+  ],
+  "confirmedFindings": [
+    "Default source entry reaches settlement at three viewports.",
+    "Two actual mobile restart paths repeat their prior event-title sequence."
+  ],
+  "remainingGaps": [
+    "No human comprehension or enjoyment evidence.",
+    "Not all verdict, gated-choice, delayed consequence, recovery and perception branches are observed.",
+    "Landscape restart and all three platform packages unverified.",
+    "This matrix describes the old rural implementation, not the proposed romance game."
+  ],
+  "createdAt": "2026-09-30T17:33:29.822Z"
+}

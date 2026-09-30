@@ -1,0 +1,10 @@
+{
+  "schemaVersion":1,
+  "targetGame":"村口向南 / 攻略美少女（恋爱版正式名称）",
+  "runId":"20260831-010324-village-south-text-v1",
+  "workspace":"/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+  "request":"我觉得这个美术可以，但是先不画美术，先把具体的剧情想好吧",
+  "scope":"只写与校验剧情。暂停美术生成与实现；保留已有风格探索。",
+  "deliverables":["人物与感情前史","可直接阅读的开场与六个关键节点","四种具体收尾","统一重开规则与第二周目差异","可校验的分支图与Luna剧情复核"],
+  "approvalStatus":"剧情待审阅；旧技术草稿不能反向限制新剧情。"
+}
