@@ -1,0 +1,11 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign
+
+ ✓ story-validation.test.ts (24 tests) 189ms
+
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+   Start at  15:08:58
+   Duration  1.31s (transform 94ms, setup 0ms, import 303ms, tests 189ms, environment 0ms)
+
+JSON report written to /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/docs/release-audit/2026-10-08/planning-test-results.json

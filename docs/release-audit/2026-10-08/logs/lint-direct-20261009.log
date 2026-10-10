@@ -1,0 +1,9 @@
+
+/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/tools/qa-romance-browser.ts
+  267:59  error  Unnecessary escape character: \"  no-useless-escape
+  267:67  error  Unnecessary escape character: \"  no-useless-escape
+  267:70  error  Unnecessary escape character: \"  no-useless-escape
+  267:79  error  Unnecessary escape character: \"  no-useless-escape
+
+✖ 4 problems (4 errors, 0 warnings)
+

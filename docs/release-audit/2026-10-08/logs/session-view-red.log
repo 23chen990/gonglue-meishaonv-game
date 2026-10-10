@@ -1,0 +1,43 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-view.test.ts (5 tests | 1 failed) 36ms
+     × shows actual save failures and recovery controls without saying saved 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-view.test.ts > romance rendering contract > shows actual save failures and recovery controls without saying saved
+AssertionError: expected '<header class="topbar"><div><span cla…' to contain 'data-action="temporary-session"'
+
+- Expected
++ Received
+
+- data-action="temporary-session"
++ <header class="topbar"><div><span class="brand-kicker">欠你一个周末</span><h1 class="brand">攻略美少女</h1></div><button class="text-button" data-action="reset">新开局</button></header>
++   <section class="dossier" data-dossier-label="欠你一个周末 · 第一章"><div class="paper"><article data-scene-id="q1" data-run-phase="decision" >
++   <div class="meta-row"><span>周五 18:00 · 第 1 周目</span><span class="progress" aria-label="已完成 0 / 6 次决定"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></div>
++   <h2 class="event-title" tabindex="-1">先赴谁的约</h2>
++   <p class="event-body">沈知夏：“第一杯给你留着。”</p><p class="event-body">陆闻溪：“你能过来吗？”</p>
++   <div class="rule">选择后先阅读回应</div><div class="choices"><button class="choice" data-choice="q1-z"><span class="choice-title">先去半拍</span></button></div>
++   
++   
++   </article></div></section>
++   <nav class="choices" aria-label="阅读菜单"><button class="primary" data-action="history">阅读记录</button><button class="primary" data-action="collection">结局收藏</button></nav>
++   <aside class="echo-card" role="status" data-save-notice="write-failed"><strong>⚠ 保存失败，上一份记录仍在</strong><button class="primary" data-action="retry-save">重试保存</button><button class="primary" data-action="reload-save">读取已保存进度</button></aside>
+
+ ❯ tests/romance-view.test.ts:17:18
+     15|     expect(html).toContain('data-save-notice');expect(html).toContain(…
+     16|     expect(html).toContain('data-action="retry-save"');
+     17|     expect(html).toContain('data-action="temporary-session"');
+       |                  ^
+     18|   });
+     19|   it('escapes dialogue and option text so imported history cannot inje…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  11:00:36
+   Duration  218ms (transform 33ms, setup 0ms, import 37ms, tests 36ms, environment 1ms)
+

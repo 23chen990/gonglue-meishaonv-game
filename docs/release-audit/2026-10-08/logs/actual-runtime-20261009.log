@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  15:06:10
+   Duration  3.58s (transform 73ms, setup 0ms, import 143ms, tests 3.31s, environment 0ms)
+

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "taskId": "qa-build",
+  "status": "BLOCKED",
+  "summary": "QA verification tools were authored in the isolated worktree, but integration execution is BLOCKED because the handoff-required romance-engine.ts and romance-content.ts are not present in this snapshot. The tools use the specified public engine APIs, enumerate all legal paths rather than injecting state, export a source-faithful storycheck/1 model with explicit caps, and keep browser storage faults fixture-only. Direct ESLint and TypeScript noEmit checks passed; the executable engine tool returned BLOCKED on missing modules. No build, commit, synthetic PASS, or browser workaround was performed.",
+  "findings": [
+    {
+      "id": "ENGINE-CONTENT-NOT-PRESENT",
+      "severity": "P0",
+      "file": "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-engine.ts",
+      "sceneId": "runtime-wiring",
+      "evidence": "The isolated handoff workspace contains the rural baseline files only; romance-engine.ts and romance-content.ts are absent, so qa-romance.ts cannot execute actual-engine replay or compare evaluateRomance results.",
+      "change": "Integrate the separately implemented romance engine/content modules, then rerun tools/qa-romance.ts from the isolated repository root.",
+      "acceptance": [
+        "Source-faithful first-loop finite export and actual-engine comparison produce report with precise completeness",
+        "Per-ending real engine replays and character-memory evidence, no synthetic PASS"
+      ]
+    },
+    {
+      "id": "BROWSER-INTEGRATION-NOT-RUN",
+      "severity": "P0",
+      "file": "tools/qa-romance-browser.ts",
+      "sceneId": "default-entry",
+      "evidence": "The browser script is executable against the declared dist entry and uses only normal DOM actions, but it was not run because the romance runtime/content modules and built romance default entry are not present in the isolated snapshot.",
+      "change": "After root integrates the runtime and build, run the browser script with Chromium and WebKit; preserve any launch failure as BLOCKED with raw log and never convert fixture injection into natural-input PASS.",
+      "acceptance": [
+        "Browser natural-input script produces trace/screenshots when allowed or explicit BLOCKED logs, never fixture-only natural pass"
+      ]
+    },
+    {
+      "id": "TOOLS-ONLY-SCOPE",
+      "severity": "P1",
+      "file": "tools/qa-romance.ts",
+      "sceneId": "handoff-scope",
+      "evidence": "Only tools/qa-romance.ts, tools/qa-romance-browser.ts and this report were added in /tmp/gonglue-qa-20261008; no workspace source, build output or commit was changed.",
+      "change": "Root should integrate the two tools after engine/content arrive and own the subsequent runtime/build/QA evidence.",
+      "acceptance": [
+        "Only tools owned edits; root integrates once engine/content arrive"
+      ]
+    }
+  ],
+  "artifacts": [
+    "tools/qa-romance.ts",
+    "tools/qa-romance-browser.ts",
+    "docs/release-audit/2026-10-08/qa-build-report.json",
+    "docs/release-audit/2026-10-08/coordination.ts",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/index.html",
+    "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.ts",
+    "/tmp/gonglue-audit-input/gonglue_agent_pack/00_START_HERE.md",
+    "/tmp/gonglue-audit-input/gonglue_agent_pack/01_AGENT_EXECUTION_SPEC.md",
+    "/tmp/gonglue-audit-input/gonglue_agent_pack/03_ACCEPTANCE_MATRIX.md",
+    "/tmp/gonglue-audit-input/gonglue_agent_pack/04_TOOL_CONTRACT.md"
+  ],
+  "checks": [
+    {
+      "id": "source-faithful-first-loop-export",
+      "status": "BLOCKED",
+      "evidence": "qa-romance.ts implements exhaustive enumerateStoryPaths replay, scene/state invariants, source hashes, runtime wiring, capped storycheck/1 export and fresh-engine transition comparison; execution is blocked until romance-engine.ts and romance-content.ts exist. Validation: ./node_modules/.bin/eslint tools/qa-romance.ts tools/qa-romance-browser.ts passed; ./node_modules/.bin/tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --strict --skipLibCheck tools/qa-romance.ts tools/qa-romance-browser.ts passed."
+    },
+    {
+      "id": "ending-and-memory-replay",
+      "status": "BLOCKED",
+      "evidence": "qa-romance.ts implements all-path ending summaries and restart-based second-loop memory/milestone evidence; a direct node --import tsx run returned status BLOCKED with one missing-module issue, so no synthetic PASS is claimed."
+    },
+    {
+      "id": "browser-natural-input",
+      "status": "BLOCKED",
+      "evidence": "qa-romance-browser.ts serves workspace/game/dist, runs Chromium and WebKit at 320x568, 390x844 and 844x390, uses DOM selectors and normal input, captures screenshots, and records console/page errors; browser integration was not run against a romance build."
+    },
+    {
+      "id": "scope-and-no-commit",
+      "status": "PASS",
+      "evidence": "Isolated git scope contains only the two owned tools and this report as task changes; no workspace source, build or commit was touched."
+    }
+  ],
+  "gaps": [
+    "Root must integrate romance-engine.ts and romance-content.ts before either QA tool can execute actual-game evidence.",
+    "Root must build the romance default entry before browser natural-input evidence can be collected.",
+    "No browser launch was attempted in this worker; any Chromium MachPort or WebKit launch failure remains a root-run external BLOCKED condition.",
+    "The finite storycheck export intentionally excludes repeated loops, persistence and UI; those remain separate engine/browser checks after integration.",
+    "No builds, commits or changes outside the two tools and report were made by this worker."
+  ]
+}

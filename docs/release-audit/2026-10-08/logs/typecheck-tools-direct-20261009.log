@@ -1,0 +1,4 @@
+runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts(1,22): error TS1543: Importing a JSON file into an ECMAScript module requires a 'type: "json"' import attribute when 'module' is set to 'NodeNext'.
+tools/qa-romance-browser.ts(102,17): error TS2322: Type 'ChildProcessByStdio<null, Readable, Readable>' is not assignable to type 'ChildProcessWithoutNullStreams'.
+  Types of property 'stdin' are incompatible.
+    Type 'null' is not assignable to type 'Writable'.

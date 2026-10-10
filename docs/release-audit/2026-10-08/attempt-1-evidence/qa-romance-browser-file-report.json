@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "status": "BLOCKED",
+  "naturalInput": true,
+  "debugInjection": false,
+  "source": {
+    "repository": "23chen990/gonglue-meishaonv-game",
+    "runId": "20260831-010324-village-south-text-v1",
+    "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+    "sourceHashes": {
+      "runs/20260831-010324-village-south-text-v1/workspace/game/index.html": "7392defc79b91214579df4e8d067e8a6bfe8d4e072c169d129aa58fbc99a148d",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts": "839a3eceb30ede8bfd6fc099f129507c72f5154312e1389aa0f1a00a9364d33f",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-engine.ts": "75127bede22364fef8cabb9d4572cff7a1178197bfa651ebfc5feefdb495a9c0",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts": "84f1043aaf32078100099e18d922cb6971930c364d9e2bde4955c0a7f08bc289",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-input.ts": "da913858ffe175a2f5352a5b8a117a25ddd080091f0827c176deed980cf84b5c",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-view.ts": "b64ec5eafdc0cb154cf74fdfc9dd2b2b2264a39eae58cae717bbfa8442369655",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-graph.json": "1a860c587f5fe0504283bff48c18a3918e7f3a7d74f37029048799e38005e0cf",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-schema.ts": "86c70cf9d6c0c2228ed508915358470901f819c42bfbb19749d35ea373b24889",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.ts": "d37a3d3472592ea5d7447c6ca8800c7419622ca64851aabcaca41abb4917c4fd"
+    }
+  },
+  "runtimeWiring": {
+    "entry": "runs/20260831-010324-village-south-text-v1/workspace/game/index.html",
+    "servedDist": "runs/20260831-010324-village-south-text-v1/workspace/game/dist"
+  },
+  "protocol": "file",
+  "representatives": [
+    {
+      "endingId": "zhixia",
+      "pathId": "path-07f839c1f7d5"
+    },
+    {
+      "endingId": "open",
+      "pathId": "path-e8db0fdf0e34"
+    },
+    {
+      "endingId": "friendship",
+      "pathId": "path-d7dae9bcc218"
+    },
+    {
+      "endingId": "wenxi",
+      "pathId": "path-d83b17cfa57e"
+    },
+    {
+      "endingId": "together",
+      "pathId": "path-1b37f8361574"
+    }
+  ],
+  "engines": {
+    "chromium": {
+      "engine": "chromium",
+      "status": "BLOCKED",
+      "launchError": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /Users/kker/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/var/folders/f2/s76hhpss3llc2_zw9g63x7380000gn/T/playwright_chromiumdev_profile-9b1VUR --remote-debugging-pipe --no-startup-window\n<launched> pid=14578\n[pid=14578][err] [1009/152132.949095:ERROR:base/power_monitor/thermal_state_observer_mac.mm:140] ThermalStateObserverMac unable to register to power notifications. Result: 9\n[pid=14578][err] [1009/152132.978649:ERROR:net/dns/dns_config_service_posix.cc:138] DNS config watch failed to start.\n[pid=14578][err] [1009/152132.981172:WARNING:net/dns/dns_config_service_posix.cc:197] Failed to read DnsConfig.\n[pid=14578][err] [1009/152132.992330:FATAL:base/apple/mach_port_rendezvous_mac.cc:159] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.14578: Permission denied (1100)\nCall log:\n\u001b[2m  - <launching> /Users/kker/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/var/folders/f2/s76hhpss3llc2_zw9g63x7380000gn/T/playwright_chromiumdev_profile-9b1VUR --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=14578\u001b[22m\n\u001b[2m  - [pid=14578][err] [1009/152132.949095:ERROR:base/power_monitor/thermal_state_observer_mac.mm:140] ThermalStateObserverMac unable to register to power notifications. Result: 9\u001b[22m\n\u001b[2m  - [pid=14578][err] [1009/152132.978649:ERROR:net/dns/dns_config_service_posix.cc:138] DNS config watch failed to start.\u001b[22m\n\u001b[2m  - [pid=14578][err] [1009/152132.981172:WARNING:net/dns/dns_config_service_posix.cc:197] Failed to read DnsConfig.\u001b[22m\n\u001b[2m  - [pid=14578][err] [1009/152132.992330:FATAL:base/apple/mach_port_rendezvous_mac.cc:159] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.14578: Permission denied (1100)\u001b[22m\n\u001b[2m  - [pid=14578] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=14578] <kill>\u001b[22m\n\u001b[2m  - [pid=14578] <will force kill>\u001b[22m\n\u001b[2m  - [pid=14578] exception while trying to kill process: Error: kill EPERM\u001b[22m\n\u001b[2m  - [pid=14578] <process did exit: exitCode=null, signal=SIGTRAP>\u001b[22m\n\u001b[2m  - [pid=14578] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=14578] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=14578] <gracefully close end>\u001b[22m\n",
+      "naturalInput": true,
+      "debugInjection": false
+    },
+    "webkit": {
+      "engine": "webkit",
+      "status": "BLOCKED",
+      "launchError": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /Users/kker/Library/Caches/ms-playwright/webkit-2336/pw_run.sh --inspector-pipe --headless --no-startup-window\n<launched> pid=14586\n[pid=14586][err] /Users/kker/Library/Caches/ms-playwright/webkit-2336/pw_run.sh: line 7: 14592 Abort trap: 6           DYLD_FRAMEWORK_PATH=\"$DYLIB_PATH\" DYLD_LIBRARY_PATH=\"$DYLIB_PATH\" \"$PLAYWRIGHT\" \"$@\"\n[pid=14586] <process did exit: exitCode=134, signal=null>\n[pid=14586] starting temporary directories cleanup\nCall log:\n\u001b[2m  - <launching> /Users/kker/Library/Caches/ms-playwright/webkit-2336/pw_run.sh --inspector-pipe --headless --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=14586\u001b[22m\n\u001b[2m  - [pid=14586][err] /Users/kker/Library/Caches/ms-playwright/webkit-2336/pw_run.sh: line 7: 14592 Abort trap: 6           DYLD_FRAMEWORK_PATH=\"$DYLIB_PATH\" DYLD_LIBRARY_PATH=\"$DYLIB_PATH\" \"$PLAYWRIGHT\" \"$@\"\u001b[22m\n\u001b[2m  - [pid=14586] <process did exit: exitCode=134, signal=null>\u001b[22m\n\u001b[2m  - [pid=14586] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=14586] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=14586] <kill>\u001b[22m\n\u001b[2m  - [pid=14586] <skipped force kill spawnedProcess.killed=false processClosed=true>\u001b[22m\n\u001b[2m  - [pid=14586] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=14586] <gracefully close end>\u001b[22m\n",
+      "naturalInput": true,
+      "debugInjection": false
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "longestAuthoredScene": "prologue-loop2-mz-waited-mw-arrived-text-ca3a78440b06d271",
+  "fixtureEngineering": [
+    {
+      "id": "storage-faults",
+      "status": "SKIP",
+      "evidence": "Storage fault injection is intentionally separate fixture-only engineering evidence and is never counted as natural-input PASS."
+    }
+  ],
+  "rawLaunchLog": "Existing Vite file-protocol inline build; no preview server.",
+  "limitation": "Natural track uses only real DOM actions and selectors. A browser launch failure is BLOCKED; fixture-only storage checks are never promoted to natural PASS."
+}

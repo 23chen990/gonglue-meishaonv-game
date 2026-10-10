@@ -1,5 +1,7 @@
 # 攻略美少女：开发交接
 
+2026-10-09 续办状态：用户已明确恢复实际实现；以下历史段落保留为原始交接证据。当前默认入口是 `index.html → src/main.ts → romance-engine.ts + romance-content.ts + romance-input.ts + romance-view.ts`；后者复用当前 story graph/schema/validation。五个结局、208 条合法首周目路径、14 个角色记忆已经真实引擎回放。完整交付与 80 项结果见 [DELIVERY.md](docs/release-audit/2026-10-08/DELIVERY.md)。原 Builder thread 与修复计数历史保留在 `checkpoint.before.json`；当前 formal-fixer 已执行两次各有独立证据的构建，尚未完成正式 FIX 验收。自然浏览器和感知证据受环境阻塞；美术与 UI 重新设计仍暂停。旧版 `legacy-main.ts/game.ts/chapter-data.ts` 为兼容保留，未在默认路径加载。
+
 正式名称：**攻略美少女**。定位：有恋爱向、后宫向的多女主恋爱文字游戏；用人物魅力、暧昧、约会、被主动选择和个人/共同恋爱结局形成情感回报。重开记忆服务这些关系。
 
 目标 run：`20260831-010324-village-south-text-v1`。原工作区：`/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace`；本仓库对应 `runs/20260831-010324-village-south-text-v1/workspace/game`。

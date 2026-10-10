@@ -11,7 +11,8 @@ for (const file of ['luna-story-review.json', 'luna-story-retest.json']) Plannin
 const paths = enumerateStoryPaths(story);
 const count = (values: Array<string | null>) => Object.fromEntries([...new Set(values)].filter((key): key is string => key !== null).map(key => [key, values.filter(value => value === key).length]));
 const memories = [...new Set(paths.flatMap(path => Object.values(path.memoryIds)))];
-if (paths.length !== 128 || Object.keys(count(paths.map(path => path.endingId))).length !== 4 || memories.length !== 12) throw new Error('Story coverage is incomplete.');
+const reachedEndings = new Set(paths.map(path => path.endingId));
+if (story.endings.some(ending => !reachedEndings.has(ending.id)) || story.memoryTemplates.some(memory => !memories.includes(memory.id))) throw new Error('Declared ending or memory coverage is incomplete.');
 console.log(JSON.stringify({
   schemaVersion: 1,
   title: story.title,
@@ -21,7 +22,9 @@ console.log(JSON.stringify({
   endingCounts: count(paths.map(path => path.endingId)),
   openReasonCounts: count(paths.map(path => path.openReason)),
   memoryIds: memories,
-  inputs: ['story-graph.json', 'story-bible.md', 'story-schema.ts', 'story-validation.ts', 'luna-story-retest.json'].map(file => ({ file, sha256: hash('sha256').update(readFileSync(new URL(file, directory))).digest('hex') })),
-  romanceRuntimeImplemented: false,
+  inputs: ['story-graph.json', 'story-bible.md', 'story-schema.ts', 'story-validation.ts'].map(file => ({ file, sha256: hash('sha256').update(readFileSync(new URL(file, directory))).digest('hex') })),
+  historicalReviews: ['luna-story-review.json', 'luna-story-retest.json'].map(file => ({ file, sha256: hash('sha256').update(readFileSync(new URL(file, directory))).digest('hex') })),
+  historicalReviewsAreCurrentAcceptance: false,
+  runtimeEvidence: 'See docs/release-audit/2026-10-08/qa-romance-report.json and the independent natural/perceptual gates; authoring validation alone does not establish runtime success.',
   readerExperienceVerified: false,
 }, null, 2));

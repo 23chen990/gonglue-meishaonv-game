@@ -1,0 +1,22 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ✓ tests/romance-runtime.test.ts (6 tests) 4729ms
+     ✓ restores every before/after decision and ending across all 208 legal paths  3102ms
+     ✓ keeps actual q5 yes, pending and unasked answers distinct without promoting partial shared consent  1297ms
+ ✓ tests/romance-content.test.ts (22 tests) 1731ms
+     ✓ is deterministic and exposes an auditable catalog of authored variants  1025ms
+     ✓ keeps product prose free of authoring commentary and gives the q6 answer a spoken response  692ms
+ ✓ tests/romance-qa.test.ts (3 tests) 203ms
+ ✓ tests/romance-view.test.ts (5 tests) 9ms
+ ✓ tests/romance-engine.test.ts (21 tests) 31ms
+ ✓ tests/romance-input.test.ts (4 tests) 7ms
+ ✓ tests/game.test.ts (11 tests) 9ms
+ ✓ tests/romance-entry.test.ts (2 tests) 2ms
+
+ Test Files  8 passed (8)
+      Tests  74 passed (74)
+   Start at  15:32:02
+   Duration  8.30s (transform 268ms, setup 0ms, import 524ms, tests 6.72s, environment 0ms)
+
+JSON report written to /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/docs/release-audit/2026-10-08/game-test-results.json

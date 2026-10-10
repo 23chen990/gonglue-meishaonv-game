@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "success": true,
+  "runtime": "web-lite",
+  "template": "run-owned vanilla TypeScript/Vite romance text runtime",
+  "codexThreadId": "01a11ec4-3eb4-76d1-9dfc-97646607931b",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "webBuild": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game/dist",
+  "files": [
+    "runs/20260831-010324-village-south-text-v1/workspace/game/dist/index.html",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/index-CcrMcbTI.js",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/style-CIrl6a3Z.css"
+  ],
+  "verification": [
+    "Vite single integrated attempt 1 exited 0; logs/build-attempt-1.log",
+    "72 game tests plus 24 planning tests; five endings and current romance default imports; runtime-product journey remains pending natural/perceptual QA"
+  ],
+  "builtAt": "2026-10-09T07:20:13.922Z",
+  "completion": {
+    "status": "CANDIDATE_BLOCKED",
+    "blockers": [
+      "normalFlow",
+      "visualEvidence",
+      "runtimeProductJourney"
+    ]
+  }
+}

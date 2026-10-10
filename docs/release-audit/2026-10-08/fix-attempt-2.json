@@ -1,0 +1,22 @@
+{
+  "attempt": 2,
+  "route": "formal-fixer",
+  "originalBuilderThread": "01a0f35c-cda0-7dc2-9296-40e8e0dd8c5c",
+  "executorThread": "01a11ec4-3eb4-76d1-9dfc-97646607931b",
+  "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "issues": [
+    "QA-REPLAY-PHOTO-TIMELINE"
+  ],
+  "contextOmitted": [
+    "Other games and factory-wide changes",
+    "Paused art and mock/demo content",
+    "Full conversation in worker handoff; only Zod scoped artifacts used"
+  ],
+  "buildStatus": "PENDING",
+  "qaStatus": "PENDING",
+  "startedAt": "2026-10-09T07:19:42.738Z",
+  "continuityEvidence": "Original stored Builder thread preserved; read_thread found latest failed turn unsupported gpt-6-astra-1m-excel. User requested continuation of 01a11aff-63c7-7c33-8163-e6bd8b3cce58; implementation resumed here as workspace-scoped FixerAgent. Original zero counter backed up; this integrated build is attempt 1.",
+  "retainedEvidence": "attempt-1-evidence/",
+  "newEvidenceBackedHypothesis": "qa-replay-photo-finding.json"
+}

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "攻略美少女",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "route": "formal-fixer",
+  "reason": "Core runtime, persistence, multiple modules and validated QA issues require formal QA/retest; previous repair count is preserved until the integrated build.",
+  "matrix": [
+    {
+      "object": "story decisions/independent heroine replies",
+      "state": "q1-q6; prologue/response/ending; each consent and latest-loop branch",
+      "presentation": "source-backed engine + default DOM",
+      "device": "engine; Chromium/WebKit 320x568,390x844,844x390 pending"
+    },
+    {
+      "object": "save/read collection",
+      "state": "valid/corrupt/incompatible/unavailable/quota/stale tab; checkpoint and replay",
+      "presentation": "real public engine API, then DOM recovery buttons",
+      "device": "Node deterministic; browser natural track pending"
+    }
+  ],
+  "issues": [
+    {
+      "id": "QA-INTEGRATION-SAVE",
+      "classification": "runtime",
+      "sceneId": "checkpoint/save/replay",
+      "evidence": [
+        "logs/integration-red-20261009.log: six engine failures",
+        "logs/integration-typecheck-red-20261009.log: missing startTemporarySession"
+      ],
+      "scope": [
+        "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-engine.ts",
+        "runs/20260831-010324-village-south-text-v1/workspace/game/tests/romance-engine.test.ts"
+      ],
+      "acceptance": [
+        "Read collection survives checkpoint restore",
+        "Invalid prior-loop paths and missing ending collection rejected; raw preserved",
+        "Explicit temporary session completes six decisions and replay without any storage writes",
+        "Provider failure remains visibly blocked and no fake playable scene is saved"
+      ]
+    },
+    {
+      "id": "QA-INTEGRATION-MEMORY",
+      "classification": "narrative",
+      "sceneId": "prologue/q1/q2/q4/ending",
+      "evidence": [
+        "logs/integration-red-20261009.log: replay memory timing failure",
+        "Source callbacks/endings still contain authoring commentary"
+      ],
+      "scope": [
+        "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+        "runs/20260831-010324-village-south-text-v1/workspace/game/tests/romance-content.test.ts"
+      ],
+      "acceptance": [
+        "Zhixia memory before q1 and Wenxi memory before q2, each shown once",
+        "Both characters cite only their own most recent completed-loop evidence",
+        "Spoken scenes replace implementation commentary; all five endings and open causes close visibly",
+        "Catalog covers all finite first/replay variants and IDs track actual content"
+      ]
+    },
+    {
+      "id": "QA-TEST-BRANCH-SCOPE",
+      "classification": "test-scope",
+      "sceneId": "q3/loop2-q2",
+      "evidence": [
+        "q3 test scans selected Wenxi promise fulfillment while asserting unselected Zhixia did not arrive",
+        "q2 test asks for Wenxi romance memory on a previous Zhixia-romance/Wenxi-waited path"
+      ],
+      "scope": [
+        "runs/20260831-010324-village-south-text-v1/workspace/game/tests/romance-content.test.ts"
+      ],
+      "acceptance": [
+        "Assert exact character callback paragraph; keep selected fulfillment assertion",
+        "Assert memory belonging to actual first-loop history; romance source separately exercised"
+      ]
+    },
+    {
+      "id": "QA-REPLAY-EXPORT",
+      "classification": "qa-tool",
+      "sceneId": "tools/qa-romance",
+      "evidence": [
+        "stateKey hashes per-instance runId",
+        "Visible memory text is searched as internal ID",
+        "Cap applied after replay/export; transition comparison includes new run identity"
+      ],
+      "scope": [
+        "tools/qa-romance.ts",
+        "tools/qa-romance-browser.ts"
+      ],
+      "acceptance": [
+        "Graph merges only semantically equivalent states; all 208 paths reach five endings",
+        "Actual visible memory text, independent replies and initiatives asserted",
+        "Hard caps stop early and return INCOMPLETE",
+        "Browser checks assert results; launch failures and missing perceptual review remain BLOCKED"
+      ]
+    },
+    {
+      "id": "QA-EDITORIAL-CALLBACK",
+      "classification": "narrative",
+      "sceneId": "response-q3-z / unselected Wenxi callback",
+      "evidence": [
+        "logs/callback-prose-red.log: actual provider catalog includes authoring commentary 没有被写成已得到陪伴",
+        "story-bible.md:171 specifies callback at Saturday 16:30; runtime callback previously lacked explicit time"
+      ],
+      "scope": [
+        "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+        "runs/20260831-010324-village-south-text-v1/workspace/game/tests/romance-content.test.ts"
+      ],
+      "acceptance": [
+        "No published paragraph includes 被写成 authoring commentary",
+        "q3 selected scene remains Saturday 14:00; later own-character callback visibly states 16:30",
+        "Both selected/unselected, fulfilled/waited branches retain causal wording"
+      ]
+    },
+    {
+      "id": "QA-VALIDATOR-STALE",
+      "classification": "qa-tool",
+      "sceneId": "story:validate",
+      "evidence": [
+        "logs/story-validate-final.log: hardcoded 128 paths/4 endings/12 memories rejects current actual graph 208/5/14",
+        "validate-story.ts claims romanceRuntimeImplemented=false after current default imports romance-engine/content"
+      ],
+      "scope": [
+        "tools/validate-story.ts",
+        "runs/20260831-010324-village-south-text-v1/workspace/game/tests/romance-qa.test.ts"
+      ],
+      "acceptance": [
+        "Validation derives required ending/memory coverage from declared schema; emits actual 208 paths/5 endings/14 memories",
+        "Historical Luna reports labeled historical; authoring validation never claims runtime/perceptual approval"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-content.test.ts (22 tests | 2 failed | 20 skipped) 8ms
+     × describes the already revealed Sunday photo consistently when explaining a replay 5ms
+     × gives both private disclosures and slow-answer replies distinct heroine voices 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > describes the already revealed Sunday photo consistently when explaining a replay
+AssertionError: expected '知夏指着店里的空墙：“周日借这一面给你，作品说明你自己写。”闻溪扶住画框：…' not to contain '周日没有显影'
+
+Expected: "周日没有显影"
+Received: "知夏指着店里的空墙：“周日借这一面给你，作品说明你自己写。”闻溪扶住画框：“当然我自己写。你先替我看看灯。”你站上小凳，三个人把最后一盏灯调好。 知夏看向你：“你是不是也记得一点？”闻溪把手从画框上放下来：“我只记得和你说过的几句话。像梦，但又太具体了。” 你把重开的经历说出来，从周日没有显影的相纸，说到再次回到周五十七点五十。“我记得上一轮。”你承认，“但你们这次想怎么做，我还是要重新问。” 你把周日 23:20 的夜车提醒给两人看：“这次也会走。可我回来，不只是想帮忙。我想见你们。” 知夏摸了摸杯沿：“那这次别把想见藏起来。”闻溪点头：“也别因为你记得，就替我决定。我的答案，我自己说。”"
+
+ ❯ tests/romance-content.test.ts:227:22
+    225|   it('describes the already revealed Sunday photo consistently when ex…
+    226|     const text=getRomanceScene({loop:2,previousChoices:firstLoop,choic…
+    227|     expect(text).not.toContain('周日没有显影');
+       |                      ^
+    228|     expect(text).toContain('周五迟迟没有显影');
+    229|     expect(text).toContain('周日出现的告别照');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > gives both private disclosures and slow-answer replies distinct heroine voices
+AssertionError: expected '知夏指着店里的空墙：“周日借这一面给你，作品说明你自己写。”闻溪扶住画框：…' to contain '店里缺人'
+
+Expected: "店里缺人"
+Received: "知夏指着店里的空墙：“周日借这一面给你，作品说明你自己写。”闻溪扶住画框：“当然我自己写。你先替我看看灯。”你站上小凳，三个人把最后一盏灯调好。 你先承认三个人都留下了一点记忆。知夏说她只记得自己的片段，闻溪也点头。你没有让她们把一个梦当作你的解释。 稍晚，你在巷口把相机重开、周日 23:20 的车票和自己仍想靠近她们的心意，完整讲给知夏听。她问：“所以，现在不是工作上顺路的一次见面？”你说：“不是。” 知夏看了一会儿你的车票：“你有自己的安排，我也有。只是下一次想见的时候，别只发一个点赞。” 回店后，闻溪正低头检查明天的布置。你没有让知夏替你转述。车票的事，你决定明天亲口告诉闻溪。"
+
+ ❯ tests/romance-content.test.ts:235:15
+    233|     const z=getRomanceScene({loop:2,previousChoices:firstLoop,choices:…
+    234|     const w=getRomanceScene({loop:2,previousChoices:firstLoop,choices:…
+    235|     expect(z).toContain('店里缺人');
+       |               ^
+    236|     expect(w).toContain('工作搭档');
+    237|     const zSlow=scene(['q1-z','q2-now','q3-w','q4-all','q5-both','q6-s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 20 skipped (22)
+   Start at  15:26:23
+   Duration  252ms (transform 65ms, setup 0ms, import 115ms, tests 8ms, environment 0ms)
+

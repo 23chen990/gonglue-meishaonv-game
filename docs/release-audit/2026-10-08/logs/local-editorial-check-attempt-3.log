@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "sourceSha256": "297d780e09a0939447b45761d242e5e96d68274f3e9dbc8b9980eee5a9d1a5b8",
+  "counts": {
+    "catalog": 6073,
+    "q1MappedSceneIds": 17,
+    "q1DistinctText": 1
+  },
+  "forbiddenHits": [],
+  "voice": {
+    "q4Distinct": true,
+    "q4ZhixiaMarkers": true,
+    "q4WenxiMarkers": true,
+    "q6Distinct": true,
+    "q6ZhixiaMarkers": true,
+    "q6WenxiMarkers": true
+  },
+  "timeline": {
+    "fridayBlank": true,
+    "sundayFarewell": true
+  },
+  "q1Text": "收起相机时，你才看见闻溪发来的照片：画袋已靠在画室的墙边。“取回来了。展方的事我处理完了。”她没有再问你来了没，只把照片和这句话留在对话框里；你盯着输入框，知道她已经自己把撤展处理完，也知道缺席仍然落在你们之间。"
+}

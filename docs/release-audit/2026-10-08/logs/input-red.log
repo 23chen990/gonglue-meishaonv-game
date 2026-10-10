@@ -1,0 +1,97 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-input.test.ts (4 tests | 4 failed) 6ms
+     × accepts a click only for the decision where the pointer started 4ms
+     × a scroll release over a choice never submits it 1ms
+     × held activation keys do not carry into a new scene 0ms
+     × focus/visibility loss clears an interrupted input sequence 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-input.test.ts > romance natural input boundary > accepts a click only for the decision where the pointer started
+AssertionError: romance gesture guard must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-input.test.ts:5:110
+      3|
+      4| async function api() {
+      5|   expect(existsSync(new URL('../src/romance-input.ts',import.meta.url)…
+       |                                                                                                              ^
+      6|   return import('../src/romance-input.js');
+      7| }
+ ❯ tests/romance-input.test.ts:10:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/romance-input.test.ts > romance natural input boundary > a scroll release over a choice never submits it
+AssertionError: romance gesture guard must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-input.test.ts:5:110
+      3|
+      4| async function api() {
+      5|   expect(existsSync(new URL('../src/romance-input.ts',import.meta.url)…
+       |                                                                                                              ^
+      6|   return import('../src/romance-input.js');
+      7| }
+ ❯ tests/romance-input.test.ts:18:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/romance-input.test.ts > romance natural input boundary > held activation keys do not carry into a new scene
+AssertionError: romance gesture guard must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-input.test.ts:5:110
+      3|
+      4| async function api() {
+      5|   expect(existsSync(new URL('../src/romance-input.ts',import.meta.url)…
+       |                                                                                                              ^
+      6|   return import('../src/romance-input.js');
+      7| }
+ ❯ tests/romance-input.test.ts:25:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/romance-input.test.ts > romance natural input boundary > focus/visibility loss clears an interrupted input sequence
+AssertionError: romance gesture guard must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-input.test.ts:5:110
+      3|
+      4| async function api() {
+      5|   expect(existsSync(new URL('../src/romance-input.ts',import.meta.url)…
+       |                                                                                                              ^
+      6|   return import('../src/romance-input.js');
+      7| }
+ ❯ tests/romance-input.test.ts:33:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  18:28:39
+   Duration  195ms (transform 22ms, setup 0ms, import 33ms, tests 6ms, environment 0ms)
+

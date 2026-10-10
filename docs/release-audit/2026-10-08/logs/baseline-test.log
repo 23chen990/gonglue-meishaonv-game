@@ -1,0 +1,110 @@
+$ pnpm test:game && pnpm test:story
+$ vitest run --root runs/20260831-010324-village-south-text-v1/workspace/game
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  18:18:18
+   Duration  698ms (transform 176ms, setup 0ms, import 394ms, tests 23ms, environment 0ms)
+
+$ vitest run --root runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign story-validation.test.ts
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign
+
+ ❯ story-validation.test.ts (22 tests | 5 failed) 69ms
+     × keeps pure friendship as a real ending beside personal and shared romance 5ms
+     × checks every authored combination and all four endings 21ms
+     × reaches a pure friendship choice without recording romantic consent or romantic memories 1ms
+     × lets the player choose friendship after a romantic invitation 1ms
+     × does not offer a romantic confirmation after the player chose friendship only 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  story-validation.test.ts > story authoring contract (no game runtime) > keeps pure friendship as a real ending beside personal and shared romance
+AssertionError: expected [ 'zhixia', 'wenxi', 'together', …(1) ] to include 'friendship'
+ ❯ story-validation.test.ts:37:68
+     35|   it('keeps pure friendship as a real ending beside personal and share…
+     36|     const story = raw();
+     37|     expect(story.endings.map((ending: {id: string}) => ending.id)).toC…
+       |                                                                    ^
+     38|   });
+     39|   it('rejects a disclosure choice that is not in the story', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  story-validation.test.ts > story authoring contract (no game runtime) > checks every authored combination and all four endings
+AssertionError: expected [ Array(128) ] to have a length of 208 but got 128
+
+- Expected
++ Received
+
+- 208
++ 128
+
+ ❯ story-validation.test.ts:67:19
+     65|     const { enumerateStoryPaths } = await api();
+     66|     const paths = enumerateStoryPaths(RomanceStorySchema.parse(raw()));
+     67|     expect(paths).toHaveLength(208);
+       |                   ^
+     68|     expect(new Set(paths.map(p => p.choices.join('/'))).size).toBe(208…
+     69|     expect(new Set(paths.map(p => p.endingId))).toEqual(new Set(['zhix…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  story-validation.test.ts > story authoring contract (no game runtime) > reaches a pure friendship choice without recording romantic consent or romantic memories
+Error: Choice q5-friends does not belong to decision q5.
+ ❯ story-validation.ts:12:70
+     10|   story.nodes.forEach((node, index) => {
+     11|     const id = choices[index];
+     12|     if (!id || !node.choices.some(choice => choice.id === id)) throw n…
+       |                                                                      ^
+     13|     selected.set(node.id, id);
+     14|   });
+ ❯ traceStoryPath story-validation.ts:10:15
+ ❯ story-validation.test.ts:74:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  story-validation.test.ts > story authoring contract (no game runtime) > lets the player choose friendship after a romantic invitation
+Error: Choice q6-friends does not belong to decision q6.
+ ❯ story-validation.ts:12:70
+     10|   story.nodes.forEach((node, index) => {
+     11|     const id = choices[index];
+     12|     if (!id || !node.choices.some(choice => choice.id === id)) throw n…
+       |                                                                      ^
+     13|     selected.set(node.id, id);
+     14|   });
+ ❯ traceStoryPath story-validation.ts:10:15
+ ❯ story-validation.test.ts:84:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  story-validation.test.ts > story authoring contract (no game runtime) > does not offer a romantic confirmation after the player chose friendship only
+AssertionError: expected [Function] to throw error matching /unavailable/ but got 'Choice q5-friends does not belong to …'
+
+- Expected:
+/unavailable/
+
++ Received:
+"Choice q5-friends does not belong to decision q5."
+
+ ❯ story-validation.test.ts:92:132
+     90|   it('does not offer a romantic confirmation after the player chose fr…
+     91|     const { traceStoryPath } = await api();
+     92|     expect(() => traceStoryPath(RomanceStorySchema.parse(raw()), ['q1-…
+       |                                                                                                                                    ^
+     93|   });
+     94|   it('keeps a shared invitation with only one consent in the open endi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 17 passed (22)
+   Start at  18:18:21
+   Duration  741ms (transform 91ms, setup 0ms, import 408ms, tests 69ms, environment 0ms)
+
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Test failed. See above for more details.

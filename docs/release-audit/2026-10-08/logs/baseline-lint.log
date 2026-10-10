@@ -1,0 +1,1 @@
+$ eslint --no-ignore --ignore-pattern '!runs/**' src runs/20260831-010324-village-south-text-v1/workspace/game/src runs/20260831-010324-village-south-text-v1/workspace/game/tests runs/20260831-010324-village-south-text-v1/workspace/game/vite.config.ts runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/*.ts tools/*.ts

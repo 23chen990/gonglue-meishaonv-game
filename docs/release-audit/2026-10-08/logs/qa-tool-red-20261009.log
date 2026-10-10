@@ -1,0 +1,40 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-qa.test.ts (2 tests | 2 failed) 12482ms
+     × compares equivalent game states across independent engine instances without discarding narrative state 4ms
+     × stops a limited actual-engine export early and never emits complete coverage 12476ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-qa.test.ts > QA tool provenance and finite scope > compares equivalent game states across independent engine instances without discarding narrative state
+TypeError: relevantState is not a function
+ ❯ tests/romance-qa.test.ts:16:12
+     14|     const second=new RomanceEngine(storage(),{storyVersion:STORY_VERSI…
+     15|     expect(first.getState().runId).not.toBe(second.getState().runId);
+     16|     expect(relevantState(first.getState())).toEqual(relevantState(seco…
+       |            ^
+     17|     expect(first.continue(first.getDecisionToken())).toBe(true);
+     18|     expect(relevantState(first.getState())).not.toEqual(relevantState(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/romance-qa.test.ts > QA tool provenance and finite scope > stops a limited actual-engine export early and never emits complete coverage
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/romance-qa.test.ts:20:3
+     18|     expect(relevantState(first.getState())).not.toEqual(relevantState(…
+     19|   });
+     20|   it('stops a limited actual-engine export early and never emits compl…
+       |   ^
+     21|     const folder=mkdtempSync(join(tmpdir(),'romance-qa-cap-'));
+     22|     try {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  14:36:29
+   Duration  12.79s (transform 91ms, setup 0ms, import 167ms, tests 12.48s, environment 0ms)
+

@@ -1,0 +1,118 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-view.test.ts (5 tests | 5 failed) 10ms
+     × renders source paragraphs and stable choice IDs without rural runtime chrome 6ms
+     × shows actual save failures and recovery controls without saying saved 1ms
+     × escapes dialogue and option text so imported history cannot inject markup 0ms
+     × never auto-selects a choice or offers skipping unread scenes 1ms
+     × ends with collection and optional rewind rather than unfinished chapter promises 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-view.test.ts > romance rendering contract > renders source paragraphs and stable choice IDs without rural runtime chrome
+AssertionError: romance renderer must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-view.test.ts:3:122
+      1| import {describe,it,expect} from 'vitest';
+      2| import {existsSync} from 'node:fs';
+      3| async function api(){expect(existsSync(new URL('../src/romance-view.ts…
+       |                                                                                                                          ^
+      4| const scene={id:'q1',title:'先赴谁的约',time:'周五 18:00',paragraphs:['沈知夏：“第…
+      5| const state={phase:'decision' as const,loop:1,choices:[],endingIds:[],…
+ ❯ tests/romance-view.test.ts:8:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/romance-view.test.ts > romance rendering contract > shows actual save failures and recovery controls without saying saved
+AssertionError: romance renderer must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-view.test.ts:3:122
+      1| import {describe,it,expect} from 'vitest';
+      2| import {existsSync} from 'node:fs';
+      3| async function api(){expect(existsSync(new URL('../src/romance-view.ts…
+       |                                                                                                                          ^
+      4| const scene={id:'q1',title:'先赴谁的约',time:'周五 18:00',paragraphs:['沈知夏：“第…
+      5| const state={phase:'decision' as const,loop:1,choices:[],endingIds:[],…
+ ❯ tests/romance-view.test.ts:14:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/romance-view.test.ts > romance rendering contract > escapes dialogue and option text so imported history cannot inject markup
+AssertionError: romance renderer must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-view.test.ts:3:122
+      1| import {describe,it,expect} from 'vitest';
+      2| import {existsSync} from 'node:fs';
+      3| async function api(){expect(existsSync(new URL('../src/romance-view.ts…
+       |                                                                                                                          ^
+      4| const scene={id:'q1',title:'先赴谁的约',time:'周五 18:00',paragraphs:['沈知夏：“第…
+      5| const state={phase:'decision' as const,loop:1,choices:[],endingIds:[],…
+ ❯ tests/romance-view.test.ts:19:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/romance-view.test.ts > romance rendering contract > never auto-selects a choice or offers skipping unread scenes
+AssertionError: romance renderer must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-view.test.ts:3:122
+      1| import {describe,it,expect} from 'vitest';
+      2| import {existsSync} from 'node:fs';
+      3| async function api(){expect(existsSync(new URL('../src/romance-view.ts…
+       |                                                                                                                          ^
+      4| const scene={id:'q1',title:'先赴谁的约',time:'周五 18:00',paragraphs:['沈知夏：“第…
+      5| const state={phase:'decision' as const,loop:1,choices:[],endingIds:[],…
+ ❯ tests/romance-view.test.ts:23:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/romance-view.test.ts > romance rendering contract > ends with collection and optional rewind rather than unfinished chapter promises
+AssertionError: romance renderer must exist: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ api tests/romance-view.test.ts:3:122
+      1| import {describe,it,expect} from 'vitest';
+      2| import {existsSync} from 'node:fs';
+      3| async function api(){expect(existsSync(new URL('../src/romance-view.ts…
+       |                                                                                                                          ^
+      4| const scene={id:'q1',title:'先赴谁的约',time:'周五 18:00',paragraphs:['沈知夏：“第…
+      5| const state={phase:'decision' as const,loop:1,choices:[],endingIds:[],…
+ ❯ tests/romance-view.test.ts:28:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  18:29:27
+   Duration  223ms (transform 28ms, setup 0ms, import 42ms, tests 10ms, environment 0ms)
+

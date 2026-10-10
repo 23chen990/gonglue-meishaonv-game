@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-content.test.ts (23 tests | 1 failed | 22 skipped) 5ms
+     × does not quote an absent Wenxi message as if she had sent it 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > does not quote an absent Wenxi message as if she had sent it
+AssertionError: expected '半拍的试营业比知夏预想得更忙。门铃响时，她从磨豆机旁抬头，一眼就看见了你。…' not to contain '没有把那句'
+
+Expected: "没有把那句"
+Received: "半拍的试营业比知夏预想得更忙。门铃响时，她从磨豆机旁抬头，一眼就看见了你。 她递来的杯子没有画爱心，奶泡上是一个歪歪的小相机。你低头看：“镜头好像有点歪。” 知夏把围裙往上提了提：“第一次画，嫌弃也得喝。”你端起杯子，她又补了一句：“你真来了，我挺高兴的。” 你举起相机，等她站回自己店里的灯光下。她能安排客人、应付排队，偶尔路过你时，却会停一停，看看你拍了什么。 收起相机时，你才看见闻溪发来的照片：画袋已靠在画室的墙边。“取回来了。展方的事我处理完了。”你盯着输入框，没有把那句“你来了没”当作她已经不在意。"
+
+ ❯ tests/romance-content.test.ts:244:22
+    242|   it('does not quote an absent Wenxi message as if she had sent it', (…
+    243|     const text=scene(['q1-z'],'response').paragraphs.join(' ');
+    244|     expect(text).not.toContain('没有把那句');
+       |                      ^
+    245|     expect(text).toContain('她没有再问');
+    246|     expect(text).toContain('取回来了');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 22 skipped (23)
+   Start at  15:38:20
+   Duration  197ms (transform 55ms, setup 0ms, import 96ms, tests 5ms, environment 0ms)
+

@@ -126,7 +126,7 @@ button { font: inherit; }
 }
 
 .dossier::before {
-  content: "东坪县个人卷宗 · 试行本";
+  content: attr(data-dossier-label);
   display: block;
   padding: 8px 16px 8px 46px;
   color: #e7d7ad;

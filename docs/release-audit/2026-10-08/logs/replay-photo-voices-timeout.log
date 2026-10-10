@@ -1,0 +1,70 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-content.test.ts (22 tests | 2 failed) 28405ms
+     × is deterministic and exposes an auditable catalog of authored variants 13512ms
+     × keeps product prose free of authoring commentary and gives the q6 answer a spoken response 14490ms
+ ❯ tests/romance-runtime.test.ts (6 tests | 2 failed) 69688ms
+     × restores every before/after decision and ending across all 208 legal paths 44931ms
+     × uses only the most recent completed loop through loop three for every authored memory source 6276ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > is deterministic and exposes an auditable catalog of authored variants
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/romance-content.test.ts:187:3
+    185|   });
+    186|
+    187|   it('is deterministic and exposes an auditable catalog of authored va…
+       |   ^
+    188|     const context: StoryContext = { choices: firstLoop, loop: 2, previ…
+    189|     expect(getRomanceScene(context, 'ending')).toEqual(getRomanceScene…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > keeps product prose free of authoring commentary and gives the q6 answer a spoken response
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/romance-content.test.ts:214:3
+    212|   });
+    213|
+    214|   it('keeps product prose free of authoring commentary and gives the q…
+       |   ^
+    215|     const records=getContentCatalog();
+    216|     const prohibited=/不被写成|不会被写成|两条前史|自动开关|一件凭空出现|一张根本没画过|没有把一段你没经历过|被…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/romance-runtime.test.ts > actual romance engine with released source provider > restores every before/after decision and ending across all 208 legal paths
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/romance-runtime.test.ts:35:3
+     33|
+     34| describe('actual romance engine with released source provider', () => {
+     35|   it('restores every before/after decision and ending across all 208 l…
+       |   ^
+     36|     expect(paths).toHaveLength(208);
+     37|     for (const path of paths) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/romance-runtime.test.ts > actual romance engine with released source provider > uses only the most recent completed loop through loop three for every authored memory source
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/romance-runtime.test.ts:78:3
+     76|   });
+     77|
+     78|   it('uses only the most recent completed loop through loop three for …
+       |   ^
+     79|     const witnesses = new Map<string, typeof paths[number]>();
+     80|     for (const path of paths) for (const id of Object.values(path.memo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 24 passed (28)
+   Start at  15:27:35
+   Duration  74.50s (transform 3.10s, setup 0ms, import 6.04s, tests 98.09s, environment 1ms)
+

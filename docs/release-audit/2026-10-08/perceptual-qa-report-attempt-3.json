@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "taskId": "perceptual-qa-attempt-3",
+  "status": "BLOCKED",
+  "summary": "Perceptual gate is blocked because the browser engines could not launch; the source/editorial spot checks do not establish mobile readability or player experience.",
+  "findings": [
+    {
+      "id": "PERCEPTUAL-BROWSER-BLOCKED",
+      "severity": "P0",
+      "file": "docs/release-audit/2026-10-08/qa-romance-browser-file-report.json",
+      "sceneId": "default-entry",
+      "evidence": "Both Chromium and WebKit are BLOCKED before rendering due host permissions.",
+      "change": "Repeat mobile portrait/landscape visual review when browser execution is available.",
+      "acceptance": [
+        "Inspect longest authored scene and choices at all declared mobile viewports.",
+        "Verify critical timing, danger, recovery and replay cues are visible without relying on helper text."
+      ]
+    }
+  ],
+  "artifacts": [
+    "docs/release-audit/2026-10-08/qa-romance-browser-report.json",
+    "docs/release-audit/2026-10-08/qa-romance-browser-file-report.json",
+    "docs/release-audit/2026-10-08/logs/local-editorial-check-attempt-3.log"
+  ],
+  "checks": [
+    {
+      "id": "mobile-portrait",
+      "status": "BLOCKED",
+      "evidence": "No Chromium/WebKit screenshot could be captured."
+    },
+    {
+      "id": "mobile-landscape",
+      "status": "BLOCKED",
+      "evidence": "No Chromium/WebKit screenshot could be captured."
+    }
+  ],
+  "gaps": [
+    "No visual screenshot or natural player trace; current-source Luna report is separate editorial evidence and not perceptual approval."
+  ]
+}

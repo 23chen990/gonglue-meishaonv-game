@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "experience-complaint-triage",
+  "targetGame": "攻略美少女",
+  "runId": "20260831-010324-village-south-text-v1",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "classification": "editorial-provenance",
+  "scope": [
+    "q1-z response content only",
+    "first-loop and equivalent replay catalog records generated from the source provider",
+    "no graph, save, UI, art, or platform changes"
+  ],
+  "reproduction": {
+    "status": "REPRODUCED",
+    "steps": [
+      "Call getRomanceScene({choices:['q1-z'], loop:1, previousChoices:[]}, 'response').",
+      "Join the returned paragraphs and inspect the Wenxi message paragraph.",
+      "Compare every quoted message with the messages visibly printed earlier in the same scene."
+    ],
+    "observed": "The response displayed Wenxi's messages about retrieving the bag and handling the exhibition, then referred to a quoted question ‘你来了没’ that was never displayed.",
+    "evidence": [
+      {
+        "path": "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+        "sceneId": "response-q1-q1-z-loop1-q1-z-text-7cebcb415c08859b",
+        "source": "q1Response('q1-z')",
+        "before": "你盯着输入框，没有把那句“你来了没”当作她已经不在意。"
+      },
+      {
+        "path": "runs/20260831-010324-village-south-text-v1/workspace/game/tests/romance-content.test.ts",
+        "test": "does not quote an absent Wenxi message as if she had sent it",
+        "redEvidence": "The test failed because the response contained ‘没有把那句’."
+      }
+    ]
+  },
+  "reproductionMatrix": [
+    {
+      "object": "Wenxi q1 message provenance",
+      "lifecycleState": "loop1 q1-z response; loop2 q1-z replay response; all catalog records sharing this prose",
+      "rendererPath": "romance-content provider -> RomanceEngine scene -> romance-view paragraph DOM",
+      "viewport": "engine plus 320x568, 390x844, 844x390 pending browser access"
+    }
+  ],
+  "change": "Replace the absent-message quotation with an explicit statement that Wenxi did not ask again, while retaining her independent withdrawal handling and the consequence of the missed appointment.",
+  "acceptance": [
+    "The q1-z response contains no quoted message that is absent from the displayed exchange.",
+    "The text still states that Wenxi handled the withdrawal herself and that the absence remains consequential.",
+    "All mapped q1-z response scene IDs receive the same corrected prose after audit export.",
+    "Targeted content test, full deterministic tests, build, and story audit pass; natural browser evidence remains separately classified."
+  ],
+  "route": "formal-fixer",
+  "contextIntentionallyOmitted": [
+    "Unrelated art and UI drafts",
+    "Other games and factory-wide code",
+    "Historical browser failures except as an explicit environment gap"
+  ]
+}

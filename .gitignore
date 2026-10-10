@@ -6,6 +6,8 @@ node_modules/
 !.env.example
 *.log
 !verification/*.log
+!docs/release-audit/**/logs/*.log
+__pycache__/
 .DS_Store
 test-results/
 playwright-report/

@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "taskId": "luna-editorial-review-final",
+  "status": "FAIL",
+  "summary": "Attempt 1 static editorial snapshot: independently reviewed all 104 distinct source-backed prose records and their 6,073 one-owner scene-ID mappings from scene-rewrite-records.json (source snapshot romance-content.ts SHA-256 84f1043aaf32078100099e18d922cb6971930c364d9e2bde4955c0a7f08bc289). The mapping and published-script index are internally complete. The attempt-1 prose has one replay chronology contradiction and three editorial defects affecting character voice, message provenance, or both.",
+  "findings": [
+    {
+      "id": "EDITORIAL-REPLAY-PHOTO-TIMELINE",
+      "severity": "P1",
+      "file": "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+      "sceneId": "response-q4-q4-all-loop2-q1-z-q2-now-q3-z-q4-all-memory-mz-romance-mw-call-text-33eeb81ecfdfeb1c",
+      "evidence": "The attempt-1 public replay text says, \"你把重开的经历说出来，从周日没有显影的相纸，说到再次回到周五十七点五十。\" The ending text for the same replay contract says, \"周日 22:59，周五那张空白相纸浮出了刚刚拍下的告别照。相机的回卷钮轻轻动了一下。\" The unrevealed paper is the Friday paper, while the farewell image appears on Sunday before the rewind; the public replay explanation reverses that provenance.",
+      "change": "Describe the replay in its established order: Friday's blank photo remains undeveloped, the Sunday 22:59 farewell photo appears on that paper, then the camera rewinds to Friday 17:50. Keep the memory scope, choices, and consent states unchanged.",
+      "acceptance": [
+        "Every public q4 replay mapping uses the Friday blank-paper -> Sunday revealed-farewell -> Friday rewind sequence.",
+        "The q4 public replay prose remains compatible with the ending's 22:59 trigger and the 23:20 departure window.",
+        "The repair does not grant either heroine knowledge outside her own previous-loop experience or alter relationship outcomes."
+      ]
+    },
+    {
+      "id": "EDITORIAL-Q1-UNQUOTED-WENXI-MESSAGE",
+      "severity": "P2",
+      "file": "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+      "sceneId": "response-q1-q1-z-loop1-q1-z-text-7cebcb415c08859b",
+      "evidence": "The attempt-1 response prints Wenxi's message as \"画袋已靠在画室的墙边。‘取回来了。展方的事我处理完了。’\" and immediately says \"你盯着输入框，没有把那句‘你来了没’当作她已经不在意。\" The quoted \"你来了没\" was never sent in this scene, so the narration refers to an unshown message while trying to establish the missed appointment's emotional consequence.",
+      "change": "Either include a real Wenxi message containing that question or rewrite the narration to refer to her not asking it. Preserve that she resolved the withdrawal herself and that the protagonist's absence still matters.",
+      "acceptance": [
+        "The q1-z response contains no quoted message that is absent from the displayed exchange.",
+        "Wenxi's independent handling of the withdrawal and the consequence of missing her remain explicit.",
+        "The corrected prose is exported consistently for all 17 mapped q1-z response scene IDs."
+      ]
+    },
+    {
+      "id": "EDITORIAL-Q4-PRIVATE-VOICE-COLLAPSE",
+      "severity": "P2",
+      "file": "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+      "sceneId": "response-q4-q4-private-loop2-q1-z-q2-now-q3-z-q4-private-memory-mz-romance-mw-call-text-a3b70fba47afc204",
+      "evidence": "The attempt-1 private replay variants use the same speaker template for both heroines: \"所以，现在不是工作上顺路的一次见面？\" followed by \"你有自己的安排，我也有。只是下一次想见的时候，别只发一个点赞。\" The only material variation between the Zhixia and Wenxi records is the name, despite the bible establishing Zhixia through the cafe/seat and Wenxi through the studio/artwork/work-partner relationship.",
+      "change": "Give each private q4 companion a factually equivalent but character-specific reply: Zhixia should retain her cafe and reserved-seat voice, and Wenxi should retain her studio, artwork, and work-partner voice. Do not disclose the private conversation to the other heroine.",
+      "acceptance": [
+        "The Zhixia and Wenxi private q4 replay replies are no longer a name-only substitution.",
+        "Each variant still says that the companion knows about the replay, the 23:20 train, and the player's wish to approach her, while the other heroine learns the train information only on Sunday.",
+        "The change preserves q4-private consent eligibility and the 128 attempt-1 private replay mappings' branch facts."
+      ]
+    },
+    {
+      "id": "EDITORIAL-Q6-SLOW-VOICE-COLLAPSE",
+      "severity": "P2",
+      "file": "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+      "sceneId": "response-q6-q6-slow-loop1-q1-z-q2-now-q3-w-q4-all-q5-both-q6-slow-text-70a2ba7b28a10bc1",
+      "evidence": "In the attempt-1 both-consent slow branch, both characters say the same sentence: \"知夏：‘刚才说愿意，是我自己想的。现在我想听听，你准备怎么约下一次。’\" and \"闻溪：‘刚才说愿意，是我自己想的。现在我想听听，你准备怎么约下一次。’\" The same generic answer-template approach also makes the pending response interchangeable apart from the name, flattening the separate answers that the consent branch is meant to preserve.",
+      "change": "Keep the yes/pending meaning and open ending unchanged, but make Zhixia's and Wenxi's q6-slow answer lines distinct and consistent with their established voices. Apply the same treatment to both consent and pending response templates.",
+      "acceptance": [
+        "In q6-slow both-consent scenes, Zhixia and Wenxi each retain an independently voiced response rather than the same line with a different name.",
+        "Single-consent and pending q6-slow branches preserve the actual answer, player-slow reason, and absence of a forced relationship.",
+        "No q6-slow revision turns a pending answer into consent or a consent answer into rejection."
+      ]
+    }
+  ],
+  "artifacts": [
+    "docs/release-audit/2026-10-08/scene-rewrite-records.json",
+    "docs/release-audit/2026-10-08/full-replacement-script.md",
+    "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-bible.md",
+    "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-graph.json",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+    "docs/release-audit/2026-10-08/qa-replay-photo-finding.json"
+  ],
+  "checks": [
+    {
+      "id": "attempt-1-source-snapshot",
+      "status": "PASS",
+      "evidence": "Before concurrent repair work, the captured romance-content.ts SHA-256 was 84f1043aaf32078100099e18d922cb6971930c364d9e2bde4955c0a7f08bc289, matching scene-rewrite-records.json source.sha256; its story-bible SHA-256 also matched b48aad0e580181b7f3e88b59ca6252468c727aa05846573debfa44ed2779ac75."
+    },
+    {
+      "id": "all-prose-and-scene-mappings-accounted",
+      "status": "PASS",
+      "evidence": "104 review records, 104 unique prose IDs, 6,073 mapping entries, 6,073 unique scene IDs, zero unowned mappings, zero unmapped records, and zero duplicate scene mappings."
+    },
+    {
+      "id": "published-script-index",
+      "status": "PASS",
+      "evidence": "full-replacement-script.md contains 104 unique prose headings; every heading ID, title, and time matches its scene-rewrite record."
+    },
+    {
+      "id": "promise-branches",
+      "status": "PASS",
+      "evidence": "The q2-later records specify the next-day 14:00 promise; the q3 decision records identify the promised heroine; the fulfilled q3 records acknowledge arrival; and the waited q3 records name the missed seat or twenty minutes at 16:30."
+    },
+    {
+      "id": "consent-and-open-ending-branches",
+      "status": "PASS",
+      "evidence": "The reviewed q5/q6/ending records retain separate answers, route partial shared consent to open, distinguish player-slow/no-invite/pending reasons, and do not convert a pending answer into consent."
+    },
+    {
+      "id": "replay-memory-timeline",
+      "status": "FAIL",
+      "evidence": "The public q4 replay wording reverses the Friday blank-photo and Sunday revealed-farewell chronology; see EDITORIAL-REPLAY-PHOTO-TIMELINE."
+    },
+    {
+      "id": "character-voice",
+      "status": "FAIL",
+      "evidence": "The q4-private replay and q6-slow response templates collapse established Zhixia/Wenxi voice distinctions; see EDITORIAL-Q4-PRIVATE-VOICE-COLLAPSE and EDITORIAL-Q6-SLOW-VOICE-COLLAPSE."
+    },
+    {
+      "id": "runtime-and-perceptual-validation",
+      "status": "SKIP",
+      "evidence": "This delegated task was editorial and read-only. No build, browser journey, perceptual test, or reader-approval claim was performed."
+    }
+  ],
+  "gaps": [
+    "This is an attempt-1 static editorial snapshot of the 104-record export, not a review of any concurrent or later repair state. Later source changes were intentionally not accepted as evidence here.",
+    "The review verifies source-backed prose, branch logic as expressed in the catalog, and document mapping only; it does not prove runtime wiring, browser readability, natural-input behavior, or player reception.",
+    "The replay timeline and voice findings are current editorial findings corroborated by the supplied QA finding artifact; no historical review was used as a substitute for this snapshot's evidence."
+  ]
+}

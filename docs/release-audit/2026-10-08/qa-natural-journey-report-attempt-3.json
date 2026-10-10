@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "taskId": "qa-natural-journey-attempt-3",
+  "status": "BLOCKED",
+  "summary": "Natural-input H5 QA did not reach the default page in HTTP mode and browser engines could not launch in file mode; no natural PASS is claimed.",
+  "findings": [
+    {
+      "id": "BROWSER-LAUNCH-BLOCKED",
+      "severity": "P0",
+      "file": "docs/release-audit/2026-10-08/qa-romance-browser-report.json",
+      "sceneId": "default-entry",
+      "evidence": "HTTP preview listen EPERM on 127.0.0.1; file-mode Chromium fails MachPort permission and WebKit aborts.",
+      "change": "Run the same scripts on a host that permits local preview sockets and Playwright browsers.",
+      "acceptance": [
+        "Fresh normal-input startup reaches the romance prologue.",
+        "A representative path reaches an ending and replay on 320x568, 390x844 and 844x390."
+      ]
+    }
+  ],
+  "artifacts": [
+    "docs/release-audit/2026-10-08/qa-romance-browser-report.json",
+    "docs/release-audit/2026-10-08/qa-romance-browser-file-report.json"
+  ],
+  "checks": [
+    {
+      "id": "http-natural-input",
+      "status": "BLOCKED",
+      "evidence": "docs/release-audit/2026-10-08/qa-romance-browser-report.json preserves preview listen EPERM."
+    },
+    {
+      "id": "file-natural-input",
+      "status": "BLOCKED",
+      "evidence": "docs/release-audit/2026-10-08/qa-romance-browser-file-report.json preserves Chromium/WebKit launch failures."
+    }
+  ],
+  "gaps": [
+    "No player-visible screenshots or DOM journey trace was produced."
+  ]
+}

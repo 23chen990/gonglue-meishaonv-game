@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "success": true,
+  "attempt": 3,
+  "route": "formal-fixer",
+  "runtime": "web-lite",
+  "template": "run-owned vanilla TypeScript/Vite romance text runtime",
+  "codexThreadId": "01a11ec4-3eb4-76d1-9dfc-97646607931b",
+  "originalBuilderThread": "01a0f35c-cda0-7dc2-9296-40e8e0dd8c5c",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "webBuild": "runs/20260831-010324-village-south-text-v1/workspace/game/dist",
+  "files": [
+    "runs/20260831-010324-village-south-text-v1/workspace/game/dist/index.html",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/style-CIrl6a3Z.css",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/index-s-TFb80A.js"
+  ],
+  "verification": [
+    "Vite integrated attempt 3 exited 0; logs/build-attempt-3.log",
+    "q1 message-provenance regression is green; deterministic runtime/content QA is recorded separately",
+    "web-lite build is not platform package proof and natural/perceptual gate remains pending"
+  ],
+  "builtAt": "2026-10-10T13:57:30Z",
+  "completion": {
+    "status": "CANDIDATE_BLOCKED",
+    "blockers": [
+      "normalFlow",
+      "visualEvidence",
+      "platformPackages",
+      "cleanInstall"
+    ]
+  }
+}

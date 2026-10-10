@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "attempt": 1,
+  "files": [
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/dist/index.html",
+      "sha256": "05c14293170fc033952135b0767b52987a917dc265592060396621a5ab664da9",
+      "bytes": 152097
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/index-CcrMcbTI.js",
+      "sha256": "e8850f97a40010978d112f56a313752a408ab8df62204f7f7da37dd8f038f4b0",
+      "bytes": 135236
+    },
+    {
+      "path": "runs/20260831-010324-village-south-text-v1/workspace/game/dist/assets/style-CIrl6a3Z.css",
+      "sha256": "0067d80650680e1ecd1defbe6ec49604516e40dbceb4e273a4b6cc63205eb92a",
+      "bytes": 7762
+    }
+  ],
+  "buildHash": "05c14293170fc033952135b0767b52987a917dc265592060396621a5ab664da9"
+}

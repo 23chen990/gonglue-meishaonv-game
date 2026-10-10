@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "taskId": "acceptance-audit",
+  "role": "QAAgent",
+  "repository": "23chen990/gonglue-meishaonv-game",
+  "repoPath": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+  "mode": "read-only",
+  "scope": [
+    "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/tests",
+    "runs/20260831-010324-village-south-text-v1/artifacts"
+  ],
+  "requirements": [
+    "Read /tmp/gonglue-audit-input/gonglue_agent_pack/00_START_HERE.md and 01-04 docs including all 80 acceptance cases; inspect actual tests/story contract/research. Develop actual-game coverage plan and assess current open-source research reuse sufficiency. User requests H5 and no UI redesign; native platform proof is separate.",
+    "No file edits. You are not alone in the codebase; do not revert changes. Return only JSON matching Report from docs/release-audit/2026-10-08/coordination.ts; validate using Zod before returning. Use node --import tsx instead of tsx CLI if IPC blocked."
+  ],
+  "acceptance": [
+    "Map all A01-J08 to executable or editorial evidence and external limitations; find research artifact validation command and approved infrastructure; concise actionable review."
+  ],
+  "outputPath": "final:Report JSON"
+}

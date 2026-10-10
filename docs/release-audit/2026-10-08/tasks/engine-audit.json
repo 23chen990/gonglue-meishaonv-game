@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "taskId": "engine-audit",
+  "role": "QAAgent",
+  "repository": "23chen990/gonglue-meishaonv-game",
+  "repoPath": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+  "mode": "read-only",
+  "scope": [
+    "runs/20260831-010324-village-south-text-v1/workspace/game",
+    "runs/20260831-010324-village-south-text-v1/implementation/romance-v1",
+    "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.ts"
+  ],
+  "requirements": [
+    "Read runtime, storage, tests, manifest. Audit default-path mismatch and state/persistence/input hazards using read-only commands. Read /tmp/gonglue-audit-input/gonglue_agent_pack/03_ACCEPTANCE_MATRIX.md. Propose minimal vanilla TypeScript/Vite integration retaining stylesheet, original facts and user friendship tests. Do not import another engine.",
+    "No file edits. You are not alone in the codebase; do not revert changes. Return only JSON matching Report from docs/release-audit/2026-10-08/coordination.ts; validate using Zod before returning. Use node --import tsx instead of tsx CLI if IPC blocked."
+  ],
+  "acceptance": [
+    "Exact runtime wiring and actual failure reproductions; minimal API recommendations; acceptance IDs tied to evidence, no false runtime PASS."
+  ],
+  "outputPath": "final:Report JSON"
+}

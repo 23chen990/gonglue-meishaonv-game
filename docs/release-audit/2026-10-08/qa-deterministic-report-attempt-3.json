@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "taskId": "qa-romance-attempt-3",
+  "status": "PASS",
+  "summary": "Deterministic romance QA passed on the current q1-corrected source: 208 legal first-loop paths, five endings, fourteen memories, 637 finite states/edges and 2704 independently replayed transitions with zero mismatches.",
+  "findings": [],
+  "artifacts": [
+    "docs/release-audit/2026-10-08/qa-romance-report.json",
+    "docs/release-audit/2026-10-08/storycheck-report.json",
+    "docs/release-audit/2026-10-08/repository-story.json",
+    "docs/release-audit/2026-10-08/logs/game-tests-attempt-3.log",
+    "docs/release-audit/2026-10-08/logs/planning-tests-attempt-3.log",
+    "docs/release-audit/2026-10-08/logs/typecheck-game-attempt-3.log",
+    "docs/release-audit/2026-10-08/logs/typecheck-planning-attempt-3.log",
+    "docs/release-audit/2026-10-08/logs/lint-attempt-3.log",
+    "docs/release-audit/2026-10-08/logs/storycheck-selftest-attempt-3.log",
+    "docs/release-audit/2026-10-08/build-report-attempt-3.json"
+  ],
+  "checks": [
+    {
+      "id": "q1-message-provenance",
+      "status": "PASS",
+      "evidence": "docs/release-audit/2026-10-08/logs/local-editorial-check-attempt-3.log reports zero forbidden phrases, 17 q1 mappings and one corrected text."
+    },
+    {
+      "id": "actual-engine-paths",
+      "status": "PASS",
+      "evidence": "docs/release-audit/2026-10-08/qa-romance-report.json status PASS; observedFirstLoopPaths=208 and endingCounts cover friendship/open/together/wenxi/zhixia."
+    },
+    {
+      "id": "memory-and-transition-coverage",
+      "status": "PASS",
+      "evidence": "docs/release-audit/2026-10-08/qa-romance-report.json lists all 14 memory IDs and transitionVerification.mismatchCount=0."
+    },
+    {
+      "id": "game-tests",
+      "status": "PASS",
+      "evidence": "docs/release-audit/2026-10-08/logs/game-tests-attempt-3.log reports 8 suites and 75 tests passed."
+    },
+    {
+      "id": "story-tests",
+      "status": "PASS",
+      "evidence": "docs/release-audit/2026-10-08/logs/planning-tests-attempt-3.log reports 24 tests passed."
+    },
+    {
+      "id": "typecheck-lint",
+      "status": "PASS",
+      "evidence": "docs/release-audit/2026-10-08/logs/typecheck-game-attempt-3.log, typecheck-planning-attempt-3.log and lint-attempt-3.log exit clean."
+    },
+    {
+      "id": "build",
+      "status": "PASS",
+      "evidence": "docs/release-audit/2026-10-08/build-report-attempt-3.json and logs/build-attempt-3.log record Vite exit 0."
+    }
+  ],
+  "gaps": [
+    "Fresh-browser natural input and perceptual readability are separate BLOCKED tracks.",
+    "Clean offline install and WeChat/Douyin/TapTap package evidence are unavailable.",
+    "Current-source Luna editorial report is pending."
+  ]
+}

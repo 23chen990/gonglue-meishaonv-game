@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "status": "BLOCKED",
+  "naturalInput": true,
+  "debugInjection": false,
+  "source": {
+    "repository": "23chen990/gonglue-meishaonv-game",
+    "runId": "20260831-010324-village-south-text-v1",
+    "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+    "sourceHashes": {
+      "runs/20260831-010324-village-south-text-v1/workspace/game/index.html": "7392defc79b91214579df4e8d067e8a6bfe8d4e072c169d129aa58fbc99a148d",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts": "839a3eceb30ede8bfd6fc099f129507c72f5154312e1389aa0f1a00a9364d33f",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-engine.ts": "75127bede22364fef8cabb9d4572cff7a1178197bfa651ebfc5feefdb495a9c0",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts": "297d780e09a0939447b45761d242e5e96d68274f3e9dbc8b9980eee5a9d1a5b8",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-input.ts": "da913858ffe175a2f5352a5b8a117a25ddd080091f0827c176deed980cf84b5c",
+      "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-view.ts": "b64ec5eafdc0cb154cf74fdfc9dd2b2b2264a39eae58cae717bbfa8442369655",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-graph.json": "1a860c587f5fe0504283bff48c18a3918e7f3a7d74f37029048799e38005e0cf",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-schema.ts": "86c70cf9d6c0c2228ed508915358470901f819c42bfbb19749d35ea373b24889",
+      "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.ts": "d37a3d3472592ea5d7447c6ca8800c7419622ca64851aabcaca41abb4917c4fd"
+    }
+  },
+  "expectedRepresentatives": [
+    "zhixia",
+    "open",
+    "friendship",
+    "wenxi",
+    "together"
+  ],
+  "errors": [
+    "preview-launch: Error: Preview exited with 1. Output: error when starting preview server:\nError: listen EPERM: operation not permitted 127.0.0.1\n    at Server.setupListenHandle [as _listen2] (node:net:1926:21)\n    at listenInCluster (node:net:2005:12)\n    at node:net:2214:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {\n  code: 'EPERM',\n  errno: -1,\n  syscall: 'listen',\n  address: '127.0.0.1'\n}\n"
+  ],
+  "rawLaunchLog": "",
+  "limitation": "Browser execution did not reach the real default page; no natural-input PASS is emitted."
+}

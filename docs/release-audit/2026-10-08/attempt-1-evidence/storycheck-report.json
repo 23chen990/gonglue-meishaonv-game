@@ -1,0 +1,122 @@
+{
+  "scope": "normalized_export_only",
+  "production_release_status": "NOT_ASSESSED",
+  "status": "PASS",
+  "complete": true,
+  "errors": [],
+  "warnings": [],
+  "states_explored": 638,
+  "transitions_explored": 637,
+  "ending_witnesses": {
+    "zhixia": {
+      "steps": [
+        "node-ffa58949fd3b2e57/continue:prologue:prologue-loop1-text-28c38763d8acd7fd",
+        "node-8fb9880a53e84c77/q1-z",
+        "node-8bde191b339f61c6/continue:response:response-q1-q1-z-loop1-q1-z-text-7cebcb415c08859b",
+        "node-e1d18c779e77985d/q2-now",
+        "node-25f60a4df3239367/continue:response:response-q2-q2-now-loop1-q1-z-q2-now-text-387bdf905d8ca428",
+        "node-6c188d1b38859554/q3-z",
+        "node-6c65122d7155cbbf/continue:response:response-q3-q3-z-loop1-q1-z-q2-now-q3-z-text-2d2ce3769f1ba82c",
+        "node-896efd3c560fa683/q4-all",
+        "node-0957e672c64c0900/continue:response:response-q4-q4-all-loop1-q1-z-q2-now-q3-z-q4-all-text-969eb59d1c05358f",
+        "node-fea1a31d23607d95/q5-z",
+        "node-837aec3101c46b13/continue:response:response-q5-q5-z-loop1-q1-z-q2-now-q3-z-q4-all-q5-z-text-8c78083592e62722",
+        "node-1961fa2f2aac3e0b/q6-commit",
+        "node-3e292ec92e8efab4/continue:response:response-q6-q6-commit-loop1-q1-z-q2-now-q3-z-q4-all-q5-z-q6-commit-text-b07e15f0a5156138"
+      ],
+      "node": "node-ee7fdd3ca3d3f4ed",
+      "state": {}
+    },
+    "open": {
+      "steps": [
+        "node-ffa58949fd3b2e57/continue:prologue:prologue-loop1-text-28c38763d8acd7fd",
+        "node-8fb9880a53e84c77/q1-z",
+        "node-8bde191b339f61c6/continue:response:response-q1-q1-z-loop1-q1-z-text-7cebcb415c08859b",
+        "node-e1d18c779e77985d/q2-now",
+        "node-25f60a4df3239367/continue:response:response-q2-q2-now-loop1-q1-z-q2-now-text-387bdf905d8ca428",
+        "node-6c188d1b38859554/q3-z",
+        "node-6c65122d7155cbbf/continue:response:response-q3-q3-z-loop1-q1-z-q2-now-q3-z-text-2d2ce3769f1ba82c",
+        "node-896efd3c560fa683/q4-all",
+        "node-0957e672c64c0900/continue:response:response-q4-q4-all-loop1-q1-z-q2-now-q3-z-q4-all-text-969eb59d1c05358f",
+        "node-fea1a31d23607d95/q5-z",
+        "node-837aec3101c46b13/continue:response:response-q5-q5-z-loop1-q1-z-q2-now-q3-z-q4-all-q5-z-text-8c78083592e62722",
+        "node-1961fa2f2aac3e0b/q6-slow",
+        "node-e1a30d76c7388e66/continue:response:response-q6-q6-slow-loop1-q1-z-q2-now-q3-z-q4-all-q5-z-q6-slow-text-e9ea82369947e0af"
+      ],
+      "node": "node-cf9dc8388bb1d0a4",
+      "state": {}
+    },
+    "friendship": {
+      "steps": [
+        "node-ffa58949fd3b2e57/continue:prologue:prologue-loop1-text-28c38763d8acd7fd",
+        "node-8fb9880a53e84c77/q1-z",
+        "node-8bde191b339f61c6/continue:response:response-q1-q1-z-loop1-q1-z-text-7cebcb415c08859b",
+        "node-e1d18c779e77985d/q2-now",
+        "node-25f60a4df3239367/continue:response:response-q2-q2-now-loop1-q1-z-q2-now-text-387bdf905d8ca428",
+        "node-6c188d1b38859554/q3-z",
+        "node-6c65122d7155cbbf/continue:response:response-q3-q3-z-loop1-q1-z-q2-now-q3-z-text-2d2ce3769f1ba82c",
+        "node-896efd3c560fa683/q4-all",
+        "node-0957e672c64c0900/continue:response:response-q4-q4-all-loop1-q1-z-q2-now-q3-z-q4-all-text-969eb59d1c05358f",
+        "node-fea1a31d23607d95/q5-z",
+        "node-837aec3101c46b13/continue:response:response-q5-q5-z-loop1-q1-z-q2-now-q3-z-q4-all-q5-z-text-8c78083592e62722",
+        "node-1961fa2f2aac3e0b/q6-friends",
+        "node-f007e8ecf0d63624/continue:response:response-q6-q6-friends-loop1-q1-z-q2-now-q3-z-q4-all-q5-z-q6-friends-text-3b3ca2300efdd199"
+      ],
+      "node": "node-f66b4e93badd43bc",
+      "state": {}
+    },
+    "wenxi": {
+      "steps": [
+        "node-ffa58949fd3b2e57/continue:prologue:prologue-loop1-text-28c38763d8acd7fd",
+        "node-8fb9880a53e84c77/q1-z",
+        "node-8bde191b339f61c6/continue:response:response-q1-q1-z-loop1-q1-z-text-7cebcb415c08859b",
+        "node-e1d18c779e77985d/q2-now",
+        "node-25f60a4df3239367/continue:response:response-q2-q2-now-loop1-q1-z-q2-now-text-387bdf905d8ca428",
+        "node-6c188d1b38859554/q3-w",
+        "node-34388eeb94b29e7c/continue:response:response-q3-q3-w-loop1-q1-z-q2-now-q3-w-text-5f7f0b5922e78002",
+        "node-1750ba66f665c937/q4-all",
+        "node-717415346ed8d951/continue:response:response-q4-q4-all-loop1-q1-z-q2-now-q3-w-q4-all-text-969eb59d1c05358f",
+        "node-8f074717a6ba69fc/q5-w",
+        "node-4480307264e5695d/continue:response:response-q5-q5-w-loop1-q1-z-q2-now-q3-w-q4-all-q5-w-text-30d8cfd58d2051ed",
+        "node-c6bbfba1fb43b00a/q6-commit",
+        "node-e5b84bbda272927d/continue:response:response-q6-q6-commit-loop1-q1-z-q2-now-q3-w-q4-all-q5-w-q6-commit-text-6cb925f965ac8e0c"
+      ],
+      "node": "node-0ffe278dffd5c2c2",
+      "state": {}
+    },
+    "together": {
+      "steps": [
+        "node-ffa58949fd3b2e57/continue:prologue:prologue-loop1-text-28c38763d8acd7fd",
+        "node-8fb9880a53e84c77/q1-z",
+        "node-8bde191b339f61c6/continue:response:response-q1-q1-z-loop1-q1-z-text-7cebcb415c08859b",
+        "node-e1d18c779e77985d/q2-now",
+        "node-25f60a4df3239367/continue:response:response-q2-q2-now-loop1-q1-z-q2-now-text-387bdf905d8ca428",
+        "node-6c188d1b38859554/q3-w",
+        "node-34388eeb94b29e7c/continue:response:response-q3-q3-w-loop1-q1-z-q2-now-q3-w-text-5f7f0b5922e78002",
+        "node-1750ba66f665c937/q4-all",
+        "node-717415346ed8d951/continue:response:response-q4-q4-all-loop1-q1-z-q2-now-q3-w-q4-all-text-969eb59d1c05358f",
+        "node-8f074717a6ba69fc/q5-both",
+        "node-8ecf8c23276fb292/continue:response:response-q5-q5-both-loop1-q1-z-q2-now-q3-w-q4-all-q5-both-text-1803d0401ecce9db",
+        "node-024a92e1bd47ef11/q6-commit",
+        "node-db8ba5b5d4c61f1c/continue:response:response-q6-q6-commit-loop1-q1-z-q2-now-q3-w-q4-all-q5-both-q6-commit-text-cd2c9ae3a29e4fe7"
+      ],
+      "node": "node-a15253bd74cb600f",
+      "state": {}
+    }
+  },
+  "source": {
+    "kind": "repository_export",
+    "repository": "23chen990/gonglue-meishaonv-game",
+    "commit": "26b5481631aa396aac26a61de8bc9745a1599880"
+  },
+  "input_sha256": "2b9a5343a151e9fb6472b654bd18a47ae8a2b4615b62e15ab1cbfe3f11b11f70",
+  "states_discovered": 638,
+  "coverage": {
+    "nodes_seen": 638,
+    "nodes_total": 638,
+    "choices_seen": 637,
+    "choices_total": 637,
+    "endings_seen": 5,
+    "endings_total": 5
+  }
+}

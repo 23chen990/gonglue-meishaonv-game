@@ -120,6 +120,11 @@
           "id": "q5-none",
           "label": "今天先不定义关系",
           "consequence": "明确当前能给出的关系，不留下无限等待承诺。"
+        },
+        {
+          "id": "q5-friends",
+          "label": "把关系留在朋友的位置",
+          "consequence": "明确珍惜彼此但不开始恋爱；不把任何人的边界写成欲擒故纵。"
         }
       ]
     },
@@ -138,6 +143,11 @@
           "id": "q6-slow",
           "label": "坦诚说想慢下来",
           "consequence": "无论先前回答如何，都尊重玩家意愿并收在open；不把对方的同意当作强制接受。"
+        },
+        {
+          "id": "q6-friends",
+          "label": "明确只以朋友身份继续",
+          "consequence": "把这次关系收在双方都能接受的朋友边界；保留她们刚才各自的回答，不将其改写成恋爱同意。"
         }
       ]
     }
@@ -157,6 +167,11 @@
       "id": "together",
       "title": "三个人的下一次",
       "condition": "q5-both + both independently consent + q6-commit"
+    },
+    {
+      "id": "friendship",
+      "title": "把喜欢留在朋友之间",
+      "condition": "q6-friends after any invitation; preserve each character's actual answer and begin no romance"
     },
     {
       "id": "open",
@@ -205,6 +220,10 @@
       },
       {
         "choiceId": "q5-none",
+        "characters": []
+      },
+      {
+        "choiceId": "q5-friends",
         "characters": []
       }
     ]
@@ -298,6 +317,18 @@
       "responseId": "loop2-response-mz-waited"
     },
     {
+      "id": "mz-friends",
+      "characterId": "zhixia",
+      "priority": 7,
+      "kind": "friendship",
+      "sourceChoices": [
+        "q6-friends"
+      ],
+      "text": "我记得我们说好先做朋友。要来半拍，就把这句话也算数。",
+      "responseId": "loop2-response-mz-friends",
+      "requiredEndingId": "friendship"
+    },
+    {
       "id": "mw-romance",
       "characterId": "wenxi",
       "priority": 1,
@@ -371,6 +402,18 @@
       ],
       "text": "如果明天来不了，别把明天留给我猜。我不知道为什么这么想对你说。",
       "responseId": "loop2-response-mw-waited"
+    },
+    {
+      "id": "mw-friends",
+      "characterId": "wenxi",
+      "priority": 7,
+      "kind": "friendship",
+      "sourceChoices": [
+        "q6-friends"
+      ],
+      "text": "我记得你把关系留在朋友这里。那就别拿朋友当退路，也别替我把以后画完。",
+      "responseId": "loop2-response-mw-friends",
+      "requiredEndingId": "friendship"
     }
   ],
   "limitations": [
@@ -380,7 +423,7 @@
     "The previous implementation test draft is provisional and must be revised after story approval.",
     "sourceChoices must all match the same completed loop; romantic memories additionally require requiredEndingId, never invitation alone.",
     "This is an adult multi-heroine romance text game with individual and shared romantic routes. Replay supports intimacy and character initiative, not a morality quiz or a separate mystery game.",
-    "characterAnswers and openReasons preserve actual invitation answers even when no romantic relationship begins; responseIds are authoring contracts, not proof of runtime wiring."
+    "characterAnswers, friendshipAnswers and openReasons preserve actual invitation answers even when no romantic relationship begins; responseIds are authoring contracts, not proof of runtime wiring."
   ],
   "characterAnswers": [
     {
@@ -398,6 +441,18 @@
       "notAskedResponseId": "answer-wenxi-not-asked",
       "yesText": "不是作为画师和模特。下次见我，这个你要听懂。",
       "pendingText": "我还没有准备好给这样的答案。让我自己想清楚，再告诉你。"
+    }
+  ],
+  "friendshipAnswers": [
+    {
+      "characterId": "zhixia",
+      "responseId": "friends-zhixia",
+      "text": "知夏把杯套收回抽屉：“朋友就朋友，但要是特意来见我，别再说只是顺路。这个边界我愿意自己守。”"
+    },
+    {
+      "characterId": "wenxi",
+      "responseId": "friends-wenxi",
+      "text": "闻溪在画框旁点了点头：“朋友不是备用答案。你想以朋友的身份来，就直接说；我也会照我的节奏继续画。”"
     }
   ],
   "openReasons": [
@@ -456,7 +511,8 @@
           "mz-arrived",
           "mz-call",
           "mz-returned",
-          "mz-waited"
+          "mz-waited",
+          "mz-friends"
         ]
       },
       {
@@ -469,7 +525,8 @@
           "mw-arrived",
           "mw-call",
           "mw-returned",
-          "mw-waited"
+          "mw-waited",
+          "mw-friends"
         ]
       }
     ],
@@ -502,7 +559,8 @@
           "mz-arrived",
           "mz-call",
           "mz-returned",
-          "mz-waited"
+          "mz-waited",
+          "mz-friends"
         ],
         "text": "知夏主动把闭店后的半小时留出来：“这次我先问，你想不想来见我？不用帮忙，也不用顺路。来不了，直接告诉我。”"
       },
@@ -516,7 +574,8 @@
           "mw-arrived",
           "mw-call",
           "mw-returned",
-          "mw-waited"
+          "mw-waited",
+          "mw-friends"
         ],
         "text": "闻溪先发来一个画室的位置：“这次不等你说下次了。有张新画想第一个给你看。如果你来，我想听的也不只是工作意见。”"
       }

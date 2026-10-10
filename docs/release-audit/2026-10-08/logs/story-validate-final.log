@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "title": "攻略美少女",
+  "runId": "20260831-010324-village-south-text-v1",
+  "scope": "authoring-only",
+  "paths": 208,
+  "endingCounts": {
+    "zhixia": 10,
+    "open": 104,
+    "friendship": 80,
+    "wenxi": 10,
+    "together": 4
+  },
+  "openReasonCounts": {
+    "player-slow": 64,
+    "consent-declined-or-pending": 12,
+    "partial-shared-consent": 12,
+    "no-invite": 16
+  },
+  "memoryIds": [
+    "mz-romance",
+    "mw-call",
+    "mz-arrived",
+    "mz-friends",
+    "mw-friends",
+    "mw-romance",
+    "mz-shared",
+    "mw-shared",
+    "mw-waited",
+    "mw-returned",
+    "mw-arrived",
+    "mz-call",
+    "mz-returned",
+    "mz-waited"
+  ],
+  "inputs": [
+    {
+      "file": "story-graph.json",
+      "sha256": "1a860c587f5fe0504283bff48c18a3918e7f3a7d74f37029048799e38005e0cf"
+    },
+    {
+      "file": "story-bible.md",
+      "sha256": "b48aad0e580181b7f3e88b59ca6252468c727aa05846573debfa44ed2779ac75"
+    },
+    {
+      "file": "story-schema.ts",
+      "sha256": "86c70cf9d6c0c2228ed508915358470901f819c42bfbb19749d35ea373b24889"
+    },
+    {
+      "file": "story-validation.ts",
+      "sha256": "d37a3d3472592ea5d7447c6ca8800c7419622ca64851aabcaca41abb4917c4fd"
+    }
+  ],
+  "historicalReviews": [
+    {
+      "file": "luna-story-review.json",
+      "sha256": "250479b365afd3edd486a1507047075739bd07fbcb186003b5079bba4c92d6a6"
+    },
+    {
+      "file": "luna-story-retest.json",
+      "sha256": "a3145049a77a4eb4efa554f33e0a6a3e052d5dea8f8110ee6993cea64c53f7d8"
+    }
+  ],
+  "historicalReviewsAreCurrentAcceptance": false,
+  "runtimeEvidence": "See docs/release-audit/2026-10-08/qa-romance-report.json and the independent natural/perceptual gates; authoring validation alone does not establish runtime success.",
+  "readerExperienceVerified": false
+}

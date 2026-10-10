@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "攻略美少女",
+  "repository": "23chen990/gonglue-meishaonv-game",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+  "classification": "User requests complete romance H5 implementation and editorial audit; broad complaint is not proof of every sample defect.",
+  "scope": [
+    "Only this repository and target workspace",
+    "Six-decision romance chapter, existing heroine facts, friendship test edits",
+    "No UI redesign or new art",
+    "State, save, editorial content, actual acceptance evidence"
+  ],
+  "evidence": [
+    "Actual main.ts imports rural chapter-data/game; story-validation explicitly authoring-only",
+    "baseline-test.log: original runtime tests pass; five current friendship assertions fail",
+    "baseline-typecheck.log: user test Trace lacks friendshipResponseIds; preserve assertions and minimally extend type",
+    "implementation package is a specification, not repository audit"
+  ],
+  "acceptance": [
+    "Default journey displays romance prologue, all choices, ending and replay",
+    "All authored variants mapped and reviewed, no unsupported previous actions",
+    "Preserve user test assertions; satisfy five endings and 208 valid paths",
+    "Independent revision/save/input tests and actual-engine exhaustive replays",
+    "Run all 80 matrix items honestly; browser/platform unexecuted items BLOCKED"
+  ],
+  "route": "formal-fixer",
+  "matrix": [
+    {
+      "object": "default entrypoint",
+      "state": "fresh startup -> choices -> ending -> replay",
+      "presentation": "main.ts vanilla DOM",
+      "viewport": "320x568 / 390x844 / 844x390 / desktop",
+      "evidence": "Source import trace confirms old game; browser launch attempted, macOS MachPort permission failure; natural cells presently BLOCKED"
+    },
+    {
+      "object": "friendship choice/ending",
+      "state": "q5-friends -> q6-friends and q5-both -> q6-friends",
+      "presentation": "authoring runtime then DOM",
+      "viewport": "engine-independent plus mobile DOM",
+      "evidence": "5 failing baseline authoring tests; absent graph choices confirmed"
+    }
+  ],
+  "issues": [
+    {
+      "id": "QA-ROMANCE-ENTRY",
+      "severity": "error",
+      "message": "Default journey runs rural baseline instead of specified romance chapter.",
+      "evidence": "runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts imports CHAPTER_EVENTS/GameEngine; index.html title 村口向南; romance graph not imported"
+    },
+    {
+      "id": "QA-FRIENDSHIP",
+      "severity": "error",
+      "message": "Existing user-authored friendship assertions fail because corresponding graph/state/content are absent.",
+      "evidence": "logs/baseline-test.log; story-validation.test.ts q5-friends/q6-friends expectations"
+    }
+  ]
+}

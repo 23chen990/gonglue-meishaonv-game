@@ -1,0 +1,932 @@
+{
+  "schemaVersion": 1,
+  "targetGame": "攻略美少女",
+  "runId": "20260831-010324-village-south-text-v1",
+  "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+  "items": [
+    {
+      "id": "A01",
+      "priority": "P1",
+      "operation": "逐条对照关键事实在不同章节和路线的表述",
+      "expected": "同一客观事实一致；传闻与推测明确区分；矛盾有可验证解释",
+      "method": "全量事实表与审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Independent Luna editorial report for current source is not available; old attempt-1/final reports are historical and cannot close this item."
+    },
+    {
+      "id": "A02",
+      "priority": "P0",
+      "operation": "跳过或拒绝获取某项关键资料，再走到引用它的场景",
+      "expected": "不能无来源引用；显示无知情变体或合理改道，不死路",
+      "method": "引擎回放",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "No natural-input replay proved every missing-information branch."
+    },
+    {
+      "id": "A03",
+      "priority": "P1",
+      "operation": "角色缺席某事件，随后进入谈及该事件的对白",
+      "expected": "该角色仅知道被告知的内容，且存在告知节点",
+      "method": "知识表与回放",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts q4 public/private disclosure and delayed-knowledge assertions; romance-runtime.test.ts latest-loop memory checks (engineering evidence)."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "A04",
+      "priority": "P0",
+      "operation": "唯一物件交出、消耗或丢失后，再尝试使用或赠送",
+      "expected": "操作不可用或走缺失分支；不得复制物件",
+      "method": "状态测试",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "No authored unique-item economy exists in this romance slice; item-specific acceptance is unobserved."
+    },
+    {
+      "id": "A05",
+      "priority": "P1",
+      "operation": "对含时间约束的全部路线累计行动与移动时间",
+      "expected": "事件先后和时间预算成立；无同时出现在两处的冲突",
+      "method": "时间线核对",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts q6/ending time assertions plus qa-romance-report.json complete 208-path replay (engineering evidence)."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "A06",
+      "priority": "P1",
+      "operation": "承诺在某时某地做事，分别履行、违约、提前说明",
+      "expected": "各路径反馈不同；不把提前说明写成已履行",
+      "method": "三路径回放",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts fulfilled/waited q3 callback assertions and qa-romance-report.json transition replay (engineering evidence)."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "A07",
+      "priority": "P1",
+      "operation": "检查揭示真相或翻转关系之前的全部必要铺垫",
+      "expected": "理解所需信息可在本路线得到，不依赖作者说明",
+      "method": "首次游玩视角审读",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts replay-memory-before-q1/q2 and disclosure assertions; source catalog export (engineering evidence)."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "A08",
+      "priority": "P1",
+      "operation": "重写一个关键场景后重新读取其所有前驱与后继",
+      "expected": "人物称谓、责任归属、物件、时序与知识承接正确",
+      "method": "邻接路径审读",
+      "status": "PASS",
+      "evidence": [
+        "triage-q1-unquoted-message-20261010.json, targeted green test, and scene-rewrite-records.json export cover the edited q1 scene and its 17 mappings."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "B01",
+      "priority": "P1",
+      "operation": "逐条比较选项文字、实际行为与状态写入",
+      "expected": "无未授权的承诺、公开、接触或资源消耗；文字与行动一致",
+      "method": "选择账本审读",
+      "status": "PASS",
+      "evidence": [
+        "story graph choice IDs, romance-content.test.ts choice mapping, and qa-romance-report.json choice ledger."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "B02",
+      "priority": "P1",
+      "operation": "从同一快照分别选择一个实质决策的所有选项",
+      "expected": "即时或约定的后续结果有可观察差异，不仅是无用数字",
+      "method": "对照回放",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json enumerates every legal choice path and five ending counts."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "B03",
+      "priority": "P1",
+      "operation": "跟踪每个实质选择写入的标记到后续读取处",
+      "expected": "每个标记有用途；或明确删除/降级为表达选择",
+      "method": "变量读写分析",
+      "status": "PASS",
+      "evidence": [
+        "romance-runtime.test.ts state/memory assertions and qa-romance-report.json transition ledger."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "B04",
+      "priority": "P1",
+      "operation": "选择表达类选项并查看紧接着的实际画面",
+      "expected": "能看到不同回应；不能只在数据里存了回应却不显示",
+      "method": "界面与文本比对",
+      "status": "PASS",
+      "evidence": [
+        "romance-view.test.ts source paragraph/choice DOM contract; browser evidence remains separate."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "B05",
+      "priority": "P1",
+      "operation": "检查信息不足或高代价的关键选择前文",
+      "expected": "玩家知道行动及风险类型，不要求提前知道隐藏答案",
+      "method": "编辑审读",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts grounded prologue, causal q2 and invitation wording assertions."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "B06",
+      "priority": "P0",
+      "operation": "条件刚失效或状态已前进后，提交旧选择事件",
+      "expected": "真实引擎拒绝该事件，状态与节点不变",
+      "method": "过期 revision 注入",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts rejects stale, invalid, duplicate and concurrent choices without mutation."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "B07",
+      "priority": "P1",
+      "operation": "检查每组明显只有唯一正确答案的选项",
+      "expected": "有合理取舍或明确的角色表达；废选项已删或重写",
+      "method": "逐组审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Full first-player option-quality review awaits current-source Luna editorial report."
+    },
+    {
+      "id": "B08",
+      "priority": "P1",
+      "operation": "进入只有一个合理后续动作的无决策段落",
+      "expected": "使用继续或适当自动衔接，不制造同义伪选择",
+      "method": "场景审读与界面",
+      "status": "PASS",
+      "evidence": [
+        "romance-view.test.ts never auto-selects unread scenes and uses explicit continue controls."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "C01",
+      "priority": "P1",
+      "operation": "移除角色名，比较同一类情绪下的主要角色对白",
+      "expected": "表达习惯能由具体声音表解释，不是同一套金句换名字",
+      "method": "角色声音审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Current-source independent voice review awaits Luna worker; local q4/q6 spot checks are engineering evidence only."
+    },
+    {
+      "id": "C02",
+      "priority": "P1",
+      "operation": "沿每条主要角色线读取其关键行动",
+      "expected": "角色有独立目标与主动行为，动机不是只讨好主角",
+      "method": "全路线审读",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts q3 fulfilled/waited callback and portrait ownership assertions."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "C03",
+      "priority": "P1",
+      "operation": "分别回放尚未询问、明确拒绝、明确接受的关系节点",
+      "expected": "三种状态的文本和条件不混同",
+      "method": "状态夹具与回放",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts q5 independent answers plus pending/unasked distinction."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "C04",
+      "priority": "P0",
+      "operation": "明确拒绝邀约后继续所有合流路径",
+      "expected": "不写成已赴约，不进入依赖同意的亲密场景",
+      "method": "合流路径测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts q6 friendship route and romance-runtime.test.ts five-ending replay."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "C05",
+      "priority": "P1",
+      "operation": "发生冲突后，只道歉而不完成约定",
+      "expected": "不直接视为完全修复；后续反馈符合具体冲突",
+      "method": "对照回放",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts waited callback asserts missed seat/twenty minutes and no apology erasure."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "C06",
+      "priority": "P0",
+      "operation": "进入路线锁定点后尝试互斥路线入口",
+      "expected": "按项目规则阻止或明确切换；不得同时处于矛盾关系",
+      "method": "路线状态测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts q5-friends filters q6 choices to q6-friends."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "C07",
+      "priority": "P1",
+      "operation": "采取普通、礼貌的拒绝或边界表达",
+      "expected": "仍有完整有意义的内容，不因拒绝本身羞辱玩家",
+      "method": "反向路线审读",
+      "status": "PASS",
+      "evidence": [
+        "romance-content.test.ts friend-boundary dialogue and friendship ending assertions."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "C08",
+      "priority": "P1",
+      "operation": "比较关系升温前后的共同经历和主动回应",
+      "expected": "转变有前置行为依据，不仅是达到一个隐藏分数",
+      "method": "角色弧与条件核对",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Perceptual relationship-pacing review awaits current-source Luna report and browser journey."
+    },
+    {
+      "id": "D01",
+      "priority": "P0",
+      "operation": "解析所有发布节点与选项的稳定 ID",
+      "expected": "无重复节点 ID、同节点重复选项 ID 或空 ID",
+      "method": "静态检查",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json catalog and choice ledger contain stable IDs for the complete runtime export."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "D02",
+      "priority": "P0",
+      "operation": "解析所有跳转、条件目标与章节入口",
+      "expected": "目标真实存在；不落入废稿或未发布内容",
+      "method": "静态检查",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json independently replays 637 extracted transitions with mismatchCount 0."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "D03",
+      "priority": "P0",
+      "operation": "从真实初态探索或回放全部发布结局",
+      "expected": "每个结局至少一条真实可执行路径，保留选择序列",
+      "method": "带状态搜索及引擎回放",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json status PASS: 208/208 legal first-loop paths and five ending counts."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "D04",
+      "priority": "P0",
+      "operation": "检查全部可达非终局状态的可见选项",
+      "expected": "至少有一个合法操作；必要时有明确返回或退出",
+      "method": "状态探索",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json complete finite catalog covers every visited decision and response state."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "D05",
+      "priority": "P0",
+      "operation": "检查所有可达循环与循环出口条件",
+      "expected": "无强制封闭循环；可结束的自由回看循环不误报",
+      "method": "状态图与终局可达检查",
+      "status": "PASS",
+      "evidence": [
+        "storycheck-report.json complete finite model plus qa-romance-report.json repeated replay witnesses."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "D06",
+      "priority": "P1",
+      "operation": "查找声明发布但从未可见的选项和节点",
+      "expected": "修复条件或移出发布范围；不得悄悄忽略",
+      "method": "覆盖对账",
+      "status": "PASS",
+      "evidence": [
+        "story-validation.test.ts and qa-romance-report.json compare declared graph choices with actual catalog."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "D07",
+      "priority": "P0",
+      "operation": "在相同节点以不同知识、承诺和路线状态进入",
+      "expected": "按完整相关状态分别验证，不因节点已访问而跳过",
+      "method": "状态搜索测试",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json state hashes cover distinct route/history contexts; romance-qa.test.ts equivalent-state check."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "D08",
+      "priority": "P0",
+      "operation": "故意限制搜索状态数或边数使其提前停止",
+      "expected": "报告 INCOMPLETE/BLOCKED，不生成全覆盖 PASS",
+      "method": "检查工具与流程测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-qa.test.ts limited export test stops at max-states=2 and reports INCOMPLETE instead of PASS."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "E01",
+      "priority": "P0",
+      "operation": "对同一 decision_instance 连续提交同一选择多次",
+      "expected": "最多一次状态改变、一次跳转和一次奖励",
+      "method": "引擎幂等测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts rejects duplicate choices without state mutation."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "E02",
+      "priority": "P0",
+      "operation": "选择处理中同时双击两个不同选项",
+      "expected": "仅一个被接受，后续选择以新状态重新开始",
+      "method": "竞争输入测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts rejects two conflicting choices from stale instances."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "E03",
+      "priority": "P0",
+      "operation": "同一 choice_id 在后续合法循环实例再次出现",
+      "expected": "允许新实例正常执行，不被全局永久去重",
+      "method": "循环回放",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts replays the same route across three loops without duplicate collection."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "E04",
+      "priority": "P0",
+      "operation": "每个有界数值在最小、最大和阈值两侧执行相关选择",
+      "expected": "不越界、不出现 NaN，判定边界符合设计",
+      "method": "边界夹具",
+      "status": "PASS",
+      "evidence": [
+        "No bounded numeric gameplay stats exist in the romance graph; loop/revision are engine guards covered by state tests."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "E05",
+      "priority": "P0",
+      "operation": "在条件计算、效果应用或跳转中模拟异常",
+      "expected": "无半提交状态，无已扣资源却仍在旧选择",
+      "method": "故障注入",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts provider exception transaction test and defective-provider persistence test."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "E06",
+      "priority": "P0",
+      "operation": "提交后重新渲染、刷新或重新挂载当前场景",
+      "expected": "不重放 onEnter 奖励，不重复结算",
+      "method": "引擎与界面测试",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Engine persistence tests pass, but refresh/re-render in a real browser is blocked by preview and browser launch permissions."
+    },
+    {
+      "id": "E07",
+      "priority": "P0",
+      "operation": "从选择前快照先走 A，再恢复快照走 B",
+      "expected": "A 的临时标记、物品与关系不泄露到 B",
+      "method": "分支隔离测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts exact checkpoint restore and branch replacement tests."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "E08",
+      "priority": "P0",
+      "operation": "如有随机结果，保存后重载并重复同一未变状态",
+      "expected": "结果或随机序列按存档约定恢复，不刷新重掷",
+      "method": "确定性回放",
+      "status": "PASS",
+      "evidence": [
+        "The authored romance graph has no random outcomes; qa-romance-report.json fresh-engine transition hashes are deterministic."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "F01",
+      "priority": "P1",
+      "operation": "从空白新开局阅读开场，不看说明文档",
+      "expected": "能说明当前人物、眼前目标和第一项可做的事",
+      "method": "首次游玩视角审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Fresh browser natural journey is blocked by Vite listen EPERM and Chromium/WebKit launch failures."
+    },
+    {
+      "id": "F02",
+      "priority": "P1",
+      "operation": "逐场写下其主要任务与结束时变化",
+      "expected": "每场有信息、局面、关系或有效情绪推进；冗余已处理",
+      "method": "全量场景卡",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "No natural player read-through was possible under browser restrictions."
+    },
+    {
+      "id": "F03",
+      "priority": "P1",
+      "operation": "对同一事实全文查找并连读相邻解释",
+      "expected": "没有不必要的旁白、台词、独白三次重复",
+      "method": "重复信息审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Current-source independent fact read-through awaits Luna worker."
+    },
+    {
+      "id": "F04",
+      "priority": "P2",
+      "operation": "标出抽象套话和高频形容，再逐句复核",
+      "expected": "有问题的句子改成具体表达；有作用的抒情保留",
+      "method": "编辑逐句复核",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Current-source independent prose-style review awaits Luna worker."
+    },
+    {
+      "id": "F05",
+      "priority": "P1",
+      "operation": "朗读关键冲突、邀约和结尾的完整对白",
+      "expected": "人物在回应彼此，不连续演讲，不靠作者点评收尾",
+      "method": "声音与对白审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "No browser/audio-free natural read-through; editorial review is pending."
+    },
+    {
+      "id": "F06",
+      "priority": "P1",
+      "operation": "检查每处拒绝解释、误会或延迟揭示",
+      "expected": "有成立的动机或限制；不存在一句正常沟通就能解决的强拖",
+      "method": "因果审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Current-source independent rejection/misunderstanding review awaits Luna worker."
+    },
+    {
+      "id": "F07",
+      "priority": "P1",
+      "operation": "对所有删减或合并场景核对事实账本与索引",
+      "expected": "必要信息仍有来源，节奏变快但逻辑不缺口",
+      "method": "前后对照与回归",
+      "status": "PASS",
+      "evidence": [
+        "scene-rewrite-records.json, scene-catalog.json, full-replacement-script.md and branch-map.json reconcile source prose, 104 records and 6073 scene IDs."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "F08",
+      "priority": "P1",
+      "operation": "在每条完整路线中寻找早期选择的后续回应",
+      "expected": "有自然回指与收束，不靠结局统计面板硬贴意义",
+      "method": "路线审读与选择账本",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Early-choice callbacks are structurally tested, but natural full-route reading is blocked."
+    },
+    {
+      "id": "G01",
+      "priority": "P0",
+      "operation": "文字未显示完时点击同一位置两次或长按",
+      "expected": "首次只完成显示，不顺势选中新出现按钮",
+      "method": "真实界面输入测试",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Chromium/WebKit unavailable due macOS permissions; no normal-input evidence."
+    },
+    {
+      "id": "G02",
+      "priority": "P0",
+      "operation": "滚动长正文并在选项区域松开触摸",
+      "expected": "不把滚动当作选择，不跨屏误触",
+      "method": "目标平台界面测试",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser launch blocked; touch/scroll evidence unavailable."
+    },
+    {
+      "id": "G03",
+      "priority": "P0",
+      "operation": "持续按 Enter/Space 并跨越场景切换",
+      "expected": "不由同一次持续输入自动完成下一次决策",
+      "method": "键盘自动化",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser launch blocked; keyboard hold evidence unavailable."
+    },
+    {
+      "id": "G04",
+      "priority": "P1",
+      "operation": "仅用键盘操作阅读、选择、菜单和关闭弹窗",
+      "expected": "焦点可见且有序，返回位置合理，无键盘陷阱",
+      "method": "端到端操作",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser launch blocked; keyboard-only journey unavailable."
+    },
+    {
+      "id": "G05",
+      "priority": "P0",
+      "operation": "在最窄支持视口展示最长正文与最长选项",
+      "expected": "正文不截断，最后一个选项可滚动并完整点击",
+      "method": "视口截图与点击",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser launch blocked; phone viewport readability unavailable."
+    },
+    {
+      "id": "G06",
+      "priority": "P1",
+      "operation": "放大字号、关闭打字机或启用减少动态效果",
+      "expected": "阅读完整且状态行为不变，按钮无重叠",
+      "method": "设置组合测试",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser launch blocked; text-size/reduced-motion evidence unavailable."
+    },
+    {
+      "id": "G07",
+      "priority": "P0",
+      "operation": "打开历史记录、设置、回看，再回到当前场景",
+      "expected": "不触发剧情副作用，不推进时间或消耗资源",
+      "method": "状态差异比较",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser launch blocked; history/collection return journey unavailable."
+    },
+    {
+      "id": "G08",
+      "priority": "P1",
+      "operation": "模拟音乐、字体、图片等非核心资源失败",
+      "expected": "正文与选择仍可用；必要失败清楚说明，不无限加载",
+      "method": "资源失败注入",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser launch blocked; natural resource-failure UI unavailable."
+    },
+    {
+      "id": "H01",
+      "priority": "P0",
+      "operation": "在关键选择前后分别保存，关闭进程或页面后恢复",
+      "expected": "节点、状态、历史和已结算结果一致",
+      "method": "持久化回放",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser process-close/reopen journey unavailable; file and HTTP browser tracks are BLOCKED."
+    },
+    {
+      "id": "H02",
+      "priority": "P0",
+      "operation": "模拟存储不可用、拒绝访问或写入抛异常",
+      "expected": "明确保存失败，不假报成功，不毁掉上一有效存档",
+      "method": "存储故障注入",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts getter/quota/storage failure tests preserve valid raw saves and expose notices (engineering fixture evidence)."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "H03",
+      "priority": "P0",
+      "operation": "加载截断、损坏、字段缺失或类型错误的存档",
+      "expected": "不崩溃、不安装非法状态；保留原数据及恢复入口",
+      "method": "坏存档夹具",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts corrupt, malformed nested array and missing-field save tests preserve raw data."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "H04",
+      "priority": "P0",
+      "operation": "加载旧版本存档，包含被重命名或删除的节点",
+      "expected": "按明确映射迁移；不兼容则说明并保留原档，不静默重置",
+      "method": "迁移回归",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts incompatible story version and legacy rural save tests keep old data read-only."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "H05",
+      "priority": "P0",
+      "operation": "正常新开局并比较周目状态与结局收藏",
+      "expected": "周目状态重置，收藏和设置按约定保留，互不污染",
+      "method": "隔离测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts collection/restart tests and qa-romance-report.json ending replay counts."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "H06",
+      "priority": "P0",
+      "operation": "覆盖已有进度时取消确认，再确认重开",
+      "expected": "取消不变；确认仅清理明确范围，不误删所有记录",
+      "method": "覆盖操作测试",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Confirmation cancel/confirm behavior has no natural browser evidence."
+    },
+    {
+      "id": "H07",
+      "priority": "P0",
+      "operation": "多标签页或并发会话先后写入不同 revision",
+      "expected": "检测冲突或按明确策略处理，不无提示吞掉较新进度",
+      "method": "并发持久化测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts sequential stale-tab and conflicting stale-instance tests (engineering evidence; browser tab gate remains separate)."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "H08",
+      "priority": "P0",
+      "operation": "剧本版本更新后恢复已读标记与历史回放",
+      "expected": "新条件台词不会被当已读跳过，旧历史不执行事件",
+      "method": "版本与已读回归",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts versioned save/read-ID rejection and latest-loop memory tests."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "I01",
+      "priority": "P0",
+      "operation": "对每个发布结局从干净新开局执行证据路径",
+      "expected": "结局正文、ID、收藏与条件一致，不依赖调试作弊",
+      "method": "真实引擎及界面回放",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json status PASS with representatives and 208 actual engine replays across five endings."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "I02",
+      "priority": "P0",
+      "operation": "构造多个结局条件同时满足的合法边界状态",
+      "expected": "按已记录规则得到唯一确定结果，不靠未说明数组顺序",
+      "method": "优先级测试",
+      "status": "PASS",
+      "evidence": [
+        "story-validation.test.ts graph constraints and romance-content.test.ts q5/q6 boundary combinations."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "I03",
+      "priority": "P1",
+      "operation": "完整阅读成功、普通、错过或分开结局",
+      "expected": "每个结局回应本线主要事情与关系，没有一句话敷衍",
+      "method": "终局编辑审读",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json actual ending replays plus romance-content.test.ts distinct five ending prose."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "I04",
+      "priority": "P1",
+      "operation": "同一结局从不同前史抵达",
+      "expected": "不引用没发生的道歉、赴约、调查或承诺",
+      "method": "合流终局回放",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json pathIds and endingCounts show multiple legal histories reaching endings."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "I05",
+      "priority": "P0",
+      "operation": "结局解锁后反复进入收藏和返回标题",
+      "expected": "不重复奖励、不锁死界面、不丢进度",
+      "method": "结局界面测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts awards each ending once and avoids duplicate collection on replay."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "I06",
+      "priority": "P0",
+      "operation": "重玩某章或从旧选择重新开始分支",
+      "expected": "恢复该点应有快照，不继承未来剧情状态",
+      "method": "重玩快照测试",
+      "status": "PASS",
+      "evidence": [
+        "romance-engine.test.ts restart, exact checkpoint restore and branch discard tests."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "I07",
+      "priority": "P1",
+      "operation": "跳过公共线后首次进入未读路线或新变体",
+      "expected": "在新内容处停止跳过，重要选择不被自动作答",
+      "method": "已读系统回放",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Browser natural skip/unread-route journey unavailable."
+    },
+    {
+      "id": "I08",
+      "priority": "P1",
+      "operation": "检查结局后的预告、后日谈与继续入口",
+      "expected": "未完成内容不冒充可玩；当次核心冲突已经收束",
+      "method": "终局与入口审读",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "No natural browser evidence for post-ending preview/continuation; runtime remains a chapter endpoint."
+    },
+    {
+      "id": "J01",
+      "priority": "P0",
+      "operation": "记录实际 remote、完整 commit、工作区差异与命令",
+      "expected": "证据能定位真实仓库版本；不混用别的仓库或示例",
+      "method": "基线审计",
+      "status": "PASS",
+      "evidence": [
+        "git remote is origin git@github.com:23chen990/gonglue-meishaonv-game.git; HEAD 26b5481631aa396aac26a61de8bc9745a1599880; attempt logs record commands."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "J02",
+      "priority": "P0",
+      "operation": "将发布源码清单、模型节点和审稿记录对账",
+      "expected": "总量和差异可解释，没有漏掉动态或隐藏发布内容",
+      "method": "源清单对账",
+      "status": "PASS",
+      "evidence": [
+        "scene-rewrite-records.json/full-replacement-script.md/scene-catalog.json/branch-map.json are regenerated from current source."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "J03",
+      "priority": "P0",
+      "operation": "按适配覆盖范围对比导出模型和真实引擎的一步转移",
+      "expected": "可选项、目标、状态、文本变体一致；不足范围明确 BLOCKED",
+      "method": "适配一致性测试",
+      "status": "PASS",
+      "evidence": [
+        "qa-romance-report.json independently replays 2704 transitions with mismatchCount 0."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "J04",
+      "priority": "P0",
+      "operation": "干净环境按锁定依赖安装并执行现有测试与构建",
+      "expected": "成功产出可运行候选；原有失败无掩盖，日志可复现",
+      "method": "真实构建流水线",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Clean offline install is BLOCKED: pnpm store lacks yaml-2.9.0.tgz."
+    },
+    {
+      "id": "J05",
+      "priority": "P0",
+      "operation": "读取正式候选的资源引用、路径大小写与部署子路径",
+      "expected": "目标环境无阻断正文或选择的缺失资源和错误路径",
+      "method": "候选环境测试",
+      "status": "PASS",
+      "evidence": [
+        "Vite build-attempt-3.log succeeds and build-hashes-attempt-3.json records dist paths and SHA-256 values."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "J06",
+      "priority": "P1",
+      "operation": "按真实目标平台运行已声明支持的环境组合",
+      "expected": "报告准确区分模拟视口、浏览器引擎与实机；未跑不写通过",
+      "method": "环境矩阵",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "WeChat, Douyin and TapTap package builds/runs were not available in this environment."
+    },
+    {
+      "id": "J07",
+      "priority": "P0",
+      "operation": "汇总80项状态、P0/P1问题与源代码变更",
+      "expected": "真实未执行项不填PASS；示例与工具自测不冒充游戏测试",
+      "method": "发布证据复核",
+      "status": "PASS",
+      "evidence": [
+        "This acceptance-80.json records all 80 statuses; fix-attempt-3.json and triage-q1-unquoted-message-20261010.json record scope and change."
+      ],
+      "reason": "Engineering/source evidence only where noted; this does not close natural or perceptual gates."
+    },
+    {
+      "id": "J08",
+      "priority": "P0",
+      "operation": "检查最终分支/补丁、存档兼容说明和回退方式",
+      "expected": "可定位基线和变更；无强推、数据破坏或未披露重大风险",
+      "method": "交付核对",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "No commit or published patch was created per user instruction; working-tree diff and rollback checkpoint are available, but final branch artifact is not produced."
+    }
+  ],
+  "generatedAt": "2026-10-10T13:57:30Z",
+  "evidencePolicy": "PASS entries are deterministic engineering/source evidence only. Natural-input, perceptual, platform and clean-install failures remain BLOCKED; historical Luna reports are not current acceptance.",
+  "summary": {
+    "status": "BLOCKED",
+    "pass": 51,
+    "blocked": 29,
+    "p0Blocked": [
+      "A02",
+      "A04",
+      "E06",
+      "G01",
+      "G02",
+      "G03",
+      "G05",
+      "G07",
+      "H01",
+      "H06",
+      "J04",
+      "J08"
+    ],
+    "productGate": "BLOCKED until natural browser/perceptual/platform/clean-install evidence is available."
+  }
+}

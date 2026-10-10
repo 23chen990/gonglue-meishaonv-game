@@ -1,0 +1,14 @@
+{
+  "id": "QA-REPLAY-PHOTO-TIMELINE",
+  "severity": "P1",
+  "file": "runs/20260831-010324-village-south-text-v1/workspace/game/src/romance-content.ts",
+  "sceneId": "response-q4-q4-all-loop2",
+  "evidence": "After any actual first ending, Sunday 22:59 paragraph says blank Friday photo shows farewell image. Public replay q4 currently says 从周日没有显影的相纸, contradicting that visible source. q4 private and q6 slow yes/pending use identical spoken templates for both heroines except their name.",
+  "change": "Correct replay disclosure to Friday blank photo -> Sunday revealed farewell -> Friday rewind. Distinguish private/replay/slow responses with established coffee-shop and drawing voices, without changing choices, consent or facts.",
+  "acceptance": [
+    "All replay public q4 variants describe the Friday blank paper and Sunday revealed farewell consistently",
+    "Zhixia/Wenxi private and q6 slow replies remain factually equivalent but have distinct spoken sentences",
+    "208 paths / 5 endings / 14 memories unchanged; exact source q4 and ending replays retained",
+    "Rebuild once as distinct repair attempt 2 and preserve attempt 1 QA artifacts; natural/perceptual blocks stay explicit"
+  ]
+}

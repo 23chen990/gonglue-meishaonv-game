@@ -1,0 +1,1443 @@
+{
+  "schemaVersion": 1,
+  "repository": "23chen990/gonglue-meishaonv-game",
+  "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "entrypoints": [
+    "runs/20260831-010324-village-south-text-v1/workspace/game/index.html",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/src/game.ts",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/src/chapter-data.ts"
+  ],
+  "legacy": {
+    "events": [
+      {
+        "id": "event_01",
+        "slot": 1,
+        "year": 1978,
+        "title": "煤油灯下的准考证",
+        "body": "县里贴出恢复招生考试的消息。白天要下地，夜里只剩半盏煤油，你手里还有一本缺了封面的代数书。",
+        "choices": [
+          {
+            "id": "event_01_choice_a",
+            "label": "把夜里的时间留给书本",
+            "result": "你把灯芯拧到最亮，白天的困乏换来几页真正属于自己的路。",
+            "immediateEffects": {
+              "economy": -1,
+              "skill": 2,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "两年后，村小学缺代课人，老校长想起你总在灯下做题。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_01_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "kept_studying",
+              "event_01_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_01_choice_b",
+            "label": "先把家里的秋收顶下来",
+            "result": "你把准考证压在粮袋底下，先让家里过完这一季。",
+            "immediateEffects": {
+              "economy": 2,
+              "bonds": 1,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "后来有人来借你的旧书，你发现自己仍能讲清几道题。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_01_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "kept_harvest",
+              "event_01_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_02",
+        "slot": 2,
+        "year": 1979,
+        "title": "分到手的田",
+        "body": "东坪村讨论把收成责任落到户。有人怕担风险，也有人说庄稼终于能自己盘算。父亲让你表态。",
+        "choices": [
+          {
+            "id": "event_02_choice_a",
+            "label": "接下最远的那块薄田",
+            "result": "你接下薄田，也接下了每一场天候和收成的风险。",
+            "immediateEffects": {
+              "economy": 2,
+              "bonds": 1,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "薄田没有立刻变肥，却逼着你学会记工、看天和留种。",
+              "effects": {
+                "economy": 1,
+                "skill": 1
+              },
+              "setFlags": [
+                "event_02_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "took_land_contract",
+              "event_02_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_02_choice_b",
+            "label": "先跟着邻里合做一年",
+            "result": "你和几户人家把农具、劳力和收成放在一张账上。",
+            "immediateEffects": {
+              "bonds": 3
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "来年重新分工时，几户人家愿意听你的折中办法。",
+              "effects": {
+                "bonds": 1,
+                "skill": 1
+              },
+              "setFlags": [
+                "event_02_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "shared_land",
+              "event_02_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_03",
+        "slot": 3,
+        "year": 1980,
+        "title": "哑火的手电筒",
+        "body": "生产队留下的手电筒坏了，夜里巡渠不方便。你在桌上摊开螺丝和铁皮，没人保证还能装回去。",
+        "choices": [
+          {
+            "id": "event_03_choice_a",
+            "label": "拆开看看毛病在哪",
+            "result": "你在煤油灯下拆开线路，第一次知道手艺能换来信任。",
+            "immediateEffects": {
+              "economy": -1,
+              "skill": 3
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "此后坏收音机、旧锁头都被人送来，你的手艺从小物件上长出来。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_03_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "learned_repair",
+              "event_03_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_03_choice_b",
+            "label": "去县里换一支能用的",
+            "result": "你花钱买回一支亮堂的手电，也记住了县城的铺面和价钱。",
+            "immediateEffects": {
+              "economy": 1,
+              "bonds": 1,
+              "health": 1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "手电又坏时，你已知道县里哪家铺子肯给熟人便宜。",
+              "effects": {
+                "bonds": 1,
+                "skill": 1
+              },
+              "setFlags": [
+                "event_03_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "bought_tool",
+              "event_03_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_04",
+        "slot": 4,
+        "year": 1981,
+        "title": "第一担早菜",
+        "body": "自留地的早菜比往年多。县城逢集，天不亮就得挑担走二十里，价钱和销路都说不准。",
+        "choices": [
+          {
+            "id": "event_04_choice_a",
+            "label": "自己挑到县城试卖",
+            "result": "你挑着菜进城，第一次看见自己的汗水直接换成钞票。",
+            "immediateEffects": {
+              "economy": 2,
+              "bonds": 1,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "下个集日，两个老主顾远远就认出你的竹筐。",
+              "effects": {
+                "economy": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_04_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "tested_county_market",
+              "event_04_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_04_choice_b",
+            "label": "卖给进村收货的人",
+            "result": "你少走一趟路，收货人也答应下次照旧来村口。",
+            "immediateEffects": {
+              "economy": 1,
+              "bonds": 2
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "收货人后来压过一次价，你开始明白省事也有代价。",
+              "effects": {
+                "skill": 1,
+                "economy": 1
+              },
+              "setFlags": [
+                "event_04_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "accepted_village_buyer",
+              "event_04_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_05",
+        "slot": 5,
+        "year": 1982,
+        "title": "妹妹的学费",
+        "body": "妹妹考进县中学，学费、车钱和住处都要花钱。家里刚攒下买化肥的款，父亲整夜没说话。",
+        "choices": [
+          {
+            "id": "event_05_choice_a",
+            "label": "先让妹妹把书读下去",
+            "result": "你把化肥钱拆出一部分，送妹妹坐上去县城的班车。",
+            "immediateEffects": {
+              "economy": -2,
+              "bonds": 3,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "几年后，妹妹替家里写信、看合同，也替你挡过一次含糊的账。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_05_choice_a_echoed"
+              ]
+            },
+            "requirements": {
+              "stats": {
+                "economy": {
+                  "min": 8
+                }
+              }
+            },
+            "unavailable": "家底不足，眼下还凑不齐学费。",
+            "setFlags": [
+              "funded_sister",
+              "event_05_a_chosen"
+            ],
+            "qualificationFlags": [
+              "tuition_gate"
+            ]
+          },
+          {
+            "id": "event_05_choice_b",
+            "label": "先保住明年的收成",
+            "result": "你把钱留在地里，妹妹留下来帮忙，家里先稳住一季。",
+            "immediateEffects": {
+              "economy": 3,
+              "bonds": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "妹妹留在村里帮忙，做事利落，却很少再提县城学校。",
+              "effects": {
+                "economy": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_05_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "protected_harvest",
+              "event_05_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_06",
+        "slot": 6,
+        "year": 1982,
+        "title": "暴雨后的田埂",
+        "body": "一夜暴雨冲开了两段田埂。自家的稻田在进水，隔壁孤寡老人的田口更低。",
+        "choices": [
+          {
+            "id": "event_06_choice_a",
+            "label": "先喊人一起堵最低的缺口",
+            "result": "你先把最危险的缺口堵住，回头时自家田也还剩半片秧苗。",
+            "immediateEffects": {
+              "economy": -1,
+              "bonds": 3,
+              "health": -2
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "秋后修水渠时，出工的人比往年齐，没人忘记那场雨。",
+              "effects": {
+                "economy": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_06_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "helped_neighbors",
+              "event_06_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_06_choice_b",
+            "label": "先守住自家的秧苗",
+            "result": "你守住自家的田口，至少明年的口粮有了着落。",
+            "immediateEffects": {
+              "economy": 2,
+              "bonds": 1,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "老人没有责怪你，只在来年换工时少问了一句。",
+              "effects": {
+                "economy": 1,
+                "bonds": -1
+              },
+              "setFlags": [
+                "event_06_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "protected_own_field",
+              "event_06_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_01_alt_agritech",
+        "slot": 1,
+        "year": 1978,
+        "title": "县农技站的听课证",
+        "body": "农技站来人讲密植和留种，名额只有一个。父亲说，听懂了未必就能种出来。",
+        "choices": [
+          {
+            "id": "event_01_alt_choice_a",
+            "label": "拿着听课证进城",
+            "result": "你把新法记满一页纸，回来先在自家地边试一垄。",
+            "immediateEffects": {
+              "skill": 2,
+              "economy": 1,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "试验田第二年长得齐，邻里开始来问你行距。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_01_alt_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "learned_agritech",
+              "event_01_alt_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_01_alt_choice_b",
+            "label": "把名额让给种田老把式",
+            "result": "你留下来多干一天活，也换来老人把看天的经验教给你。",
+            "immediateEffects": {
+              "bonds": 2,
+              "health": 1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "后来村里试新种，老人把你的名字写进了记工本。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_01_alt_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "honored_experience",
+              "event_01_alt_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_02_alt_riverland",
+        "slot": 2,
+        "year": 1979,
+        "title": "河滩边的三亩荒地",
+        "body": "河滩边腾出三亩荒地，村里允许先种先得。它离水近，却也离洪水近。",
+        "choices": [
+          {
+            "id": "event_02_alt_choice_a",
+            "label": "签下荒地试一年",
+            "result": "你押上一年的力气，把荒草翻成一畦畦能看见收成的土。",
+            "immediateEffects": {
+              "economy": 2,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "第二年有人跟着你留种，荒地边多了几户新开的田。",
+              "effects": {
+                "skill": 1,
+                "economy": 1
+              },
+              "setFlags": [
+                "event_02_alt_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "claimed_riverland",
+              "event_02_alt_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_02_alt_choice_b",
+            "label": "拉几户人家一起做",
+            "result": "你先把水线和出工排好，收成按事先写下的办法分。",
+            "immediateEffects": {
+              "bonds": 3,
+              "economy": 1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "那张合做的纸后来成了村里谈承包时的样板。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_02_alt_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "formed_coop",
+              "event_02_alt_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_03_alt_thresher",
+        "slot": 3,
+        "year": 1980,
+        "title": "吱呀作响的打谷机",
+        "body": "公社的打谷机卡住了，收成正等着入仓。县里师傅要过几天才来。",
+        "choices": [
+          {
+            "id": "event_03_alt_choice_a",
+            "label": "照着旧图纸试修",
+            "result": "你把磨损的轴承垫起来，机器终于重新吱呀转动。",
+            "immediateEffects": {
+              "skill": 3,
+              "economy": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "后来村里买第一台新机，大家让你去县里帮着验货。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_03_alt_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "repaired_thresher",
+              "event_03_alt_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_03_alt_choice_b",
+            "label": "凑钱请县里师傅",
+            "result": "你把钱凑齐，也趁机站在旁边把每个步骤记下来。",
+            "immediateEffects": {
+              "economy": -1,
+              "skill": 1,
+              "bonds": 2
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "下次再坏，师傅只寄来一张图，你已经敢自己动手。",
+              "effects": {
+                "skill": 1,
+                "economy": 1
+              },
+              "setFlags": [
+                "event_03_alt_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "hired_repairman",
+              "event_03_alt_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_04_alt_eggs",
+        "slot": 4,
+        "year": 1981,
+        "title": "一篮鸡蛋的去处",
+        "body": "家里的鸡下蛋多了，供销站给价稳，县城饭馆却说能多给一分。",
+        "choices": [
+          {
+            "id": "event_04_alt_choice_a",
+            "label": "自己进城找饭馆",
+            "result": "你挨家问价，带回一笔更高的现钱和一张饭馆地址。",
+            "immediateEffects": {
+              "economy": 2,
+              "skill": 1,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "饭馆后来让你固定送货，你第一次像个小买卖人一样记账。",
+              "effects": {
+                "economy": 1,
+                "skill": 1
+              },
+              "setFlags": [
+                "event_04_alt_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "sold_to_restaurant",
+              "event_04_alt_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_04_alt_choice_b",
+            "label": "交给供销站统一收",
+            "result": "你少操一份心，鸡蛋按时换成家里需要的布票和盐。",
+            "immediateEffects": {
+              "economy": 1,
+              "bonds": 2
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "供销站改了收购办法，你因熟悉乡亲需求成了中间传话的人。",
+              "effects": {
+                "skill": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_04_alt_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "used_supply_station",
+              "event_04_alt_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_05_alt_medicine",
+        "slot": 5,
+        "year": 1982,
+        "title": "母亲的药费与化肥钱",
+        "body": "母亲的药方压在桌上，化肥票也等着付款。南边的亲戚说，做小生意能见钱。",
+        "choices": [
+          {
+            "id": "event_05_alt_choice_a",
+            "label": "先把母亲送去看病",
+            "result": "你卖掉一批粮，先让母亲把药吃上，再慢慢想地里的钱。",
+            "immediateEffects": {
+              "economy": -2,
+              "bonds": 3,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "母亲好转后替你守摊，也把家里每笔账记得清清楚楚。",
+              "effects": {
+                "economy": 1,
+                "skill": 1
+              },
+              "setFlags": [
+                "event_05_alt_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "paid_medicine",
+              "event_05_alt_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_05_alt_choice_b",
+            "label": "借钱保住化肥和收成",
+            "result": "你先保住地里的投入，承诺秋后连本带利还上。",
+            "immediateEffects": {
+              "economy": 2,
+              "health": -1,
+              "bonds": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "秋收后你还清了账，终于敢想一回不只靠地吃饭的买卖。",
+              "effects": {
+                "skill": 1,
+                "economy": 1
+              },
+              "setFlags": [
+                "event_05_alt_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "borrowed_for_fertilizer",
+              "event_05_alt_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      },
+      {
+        "id": "event_06_alt_canal",
+        "slot": 6,
+        "year": 1982,
+        "title": "冬前修水渠",
+        "body": "村里要在封冻前修完水渠，县里说修好就能多分一台抽水机。",
+        "choices": [
+          {
+            "id": "event_06_alt_choice_a",
+            "label": "带头把渠线重新量一遍",
+            "result": "你拿绳子量出最省力的坡度，几户人家少走了弯路。",
+            "immediateEffects": {
+              "skill": 2,
+              "bonds": 2,
+              "health": -1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "来年抽水机到了，大家把最难修的那段交给你安排。",
+              "effects": {
+                "economy": 1,
+                "bonds": 1
+              },
+              "setFlags": [
+                "event_06_alt_choice_a_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "led_canal_work",
+              "event_06_alt_a_chosen"
+            ],
+            "qualificationFlags": []
+          },
+          {
+            "id": "event_06_alt_choice_b",
+            "label": "先把自家那段修完",
+            "result": "你先保住自家田的水路，剩下的人也照着你的办法接着做。",
+            "immediateEffects": {
+              "economy": 2,
+              "skill": 1
+            },
+            "delayedEcho": {
+              "afterEvents": 2,
+              "text": "下一次分工时，村里知道你肯把自己的办法说出来。",
+              "effects": {
+                "bonds": 1,
+                "skill": 1
+              },
+              "setFlags": [
+                "event_06_alt_choice_b_echoed"
+              ]
+            },
+            "unavailable": "",
+            "setFlags": [
+              "secured_own_canal",
+              "event_06_alt_b_chosen"
+            ],
+            "qualificationFlags": []
+          }
+        ]
+      }
+    ],
+    "keepsakes": [
+      {
+        "id": "keepsake_book",
+        "name": "缺封面的代数书",
+        "description": "书页薄，算式硬；它让夜里有一盏不太亮的灯。",
+        "effects": {
+          "skill": 2,
+          "health": -1
+        },
+        "flag": "keepsake_book"
+      },
+      {
+        "id": "keepsake_pliers",
+        "name": "爷爷的旧钳子",
+        "description": "钳口已经磨圆，但握在手里，什么都像能修。",
+        "effects": {
+          "skill": 1,
+          "bonds": 1
+        },
+        "flag": "keepsake_pliers"
+      },
+      {
+        "id": "keepsake_address",
+        "name": "南方招工地址",
+        "description": "一张折了四道的纸，指向还没去过的地方。",
+        "effects": {
+          "economy": 1,
+          "bonds": -1
+        },
+        "flag": "keepsake_address"
+      }
+    ],
+    "family": [
+      {
+        "id": "condition_county_relative",
+        "name": "县城亲戚递来一封信",
+        "summary": "表叔在县城供销社做事，说有机会就去见见世面。",
+        "effects": {
+          "economy": 1,
+          "skill": 1
+        },
+        "setFlag": "county_connection"
+      },
+      {
+        "id": "condition_fertilizer_debt",
+        "name": "家里欠着一笔化肥钱",
+        "summary": "春耕前的账还没结清，每一粒粮都得先算成本。",
+        "effects": {
+          "economy": -1,
+          "skill": 1
+        },
+        "setFlag": "fertilizer_debt"
+      },
+      {
+        "id": "condition_old_craft",
+        "name": "爷爷留下修理手艺",
+        "summary": "一盒旧螺丝和几把钳子，成了家里不值钱却有用的传家物。",
+        "effects": {
+          "skill": 2,
+          "economy": -1
+        },
+        "setFlag": "old_craft"
+      },
+      {
+        "id": "condition_studious_sister",
+        "name": "妹妹读书很争气",
+        "summary": "她把借来的课本翻得起毛，家里第一次认真谈起“读出去”。",
+        "effects": {
+          "bonds": 2,
+          "skill": 1
+        },
+        "setFlag": "studious_sister"
+      },
+      {
+        "id": "condition_distant_field",
+        "name": "分到一块远田",
+        "summary": "田远，水也远，但地契上的名字第一次写着自家。",
+        "effects": {
+          "economy": 1,
+          "health": -1
+        },
+        "setFlag": "distant_field"
+      },
+      {
+        "id": "condition_southern_letter",
+        "name": "南边寄来招工消息",
+        "summary": "信封里夹着一张地址：南方缺人，肯吃苦就能挣现钱。",
+        "effects": {
+          "skill": 1,
+          "bonds": -1
+        },
+        "setFlag": "southern_letter"
+      }
+    ],
+    "presentation": [
+      "family-condition",
+      "keepsake",
+      "event",
+      "result",
+      "complete"
+    ],
+    "status": "default-runtime-before-change"
+  },
+  "romance": {
+    "status": "DRAFT_FOR_STORY_REVIEW",
+    "schemaVersion": 1,
+    "artifactType": "romance-story-graph",
+    "runId": "20260831-010324-village-south-text-v1",
+    "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/workspace",
+    "title": "攻略美少女",
+    "chapter": "欠你一个周末",
+    "storyFile": "story-bible.md",
+    "characters": [
+      {
+        "id": "zhixia",
+        "name": "沈知夏",
+        "age": 25,
+        "independentGoal": "经营自己的半拍咖啡店，不再总是把自己放在别人之后。"
+      },
+      {
+        "id": "wenxi",
+        "name": "陆闻溪",
+        "age": 24,
+        "independentGoal": "保留自己的表达，让作品和作者一起被认真看见。"
+      }
+    ],
+    "protagonistAge": 26,
+    "nodes": [
+      {
+        "id": "q1",
+        "order": 1,
+        "time": "Friday 18:00",
+        "title": "先赴谁的约",
+        "choices": [
+          {
+            "id": "q1-z",
+            "label": "先去半拍，兑现第一杯",
+            "consequence": "参与知夏的重要时刻；闻溪自行取回作品，未得到你的陪伴。"
+          },
+          {
+            "id": "q1-w",
+            "label": "先陪闻溪把画取回来",
+            "consequence": "陪闻溪处理撤展；知夏照常开店，你错过她的第一杯。"
+          }
+        ]
+      },
+      {
+        "id": "q2",
+        "order": 2,
+        "time": "Friday 21:40",
+        "title": "回应没有赴上的约",
+        "choices": [
+          {
+            "id": "q2-now",
+            "label": "现在打电话说清楚",
+            "consequence": "未赴约的她亲耳听见解释；知夏和闻溪反应不同。"
+          },
+          {
+            "id": "q2-later",
+            "label": "约明天当面聊",
+            "consequence": "新增可兑现的见面承诺；q3是否去见她决定fulfilled或waited回访。"
+          }
+        ]
+      },
+      {
+        "id": "q3",
+        "order": 3,
+        "time": "Saturday 14:00",
+        "title": "认真留出一个下午",
+        "choices": [
+          {
+            "id": "q3-z",
+            "label": "陪知夏试不在菜单上的咖啡",
+            "consequence": "进入知夏私密场景；若昨晚约见她，此处兑现。"
+          },
+          {
+            "id": "q3-w",
+            "label": "给闻溪做二十分钟模特",
+            "consequence": "进入闻溪私密场景；若昨晚约见她，此处兑现。"
+          }
+        ]
+      },
+      {
+        "id": "q4",
+        "order": 4,
+        "time": "Saturday 21:00",
+        "title": "说出离开与在意",
+        "choices": [
+          {
+            "id": "q4-all",
+            "label": "让两人都知道事实",
+            "consequence": "两人均有一晚思考离开和关系；第二周目此分支同时说明重开经历。"
+          },
+          {
+            "id": "q4-private",
+            "label": "先私下告诉下午陪伴的人",
+            "consequence": "个人场景更私密；另一人次日刚获知事实，可以暂缓关系回答。第二周目不否认已有记忆。"
+          }
+        ]
+      },
+      {
+        "id": "q5",
+        "order": 5,
+        "time": "Sunday 17:30",
+        "title": "认真邀请下一次",
+        "choices": [
+          {
+            "id": "q5-z",
+            "label": "认真约知夏",
+            "consequence": "知夏独立回答；邀请不是同意。"
+          },
+          {
+            "id": "q5-w",
+            "label": "认真约闻溪",
+            "consequence": "闻溪独立回答；拒绝不得被当作口是心非。"
+          },
+          {
+            "id": "q5-both",
+            "label": "向两人坦白感情，询问各自意愿",
+            "consequence": "两人分别回答；单方愿意不覆盖另一方，也不自动改投个人线。"
+          },
+          {
+            "id": "q5-none",
+            "label": "今天先不定义关系",
+            "consequence": "明确当前能给出的关系，不留下无限等待承诺。"
+          }
+        ]
+      },
+      {
+        "id": "q6",
+        "order": 6,
+        "time": "Sunday 22:30",
+        "title": "回应她的真实答案",
+        "choices": [
+          {
+            "id": "q6-commit",
+            "label": "有同意则认真约定；没有同意则接受答案",
+            "consequence": "只对明确同意的邀请建立对应关系；部分共同同意仍为open。"
+          },
+          {
+            "id": "q6-slow",
+            "label": "坦诚说想慢下来",
+            "consequence": "无论先前回答如何，都尊重玩家意愿并收在open；不把对方的同意当作强制接受。"
+          }
+        ]
+      }
+    ],
+    "endings": [
+      {
+        "id": "zhixia",
+        "title": "留一盏给你",
+        "condition": "q5-z + zhixia independently consents + q6-commit"
+      },
+      {
+        "id": "wenxi",
+        "title": "这张画，不画句号",
+        "condition": "q5-w + wenxi independently consents + q6-commit"
+      },
+      {
+        "id": "together",
+        "title": "三个人的下一次",
+        "condition": "q5-both + both independently consent + q6-commit"
+      },
+      {
+        "id": "open",
+        "title": "今天先到这里",
+        "condition": "q5-none or q6-slow or requested relationship lacks any required consent; narrate the actual reason"
+      }
+    ],
+    "romanceEligibility": {
+      "attentionChoices": {
+        "zhixia": [
+          "q1-z",
+          "q3-z"
+        ],
+        "wenxi": [
+          "q1-w",
+          "q3-w"
+        ]
+      },
+      "publicDisclosure": "q4-all",
+      "privateDisclosure": "q4-private",
+      "privateRecipientNode": "q3",
+      "inviteNode": "q5",
+      "confirmNode": "q6",
+      "confirmChoice": "q6-commit",
+      "invitationIsNotConsent": true,
+      "partialSharedConsentGoesTo": "open",
+      "invitationTargets": [
+        {
+          "choiceId": "q5-z",
+          "characters": [
+            "zhixia"
+          ]
+        },
+        {
+          "choiceId": "q5-w",
+          "characters": [
+            "wenxi"
+          ]
+        },
+        {
+          "choiceId": "q5-both",
+          "characters": [
+            "zhixia",
+            "wenxi"
+          ]
+        },
+        {
+          "choiceId": "q5-none",
+          "characters": []
+        }
+      ]
+    },
+    "replay": {
+      "anchor": "Friday 17:50, before the blank opening photo",
+      "trigger": "Sunday 22:59, after ending and before the 23:20 departure",
+      "optional": true,
+      "physicalItemsCarry": false,
+      "characterMemoryDepth": "most-recent-loop-only",
+      "sourceVisibility": "own-experience-only",
+      "responseSlots": {
+        "zhixia": "Before or during q1 in the second loop",
+        "wenxi": "Before or during q2 in the second loop"
+      }
+    },
+    "memoryTemplates": [
+      {
+        "id": "mz-romance",
+        "characterId": "zhixia",
+        "priority": 1,
+        "kind": "self-romance",
+        "sourceChoices": [
+          "q5-z",
+          "q6-commit"
+        ],
+        "text": "你是不是……已经很认真地约过我一次？",
+        "responseId": "loop2-response-mz-romance",
+        "requiredEndingId": "zhixia"
+      },
+      {
+        "id": "mz-shared",
+        "characterId": "zhixia",
+        "priority": 2,
+        "kind": "shared-romance",
+        "sourceChoices": [
+          "q5-both",
+          "q6-commit"
+        ],
+        "text": "我好像自己说过愿意试试。不是为了让谁不为难。",
+        "responseId": "loop2-response-mz-shared",
+        "requiredEndingId": "together"
+      },
+      {
+        "id": "mz-arrived",
+        "characterId": "zhixia",
+        "priority": 3,
+        "kind": "arrived",
+        "sourceChoices": [
+          "q1-z"
+        ],
+        "text": "我知道你会说镜头画歪了……可我还没画完。",
+        "responseId": "loop2-response-mz-arrived"
+      },
+      {
+        "id": "mz-call",
+        "characterId": "zhixia",
+        "priority": 4,
+        "kind": "call",
+        "sourceChoices": [
+          "q1-w",
+          "q2-now"
+        ],
+        "text": "临时有事，直接告诉我就好。我好像已经听过你认真解释一次。",
+        "responseId": "loop2-response-mz-call"
+      },
+      {
+        "id": "mz-returned",
+        "characterId": "zhixia",
+        "priority": 5,
+        "kind": "returned",
+        "sourceChoices": [
+          "q1-w",
+          "q2-later",
+          "q3-z"
+        ],
+        "text": "你答应第二天来。我怎么连你真的坐到对面那一下都记得？",
+        "responseId": "loop2-response-mz-returned"
+      },
+      {
+        "id": "mz-waited",
+        "characterId": "zhixia",
+        "priority": 6,
+        "kind": "waited",
+        "sourceChoices": [
+          "q1-w",
+          "q2-later",
+          "q3-w"
+        ],
+        "text": "我好像为一句明天见空出过一个下午。这次，说你真的能做到的就好。",
+        "responseId": "loop2-response-mz-waited"
+      },
+      {
+        "id": "mw-romance",
+        "characterId": "wenxi",
+        "priority": 1,
+        "kind": "self-romance",
+        "sourceChoices": [
+          "q5-w",
+          "q6-commit"
+        ],
+        "text": "我总觉得，我们已经约好了一个不工作的下午。可我还没问你。",
+        "responseId": "loop2-response-mw-romance",
+        "requiredEndingId": "wenxi"
+      },
+      {
+        "id": "mw-shared",
+        "characterId": "wenxi",
+        "priority": 2,
+        "kind": "shared-romance",
+        "sourceChoices": [
+          "q5-both",
+          "q6-commit"
+        ],
+        "text": "有句话一直在脑子里：不是因为她点头，我才跟着点头。",
+        "responseId": "loop2-response-mw-shared",
+        "requiredEndingId": "together"
+      },
+      {
+        "id": "mw-arrived",
+        "characterId": "wenxi",
+        "priority": 3,
+        "kind": "arrived",
+        "sourceChoices": [
+          "q1-w"
+        ],
+        "text": "最轻的袋子给你，怕你下次不来了。这句……我是不是说过？",
+        "responseId": "loop2-response-mw-arrived"
+      },
+      {
+        "id": "mw-call",
+        "characterId": "wenxi",
+        "priority": 4,
+        "kind": "call",
+        "sourceChoices": [
+          "q1-z",
+          "q2-now"
+        ],
+        "text": "你还没拨电话，我好像就知道，你会认真解释而不是让我猜。",
+        "responseId": "loop2-response-mw-call"
+      },
+      {
+        "id": "mw-returned",
+        "characterId": "wenxi",
+        "priority": 5,
+        "kind": "returned",
+        "sourceChoices": [
+          "q1-z",
+          "q2-later",
+          "q3-w"
+        ],
+        "text": "你答应见面的时候，我居然觉得你真的会来。像已经等到过一次。",
+        "responseId": "loop2-response-mw-returned"
+      },
+      {
+        "id": "mw-waited",
+        "characterId": "wenxi",
+        "priority": 6,
+        "kind": "waited",
+        "sourceChoices": [
+          "q1-z",
+          "q2-later",
+          "q3-z"
+        ],
+        "text": "如果明天来不了，别把明天留给我猜。我不知道为什么这么想对你说。",
+        "responseId": "loop2-response-mw-waited"
+      }
+    ],
+    "limitations": [
+      "Graph reachability is authoring verification, not runtime gameplay or human enjoyment evidence.",
+      "Consent outcomes in this bounded chapter are authored responses grounded in attention and disclosure, not numerical affinity thresholds.",
+      "No extra art generation, mask processing, or implementation is authorized by this story-only checkpoint.",
+      "The previous implementation test draft is provisional and must be revised after story approval.",
+      "sourceChoices must all match the same completed loop; romantic memories additionally require requiredEndingId, never invitation alone.",
+      "This is an adult multi-heroine romance text game with individual and shared romantic routes. Replay supports intimacy and character initiative, not a morality quiz or a separate mystery game.",
+      "characterAnswers and openReasons preserve actual invitation answers even when no romantic relationship begins; responseIds are authoring contracts, not proof of runtime wiring."
+    ],
+    "characterAnswers": [
+      {
+        "characterId": "zhixia",
+        "yesResponseId": "answer-zhixia-yes",
+        "pendingResponseId": "answer-zhixia-pending",
+        "notAskedResponseId": "answer-zhixia-not-asked",
+        "yesText": "这次不是顺路了？那我也给你留一个不营业的晚上。",
+        "pendingText": "我想先知道你是不是认真的。今天不用急着给我们取名字。"
+      },
+      {
+        "characterId": "wenxi",
+        "yesResponseId": "answer-wenxi-yes",
+        "pendingResponseId": "answer-wenxi-pending",
+        "notAskedResponseId": "answer-wenxi-not-asked",
+        "yesText": "不是作为画师和模特。下次见我，这个你要听懂。",
+        "pendingText": "我还没有准备好给这样的答案。让我自己想清楚，再告诉你。"
+      }
+    ],
+    "openReasons": [
+      {
+        "id": "player-slow",
+        "text": "是你想把步子放慢。她们保留刚才各自的真实回答，不把你的犹豫写成她们拒绝。"
+      },
+      {
+        "id": "no-invite",
+        "text": "你今天没有提出恋爱邀请；说清楚当下能给出的关系，不让任何人无限等待。"
+      },
+      {
+        "id": "consent-declined-or-pending",
+        "text": "被邀请的人明确拒绝或还没准备好。接受她的回答；旁人愿意也不能替她作决定。"
+      },
+      {
+        "id": "partial-shared-consent",
+        "text": "共同邀请中只有一人愿意。两人的回答分别保留，本次不建立共同关系，也不擅自转成个人线。"
+      }
+    ],
+    "q3Callbacks": [
+      {
+        "choiceId": "q3-z",
+        "characterId": "wenxi",
+        "responseId": "q3-callback-wenxi",
+        "text": "闻溪发来一张重新装裱的画角：“下午我把画安顿好了。二十分钟模特的位置先欠着，下次别拿加班来顶。”她继续布展，没有被写成已得到陪伴。",
+        "waitedSourceChoices": [
+          "q1-z",
+          "q2-later",
+          "q3-z"
+        ],
+        "waitedText": "闻溪：“椅子空了二十分钟。下次来不了，提前说。我会继续画，但不会替你把约会也画完。”"
+      },
+      {
+        "choiceId": "q3-w",
+        "characterId": "zhixia",
+        "responseId": "q3-callback-zhixia",
+        "text": "知夏发来新菜单的角落：“这杯没放菜单上。你今天没尝到，下次给你留一次挑剔的机会。”她照常经营新店，未到场不被写成拒绝。",
+        "waitedSourceChoices": [
+          "q1-w",
+          "q2-later",
+          "q3-w"
+        ],
+        "waitedText": "知夏：“说好今天坐一会儿，我给你空了位置。店我照常开，但下次你也得把自己的时间留出来。”"
+      }
+    ],
+    "secondLoop": {
+      "responseEvents": [
+        {
+          "eventId": "loop2-zhixia-early",
+          "characterId": "zhixia",
+          "beforeNodeId": "q1",
+          "memoryTemplateIds": [
+            "mz-romance",
+            "mz-shared",
+            "mz-arrived",
+            "mz-call",
+            "mz-returned",
+            "mz-waited"
+          ]
+        },
+        {
+          "eventId": "loop2-wenxi-early",
+          "characterId": "wenxi",
+          "beforeNodeId": "q2",
+          "memoryTemplateIds": [
+            "mw-romance",
+            "mw-shared",
+            "mw-arrived",
+            "mw-call",
+            "mw-returned",
+            "mw-waited"
+          ]
+        }
+      ],
+      "decisionOverrides": [
+        {
+          "nodeId": "q4",
+          "title": "我们好像已经喜欢过一次",
+          "choices": [
+            {
+              "id": "q4-all",
+              "label": "说出重开，也说清这次想怎样靠近两人",
+              "consequence": "两人分别听见重开经历、你仍将在周日离开的安排以及当下的感情。有时间考虑自己的下一次邀请。"
+            },
+            {
+              "id": "q4-private",
+              "label": "承认我们都记得，完整解释先留给下午相处的人",
+              "consequence": "不否认共同记忆；只向下午相处的人完整说明重开、离开与感情。另一人的片段记忆不等于知晓车票和私密谈话，仍可暂缓恋爱回答。"
+            }
+          ]
+        }
+      ],
+      "initiatives": [
+        {
+          "eventId": "loop2-zhixia-invite",
+          "characterId": "zhixia",
+          "afterNodeId": "q3",
+          "memoryTemplateIds": [
+            "mz-romance",
+            "mz-shared",
+            "mz-arrived",
+            "mz-call",
+            "mz-returned",
+            "mz-waited"
+          ],
+          "text": "知夏主动把闭店后的半小时留出来：“这次我先问，你想不想来见我？不用帮忙，也不用顺路。来不了，直接告诉我。”"
+        },
+        {
+          "eventId": "loop2-wenxi-invite",
+          "characterId": "wenxi",
+          "afterNodeId": "q3",
+          "memoryTemplateIds": [
+            "mw-romance",
+            "mw-shared",
+            "mw-arrived",
+            "mw-call",
+            "mw-returned",
+            "mw-waited"
+          ],
+          "text": "闻溪先发来一个画室的位置：“这次不等你说下次了。有张新画想第一个给你看。如果你来，我想听的也不只是工作意见。”"
+        }
+      ]
+    }
+  },
+  "proseSource": "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-bible.md",
+  "proseScenes": [
+    "prologue-Friday-1750",
+    "q1-z-result",
+    "q1-w-result",
+    "q2-now-zhixia",
+    "q2-now-wenxi",
+    "q2-later-zhixia",
+    "q2-later-wenxi",
+    "q3-z-result",
+    "q3-w-result",
+    "q3-callback-zhixia",
+    "q3-callback-wenxi",
+    "q4-all-result",
+    "q4-private-zhixia",
+    "q4-private-wenxi",
+    "q5-z-answer",
+    "q5-w-answer",
+    "q5-both-answers",
+    "q5-none-response",
+    "q6-commit-result",
+    "q6-slow-result",
+    "ending-zhixia",
+    "ending-wenxi-portrait",
+    "ending-wenxi-no-portrait",
+    "ending-together",
+    "ending-open-player-slow",
+    "ending-open-no-invite",
+    "ending-open-consent-declined-or-pending",
+    "ending-open-partial-shared-consent",
+    "rewind-Sunday-2259",
+    "loop2-response-mz-romance",
+    "loop2-response-mz-shared",
+    "loop2-response-mz-arrived",
+    "loop2-response-mz-call",
+    "loop2-response-mz-returned",
+    "loop2-response-mz-waited",
+    "loop2-response-mw-romance",
+    "loop2-response-mw-shared",
+    "loop2-response-mw-arrived",
+    "loop2-response-mw-call",
+    "loop2-response-mw-returned",
+    "loop2-response-mw-waited",
+    "loop2-zhixia-invite",
+    "loop2-wenxi-invite"
+  ]
+}

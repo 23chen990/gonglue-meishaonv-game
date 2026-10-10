@@ -1,0 +1,34 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-qa.test.ts (3 tests | 1 failed | 2 skipped) 239ms
+     × validates the current declared graph without recycling historical counts or reviewer approval 238ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-qa.test.ts > QA tool provenance and finite scope > validates the current declared graph without recycling historical counts or reviewer approval
+Error: Command failed: /usr/local/bin/node --import tsx /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/tools/validate-story.ts
+/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/tools/validate-story.ts:14
+if (paths.length !== 128 || Object.keys(count(paths.map(path => path.endingId))).length !== 4 || memories.length !== 12) throw new Error('Story coverage is incomplete.');
+                                                                                                                               ^
+
+Error: Story coverage is incomplete.
+    at <anonymous> (/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/tools/validate-story.ts:14:128)
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.14.0
+
+ ❯ <anonymous> ../../../../tools/validate-story.ts:14:128
+ ❯ tests/romance-qa.test.ts:14:29
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  15:15:56
+   Duration  537ms (transform 92ms, setup 0ms, import 167ms, tests 239ms, environment 0ms)
+

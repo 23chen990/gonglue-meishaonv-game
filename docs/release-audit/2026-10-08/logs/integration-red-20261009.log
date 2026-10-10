@@ -1,0 +1,178 @@
+
+ RUN  v4.1.11 /Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game
+
+ ❯ tests/romance-engine.test.ts (21 tests | 6 failed) 30ms
+     × preserves read state collected after a checkpoint when restoring the branch 5ms
+     × rejects a saved ending whose collection omits the rendered ending 2ms
+     × rejects saved previous choices that are not a legal completed route 2ms
+     × requires explicit opt-in for a memory-only session and never writes the save 0ms
+     × keeps an existing valid save unchanged during an explicit temporary session 0ms
+     × blocks a defective provider without persisting a fake prologue 0ms
+ ❯ tests/romance-content.test.ts (17 tests | 3 failed) 306ms
+     × does not claim the unselected character arrived when the callback is about her own work 3ms
+     × shows replay memories before the q1 and q2 decisions and gives q4 a replay conversation 0ms
+     × is deterministic and exposes an auditable catalog of authored variants 296ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > does not claim the unselected character arrived when the callback is about her own work
+AssertionError: expected '闻溪把椅子推到窗边，让你做二十分钟模特。你习惯性调整坐姿，她用笔尖制止你。…' not to contain '这次你真的来了'
+
+Expected: "这次你真的来了"
+Received: "闻溪把椅子推到窗边，让你做二十分钟模特。你习惯性调整坐姿，她用笔尖制止你。 “不要摆摄影师觉得好看的那个姿势。”她说，“像一个今天真的想待在这里的人。” 纸上的你肩膀有点松、眼神有点累。她看了一会儿：“因为你有点累。但不难看。” 她没有把画立刻送给你，只说：“下次来取。这是再见你一次的理由。” 你把昨晚答应闻溪的下午留了出来，这次你真的来了。 知夏发来新菜单的角落：“这杯没放菜单上。你今天没尝到，下次给你留一次挑剔的机会。”她照常经营新店，未到场不被写成拒绝。"
+
+ ❯ tests/romance-content.test.ts:79:38
+     77|     expect(unselectedAfterCall).not.toContain('这次你真的来了');
+     78|     expect(unselectedAfterLater).toContain('知夏发来');
+     79|     expect(unselectedAfterLater).not.toContain('这次你真的来了');
+       |                                      ^
+     80|   });
+     81|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > shows replay memories before the q1 and q2 decisions and gives q4 a replay conversation
+AssertionError: expected '周五 18:00，先赴谁的约。' to contain '已经很认真地约过我一次'
+
+Expected: "已经很认真地约过我一次"
+Received: "周五 18:00，先赴谁的约。"
+
+ ❯ tests/romance-content.test.ts:166:24
+    164|     const q2Decision = scene(['q1-z'], 'decision', 2, firstLoop).parag…
+    165|     const q4Replay = scene(['q1-z', 'q2-now', 'q3-z', 'q4-all'], 'resp…
+    166|     expect(q1Decision).toContain('已经很认真地约过我一次');
+       |                        ^
+    167|     expect(q2Decision).toContain('我总觉得，我们已经约好了一个不工作的下午');
+    168|     expect(q4Replay).toContain('重开');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/romance-content.test.ts > romance content contract > is deterministic and exposes an auditable catalog of authored variants
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/romance-content.test.ts:191:106
+    189|     expect(catalog.some((record) => record.id.includes('loop2') && rec…
+    190|     expect(catalog.some((record) => record.id.includes('loop2') && rec…
+    191|     expect(catalog.some((record) => record.id.startsWith('ending-') &&…
+       |                                                                                                          ^
+    192|   });
+    193|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/romance-engine.test.ts > RomanceEngine transactional state and persistence contract > preserves read state collected after a checkpoint when restoring the branch
+AssertionError: expected [ 'romance-story-v1:prologue-1', …(1) ] to deeply equal [ 'romance-story-v1:prologue-1', …(3) ]
+
+- Expected
++ Received
+
+  [
+    "romance-story-v1:prologue-1",
+    "romance-story-v1:q1-loop1",
+-   "romance-story-v1:response-1-loop1",
+-   "romance-story-v1:q2-loop1",
+  ]
+
+ ❯ tests/romance-engine.test.ts:234:41
+    232|
+    233|     expect(game.restoreCheckpoint(decisionIndex, token(game))).toBe(tr…
+    234|     expect(game.getState().readTextIds).toEqual(collectedReads);
+       |                                         ^
+    235|     expect(game.getState().history.at(-1)?.readTextIds).toEqual(collec…
+    236|     expect(game.isCurrentRead()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/romance-engine.test.ts > RomanceEngine transactional state and persistence contract > rejects a saved ending whose collection omits the rendered ending
+AssertionError: expected undefined to be 'save-corrupt' // Object.is equality
+
+- Expected:
+"save-corrupt"
+
++ Received:
+undefined
+
+ ❯ tests/romance-engine.test.ts:247:40
+    245|
+    246|     const rejected = new RomanceEngine(storage, makeProvider());
+    247|     expect(rejected.getNotice()?.code).toBe('save-corrupt');
+       |                                        ^
+    248|     expect(rejected.getState().phase).toBe('prologue');
+    249|     expect(storage.getItem(ROMANCE_SAVE_KEY)).toBe(JSON.stringify(forg…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/romance-engine.test.ts > RomanceEngine transactional state and persistence contract > rejects saved previous choices that are not a legal completed route
+AssertionError: expected undefined to be 'save-corrupt' // Object.is equality
+
+- Expected:
+"save-corrupt"
+
++ Received:
+undefined
+
+ ❯ tests/romance-engine.test.ts:268:40
+    266|
+    267|     const rejected = new RomanceEngine(storage, makeProvider());
+    268|     expect(rejected.getNotice()?.code).toBe('save-corrupt');
+       |                                        ^
+    269|     expect(storage.getItem(ROMANCE_SAVE_KEY)).toBe(JSON.stringify(forg…
+    270|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  tests/romance-engine.test.ts > RomanceEngine transactional state and persistence contract > requires explicit opt-in for a memory-only session and never writes the save
+TypeError: game.startTemporarySession is not a function
+ ❯ tests/romance-engine.test.ts:275:17
+    273|     const storage = new ThrowingReadStorage();
+    274|     const game = new RomanceEngine(storage, makeProvider());
+    275|     expect(game.startTemporarySession(token(game))).toBe(true);
+       |                 ^
+    276|     expect(game.getNotice()).toMatchObject({ code: 'session-only' });
+    277|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  tests/romance-engine.test.ts > RomanceEngine transactional state and persistence contract > keeps an existing valid save unchanged during an explicit temporary session
+TypeError: game.startTemporarySession is not a function
+ ❯ tests/romance-engine.test.ts:289:17
+    287|     const originalRaw = storage.getItem(ROMANCE_SAVE_KEY);
+    288|     const game = new RomanceEngine(storage, makeProvider());
+    289|     expect(game.startTemporarySession(token(game))).toBe(true);
+       |                 ^
+    290|     expect(game.continue(token(game))).toBe(true);
+    291|     expect(storage.getItem(ROMANCE_SAVE_KEY)).toBe(originalRaw);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  tests/romance-engine.test.ts > RomanceEngine transactional state and persistence contract > blocks a defective provider without persisting a fake prologue
+AssertionError: expected undefined to be 'provider-error' // Object.is equality
+
+- Expected:
+"provider-error"
+
++ Received:
+undefined
+
+ ❯ tests/romance-engine.test.ts:303:36
+    301|     };
+    302|     const game = new RomanceEngine(storage, brokenProvider);
+    303|     expect(game.getNotice()?.code).toBe('provider-error');
+       |                                    ^
+    304|     expect(storage.getItem(ROMANCE_SAVE_KEY)).toBeNull();
+    305|     expect(game.continue(token(game))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  9 failed | 29 passed (38)
+   Start at  14:23:40
+   Duration  542ms (transform 120ms, setup 0ms, import 186ms, tests 336ms, environment 0ms)
+

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "taskId": "story-audit",
+  "role": "EditorAgent",
+  "repository": "23chen990/gonglue-meishaonv-game",
+  "repoPath": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game",
+  "workspace": "/Users/kker/Documents/ChatGPT/妖怪夜市/runs/20260831-010324-village-south-text-v1/publication/gonglue-meishaonv-game/runs/20260831-010324-village-south-text-v1/workspace/game",
+  "baseCommit": "26b5481631aa396aac26a61de8bc9745a1599880",
+  "mode": "read-only",
+  "scope": [
+    "runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign",
+    "runs/20260831-010324-village-south-text-v1/workspace/game/src"
+  ],
+  "requirements": [
+    "Read actual story-bible.md, story-graph.json, story-validation.ts, schema, and default sources completely. Map EVERY authored scene/variant, choices, knowledge, timeline, items, promises and voice. Preserve established facts and existing user friendship-test edits. Identify only evidence-backed defects; never insert implementation-pack examples. Return Report JSON; include detailed ledgers/rewrite directions in summary if needed.",
+    "No file edits. You are not alone in the codebase; do not revert changes. Return only JSON matching Report from docs/release-audit/2026-10-08/coordination.ts; validate using Zod before returning. Use node --import tsx instead of tsx CLI if IPC blocked."
+  ],
+  "acceptance": [
+    "All six decisions plus prologue, outcomes, callbacks, endings, second-loop variants accounted for; precise source paths, scene IDs, quoted evidence for findings; complete actionable rewrites grounded in current characters."
+  ],
+  "outputPath": "final:Report JSON"
+}

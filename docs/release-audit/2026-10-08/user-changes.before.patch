@@ -1,0 +1,52 @@
+diff --git a/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.test.ts b/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.test.ts
+index f951714..b7f8db0 100644
+--- a/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.test.ts
++++ b/runs/20260831-010324-village-south-text-v1/planning/2026-10-01-life-redesign/story-validation.test.ts
+@@ -32,6 +32,10 @@ describe('story authoring contract (no game runtime)', () => {
+     story.title = '重开后，她们都记得我';
+     expect(RomanceStorySchema.safeParse(story).success).toBe(false);
+   });
++  it('keeps pure friendship as a real ending beside personal and shared romance', () => {
++    const story = raw();
++    expect(story.endings.map((ending: {id: string}) => ending.id)).toContain('friendship');
++  });
+   it('rejects a disclosure choice that is not in the story', () => {
+     const story = raw();
+     story.romanceEligibility.publicDisclosure = 'q4-nonexistent';
+@@ -60,11 +64,33 @@ describe('story authoring contract (no game runtime)', () => {
+   it('checks every authored combination and all four endings', async () => {
+     const { enumerateStoryPaths } = await api();
+     const paths = enumerateStoryPaths(RomanceStorySchema.parse(raw()));
+-    expect(paths).toHaveLength(128);
+-    expect(new Set(paths.map(p => p.choices.join('/'))).size).toBe(128);
+-    expect(new Set(paths.map(p => p.endingId))).toEqual(new Set(['zhixia', 'wenxi', 'together', 'open']));
++    expect(paths).toHaveLength(208);
++    expect(new Set(paths.map(p => p.choices.join('/'))).size).toBe(208);
++    expect(new Set(paths.map(p => p.endingId))).toEqual(new Set(['zhixia', 'wenxi', 'together', 'friendship', 'open']));
+     expect(paths.every(p => p.choices.length === 6)).toBe(true);
+   });
++  it('reaches a pure friendship choice without recording romantic consent or romantic memories', async () => {
++    const { traceStoryPath } = await api();
++    const trace = traceStoryPath(RomanceStorySchema.parse(raw()), ['q1-z', 'q2-now', 'q3-w', 'q4-all', 'q5-friends', 'q6-friends']);
++    expect(trace.endingId).toBe('friendship');
++    expect(trace.consent).toEqual({ zhixia: false, wenxi: false });
++    expect(trace.openReason).toBeNull();
++    expect(trace.memoryIds).toEqual({ zhixia: 'mz-friends', wenxi: 'mw-friends' });
++    expect(trace.responseIds).toEqual({ zhixia: 'answer-zhixia-not-asked', wenxi: 'answer-wenxi-not-asked' });
++    expect(trace.friendshipResponseIds).toEqual({ zhixia: 'friends-zhixia', wenxi: 'friends-wenxi' });
++  });
++  it('lets the player choose friendship after a romantic invitation', async () => {
++    const { traceStoryPath } = await api();
++    const trace = traceStoryPath(RomanceStorySchema.parse(raw()), ['q1-w', 'q2-now', 'q3-z', 'q4-all', 'q5-both', 'q6-friends']);
++    expect(trace.endingId).toBe('friendship');
++    expect(trace.consent).toEqual({ zhixia: true, wenxi: false });
++    expect(trace.friendshipResponseIds).toEqual({ zhixia: 'friends-zhixia', wenxi: 'friends-wenxi' });
++    expect(trace.memoryIds).toEqual({ zhixia: 'mz-friends', wenxi: 'mw-friends' });
++  });
++  it('does not offer a romantic confirmation after the player chose friendship only', async () => {
++    const { traceStoryPath } = await api();
++    expect(() => traceStoryPath(RomanceStorySchema.parse(raw()), ['q1-z', 'q2-now', 'q3-w', 'q4-all', 'q5-friends', 'q6-commit'])).toThrow(/unavailable/);
++  });
+   it('keeps a shared invitation with only one consent in the open ending', async () => {
+     const { traceStoryPath } = await api();
+     const trace = traceStoryPath(RomanceStorySchema.parse(raw()), ['q1-z', 'q2-now', 'q3-z', 'q4-all', 'q5-both', 'q6-commit']);
