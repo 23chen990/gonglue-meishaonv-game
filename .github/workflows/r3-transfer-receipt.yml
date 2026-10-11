@@ -1,0 +1,25 @@
+name: R3 source transfer receipt
+on:
+  push:
+    branches: [codex/four-heroine-r3-acceptance-20261012]
+    paths:
+      - .github/workflows/r3-transfer-receipt.yml
+      - delivery/r3/TRANSFER_CHECK.json
+permissions:
+  contents: read
+jobs:
+  receipt:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+      - name: Identify this as a transfer check, not game acceptance
+        run: echo 'Source transport receipt only. This does not validate the game.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r3-transfer-${{ github.run_id }}
+          path: delivery/r3/
+          if-no-files-found: error
+          retention-days: 7
