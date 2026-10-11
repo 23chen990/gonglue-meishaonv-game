@@ -1,0 +1,50 @@
+name: Four-heroine r3 acceptance
+on:
+  push:
+    branches: [codex/four-heroine-r3-acceptance-20261012]
+    paths:
+      - .github/workflows/four-heroine-r3.yml
+      - delivery/r3/READY.json
+      - delivery/r3/install.py
+      - runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine/**
+      - runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts
+      - runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+concurrency:
+  group: four-heroine-r3-acceptance
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: codex/four-heroine-r3-acceptance-20261012
+          fetch-depth: 1
+      - name: Check delivery is complete
+        id: ready
+        run: |
+          if test -f delivery/r3/READY.json; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'Source transfer is not complete. No acceptance result is claimed.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Install hash-verified source and default entry
+        if: steps.ready.outputs.ready == 'true'
+        run: python3 delivery/r3/install.py
+      - name: Run acceptance and retain evidence
+        if: steps.ready.outputs.ready == 'true'
+        run: bash runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine/tools/ci-acceptance.sh
+      - name: Publish source and evidence to the isolated branch only
+        if: always() && steps.ready.outputs.ready == 'true'
+        run: |
+          test "$GITHUB_REF" = 'refs/heads/codex/four-heroine-r3-acceptance-20261012'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts runs/20260831-010324-village-south-text-v1/workspace/game/index.html package.json AGENTS.md HANDOFF.md README.md START_HERE.md docs/history/pre-r3
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(r3): materialize canonical source and record runner evidence [skip ci]'
+            git push origin HEAD:refs/heads/codex/four-heroine-r3-acceptance-20261012
+          fi
