@@ -9,6 +9,8 @@ on:
       - runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine/**
       - runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts
       - runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+      - package.json
+      - pnpm-lock.yaml
 concurrency:
   group: four-heroine-r3-acceptance
   cancel-in-progress: false
@@ -21,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: codex/four-heroine-r3-acceptance-20261012
+          ref: ${{ github.sha }}
           fetch-depth: 1
       - name: Check delivery is complete
         id: ready
@@ -29,22 +31,42 @@ jobs:
           if test -f delivery/r3/READY.json; then
             echo 'ready=true' >> "$GITHUB_OUTPUT"
           else
-            echo 'Source transfer is not complete. No acceptance result is claimed.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Source transfer is not complete. No game acceptance result is claimed.' >> "$GITHUB_STEP_SUMMARY"
           fi
-      - name: Install hash-verified source and default entry
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        if: steps.ready.outputs.ready == 'true'
+        with:
+          node-version: '22.16.0'
+      - name: Install hash-verified source and actual default entry once
+        id: install
         if: steps.ready.outputs.ready == 'true'
         run: python3 delivery/r3/install.py
-      - name: Run acceptance and retain evidence
+      - name: Run source, repository and native browser acceptance
         if: steps.ready.outputs.ready == 'true'
         run: bash runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine/tools/ci-acceptance.sh
-      - name: Publish source and evidence to the isolated branch only
+      - name: Retain source and evidence even when a test fails
         if: always() && steps.ready.outputs.ready == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: gonglue-r3-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine/
+            runs/20260831-010324-village-south-text-v1/workspace/game/dist/
+            runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts
+            runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+            START_HERE.md
+            package.json
+            docs/history/pre-r3/
+      - name: Publish decoded source to the isolated branch only on first installation
+        if: always() && steps.install.outputs.installed == 'true'
         run: |
           test "$GITHUB_REF" = 'refs/heads/codex/four-heroine-r3-acceptance-20261012'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts runs/20260831-010324-village-south-text-v1/workspace/game/index.html package.json AGENTS.md HANDOFF.md README.md START_HERE.md docs/history/pre-r3
+          git add -- delivery/r3/INSTALLED.json runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts runs/20260831-010324-village-south-text-v1/workspace/game/index.html package.json AGENTS.md HANDOFF.md README.md START_HERE.md docs/history/pre-r3
           if ! git diff --cached --quiet; then
-            git commit -m 'build(r3): materialize canonical source and record runner evidence [skip ci]'
+            git commit -m 'build(r3): install canonical four-heroine source and preserve first-run evidence [skip ci]'
             git push origin HEAD:refs/heads/codex/four-heroine-r3-acceptance-20261012
           fi
