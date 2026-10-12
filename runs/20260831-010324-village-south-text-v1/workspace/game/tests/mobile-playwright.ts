@@ -3,6 +3,9 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium, type Browser, type Page } from '@playwright/test';
 
+// Legacy Village South test ONLY. The r4.1 default game does not expose this API.
+// The unknown bridge keeps this archived test type-checkable without declaring a
+// runtime Window global that would falsely promise __NARRATIVE_TEST__ exists.
 interface NarrativeApi {
   reset(): unknown;
   revealFamilyCondition(): unknown;
@@ -79,7 +82,7 @@ async function main() {
       await page.goto(preview.url, { waitUntil: 'networkidle' });
       await page.waitForFunction(() => Boolean((window as Window & { __NARRATIVE_TEST__?: unknown }).__NARRATIVE_TEST__));
       await page.evaluate(() => {
-        const api = (window as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__;
+        const api = (window as unknown as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__;
         api.reset();
         api.revealFamilyCondition();
         api.selectKeepsake('keepsake_book');
@@ -93,11 +96,11 @@ async function main() {
       screenshots.push(relativeScreenshot);
 
       if (viewport.width === 390) {
-        const before = await page.evaluate(() => (window as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.getState());
-        await page.evaluate(() => (window as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.choose('event_01_choice_a'));
-        const afterChoice = await page.evaluate(() => (window as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.getState());
+        const before = await page.evaluate(() => (window as unknown as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.getState());
+        await page.evaluate(() => (window as unknown as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.choose('event_01_choice_a'));
+        const afterChoice = await page.evaluate(() => (window as unknown as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.getState());
         await page.reload({ waitUntil: 'networkidle' });
-        const afterReload = await page.evaluate(() => (window as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.getState());
+        const afterReload = await page.evaluate(() => (window as unknown as Window & { __NARRATIVE_TEST__: NarrativeApi }).__NARRATIVE_TEST__.getState());
         const recoveryPassed = afterChoice.stats.skill === before.stats.skill + 2
           && afterChoice.screen === 'result'
           && afterChoice.completedChoices === 1
