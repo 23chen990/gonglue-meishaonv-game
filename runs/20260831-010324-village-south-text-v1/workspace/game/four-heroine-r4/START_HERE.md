@@ -20,4 +20,4 @@
 
 **不要直接编辑HTML、Markdown或runtime.mjs。** 改JSON或tools中的作者源后重新构建、重新测试。不得把旧COLD作为入口；现在从ENTRY_WAKE开始。
 
-GitHub仍未接入本版，不要打开main旧游戏来验收r4。接手开发先读 `docs/CODEX_HANDOFF.md`。
+r4.1 已接入 **开发分支** `feat/gonglue-r4-1-editorial-20261012`，对应草稿 PR #2；**main 未合并**，不要打开 main 的旧游戏来验收。新接手先读 `docs/R41_QA.md`、`docs/R41_EDITORIAL_REVIEW.md` 和 `docs/CODEX_HANDOFF.md`，再核对 HEAD。
