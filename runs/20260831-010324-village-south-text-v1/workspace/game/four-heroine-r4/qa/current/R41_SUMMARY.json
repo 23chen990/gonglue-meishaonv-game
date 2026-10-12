@@ -1,0 +1,19 @@
+{
+  "version": "r4.1-editorial",
+  "storySha256": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+  "htmlSha256": "73787c527e1dbe2677d44eada486b4a3e9a2469f9e294c981f0625ac9e034f5e",
+  "sceneCount": 225,
+  "choices": 737,
+  "conditionalBlocks": 565,
+  "textEdits": 63,
+  "tests": {
+    "npmVerify": "PASS",
+    "offlineFirstRun12": "PASS",
+    "fullRoutePriorSameHash": "PASS_WITH_PROVENANCE",
+    "fullRouteLatestRun": "TIMEOUT",
+    "realHttp": "BLOCKED",
+    "realPhones": "NOT_TESTED",
+    "humanPlay": "NOT_TESTED"
+  },
+  "releaseApproved": false
+}

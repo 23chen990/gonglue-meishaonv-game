@@ -1,0 +1,856 @@
+{
+  "version": "revision-r4.0",
+  "axes": [
+    "t",
+    "s",
+    "l",
+    "g",
+    "xu",
+    "lu",
+    "visibility",
+    "bias"
+  ],
+  "modules": [
+    {
+      "id": "EP_t_independent",
+      "axis": "t",
+      "value": "independent",
+      "title": "自己的歌",
+      "body": [
+        {
+          "id": "EP_t_independent.r2.001",
+          "speaker": "N",
+          "text": "映雪请阿衡把确认过的演出版重新导出，封面只放自己的名字。小场地试唱那晚，返听又闹了一次脾气。她笑着打了两拍，自己把歌唱下去。原著删掉的那首歌，这次在她的曲目单上。",
+          "textHash": "7261e1d58ad7852a"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_t",
+          "independent"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_t_negotiated",
+      "axis": "t",
+      "value": "negotiated",
+      "title": "谈过条件的舞台",
+      "body": [
+        {
+          "id": "EP_t_negotiated.r2.001",
+          "speaker": "N",
+          "text": "修改后的条款和曲目单放在一起。彩排有人要挪走她的独唱段，她直接翻到已确认的那一页。最后她照原样唱完，走下台才朝你举了举那张纸：“这回真有用。”",
+          "textHash": "9b618a3e0a6bda06"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_t",
+          "negotiated"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_t_chosen_duet",
+      "axis": "t",
+      "value": "chosen_duet",
+      "title": "她选的合唱",
+      "body": [
+        {
+          "id": "EP_t_chosen_duet.r2.001",
+          "speaker": "N",
+          "text": "双人版本进入正式排练。陆景行试着加了一句和声，映雪听完摇头，又自己示范一遍。最终曲目单分别写了两人的名字；那段没有让出去的独唱，被她留到了最后。",
+          "textHash": "24a3fc0737b1883d"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_t",
+          "chosen_duet"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_t_intentional_pause",
+      "axis": "t",
+      "value": "intentional_pause",
+      "title": "先不登台",
+      "body": [
+        {
+          "id": "EP_t_intentional_pause.r2.001",
+          "speaker": "N",
+          "text": "暂停安排确认后，映雪关掉了这一轮演出的闹钟。她有一晚还是习惯性醒来，伸手抓手机，又放下。隔天她把新写的两行谱留在桌上，没有急着发给任何人审批。",
+          "textHash": "9b16d9e1c0efe0c0"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_t",
+          "intentional_pause"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_t_restricted",
+      "axis": "t",
+      "value": "restricted",
+      "title": "还没唱完",
+      "body": [
+        {
+          "id": "EP_t_restricted.r2.001",
+          "speaker": "N",
+          "text": "你们没有拿到能改变节目安排的有效版本。演出仍按旧单进行，她想唱的歌没被排进去。收工时她把曲谱卷起来，骂了一句“烦死了”，但没有扔掉。",
+          "textHash": "100f115c0db3d3d8"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_t",
+          "restricted"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_s_cooperative",
+      "axis": "s",
+      "value": "cooperative",
+      "title": "三排座位",
+      "body": [
+        {
+          "id": "EP_s_cooperative.r2.001",
+          "speaker": "N",
+          "text": "你们实际试过的小场地安排通过了。第一场开门，清辞把三排椅子排好，发现最后一把晃腿，自己垫了张旧票。灯暗下来以后，她终于坐着看完一整段节目。",
+          "textHash": "742c906984d02aa9"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_s",
+          "cooperative"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_s_shared_use",
+      "axis": "s",
+      "value": "shared_use",
+      "title": "留出的夜场",
+      "body": [
+        {
+          "id": "EP_s_shared_use.r2.001",
+          "speaker": "N",
+          "text": "试过的共享时段写进日程。白天的队伍刚走，清辞和搭档就推进三排椅子；时间不宽裕，节目却真的开了门。她把可用的几晚圈起来，开始约下一场。",
+          "textHash": "a371f07619d73da6"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_s",
+          "shared_use"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_s_residency",
+      "axis": "s",
+      "value": "residency",
+      "title": "换一扇门",
+      "body": [
+        {
+          "id": "EP_s_residency.r2.001",
+          "speaker": "N",
+          "text": "勘过的新空间确定下来。清辞第一次搬灯架过去，嫌门窄，折腾半天才进得去。旧门牌没跟来，她准备的节目却跟来了。试灯那晚，她拍了一张亮起来的空场。",
+          "textHash": "331a5e6dd6a88cee"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_s",
+          "residency"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_s_chosen_exit",
+      "axis": "s",
+      "value": "chosen_exit",
+      "title": "把钥匙交还",
+      "body": [
+        {
+          "id": "EP_s_chosen_exit.r2.001",
+          "speaker": "N",
+          "text": "交接清单上的最后一项被接收人勾掉。清辞把旧钥匙交回去，第二天醒来，手机没有催她去开门。她愣了一会儿，才给自己买了一张只需要坐在观众席的票。",
+          "textHash": "2bf9277bcffc28d1"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_s",
+          "chosen_exit"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_s_displaced",
+      "axis": "s",
+      "value": "displaced",
+      "title": "还没轮到她",
+      "body": [
+        {
+          "id": "EP_s_displaced.r2.001",
+          "speaker": "N",
+          "text": "新的巡演占用了原本想留给小剧场的时段。这一轮没做出能落地的替代安排，三排旧椅子被收进库房。清辞自己去数了一遍，没有把失望说成“也挺好”。",
+          "textHash": "8909f6fb03ba0a9a"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_s",
+          "displaced"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_l_fellowship",
+      "axis": "l",
+      "value": "fellowship",
+      "title": "寄出去的申请",
+      "body": [
+        {
+          "id": "EP_l_fellowship.r2.001",
+          "speaker": "N",
+          "text": "补齐的申请材料得到受理，见月把回执打印出来，夹进器材包。后来项目通知她进入下一轮，她先检查日期，再重新算预算。她把下一轮要补的东西圈出来，准备接着做。",
+          "textHash": "84903b1471f16c62"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_l",
+          "fellowship"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_l_chosen_stay",
+      "axis": "l",
+      "value": "chosen_stay",
+      "title": "她决定留下",
+      "body": [
+        {
+          "id": "EP_l_chosen_stay.r2.001",
+          "speaker": "N",
+          "text": "见月按确认过的本地计划开始拍摄。她带着清单走了几个不怎么上镜的地方，有一天等了一下午，只得到十秒能用的声音。回去看片尾，她把自己的名字认真放上去。",
+          "textHash": "4ae267cf946c410e"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_l",
+          "chosen_stay"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_l_release_film",
+      "axis": "l",
+      "value": "release_film",
+      "title": "片尾写上她",
+      "body": [
+        {
+          "id": "EP_l_release_film.r2.001",
+          "speaker": "N",
+          "text": "你们实际准备过的独立样片发出了展映申请。见月没有天天刷新邮箱，她继续剪另一个版本。收到收件确认那天，她只发了两个字：“到了。”随后又补了一张打错字的截图。",
+          "textHash": "4f8928ef995cf120"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_l",
+          "release_film"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_l_authorized_cut",
+      "axis": "l",
+      "value": "authorized_cut",
+      "title": "保留与删去",
+      "body": [
+        {
+          "id": "EP_l_authorized_cut.r2.001",
+          "speaker": "N",
+          "text": "重新核对的授权页和成片一起归档。有一段很好看的私人镜头没有留下，空出来的几秒换成了现场声。见月看完两遍，说这一版短了，但不用再躲着片中人放映。",
+          "textHash": "9d18ee2e67792498"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_l",
+          "authorized_cut"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_l_silenced",
+      "axis": "l",
+      "value": "silenced",
+      "title": "没寄出的那一版",
+      "body": [
+        {
+          "id": "EP_l_silenced.r2.001",
+          "speaker": "N",
+          "text": "独立材料没有真正发出，也没有完成替代作品。见月的文件仍放在原项目目录里。她点开过草稿，改了一个字又关上；这次没有收到新回执。她的名字还没出现在独立展映的名单上。",
+          "textHash": "1753282f8049f5c1"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_l",
+          "silenced"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_g_independent",
+      "axis": "g",
+      "value": "independent",
+      "title": "自己签下的决定",
+      "body": [
+        {
+          "id": "EP_g_independent.r2.001",
+          "speaker": "N",
+          "text": "她准备并提交的独立方案进入新一轮执行。第一次会议，晚棠发现别人真会反对她，脸色不好看，还是把修改意见记下了。散会后她拍来一页改得很乱的安排：“现在连烂摊子都是我自己的。”",
+          "textHash": "0efe952aa48dead2"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_g",
+          "independent"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_g_bounded_partner",
+      "axis": "g",
+      "value": "bounded_partner",
+      "title": "把条件讲在前面",
+      "body": [
+        {
+          "id": "EP_g_bounded_partner.r2.001",
+          "speaker": "N",
+          "text": "确认后的权限表发到了相关人手里。再有人把一句“顾小姐的意思”放进会议纪要，晚棠直接划掉，写清是谁作的决定。她继续留在合作里，也继续为自己真正签过的部分负责。",
+          "textHash": "ef1ad282184b7525"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_g",
+          "bounded_partner"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_g_public_account",
+      "axis": "g",
+      "value": "public_account",
+      "title": "她把话说完",
+      "body": [
+        {
+          "id": "EP_g_public_account.r2.001",
+          "speaker": "N",
+          "text": "实际核对过的说明公开了。评论没有整齐地站到她这边，但那几笔责任终于分开写清。晚棠读完反对意见，关掉屏幕去吃饭；第二天再回来，把该答的那一条补上。",
+          "textHash": "e17d0aa850893c31"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_g",
+          "public_account"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_g_leave_family",
+      "axis": "g",
+      "value": "leave_family",
+      "title": "不再借那张名片",
+      "body": [
+        {
+          "id": "EP_g_leave_family.r2.001",
+          "speaker": "N",
+          "text": "离开的交接做完，她把旧名片从包里取出来。第一次按新身份约见，对方没有立刻给她时间。晚棠盯了回复几秒，重新挑了两个日期，自己发过去。",
+          "textHash": "8c64c790e67937b5"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_g",
+          "leave_family"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_g_scapegoated",
+      "axis": "g",
+      "value": "scapegoated",
+      "title": "还没被听完",
+      "body": [
+        {
+          "id": "EP_g_scapegoated.r2.001",
+          "speaker": "N",
+          "text": "这一轮没把她的参与范围讲清，公开说法仍把过多责任留给了她。晚棠保存着手头材料，有人不肯听完就挂了电话。她很生气，还是重新整理了材料，准备下一次再说明。",
+          "textHash": "330d555252c5260b"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_g",
+          "scapegoated"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_xu_independent",
+      "axis": "xu",
+      "value": "independent",
+      "title": "用自己的名字回信",
+      "body": [
+        {
+          "id": "EP_xu_independent.r2.001",
+          "speaker": "N",
+          "text": "许照收到的下一份询价直接写给许照。你把做过的样例附上，重新报了价，对方问能否调整交付范围。你谈完才笑出来：原著里负责背锅的名字，现在在报价单上。",
+          "textHash": "6b80e44e48dde882"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_xu",
+          "independent"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_xu_partner",
+      "axis": "xu",
+      "value": "partner",
+      "title": "能谈分工的人",
+      "body": [
+        {
+          "id": "EP_xu_partner.r2.001",
+          "speaker": "N",
+          "text": "新的合作安排把你单列出来，现场负责人把现场核对的分工写在你名下。陆景行也得先问你能不能排出那一段时间。你们还会争顺序，但没人能再把你的部分叫成“顺手帮忙”。",
+          "textHash": "d862205fa7a50833"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_xu",
+          "partner"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_xu_backstage",
+      "axis": "xu",
+      "value": "backstage",
+      "title": "幕后也可以是选择",
+      "body": [
+        {
+          "id": "EP_xu_backstage.r2.001",
+          "speaker": "N",
+          "text": "你把确认过的值班安排存好，下一场照自己的检查表开工。新来的临时工问设备进场走哪条通道，你带他看了一遍。做过什么、谁确认过，都写进当天的记录。",
+          "textHash": "b2ae7b9572c44ee8"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_xu",
+          "backstage"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_xu_rebuilding",
+      "axis": "xu",
+      "value": "rebuilding",
+      "title": "慢一点重新开始",
+      "body": [
+        {
+          "id": "EP_xu_rebuilding.r2.001",
+          "speaker": "N",
+          "text": "你没有立刻接新项目。结算与更正都留好了，缺的技能列了三项，先练其中一项。当天做出来的样例不漂亮，你重做了一遍，保存时没有再把作者名留空。",
+          "textHash": "5d1bdfd804aad26f"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_xu",
+          "rebuilding"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_xu_outside",
+      "axis": "xu",
+      "value": "outside",
+      "title": "离开之后仍有路",
+      "body": [
+        {
+          "id": "EP_xu_outside.r2.001",
+          "speaker": "N",
+          "text": "旧工作牌已交回，结算已确认。你把下一份工作的时间重新谈了一次，回信不用再抄送栖光。晚上经过北岸，你没有进去签到，只给相识的人留了一句有空再见。",
+          "textHash": "5c61415bdfa7b37b"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_xu",
+          "outside"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_lu_ally",
+      "axis": "lu",
+      "value": "ally",
+      "title": "他也会需要搭档",
+      "body": [
+        {
+          "id": "EP_lu_ally.r2.001",
+          "speaker": "N",
+          "text": "你们实际试过的合作继续往前。陆景行发新安排时，把你负责的一段直接列出来。有人越过你问他，他把消息转回：“这一段找许照，我不替他答。”",
+          "textHash": "e479a5aadfff7fb9"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_lu",
+          "ally"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_lu_rival",
+      "axis": "lu",
+      "value": "rival",
+      "title": "各自把事做好",
+      "body": [
+        {
+          "id": "EP_lu_rival.r2.001",
+          "speaker": "N",
+          "text": "同一份邀约，你们各交了自己的版本。陆景行没有故意让步，你也没拿原著当获胜通知。后来的彩排，他听完你的改法，沉默几秒，只说下次他要再试一版。",
+          "textHash": "dc3af29a5ba8d226"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_lu",
+          "rival"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_lu_distant",
+      "axis": "lu",
+      "value": "distant",
+      "title": "知道彼此，保持距离",
+      "body": [
+        {
+          "id": "EP_lu_distant.r2.001",
+          "speaker": "N",
+          "text": "必要的资料已经各自交清。后来公开场合碰见，你们点头，谈完需要对接的部分就各走各的。再碰见时也会打招呼，只是没有另约私人聚会。",
+          "textHash": "2a9ca9ffd5db1a0e"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_lu",
+          "distant"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_lu_independent",
+      "axis": "lu",
+      "value": "independent",
+      "title": "故事不只围着他转",
+      "body": [
+        {
+          "id": "EP_lu_independent.r2.001",
+          "speaker": "N",
+          "text": "那份分开署名的安排开始执行。有人想把整场都介绍成陆景行的个人故事，他自己照着新单把其他参与者念出来。你们都还在场，却不再只有一个人的名字能留下。",
+          "textHash": "9c0b5de1e65fb8f3"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_lu",
+          "independent"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_lu_reconciled",
+      "axis": "lu",
+      "value": "reconciled",
+      "title": "说清之后还能合作",
+      "body": [
+        {
+          "id": "EP_lu_reconciled.r2.001",
+          "speaker": "N",
+          "text": "那次不舒服的来回已经当面说开。陆景行把新的合作安排发给你，没有加一句“就当以前没发生”。你改了一处再回过去，他认真答了；这次从具体事情继续。",
+          "textHash": "8875b81fe9044197"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_lu",
+          "reconciled"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_visibility_open",
+      "axis": "visibility",
+      "value": "open",
+      "title": "当事人知道的公开",
+      "body": [
+        {
+          "id": "EP_visibility_open.r2.001",
+          "speaker": "N",
+          "text": "最后一次说明在相关当事人都在的场合完成。你把真实名字说全，没有把谁没答应的部分补成答应。散场时，每个人都按自己亲口给出的答案安排下一次。",
+          "textHash": "b4003371791a1d82"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_visibility",
+          "open"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_visibility_private",
+      "axis": "visibility",
+      "value": "private",
+      "title": "不对观众宣布",
+      "body": [
+        {
+          "id": "EP_visibility_private.r2.001",
+          "speaker": "N",
+          "text": "你在私下把已有关系分别说清，没有把这些对话放进宣传材料。外面的人仍不知道所有细节；真正需要作决定的人，听到的是你亲口说出的范围。",
+          "textHash": "183894adb5a186c5"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_visibility",
+          "private"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_visibility_unresolved",
+      "axis": "visibility",
+      "value": "unresolved",
+      "title": "分别亮起的对话框",
+      "body": [
+        {
+          "id": "EP_visibility_unresolved.r2.001",
+          "speaker": "N",
+          "text": "你没有完成最后的集中说明。有些话已经亲口讲过，有些仍没讲。你来回看着那几段聊天，知道有些地方还得自己当面解释。",
+          "textHash": "dcf4f69cce2e7be5"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_visibility",
+          "unresolved"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_visibility_work",
+      "axis": "visibility",
+      "value": "work",
+      "title": "作品留在台上",
+      "body": [
+        {
+          "id": "EP_visibility_work.r2.001",
+          "speaker": "N",
+          "text": "公开展示的是工作成果。私人关系的说明在台下完成，没有混进宣传口径。下一次见谁、怎么见，仍按各自实际答过的话继续。",
+          "textHash": "a425b4d5a86d4ca8"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_visibility",
+          "work"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_visibility_closed",
+      "axis": "visibility",
+      "value": "closed",
+      "title": "先把承诺收好",
+      "body": [
+        {
+          "id": "EP_visibility_closed.r2.001",
+          "speaker": "N",
+          "text": "你明确结束了不准备继续的恋爱安排，没有把删除聊天当作告别。手机里仍留着过去的对话，今晚不再靠一句“下次一定”让谁空出时间。",
+          "textHash": "486aaacab226d257"
+        }
+      ],
+      "when": {
+        "eq": [
+          "final_visibility",
+          "closed"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_bias_t",
+      "axis": "bias",
+      "value": "t",
+      "title": "起初，你把起拍交给她",
+      "body": [
+        {
+          "speaker": "N",
+          "text": "首演那晚，你让阿衡先试听蓝标U盘，再请映雪按完整版本的转调起唱。陆景行停下了准备救场的手，台上响起的是她自己的歌。她下台后主动叫住你，说要当面道谢。那时你还没想到，自己会在这里认识她多久。",
+          "id": "EP_bias_t.r4.001",
+          "textHash": "a63c748316282396"
+        }
+      ],
+      "when": {
+        "eq": [
+          "bias",
+          "t"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_bias_s",
+      "axis": "bias",
+      "value": "s",
+      "title": "起初，你先找她确认切换",
+      "body": [
+        {
+          "speaker": "N",
+          "text": "首演那晚，你把核验后的情况报给清辞，请她统一给现场信号。她听完，没有让你一个临时场务冒险乱按控台，而是带着阿衡完成了切换。原著里的钢琴救场没有照常开始；她也第一次认真记住了许照这个名字。",
+          "id": "EP_bias_s.r4.001",
+          "textHash": "1449174df0dd2ff1"
+        }
+      ],
+      "when": {
+        "eq": [
+          "bias",
+          "s"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_bias_l",
+      "axis": "bias",
+      "value": "l",
+      "title": "起初，你请她留下现场记录",
+      "body": [
+        {
+          "speaker": "N",
+          "text": "首演那晚，你请见月保留工作镜头的时间，再让阿衡核验蓝标里的原版。多花的那一点时间里，映雪先清唱了几句，陆景行仍在一旁准备接上。你们留下的记录只说明这次切换发生过，还不是足以结束第七日争议的全部证据。",
+          "id": "EP_bias_l.r4.001",
+          "textHash": "46b04042c5dddb48"
+        }
+      ],
+      "when": {
+        "eq": [
+          "bias",
+          "l"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_bias_g",
+      "axis": "bias",
+      "value": "g",
+      "title": "起初，你当面追问原版授权",
+      "body": [
+        {
+          "speaker": "N",
+          "text": "首演那晚，你先请晚棠核对节目授权。完整版本原本就在批准范围里，程放却把预览文件和正式文件混在了一起。她在现场把这件事问清，让阿衡切回原版。程放记住了你，也让你以后争取记录时多了一层阻力。",
+          "id": "EP_bias_g.r4.001",
+          "textHash": "eee0a6700cc54a0b"
+        }
+      ],
+      "when": {
+        "eq": [
+          "bias",
+          "g"
+        ]
+      },
+      "scope": "day21_complete_only"
+    },
+    {
+      "id": "EP_bias_self",
+      "axis": "bias",
+      "value": "self",
+      "title": "起初，你先保住自己的名字",
+      "body": [
+        {
+          "speaker": "N",
+          "text": "首演那晚，你找到蓝标U盘，却没有逞强去操作控台。阿衡负责试听切换，陆景行弹了四小节衔接，映雪随后唱完。工作单留下了你真正做过的那部分。它没替你解决所有麻烦，却让许照不再只有等着被安排的份。",
+          "id": "EP_bias_self.r4.001",
+          "textHash": "81e6d8600edf7289"
+        }
+      ],
+      "when": {
+        "eq": [
+          "bias",
+          "self"
+        ]
+      },
+      "scope": "day21_complete_only"
+    }
+  ],
+  "display": "one primary + optional per-axis panels"
+}
