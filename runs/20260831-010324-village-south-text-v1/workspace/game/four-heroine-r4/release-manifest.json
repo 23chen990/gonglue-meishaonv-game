@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "main": "26b5481631aa396aac26a61de8bc9745a1599880",
+    "previousGame": "村口向南",
+    "previousR3": "a6eb47641fe022caaa8b51282ac0354d17964afa"
+  },
+  "storySha256": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+  "storyVersion": "revision-r4.0",
+  "editorialVersion": "r4.1",
+  "sceneCount": 225,
+  "choiceCount": 737,
+  "gameEntry": "runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts",
+  "runtime": "runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/runtime.mjs",
+  "assets": {
+    "data": "data/",
+    "scripts": "tools/",
+    "standalone": "play.html"
+  },
+  "constraints": [
+    "No direct main overwrite; draft PR",
+    "r4 legacy engine stays archived",
+    "No native phone or human validation",
+    "r3 save not silently migrated",
+    "Full r4 QA suite resides in accompanying source delivery; GitHub folder includes a scoped smoke test"
+  ]
+}

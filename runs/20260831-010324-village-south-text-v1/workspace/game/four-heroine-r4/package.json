@@ -1,0 +1,10 @@
+{
+  "name": "gonglue-four-heroine-r4-1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build-preview.mjs",
+    "test": "node tools/test-smoke.mjs",
+    "verify": "npm run test && npm run build"
+  }
+}
