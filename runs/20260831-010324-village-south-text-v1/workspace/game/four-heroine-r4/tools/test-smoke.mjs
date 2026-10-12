@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {createState,renderScene,choose,VERSION} from './engine.mjs';
+const story=JSON.parse(fs.readFileSync(new URL('../data/STORY.json',import.meta.url),'utf8'));
+assert.equal(Object.keys(story.scenes).length,225);
+const choices=Object.values(story.scenes).reduce((n,scene)=>n+(scene.choices?.length??0),0);
+assert.equal(choices,737);
+const state=createState();assert.equal(state.current,story.entry);
+const display=renderScene(state,story);
+assert.ok(display.choices.length>0);
+const first=display.choices.find(c=>c.enabled);
+assert.ok(first,'No first normal choice');
+const next=choose(state,story,first.id,first.revision);
+assert.ok(next.state.current!==state.current);
+const actual=crypto.createHash('sha256').update(fs.readFileSync(new URL('../data/STORY.json',import.meta.url))).digest('hex');
+assert.equal(actual,'d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e');
+console.log(JSON.stringify({status:'PASS',scope:'STRUCTURE_AND_SINGLE_CHOICE_ONLY',storySha256:actual,scenes:225,choices,engine:VERSION}));

@@ -1,0 +1,661 @@
+{
+  "version": "revision-r4.0",
+  "items": [
+    {
+      "id": "B_T_POV",
+      "title": "映雪视角｜按下发送以前",
+      "requires": {
+        "kind": "reciprocal",
+        "character": "t"
+      },
+      "background": "recording",
+      "body": [
+        {
+          "id": "B_T_POV.r2.001",
+          "speaker": "N",
+          "text": "唐映雪把试听文件拖进对话框，盯着发送键。",
+          "textHash": "a50ab435e9d360f4"
+        },
+        {
+          "id": "B_T_POV.r2.002",
+          "speaker": "T",
+          "text": "只说谢谢就拉黑……算了，不能真拉。",
+          "textHash": "d3ae69b4d2493426"
+        },
+        {
+          "id": "B_T_POV.r2.003",
+          "speaker": "N",
+          "text": "她删掉这句，换成：“帮我听一耳朵。”",
+          "textHash": "8a4de2d990c1be33"
+        },
+        {
+          "id": "B_T_POV.r2.004",
+          "speaker": "N",
+          "text": "又删掉。太像找临时工了。",
+          "textHash": "23cf397b09bba647"
+        },
+        {
+          "id": "B_T_POV.r2.005",
+          "speaker": "N",
+          "text": "她重新写下：“这版有个地方，我猜你会喜欢。”文件还在草稿里，没有点发送。",
+          "textHash": "2c4ddbc2bf9fe3b5"
+        },
+        {
+          "id": "B_T_POV.r2.006",
+          "speaker": "N",
+          "text": "她把手机扣住，拿起吉他。拨了两个音，又翻过来看自己的草稿。",
+          "textHash": "6db5a543cb680938"
+        },
+        {
+          "id": "B_T_POV.r2.007",
+          "speaker": "T",
+          "text": "要是他忙呢？……那就先问什么时候有空。",
+          "textHash": "58f366f035ab0a34"
+        },
+        {
+          "id": "B_T_POV.r2.008",
+          "speaker": "N",
+          "text": "她把吉他放下，在草稿末尾补上“有空再听”。读完，又把这四个字删掉。",
+          "textHash": "873584255a943f13"
+        },
+        {
+          "id": "B_T_POV.r2.009",
+          "speaker": "N",
+          "text": "想了一会儿，她决定下一次当面问。那份草稿暂时没有发出去。",
+          "textHash": "65ecc326c416af16"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "parallel_unsent_invitation"
+    },
+    {
+      "id": "B_S_POV",
+      "title": "清辞视角｜一个没填用途的晚上",
+      "requires": {
+        "kind": "reciprocal",
+        "character": "s"
+      },
+      "background": "theatre",
+      "body": [
+        {
+          "id": "B_S_POV.r2.001",
+          "speaker": "N",
+          "text": "沈清辞点开私人日历，给自己留了一个空白晚上。",
+          "textHash": "5c3170ab12adf429"
+        },
+        {
+          "id": "B_S_POV.r2.002",
+          "speaker": "N",
+          "text": "她先写“讨论后续”，看了几秒，整行删掉。",
+          "textHash": "4ec44c89ddd76235"
+        },
+        {
+          "id": "B_S_POV.r2.003",
+          "speaker": "S",
+          "text": "又不是开会。",
+          "textHash": "8f2ed4f024ba9a87"
+        },
+        {
+          "id": "B_S_POV.r2.004",
+          "speaker": "N",
+          "text": "她在便签上抄了一家想去的店，查到周末不营业，难得对着手机叹气。",
+          "textHash": "4e6eafabf337af01"
+        },
+        {
+          "id": "B_S_POV.r2.005",
+          "speaker": "N",
+          "text": "给许照的邀请写到一半，她忽然想起自己还不知道他爱不爱吃辣。",
+          "textHash": "c3a07aba563b8cbe"
+        },
+        {
+          "id": "B_S_POV.r2.006",
+          "speaker": "N",
+          "text": "她删掉那一长段时间地点，在草稿里换成：“你敢吃多辣？”",
+          "textHash": "50bdf246e15a9d51"
+        },
+        {
+          "id": "B_S_POV.r2.007",
+          "speaker": "N",
+          "text": "随后又补了一句：“不是工作问题。”写完，还是觉得有点太刻意。",
+          "textHash": "32bab42e62e98bba"
+        },
+        {
+          "id": "B_S_POV.r2.008",
+          "speaker": "N",
+          "text": "她读着还没发出的两行字，忍不住笑了。先把想去的店存下来，下次见到许照再问吧。",
+          "textHash": "4c35c1c012181948"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "parallel_unsent_invitation"
+    },
+    {
+      "id": "B_L_POV",
+      "title": "见月视角｜不急着剪掉的三秒",
+      "requires": {
+        "kind": "reciprocal",
+        "character": "l"
+      },
+      "background": "projection",
+      "body": [
+        {
+          "id": "B_L_POV.r2.001",
+          "speaker": "N",
+          "text": "林见月导完一个片段，给文件起名：普通周五。",
+          "textHash": "934456216cda0009"
+        },
+        {
+          "id": "B_L_POV.r2.002",
+          "speaker": "N",
+          "text": "窗外有人喊同伴回去。她关掉录制灯，忽然想知道许照现在在哪。",
+          "textHash": "584b6452d9fb49ab"
+        },
+        {
+          "id": "B_L_POV.r2.003",
+          "speaker": "N",
+          "text": "“路过的话，要不要……”她打了一半，停住。",
+          "textHash": "e05277ee1b181e9c"
+        },
+        {
+          "id": "B_L_POV.r2.004",
+          "speaker": "L",
+          "text": "他也不一定路过。",
+          "textHash": "c6ce26cb3fb1364d"
+        },
+        {
+          "id": "B_L_POV.r2.005",
+          "speaker": "N",
+          "text": "她把前半句删掉，改成：“想见你。哪天有空？”",
+          "textHash": "e15cc39d9cd7f3c0"
+        },
+        {
+          "id": "B_L_POV.r2.006",
+          "speaker": "N",
+          "text": "太直了。她盯了一会儿，又不舍得删。",
+          "textHash": "26d5fe25d4f9c152"
+        },
+        {
+          "id": "B_L_POV.r2.007",
+          "speaker": "N",
+          "text": "最后她把这句话存进草稿，没有发送。她想留到下一次见面，亲口说。",
+          "textHash": "2d467fba17abba11"
+        },
+        {
+          "id": "B_L_POV.r2.008",
+          "speaker": "N",
+          "text": "手机被她扣在器材包上。没过一会儿，她自己又翻了回来，怕刚才那句没存好。",
+          "textHash": "ac26324c26a23ba0"
+        },
+        {
+          "id": "B_L_POV.r2.009",
+          "speaker": "L",
+          "text": "这回没拍。紧张算我自己的。",
+          "textHash": "f72be8f6350a2346"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "parallel_unsent_invitation"
+    },
+    {
+      "id": "B_G_POV",
+      "title": "晚棠视角｜没有发出的漂亮回复",
+      "requires": {
+        "kind": "reciprocal",
+        "character": "g"
+      },
+      "background": "terrace",
+      "body": [
+        {
+          "id": "B_G_POV.r2.001",
+          "speaker": "N",
+          "text": "顾晚棠取下耳饰，给许照打了一句：“今天表现尚可。”",
+          "textHash": "19aa2ada8cf2396f"
+        },
+        {
+          "id": "B_G_POV.r2.002",
+          "speaker": "N",
+          "text": "她自己先皱眉。",
+          "textHash": "972259ff31d26b00"
+        },
+        {
+          "id": "B_G_POV.r2.003",
+          "speaker": "G",
+          "text": "谁给你打分了。",
+          "textHash": "e8be376add59c925"
+        },
+        {
+          "id": "B_G_POV.r2.004",
+          "speaker": "N",
+          "text": "整句删掉。",
+          "textHash": "a4a6b58acef015ff"
+        },
+        {
+          "id": "B_G_POV.r2.005",
+          "speaker": "N",
+          "text": "她重新输入：“今天见到你，我挺高兴。”",
+          "textHash": "0083a48ed3fd5107"
+        },
+        {
+          "id": "B_G_POV.r2.006",
+          "speaker": "N",
+          "text": "太直。她在后面加了个玩笑，读完，又把玩笑删了。",
+          "textHash": "1d8ce072949426c1"
+        },
+        {
+          "id": "B_G_POV.r2.007",
+          "speaker": "N",
+          "text": "她没把消息发出去，先去热牛奶。微波炉响了，她又拿起手机，把那句草稿读了一遍。",
+          "textHash": "f4aab5e1aec28e3e"
+        },
+        {
+          "id": "B_G_POV.r2.008",
+          "speaker": "G",
+          "text": "没出息。",
+          "textHash": "5bc26bc8c9de679c"
+        },
+        {
+          "id": "B_G_POV.r2.009",
+          "speaker": "N",
+          "text": "她说的是自己，嘴角却没有压下去。下次约见面的时候，就用这句开头吧。牛奶已经有点凉了。",
+          "textHash": "7d22c176eb4f40e0"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "parallel_unsent_invitation"
+    },
+    {
+      "id": "B_T_DATE",
+      "title": "映雪后日谈｜没有设备故障",
+      "requires": {
+        "kind": "ending",
+        "id": "R_t"
+      },
+      "background": "recording",
+      "body": [
+        {
+          "id": "B_T_DATE.r2.001",
+          "speaker": "N",
+          "text": "这次约在排练室，映雪把多余的耳机递给你。",
+          "textHash": "895b002012996d4a"
+        },
+        {
+          "id": "B_T_DATE.r2.002",
+          "speaker": "T",
+          "text": "先说好，今天设备没坏。",
+          "textHash": "f5d5e5a1f9b93828"
+        },
+        {
+          "id": "B_T_DATE.r2.003",
+          "speaker": "P",
+          "text": "我今天也不是来修的。",
+          "textHash": "6d92469f51571f9f"
+        },
+        {
+          "id": "B_T_DATE.r2.004",
+          "speaker": "N",
+          "text": "她笑了，让出地毯上一小块地方。你坐下，她却没有急着放歌。",
+          "textHash": "d6eed400c30218a8"
+        },
+        {
+          "id": "B_T_DATE.r2.005",
+          "speaker": "T",
+          "text": "想靠一下，可以吗？",
+          "textHash": "3d920958d9516bd5"
+        },
+        {
+          "id": "B_T_DATE.r2.006",
+          "speaker": "P",
+          "text": "来吧。",
+          "textHash": "ceabff49fa2e450f"
+        },
+        {
+          "id": "B_T_DATE.r2.007",
+          "speaker": "N",
+          "text": "她靠在你肩上，指尖绕着一小截耳机线。",
+          "textHash": "4e1f5469272300bb"
+        },
+        {
+          "id": "B_T_DATE.r2.008",
+          "speaker": "T",
+          "text": "其实歌还没写完。想见你先说的。",
+          "textHash": "4a354f7a621990fa"
+        },
+        {
+          "id": "B_T_DATE.r2.009",
+          "speaker": "P",
+          "text": "听出来了。",
+          "textHash": "891921a1c3e2c19c"
+        },
+        {
+          "id": "B_T_DATE.r2.010",
+          "speaker": "T",
+          "text": "那你刚才还装。",
+          "textHash": "4f75257106d1226e"
+        },
+        {
+          "id": "B_T_DATE.r2.011",
+          "speaker": "N",
+          "text": "她抬头问能不能亲你。你说可以，先放稳手边的热水。",
+          "textHash": "fb4a25ed3c5ea01b"
+        },
+        {
+          "id": "B_T_DATE.r2.012",
+          "speaker": "N",
+          "text": "那个吻很轻。退开时她耳朵红了，第一句话却是说水要凉。",
+          "textHash": "10e649c593bee25a"
+        },
+        {
+          "id": "B_T_DATE.r2.013",
+          "speaker": "P",
+          "text": "这个借口不好用。",
+          "textHash": "47bc058fcccb3520"
+        },
+        {
+          "id": "B_T_DATE.r2.014",
+          "speaker": "T",
+          "text": "那也不许拆。",
+          "textHash": "03969fbc39d44eb1"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "post_ending_new_scene"
+    },
+    {
+      "id": "B_S_DATE",
+      "title": "清辞后日谈｜菜谱没有备用方案",
+      "requires": {
+        "kind": "ending",
+        "id": "R_s"
+      },
+      "background": "home",
+      "body": [
+        {
+          "id": "B_S_DATE.r2.001",
+          "speaker": "N",
+          "text": "清辞来你这里吃晚饭，进门就闻到焦味。",
+          "textHash": "d9ea870b5d228750"
+        },
+        {
+          "id": "B_S_DATE.r2.002",
+          "speaker": "S",
+          "text": "今天是烹饪，还是消防演习？",
+          "textHash": "62491175da2d8584"
+        },
+        {
+          "id": "B_S_DATE.r2.003",
+          "speaker": "P",
+          "text": "本来是前一个。",
+          "textHash": "d6efa3c77daf936f"
+        },
+        {
+          "id": "B_S_DATE.r2.004",
+          "speaker": "N",
+          "text": "她笑着挽起袖子。你请她洗菜，自己重新处理那只锅。",
+          "textHash": "201f0f6d66c51c32"
+        },
+        {
+          "id": "B_S_DATE.r2.005",
+          "speaker": "N",
+          "text": "饭终于上桌，她尝了一口，很认真地给出两个字。",
+          "textHash": "38c95f63eb0e5b9b"
+        },
+        {
+          "id": "B_S_DATE.r2.006",
+          "speaker": "S",
+          "text": "盐多。",
+          "textHash": "56666cbc843afc43"
+        },
+        {
+          "id": "B_S_DATE.r2.007",
+          "speaker": "P",
+          "text": "这么不给面子？",
+          "textHash": "0cfc5bffbfbd2584"
+        },
+        {
+          "id": "B_S_DATE.r2.008",
+          "speaker": "S",
+          "text": "下次还想来，总不能每次都喝三杯水。",
+          "textHash": "fbc429a32dd59c69"
+        },
+        {
+          "id": "B_S_DATE.r2.009",
+          "speaker": "N",
+          "text": "你们笑了一阵。收碗时，她停在厨房门口，朝你张开手。",
+          "textHash": "4348fc85004e4613"
+        },
+        {
+          "id": "B_S_DATE.r2.010",
+          "speaker": "S",
+          "text": "想抱一下。你先把碗放下。",
+          "textHash": "57f79d23a1287175"
+        },
+        {
+          "id": "B_S_DATE.r2.011",
+          "speaker": "N",
+          "text": "你放稳碗，走过去。她抱住你，额头抵在你肩上。",
+          "textHash": "3f9fdd359843688c"
+        },
+        {
+          "id": "B_S_DATE.r2.012",
+          "speaker": "S",
+          "text": "下次我做饭。你只负责把盐藏起来。",
+          "textHash": "bd500e470f234451"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "post_ending_new_scene"
+    },
+    {
+      "id": "B_L_DATE",
+      "title": "见月后日谈｜今天别替我构图",
+      "requires": {
+        "kind": "ending",
+        "id": "R_l"
+      },
+      "background": "river",
+      "body": [
+        {
+          "id": "B_L_DATE.r2.001",
+          "speaker": "N",
+          "text": "见月约你看海，到了才发现风大得连帽子都戴不住。",
+          "textHash": "3c5600e3b3a6e4dc"
+        },
+        {
+          "id": "B_L_DATE.r2.002",
+          "speaker": "L",
+          "text": "跟我想的有点不一样。",
+          "textHash": "5b5665bdd2fd1983"
+        },
+        {
+          "id": "B_L_DATE.r2.003",
+          "speaker": "P",
+          "text": "照片里是不是没有砂子进鞋这一步？",
+          "textHash": "a82145e77937de01"
+        },
+        {
+          "id": "B_L_DATE.r2.004",
+          "speaker": "N",
+          "text": "她弯腰倒砂，自己先笑了。",
+          "textHash": "b72c50a014f7971c"
+        },
+        {
+          "id": "B_L_DATE.r2.005",
+          "speaker": "N",
+          "text": "你们找到背风的地方。她带了相机，却没拿出来。",
+          "textHash": "b9fd471bb97b472c"
+        },
+        {
+          "id": "B_L_DATE.r2.006",
+          "speaker": "L",
+          "text": "今天先看你，不构图。",
+          "textHash": "f3deef15aad66f29"
+        },
+        {
+          "id": "B_L_DATE.r2.007",
+          "speaker": "P",
+          "text": "那能靠近一点吗？",
+          "textHash": "744c749486fa9289"
+        },
+        {
+          "id": "B_L_DATE.r2.008",
+          "speaker": "N",
+          "text": "她点头，伸手拉住你的衣袖。你坐近，先问能不能亲她。",
+          "textHash": "933d98e311741d62"
+        },
+        {
+          "id": "B_L_DATE.r2.009",
+          "speaker": "L",
+          "text": "可以。我也想。",
+          "textHash": "e690373974eba459"
+        },
+        {
+          "id": "B_L_DATE.r2.010",
+          "speaker": "N",
+          "text": "吻结束时，她没急着躲，只看着你笑。",
+          "textHash": "434e7a21e8bf7d61"
+        },
+        {
+          "id": "B_L_DATE.r2.011",
+          "speaker": "L",
+          "text": "风还是挺大。",
+          "textHash": "8b803601823a366a"
+        },
+        {
+          "id": "B_L_DATE.r2.012",
+          "speaker": "P",
+          "text": "我们可以换个地方浪漫。",
+          "textHash": "608ac3c06f182dac"
+        },
+        {
+          "id": "B_L_DATE.r2.013",
+          "speaker": "N",
+          "text": "她认真想了一下，选了路边能关窗的小面馆。那天的合照，背景是一碗热面。",
+          "textHash": "4704c8ef277be398"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "post_ending_new_scene"
+    },
+    {
+      "id": "B_G_DATE",
+      "title": "晚棠后日谈｜不用猜的邀请",
+      "requires": {
+        "kind": "ending",
+        "id": "R_g"
+      },
+      "background": "street",
+      "body": [
+        {
+          "id": "B_G_DATE.r2.001",
+          "speaker": "N",
+          "text": "晚棠约你吃甜品，自己晚了十分钟。",
+          "textHash": "9744ebbcc8ac54da"
+        },
+        {
+          "id": "B_G_DATE.r2.002",
+          "speaker": "G",
+          "text": "堵车。不是考验你。",
+          "textHash": "783f9326536774a2"
+        },
+        {
+          "id": "B_G_DATE.r2.003",
+          "speaker": "P",
+          "text": "我也没往那儿想。",
+          "textHash": "f98f07995b6d72b5"
+        },
+        {
+          "id": "B_G_DATE.r2.004",
+          "speaker": "G",
+          "text": "很好，是我先心虚。",
+          "textHash": "d72823ee61db68da"
+        },
+        {
+          "id": "B_G_DATE.r2.005",
+          "speaker": "N",
+          "text": "她坐下就挖了一大勺。你看着，她把碟子往中间推了一点。",
+          "textHash": "5bcbe9a94371f11a"
+        },
+        {
+          "id": "B_G_DATE.r2.006",
+          "speaker": "G",
+          "text": "别等我主动分完，喜欢就自己拿。",
+          "textHash": "b3ca2647ccad554d"
+        },
+        {
+          "id": "B_G_DATE.r2.007",
+          "speaker": "N",
+          "text": "出门时，她问能不能抱你一会儿。你点头，她才靠过来。",
+          "textHash": "e9393fa21225743f"
+        },
+        {
+          "id": "B_G_DATE.r2.008",
+          "speaker": "G",
+          "text": "今天有件事没办成。先不问，让我赖一下。",
+          "textHash": "cf207e2badeaa46f"
+        },
+        {
+          "id": "B_G_DATE.r2.009",
+          "speaker": "N",
+          "text": "你抱着她，没有急着把沉默填满。",
+          "textHash": "d85c0d447b40481a"
+        },
+        {
+          "id": "B_G_DATE.r2.010",
+          "speaker": "N",
+          "text": "过了一会儿，她抬起头，笑得有点不稳。",
+          "textHash": "ca5f26a93fc97e3e"
+        },
+        {
+          "id": "B_G_DATE.r2.011",
+          "speaker": "G",
+          "text": "我还想亲你。可以吗？",
+          "textHash": "b3e241c962817e9e"
+        },
+        {
+          "id": "B_G_DATE.r2.012",
+          "speaker": "P",
+          "text": "可以。",
+          "textHash": "275d675013134351"
+        },
+        {
+          "id": "B_G_DATE.r2.013",
+          "speaker": "N",
+          "text": "吻后她先整理了一下你的领口，转身走了两步，又折回来。",
+          "textHash": "05774ab148949770"
+        },
+        {
+          "id": "B_G_DATE.r2.014",
+          "speaker": "G",
+          "text": "伞忘店里了。别笑，跟我回去。",
+          "textHash": "6501b234fbc643ad"
+        }
+      ],
+      "blocks": [],
+      "diegeticKnowledgeTransfer": false,
+      "unlock": "normal_play_permanent; optional_ad_early_access_only_after_story_prerequisite",
+      "choices": [],
+      "timeline": "post_ending_new_scene"
+    }
+  ]
+}

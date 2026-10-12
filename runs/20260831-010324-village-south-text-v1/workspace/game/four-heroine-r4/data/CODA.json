@@ -1,0 +1,110 @@
+{
+  "version": "revision-r4.0",
+  "items": [
+    {
+      "id": "CO_LIFE_create",
+      "when": {
+        "eq": [
+          "life_plan",
+          "create"
+        ]
+      },
+      "body": [
+        {
+          "id": "CO_LIFE_create.r2.001",
+          "speaker": "N",
+          "text": "你给自己的创作留过时间。热闹过去，那份东西还在桌上，等着你接着写。",
+          "textHash": "5338ab4eb98d162a"
+        }
+      ]
+    },
+    {
+      "id": "CO_LIFE_steady",
+      "when": {
+        "eq": [
+          "life_plan",
+          "steady"
+        ]
+      },
+      "body": [
+        {
+          "id": "CO_LIFE_steady.r2.001",
+          "speaker": "N",
+          "text": "你把明天的闹钟调好。工作、吃饭、休息，这次都在自己确认过的日程里。",
+          "textHash": "3efcc372788e5605"
+        }
+      ]
+    },
+    {
+      "id": "CO_LIFE_explore",
+      "when": {
+        "eq": [
+          "life_plan",
+          "explore"
+        ]
+      },
+      "body": [
+        {
+          "id": "CO_LIFE_explore.r2.001",
+          "speaker": "N",
+          "text": "你打开一张没在原著里出现过的活动海报，认真看起报名时间。",
+          "textHash": "1c9497b6b956542e"
+        }
+      ]
+    },
+    {
+      "id": "CODA_closing_honor",
+      "title": "兑现",
+      "when": {
+        "eq": [
+          "closing_answer",
+          "honor"
+        ]
+      },
+      "body": [
+        {
+          "id": "CODA_closing_honor.r2.001",
+          "speaker": "N",
+          "text": "你保留了已经答应的下一次安排。等到约好的那天，要记得真的出门。",
+          "textHash": "c665a2f3ea222750"
+        }
+      ]
+    },
+    {
+      "id": "CODA_closing_future",
+      "title": "还要问",
+      "when": {
+        "eq": [
+          "closing_answer",
+          "future"
+        ]
+      },
+      "body": [
+        {
+          "id": "CODA_closing_future.r2.001",
+          "speaker": "N",
+          "text": "你把想问的事留在便签第一行，下一次当面问。",
+          "textHash": "eb5d475ce2d32d18"
+        }
+      ]
+    },
+    {
+      "id": "CODA_closing_pause",
+      "title": "先停一停",
+      "when": {
+        "eq": [
+          "closing_answer",
+          "pause"
+        ]
+      },
+      "body": [
+        {
+          "id": "CODA_closing_pause.r2.001",
+          "speaker": "N",
+          "text": "暂停已经说出口。今晚不再追加一句“下次一定”。",
+          "textHash": "5c5a849f6e72605a"
+        }
+      ]
+    }
+  ]
+}
