@@ -6,6 +6,8 @@ on:
       - '.github/workflows/romance-r41.yml'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/index.html'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/tests/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/vite.config.ts'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/**'
   workflow_dispatch:
 
