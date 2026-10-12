@@ -35,7 +35,7 @@ npm run test:browser
 全部43项历史问题在 `docs/FIX_LOG.md/json`；最新15项与r3补充缺口见 `docs/LATEST_REQUIREMENTS.md`；逐场记录见 `docs/SCENE_LEDGER.md`；完整条件全文见 `docs/FULL_STORY.md`；可读全文见 `docs/FULL_STORY_READABLE.txt`。
 
 ## GitHub
-本轮核实了main、旧r3分支和实际入口，但**没有向远端提交、创建PR或覆盖main**。当前远端main仍是旧《村口向南》入口，旧r3分片不能当成已接入新版。源码ZIP是本轮实际交付。安全的本地隔离分支接入工具为 `tools/integrate-repository.py`，步骤见Codex说明。
+**r4.1已上传到隔离开发分支** `feat/gonglue-r4-1-editorial-20261012`，草稿 PR：https://github.com/23chen990/gonglue-meishaonv-game/pull/2 。该分支的 `src/main.ts` 与根 `index.html` 已加载新版；`main` 暂未合并，默认仍是旧《村口向南》。旧本地安装脚本只作为历史备选，不要对已存在 `four-heroine-r4` 的分支重复运行。最新验收见 `docs/R41_QA.md`。
 
 ## 验收状态
-本轮202项回归检查、全部737个选择和565个条件显示块有当前版本见证。浏览器离线普通四人路线已走到结局；只读收藏、模拟故障与手机尺寸有独立结果。真人盲玩、真实iOS/Android、原生持久化、远端默认入口、正式美术/声音和IAA平台发布未完成。
+本轮202项回归检查、全部737个选择和565个条件显示块有当前版本见证。浏览器离线普通四人路线已走到结局；只读收藏、模拟故障与手机尺寸有独立结果。真人盲玩、真实iOS/Android、原生持久化、远端分支入口源码已接通但 CI/正式入口尚未验收，正式美术/声音和IAA平台发布未完成。
