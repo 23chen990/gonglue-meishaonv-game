@@ -254,7 +254,7 @@ with sync_playwright() as pw:
    b=c.new_page();b.on('dialog',lambda d:d.accept());b.goto(URL,wait_until='load')
    tap(p,'[data-choice="t"]');saved=raw(p)
    b.wait_for_function("document.querySelector('#menu').classList.contains('unsaved')")
-   tap(b,'[data-choice="canon"]');assert raw(b)==saved
+   settle(b);tap(b,'[data-choice="s"]');assert raw(b)==saved
    tap(b,'#menu');tap(b,'[data-action="reload"]')
    assert raw(b)==saved and b.locator('main').inner_text()==p.locator('main').inner_text()
    assert not e;c.close();return {'nativeStorageEvent':True,'noLostUpdate':True,'explicitReload':True}
