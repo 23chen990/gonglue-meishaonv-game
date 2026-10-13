@@ -276,14 +276,19 @@ function openingHTML(cp){
 function firstForkHTML(cp){
  const opts=cp.view.choices.filter(o=>o.enabled);
  const notes={
-  canon:'原著的钢琴救场会发生；你暂时不会获得找到原版的记录，后续责任仍可能落在你头上。',
-  rescue:'首演可能被你提前改写；谁给你机会、谁开始提防你，都不再按书里走。',
-  investigate:'不是先求出风头；尽量找能核验的事实，也可能更早惹到程放。'
+  canon:'陆景行完成救场；你还要面对第七天的背锅风险。',
+  rescue:'抢先找到原版U盘，改写首演，也改变别人看你的眼光。',
+  investigate:'先查是谁换错文件，再决定怎样把原版送上台。'
  };
+ // All three decisive actions must be available on the first render. Do not turn
+ // the first meaningful choice into an inert "continue" button.
  const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
- return `<section class="first-fork-head"><span class="kicker">穿书第一分钟 · 你看过原著</span><h2>原著炮灰怎么选？<br><em>这一次，轮到你。</em></h2><p>19:03 是已知的钢琴救场；第七天，你原本会背锅退场。先读清代价，再决定。</p></section>`+
- `<div class="meta"><span>故事信息先给你 · 选择不倒计时</span><span>${page+1} / ${cp.pages.length}</span></div>`+
- rowsHTML(cp.rows)+(cp.last?`<div class="rescue-options">${actions}</div><p class="small">原著不是正确答案，也不是必须跳过的坏答案。三个方向会保留不同的事件记录。</p>`:controls(cp));
+ const allStory=rowsHTML(cp.view.body);
+ return `<section class="first-fork-head"><span class="kicker">穿书第一分钟 · 你是临时场务许照</span><h2>原著里的炮灰，<br><em>这次由你来选。</em></h2><p>你读过结局。现在原著正走到改变命运的第一分钟。</p></section>`+
+ `<section class="first-fork-facts" aria-label="选择前已知的原著剧情"><div><strong>原著当晚</strong><p>许照听程放的话守着设备箱，陆景行弹琴救下首演。</p></div><div><strong>原著第七天</strong><p>错版责任被推给许照；没有交接证据，他被清退。</p></div><div><strong>你知道的秘密</strong><p>箱底有一枚贴蓝胶带的原版 U 盘，原著里没人找到。</p></div></section>`+
+ `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
+ `<p class="small first-fork-disclaimer">照原著走也不是死路。不同做法会留下不同的证据，改变之后的相遇与第七天。</p>`+
+ `<details class="first-fork-full-story"><summary>先看看完整穿书经过（可选）</summary>${allStory}</details>`;
 }
 
 function sourceScene(){
@@ -469,7 +474,7 @@ document.addEventListener('click',ev=>{
   }
   if(b.dataset.choice){
    if(phase!=='scene'||Number(b.dataset.render)!==renderToken||Number(b.dataset.revision)!==state.revision)return;
-   const cp=currentPage();if(!cp.last)return;
+   const cp=currentPage();if(!cp.last&&state.current!=='ENTRY_WAKE')return;
    markRead(cp);
    const out=choose(state,DATA,b.dataset.choice,state.revision);
    state=out.state;lastReply=out.reply;phase=lastReply.length?'reply':'scene';page=0;choicePage=0;

@@ -128,7 +128,30 @@ button:focus-visible{outline:2px solid #ffd4b4;outline-offset:3px}[hidden]{displ
 .first-fork-head h2{font-size:25px;line-height:1.4;margin:9px 0 8px}
 .first-fork-head em{font-style:normal;color:#f3c8d0}
 .first-fork-head p{font-size:12px;line-height:1.7;color:#e0cbd8;margin:0}
-.first-fork-choice{border-color:#796079}
+/* Original-vs-divergence must be a genuine, immediate first screen choice. */
+.first-fork-head{margin-bottom:9px;padding:13px 14px}
+.first-fork-head h2{font-size:23px;line-height:1.26;margin:6px 0}
+.first-fork-head p{line-height:1.5}
+.first-fork-facts{background:#1d1a26;border:1px solid #49384e;border-radius:13px;padding:8px 12px;margin:0 0 10px}
+.first-fork-facts>div{display:flex;align-items:baseline;gap:8px;margin:5px 0}
+.first-fork-facts strong{flex:0 0 70px;font-size:11px;color:#efbace}
+.first-fork-facts p{margin:0;font-size:12px;line-height:1.5;color:#f0e5f0}
+.first-fork-prompt{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:11px 1px 7px}
+.first-fork-prompt strong{font-size:16px;color:#fff4f5}
+.first-fork-prompt span{font-size:11px;color:#c9b6d6}
+.first-fork-options{gap:8px;margin-bottom:9px}
+.first-fork-choice{border-color:#796079;min-height:72px;padding:8px 10px}
+.first-fork-choice strong{font-size:13px;line-height:1.45}
+.first-fork-choice small{font-size:11px;line-height:1.45;margin-top:2px}
+.first-fork-disclaimer{margin:5px 2px;font-size:11px}
+.first-fork-full-story{margin:10px 0 14px;padding:7px 10px;border:1px solid #494252;border-radius:11px;color:#d7cad8}
+.first-fork-full-story summary{cursor:pointer;font-size:12px;line-height:2;min-height:34px}
+.first-fork-full-story .line{margin:8px 0}
+body.large .first-fork-facts p{font-size:15px;line-height:1.6}
+body.large .first-fork-choice strong{font-size:17px}
+body.large .first-fork-choice small{font-size:14px}
+@media(max-width:360px){.first-fork-head h2{font-size:21px}.first-fork-facts{padding:7px 9px}.first-fork-facts strong{flex-basis:64px}.first-fork-choice{padding:7px 9px}}
+
 .choice-nav{margin-top:12px;border:1px solid #4b4354;border-radius:12px;padding:9px 11px;background:#211d2a;font-size:12px;color:#e7d5e8}
 .choice-nav>div{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .choice-nav .quiet{flex:1;min-height:46px}

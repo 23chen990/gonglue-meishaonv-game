@@ -7,9 +7,11 @@
 - `npm run verify`：PASS；官方 JSON→HTML/runtime/index 同源哈希验收。
 - `npm test`：PASS，已执行普通解释器回放、真实选项见证、原著钢琴支线、USB 支线、第七天条件回收。
 - 静态全量：228 场、751 个内部动作、24 主结局、15 恋爱组合、40 尾声、8 番外、6 收束；596/596 条条件正文/回应块有真实输入显示见证；未覆盖全部可能状态组合。
-- `python3 tools/test-ui-r4.py`：**14 项注入离线浏览器检查 PASS**，含首选三分叉、原著纸面选择三法、救场五种跨路径具体实际方法、UI 六选项分组、无消耗切换、错误存档拒收、误触、字号/宽屏。
+- `python3 tools/test-ui-r4.py`：**14 项注入离线浏览器检查 PASS**，含首次显示时直接出现三选项、不会被「继续」按钮挡住、简短原著行为和第七天坏结局先于选项、可选展开完整开场、原著纸面选择三法、救场五种跨路径具体实际方法、UI 六选项分组、无消耗切换、错误存档拒收、误触、字号/宽屏。
 - `CASE=FULL_FOUR_ORDINARY_TOUCH_AND_REWIND python3 tools/test-reader-r4.py`：PASS，普通触控完成四人结局的 95 次剧情输入和历史回退；不是直接设置内部关系状态。
 - `CASE=GROUP_SCENE_PHONE_SIZES_LARGE_FONT_AND_LANDSCAPE` 及 `CASE=QUOTA_FAILURE_STILL_UNLOCKS_IN_MEMORY_COLLECTION`：分别 PASS。
+
+- GitHub Actions 于提交 `3f23e858` 对前一版界面进行了原生 HTTP 整套测试，**PASS**（[运行 #38351672147](https://github.com/23chen990/gonglue-meishaonv-game/actions/runs/38351672147)）。**当前首屏直显改动属于新候选，必须单独重跑**，不能沿用旧 PASS。
 
 ## 保留的真实限制
 

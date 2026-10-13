@@ -99,6 +99,12 @@ with sync_playwright() as pw:
   def opening(first=first):
    c,p,e=entry(browser)
    assert '原著' in p.locator('main').inner_text()
+   assert p.locator('body').get_attribute('data-current')=='ENTRY_WAKE'
+   assert p.locator('[data-page-next]').count()==0, 'First original-novel decision must not be gated by Continue'
+   assert p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')==['canon','rescue','investigate']
+   assert p.locator('.first-fork-facts').count()==1
+   assert '第七天' in p.locator('.first-fork-facts').inner_text()
+   assert p.locator('.first-fork-full-story').count()==1
    if first=='t':p.screenshot(path=str(D/'01-first-canon-fork-360.png'),full_page=True)
    intro(p,first)
    baseline=2 if first in ('l','g') else 1
