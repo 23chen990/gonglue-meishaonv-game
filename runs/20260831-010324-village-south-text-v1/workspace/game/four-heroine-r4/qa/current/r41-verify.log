@@ -1,0 +1,569 @@
+
+> gonglue-four-heroine-r4@4.0.0 verify
+> npm run build && npm test && npm run export && python3 tools/verify-delivery.py
+
+
+> gonglue-four-heroine-r4@4.0.0 build
+> node tools/build-preview.mjs
+
+{
+  "file": "play.html",
+  "bytes": 1046782,
+  "storyHash": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+  "repositoryModule": "runtime.mjs"
+}
+
+> gonglue-four-heroine-r4@4.0.0 test
+> node tools/test-r2.mjs && node tools/test-independent.mjs && node tools/test-information.mjs && node tools/test-final-edges.mjs && node tools/test-r3-regressions.mjs && node tools/test-r3-product.mjs && node tools/test-exploration.mjs && node tools/test-conditional-r3.mjs && node tools/test-r4-opening.mjs && node tools/test-r4-causality.mjs
+
+PASS Canonical IDs, display hashes and all continuations
+PASS NORMAL_COMBINATION_t
+PASS NORMAL_COMBINATION_s
+PASS NORMAL_COMBINATION_st
+PASS NORMAL_COMBINATION_l
+PASS NORMAL_COMBINATION_lt
+PASS NORMAL_COMBINATION_ls
+PASS NORMAL_COMBINATION_lst
+PASS NORMAL_COMBINATION_g
+PASS NORMAL_COMBINATION_gt
+PASS NORMAL_COMBINATION_gs
+PASS NORMAL_COMBINATION_gst
+PASS NORMAL_COMBINATION_gl
+PASS NORMAL_COMBINATION_glt
+PASS NORMAL_COMBINATION_gls
+PASS NORMAL_COMBINATION_glst
+PASS INVITE_AGAIN_t_wait
+PASS INVITE_AGAIN_t_friend
+PASS INVITE_AGAIN_t_decline
+PASS SLOW_INTIMACY_t
+PASS RESPECT_REFUSAL_AND_RESUME_t
+PASS INVITE_AGAIN_s_wait
+PASS INVITE_AGAIN_s_friend
+PASS INVITE_AGAIN_s_decline
+PASS SLOW_INTIMACY_s
+PASS RESPECT_REFUSAL_AND_RESUME_s
+PASS INVITE_AGAIN_l_wait
+PASS INVITE_AGAIN_l_friend
+PASS INVITE_AGAIN_l_decline
+PASS SLOW_INTIMACY_l
+PASS RESPECT_REFUSAL_AND_RESUME_l
+PASS INVITE_AGAIN_g_wait
+PASS INVITE_AGAIN_g_friend
+PASS INVITE_AGAIN_g_decline
+PASS SLOW_INTIMACY_g
+PASS RESPECT_REFUSAL_AND_RESUME_g
+PASS PAIR_SLOW_TWICE_CAN_RETURN_st
+PASS PAIR_SLOW_TWICE_CAN_RETURN_lt
+PASS PAIR_SLOW_TWICE_CAN_RETURN_gt
+PASS PAIR_SLOW_TWICE_CAN_RETURN_ls
+PASS PAIR_SLOW_TWICE_CAN_RETURN_gs
+PASS PAIR_SLOW_TWICE_CAN_RETURN_gl
+PASS All three-plus group votes are independently optional
+PASS OTHER_ENDING_early
+PASS OTHER_ENDING_single_rise
+PASS OTHER_ENDING_all_futures_no_romance
+PASS OTHER_ENDING_unresolved
+PASS OTHER_ENDING_outside
+PASS EPILOGUE_EP_t_independent
+PASS EPILOGUE_EP_t_negotiated
+PASS EPILOGUE_EP_t_chosen_duet
+PASS EPILOGUE_EP_t_intentional_pause
+PASS EPILOGUE_EP_t_restricted
+PASS EPILOGUE_EP_s_cooperative
+PASS EPILOGUE_EP_s_shared_use
+PASS EPILOGUE_EP_s_residency
+PASS EPILOGUE_EP_s_chosen_exit
+PASS EPILOGUE_EP_s_displaced
+PASS EPILOGUE_EP_l_fellowship
+PASS EPILOGUE_EP_l_chosen_stay
+PASS EPILOGUE_EP_l_release_film
+PASS EPILOGUE_EP_l_authorized_cut
+PASS EPILOGUE_EP_l_silenced
+PASS EPILOGUE_EP_g_independent
+PASS EPILOGUE_EP_g_bounded_partner
+PASS EPILOGUE_EP_g_public_account
+PASS EPILOGUE_EP_g_leave_family
+PASS EPILOGUE_EP_g_scapegoated
+PASS EPILOGUE_EP_xu_independent
+PASS EPILOGUE_EP_xu_partner
+PASS EPILOGUE_EP_xu_backstage
+PASS EPILOGUE_EP_xu_rebuilding
+PASS EPILOGUE_EP_xu_outside
+PASS EPILOGUE_EP_lu_ally
+PASS EPILOGUE_EP_lu_rival
+PASS EPILOGUE_EP_lu_distant
+PASS EPILOGUE_EP_lu_independent
+PASS EPILOGUE_EP_lu_reconciled
+PASS EPILOGUE_EP_visibility_open
+PASS EPILOGUE_EP_visibility_private
+PASS EPILOGUE_EP_visibility_unresolved
+PASS EPILOGUE_EP_visibility_work
+PASS EPILOGUE_EP_visibility_closed
+PASS EPILOGUE_EP_bias_t
+PASS EPILOGUE_EP_bias_s
+PASS EPILOGUE_EP_bias_l
+PASS EPILOGUE_EP_bias_g
+PASS EPILOGUE_EP_bias_self
+PASS SELF_RESCUE_WITH_REAL_record
+PASS SELF_RESCUE_WITH_REAL_witness
+PASS SELF_RESCUE_WITH_REAL_audio
+PASS Same early plan, different execution, different tangible future
+PASS Late actual scene repairs a previously unexecuted future
+PASS DELAYED_DISCLOSURE_s
+PASS DELAYED_DISCLOSURE_g
+PASS Hidden denial remains unknown without a disclosure or witnessed source
+PASS Witnessed exposure, actual two-appointment repair, renewed consent
+PASS Acknowledgement alone is not repair; failed action cannot be bypassed
+PASS Voluntary confession can be repaired without a surprise omniscient reveal
+PASS Readonly ending review includes main ending and cannot change a live route
+PASS Refresh replay, rewind and stale command rejection
+PASS All 24 endings and all 40 epilogues have ordinary-input witnesses
+{
+  "passed": 102,
+  "failed": 0,
+  "failures": []
+}
+{
+  "scope": "New issues found during independent second-pass editing; legal inputs only",
+  "passed": 10,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "NEW-01 deferred disclosure is not remembered before it occurs",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-02 leaving an outing does not force the follow-up activity",
+      "status": "PASS",
+      "detail": "@schedule"
+    },
+    {
+      "name": "NEW-03 late private visit after resignation has no old keys or operator authority",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-04 l09 watch is remembered as watching, not diagnosing; learn is not why-shot",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-05 shared outings do not fabricate an intervening dinner or newly sent call",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-06 named memories preserve actual words, giver and location",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-07 authoring ending min-depth config is consumed by the runtime",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-08 work fate chain points to actual earlier self-rescue choice",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-09 repeated group invitation does not say first meeting each time",
+      "status": "PASS"
+    },
+    {
+      "name": "NEW-10 minimum romance ending never recalls an unvisited private date",
+      "status": "PASS"
+    }
+  ]
+}
+{
+  "passed": 30,
+  "failed": 0,
+  "failures": []
+}
+{
+  "scope": "Final-pass regressions, only ordinary legal inputs or supplied trace observations",
+  "hashes": {
+    "story": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+    "engine": "0b5ad8e19cb0753fc0aedfeb612a8261b1d617cd042991a8e57ce4a4e5a1a3ab"
+  },
+  "checks": [
+    {
+      "name": "Clock never reverses on all curated ordinary traces",
+      "status": "PASS",
+      "detail": {
+        "routes": 58
+      }
+    },
+    {
+      "name": "All free private appointments occur in evening; independent work anchors remain explicit",
+      "status": "PASS",
+      "detail": {
+        "freeSlots": 20
+      }
+    },
+    {
+      "name": "A shared gathering does not erase a completed two-person experience",
+      "status": "PASS",
+      "detail": {
+        "ending": "R_glst",
+        "commands": 94,
+        "bridge": "fixed"
+      }
+    },
+    {
+      "name": "Lu early plan receives a later independent response ally",
+      "status": "PASS",
+      "detail": {
+        "ending": "X03",
+        "plan": "ally"
+      }
+    },
+    {
+      "name": "Lu early plan receives a later independent response rival",
+      "status": "PASS",
+      "detail": {
+        "ending": "X03",
+        "plan": "rival"
+      }
+    },
+    {
+      "name": "Lu early plan receives a later independent response distance",
+      "status": "PASS",
+      "detail": {
+        "ending": "X03",
+        "plan": "distant"
+      }
+    },
+    {
+      "name": "Lu early plan receives a later independent response independent",
+      "status": "PASS",
+      "detail": {
+        "ending": "X03",
+        "plan": "independent"
+      }
+    },
+    {
+      "name": "Lu early plan receives a later independent response repair",
+      "status": "PASS",
+      "detail": {
+        "ending": "X03",
+        "plan": "reconciled"
+      }
+    }
+  ],
+  "passed": 8,
+  "failed": 0
+}
+[
+  {
+    "name": "command_revision_is_not_ignored",
+    "status": "PASS"
+  },
+  {
+    "name": "half_demo_is_not_a_master",
+    "status": "PASS"
+  },
+  {
+    "name": "unresolved_opening_source_has_specific_scene_t",
+    "status": "PASS"
+  },
+  {
+    "name": "unresolved_opening_source_has_specific_scene_s",
+    "status": "PASS"
+  },
+  {
+    "name": "unresolved_opening_source_has_specific_scene_l",
+    "status": "PASS"
+  },
+  {
+    "name": "unresolved_opening_source_has_specific_scene_g",
+    "status": "PASS"
+  }
+]
+R3 product regressions 21 PASS
+{
+  "runs": 378,
+  "mutations": 166,
+  "coveredChoices": 737,
+  "totalChoices": 737,
+  "coveredScenes": 225,
+  "failures": 0,
+  "uncovered": []
+}
+{
+  "version": "bookside-revision-r4.0",
+  "scope": "Actual rendered conditional body/reply blocks from ordinary commands. Not all possible state combinations or human play.",
+  "hashes": {
+    "story": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+    "engine": "0b5ad8e19cb0753fc0aedfeb612a8261b1d617cd042991a8e57ce4a4e5a1a3ab"
+  },
+  "total": 565,
+  "covered": 565,
+  "missing": [],
+  "attempts": 114,
+  "searchRejections": 0,
+  "status": "ALL_CONDITIONAL_TEXT_WITNESSED"
+}
+[
+  {
+    "name": "new_game_wakes_instead_of_starting_with_omniscience",
+    "status": "PASS"
+  },
+  {
+    "name": "independent_identity_clues_precede_recognition",
+    "status": "PASS"
+  },
+  {
+    "name": "canon_is_verified_and_not_a_proposed_chapter_number",
+    "status": "PASS"
+  },
+  {
+    "name": "first_choice_t_actual_action_proof_and_no_instant_romance",
+    "status": "PASS"
+  },
+  {
+    "name": "first_choice_s_actual_action_proof_and_no_instant_romance",
+    "status": "PASS"
+  },
+  {
+    "name": "first_choice_l_actual_action_proof_and_no_instant_romance",
+    "status": "PASS"
+  },
+  {
+    "name": "first_choice_g_actual_action_proof_and_no_instant_romance",
+    "status": "PASS"
+  },
+  {
+    "name": "first_choice_self_actual_action_proof_and_no_instant_romance",
+    "status": "PASS"
+  }
+]
+{
+  "scope": "Current canonical r4 ordinary-command regressions plus explicitly identified editorial contracts; not human evaluation.",
+  "hashes": {
+    "story": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+    "engine": "0b5ad8e19cb0753fc0aedfeb612a8261b1d617cd042991a8e57ce4a4e5a1a3ab",
+    "bonus": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e"
+  },
+  "checks": [
+    {
+      "name": "five_opening_t_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 20,
+        "method": "performer_cue",
+        "callback": "A2b.r4.block.006"
+      }
+    },
+    {
+      "name": "five_opening_s_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 20,
+        "method": "producer_switch",
+        "callback": "A2b.r4.block.007"
+      }
+    },
+    {
+      "name": "five_opening_l_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 20,
+        "method": "record_switch",
+        "callback": "A2b.r4.block.008"
+      }
+    },
+    {
+      "name": "five_opening_g_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 20,
+        "method": "authorization_check",
+        "callback": "A2b.r4.block.009"
+      }
+    },
+    {
+      "name": "five_opening_self_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 17,
+        "method": "audio_handoff",
+        "callback": "A2b.r4.block.010"
+      }
+    },
+    {
+      "name": "scapegoat_montage_matches_all_five_physical_paths",
+      "status": "PASS",
+      "detail": "Xu hands USB to audio operator; later edited blame omits operator; not invented Xu keypress."
+    },
+    {
+      "name": "authority_challenge_has_observable_cost_not_guaranteed_praise",
+      "status": "PASS"
+    },
+    {
+      "name": "g07_deferred_disclosure_is_not_spoken_of_as_already_completed",
+      "status": "PASS"
+    },
+    {
+      "name": "g03_person_callback_is_wage_not_an_unasked_question",
+      "status": "PASS"
+    },
+    {
+      "name": "career_mail_is_unsent_before_player_chooses",
+      "status": "PASS"
+    },
+    {
+      "name": "optional_t_side_scene_does_not_force_book_source_disclosure",
+      "status": "PASS"
+    },
+    {
+      "name": "same_l_memory_in_confession_and_single_ending",
+      "status": "PASS"
+    },
+    {
+      "name": "gs_slow_ending_does_not_pretend_unchosen_walk",
+      "status": "PASS"
+    },
+    {
+      "name": "gl_ending_photo_is_not_taken_before_photo_choice",
+      "status": "PASS"
+    },
+    {
+      "name": "all_four_pov_extras_remain_unsent_no_canonical_transfer",
+      "status": "PASS"
+    },
+    {
+      "name": "all_225_scenes_have_author_second_pass_not_claimed_human_review",
+      "status": "PASS",
+      "detail": {
+        "scope": "Author second-pass editorial review, not independent human acceptance",
+        "manualEditRecords": 800
+      }
+    },
+    {
+      "name": "rival_has_independent_execution_and_not_only_the_protagonists_instruction",
+      "status": "PASS",
+      "detail": {
+        "finalLu": "ally",
+        "actions": [
+          "LU_MOVE1/own",
+          "LU_MOVE2/ally"
+        ]
+      }
+    }
+  ],
+  "passed": 17,
+  "failed": 0
+}
+
+> gonglue-four-heroine-r4@4.0.0 export
+> node tools/archive-expectations.mjs && node tools/measure-experience.mjs && python3 tools/export-and-audit.py
+
+romance_t
+15 ENTRY_WAKE / 谁在叫“许照”？ | ENTRY_WAKE / 谁在叫“许照”？
+30 ENTRY_CLUES / 名字、舞台，还有那个人 | ENTRY_WAKE / 谁在叫“许照”？
+180 OP_TALK_t / 她先记住了你的名字 | COLD / 原版就在这里
+300 OP_WORK_own / 只有五分钟，也够留一份自己的 | OP_SECRET_t / 她好奇你怎么找到的
+600 A2b / 这次，名单里有你 | t01 / 后台的盒饭
+1200 t04 / 便利店没有安可 | A3b / 第4日晚，你先答应谁
+first complete [ 20.733333333333334, 32.6 ] 3rd [ 87, 135 ]
+romance_s
+15 ENTRY_WAKE / 谁在叫“许照”？ | ENTRY_WAKE / 谁在叫“许照”？
+30 ENTRY_CLUES / 名字、舞台，还有那个人 | ENTRY_WAKE / 谁在叫“许照”？
+180 OP_TALK_s / 她先把你当成靠谱的人 | COLD / 原版就在这里
+300 OP_WORK_own / 只有五分钟，也够留一份自己的 | OP_SECRET_s / 她只想先把事情听明白
+600 A2b / 这次，名单里有你 | s01 / 窗边空出两把椅子
+1200 s04 / 你不用猜我想吃什么 | LU_MOVE1 / 他订了下一次录音棚
+first complete [ 20.733333333333334, 32.6 ] 3rd [ 87, 135 ]
+romance_l
+15 ENTRY_WAKE / 谁在叫“许照”？ | ENTRY_WAKE / 谁在叫“许照”？
+30 ENTRY_CLUES / 名字、舞台，还有那个人 | ENTRY_WAKE / 谁在叫“许照”？
+180 OP_TALK_l / 镜头之外，她问了你一句 | COLD / 原版就在这里
+300 OP_DATE_l / 她缺一个没看过的观众 | OP_SECRET_l / 她注意到了你的动作
+600 A2b / 这次，名单里有你 | l01 / 被剪掉的两秒钟
+1200 l04 / 今天轮到你入镜 | A3b / 第4日晚，你先答应谁
+first complete [ 20.733333333333334, 32.6 ] 3rd [ 87, 135 ]
+romance_g
+15 ENTRY_WAKE / 谁在叫“许照”？ | ENTRY_WAKE / 谁在叫“许照”？
+30 ENTRY_CLUES / 名字、舞台，还有那个人 | ENTRY_WAKE / 谁在叫“许照”？
+180 OP_TALK_g / 她想弄清你是怎样的人 | COLD / 原版就在这里
+300 OP_DATE_g / 后街吃一碗面 | OP_SECRET_g / 她想知道，你凭什么敢问
+600 A2b / 这次，名单里有你 | g01 / 她先问你的价码
+1200 g04 / 她没赢的一局 | LU_MOVE1 / 他订了下一次录音棚
+first complete [ 20.733333333333334, 32.6 ] 3rd [ 87, 135 ]
+romance_glst
+15 ENTRY_WAKE / 谁在叫“许照”？ | ENTRY_WAKE / 谁在叫“许照”？
+30 ENTRY_CLUES / 名字、舞台，还有那个人 | ENTRY_WAKE / 谁在叫“许照”？
+180 OP_TALK_t / 她先记住了你的名字 | COLD / 原版就在这里
+300 OP_WORK_own / 只有五分钟，也够留一份自己的 | OP_SECRET_t / 她好奇你怎么找到的
+600 A2b / 这次，名单里有你 | t01 / 后台的盒饭
+1200 @schedule / 第6日 18:00 · 这一段想留给谁？ | A3a / 旁厅，到底怎么继续
+first complete [ 20.733333333333334, 32.6 ] 3rd [ 87, 135 ]
+{
+  "status": "PASS",
+  "storySha256": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+  "errors": [],
+  "counts": {
+    "scenes": 225,
+    "choices": 737,
+    "mainEndings": 24,
+    "bodyBlocks": 514,
+    "replyBlocks": 51,
+    "epilogues": 40,
+    "bonus": 8,
+    "coda": 6,
+    "textBeats": 4069,
+    "hanCharacters": 85588,
+    "memoryCueMatches": 451,
+    "conditionalLocations": 799,
+    "dynamicConditionsNotSeenTrue": 0,
+    "recordOnlyChoices": 76
+  },
+  "scope": "Schema/IDs/hashes/predicate structure/source export/dependency inventory. Not a proof that all natural language is consistent or fun."
+}
+{
+  "status": "PASS",
+  "hashes": {
+    "story": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+    "engine": "0b5ad8e19cb0753fc0aedfeb612a8261b1d617cd042991a8e57ce4a4e5a1a3ab",
+    "html": "73787c527e1dbe2677d44eada486b4a3e9a2469f9e294c981f0625ac9e034f5e"
+  },
+  "checks": [
+    {
+      "name": "Canonical source and both builds match",
+      "status": "PASS",
+      "detail": "Standalone and repository module contain identical canonical content; build hashes checked."
+    },
+    {
+      "name": "Counts, choice contracts and complete export",
+      "status": "PASS",
+      "detail": {
+        "scenes": 225,
+        "choices": 737,
+        "mainEndings": 24,
+        "bodyBlocks": 514,
+        "replyBlocks": 51,
+        "epilogues": 40,
+        "bonus": 8,
+        "coda": 6,
+        "textBeats": 4069,
+        "hanCharacters": 85588,
+        "memoryCueMatches": 451,
+        "conditionalLocations": 799,
+        "dynamicConditionsNotSeenTrue": 0,
+        "recordOnlyChoices": 76
+      }
+    },
+    {
+      "name": "Fresh command and displayed-text evidence",
+      "status": "PASS",
+      "detail": "Current ordinary-command evidence matches this story/engine. All 565 conditional text blocks have displayed witnesses; state combinations are not exhaustive."
+    }
+  ],
+  "errors": [],
+  "releaseGates": {
+    "sourceAndCommandQA": "PASS",
+    "actualEntryAndNativePersistence": "REQUIRES_CURRENT_CI_BROWSER_REPORT",
+    "physicalPhone": "NOT_TESTED",
+    "allStateCombinations": "NOT_EXHAUSTIVE",
+    "humanRetention": "NOT_TESTED",
+    "IAAPlatformRelease": "NOT_IMPLEMENTED"
+  },
+  "note": "This checker does not run browser tests or grant publishing approval. Never use historical browser evidence as a current result."
+}

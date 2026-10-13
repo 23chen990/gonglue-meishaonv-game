@@ -1,0 +1,16 @@
+{
+  "base": "r4.1",
+  "new": "r4.2",
+  "changes": [
+    "ENTRY_WAKE 3 truly branching first choices; canon risk disclosed BEFORE click",
+    "ENTRY_CLUES genuine canon preservation vs branch-off at paper trail",
+    "ENTRY_MEMORY two distinct investigation preparations",
+    "COLD five total possible routes, but max three visible based on investigation strategy",
+    "OP_CANON distinct original world; OP_FORK only on changed paths",
+    "A1b canon-compatible responsibility, no automatic false disc",
+    "UNWRITTEN real post-book scene with recorded career consequences"
+  ],
+  "scenes": 228,
+  "choices": 751,
+  "lineCount": 4004
+}

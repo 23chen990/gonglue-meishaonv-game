@@ -1,0 +1,2044 @@
+{
+  "version": "revision-r4.0",
+  "storySHA256": "577db875a0a664b4cba8c301e9169f60b9aa831ee97e9fdd9f03368dcdea7bf3",
+  "originalCount": 26,
+  "r2AdditionalCount": 17,
+  "statusMeaning": "当前代码/回放与作者第二轮审查有证据；不表示全部发布门禁已通过。",
+  "issues": [
+    {
+      "id": "P0-01",
+      "title": "四女主与陆景行的主要命运在前段一次写定",
+      "currentVersion": "revision-r4.0",
+      "scope": "A2—A7、EXEC/RES、LU_MOVE、EPILOGUES",
+      "actualFix": "保留计划—执行—实物—收束链；重写20段结果回应为已经发生的事实，不重复播放执行过程。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "EPILOGUE_EP_t_independent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_t_negotiated",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_t_chosen_duet",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_t_intentional_pause",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_t_restricted",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_cooperative",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_shared_use",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_residency",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_chosen_exit",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_displaced",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_l_fellowship",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_l_chosen_stay",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_l_release_film",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_l_authorized_cut",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_l_silenced",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_independent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_bounded_partner",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_public_account",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_leave_family",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_scapegoated",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_independent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_partner",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_backstage",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_rebuilding",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_outside",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_ally",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_rival",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_distant",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_independent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_reconciled",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_visibility_open",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_visibility_private",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_visibility_unresolved",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_visibility_work",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_visibility_closed",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_bias_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_bias_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_bias_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_bias_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_bias_self",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "Same early plan, different execution, different tangible future",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "Late actual scene repairs a previously unexecuted future",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P0-02",
+      "title": "四人结局的行动预算容不下充分相处",
+      "currentVersion": "revision-r4.0",
+      "scope": "20次日程、H_*、c04—c11、endingRules",
+      "actualFix": "保持行动预算与每人独立亲密场景；四人普通路径95次命令通关，不注入stage或统一同意。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "NORMAL_COMBINATION_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_st",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_ls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gs",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gl",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "All three-plus group votes are independently optional",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P0-03",
+      "title": "多人关系连续两次‘慢一点’后永久失去再确认入口",
+      "currentVersion": "revision-r4.0",
+      "scope": "六组P_/Q_、groupWait、availableActions",
+      "actualFix": "慢热两次仍有新的邀约和重新回答；重写六组生活冲突与回应，没有通过删慢热选项回避软锁。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "PAIR_SLOW_TWICE_CAN_RETURN_st",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_SLOW_TWICE_CAN_RETURN_lt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_SLOW_TWICE_CAN_RETURN_gt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_SLOW_TWICE_CAN_RETURN_ls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_SLOW_TWICE_CAN_RETURN_gs",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_SLOW_TWICE_CAN_RETURN_gl",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P0-04",
+      "title": "玩家选择朋友，后文却仍被写成正在约会",
+      "currentVersion": "revision-r4.0",
+      "scope": "c03、REL、REOPEN、SPARK、repair",
+      "actualFix": "朋友、拒绝、兴趣、交往和排他分别处理；初见救场不写active；后续主动邀约不等于已交往。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "INVITE_AGAIN_t_wait",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_t_friend",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_t_decline",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "RESPECT_REFUSAL_AND_RESUME_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_s_wait",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_s_friend",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_s_decline",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "RESPECT_REFUSAL_AND_RESUME_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_l_wait",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_l_friend",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_l_decline",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "RESPECT_REFUSAL_AND_RESUME_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_g_wait",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_g_friend",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "INVITE_AGAIN_g_decline",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "RESPECT_REFUSAL_AND_RESUME_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NEW-10 minimum romance ending never recalls an unvisited private date",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P0-05",
+      "title": "关键心动与结局回忆仍在补造经历或记错选择",
+      "currentVersion": "revision-r4.0",
+      "scope": "逐场225审查、R_l、R_gs、R_gl、BONUS",
+      "actualFix": "删除未选择的散步照片、未问的问题、未说过的话；相机/耳机/草稿/牵手分别追溯真实前驱。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Readonly ending review includes main ending and cannot change a live route",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NEW-04 l09 watch is remembered as watching, not diagnosing; learn is not why-shot",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        },
+        {
+          "test": "NEW-05 shared outings do not fabricate an intervening dinner or newly sent call",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        },
+        {
+          "test": "NEW-06 named memories preserve actual words, giver and location",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        },
+        {
+          "test": "NEW-10 minimum romance ending never recalls an unvisited private date",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P0-06",
+      "title": "关系知情账本与人物对白相互矛盾",
+      "currentVersion": "revision-r4.0",
+      "scope": "knowledge、disclose、FOUND、CROSS、DUE",
+      "actualFix": "保留每人、每个事实及实际来源；将四个03来源冲突与普通公开/隐瞒路径重新回放。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/information-regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Hidden denial remains unknown without a disclosure or witnessed source",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "Voluntary confession can be repaired without a surprise omniscient reveal",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "DISCOVERY_FROM_EXPLICIT_DISCLOSURE_t",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_t_s",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_t_l",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_t_g",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "DISCOVERY_FROM_EXPLICIT_DISCLOSURE_s",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_s_t",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_s_l",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_s_g",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "DISCOVERY_FROM_EXPLICIT_DISCLOSURE_l",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_l_t",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_l_s",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_l_g",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "DISCOVERY_FROM_EXPLICIT_DISCLOSURE_g",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_g_t",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_g_s",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "ENCOUNTER_SOURCE_g_l",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_CAN_DISCLOSE_PRIOR_WRONG_st",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_CAN_DISCLOSE_PRIOR_WRONG_lt",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_CAN_DISCLOSE_PRIOR_WRONG_gt",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_CAN_DISCLOSE_PRIOR_WRONG_ls",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_CAN_DISCLOSE_PRIOR_WRONG_gs",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PAIR_CAN_DISCLOSE_PRIOR_WRONG_gl",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P0-07",
+      "title": "结局‘回看’覆盖当前游玩进度，而且跳过主结局",
+      "currentVersion": "revision-r4.0",
+      "scope": "readPayload、collection、history、reviewEnding",
+      "actualFix": "24主结局、8番外只读回看逐项比对；当前存档字符串不变；回退选择才改变本局事实。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/browser/fixture-reader/reader-chromium-all-report.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Readonly ending review includes main ending and cannot change a live route",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-01",
+      "title": "已经离职或离场，后文仍按旧身份行动",
+      "currentVersion": "revision-r4.0",
+      "scope": "沈/顾后期、H_lst、RES_s/g",
+      "actualFix": "离职后不再使用旧钥匙或替场地方承诺资源；晚期约见与经营权限分开。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/independent-regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "EPILOGUE_EP_s_cooperative",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_shared_use",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_residency",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_chosen_exit",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_s_displaced",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_independent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_bounded_partner",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_public_account",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_leave_family",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_g_scapegoated",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NEW-03 late private visit after resignation has no old keys or operator authority",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-02",
+      "title": "自由日程遇到写死时间，主动离开的结局又瞬间换地点",
+      "currentVersion": "revision-r4.0",
+      "scope": "calendar、free events、s02、A7/X05",
+      "actualFix": "主厅和第三排旁厅在同一园区；日程时钟回归；去留与下一处会面有转场。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/final-edges.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Canonical IDs, display hashes and all continuations",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NEW-05 shared outings do not fabricate an intervening dinner or newly sent call",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-03",
+      "title": "自救证据仍靠总分，演出却默认存在具体原声",
+      "currentVersion": "revision-r4.0",
+      "scope": "A4b/A6a、E01、recordFate",
+      "actualFix": "蓝标伴奏、半成品试听、完整母带、授权原声、工作记录分别管理；没有原声不能播放它自证。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r3-regressions.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "OTHER_ENDING_early",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_single_rise",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_all_futures_no_romance",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_unresolved",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_outside",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SELF_RESCUE_WITH_REAL_record",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SELF_RESCUE_WITH_REAL_witness",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SELF_RESCUE_WITH_REAL_audio",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-04",
+      "title": "旧入口删掉了，后文还在等永远不会写入的状态",
+      "currentVersion": "revision-r4.0",
+      "scope": "所有when、c03、A2b",
+      "actualFix": "565个条件正文/已选回应均有当前解释器普通命令展示见证；不把未点击选项的条件真值算展示。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/conditional-r3.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Canonical IDs, display hashes and all continuations",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "PROMISE_FALLBACK_t",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PROMISE_FALLBACK_s",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PROMISE_FALLBACK_l",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PROMISE_FALLBACK_g",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-05",
+      "title": "同一场景组合后物件自相矛盾",
+      "currentVersion": "revision-r4.0",
+      "scope": "g03及其他合成正文",
+      "actualFix": "逐场合读条件块，消除文件夹位置矛盾；“没有文件夹”场景不再从文件夹拿出东西。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/independent-regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "NORMAL_COMBINATION_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gs",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gl",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-06",
+      "title": "合理吃醋被系统升级成控制欲",
+      "currentVersion": "revision-r4.0",
+      "scope": "l07、pending/breach、修复场",
+      "actualFix": "正常不安可以表达，不自动当成控制；真正的否认/利用/爽约仍有具体冲突。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "NORMAL_COMBINATION_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_ls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NEW-04 l09 watch is remembered as watching, not diagnosing; learn is not why-shot",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-07",
+      "title": "女主临时提前演出，却默认玩家迟到有错",
+      "currentVersion": "revision-r4.0",
+      "scope": "t08、MEET/MIS、promise_due",
+      "actualFix": "提前到场/新时间/迟到分开；谁承诺、谁变更、谁未兑现有实际来源。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/information-regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "NORMAL_COMBINATION_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-08",
+      "title": "沈清辞线把‘我想帮你’记成‘我需要你帮’",
+      "currentVersion": "revision-r4.0",
+      "scope": "s09/s10",
+      "actualFix": "保留需要帮助的说话方向；后文按真实回答回忆，不反转成主角承诺救人。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/independent-regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "NEW-06 named memories preserve actual words, giver and location",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-09",
+      "title": "遗憾结局和修罗场只解释分类，没演出真实原因",
+      "currentVersion": "revision-r4.0",
+      "scope": "R_group_bias、遗憾结局、reasonText",
+      "actualFix": "失败指向真实偏心、隐瞒或关系分歧，角色回应具体事情；保留修复与退出。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "OTHER_ENDING_unresolved",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "Acknowledgement alone is not repair; failed action cannot be bypassed",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "All 24 endings and all 40 epilogues have ordinary-input witnesses",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-10",
+      "title": "‘实际修复’主要仍由旁白替玩家做完",
+      "currentVersion": "revision-r4.0",
+      "scope": "R1/R2/RA/OPEN_CLEAR",
+      "actualFix": "承认、实际更正、重新协商均由玩家操作；每位女主措辞和动作不再整段同模版。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/information-regression.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Witnessed exposure, actual two-appointment repair, renewed consent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "Acknowledgement alone is not repair; failed action cannot be bypassed",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "Voluntary confession can be repaired without a surprise omniscient reveal",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-11",
+      "title": "选择‘稍后说清’，状态却当场全部披露",
+      "currentVersion": "revision-r4.0",
+      "scope": "DUE、g07、discovery_*",
+      "actualFix": "延期说清不提前知情；顾晚棠先说“散场前会讲”，不是“你刚才说清了”。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "DELAYED_DISCLOSURE_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "DELAYED_DISCLOSURE_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NEW-01 deferred disclosure is not remembered before it occurs",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-12",
+      "title": "开场之后，陆景行又逐渐退成态度背景",
+      "currentVersion": "revision-r4.0",
+      "scope": "COLD、LU01—03、LU_MOVE1/2",
+      "actualFix": "陆景行有合理钢琴备选、自己排练/组队/接洽；许照失误也有学习过程，不靠他变笨获胜。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "EPILOGUE_EP_lu_ally",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_rival",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_distant",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_independent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_lu_reconciled",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "Same early plan, different execution, different tangible future",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-13",
+      "title": "四人材料不同，但攻略答题方式太相似",
+      "currentVersion": "revision-r4.0",
+      "scope": "44个人场、SPARK、6对共同线、H组线",
+      "actualFix": "唐会拿音乐和紧张开玩笑，沈的体贴落在安排与自己的错误，林有镜头观察与新目标，顾直接且真有利益失误。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/scene-editorial-audit.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "NORMAL_COMBINATION_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_st",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_ls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gs",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gl",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SLOW_INTIMACY_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-14",
+      "title": "作者解释反复打断暧昧和冲突",
+      "currentVersion": "revision-r4.0",
+      "scope": "正式正文/选项/即时回应/尾声",
+      "actualFix": "800条逐场编辑记录直接落入JSON；将许多关系说明会改成吃饭、排练、拍片、雨中同行等具体冲突。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/scene-editorial-audit.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Canonical IDs, display hashes and all continuations",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_t",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_s",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_st",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_l",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_ls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_lst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_g",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gs",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gl",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glt",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_gls",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NORMAL_COMBINATION_glst",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-15",
+      "title": "穿书主张的获知事实仍有新旧两套记录",
+      "currentVersion": "revision-r4.0",
+      "scope": "OP_SECRET/OP_CHECK、E_T、sources",
+      "actualFix": "只有主角知道的书中信息不自动传给别人；E_T的普通建议不强制说“我看过原著”。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "PROMISE_FALLBACK_t",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "OPENING_SOURCE_REPAIR_t",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PROMISE_FALLBACK_s",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "OPENING_SOURCE_REPAIR_s",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PROMISE_FALLBACK_l",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "OPENING_SOURCE_REPAIR_l",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "PROMISE_FALLBACK_g",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        },
+        {
+          "test": "OPENING_SOURCE_REPAIR_g",
+          "reports": [
+            "qa/current/information-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-16",
+      "title": "临时游玩时，已满足条件的结局与番外不登记",
+      "currentVersion": "revision-r4.0",
+      "scope": "save、profile",
+      "actualFix": "收藏先在内存登记；模拟配额失败后仍能打开新增结局，原存档未覆盖。真实磁盘故障待原生环境。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/browser/fixture-reader/reader-chromium-all-report.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P1-17",
+      "title": "独身逆袭有价值观，却缺够鲜明的可见成果",
+      "currentVersion": "revision-r4.0",
+      "scope": "SELF、E04、XU_WORK、X01—05",
+      "actualFix": "提供自己的工作样本、投递与实际执行；邮件选择前保持草稿，不靠旁白自动完成事业。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "OTHER_ENDING_early",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_single_rise",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_all_futures_no_romance",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_unresolved",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "OTHER_ENDING_outside",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_independent",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_partner",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_backstage",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_rebuilding",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "EPILOGUE_EP_xu_outside",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SELF_RESCUE_WITH_REAL_record",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SELF_RESCUE_WITH_REAL_witness",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "SELF_RESCUE_WITH_REAL_audio",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        },
+        {
+          "test": "NEW-08 work fate chain points to actual earlier self-rescue choice",
+          "reports": [
+            "qa/current/independent-regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P2-01",
+      "title": "重复字和元叙事术语仍未清理",
+      "currentVersion": "revision-r4.0",
+      "scope": "225场/aux全部文本",
+      "actualFix": "全量ID/文本hash、条件与引用校验；对白逐场自审，关键记忆修正有单独反例。自然程度仍待真人盲玩。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/static-audit.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [
+        {
+          "test": "Canonical IDs, display hashes and all continuations",
+          "reports": [
+            "qa/current/regression.json"
+          ]
+        }
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "P2-02",
+      "title": "全程尾声与共同关系说明堆叠，缺少节奏分层",
+      "currentVersion": "revision-r4.0",
+      "scope": "24结局、40尾声、8番外、6收束",
+      "actualFix": "主结局分页，尾声按需展开，番外只读；四篇POV明确未发送的草稿，不改本局知识。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/browser/fixture-reader/reader-chromium-all-report.json",
+        "qa/current/final-regression.log"
+      ],
+      "matchedExistingTests": [],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED",
+      "remainingRisk": "普通输入见证不等于所有状态组合；离线存储不是原生持久化；作者自查不等于真人觉得好玩。"
+    },
+    {
+      "id": "NEW-01",
+      "title": "延期谈话尚未兑现，后文却提前回忆已经谈过",
+      "currentVersion": "revision-r4.0",
+      "scope": "DUE/g07",
+      "actualFix": "延期谈话仍在未来，直到真实兑现再回忆；修正顾晚棠提前感谢。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-02",
+      "title": "同次合并出行后，玩家选择“离开”仍被强制继续",
+      "currentVersion": "revision-r4.0",
+      "scope": "finishOuting/H_*",
+      "actualFix": "选择离开不强制继续第二段；合流前确有转场。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/independent-regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-03",
+      "title": "离职后私人会面仍使用旧工作钥匙/权限",
+      "currentVersion": "revision-r4.0",
+      "scope": "s10/H_lst/RES_s",
+      "actualFix": "离职后的约会在公共空间，不再用旧钥匙与运营权限。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/independent-regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-04",
+      "title": "看完视频/片段，被回忆成自己分析过或问过问题",
+      "currentVersion": "revision-r4.0",
+      "scope": "l09/l10/g03/R_l",
+      "actualFix": "看完、分析、提问分别按真实选项回调；工资问答不变成未问的关系问题。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-05",
+      "title": "同一次外出，后文虚构隔天又吃饭/另打电话",
+      "currentVersion": "revision-r4.0",
+      "scope": "c08—c11/R_gs/CODA",
+      "actualFix": "同次活动不虚构隔日已见；约定的那天不是自动“明天”。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/independent-regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-06",
+      "title": "某句话谁说、饭谁送、当时在哪，都被反方向记住",
+      "currentVersion": "revision-r4.0",
+      "scope": "t04/t05/s09/s10/g03",
+      "actualFix": "逐条核对饭是谁送、帮助方向、照片由谁拍，按选择而非角色刻板模板回忆。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/independent-regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-07",
+      "title": "结局配置写了最低关系深度，但结算没实际读取",
+      "currentVersion": "revision-r4.0",
+      "scope": "classifyEnding/endingRules",
+      "actualFix": "结局真实读取最低私人深度；四人见证有独立私人段落，不仅数组配置好看。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-08",
+      "title": "独身命运尾声回溯到从未作出的计划",
+      "currentVersion": "revision-r4.0",
+      "scope": "XU_WORK/EP_xu",
+      "actualFix": "独身回忆仅引用实际计划和执行，不回忆玩家没承诺的项目。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/information-regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-09",
+      "title": "第二次及之后的共同邀约每次都说“这是第一次”",
+      "currentVersion": "revision-r4.0",
+      "scope": "H_* / H_*_ASK / Q_*",
+      "actualFix": "共同事件第二次不重新声称初见；慢热再邀和新事件保留。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-10",
+      "title": "低亲密度结局回忆从未赴过的私人约会",
+      "currentVersion": "revision-r4.0",
+      "scope": "24结局条件回调",
+      "actualFix": "未赴约不出现对应晚餐、亲吻与照片；R_gl拍照由终局选择决定。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-11",
+      "title": "唐映雪/林见月的识破模板有台词，却缺实际撒谎入口",
+      "currentVersion": "revision-r4.0",
+      "scope": "denyRelations/FOUND_t/l/CROSS",
+      "actualFix": "真正否认已有对象后才触发识破；没有谎言的路径不会凭空抓包。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/information-regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-12",
+      "title": "“兑现承诺”的回忆提前于承诺被真正履行",
+      "currentVersion": "revision-r4.0",
+      "scope": "promise/DUE/MEET",
+      "actualFix": "履约回忆晚于真实活动完成，未说清时不会已经得到原谅。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/information-regression.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-13",
+      "title": "新多人共同场景覆盖或误写此前真实两人共同经历",
+      "currentVersion": "revision-r4.0",
+      "scope": "groupStart/groupFinish/P_/H_",
+      "actualFix": "新共同关系不覆盖真实双人经历；回忆保留具体邀请或参与而不夸成未完成行动。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/final-edges.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-14",
+      "title": "旧匿名身份条件从未被当前合法路径设置",
+      "currentVersion": "revision-r4.0",
+      "scope": "when全量和03来源分支",
+      "actualFix": "旧匿名条件由当前合法来源冲突进入；全部条件展示见证重跑。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/conditional-r3.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-15",
+      "title": "自由中午日程和夜间场景时间表述冲突",
+      "currentVersion": "revision-r4.0",
+      "scope": "calendar/availableActions",
+      "actualFix": "自由私人见面按实际晚间日程；独立白天工作锚点保留。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/final-edges.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-16",
+      "title": "用户合法的快速第二次触摸被误判成双击吞掉",
+      "currentVersion": "revision-r4.0",
+      "scope": "preview-ui pointer/render/revision",
+      "actualFix": "移除误吞合法第二触的时间门槛，保留陈旧按钮/版本/滑动守卫；真实DOM双击只执行一次。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/browser/fixture-ui/ui-report.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    },
+    {
+      "id": "NEW-17",
+      "title": "陆景行早期有计划记录，却未在后文真正回应和行动",
+      "currentVersion": "revision-r4.0",
+      "scope": "LU_MOVE1/2/LU01—03/COLD",
+      "actualFix": "陆景行后续实际行动与回调保留，开局救场有可执行备选，不降智。",
+      "implementation": "MODIFIED_OR_RETAINED_AND_REGRESSED",
+      "evidence": [
+        "qa/current/r4-causality.json"
+      ],
+      "humanAcceptance": "NOT_TESTED",
+      "nativeEntryGate": "BLOCKED"
+    }
+  ]
+}

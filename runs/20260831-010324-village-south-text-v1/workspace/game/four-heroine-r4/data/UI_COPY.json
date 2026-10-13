@@ -1,0 +1,14 @@
+{
+  "version": "revision-r4.0",
+  "status": "reference_summary_not_runtime_source",
+  "runtimeSource": "tools/preview-ui.js",
+  "canonicalDynamicText": "STORY.json.uiText / reasonText",
+  "title": "攻略美少女",
+  "saveKey": "gonglue:revision-r4:canonical",
+  "saveContract": "版本+正文SHA+可校验命令日志；旧版不自动迁移",
+  "archive": "独立只读回放主结局、回应与命运尾声；不替换当前路线",
+  "display": "自然流分页、可滚动选项、大字、菜单内历史/收藏；不使用遮住选项的固定底栏",
+  "ads": "没有广告调用、付费门槛或广告奖励；这是完整本地叙事预览，不是IAA平台成品",
+  "entry": "ENTRY_WAKE → ENTRY_CLUES → ENTRY_MEMORY → COLD → OP_SETTLE",
+  "input": "逐次渲染/revision校验与拖动保护；无跨页面180ms门禁"
+}

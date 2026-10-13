@@ -1,0 +1,325 @@
+{
+  "status": "PASS",
+  "scope": "TEXT_ONLY_STRUCTURE; not a semantic or player-experience verdict",
+  "structureSha256": "f1bc8b2d9c9fb5ae87652898691edb6f9f3893a6ef2ae23e10fe80c920693815",
+  "changedTextCount": 63,
+  "changes": [
+    {
+      "path": "/scenes/t01/body/2/text",
+      "before": "胡萝卜，还是饭？",
+      "after": "你把胡萝卜藏起来，还是打算把整盒饭都藏了？"
+    },
+    {
+      "path": "/scenes/t01/body/3/text",
+      "before": "歌手精致的下班生活。",
+      "after": "我今晚的豪华后台餐：挑食失败，胡萝卜全赢。"
+    },
+    {
+      "path": "/scenes/t01/body/5/text",
+      "before": "别拍照就行。你吃了吗？",
+      "after": "别给我拍成后台探店视频。你吃了没？"
+    },
+    {
+      "path": "/scenes/t02/body/4/text",
+      "before": "等一下。这段我还没发过，你怎么会？",
+      "after": "等等！后面两个音我连试唱都还没录，你怎么先哼出来了？"
+    },
+    {
+      "path": "/scenes/t03/body/4/text",
+      "before": "算了，不给你出阅读理解。你今天为什么来？",
+      "after": "算了，我不猜你了。今晚没演出，也没新歌。你还愿意坐第一排，是为了什么？"
+    },
+    {
+      "path": "/scenes/s01/body/0/text",
+      "before": "清辞刚挂断电话，窗边的几张纸就被吹散了。你帮她按住一角。",
+      "after": "清辞一边接电话一边找签字笔，窗缝又把她刚理好的排期吹了一地。你弯腰帮她压住那张写着“旁厅”的纸。"
+    },
+    {
+      "path": "/scenes/s01/body/5/text",
+      "before": "行。你坐那把，我坐这把。",
+      "after": "先说好，只歇五分钟。第六分钟要是有人找我，你帮我装没听见。"
+    },
+    {
+      "path": "/scenes/s01/choices/1/reply/1/text",
+      "before": "很少有人来找我，又不打算要一个答复。",
+      "after": "你真的不问排期？刚才那叠纸，可是人人看见都想提要求。"
+    },
+    {
+      "path": "/scenes/s02/body/3/text",
+      "before": "我刚租下这间旁厅的时候，总觉得椅子不够。后来发现，空椅子越多，看着越慌。",
+      "after": "刚租下这里，我连折叠椅都多买了二十把。第一场卖出七张票，我半夜回来数空椅子。"
+    },
+    {
+      "path": "/scenes/s03/body/5/text",
+      "before": "我想先问清楚。你来，是想和我谈下一场合作，还是想和我继续认识？",
+      "after": "我今晚没带排期表，是因为想和你吃顿私人的饭。你呢？是这么想的吗？"
+    },
+    {
+      "path": "/scenes/l01/body/3/text",
+      "before": "我想留这两秒，又怕别人只觉得闷。",
+      "after": "我想留着，可录音里那个人还没同意公开。我连这两秒要不要放，都没决定。"
+    },
+    {
+      "path": "/scenes/l01/body/4/text",
+      "before": "她把进度条拖回来，等你真的听一次。",
+      "after": "她把进度条拖回去，却没按播放，先把耳机线理直递给你。你看见剪辑项目的备注栏写着“先问本人”。"
+    },
+    {
+      "path": "/scenes/l01/choices/0/reply/4/text",
+      "before": "以后有听不清的地方，还能叫你吗？",
+      "after": "我准备先找到那个人问问。等他点头，再拉你来听行吗？"
+    },
+    {
+      "path": "/scenes/l02/body/4/text",
+      "before": "一想到要走，就会担心大家手上的事没人接。",
+      "after": "我一离开，纪录片的后期谁接？昨天陆景行还问我能不能顺手剪一版预告。"
+    },
+    {
+      "path": "/scenes/l02/body/6/text",
+      "before": "嗯。但不只他。谁来问，我都很难说自己没空。",
+      "after": "嗯。我以前总先答应他。但现在的问题是，谁来问我，我都说“再挤挤时间”。"
+    },
+    {
+      "path": "/scenes/l03/body/5/text",
+      "before": "我以前喜欢过陆景行，很久。没有正式在一起过。现在想认真认识你，也是真的，不是跟他赌气。",
+      "after": "我喜欢过陆景行。这事瞒着你不公平。我们没在一起过，我也不打算拿你跟他比。现在我想和你试试，这句话是我自己想说的。"
+    },
+    {
+      "path": "/scenes/g01/body/3/text",
+      "before": "现在没人催演出。你想谈工作，还是想跟我说点别的？",
+      "after": "现在不是股东会。你是来核工作记录，还是终于肯聊句不用签字的？"
+    },
+    {
+      "path": "/scenes/g01/choices/1/reply/0/text",
+      "before": "想聊点公事之外的。可你一开口，我又想起没结的工资。",
+      "after": "想聊点工作以外的。不过你一站过来，我突然想起场务工资还没结。"
+    },
+    {
+      "path": "/scenes/g01/choices/1/reply/4/text",
+      "before": "先坐。工资归工资，别把我也当审批单看。",
+      "after": "先坐吧。工资我不管，但谁拖着不给，我可以帮你问一句。别当成约会优惠券。"
+    },
+    {
+      "path": "/scenes/g02/body/3/text",
+      "before": "先看清楚，不合适可以不签。你想要什么，也现在说。",
+      "after": "先读完再签。我不怕你提条件，怕的是你没看就替别人担责任。"
+    },
+    {
+      "path": "/scenes/g03/body/1/text",
+      "before": "我第一次来。难吃了也别紧张，不算投资失败。",
+      "after": "我查了三个店，最后挑了最便宜这家。要是不好吃，允许你当面投诉。"
+    },
+    {
+      "path": "/scenes/g03/body/3/text",
+      "before": "今天不问材料了？",
+      "after": "今天还想问材料？我把工作手机都关了。"
+    },
+    {
+      "path": "/scenes/g04/body/6/text",
+      "before": "不许说我幼稚。你笑得太早了。",
+      "after": "笑什么？再给我两次机会，夹不上来我请你吃饭。"
+    },
+    {
+      "path": "/scenes/A3b/body/1/text",
+      "before": "新段子改好了，能再听一次吗？",
+      "after": "我把尾奏改了三版，终于挑出喜欢的一版。今晚想不想听听？"
+    },
+    {
+      "path": "/scenes/A3b/body/2/text",
+      "before": "想请你来旁厅坐一会儿，顺便听一下回声。",
+      "after": "旁厅那边我又想了个新办法。晚上有空吗？我想找个能说真话的人聊聊。"
+    },
+    {
+      "path": "/scenes/A3b/body/3/text",
+      "before": "有段录音，想让你听听。",
+      "after": "我今天录到个很奇怪的声音，自己听了好几遍。今晚你愿意听一下吗？"
+    },
+    {
+      "path": "/scenes/A3b/body/4/text",
+      "before": "晚饭有空吗？不谈工作也行。",
+      "after": "后街有家面馆我一直想试。今晚你有空吗？这次真的不谈合同。"
+    },
+    {
+      "path": "/scenes/COLD/body/0/text",
+      "before": "备用箱里，压在接线板下的U盘真的贴着蓝胶带。",
+      "after": "你掀开备用箱，接线板底下果然压着一枚贴蓝胶带的U盘。刚才还只是一句小说里的描写，现在它正硌着你的指尖。"
+    },
+    {
+      "path": "/scenes/COLD/body/1/text",
+      "before": "我是音控阿衡。找着了？先给我试听，别直接放。",
+      "after": "我是阿衡，今晚看音控。找着了？给我听，别直接往台上放。"
+    },
+    {
+      "path": "/scenes/COLD/body/2/text",
+      "before": "台上，陆景行抬起手，准备弹下第一个音。你的手伸向那枚U盘。",
+      "after": "钢琴那边，陆景行已经把手落到琴键上方；对讲机里传来倒数。你把U盘攥紧，必须现在决定先找谁。"
+    },
+    {
+      "path": "/scenes/OP_TALK_t/body/0/text",
+      "before": "一曲唱完，唐映雪来到侧台，把水杯抵在嘴边，先看了看你的工作证。",
+      "after": "最后一个音刚落，映雪抱着水杯冲到侧台。她先朝阿衡比了个谢谢，又低头看你胸前的工牌。"
+    },
+    {
+      "path": "/scenes/OP_TALK_t/body/2/text",
+      "before": "第一次赶上这种事。",
+      "after": "第一次碰上这种阵仗，我手心都出汗了。"
+    },
+    {
+      "path": "/scenes/OP_TALK_t/body/3/text",
+      "before": "看出来了。别怕，我没唱砸。",
+      "after": "看出来了。刚才你点头那劲儿，我差点以为你在给我打节拍。"
+    },
+    {
+      "path": "/scenes/OP_TALK_s/body/2/text",
+      "before": "你还记得我？",
+      "after": "你刚才顾得上记名字？"
+    },
+    {
+      "path": "/scenes/OP_TALK_s/body/3/text",
+      "before": "一分钟前才问过名字。我记性没那么差。",
+      "after": "工作人员刚才叫了你好几声。再忙也听到了。"
+    },
+    {
+      "path": "/scenes/OP_TALK_l/body/1/text",
+      "before": "刚才你让镜头拍标签，不拍自己。我差点都没拍清你的脸。",
+      "after": "我拍到盘、控台、阿衡，差点漏掉找到盘的人。你还好吗？刚才手抖得挺厉害。"
+    },
+    {
+      "path": "/scenes/OP_TALK_l/body/3/text",
+      "before": "嗯。现在没那么紧张了？要留张照片吗？不放进项目里。",
+      "after": "现在缓过来点了吗？要不要拍张照留给你自己？我不放进项目里。"
+    },
+    {
+      "path": "/scenes/OP_TALK_g/body/0/text",
+      "before": "顾晚棠合上邮件，没有立刻替程放下结论。等对方走开，她才问你。",
+      "after": "顾晚棠把核对邮件抄送给清辞，却没有急着替程放定责。等人散开，她走到你面前，先看了一眼工牌。"
+    },
+    {
+      "path": "/scenes/OP_TALK_g/body/3/text",
+      "before": "第一天就敢问投资方是不是改了节目单。你胆子不小。",
+      "after": "第一天就敢问投资方有没有动过节目单。你是真不怕得罪人。"
+    },
+    {
+      "path": "/scenes/OP_TALK_g/body/4/text",
+      "before": "其实腿有点软。你没看见。",
+      "after": "怕啊。你说“核邮件”的时候，我都准备被保安请出去了。"
+    },
+    {
+      "path": "/scenes/OP_SECRET_t/body/3/text",
+      "before": "不急，你想好再说。我就是好奇。",
+      "after": "不是审你。我就是怕下一回没人知道盘在哪，你又突然钻进箱子里。"
+    },
+    {
+      "path": "/scenes/OP_SECRET_s/body/3/text",
+      "before": "我可以先听。总比拿不准还装明白强。",
+      "after": "你先说。我听完自己核，不会因为你说得玄就把现场记录撕了。"
+    },
+    {
+      "path": "/scenes/OP_SECRET_l/body/3/text",
+      "before": "那是谁告诉过你位置？",
+      "after": "那你怎么知道要掀哪个箱子？我镜头里没拍到有人提醒你。"
+    },
+    {
+      "path": "/scenes/OP_SECRET_g/body/3/text",
+      "before": "说说看。",
+      "after": "行，先说你能确认的部分。其他的，我来查。"
+    },
+    {
+      "path": "/scenes/OP_RIVAL/body/1/text",
+      "before": "映雪，我把现场片段发给制作人，他想听完整新歌。今晚九点，二号录音室，我已经约好。",
+      "after": "映雪，制作人听了现场片段，想听你的完整新歌。我先问到了二号录音室，九点有空；去不去，你自己定。"
+    },
+    {
+      "path": "/scenes/OP_RIVAL/body/2/text",
+      "before": "我先听条件。不合适就不签。",
+      "after": "先听条件。别到时候又让我唱完才知道谁能发。"
+    },
+    {
+      "path": "/scenes/OP_CHECK_t/blocks/1/lines/0/text",
+      "before": "你说小说里写过我……那我现在选热水，你是不是也知道？",
+      "after": "你说书里有我？那我下一口喝热的还是凉的，你知道吗？"
+    },
+    {
+      "path": "/scenes/OP_CHECK_s/blocks/1/lines/0/text",
+      "before": "我临时把旁厅的看场挪到今晚了。你的故事里连这种小事也写？",
+      "after": "旁厅看场是我十分钟前才改的。你那本书，总不能连我临时改主意也知道吧？"
+    },
+    {
+      "path": "/scenes/OP_CHECK_l/blocks/1/lines/0/text",
+      "before": "你说小说里有我。那你记得的是个拍片的人，还是只记得我站在陆景行旁边？",
+      "after": "你说书里有我。那书里写我拍的片子吗？还是只写我总站在陆景行旁边？"
+    },
+    {
+      "path": "/scenes/OP_CHECK_g/blocks/1/lines/0/text",
+      "before": "我暂时不信小说能替你作证。不过刚才的邮件查过了，你指出的问题是真的。",
+      "after": "书我现在不信。但那封邮件有原件，你刚才指出的删改是真的。这是两回事。"
+    },
+    {
+      "path": "/scenes/ENTRY_WAKE/body/0/text",
+      "before": "你正低头看手机，突然一阵头晕。还没扶到桌沿，眼前就黑了。",
+      "after": "你刚在手机上划过一页小说，字忽然重了影。胃里一阵翻腾，你伸手去扶桌沿，却抓了个空。"
+    },
+    {
+      "path": "/scenes/ENTRY_WAKE/body/1/text",
+      "before": "许照！醒醒，开场了！",
+      "after": "许照！许照！醒醒，演出要开了！"
+    },
+    {
+      "path": "/scenes/ENTRY_WAKE/body/2/text",
+      "before": "你睁开眼，躺在冰凉的设备箱旁。头顶是舞台灯，一个戴耳机的男人正扶着你。这根本不是刚才的房间。",
+      "after": "你睁开眼，后背硌着冰凉的设备箱。头顶的追光灯晃得你睁不开眼，空气里全是电线和热灰的味道。一个戴耳机的男人半蹲着扶你——你家哪来的舞台？"
+    },
+    {
+      "path": "/scenes/ENTRY_WAKE/body/3/text",
+      "before": "……你叫谁？",
+      "after": "……等等，你刚才叫我什么？"
+    },
+    {
+      "path": "/scenes/ENTRY_CLUES/body/1/text",
+      "before": "沈清辞，唐映雪那首歌要开始了！",
+      "after": "沈清辞！唐映雪马上上了，伴奏这版不对！"
+    },
+    {
+      "path": "/scenes/ENTRY_CLUES/body/2/text",
+      "before": "等一下。前奏少了一拍，这不是我的版本。",
+      "after": "停一下！这版前奏被剪过，我排练的不是这个！"
+    },
+    {
+      "path": "/scenes/ENTRY_CLUES/body/3/text",
+      "before": "清辞，切不过来就用钢琴。我按映雪的原调接。",
+      "after": "先别硬切。清辞，如果换不回来，我能用钢琴垫住前四小节。映雪，听得到吗？"
+    },
+    {
+      "path": "/scenes/ENTRY_CLUES/body/5/text",
+      "before": "沈清辞正拿对讲机调度。拿相机的女孩被叫作“林见月”；旁边，工作人员请“顾晚棠”核对投资方的邮件。",
+      "after": "沈清辞抓着对讲机，听另一头的人报控台情况。一名摄影师还举着相机，旁边有人急喊：“见月，时间码别停！”另一头，工作人员追着顾晚棠核对投资方邮件。"
+    },
+    {
+      "path": "/scenes/ENTRY_CLUES/body/6/text",
+      "before": "许照、唐映雪、陆景行……连演出事故都一样？",
+      "after": "陆景行……唐映雪……不会吧？我昨晚看的小说里，不就出过这事？"
+    },
+    {
+      "path": "/scenes/ENTRY_MEMORY/body/1/text",
+      "before": "而许照——第十三章里，第七天被清退的临时场务。别人换错的文件，最后算在他头上。",
+      "after": "你忽然想起许照是谁了：第十三章，入职第七天，被一纸清退通知赶走的临时场务。别人换错的文件，签字栏却被人塞进他的名字。"
+    },
+    {
+      "path": "/scenes/ENTRY_MEMORY/body/2/text",
+      "before": "等等……我成了那个炮灰？",
+      "after": "不是……书里那个倒霉蛋，工牌怎么挂我脖子上了？"
+    },
+    {
+      "path": "/scenes/OP_SETTLE/body/1/text",
+      "before": "至少今晚有地方住……不对，我真回不去了？",
+      "after": "租房消息都有了……可我连钥匙放哪儿都不知道。等一下，我真回不去了？"
+    },
+    {
+      "path": "/scenes/OP_SETTLE/body/2/text",
+      "before": "你又按亮屏幕，没有退出按钮。得先把今天过完，再想怎么回去。",
+      "after": "你把屏幕按灭又点亮。没有任何“返回原来生活”的入口；对讲机里却又有人催下一首的音频。先撑过今晚，再想别的。"
+    }
+  ],
+  "sourceSha256": "577db875a0a664b4cba8c301e9169f60b9aa831ee97e9fdd9f03368dcdea7bf3",
+  "candidateSha256": "8f1f65a4cd35d43e74a914dfcce308feb10285a585d3e8107b05b88e7e4289d7"
+}

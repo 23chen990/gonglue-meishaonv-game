@@ -1,0 +1,97 @@
+{
+  "scope": "r4.2 first-choice canon-vs-deviation normal interpreter regression; not real player or device evidence",
+  "hashes": {
+    "story": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242"
+  },
+  "checks": [
+    {
+      "name": "first_real_choice_is_three_canon_aware_actions",
+      "status": "PASS",
+      "detail": 28
+    },
+    {
+      "name": "canon_piano_route_keeps_original_no_blue_disc",
+      "status": "PASS",
+      "detail": [
+        "ENTRY_WAKE/canon",
+        "ENTRY_CLUES/obey",
+        "OP_CANON/silence"
+      ]
+    },
+    {
+      "name": "canon_refusal_and_witness_are_distinct",
+      "status": "PASS",
+      "detail": "Different original-book preservation costs"
+    },
+    {
+      "name": "first_deviation_rescue_limits_staged_choices",
+      "status": "PASS",
+      "detail": [
+        "t",
+        "s",
+        "self"
+      ]
+    },
+    {
+      "name": "first_deviation_investigate_limits_staged_choices",
+      "status": "PASS",
+      "detail": [
+        "l",
+        "g",
+        "self"
+      ]
+    },
+    {
+      "name": "opening_t_real_cause",
+      "status": "PASS",
+      "detail": {
+        "first": "t",
+        "commands": 4
+      }
+    },
+    {
+      "name": "opening_s_real_cause",
+      "status": "PASS",
+      "detail": {
+        "first": "s",
+        "commands": 4
+      }
+    },
+    {
+      "name": "opening_l_real_cause",
+      "status": "PASS",
+      "detail": {
+        "first": "l",
+        "commands": 5
+      }
+    },
+    {
+      "name": "opening_g_real_cause",
+      "status": "PASS",
+      "detail": {
+        "first": "g",
+        "commands": 5
+      }
+    },
+    {
+      "name": "opening_self_real_cause",
+      "status": "PASS",
+      "detail": {
+        "first": "self",
+        "commands": 4
+      }
+    },
+    {
+      "name": "new_post_novel_scene_is_reached_by_real_choices",
+      "status": "PASS",
+      "detail": 43
+    },
+    {
+      "name": "all_previously_verified_canon_facts_remain",
+      "status": "PASS",
+      "detail": "r4.2 creative canon expansion; NOT established by historical v5/r3"
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

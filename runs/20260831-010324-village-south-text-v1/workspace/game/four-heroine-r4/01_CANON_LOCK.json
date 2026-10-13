@@ -1,0 +1,36 @@
+{
+  "game": "攻略美少女",
+  "version": "revision-r4.2",
+  "engine": "bookside-revision-r4.2",
+  "storySHA256": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
+  "sourceAuthority": "data/*.json; HTML/runtime/Markdown generated from the canonical JSON.",
+  "book": "《今夜偏爱男主》",
+  "expelledChapter": 13,
+  "criticalDay": 7,
+  "originalFirstPianoRescueTime": "19:03",
+  "performanceChapter": null,
+  "performanceChapterNote": "原始资料未给出可核实首演章号，不采用聊天示例第六章。",
+  "newOpeningTime": "18:59 first decision → 19:03 original piano or changed USB → day7 new plot",
+  "heroines": [
+    "唐映雪",
+    "沈清辞",
+    "林见月",
+    "顾晚棠"
+  ],
+  "maleLead": "陆景行",
+  "player": "许照",
+  "counts": {
+    "scenes": 228,
+    "choices": 751,
+    "combinations": 15,
+    "mainEndings": 24,
+    "epilogues": 40,
+    "bonuses": 8,
+    "codas": 6,
+    "conditionalStoryAndReplyBlocks": 596
+  },
+  "firstActionInvariant": "First choice: follow original pianist rescue WITHOUT finding USB, find disk and alter rescue, or investigate attribution first; only 阿衡 can listen and switch.",
+  "qaAuthority": "qa/current rebuilt exact-hash CLI reports; real URL/browser/human gates must be separately verified.",
+  "doNot": "不恢复想象中的v6；不退回双女主；不把旧QA、模拟存储和自动化点击叫真人/原生存档/上线验收。",
+  "originalFirstActionSourceStatus": "Newly authored r4.2 extension of original novel; source v5/r3 did not establish original Xu precise first step. Original day7 chapter13 expulsion is historical canon."
+}

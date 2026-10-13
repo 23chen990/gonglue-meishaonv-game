@@ -1,0 +1,79 @@
+name: Romance r4.2 PR audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/romance-r41.yml'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/index.html'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/tests/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/vite.config.ts'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  r41-canonical-native-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Test the exact source proposed by the PR, not a potentially stale synthetic merge ref.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify checkout equals PR head
+        if: github.event_name == 'pull_request'
+        env:
+          EXPECTED_PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          actual="$(git rev-parse HEAD)"
+          if [ "$actual" != "$EXPECTED_PR_HEAD" ]; then
+            echo "::error::Stale checkout actual=$actual expected=$EXPECTED_PR_HEAD"
+            exit 1
+          fi
+          echo "PR_HEAD_VERIFIED=$actual"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install root dependencies from lockfile
+        run: |
+          corepack enable
+          corepack pnpm install --frozen-lockfile
+      - name: Install browser dependency
+        run: |
+          python3 -m pip install --user 'playwright==1.55.0'
+          python3 -m playwright install --with-deps chromium
+      - name: Verify source, root default entry, current native browser
+        run: |
+          python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/ci-acceptance.py
+      - name: Validate built default player metadata
+        if: always()
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          game=Path('runs/20260831-010324-village-south-text-v1/workspace/game')
+          root=game/'four-heroine-r4'
+          built=game/'dist/index.html'
+          if not built.is_file():
+              raise SystemExit('BLOCKED: compiled default HTML is missing')
+          html=built.read_text(encoding='utf-8')
+          current=hashlib.sha256((root/'data/STORY.json').read_bytes()).hexdigest()
+          assert '<title>攻略美少女' in html and '村口向南' not in html
+          assert ('name="story-sha256" content="'+current+'"') in html
+          assert 'ENTRY_WAKE' in html and '陆景行' in html
+          print('DEFAULT_ENTRY_PASS storySha256='+current)
+          PY
+      - name: Preserve QA evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: romance-r42-current-qa
+          path: |
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/ci/**
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-ui/**
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-reader/**
+          if-no-files-found: warn
+          retention-days: 7
