@@ -1,5 +1,5 @@
 {
-  "version": "revision-r4.0",
+  "version": "revision-r4.2",
   "cast": {
     "t": "唐映雪",
     "s": "沈清辞",
@@ -130,22 +130,28 @@
       "music": "none",
       "body": [
         {
+          "id": "A1b.r42.body.001",
           "speaker": "N",
-          "text": "22:00。程放递来交接单，把“此前文件导出”和“今晚现场切换”写在同一栏。",
-          "id": "A1b.r1.body.001",
-          "textHash": "08f40765170257f2"
+          "text": "22:00。程放递来交接单，试图把“此前文件导出”和“今晚现场处理”写在同一栏。",
+          "textHash": "ac5e4b16b91de358"
         },
         {
+          "id": "A1b.r42.body.002",
           "speaker": "C",
           "text": "签了就下班。",
-          "id": "A1b.r1.body.002",
           "textHash": "32020c43f9b5a96f"
         },
         {
+          "id": "A1b.r42.body.003",
           "speaker": "N",
-          "text": "你已经改了救场，第七天的归责却还没消失。现在轮到你决定，给自己留下什么。",
-          "id": "A1b.r1.body.003",
-          "textHash": "1f12b8ccff37b8a6"
+          "text": "你盯着那行字。无论首演有没有改写，第七天的责任都不会只因为你读过原著就自动消失。",
+          "textHash": "8a54a4071f2ecf38"
+        },
+        {
+          "id": "A1b.r42.body.004",
+          "speaker": "P",
+          "text": "今晚我到底做过哪一步，就写哪一步。没做的，不能让我认。",
+          "textHash": "9f96e57cde704677"
         }
       ],
       "blocks": [
@@ -168,9 +174,19 @@
         },
         {
           "when": {
-            "eq": [
-              "opening_work_done",
-              false
+            "all": [
+              {
+                "eq": [
+                  "opening_changed",
+                  true
+                ]
+              },
+              {
+                "eq": [
+                  "opening_work_done",
+                  false
+                ]
+              }
             ]
           },
           "lines": [
@@ -420,12 +436,80 @@
             }
           ],
           "id": "A1b.r1.block.016"
+        },
+        {
+          "id": "A1b.r42.block.canon_obey",
+          "when": {
+            "eq": [
+              "canon_response",
+              "obey"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A1b.r42.block.canon_obey.001",
+              "speaker": "N",
+              "text": "你已经签过一张模糊交接单。现在不是假装没签，而是补上一份限定自己责任的说明。",
+              "textHash": "841e93a13a7a57f1"
+            }
+          ]
+        },
+        {
+          "id": "A1b.r42.block.canon_refuse",
+          "when": {
+            "eq": [
+              "canon_response",
+              "refuse"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A1b.r42.block.canon_refuse.001",
+              "speaker": "N",
+              "text": "程放看见你又来要求分开责任，脸色沉了下来。你的文字说明也已经留档。",
+              "textHash": "a7dd75aa99a47750"
+            }
+          ]
+        },
+        {
+          "id": "A1b.r42.block.canon_witness",
+          "when": {
+            "eq": [
+              "canon_response",
+              "witness"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A1b.r42.block.canon_witness.001",
+              "speaker": "N",
+              "text": "手机上存着原著没有的19:03现场时间线。你没有找到原版，也不能凭这几分钟证明是谁导出了错文件。",
+              "textHash": "70fdc69d00d106d2"
+            }
+          ]
+        },
+        {
+          "id": "A1b.r42.block.canon_extra",
+          "when": {
+            "eq": [
+              "source_end_shift_list",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A1b.r42.block.canon_extra.001",
+              "speaker": "N",
+              "text": "阿衡的末场清点单上有你的名字，但签的是清点，不是原版切换。",
+              "textHash": "770a7be49ddc3f62"
+            }
+          ]
         }
       ],
       "choices": [
         {
           "id": "check",
-          "label": "分开职责，留一份完整记录。",
+          "label": "要求分清旧版导出和今晚职责，写下自己的说明",
           "reply": [
             {
               "speaker": "P",
@@ -467,7 +551,7 @@
         },
         {
           "id": "ask",
-          "label": "请阿衡当面说清，各自负责哪一步。",
+          "label": "请阿衡只证明亲眼见过的事，别替谁猜测",
           "reply": [
             {
               "speaker": "A",
@@ -509,7 +593,7 @@
         },
         {
           "id": "look",
-          "label": "不签模糊归责，明天再补齐材料。",
+          "label": "先不签新责任单，带走交接副本再核查",
           "reply": [
             {
               "speaker": "N",
@@ -12554,28 +12638,28 @@
       "music": "pulse",
       "body": [
         {
+          "id": "A2b.r42.body.001",
           "speaker": "N",
-          "text": "程放在项目群里点了你的名字：“许照，你最近问得挺细啊。”",
-          "id": "A2b.r4.body.001",
-          "textHash": "ed8a0a934706382f"
+          "text": "第2日晚，程放在项目群里点名：“许照，最近挺会留记录啊。”",
+          "textHash": "cd6589e3d97840d1"
         },
         {
+          "id": "A2b.r42.body.002",
           "speaker": "N",
-          "text": "你看着那句话，想起第十三章那张清退单。首演躲过去了，他还在准备往谁身上写责任。",
-          "id": "A2b.r4.body.002",
-          "textHash": "83b141a1b57530e0"
+          "text": "你想起原著第十三章那张清退单。原著的舞台可能照演，但你已经知道哪些事情不能不留痕。",
+          "textHash": "e11a1dcd5a20bdc4"
         },
         {
+          "id": "A2b.r42.body.003",
           "speaker": "N",
-          "text": "陆景行让你把自己做过的步骤补进现场名单。清辞也提醒大家，换盘记录别删。",
-          "id": "A2b.r4.body.003",
-          "textHash": "605380da4dd57290"
+          "text": "陆景行忙着他的试听。清辞提醒所有人：原始文件和交接记录别删，谁负责哪一步就写哪一步。",
+          "textHash": "5f4f5c36cb7ce124"
         },
         {
+          "id": "A2b.r42.body.004",
           "speaker": "P",
-          "text": "这次，我的名字得跟做过的事放在一起。",
-          "id": "A2b.r4.body.004",
-          "textHash": "c82760f309ddcbda"
+          "text": "就算没人给我留镜头，我也得对自己做过的事负责。",
+          "textHash": "85af29786760deff"
         }
       ],
       "blocks": [
@@ -12748,6 +12832,74 @@
             }
           ],
           "id": "A2b.r4.block.010"
+        },
+        {
+          "id": "A2b.r42.block.canon",
+          "when": {
+            "eq": [
+              "canon_kept",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A2b.r42.block.canon.001",
+              "speaker": "N",
+              "text": "首演照原著，钢琴救场属于陆景行。你没有找到U盘，阿衡也没有执行过你安排的换盘。此后的证据要从自己真正做过的事开始。",
+              "textHash": "a1888184b8aacccb"
+            }
+          ]
+        },
+        {
+          "id": "A2b.r42.block.fork_preserve",
+          "when": {
+            "eq": [
+              "new_plot_choice",
+              "preserve"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A2b.r42.block.fork_preserve.001",
+              "speaker": "N",
+              "text": "原著没有的“双版本”记录已经保存。程放知道旧版还在，之后想只拿一帧画面说事就没那么容易。",
+              "textHash": "c7e37d14599f78f8"
+            }
+          ]
+        },
+        {
+          "id": "A2b.r42.block.fork_confront",
+          "when": {
+            "eq": [
+              "new_plot_choice",
+              "confront"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A2b.r42.block.fork_confront.001",
+              "speaker": "N",
+              "text": "你提前质问过程，程放开始防着你。原著的第七天危机，也可能提前换一种样子找上门。",
+              "textHash": "c4ddcf6f1cc7f5cc"
+            }
+          ]
+        },
+        {
+          "id": "A2b.r42.block.fork_quiet",
+          "when": {
+            "eq": [
+              "new_plot_choice",
+              "quiet"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A2b.r42.block.fork_quiet.001",
+              "speaker": "N",
+              "text": "这条新出现的群消息没被拿去争论。你保存了自己的交接，但谁下的令还没有核对。",
+              "textHash": "684fff7e815c2ce9"
+            }
+          ]
         }
       ],
       "choices": [
@@ -13586,31 +13738,100 @@
       "music": "pulse",
       "body": [
         {
+          "id": "A4b.r42.body.001",
           "speaker": "N",
-          "text": "见月在获准保管的原始素材里找到一段现场对话。程放先说：“这个版本不是许照导出的。”随后才谈起怎么向宣传解释。",
-          "id": "A4b.r4.body.001",
-          "textHash": "42246284029dab75"
+          "text": "第5日，见月从获准保管的素材里翻出首演那晚的原声。程放曾说：“错版文件不是许照导出的。”",
+          "textHash": "85e8f3ec3873c40c"
         },
         {
+          "id": "A4b.r42.body.002",
           "speaker": "N",
-          "text": "预剪片却只留下你把U盘递到控台的画面，剪掉阿衡试听和切换的过程。看起来，像整件事都是你一个人做的。",
-          "id": "A4b.r4.body.002",
-          "textHash": "8f093099f627648a"
+          "text": "宣传部准备的预剪片却把前因后果剪成一句“临时人员操作失误”。",
+          "textHash": "0745ab5655a552d3"
         },
         {
+          "id": "A4b.r42.body.003",
           "speaker": "P",
-          "text": "第七天那句“操作失误”，原来是这样剪出来的。",
-          "id": "A4b.r4.body.003",
-          "textHash": "8df688f96d4b102e"
+          "text": "第十三章那句归责，原来可以靠删掉半段画面做出来。",
+          "textHash": "1571e12f3644778f"
         },
         {
+          "id": "A4b.r42.body.004",
           "speaker": "L",
-          "text": "原声里还有别人的私人聊天，不能整段往外发。我们得把必要的部分核清楚。",
-          "id": "A4b.r4.body.004",
-          "textHash": "82e897f40c9d5bdc"
+          "text": "原声里有别人的私人聊天，不能整段往外发。我们得把必要的部分核清楚。",
+          "textHash": "5962ccdbfe11fa96"
         }
       ],
-      "blocks": [],
+      "blocks": [
+        {
+          "id": "A4b.r42.block.canon",
+          "when": {
+            "eq": [
+              "canon_kept",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A4b.r42.block.canon.001",
+              "speaker": "N",
+              "text": "你那晚没有递盘，画面里只有你站在设备箱边和程放的模糊手势。宣传稿仍准备把操作失误写在你身上。",
+              "textHash": "878ba095dacfc248"
+            }
+          ]
+        },
+        {
+          "id": "A4b.r42.block.changed",
+          "when": {
+            "eq": [
+              "opening_changed",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A4b.r42.block.changed.001",
+              "speaker": "N",
+              "text": "预剪片只保留你把蓝标U盘递到控台的一秒，剪掉了阿衡试听和切换的部分，看起来像全程都是你在操作。",
+              "textHash": "743b7bbf0bfa6bf1"
+            }
+          ]
+        },
+        {
+          "id": "A4b.r42.block.forkproof",
+          "when": {
+            "eq": [
+              "proof_version_log",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A4b.r42.block.forkproof.001",
+              "speaker": "N",
+              "text": "你首演当晚保留的双版本核对时间，可以和见月的原声比对；两份材料能相互校验，但仍要确认可公开范围。",
+              "textHash": "6d7afbca679a500d"
+            }
+          ]
+        },
+        {
+          "id": "A4b.r42.block.canonpaper",
+          "when": {
+            "eq": [
+              "canon_signed_blame",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A4b.r42.block.canonpaper.001",
+              "speaker": "N",
+              "text": "你想起自己曾签过那张模糊交接单。见月没替你抹掉它：材料里必须同时说清当时签了什么。",
+              "textHash": "90f49b44e5eeb17f"
+            }
+          ]
+        }
+      ],
       "choices": [
         {
           "id": "extract",
@@ -14359,40 +14580,40 @@
       "music": "pulse",
       "body": [
         {
+          "id": "A6a.r42.body.001",
           "speaker": "N",
-          "text": "第7日晚，宣传片提前播出。画面里，你把蓝标盘递到控台；一剪，接上出错的音频和“临时人员操作失误”的字幕。",
-          "id": "A6a.r4.body.001",
-          "textHash": "f724078fd248ad1d"
+          "text": "第7日晚，宣传片提前播出。错误伴奏、临时场务的身影，被剪成一条看似完整的事故链。",
+          "textHash": "c790d50995ed029c"
         },
         {
+          "id": "A6a.r42.body.002",
           "speaker": "N",
-          "text": "阿衡核对、切回原版的过程，全被剪掉了。",
-          "id": "A6a.r4.body.002",
-          "textHash": "4ca3b1d2f1678a22"
+          "text": "字幕写着：“临时人员操作失误。”程放把“此前导出”和“当晚处理”混在一起，正想让你独自承担。",
+          "textHash": "23af90819e482bd2"
         },
         {
+          "id": "A6a.r42.body.003",
           "speaker": "C",
           "text": "已经处理好了，别影响后面的活动。",
-          "id": "A6a.r4.body.003",
           "textHash": "63221223192f51cf"
         },
         {
+          "id": "A6a.r42.body.004",
           "speaker": "B",
           "text": "原著下一句，是让保安把许照请出去。第十三章，你就该从这里退场。",
-          "id": "A6a.r4.body.004",
           "textHash": "24207a8134aa177d"
         },
         {
+          "id": "A6a.r42.body.005",
           "speaker": "N",
-          "text": "保安已经走向侧门。你心口一紧，摸到手机里保存的记录。",
-          "id": "A6a.r4.body.005",
-          "textHash": "802619b0f17d5c89"
+          "text": "保安正走向侧门。你心口一紧，摸到手机里保存的记录。阿衡与见月也都在现场。",
+          "textHash": "97a5968694bd83da"
         },
         {
+          "id": "A6a.r42.body.006",
           "speaker": "N",
-          "text": "阿衡看着你，见月的电脑还开着。这次得由你开口。",
-          "id": "A6a.r4.body.006",
-          "textHash": "7d17aa8d967517e4"
+          "text": "记得原著只能提醒你危险；能不能留下，要看这几天真实做过什么。",
+          "textHash": "14c281710b41bf4f"
         }
       ],
       "blocks": [
@@ -14599,6 +14820,91 @@
             }
           ],
           "id": "A6a.variant.012"
+        },
+        {
+          "id": "A6a.r42.block.canon",
+          "when": {
+            "eq": [
+              "canon_kept",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6a.r42.block.canon.001",
+              "speaker": "N",
+              "text": "那晚陆景行确实弹琴救了场，许照却没有操作错版。可当晚你是否签收了模糊责任，会决定此刻有多少要解释。",
+              "textHash": "25ca3982724d3403"
+            }
+          ]
+        },
+        {
+          "id": "A6a.r42.block.changed",
+          "when": {
+            "eq": [
+              "opening_changed",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6a.r42.block.changed.001",
+              "speaker": "N",
+              "text": "首演你找到蓝标盘并交给阿衡；现在宣传片只剩递盘那一秒，音控的核对步骤被剪掉了。",
+              "textHash": "7acfb292975db161"
+            }
+          ]
+        },
+        {
+          "id": "A6a.r42.block.firstsign",
+          "when": {
+            "eq": [
+              "canon_signed_blame",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6a.r42.block.firstsign.001",
+              "speaker": "N",
+              "text": "程放把你签的旧交接单拍到屏幕上。你不能否认签名，只能靠后来真实查到的记录解释责任范围。",
+              "textHash": "a47342befb22de28"
+            }
+          ]
+        },
+        {
+          "id": "A6a.r42.block.forkpreserve",
+          "when": {
+            "eq": [
+              "proof_version_log",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6a.r42.block.forkpreserve.001",
+              "speaker": "N",
+              "text": "阿衡举起首夜的双版本核对清单。它不是原著里的道具，却能把这次剪辑缺掉的时间补回来。",
+              "textHash": "b5e0dd77fb5fa395"
+            }
+          ]
+        },
+        {
+          "id": "A6a.r42.block.forkconfront",
+          "when": {
+            "eq": [
+              "new_plot_choice",
+              "confront"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6a.r42.block.forkconfront.001",
+              "speaker": "N",
+              "text": "程放提醒你：“你当晚不是很会问吗？”他早就盯上你的做法，你不能只靠一句“我知道书里怎样”让他退开。",
+              "textHash": "e281f535eb2f154c"
+            }
+          ]
         }
       ],
       "choices": [
@@ -15063,31 +15369,83 @@
       "music": "quiet",
       "body": [
         {
+          "id": "A6b.r42.body.001",
           "speaker": "N",
-          "text": "走出活动现场，你在手机备忘录里删掉“第七天被清退”，手指停了好久。",
-          "id": "A6b.r4.body.001",
-          "textHash": "d3491c73b20f2a51"
+          "text": "你走出活动现场，在备忘录里删掉“第七天被清退”，又停了一会儿。",
+          "textHash": "2088db4a085a1514"
         },
         {
+          "id": "A6b.r42.body.002",
           "speaker": "P",
-          "text": "真的不一样了。",
-          "id": "A6b.r4.body.002",
-          "textHash": "1ee8012a1a8579ec"
+          "text": "真的和原著不一样了。",
+          "textHash": "eb9e9fad61986903"
         },
         {
+          "id": "A6b.r42.body.003",
           "speaker": "N",
-          "text": "群里有人发来下一次工作的安排，私人消息里也有人问你忙完没有。",
-          "id": "A6b.r4.body.003",
-          "textHash": "b6d8cb144801a689"
+          "text": "工作群有人提下一场，私人消息里也有人问你忙完没有。",
+          "textHash": "7eb6910bfb02b369"
         },
         {
+          "id": "A6b.r42.body.004",
           "speaker": "N",
-          "text": "刚醒来时，你只想熬过这一晚。现在，你开始想第八天要见谁、要做什么。",
-          "id": "A6b.r4.body.004",
-          "textHash": "0d1feb2e19113c72"
+          "text": "你不再只想着熬过第十三章。第八天要见谁、做什么、付出什么代价，书里都没写。",
+          "textHash": "c4f0ddc1f9332512"
         }
       ],
-      "blocks": [],
+      "blocks": [
+        {
+          "id": "A6b.r42.block.uoffer",
+          "when": {
+            "eq": [
+              "unwritten_future",
+              "public_method"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6b.r42.block.uoffer.001",
+              "speaker": "N",
+              "text": "新的事故复盘邀约还在。你答应的是讲清事实，不是替任何团队保证永远不出错。",
+              "textHash": "c072c56d47e2bd02"
+            }
+          ]
+        },
+        {
+          "id": "A6b.r42.block.uprivate",
+          "when": {
+            "eq": [
+              "unwritten_future",
+              "private_protection"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6b.r42.block.uprivate.001",
+              "speaker": "N",
+              "text": "你保留了私人合作与归档记录，没有把每份证据都送上公共屏幕。",
+              "textHash": "30d1c7035678c072"
+            }
+          ]
+        },
+        {
+          "id": "A6b.r42.block.uself",
+          "when": {
+            "eq": [
+              "unwritten_future",
+              "self_direction"
+            ]
+          },
+          "lines": [
+            {
+              "id": "A6b.r42.block.uself.001",
+              "speaker": "N",
+              "text": "你拒绝了新邀约，生活第一次空出一个可以只属于自己的晚上。",
+              "textHash": "b8994fe02d66652e"
+            }
+          ]
+        }
+      ],
       "choices": [
         {
           "id": "relationships",
@@ -31694,28 +32052,28 @@
     },
     "COLD": {
       "id": "COLD",
-      "title": "原版就在这里",
+      "title": "原著没用上的U盘，此刻在你手里",
       "kind": "opening",
       "background": "backstage",
       "music": "none",
       "body": [
         {
+          "id": "COLD.r42.body.001",
           "speaker": "N",
-          "text": "你掀开备用箱，接线板底下果然压着一枚贴蓝胶带的U盘。刚才还只是一句小说里的描写，现在它正硌着你的指尖。",
-          "id": "COLD.r4.body.001",
-          "textHash": "78bdd1041f4fe7f4"
+          "text": "箱底那枚蓝标U盘摸起来冰凉。原著里的这段救场，钢琴本该成为唯一的答案。",
+          "textHash": "3dc5f44338dbdb31"
         },
         {
+          "id": "COLD.r42.body.002",
           "speaker": "A",
-          "text": "我是阿衡，今晚看音控。找着了？给我听，别直接往台上放。",
-          "id": "COLD.r4.body.002",
-          "textHash": "7b27d8bf546fe811"
+          "text": "我是阿衡，今晚看音控。盘给我先试听，我确认能用才切。",
+          "textHash": "42082cf1aff6fa90"
         },
         {
+          "id": "COLD.r42.body.003",
           "speaker": "N",
-          "text": "钢琴那边，陆景行已经把手落到琴键上方；对讲机里传来倒数。你把U盘攥紧，必须现在决定先找谁。",
-          "id": "COLD.r4.body.003",
-          "textHash": "09487f2e898933e1"
+          "text": "陆景行已经准备好钢琴。你不能替台上所有人做决定，但可以决定把这份原版先交给谁。",
+          "textHash": "26e3c79efb5fa7c5"
         }
       ],
       "blocks": [],
@@ -31852,6 +32210,12 @@
                 "eq": [
                   "blue_location_known",
                   true
+                ]
+              },
+              {
+                "eq": [
+                  "opening_strategy",
+                  "rescue"
                 ]
               }
             ]
@@ -31990,6 +32354,12 @@
                 "eq": [
                   "blue_location_known",
                   true
+                ]
+              },
+              {
+                "eq": [
+                  "opening_strategy",
+                  "rescue"
                 ]
               }
             ]
@@ -32139,6 +32509,12 @@
                 "eq": [
                   "blue_location_known",
                   true
+                ]
+              },
+              {
+                "eq": [
+                  "opening_strategy",
+                  "investigate"
                 ]
               }
             ]
@@ -32294,6 +32670,12 @@
                   "blue_location_known",
                   true
                 ]
+              },
+              {
+                "eq": [
+                  "opening_strategy",
+                  "investigate"
+                ]
               }
             ]
           },
@@ -32421,6 +32803,22 @@
                 "eq": [
                   "blue_location_known",
                   true
+                ]
+              },
+              {
+                "any": [
+                  {
+                    "eq": [
+                      "opening_strategy",
+                      "rescue"
+                    ]
+                  },
+                  {
+                    "eq": [
+                      "opening_strategy",
+                      "investigate"
+                    ]
+                  }
                 ]
               }
             ]
@@ -41273,7 +41671,59 @@
           "textHash": "8ab0388e69a9bc37"
         }
       ],
-      "blocks": [],
+      "blocks": [
+        {
+          "id": "XU_WORK.r42.block.uoffer",
+          "when": {
+            "eq": [
+              "unwritten_future",
+              "public_method"
+            ]
+          },
+          "lines": [
+            {
+              "id": "XU_WORK.r42.block.uoffer.001",
+              "speaker": "N",
+              "text": "那份事故流程说明已经有人邀请你单独制作；你能不能接，还是得看实际时间和许可。",
+              "textHash": "8d4147305504d301"
+            }
+          ]
+        },
+        {
+          "id": "XU_WORK.r42.block.uprivate",
+          "when": {
+            "eq": [
+              "unwritten_future",
+              "private_protection"
+            ]
+          },
+          "lines": [
+            {
+              "id": "XU_WORK.r42.block.uprivate.001",
+              "speaker": "N",
+              "text": "阿衡提醒你，私人存证的信任不能直接变成公开作品。你把可发布版本和内部记录分开。",
+              "textHash": "8f6881d51222e251"
+            }
+          ]
+        },
+        {
+          "id": "XU_WORK.r42.block.uself",
+          "when": {
+            "eq": [
+              "unwritten_future",
+              "self_direction"
+            ]
+          },
+          "lines": [
+            {
+              "id": "XU_WORK.r42.block.uself.001",
+              "speaker": "N",
+              "text": "你先前没有答应新项目。今天选择工作方向，不需要假装自己已经签了合同。",
+              "textHash": "b81c0b566139dfe0"
+            }
+          ]
+        }
+      ],
       "choices": [
         {
           "id": "original",
@@ -52007,117 +52457,71 @@
     },
     "ENTRY_WAKE": {
       "id": "ENTRY_WAKE",
-      "title": "谁在叫“许照”？",
+      "title": "你知道原著下一分钟会发生什么",
       "kind": "opening",
       "background": "backstage",
       "music": "none",
       "body": [
         {
+          "id": "ENTRY_WAKE.r42.body.001",
           "speaker": "N",
-          "text": "你刚在手机上划过一页小说，突然一阵头晕，字都重了影。胃里跟着翻腾，你伸手去扶桌沿，却抓了个空。",
-          "id": "ENTRY_WAKE.r4.body.001",
-          "textHash": "6fc3fc78bc4774b8"
+          "text": "你刚看完《今夜偏爱男主》的首演片段，忽然眼前一黑。再睁眼，后背撞着舞台边的设备箱。",
+          "textHash": "6ecbaf546b37b25c"
         },
         {
+          "id": "ENTRY_WAKE.r42.body.002",
           "speaker": "A",
-          "text": "许照！许照！醒醒，演出要开了！",
-          "id": "ENTRY_WAKE.r4.body.002",
-          "textHash": "1d902ec3eedde8ab"
+          "text": "许照！别发愣！伴奏出错了！",
+          "textHash": "39fd24c08c97de98"
         },
         {
+          "id": "ENTRY_WAKE.r42.body.003",
           "speaker": "N",
-          "text": "你睁开眼，后背硌着冰凉的设备箱。头顶的追光灯晃得你睁不开眼，空气里全是电线和热灰的味道。一个戴耳机的男人半蹲着扶你——你家哪来的舞台？",
-          "id": "ENTRY_WAKE.r4.body.003",
-          "textHash": "e46e20c59099de06"
+          "text": "胸前工牌写着“许照·临时场务”。台上，唐映雪正等伴奏；钢琴旁，陆景行已经抬起手。",
+          "textHash": "ba02e9440bf8e4f7"
         },
         {
+          "id": "ENTRY_WAKE.r42.body.004",
           "speaker": "P",
-          "text": "……等等，你刚才叫我什么？",
-          "id": "ENTRY_WAKE.r4.body.004",
-          "textHash": "90622334bea33f20"
+          "text": "……我穿成了那个第十三章就被赶走的炮灰？",
+          "textHash": "40d3d231a96ddae6"
+        },
+        {
+          "id": "ENTRY_WAKE.r42.body.005",
+          "speaker": "B",
+          "text": "【你记得的原著】19:03，许照按程放的吩咐待命，没有找到备用原版。陆景行弹琴救下首演，唐映雪唱完，制作人只约了陆景行。",
+          "textHash": "d20af4a06d8776fd"
+        },
+        {
+          "id": "ENTRY_WAKE.r42.body.006",
+          "speaker": "B",
+          "text": "【你记得的后果】第七天，别人换错的文件被算到许照头上；他没有留下能替自己说话的交接记录，被清退。",
+          "textHash": "a02fc88be360768d"
+        },
+        {
+          "id": "ENTRY_WAKE.r42.body.007",
+          "speaker": "N",
+          "text": "你还记得一条原著没被用上的线索：备用箱底有个贴蓝胶带的原版U盘。现在，箱子就在你手边。",
+          "textHash": "1e7d8d1701d634ce"
+        },
+        {
+          "id": "ENTRY_WAKE.r42.body.008",
+          "speaker": "P",
+          "text": "如果不动，故事会照走。我想活过第七天，就不能只背原著的答案。",
+          "textHash": "8846ab79b281d780"
         }
       ],
       "blocks": [],
       "choices": [
         {
-          "id": "steady",
-          "label": "扶住箱子，看看胸前的工作证",
-          "reply": [],
+          "id": "canon",
+          "label": "按原著走：听程放的，先不插手这场救援",
           "effects": [
             {
               "op": "set",
               "key": "badge_checked",
               "value": true
-            }
-          ],
-          "intent": "",
-          "idGlobal": "ENTRY_WAKE/steady",
-          "replyBlocks": []
-        }
-      ],
-      "next": "ENTRY_CLUES",
-      "clock": {
-        "day": 1,
-        "time": "18:59"
-      }
-    },
-    "ENTRY_CLUES": {
-      "id": "ENTRY_CLUES",
-      "title": "名字、舞台，还有那个人",
-      "kind": "opening",
-      "background": "backstage",
-      "music": "none",
-      "body": [
-        {
-          "speaker": "N",
-          "text": "工作证：许照，临时场务。侧幕上印着“北岸艺术中心·栖光计划”。你从没来过这里。",
-          "id": "ENTRY_CLUES.r4.body.001",
-          "textHash": "55d2782dc1a63d26"
-        },
-        {
-          "speaker": "C",
-          "text": "沈清辞！唐映雪马上上了，伴奏这版不对！",
-          "id": "ENTRY_CLUES.r4.body.002",
-          "textHash": "d5638f219a3acf55"
-        },
-        {
-          "speaker": "T",
-          "text": "停一下！这版前奏被剪过，我排练的不是这个！",
-          "id": "ENTRY_CLUES.r4.body.003",
-          "textHash": "e7156a2fc3f8accf"
-        },
-        {
-          "speaker": "LU",
-          "text": "先别硬切。清辞，如果换不回来，我能用钢琴垫住前四小节。映雪，听得到吗？",
-          "id": "ENTRY_CLUES.r4.body.004",
-          "textHash": "06a49e5c0e5b7152"
-        },
-        {
-          "speaker": "N",
-          "text": "你看向钢琴旁的男人。有人叫他“陆景行”。",
-          "id": "ENTRY_CLUES.r4.body.005",
-          "textHash": "9f8cb4ef0f9d0be2"
-        },
-        {
-          "speaker": "N",
-          "text": "沈清辞抓着对讲机，听另一头的人报控台情况。一名摄影师还举着相机，旁边有人急喊：“见月，时间码别停！”另一头，工作人员追着顾晚棠核对投资方邮件。",
-          "id": "ENTRY_CLUES.r4.body.006",
-          "textHash": "d033e6f75d22c617"
-        },
-        {
-          "speaker": "P",
-          "text": "陆景行……唐映雪……不会吧？我刚才看的那本小说里，不就出过这事？",
-          "id": "ENTRY_CLUES.r4.body.007",
-          "textHash": "24f77b2b34b96f86"
-        }
-      ],
-      "blocks": [],
-      "choices": [
-        {
-          "id": "look",
-          "label": "回想刚才还在读的那本小说",
-          "reply": [],
-          "effects": [
+            },
             {
               "op": "set",
               "key": "novel_recognized",
@@ -52127,83 +52531,93 @@
               "op": "set",
               "key": "identity_confirmed",
               "value": true
-            }
-          ],
-          "intent": "",
-          "idGlobal": "ENTRY_CLUES/look",
-          "replyBlocks": []
-        }
-      ],
-      "next": "ENTRY_MEMORY",
-      "clock": {
-        "day": 1,
-        "time": "19:01"
-      }
-    },
-    "ENTRY_MEMORY": {
-      "id": "ENTRY_MEMORY",
-      "title": "你记得，炮灰是怎么退场的",
-      "kind": "opening",
-      "background": "backstage",
-      "music": "none",
-      "body": [
-        {
-          "speaker": "B",
-          "text": "《今夜偏爱男主》。你认出了首演救场这一段：陆景行弹琴，唐映雪唱完，他拿到制作人的邀约。",
-          "id": "ENTRY_MEMORY.r4.body.001",
-          "textHash": "dc8909f7212c3b3e"
-        },
-        {
-          "speaker": "N",
-          "text": "你忽然想起许照是谁了：第十三章，入职第七天，被一纸清退通知赶走的临时场务。别人换错的文件，最后追责表上却写了他的名字。",
-          "id": "ENTRY_MEMORY.r4.body.002",
-          "textHash": "57c97814f6740a49"
-        },
-        {
-          "speaker": "P",
-          "text": "不是……书里那个倒霉蛋，工牌怎么挂我脖子上了？",
-          "id": "ENTRY_MEMORY.r4.body.003",
-          "textHash": "028ac6635d9628a9"
-        },
-        {
-          "speaker": "N",
-          "text": "你掐了一下手心。疼。刚才你还在替他骂作者，现在连呼吸都有点乱。",
-          "id": "ENTRY_MEMORY.r4.body.004",
-          "textHash": "18752b8ec47d752c"
-        },
-        {
-          "speaker": "A",
-          "text": "脸这么白，要不要去外面坐会儿？",
-          "id": "ENTRY_MEMORY.r4.body.005",
-          "textHash": "931b9ee0aaae8a03"
-        },
-        {
-          "speaker": "P",
-          "text": "让我缓一口气……好了。我想先找样东西。",
-          "id": "ENTRY_MEMORY.r4.body.006",
-          "textHash": "3c1088433383df52"
-        }
-      ],
-      "blocks": [],
-      "choices": [
-        {
-          "id": "focus",
-          "label": "稳住呼吸，想起书里的备用伴奏",
-          "reply": [
-            {
-              "speaker": "B",
-              "text": "原著提过：贴蓝胶带的U盘压在备用箱底，装着没被剪掉前奏的完整伴奏。所有人都去看钢琴，没人及时找到它。",
-              "id": "ENTRY_MEMORY.focus.r4.reply.001",
-              "textHash": "384fc2d742ab749d"
             },
             {
-              "speaker": "N",
-              "text": "那只是书里的线索。盘到底在不在、能不能用，你得亲自确认。",
-              "id": "ENTRY_MEMORY.focus.r4.reply.002",
-              "textHash": "481b0ce70f4855aa"
+              "op": "set",
+              "key": "danger_day7_known",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "first",
+              "value": "canon"
+            },
+            {
+              "op": "set",
+              "key": "bias",
+              "value": "self"
+            },
+            {
+              "op": "set",
+              "key": "opening_route",
+              "value": "canon"
+            },
+            {
+              "op": "set",
+              "key": "opening_strategy",
+              "value": "canon"
+            },
+            {
+              "op": "set",
+              "key": "opening_method",
+              "value": "piano_original"
+            },
+            {
+              "op": "set",
+              "key": "stage",
+              "value": "piano"
+            },
+            {
+              "op": "set",
+              "key": "first_win",
+              "value": false
+            },
+            {
+              "op": "set",
+              "key": "opening_changed",
+              "value": false
+            },
+            {
+              "op": "set",
+              "key": "canon_kept",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "rival_opening_response",
+              "value": "piano_rescue"
             }
           ],
+          "reply": [
+            {
+              "id": "ENTRY_WAKE.r42.reply.canon.001",
+              "speaker": "N",
+              "text": "你没碰备用箱。台上，陆景行坐到了琴凳前。你知道接下来每一拍会怎么响，也知道七天后那张清退单。",
+              "textHash": "9c49609418d0af80"
+            }
+          ],
+          "next": "ENTRY_CLUES",
+          "idGlobal": "ENTRY_WAKE/canon"
+        },
+        {
+          "id": "rescue",
+          "label": "改变首演：抢先找原版U盘，试着拦下钢琴救场",
           "effects": [
+            {
+              "op": "set",
+              "key": "badge_checked",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "novel_recognized",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "identity_confirmed",
+              "value": true
+            },
             {
               "op": "set",
               "key": "blue_location_known",
@@ -52213,11 +52627,400 @@
               "op": "set",
               "key": "danger_day7_known",
               "value": true
+            },
+            {
+              "op": "set",
+              "key": "opening_strategy",
+              "value": "rescue"
+            },
+            {
+              "op": "set",
+              "key": "canon_kept",
+              "value": false
             }
           ],
-          "intent": "",
-          "idGlobal": "ENTRY_MEMORY/focus",
-          "replyBlocks": []
+          "reply": [
+            {
+              "id": "ENTRY_WAKE.r42.reply.rescue.001",
+              "speaker": "N",
+              "text": "你蹲到设备箱旁，扒开线卷。指尖真的碰到了那截蓝胶带。原著里没有人翻到这里。",
+              "textHash": "90d08771c66afeaf"
+            }
+          ],
+          "next": "COLD",
+          "idGlobal": "ENTRY_WAKE/rescue"
+        },
+        {
+          "id": "investigate",
+          "label": "先查背锅线：核实错版来源，同时找回原版",
+          "effects": [
+            {
+              "op": "set",
+              "key": "badge_checked",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "novel_recognized",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "identity_confirmed",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "blue_location_known",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "danger_day7_known",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "opening_strategy",
+              "value": "investigate"
+            },
+            {
+              "op": "set",
+              "key": "canon_kept",
+              "value": false
+            }
+          ],
+          "reply": [
+            {
+              "id": "ENTRY_WAKE.r42.reply.investigate.001",
+              "speaker": "N",
+              "text": "你没有直接指控任何人。是谁换了文件、谁有权限、谁亲眼看见——先找一条真的能核实的线索。",
+              "textHash": "18d69898760543b8"
+            }
+          ],
+          "next": "ENTRY_MEMORY",
+          "idGlobal": "ENTRY_WAKE/investigate"
+        }
+      ],
+      "next": null,
+      "clock": {
+        "day": 1,
+        "time": "18:59"
+      }
+    },
+    "ENTRY_CLUES": {
+      "id": "ENTRY_CLUES",
+      "title": "照原著走，真的就安全了吗",
+      "kind": "opening",
+      "background": "backstage",
+      "music": "none",
+      "body": [
+        {
+          "id": "ENTRY_CLUES.r42.body.001",
+          "speaker": "N",
+          "text": "程放朝你一挥手：“临时工别添乱，守着箱子，出问题我叫你。”",
+          "textHash": "2754599503dad180"
+        },
+        {
+          "id": "ENTRY_CLUES.r42.body.002",
+          "speaker": "T",
+          "text": "这不是我排练的版本！",
+          "textHash": "521714b2e9ea7527"
+        },
+        {
+          "id": "ENTRY_CLUES.r42.body.003",
+          "speaker": "LU",
+          "text": "我来垫前四小节。映雪，你看我手势。",
+          "textHash": "91be4639565d3256"
+        },
+        {
+          "id": "ENTRY_CLUES.r42.body.004",
+          "speaker": "N",
+          "text": "钢琴响起。唐映雪接着唱完，观众以为这段临场救援早就排好了。",
+          "textHash": "9dbacd2563a7d30d"
+        },
+        {
+          "id": "ENTRY_CLUES.r42.body.005",
+          "speaker": "B",
+          "text": "原著的主角名场面照常发生。没有人问许照看见了什么。程放却拿来一张交接单，示意你签收。",
+          "textHash": "9baa93377a730425"
+        },
+        {
+          "id": "ENTRY_CLUES.r42.body.006",
+          "speaker": "P",
+          "text": "书里就是从这些分不清的交接开始，把错全算到了我头上。",
+          "textHash": "1c7050cb3ae4ef08"
+        }
+      ],
+      "blocks": [],
+      "choices": [
+        {
+          "id": "obey",
+          "label": "继续照原著：签收模糊的交接单",
+          "effects": [
+            {
+              "op": "set",
+              "key": "canon_response",
+              "value": "obey"
+            },
+            {
+              "op": "set",
+              "key": "canon_signed_blame",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "first_night_evidence",
+              "value": "none"
+            },
+            {
+              "op": "set",
+              "key": "opening_work",
+              "value": "free"
+            },
+            {
+              "op": "set",
+              "key": "opening_work_commitment",
+              "value": false
+            }
+          ],
+          "reply": [
+            {
+              "id": "ENTRY_CLUES.r42.reply.obey.001",
+              "speaker": "C",
+              "text": "早这么省事不就完了。",
+              "textHash": "08b1b1406f0a7e0e"
+            },
+            {
+              "id": "ENTRY_CLUES.r42.reply.obey.002",
+              "speaker": "N",
+              "text": "程放把签过字的那页夹进文件夹。你明知道第七天会出事，却还是把名字留在了错误的那一栏。",
+              "textHash": "ce7b60d53aa79c4f"
+            }
+          ],
+          "idGlobal": "ENTRY_CLUES/obey"
+        },
+        {
+          "id": "refuse",
+          "label": "只留在原著舞台线，但拒签不清楚的责任",
+          "effects": [
+            {
+              "op": "set",
+              "key": "canon_response",
+              "value": "refuse"
+            },
+            {
+              "op": "set",
+              "key": "canon_signed_blame",
+              "value": false
+            },
+            {
+              "op": "set",
+              "key": "source_declined_handover",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "first_night_evidence",
+              "value": "refusal"
+            },
+            {
+              "op": "set",
+              "key": "opening_work",
+              "value": "free"
+            },
+            {
+              "op": "set",
+              "key": "opening_work_commitment",
+              "value": false
+            }
+          ],
+          "reply": [
+            {
+              "id": "ENTRY_CLUES.r42.reply.refuse.001",
+              "speaker": "P",
+              "text": "我可以签我做过的。但旧版是谁导出的，我没见到。",
+              "textHash": "b68121ec6ced8ef7"
+            },
+            {
+              "id": "ENTRY_CLUES.r42.reply.refuse.002",
+              "speaker": "C",
+              "text": "你第一天来就这么较真？",
+              "textHash": "a01e85ed10984a6e"
+            },
+            {
+              "id": "ENTRY_CLUES.r42.reply.refuse.003",
+              "speaker": "N",
+              "text": "你留下自己拒绝签错单的文字，程放把这一幕记住了。",
+              "textHash": "2fded95fdbd321b7"
+            }
+          ],
+          "idGlobal": "ENTRY_CLUES/refuse"
+        },
+        {
+          "id": "witness",
+          "label": "悄悄记下发号施令的人、时间和谁在操作",
+          "effects": [
+            {
+              "op": "set",
+              "key": "canon_response",
+              "value": "witness"
+            },
+            {
+              "op": "set",
+              "key": "canon_signed_blame",
+              "value": false
+            },
+            {
+              "op": "set",
+              "key": "source_original_timeline",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "first_night_evidence",
+              "value": "timeline"
+            },
+            {
+              "op": "set",
+              "key": "opening_work",
+              "value": "free"
+            },
+            {
+              "op": "set",
+              "key": "opening_work_commitment",
+              "value": false
+            }
+          ],
+          "reply": [
+            {
+              "id": "ENTRY_CLUES.r42.reply.witness.001",
+              "speaker": "N",
+              "text": "你把19:03、钢琴介入、控台仍在放错版记进手机。没有录音授权，更没有证据指向谁导出了它。",
+              "textHash": "f68e4a04d9e329b1"
+            },
+            {
+              "id": "ENTRY_CLUES.r42.reply.witness.002",
+              "speaker": "N",
+              "text": "但这是你亲眼看见的。原著里没留的时间线，第一次有了起点。",
+              "textHash": "6fa3b1b886a22bbe"
+            }
+          ],
+          "idGlobal": "ENTRY_CLUES/witness"
+        }
+      ],
+      "next": "OP_CANON",
+      "clock": {
+        "day": 1,
+        "time": "19:02"
+      }
+    },
+    "ENTRY_MEMORY": {
+      "id": "ENTRY_MEMORY",
+      "title": "原著没写的证据，你先找哪一份",
+      "kind": "opening",
+      "background": "backstage",
+      "music": "none",
+      "body": [
+        {
+          "id": "ENTRY_MEMORY.r42.body.001",
+          "speaker": "N",
+          "text": "你找到蓝标U盘，标签写着“演出版原母带”。但手里有盘还不够，阿衡必须试听确认，才有资格决定是否切换。",
+          "textHash": "6a4a4366dcfeed7c"
+        },
+        {
+          "id": "ENTRY_MEMORY.r42.body.002",
+          "speaker": "C",
+          "text": "是谁让临时工翻设备箱的？伴奏先按原流程！",
+          "textHash": "93b7e42918b6e21b"
+        },
+        {
+          "id": "ENTRY_MEMORY.r42.body.003",
+          "speaker": "N",
+          "text": "林见月还在拍时间码；顾晚棠的电脑上正打开节目确认邮件。原著只写了陆景行弹琴，没写他们今晚会怎么回答你。",
+          "textHash": "7737ab389a6e93a8"
+        },
+        {
+          "id": "ENTRY_MEMORY.r42.body.004",
+          "speaker": "P",
+          "text": "先找一个能核对的人。没有人会因为我说“我看过书”就信我。",
+          "textHash": "194907ce69713e76"
+        }
+      ],
+      "blocks": [],
+      "choices": [
+        {
+          "id": "camera",
+          "label": "请林见月保留版本与时间戳，再把盘交给阿衡",
+          "effects": [
+            {
+              "op": "set",
+              "key": "opening_investigation",
+              "value": "camera"
+            },
+            {
+              "op": "set",
+              "key": "source_pre_switch_timestamp",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "ENTRY_MEMORY.r42.reply.camera.001",
+              "speaker": "L",
+              "text": "我只拍现场交接。要让我留你的脸吗？",
+              "textHash": "b7c9d7ec9812639e"
+            },
+            {
+              "id": "ENTRY_MEMORY.r42.reply.camera.002",
+              "speaker": "P",
+              "text": "不用拍脸，先拍标签。再拍阿衡验过的时间。",
+              "textHash": "5cc31c10860dad6c"
+            },
+            {
+              "id": "ENTRY_MEMORY.r42.reply.camera.003",
+              "speaker": "N",
+              "text": "她按下录制键。至少这回，版本从哪里开始变的不只剩口说。",
+              "textHash": "83c4d42e005bcd63"
+            }
+          ],
+          "idGlobal": "ENTRY_MEMORY/camera"
+        },
+        {
+          "id": "email",
+          "label": "先问顾晚棠节目单权限，再把盘交给阿衡",
+          "effects": [
+            {
+              "op": "set",
+              "key": "opening_investigation",
+              "value": "email"
+            },
+            {
+              "op": "set",
+              "key": "source_programme_approval_note",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "cheng_questioned_early",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "ENTRY_MEMORY.r42.reply.email.001",
+              "speaker": "G",
+              "text": "我批的是完整演出版。你先把盘交阿衡试听，谁改的我来核。",
+              "textHash": "ef2bec28fcd42ada"
+            },
+            {
+              "id": "ENTRY_MEMORY.r42.reply.email.002",
+              "speaker": "N",
+              "text": "程放往这边看了一眼。你知道这一步已经不在书上。",
+              "textHash": "eebe05c22176da09"
+            }
+          ],
+          "idGlobal": "ENTRY_MEMORY/email"
         }
       ],
       "next": "COLD",
@@ -52281,11 +53084,520 @@
           "replyBlocks": []
         }
       ],
-      "next": "@openingTalk",
+      "next": "OP_FORK",
       "clock": {
         "day": 1,
         "time": "19:04"
       }
+    },
+    "OP_CANON": {
+      "id": "OP_CANON",
+      "title": "钢琴救了场，炮灰仍站在原地",
+      "kind": "opening",
+      "background": "backstage",
+      "music": "tense",
+      "clock": {
+        "day": 1,
+        "time": "19:35"
+      },
+      "next": "A1b",
+      "body": [
+        {
+          "id": "OP_CANON.r42.body.001",
+          "speaker": "N",
+          "text": "19:35。后台都在夸陆景行的临场钢琴。唐映雪把话筒放下，走向录音室；没人知道备用箱底还有一个能用的原版。",
+          "textHash": "324bb827d4e5b2b4"
+        },
+        {
+          "id": "OP_CANON.r42.body.002",
+          "speaker": "LU",
+          "text": "刚才陪上了四小节，算大家运气好。下次曲目单别等到临场才核。",
+          "textHash": "b2ed2a5f883c947f"
+        },
+        {
+          "id": "OP_CANON.r42.body.003",
+          "speaker": "N",
+          "text": "你认得这段对白，连下一句都记得。可程放递来的交接单上，许照的名字比书里更刺眼。",
+          "textHash": "d83e4189da6e99bf"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "OP_CANON.r42.block.obey",
+          "when": {
+            "eq": [
+              "canon_response",
+              "obey"
+            ]
+          },
+          "lines": [
+            {
+              "id": "OP_CANON.r42.block.obey.001",
+              "speaker": "N",
+              "text": "你签的那一页已经归档。如果想改命，就要亲手把责任边界重新查清。",
+              "textHash": "b72db9ea2aa8fa05"
+            }
+          ]
+        },
+        {
+          "id": "OP_CANON.r42.block.refuse",
+          "when": {
+            "eq": [
+              "canon_response",
+              "refuse"
+            ]
+          },
+          "lines": [
+            {
+              "id": "OP_CANON.r42.block.refuse.001",
+              "speaker": "N",
+              "text": "程放在群里说你“不配合”。你把自己写过的拒签说明保存下来，既是保护，也是麻烦。",
+              "textHash": "8d314033cc9db2cc"
+            }
+          ]
+        },
+        {
+          "id": "OP_CANON.r42.block.witness",
+          "when": {
+            "eq": [
+              "canon_response",
+              "witness"
+            ]
+          },
+          "lines": [
+            {
+              "id": "OP_CANON.r42.block.witness.001",
+              "speaker": "N",
+              "text": "你记下了谁在现场、几点响起钢琴。不是万能证据，却能帮助下一次核验。",
+              "textHash": "9e16b75cf16f719c"
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "backstage",
+          "label": "不抢镜，主动帮阿衡做一次末场清点",
+          "effects": [
+            {
+              "op": "set",
+              "key": "canon_after_action",
+              "value": "assist"
+            },
+            {
+              "op": "set",
+              "key": "source_end_shift_list",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "OP_CANON.r42.reply.backstage.001",
+              "speaker": "A",
+              "text": "今晚错版不是你切的。我能替自己看见的部分作证，别的你还得再找。",
+              "textHash": "3a6a3a21541dd195"
+            },
+            {
+              "id": "OP_CANON.r42.reply.backstage.002",
+              "speaker": "N",
+              "text": "阿衡把你的名字写进末场清点。你没有抢走陆景行的救场，却有了自己的第一份记录。",
+              "textHash": "14d01cb7d60ceb64"
+            }
+          ],
+          "idGlobal": "OP_CANON/backstage"
+        },
+        {
+          "id": "question",
+          "label": "找程放问清楚错版来源，留住聊天记录",
+          "effects": [
+            {
+              "op": "set",
+              "key": "canon_after_action",
+              "value": "question"
+            },
+            {
+              "op": "set",
+              "key": "source_cheng_message",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "cheng_questioned_early",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "OP_CANON.r42.reply.question.001",
+              "speaker": "C",
+              "text": "出问题就先处理，谁有空跟你查版本？",
+              "textHash": "e67a1f9105e0e0e3"
+            },
+            {
+              "id": "OP_CANON.r42.reply.question.002",
+              "speaker": "N",
+              "text": "他没有回答你是谁导出的，却在工作群留下了这句推脱。原著从来没写过这一条消息。",
+              "textHash": "493ba9a55061c9ca"
+            }
+          ],
+          "idGlobal": "OP_CANON/question"
+        },
+        {
+          "id": "silence",
+          "label": "今晚先保持沉默，记住原著第七天的危险",
+          "effects": [
+            {
+              "op": "set",
+              "key": "canon_after_action",
+              "value": "silence"
+            }
+          ],
+          "reply": [
+            {
+              "id": "OP_CANON.r42.reply.silence.001",
+              "speaker": "N",
+              "text": "你看着原著里该有的背影逐渐走远。剧情没有因为你知道结局就自动改写。",
+              "textHash": "eba5fcf6ad8bac2a"
+            }
+          ],
+          "idGlobal": "OP_CANON/silence"
+        }
+      ]
+    },
+    "OP_FORK": {
+      "id": "OP_FORK",
+      "title": "原著没有这条工作群消息",
+      "kind": "opening",
+      "background": "backstage",
+      "music": "tense",
+      "clock": {
+        "day": 1,
+        "time": "19:05"
+      },
+      "next": "@openingTalk",
+      "body": [
+        {
+          "id": "OP_FORK.r42.body.001",
+          "speaker": "N",
+          "text": "歌曲还没结束，工作群忽然弹出程放的消息：“谁翻出了旧盘？把旧版文件清掉，后面别解释太多。”",
+          "textHash": "426b6583fad2af8d"
+        },
+        {
+          "id": "OP_FORK.r42.body.002",
+          "speaker": "N",
+          "text": "你怔了一下。原著里没有找到U盘，自然也没有这条催删记录的命令。你这一步不仅改了首演，也惊动了本来藏在后台的人。",
+          "textHash": "e553116f4796d4a9"
+        },
+        {
+          "id": "OP_FORK.r42.body.003",
+          "speaker": "A",
+          "text": "旧版不能乱删。把它留着，后面真有人追责才查得清。你想怎么处理？",
+          "textHash": "e9f7d3b1adc03d79"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "OP_FORK.r42.block.camera",
+          "when": {
+            "eq": [
+              "opening_investigation",
+              "camera"
+            ]
+          },
+          "lines": [
+            {
+              "id": "OP_FORK.r42.block.camera.001",
+              "speaker": "L",
+              "text": "见月先前拍到的版本标签能跟阿衡的检查时间互相对上。",
+              "textHash": "8e720450058ec3f2"
+            }
+          ]
+        },
+        {
+          "id": "OP_FORK.r42.block.email",
+          "when": {
+            "eq": [
+              "opening_investigation",
+              "email"
+            ]
+          },
+          "lines": [
+            {
+              "id": "OP_FORK.r42.block.email.001",
+              "speaker": "G",
+              "text": "晚棠发来一句“我没有批准删原始文件”，程放不再回复。",
+              "textHash": "00e7127c4a211bf4"
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "backup",
+          "label": "请阿衡保存旧版与原版的核对清单，明确谁操作了切换",
+          "effects": [
+            {
+              "op": "set",
+              "key": "new_plot_choice",
+              "value": "preserve"
+            },
+            {
+              "op": "set",
+              "key": "source_dual_version_log",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "proof_version_log",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "OP_FORK.r42.reply.backup.001",
+              "speaker": "A",
+              "text": "我存两份，标上时间。只写我亲手核过的，你那一份另存。",
+              "textHash": "16813009e54f179f"
+            },
+            {
+              "id": "OP_FORK.r42.reply.backup.002",
+              "speaker": "N",
+              "text": "程放在群里撤回了催删消息。你保存的时间戳没跟着消失。",
+              "textHash": "4b1d2c2490f96e46"
+            }
+          ],
+          "idGlobal": "OP_FORK/backup"
+        },
+        {
+          "id": "confront",
+          "label": "公开问程放：“旧版是谁导出的？”承担他记恨你的风险",
+          "effects": [
+            {
+              "op": "set",
+              "key": "new_plot_choice",
+              "value": "confront"
+            },
+            {
+              "op": "set",
+              "key": "source_cheng_message",
+              "value": true
+            },
+            {
+              "op": "set",
+              "key": "cheng_questioned_early",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "OP_FORK.r42.reply.confront.001",
+              "speaker": "C",
+              "text": "许照，你这么懂流程，不如明天来写说明？",
+              "textHash": "1561a8408f8de4ea"
+            },
+            {
+              "id": "OP_FORK.r42.reply.confront.002",
+              "speaker": "N",
+              "text": "他没有给出答案，你却被安排写情况说明。原著里第七天才找上门的麻烦，被你提前推到了今晚。",
+              "textHash": "d887427bffbc7121"
+            }
+          ],
+          "idGlobal": "OP_FORK/confront"
+        },
+        {
+          "id": "quiet",
+          "label": "暂不公开冲突，只保管自己的交接记录",
+          "effects": [
+            {
+              "op": "set",
+              "key": "new_plot_choice",
+              "value": "quiet"
+            },
+            {
+              "op": "set",
+              "key": "source_personal_record",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "OP_FORK.r42.reply.quiet.001",
+              "speaker": "N",
+              "text": "你把阿衡签过的切换记录装进手机。少一份争执，也少了一条对方当场表态的线索。",
+              "textHash": "c2996e15dfa76f69"
+            }
+          ],
+          "idGlobal": "OP_FORK/quiet"
+        }
+      ]
+    },
+    "UNWRITTEN": {
+      "id": "UNWRITTEN",
+      "title": "书里没有第八天的你",
+      "kind": "common",
+      "background": "street",
+      "music": "hopeful",
+      "clock": {
+        "day": 7,
+        "time": "20:25"
+      },
+      "next": "A6b",
+      "body": [
+        {
+          "id": "UNWRITTEN.r42.body.001",
+          "speaker": "N",
+          "text": "保安停下脚步。你走出艺术中心，手机上忽然多了一条没有出现在原著里的消息。",
+          "textHash": "dc8660aa7a71e4cd"
+        },
+        {
+          "id": "UNWRITTEN.r42.body.002",
+          "speaker": "P",
+          "text": "不是男主替我说了话，也不是剧情自己放过我。是这几天我真的做过的选择，留下了结果。",
+          "textHash": "3b38c796afa1850c"
+        },
+        {
+          "id": "UNWRITTEN.r42.body.003",
+          "speaker": "N",
+          "text": "下一场的工作人员群邀请你提供一次独立的事故流程说明。可一旦发出去，过去那张纸也会被更多人看到。",
+          "textHash": "1288264ab55cfad7"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "UNWRITTEN.r42.block.original",
+          "when": {
+            "eq": [
+              "canon_kept",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "UNWRITTEN.r42.block.original.001",
+              "speaker": "N",
+              "text": "首演没改，结局却开始偏离。第七天，你没有完全走成书里的退场。",
+              "textHash": "1e5b2f6ebb6e40a2"
+            }
+          ]
+        },
+        {
+          "id": "UNWRITTEN.r42.block.changed",
+          "when": {
+            "eq": [
+              "opening_changed",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "UNWRITTEN.r42.block.changed.001",
+              "speaker": "N",
+              "text": "从首演的U盘开始，你已经撞开一串原著没有的事件；今晚，只是另一处转弯。",
+              "textHash": "7c477d282e0f9a9e"
+            }
+          ]
+        },
+        {
+          "id": "UNWRITTEN.r42.block.proof",
+          "when": {
+            "eq": [
+              "proof_version_log",
+              true
+            ]
+          },
+          "lines": [
+            {
+              "id": "UNWRITTEN.r42.block.proof.001",
+              "speaker": "N",
+              "text": "阿衡愿意在核验范围内附上首夜双版本时间线；公开需要他的确认。",
+              "textHash": "47cc2fcf29e2cfc9"
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "offer",
+          "label": "接受新邀约：做一份自己的流程说明，让别人也能核实",
+          "effects": [
+            {
+              "op": "set",
+              "key": "unwritten_future",
+              "value": "public_method"
+            },
+            {
+              "op": "set",
+              "key": "unwritten_invite_accepted",
+              "value": true
+            }
+          ],
+          "reply": [
+            {
+              "id": "UNWRITTEN.r42.reply.offer.001",
+              "speaker": "P",
+              "text": "我只写我亲历和能核对的部分，没确认的先空着。",
+              "textHash": "f0999bd910b963d0"
+            },
+            {
+              "id": "UNWRITTEN.r42.reply.offer.002",
+              "speaker": "N",
+              "text": "对方回了一句：“那就按你说的做。下周来谈报价。”原著没有这份工作。",
+              "textHash": "04224ff5fd15cc5d"
+            }
+          ],
+          "idGlobal": "UNWRITTEN/offer"
+        },
+        {
+          "id": "private",
+          "label": "不公开个人经历，把证据留给需要知道的伙伴",
+          "effects": [
+            {
+              "op": "set",
+              "key": "unwritten_future",
+              "value": "private_protection"
+            },
+            {
+              "op": "set",
+              "key": "unwritten_invite_accepted",
+              "value": false
+            }
+          ],
+          "reply": [
+            {
+              "id": "UNWRITTEN.r42.reply.private.001",
+              "speaker": "N",
+              "text": "你联系阿衡和见月，确认哪些材料该留下、哪些不该流出去。她们给了明确答复。这段后来没有上热搜，却真实改变了你们的合作方式。",
+              "textHash": "d6e4c2ec45f8fa2c"
+            }
+          ],
+          "idGlobal": "UNWRITTEN/private"
+        },
+        {
+          "id": "self",
+          "label": "先不接邀约：把未来的一天留给自己的生活",
+          "effects": [
+            {
+              "op": "set",
+              "key": "unwritten_future",
+              "value": "self_direction"
+            },
+            {
+              "op": "set",
+              "key": "unwritten_invite_accepted",
+              "value": false
+            }
+          ],
+          "reply": [
+            {
+              "id": "UNWRITTEN.r42.reply.self.001",
+              "speaker": "N",
+              "text": "你没有把逃过清退当成必须马上成功的命令。打开备忘录，你第一次只写自己想做的事。",
+              "textHash": "c464f2679711542f"
+            }
+          ],
+          "idGlobal": "UNWRITTEN/self"
+        }
+      ]
     }
   },
   "provenance": {
@@ -52293,14 +53605,17 @@
     "baselineStorySha256": "cf873ba7fe5170e70ea7f2a2331eea061d6d0d684a9e6f8d24a0554de9dadb8c",
     "review": "r1_full_review/02_defect_register.json",
     "not_a_v6_full_recovery": true,
-    "scope": "r2 source revision; see per-defect evidence and remaining release gates"
+    "scope": "r2 source revision; see per-defect evidence and remaining release gates",
+    "r42": "Original first-action detail is newly authored, NOT an archival quotation. Original 19:03 piano rescue and day7 chapter13 outcome remain verified."
   },
   "openingOrder": [
     "ENTRY_WAKE",
     "ENTRY_CLUES",
     "ENTRY_MEMORY",
     "COLD",
+    "OP_CANON",
     "OP_SETTLE",
+    "OP_FORK",
     "OP_TALK_t",
     "OP_TALK_s",
     "OP_TALK_l",
@@ -52379,6 +53694,11 @@
       "provenance/archives/gonglue_four_heroine_production_v5(1).zip:01_CANON_LOCK.json",
       "provenance/archives/gonglue_four_heroine_production_v5(1).zip:data/STORY.json:A1a"
     ],
-    "timelineResolution": "以critical_deadline_day=7及A6实际日历为准，正文统一第七天；不再说第一天之后七天。"
+    "timelineResolution": "以critical_deadline_day=7及A6实际日历为准，正文统一第七天；不再说第一天之后七天。",
+    "originalProtagonistFirstAction": {
+      "action": "原著许照按程放的指示守设备箱、不找蓝标盘；陆景行钢琴救场",
+      "status": "r4.2 creative canon expansion; NOT established by historical v5/r3",
+      "why": "User requests a deliberate original-route first choice; original materials specify ending but not Xu exact opening action."
+    }
   }
 }

@@ -1,19 +1,19 @@
 {
-  "version": "revision-r4.0",
-  "storyHash": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+  "version": "revision-r4.2",
+  "storyHash": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
   "files": {
-    "data/STORY.json": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+    "data/STORY.json": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
     "data/EPILOGUES.json": "7855b10ef4ad4c9a47f5a90fc91b904f612c19cfbcf26577cfa08c5e8ffebb09",
     "data/BONUS.json": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e",
     "data/CODA.json": "f212fdb2f110d268da43380f1a84772b2c5365b48041d434fe7f8d76a3a3e07e",
     "data/HANDBOOK.json": "a51224fb015cefe58d65e3e2864218023bac95f222ed7eccf00a141a977cf5ba",
-    "tools/engine.mjs": "0b5ad8e19cb0753fc0aedfeb612a8261b1d617cd042991a8e57ce4a4e5a1a3ab",
-    "tools/preview-ui.js": "a4f2aa739c05efd886fb2b503cca1a407754b8aa67d6bc2cfec10ca5d3819d12",
-    "tools/preview.css": "2c4770dc442c5db75954acc3ad6104a6e8edded2d0801e2f9b1eda2b7fe5e487",
+    "tools/engine.mjs": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa",
+    "tools/preview-ui.js": "c1f10888a6a4b842f79a3e230236440e0abf0db0696ce296d2cbbd86aa0c84bb",
+    "tools/preview.css": "6e5ef7f228ea08ba1b3f55bd8648eaaa57c17bf13384dd7e3d5f873f8f04375e",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "142b7db156fa06529f63d669b788cefba1d603c4e0fddfc0b691a29948a8498c",
-    "index.html": "73787c527e1dbe2677d44eada486b4a3e9a2469f9e294c981f0625ac9e034f5e",
-    "play.html": "73787c527e1dbe2677d44eada486b4a3e9a2469f9e294c981f0625ac9e034f5e",
-    "repository-index.html": "496efc523b914816fb0251d3ac1d70be423587e04c1f406205b4ef8af51f0766"
+    "runtime.mjs": "85f1f0916872a143b36b7b6f49a3eb537cb6d07538cd04c2ed43c839e84e8ee6",
+    "index.html": "00cf883f37ae8f44e38ff04739467268b0322b86555ab4657f3666a3418c6860",
+    "play.html": "00cf883f37ae8f44e38ff04739467268b0322b86555ab4657f3666a3418c6860",
+    "repository-index.html": "4251b6921913c768105f5b86602433ab1e7100e98ae640a4d00e1d688b5e2c55"
   }
 }

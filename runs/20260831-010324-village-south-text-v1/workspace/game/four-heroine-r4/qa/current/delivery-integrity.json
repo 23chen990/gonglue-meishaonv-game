@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "hashes": {
+    "story": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
+    "engine": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa",
+    "html": "00cf883f37ae8f44e38ff04739467268b0322b86555ab4657f3666a3418c6860"
+  },
+  "checks": [
+    {
+      "name": "Canonical source and both builds match",
+      "status": "PASS",
+      "detail": "Standalone and repository module contain identical canonical content; build hashes checked."
+    },
+    {
+      "name": "Counts, choice contracts and complete export",
+      "status": "PASS",
+      "detail": {
+        "scenes": 228,
+        "choices": 751,
+        "mainEndings": 24,
+        "bodyBlocks": 545,
+        "replyBlocks": 51,
+        "epilogues": 40,
+        "bonus": 8,
+        "coda": 6,
+        "textBeats": 4138,
+        "hanCharacters": 87764,
+        "memoryCueMatches": 460,
+        "conditionalLocations": 830,
+        "dynamicConditionsNotSeenTrue": 0,
+        "recordOnlyChoices": 77
+      }
+    },
+    {
+      "name": "Fresh command and displayed-text evidence",
+      "status": "PASS",
+      "detail": "Current ordinary-command evidence matches this story/engine. All 596 conditional text blocks have displayed witnesses; state combinations are not exhaustive."
+    }
+  ],
+  "errors": [],
+  "releaseGates": {
+    "sourceAndCommandQA": "PASS",
+    "actualEntryAndNativePersistence": "REQUIRES_CURRENT_CI_BROWSER_REPORT",
+    "physicalPhone": "NOT_TESTED",
+    "allStateCombinations": "NOT_EXHAUSTIVE",
+    "humanRetention": "NOT_TESTED",
+    "IAAPlatformRelease": "NOT_IMPLEMENTED"
+  },
+  "note": "This checker does not run browser tests or grant publishing approval. Never use historical browser evidence as a current result."
+}

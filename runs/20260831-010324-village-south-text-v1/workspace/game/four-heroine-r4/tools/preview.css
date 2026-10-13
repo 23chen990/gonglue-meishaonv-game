@@ -123,6 +123,17 @@ button:focus-visible{outline:2px solid #ffd4b4;outline-offset:3px}[hidden]{displ
 
 @media(max-height:760px) and (max-width:500px){.opening-hero .poster-type{top:10px}.opening-hero .poster-type h2{font-size:23px;line-height:1.12;margin:5px 0 3px}.opening-hero .poster-sub{font-size:9px;line-height:1.3;max-width:147px}}
 
+/* r4.2: original-book first decision and zero-cost grouped options. */
+.first-fork-head{border:1px solid #58465f;border-radius:16px;padding:18px 17px;margin-bottom:12px;background:linear-gradient(130deg,#302038,#15131d)}
+.first-fork-head h2{font-size:25px;line-height:1.4;margin:9px 0 8px}
+.first-fork-head em{font-style:normal;color:#f3c8d0}
+.first-fork-head p{font-size:12px;line-height:1.7;color:#e0cbd8;margin:0}
+.first-fork-choice{border-color:#796079}
+.choice-nav{margin-top:12px;border:1px solid #4b4354;border-radius:12px;padding:9px 11px;background:#211d2a;font-size:12px;color:#e7d5e8}
+.choice-nav>div{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.choice-nav .quiet{flex:1;min-height:46px}
+@media(max-width:360px){.first-fork-head{padding:13px}.first-fork-head h2{font-size:22px}}
+
 /* r4: narrative first; initial identity is not spoiled by a static advertising cover. */
 .current-goal{display:flex;gap:9px;align-items:flex-start;padding:11px 13px;border:1px solid #554967;border-radius:12px;margin:2px 0 17px;font-size:13px;line-height:1.6;background:#211a2b;color:#e1d4ee}
 .wake-banner,.rival-banner,.crisis-scene{position:relative;overflow:hidden;border-radius:18px;padding:23px 21px;margin:0 0 20px;background:linear-gradient(135deg,#272135,#100d19);border:1px solid #42374f}

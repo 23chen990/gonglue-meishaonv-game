@@ -1,7 +1,7 @@
 /* Deterministic, command-replay interpreter. Canonical text is data/STORY.json.
  * No network, money, implicit consent, mutable collection replay, or state injection.
  */
-export const VERSION = 'bookside-revision-r4.0';
+export const VERSION = 'bookside-revision-r4.2';
 const CHARS = ['t','s','l','g'];
 const copy = x => JSON.parse(JSON.stringify(x));
 const sorted = xs => [...new Set(xs)].sort();
@@ -340,7 +340,7 @@ function enterNext(s,data,sc,o){
  if(n==='@openingCheck'){s.current=s.f.first==='self'?'OP_SELF':'OP_CHECK_'+s.f.first;return;}
  if(n==='@openingWork'){s.current='OP_WORK_'+s.f.opening_work;return;}
  if(n==='@afterA6'){
-  if(s.f.early_end){s.ending='X01';s.current='X01';}else s.current='A6b';return;
+  if(s.f.early_end){s.ending='X01';s.current='X01';}else s.current='UNWRITTEN';return;
  }
  if(n==='@promiseReturn'){
   const a=s.pendingAction;if(!a)throw Error('No promised destination');

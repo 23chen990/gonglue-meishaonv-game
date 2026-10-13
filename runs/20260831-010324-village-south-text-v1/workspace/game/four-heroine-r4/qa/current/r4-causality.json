@@ -1,0 +1,118 @@
+{
+  "scope": "Current canonical r4 ordinary-command regressions plus explicitly identified editorial contracts; not human evaluation.",
+  "hashes": {
+    "story": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
+    "engine": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa",
+    "bonus": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e"
+  },
+  "checks": [
+    {
+      "name": "five_opening_t_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 19,
+        "method": "performer_cue",
+        "callback": "A2b.r4.block.006"
+      }
+    },
+    {
+      "name": "five_opening_s_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 19,
+        "method": "producer_switch",
+        "callback": "A2b.r4.block.007"
+      }
+    },
+    {
+      "name": "five_opening_l_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 20,
+        "method": "record_switch",
+        "callback": "A2b.r4.block.008"
+      }
+    },
+    {
+      "name": "five_opening_g_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 20,
+        "method": "authorization_check",
+        "callback": "A2b.r4.block.009"
+      }
+    },
+    {
+      "name": "five_opening_self_physical_process_and_later_callback",
+      "status": "PASS",
+      "detail": {
+        "ordinaryCommands": 16,
+        "method": "audio_handoff",
+        "callback": "A2b.r4.block.010"
+      }
+    },
+    {
+      "name": "scapegoat_montage_depends_on_actual_opening",
+      "status": "PASS",
+      "detail": "Original and changed-world video edits are evidence-bounded and distinguishable."
+    },
+    {
+      "name": "authority_challenge_has_observable_cost_not_guaranteed_praise",
+      "status": "PASS"
+    },
+    {
+      "name": "g07_deferred_disclosure_is_not_spoken_of_as_already_completed",
+      "status": "PASS"
+    },
+    {
+      "name": "g03_person_callback_is_wage_not_an_unasked_question",
+      "status": "PASS"
+    },
+    {
+      "name": "career_mail_is_unsent_before_player_chooses",
+      "status": "PASS"
+    },
+    {
+      "name": "optional_t_side_scene_does_not_force_book_source_disclosure",
+      "status": "PASS"
+    },
+    {
+      "name": "same_l_memory_in_confession_and_single_ending",
+      "status": "PASS"
+    },
+    {
+      "name": "gs_slow_ending_does_not_pretend_unchosen_walk",
+      "status": "PASS"
+    },
+    {
+      "name": "gl_ending_photo_is_not_taken_before_photo_choice",
+      "status": "PASS"
+    },
+    {
+      "name": "all_four_pov_extras_remain_unsent_no_canonical_transfer",
+      "status": "PASS"
+    },
+    {
+      "name": "all_scene_editorial_records_trace_to_actual_revision",
+      "status": "PASS",
+      "detail": {
+        "scope": "Historical r4 authored editorial review reused for unchanged scenes; r4.2 targeted authored edits+original branch authored; NOT blind human acceptance",
+        "manualEditRecords": 800,
+        "addedInR42": 3
+      }
+    },
+    {
+      "name": "rival_has_independent_execution_and_not_only_the_protagonists_instruction",
+      "status": "PASS",
+      "detail": {
+        "finalLu": "ally",
+        "actions": [
+          "LU_MOVE1/own",
+          "LU_MOVE2/ally"
+        ]
+      }
+    }
+  ],
+  "passed": 17,
+  "failed": 0
+}

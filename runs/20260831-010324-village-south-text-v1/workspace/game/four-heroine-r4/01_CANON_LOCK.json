@@ -1,8 +1,8 @@
 {
   "game": "攻略美少女",
-  "version": "revision-r4.0",
-  "engine": "bookside-revision-r4.0",
-  "storySHA256": "577db875a0a664b4cba8c301e9169f60b9aa831ee97e9fdd9f03368dcdea7bf3",
+  "version": "revision-r4.2",
+  "engine": "bookside-revision-r4.2",
+  "storySHA256": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
   "sourceAuthority": "data/*.json; HTML/runtime/Markdown generated from the canonical JSON.",
   "book": "《今夜偏爱男主》",
   "expelledChapter": 13,
@@ -10,7 +10,7 @@
   "originalFirstPianoRescueTime": "19:03",
   "performanceChapter": null,
   "performanceChapterNote": "原始资料未给出可核实首演章号，不采用聊天示例第六章。",
-  "newOpeningTime": "18:59→19:01→19:02→19:03",
+  "newOpeningTime": "18:59 first decision → 19:03 original piano or changed USB → day7 new plot",
   "heroines": [
     "唐映雪",
     "沈清辞",
@@ -20,16 +20,17 @@
   "maleLead": "陆景行",
   "player": "许照",
   "counts": {
-    "scenes": 225,
-    "choices": 737,
+    "scenes": 228,
+    "choices": 751,
     "combinations": 15,
     "mainEndings": 24,
     "epilogues": 40,
     "bonuses": 8,
     "codas": 6,
-    "conditionalStoryAndReplyBlocks": 565
+    "conditionalStoryAndReplyBlocks": 596
   },
-  "firstActionInvariant": "许照找出蓝标盘；音控阿衡试听并切换。不是许照擅自操作控台。",
-  "qaAuthority": "qa/current final exact-hash reports; browser/native-ui/ui-report.json remains BLOCKED.",
-  "doNot": "不恢复想象中的v6；不退回双女主；不把旧QA、模拟存储和自动化点击叫真人/原生存档/上线验收。"
+  "firstActionInvariant": "First choice: follow original pianist rescue WITHOUT finding USB, find disk and alter rescue, or investigate attribution first; only 阿衡 can listen and switch.",
+  "qaAuthority": "qa/current rebuilt exact-hash CLI reports; real URL/browser/human gates must be separately verified.",
+  "doNot": "不恢复想象中的v6；不退回双女主；不把旧QA、模拟存储和自动化点击叫真人/原生存档/上线验收。",
+  "originalFirstActionSourceStatus": "Newly authored r4.2 extension of original novel; source v5/r3 did not establish original Xu precise first step. Original day7 chapter13 expulsion is historical canon."
 }

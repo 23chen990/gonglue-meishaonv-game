@@ -2,12 +2,13 @@
 // Offline r4 controller: canonical replay, separately scoped read-only archives.
 // No remote resources, ad SDK, analytics, or silent legacy-save migration.
 const names={N:'',P:'你',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',LU:'陆景行',C:'程放',B:'原著记忆',U:'',A:'阿衡',X:'现场'};
-const KEY='gonglue:revision-r4.1:canonical';
-const PREVIOUS_KEY='gonglue:revision-r4:canonical';
+const KEY='gonglue:revision-r4.2:canonical';
+const PREVIOUS_KEY='gonglue:revision-r4.1:canonical';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
 let profile={endings:{},bonuses:{},readPages:[]}, notice='', saveBlocked=false, lastRaw=null;
+let choicePage=0;
 let renderToken=0, downToken=null, pointerStart=null, moved=false, previousScroll=0, large=false;
 let storage=null;
 try{storage=window.localStorage;}catch{saveBlocked=true;notice='这个窗口暂时不能保存。仍可继续阅读；离开前请在菜单导出记录。';}
@@ -39,7 +40,7 @@ function safeProfile(raw){
 }
 function snapshot(){
  return {version:VERSION,storyHash:STORY_HASH,commands:state.history,
-         ui:{phase,page,large},profile};
+         ui:{phase,page,choicePage,large},profile};
 }
 function save(){
  // Collection unlocks belong to memory first; a quota or permission error only prevents persistence.
@@ -63,10 +64,11 @@ function readPayload(v){
  const ui=v.ui||{};
  const ph=ui.phase==='reply'&&reply.length?'reply':'scene';
  const pg=Number.isInteger(ui.page)&&ui.page>=0&&ui.page<1000?ui.page:0;
- return {state:s,reply,phase:ph,page:pg,large:!!ui.large,profile:safeProfile(v.profile)};
+ const choiceGroup=Number.isInteger(ui.choicePage)&&ui.choicePage>=0&&ui.choicePage<20?ui.choicePage:0;
+ return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,profile:safeProfile(v.profile)};
 }
 function install(v){
- state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;large=v.large;profile=v.profile;
+ state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;profile=v.profile;
  panel='story';
 }
 function load(){
@@ -155,7 +157,7 @@ function archiveHTML(){
 function getView(){
  if(phase==='reply'){
   const h=state.history.at(-1);
-  return {id:'reply:'+h.from+'/'+h.id,title:h.from==='COLD'?'原著，改了。':(DATA.scenes[h.from]?.title||'你的选择之后'),
+  return {id:'reply:'+h.from+'/'+h.id,title:h.from==='ENTRY_WAKE'?'第一道岔路':h.from==='COLD'?'原著，改了。':(DATA.scenes[h.from]?.title||'你的选择之后'),
     body:lastReply,choices:[],firstWin:h.from==='COLD',isReply:true};
  }
  if(state.complete)return {id:'complete:'+state.ending,title:DATA.scenes[state.ending].title,body:endingRows(),choices:[],terminal:true};
@@ -191,8 +193,13 @@ function controls(cp){
  const enabled=cp.view.choices.filter(o=>o.enabled);
  const disabled=cp.view.choices.filter(o=>!o.enabled);
  const button=o=>`<button class="choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`;
- const primary=state.current==='@schedule'?enabled.filter(o=>!['side','rest'].includes(o.kind)):enabled;
- const secondary=state.current==='@schedule'?enabled.filter(o=>['side','rest'].includes(o.kind)):[];
+ const primaryAll=enabled;
+ // Keep every legal action accessible, including side quests and rest, without opening a 5+ choice drawer.
+ const limit=primaryAll.length>4||state.current==='@schedule'?3:primaryAll.length;
+ const pageCount=Math.max(1,Math.ceil(primaryAll.length/(limit||1)));
+ choicePage=Math.min(choicePage,pageCount-1);
+ const primary=primaryAll.slice(choicePage*limit,(choicePage+1)*limit);
+ const navigation=pageCount>1?`<div class="choice-nav"><span>真实选项 ${choicePage*limit+1}–${Math.min((choicePage+1)*limit,primaryAll.length)} / ${primaryAll.length} · 切换查看不消耗剧情行动</span><div>${choicePage>0?'<button type="button" class="quiet" data-choice-prev="1">上一组</button>':''}${choicePage<pageCount-1?'<button type="button" class="quiet" data-choice-next="1">再看看别的做法</button>':''}</div></div>`:'';
  const meetButton=(o,i)=>{
   const c=o.id.startsWith('visit:')?o.id.slice(6):null;
   if(!c||!heroineDesign[c])return button(o);
@@ -202,7 +209,8 @@ function controls(cp){
  let html=state.current==='@schedule'?
   '<div class="choices meet-grid">'+primary.map(meetButton).join('')+'</div>':
   '<div class="choices">'+primary.map(button).join('')+'</div>';
- if(secondary.length)html+='<details class="other-actions" '+(!primary.length?'open':'')+'><summary>给自己留的安排 · '+secondary.length+'项</summary><div class="choices">'+secondary.map(button).join('')+'</div></details>';
+ html+=navigation;
+
  // Hidden conditional dialogue alternatives are not tease-paywalls. Show only true alternatives.
  if(!enabled.length)html+='<p class="system">这里没有可用选择，请保留记录并回到上一决定。</p>';
  if(disabled.some(o=>o.requirementHint))html+='<details class="small"><summary>暂不可选的其他做法</summary>'+disabled.filter(o=>o.requirementHint).map(o=>`<p>${esc(o.label)}<br>${esc(o.requirementHint)}</p>`).join('')+'</details>';
@@ -242,10 +250,10 @@ function portraitSVG(c,token='p'){
 }
 function journeyBits(){
  const h=state.history, c=state.f.first;
- const first=h.some(x=>x.from==='COLD');
+ const first=h.some(x=>x.from==='COLD'||x.from==='ENTRY_WAKE');
  const replayed=h.some(x=>x.from==='OP_TALK_'+c)||h.some(x=>x.from==='OP_TALK_self');
  const asked=!!(c&&h.some(x=>x.from==='OP_CHECK_'+c))||h.some(x=>x.from==='OP_DATE_'+c);
- return [{label:'抢回名场面',done:first},{label:state.f.first==='self'?'留下你的名字':'她记住了你',done:replayed},{label:'今晚的新邀约',done:asked}];
+ return [{label:'第一次改变命运',done:first},{label:state.f.first==='self'?'留下你的名字':'她记住了你',done:replayed},{label:'今晚的新邀约',done:asked}];
 }
 function trackHTML(){return `<div class="fate-track" aria-label="首夜命运进度">${journeyBits().map((v,i)=>`<div class="step ${v.done?'passed':journeyBits().slice(0,i).every(x=>x.done)?'active':''}"><span class="dot"></span><span>${esc(v.label)}</span></div>`).join('')}</div>`;}
 function openingHTML(cp){
@@ -258,11 +266,24 @@ function openingHTML(cp){
  self:['不替自己假装专业','你找盘，阿衡切换；陆景行协助过渡']
  };
  const action=o=>`<button type="button" class="rescue-option" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}" data-char="${esc(o.id)}"><span class="option-number">${opts.indexOf(o)+1}</span><span><strong>${esc(o.label)}</strong><small>${esc(hints[o.id][1])}</small></span><span aria-hidden="true">↗</span></button>`;
- return `<div class="opening-mast"><span><i class="live-dot"></i>19:02 · 北岸艺术中心</span><span class="volume-label">首次改写</span></div>
+ return `<div class="opening-mast"><span><i class="live-dot"></i>19:02 · 北岸艺术中心</span><span class="volume-label">原著已有了岔路</span></div>
  <section class="crisis-scene"><span class="kicker">原著：陆景行即将弹琴救场</span><h2>盘找到了。<em>你来改写。</em></h2></section>
  <div class="meta"><span>没有阅读倒计时，慢慢决定</span><span>${page+1} / ${cp.pages.length}</span></div>
  ${rowsHTML(cp.rows)}
- ${cp.last?`<div class="decision-title"><h3>怎样把原版送回舞台？</h3></div><div class="rescue-options">${opts.map(action).join('')}</div><p class="small">这是救场方式，不是选定恋人。每条路都有人真正做事。</p>`:controls(cp)}`;
+ ${cp.last?`<div class="decision-title"><h3>怎么让找回来的原版真正改变现场？</h3></div><div class="rescue-options">${opts.map(action).join('')}</div><p class="small">这是救场方式，不是选定恋人。每条路都有人真正做事。</p>`:controls(cp)}`;
+}
+
+function firstForkHTML(cp){
+ const opts=cp.view.choices.filter(o=>o.enabled);
+ const notes={
+  canon:'原著的钢琴救场会发生；你暂时不会获得找到原版的记录，后续责任仍可能落在你头上。',
+  rescue:'首演可能被你提前改写；谁给你机会、谁开始提防你，都不再按书里走。',
+  investigate:'不是先求出风头；尽量找能核验的事实，也可能更早惹到程放。'
+ };
+ const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
+ return `<section class="first-fork-head"><span class="kicker">穿书第一分钟 · 你看过原著</span><h2>原著炮灰怎么选？<br><em>这一次，轮到你。</em></h2><p>19:03 是已知的钢琴救场；第七天，你原本会背锅退场。先读清代价，再决定。</p></section>`+
+ `<div class="meta"><span>故事信息先给你 · 选择不倒计时</span><span>${page+1} / ${cp.pages.length}</span></div>`+
+ rowsHTML(cp.rows)+(cp.last?`<div class="rescue-options">${actions}</div><p class="small">原著不是正确答案，也不是必须跳过的坏答案。三个方向会保留不同的事件记录。</p>`:controls(cp));
 }
 
 function sourceScene(){
@@ -287,7 +308,7 @@ function goalHTML(){
  if(state.complete)return '';
  const id=sourceScene().id;
  if(id!=='@schedule'&&!['A1b','A6a','A7a'].includes(id))return '';
- const text=id==='ENTRY_WAKE'?'先站稳，弄清谁在叫你':id==='ENTRY_CLUES'?'核对名字和现场，不要急着下结论':id==='ENTRY_MEMORY'?'先缓口气，再找能改变剧情的线索':id==='COLD'?'找到了盘，接下来决定怎样救场':state.slot<11?'首演已经改变。第七天的清退风险还没解除。':'你已经留下来了。接下来，认真选你想过的生活。';
+ const text=state.slot<11?(state.f.canon_kept?'钢琴救场照原著，但第七天背锅线仍能改。':'首演已经偏离原著，第七天的风险还没解除。'):'你已跨过原著的退场点，接下来是书里没有的生活。';
  return `<div class="current-goal"><span aria-hidden="true">◇</span><span>${esc(text)}</span></div>`;
 }
 
@@ -300,6 +321,7 @@ function openingWinHTML(cp){
 
 function storyHTML(){
  const cp=currentPage(), h=state.history.at(-1);
+ if(state.current==='ENTRY_WAKE'&&phase==='scene'&&!state.complete)return firstForkHTML(cp);
  if(state.current==='COLD'&&phase==='scene'&&!state.complete)return openingHTML(cp);
  if(cp.view.firstWin&&phase==='reply')return openingWinHTML(cp);
  const day=state.current==='@schedule'?DATA.calendar[state.slot]?.day:state.clock?.day||1;
@@ -359,7 +381,7 @@ function menuHTML(){
  <button class="quiet" data-nav="collection">结局收藏</button><button class="quiet" data-action="font">${large?'恢复普通字号':'大字阅读'}</button>
  <button class="quiet" data-action="export">导出这局记录</button><button class="quiet" data-action="import">导入本版记录</button>
  <button class="quiet" data-action="reset">备份后新开局</button><button class="quiet" data-action="reload">读取已保存记录</button></div>
- <section class="panel small"><h3>这份版本的范围</h3><p>r4 穿书开场与全文修订版。以 r3 四女主 JSON 为内容基线，整部故事与解释器内置，可离线玩到结局。旧版记录独立保留，不静默迁移。</p>
+ <section class="panel small"><h3>这份版本的范围</h3><p>r4.2 原著分叉与全文剧情版。以 r3 四女主 JSON 为内容基线，整部故事与解释器内置，可离线玩到结局。旧版记录独立保留，不静默迁移。</p>
  <p>角色均为成年人。本版没有成品立绘、音频、广告或真人留存结论。原始文件和旧版存档不改写。</p>
  <p>${saveBlocked?'当前未自动保存，请离开前导出记录。':'选择、回应页与阅读位置会保存在此浏览器的本版独立记录中。'}</p></section>`;
 }
@@ -386,7 +408,7 @@ function arm(){downToken=null;pointerStart=null;moved=false;}
 function exportLog(){
  const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download='gonglue-r4-choices.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ a.href=url;a.download='gonglue-r4-2-choices.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function backToStory(){
  panel='story';render(false);window.scrollTo(0,previousScroll);
@@ -397,7 +419,7 @@ function reset(){
   try{storage.setItem(KEY+':backup:'+Date.now(),lastRaw);}
   catch{notice='备份没有成功，未清除当前记录。请先导出。';showNotice();return;}
  }
- state=createState();lastReply=[];phase='scene';page=0;panel='story';notice='';
+ state=createState();lastReply=[];phase='scene';page=0;choicePage=0;panel='story';notice='';
  if(storage){try{lastRaw=storage.getItem(KEY);saveBlocked=false;}catch{saveBlocked=true;}}
  save();render();
 }
@@ -450,8 +472,12 @@ document.addEventListener('click',ev=>{
    const cp=currentPage();if(!cp.last)return;
    markRead(cp);
    const out=choose(state,DATA,b.dataset.choice,state.revision);
-   state=out.state;lastReply=out.reply;phase=lastReply.length?'reply':'scene';page=0;
+   state=out.state;lastReply=out.reply;phase=lastReply.length?'reply':'scene';page=0;choicePage=0;
    save();render();arm();return;
+  }
+  if(b.dataset.choiceNext||b.dataset.choicePrev){
+   if(phase!=='scene'||!currentPage().last)return;
+   choicePage=Math.max(0,choicePage+(b.dataset.choiceNext?1:-1));save();render();arm();return;
   }
   if(b.dataset.pageNext||b.dataset.skipRead){
    const cp=currentPage();
@@ -464,7 +490,7 @@ document.addEventListener('click',ev=>{
   }
   if(b.dataset.restore!==undefined){
    if(!confirm('回到这个决定前？之后的本轮经历会替换，收藏保留。'))return;
-   state=rewind(state,DATA,Number(b.dataset.restore));lastReply=[];phase='scene';page=0;panel='story';
+   state=rewind(state,DATA,Number(b.dataset.restore));lastReply=[];phase='scene';page=0;choicePage=0;panel='story';
    save();render();arm();return;
   }
   if(b.dataset.ending){openEnding(b.dataset.ending);arm();return;}

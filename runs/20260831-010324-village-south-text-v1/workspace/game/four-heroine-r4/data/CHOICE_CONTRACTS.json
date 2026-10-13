@@ -1,11 +1,11 @@
 {
-  "version": "revision-r4.0",
-  "storySha256": "d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e",
+  "version": "revision-r4.2",
+  "storySha256": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
   "method": "全量选择登记；只列真实文本条件和明确运行时消费。留档字段不算长期影响；见测试中具体反事实案例。",
   "choices": [
     {
       "id": "A1b/check",
-      "label": "分开职责，留一份完整记录。",
+      "label": "要求分清旧版导出和今晚职责，写下自己的说明",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -81,7 +81,7 @@
     },
     {
       "id": "A1b/ask",
-      "label": "请阿衡当面说清，各自负责哪一步。",
+      "label": "请阿衡只证明亲眼见过的事，别替谁猜测",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -156,7 +156,7 @@
     },
     {
       "id": "A1b/look",
-      "label": "不签模糊归责，明天再补齐材料。",
+      "label": "先不签新责任单，带走交接副本再核查",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -19972,6 +19972,12 @@
               "blue_location_known",
               true
             ]
+          },
+          {
+            "eq": [
+              "opening_strategy",
+              "rescue"
+            ]
           }
         ]
       },
@@ -20102,6 +20108,17 @@
           "runtimeReads": []
         },
         {
+          "fact": "opening_changed",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/1/when/all/0/eq",
+            "STORY.json/scenes/A4b/blocks/1/when/eq",
+            "STORY.json/scenes/A6a/blocks/13/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
           "fact": "evidence",
           "value": 1,
           "dataReads": [
@@ -20131,7 +20148,6 @@
       ],
       "recordOnlyFlags": [
         "first_win",
-        "opening_changed",
         "opening_route",
         "aftershow",
         "source_blue_disc",
@@ -20159,6 +20175,12 @@
             "eq": [
               "blue_location_known",
               true
+            ]
+          },
+          {
+            "eq": [
+              "opening_strategy",
+              "rescue"
             ]
           }
         ]
@@ -20290,6 +20312,17 @@
           "runtimeReads": []
         },
         {
+          "fact": "opening_changed",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/1/when/all/0/eq",
+            "STORY.json/scenes/A4b/blocks/1/when/eq",
+            "STORY.json/scenes/A6a/blocks/13/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
           "fact": "evidence",
           "value": 1,
           "dataReads": [
@@ -20319,7 +20352,6 @@
       ],
       "recordOnlyFlags": [
         "first_win",
-        "opening_changed",
         "opening_route",
         "aftershow",
         "source_blue_disc",
@@ -20347,6 +20379,12 @@
             "eq": [
               "blue_location_known",
               true
+            ]
+          },
+          {
+            "eq": [
+              "opening_strategy",
+              "investigate"
             ]
           }
         ]
@@ -20484,6 +20522,17 @@
           "runtimeReads": []
         },
         {
+          "fact": "opening_changed",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/1/when/all/0/eq",
+            "STORY.json/scenes/A4b/blocks/1/when/eq",
+            "STORY.json/scenes/A6a/blocks/13/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
           "fact": "evidence",
           "value": 1,
           "dataReads": [
@@ -20513,7 +20562,6 @@
       ],
       "recordOnlyFlags": [
         "first_win",
-        "opening_changed",
         "opening_route",
         "aftershow",
         "source_blue_disc",
@@ -20542,6 +20590,12 @@
             "eq": [
               "blue_location_known",
               true
+            ]
+          },
+          {
+            "eq": [
+              "opening_strategy",
+              "investigate"
             ]
           }
         ]
@@ -20684,6 +20738,17 @@
           "runtimeReads": []
         },
         {
+          "fact": "opening_changed",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/1/when/all/0/eq",
+            "STORY.json/scenes/A4b/blocks/1/when/eq",
+            "STORY.json/scenes/A6a/blocks/13/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
           "fact": "evidence",
           "value": 1,
           "dataReads": [
@@ -20713,7 +20778,6 @@
       ],
       "recordOnlyFlags": [
         "first_win",
-        "opening_changed",
         "opening_route",
         "aftershow",
         "source_blue_disc",
@@ -20743,6 +20807,22 @@
             "eq": [
               "blue_location_known",
               true
+            ]
+          },
+          {
+            "any": [
+              {
+                "eq": [
+                  "opening_strategy",
+                  "rescue"
+                ]
+              },
+              {
+                "eq": [
+                  "opening_strategy",
+                  "investigate"
+                ]
+              }
             ]
           }
         ]
@@ -20864,6 +20944,17 @@
           "runtimeReads": []
         },
         {
+          "fact": "opening_changed",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/1/when/all/0/eq",
+            "STORY.json/scenes/A4b/blocks/1/when/eq",
+            "STORY.json/scenes/A6a/blocks/13/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
           "fact": "evidence",
           "value": 1,
           "dataReads": [
@@ -20888,7 +20979,6 @@
       "runtimeConsumers": [],
       "recordOnlyFlags": [
         "first_win",
-        "opening_changed",
         "opening_route",
         "aftershow",
         "source_blue_disc",
@@ -26537,7 +26627,7 @@
           "value": true,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26593,7 +26683,7 @@
           "value": false,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26646,7 +26736,7 @@
           "value": false,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26710,7 +26800,7 @@
           "value": true,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26767,7 +26857,7 @@
           "value": false,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26821,7 +26911,7 @@
           "value": false,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26873,7 +26963,7 @@
           "value": false,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26925,7 +27015,7 @@
           "value": false,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -26977,7 +27067,7 @@
           "value": false,
           "dataReads": [
             "STORY.json/scenes/A1b/blocks/0/when/eq",
-            "STORY.json/scenes/A1b/blocks/1/when/eq"
+            "STORY.json/scenes/A1b/blocks/1/when/all/1/eq"
           ],
           "runtimeReads": []
         }
@@ -40078,11 +40168,13 @@
       "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: SPARK_g/friend"
     },
     {
-      "id": "ENTRY_WAKE/steady",
-      "label": "扶住箱子，看看胸前的工作证",
+      "id": "ENTRY_WAKE/canon",
+      "label": "按原著走：听程放的，先不插手这场救援",
       "availableWhen": null,
       "immediateReaction": {
-        "textIds": [],
+        "textIds": [
+          "ENTRY_WAKE.r42.reply.canon.001"
+        ],
         "conditionalReplies": []
       },
       "writesAndOperations": [
@@ -40090,27 +40182,7 @@
           "op": "set",
           "key": "badge_checked",
           "value": true
-        }
-      ],
-      "laterFlagReads": [],
-      "exactChoiceReads": [],
-      "runtimeConsumers": [],
-      "recordOnlyFlags": [
-        "badge_checked"
-      ],
-      "classification": "即时反应／终局色彩／留档，不宣称长期改写",
-      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
-      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_WAKE/steady"
-    },
-    {
-      "id": "ENTRY_CLUES/look",
-      "label": "回想刚才还在读的那本小说",
-      "availableWhen": null,
-      "immediateReaction": {
-        "textIds": [],
-        "conditionalReplies": []
-      },
-      "writesAndOperations": [
+        },
         {
           "op": "set",
           "key": "novel_recognized",
@@ -40120,6 +40192,61 @@
           "op": "set",
           "key": "identity_confirmed",
           "value": true
+        },
+        {
+          "op": "set",
+          "key": "danger_day7_known",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "first",
+          "value": "canon"
+        },
+        {
+          "op": "set",
+          "key": "bias",
+          "value": "self"
+        },
+        {
+          "op": "set",
+          "key": "opening_route",
+          "value": "canon"
+        },
+        {
+          "op": "set",
+          "key": "opening_strategy",
+          "value": "canon"
+        },
+        {
+          "op": "set",
+          "key": "opening_method",
+          "value": "piano_original"
+        },
+        {
+          "op": "set",
+          "key": "stage",
+          "value": "piano"
+        },
+        {
+          "op": "set",
+          "key": "first_win",
+          "value": false
+        },
+        {
+          "op": "set",
+          "key": "opening_changed",
+          "value": false
+        },
+        {
+          "op": "set",
+          "key": "canon_kept",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "rival_opening_response",
+          "value": "piano_rescue"
         }
       ],
       "laterFlagReads": [
@@ -40134,29 +40261,132 @@
             "STORY.json/scenes/COLD/choices/4/when/all/0/eq"
           ],
           "runtimeReads": []
+        },
+        {
+          "fact": "first",
+          "value": "canon",
+          "dataReads": [
+            "STORY.json/scenes/OP_CHECK_t/blocks/3/when/all/0/all/0/eq",
+            "STORY.json/scenes/OP_CHECK_t/blocks/4/when/all/0/all/0/eq",
+            "STORY.json/scenes/OP_CHECK_s/blocks/3/when/all/0/all/0/eq",
+            "STORY.json/scenes/OP_CHECK_s/blocks/4/when/all/0/all/0/eq",
+            "STORY.json/scenes/OP_CHECK_l/blocks/3/when/all/0/all/0/eq",
+            "STORY.json/scenes/OP_CHECK_l/blocks/4/when/all/0/all/0/eq",
+            "STORY.json/scenes/OP_CHECK_g/blocks/3/when/all/0/all/0/eq",
+            "STORY.json/scenes/OP_CHECK_g/blocks/4/when/all/0/all/0/eq"
+          ],
+          "runtimeReads": [
+            "tools/engine.mjs: route selection/evidence/work/lateApplication"
+          ]
+        },
+        {
+          "fact": "bias",
+          "value": "self",
+          "dataReads": [
+            "EPILOGUES.json/modules/35/when/eq",
+            "EPILOGUES.json/modules/36/when/eq",
+            "EPILOGUES.json/modules/37/when/eq",
+            "EPILOGUES.json/modules/38/when/eq",
+            "EPILOGUES.json/modules/39/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "opening_strategy",
+          "value": "canon",
+          "dataReads": [
+            "STORY.json/scenes/COLD/choices/0/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/1/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/2/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/3/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/2/any/0/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/2/any/1/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "opening_method",
+          "value": "piano_original",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/5/when/eq",
+            "STORY.json/scenes/A2b/blocks/6/when/eq",
+            "STORY.json/scenes/A2b/blocks/7/when/eq",
+            "STORY.json/scenes/A2b/blocks/8/when/eq",
+            "STORY.json/scenes/A2b/blocks/9/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "stage",
+          "value": "piano",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/0/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "opening_changed",
+          "value": false,
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/1/when/all/0/eq",
+            "STORY.json/scenes/A4b/blocks/1/when/eq",
+            "STORY.json/scenes/A6a/blocks/13/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "canon_kept",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/10/when/eq",
+            "STORY.json/scenes/A4b/blocks/0/when/eq",
+            "STORY.json/scenes/A6a/blocks/12/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/0/when/eq"
+          ],
+          "runtimeReads": []
         }
       ],
       "exactChoiceReads": [],
       "runtimeConsumers": [],
       "recordOnlyFlags": [
-        "identity_confirmed"
+        "badge_checked",
+        "identity_confirmed",
+        "danger_day7_known",
+        "opening_route",
+        "first_win",
+        "rival_opening_response"
       ],
       "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
       "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
-      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_CLUES/look"
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_WAKE/canon"
     },
     {
-      "id": "ENTRY_MEMORY/focus",
-      "label": "稳住呼吸，想起书里的备用伴奏",
+      "id": "ENTRY_WAKE/rescue",
+      "label": "改变首演：抢先找原版U盘，试着拦下钢琴救场",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
-          "ENTRY_MEMORY.focus.r4.reply.001",
-          "ENTRY_MEMORY.focus.r4.reply.002"
+          "ENTRY_WAKE.r42.reply.rescue.001"
         ],
         "conditionalReplies": []
       },
       "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "badge_checked",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "novel_recognized",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "identity_confirmed",
+          "value": true
+        },
         {
           "op": "set",
           "key": "blue_location_known",
@@ -40166,9 +40396,31 @@
           "op": "set",
           "key": "danger_day7_known",
           "value": true
+        },
+        {
+          "op": "set",
+          "key": "opening_strategy",
+          "value": "rescue"
+        },
+        {
+          "op": "set",
+          "key": "canon_kept",
+          "value": false
         }
       ],
       "laterFlagReads": [
+        {
+          "fact": "novel_recognized",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/COLD/choices/0/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/1/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/2/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/3/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/0/eq"
+          ],
+          "runtimeReads": []
+        },
         {
           "fact": "blue_location_known",
           "value": true,
@@ -40180,16 +40432,550 @@
             "STORY.json/scenes/COLD/choices/4/when/all/1/eq"
           ],
           "runtimeReads": []
+        },
+        {
+          "fact": "opening_strategy",
+          "value": "rescue",
+          "dataReads": [
+            "STORY.json/scenes/COLD/choices/0/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/1/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/2/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/3/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/2/any/0/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/2/any/1/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "canon_kept",
+          "value": false,
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/10/when/eq",
+            "STORY.json/scenes/A4b/blocks/0/when/eq",
+            "STORY.json/scenes/A6a/blocks/12/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/0/when/eq"
+          ],
+          "runtimeReads": []
         }
       ],
       "exactChoiceReads": [],
       "runtimeConsumers": [],
       "recordOnlyFlags": [
+        "badge_checked",
+        "identity_confirmed",
         "danger_day7_known"
       ],
       "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
       "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
-      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_MEMORY/focus"
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_WAKE/rescue"
+    },
+    {
+      "id": "ENTRY_WAKE/investigate",
+      "label": "先查背锅线：核实错版来源，同时找回原版",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "ENTRY_WAKE.r42.reply.investigate.001"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "badge_checked",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "novel_recognized",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "identity_confirmed",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "blue_location_known",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "danger_day7_known",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "opening_strategy",
+          "value": "investigate"
+        },
+        {
+          "op": "set",
+          "key": "canon_kept",
+          "value": false
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "novel_recognized",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/COLD/choices/0/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/1/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/2/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/3/when/all/0/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/0/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "blue_location_known",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/COLD/choices/0/when/all/1/eq",
+            "STORY.json/scenes/COLD/choices/1/when/all/1/eq",
+            "STORY.json/scenes/COLD/choices/2/when/all/1/eq",
+            "STORY.json/scenes/COLD/choices/3/when/all/1/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/1/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "opening_strategy",
+          "value": "investigate",
+          "dataReads": [
+            "STORY.json/scenes/COLD/choices/0/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/1/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/2/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/3/when/all/2/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/2/any/0/eq",
+            "STORY.json/scenes/COLD/choices/4/when/all/2/any/1/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "canon_kept",
+          "value": false,
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/10/when/eq",
+            "STORY.json/scenes/A4b/blocks/0/when/eq",
+            "STORY.json/scenes/A6a/blocks/12/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/0/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "badge_checked",
+        "identity_confirmed",
+        "danger_day7_known"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_WAKE/investigate"
+    },
+    {
+      "id": "ENTRY_CLUES/obey",
+      "label": "继续照原著：签收模糊的交接单",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "ENTRY_CLUES.r42.reply.obey.001",
+          "ENTRY_CLUES.r42.reply.obey.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "canon_response",
+          "value": "obey"
+        },
+        {
+          "op": "set",
+          "key": "canon_signed_blame",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "first_night_evidence",
+          "value": "none"
+        },
+        {
+          "op": "set",
+          "key": "opening_work",
+          "value": "free"
+        },
+        {
+          "op": "set",
+          "key": "opening_work_commitment",
+          "value": false
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "canon_response",
+          "value": "obey",
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/16/when/eq",
+            "STORY.json/scenes/A1b/blocks/17/when/eq",
+            "STORY.json/scenes/A1b/blocks/18/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/0/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/1/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/2/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "canon_signed_blame",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A4b/blocks/3/when/eq",
+            "STORY.json/scenes/A6a/blocks/14/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "opening_work",
+          "value": "free",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_t/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_s/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_s/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_s/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_s/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_l/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_l/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_l/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_l/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_g/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_g/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_g/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_g/choices/1/when/all/1/ne"
+          ],
+          "runtimeReads": [
+            "tools/engine.mjs: route selection/evidence/work/lateApplication"
+          ]
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "first_night_evidence",
+        "opening_work_commitment"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_CLUES/obey"
+    },
+    {
+      "id": "ENTRY_CLUES/refuse",
+      "label": "只留在原著舞台线，但拒签不清楚的责任",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "ENTRY_CLUES.r42.reply.refuse.001",
+          "ENTRY_CLUES.r42.reply.refuse.002",
+          "ENTRY_CLUES.r42.reply.refuse.003"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "canon_response",
+          "value": "refuse"
+        },
+        {
+          "op": "set",
+          "key": "canon_signed_blame",
+          "value": false
+        },
+        {
+          "op": "set",
+          "key": "source_declined_handover",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "first_night_evidence",
+          "value": "refusal"
+        },
+        {
+          "op": "set",
+          "key": "opening_work",
+          "value": "free"
+        },
+        {
+          "op": "set",
+          "key": "opening_work_commitment",
+          "value": false
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "canon_response",
+          "value": "refuse",
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/16/when/eq",
+            "STORY.json/scenes/A1b/blocks/17/when/eq",
+            "STORY.json/scenes/A1b/blocks/18/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/0/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/1/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/2/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "canon_signed_blame",
+          "value": false,
+          "dataReads": [
+            "STORY.json/scenes/A4b/blocks/3/when/eq",
+            "STORY.json/scenes/A6a/blocks/14/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "opening_work",
+          "value": "free",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_t/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_s/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_s/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_s/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_s/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_l/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_l/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_l/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_l/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_g/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_g/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_g/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_g/choices/1/when/all/1/ne"
+          ],
+          "runtimeReads": [
+            "tools/engine.mjs: route selection/evidence/work/lateApplication"
+          ]
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "source_declined_handover",
+        "first_night_evidence",
+        "opening_work_commitment"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_CLUES/refuse"
+    },
+    {
+      "id": "ENTRY_CLUES/witness",
+      "label": "悄悄记下发号施令的人、时间和谁在操作",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "ENTRY_CLUES.r42.reply.witness.001",
+          "ENTRY_CLUES.r42.reply.witness.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "canon_response",
+          "value": "witness"
+        },
+        {
+          "op": "set",
+          "key": "canon_signed_blame",
+          "value": false
+        },
+        {
+          "op": "set",
+          "key": "source_original_timeline",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "first_night_evidence",
+          "value": "timeline"
+        },
+        {
+          "op": "set",
+          "key": "opening_work",
+          "value": "free"
+        },
+        {
+          "op": "set",
+          "key": "opening_work_commitment",
+          "value": false
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "canon_response",
+          "value": "witness",
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/16/when/eq",
+            "STORY.json/scenes/A1b/blocks/17/when/eq",
+            "STORY.json/scenes/A1b/blocks/18/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/0/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/1/when/eq",
+            "STORY.json/scenes/OP_CANON/blocks/2/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "canon_signed_blame",
+          "value": false,
+          "dataReads": [
+            "STORY.json/scenes/A4b/blocks/3/when/eq",
+            "STORY.json/scenes/A6a/blocks/14/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "opening_work",
+          "value": "free",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_t/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_t/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_s/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_s/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_s/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_s/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_l/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_l/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_l/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_l/choices/1/when/all/1/ne",
+            "STORY.json/scenes/OP_DATE_g/blocks/3/when/eq",
+            "STORY.json/scenes/OP_DATE_g/blocks/4/when/eq",
+            "STORY.json/scenes/OP_DATE_g/blocks/5/when/eq",
+            "STORY.json/scenes/OP_DATE_g/choices/1/when/all/1/ne"
+          ],
+          "runtimeReads": [
+            "tools/engine.mjs: route selection/evidence/work/lateApplication"
+          ]
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "source_original_timeline",
+        "first_night_evidence",
+        "opening_work_commitment"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_CLUES/witness"
+    },
+    {
+      "id": "ENTRY_MEMORY/camera",
+      "label": "请林见月保留版本与时间戳，再把盘交给阿衡",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "ENTRY_MEMORY.r42.reply.camera.001",
+          "ENTRY_MEMORY.r42.reply.camera.002",
+          "ENTRY_MEMORY.r42.reply.camera.003"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "opening_investigation",
+          "value": "camera"
+        },
+        {
+          "op": "set",
+          "key": "source_pre_switch_timestamp",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "opening_investigation",
+          "value": "camera",
+          "dataReads": [
+            "STORY.json/scenes/OP_FORK/blocks/0/when/eq",
+            "STORY.json/scenes/OP_FORK/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "source_pre_switch_timestamp"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_MEMORY/camera"
+    },
+    {
+      "id": "ENTRY_MEMORY/email",
+      "label": "先问顾晚棠节目单权限，再把盘交给阿衡",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "ENTRY_MEMORY.r42.reply.email.001",
+          "ENTRY_MEMORY.r42.reply.email.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "opening_investigation",
+          "value": "email"
+        },
+        {
+          "op": "set",
+          "key": "source_programme_approval_note",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "cheng_questioned_early",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "opening_investigation",
+          "value": "email",
+          "dataReads": [
+            "STORY.json/scenes/OP_FORK/blocks/0/when/eq",
+            "STORY.json/scenes/OP_FORK/blocks/1/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "source_programme_approval_note",
+        "cheng_questioned_early"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: ENTRY_MEMORY/email"
     },
     {
       "id": "OP_SETTLE/continue",
@@ -40221,6 +41007,409 @@
       "classification": "即时反应／终局色彩／留档，不宣称长期改写",
       "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
       "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: OP_SETTLE/continue"
+    },
+    {
+      "id": "OP_CANON/backstage",
+      "label": "不抢镜，主动帮阿衡做一次末场清点",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "OP_CANON.r42.reply.backstage.001",
+          "OP_CANON.r42.reply.backstage.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "canon_after_action",
+          "value": "assist"
+        },
+        {
+          "op": "set",
+          "key": "source_end_shift_list",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "source_end_shift_list",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A1b/blocks/19/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "canon_after_action"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: OP_CANON/backstage"
+    },
+    {
+      "id": "OP_CANON/question",
+      "label": "找程放问清楚错版来源，留住聊天记录",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "OP_CANON.r42.reply.question.001",
+          "OP_CANON.r42.reply.question.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "canon_after_action",
+          "value": "question"
+        },
+        {
+          "op": "set",
+          "key": "source_cheng_message",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "cheng_questioned_early",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "canon_after_action",
+        "source_cheng_message",
+        "cheng_questioned_early"
+      ],
+      "classification": "即时反应／终局色彩／留档，不宣称长期改写",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: OP_CANON/question"
+    },
+    {
+      "id": "OP_CANON/silence",
+      "label": "今晚先保持沉默，记住原著第七天的危险",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "OP_CANON.r42.reply.silence.001"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "canon_after_action",
+          "value": "silence"
+        }
+      ],
+      "laterFlagReads": [],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "canon_after_action"
+      ],
+      "classification": "即时反应／终局色彩／留档，不宣称长期改写",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: OP_CANON/silence"
+    },
+    {
+      "id": "OP_FORK/backup",
+      "label": "请阿衡保存旧版与原版的核对清单，明确谁操作了切换",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "OP_FORK.r42.reply.backup.001",
+          "OP_FORK.r42.reply.backup.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "new_plot_choice",
+          "value": "preserve"
+        },
+        {
+          "op": "set",
+          "key": "source_dual_version_log",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "proof_version_log",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "new_plot_choice",
+          "value": "preserve",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/11/when/eq",
+            "STORY.json/scenes/A2b/blocks/12/when/eq",
+            "STORY.json/scenes/A2b/blocks/13/when/eq",
+            "STORY.json/scenes/A6a/blocks/16/when/eq"
+          ],
+          "runtimeReads": []
+        },
+        {
+          "fact": "proof_version_log",
+          "value": true,
+          "dataReads": [
+            "STORY.json/scenes/A4b/blocks/2/when/eq",
+            "STORY.json/scenes/A6a/blocks/15/when/eq",
+            "STORY.json/scenes/UNWRITTEN/blocks/2/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "source_dual_version_log"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: OP_FORK/backup"
+    },
+    {
+      "id": "OP_FORK/confront",
+      "label": "公开问程放：“旧版是谁导出的？”承担他记恨你的风险",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "OP_FORK.r42.reply.confront.001",
+          "OP_FORK.r42.reply.confront.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "new_plot_choice",
+          "value": "confront"
+        },
+        {
+          "op": "set",
+          "key": "source_cheng_message",
+          "value": true
+        },
+        {
+          "op": "set",
+          "key": "cheng_questioned_early",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "new_plot_choice",
+          "value": "confront",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/11/when/eq",
+            "STORY.json/scenes/A2b/blocks/12/when/eq",
+            "STORY.json/scenes/A2b/blocks/13/when/eq",
+            "STORY.json/scenes/A6a/blocks/16/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "source_cheng_message",
+        "cheng_questioned_early"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: OP_FORK/confront"
+    },
+    {
+      "id": "OP_FORK/quiet",
+      "label": "暂不公开冲突，只保管自己的交接记录",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "OP_FORK.r42.reply.quiet.001"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "new_plot_choice",
+          "value": "quiet"
+        },
+        {
+          "op": "set",
+          "key": "source_personal_record",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "new_plot_choice",
+          "value": "quiet",
+          "dataReads": [
+            "STORY.json/scenes/A2b/blocks/11/when/eq",
+            "STORY.json/scenes/A2b/blocks/12/when/eq",
+            "STORY.json/scenes/A2b/blocks/13/when/eq",
+            "STORY.json/scenes/A6a/blocks/16/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "source_personal_record"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: OP_FORK/quiet"
+    },
+    {
+      "id": "UNWRITTEN/offer",
+      "label": "接受新邀约：做一份自己的流程说明，让别人也能核实",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "UNWRITTEN.r42.reply.offer.001",
+          "UNWRITTEN.r42.reply.offer.002"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "unwritten_future",
+          "value": "public_method"
+        },
+        {
+          "op": "set",
+          "key": "unwritten_invite_accepted",
+          "value": true
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "unwritten_future",
+          "value": "public_method",
+          "dataReads": [
+            "STORY.json/scenes/A6b/blocks/0/when/eq",
+            "STORY.json/scenes/A6b/blocks/1/when/eq",
+            "STORY.json/scenes/A6b/blocks/2/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/0/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/1/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/2/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "unwritten_invite_accepted"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: UNWRITTEN/offer"
+    },
+    {
+      "id": "UNWRITTEN/private",
+      "label": "不公开个人经历，把证据留给需要知道的伙伴",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "UNWRITTEN.r42.reply.private.001"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "unwritten_future",
+          "value": "private_protection"
+        },
+        {
+          "op": "set",
+          "key": "unwritten_invite_accepted",
+          "value": false
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "unwritten_future",
+          "value": "private_protection",
+          "dataReads": [
+            "STORY.json/scenes/A6b/blocks/0/when/eq",
+            "STORY.json/scenes/A6b/blocks/1/when/eq",
+            "STORY.json/scenes/A6b/blocks/2/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/0/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/1/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/2/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "unwritten_invite_accepted"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: UNWRITTEN/private"
+    },
+    {
+      "id": "UNWRITTEN/self",
+      "label": "先不接邀约：把未来的一天留给自己的生活",
+      "availableWhen": null,
+      "immediateReaction": {
+        "textIds": [
+          "UNWRITTEN.r42.reply.self.001"
+        ],
+        "conditionalReplies": []
+      },
+      "writesAndOperations": [
+        {
+          "op": "set",
+          "key": "unwritten_future",
+          "value": "self_direction"
+        },
+        {
+          "op": "set",
+          "key": "unwritten_invite_accepted",
+          "value": false
+        }
+      ],
+      "laterFlagReads": [
+        {
+          "fact": "unwritten_future",
+          "value": "self_direction",
+          "dataReads": [
+            "STORY.json/scenes/A6b/blocks/0/when/eq",
+            "STORY.json/scenes/A6b/blocks/1/when/eq",
+            "STORY.json/scenes/A6b/blocks/2/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/0/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/1/when/eq",
+            "STORY.json/scenes/XU_WORK/blocks/2/when/eq"
+          ],
+          "runtimeReads": []
+        }
+      ],
+      "exactChoiceReads": [],
+      "runtimeConsumers": [],
+      "recordOnlyFlags": [
+        "unwritten_invite_accepted"
+      ],
+      "classification": "存在后续条件或运行时依赖，效果仍需具体回放验证",
+      "endingImpacts": "见上述具体门槛与命运模块；静态关联不保证这次游玩一定触发",
+      "ordinaryInputWitness": "qa/current/choice-witness-prefixes.json :: UNWRITTEN/self"
     }
   ]
 }

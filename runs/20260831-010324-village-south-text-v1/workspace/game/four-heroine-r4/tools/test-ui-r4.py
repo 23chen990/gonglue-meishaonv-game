@@ -7,7 +7,7 @@ import os,json,hashlib,tempfile
 R=Path(__file__).resolve().parent.parent
 MODE=os.environ.get('R4_MODE','fixture');URL=os.environ.get('R4_REAL_URL','http://127.0.0.1:8765/index.html')
 D=R/'qa/current/browser'/('native-ui' if MODE=='native' else 'fixture-ui');D.mkdir(parents=True,exist_ok=True)
-HTML=(R/'index.html').read_text();KEY='gonglue:revision-r4.1:canonical'
+HTML=(R/'index.html').read_text();KEY='gonglue:revision-r4.2:canonical'
 SHA=hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest()
 report={'mode':MODE,'scope':'Actual native navigation/storage' if MODE=='native' else 'Injected DOM and labelled simulated Storage; not native persistence or human play',
         'hashes':{n:hashlib.sha256((R/n).read_bytes()).hexdigest() for n in ['index.html','data/STORY.json','tools/engine.mjs','tools/preview-ui.js']},
@@ -48,11 +48,30 @@ def settle(p):
   elif p.locator('[data-reply-next]').count():tap(p,'[data-reply-next]')
   else:return
  raise AssertionError('Reader stuck')
-def intro(p):
- for cid,scene in [('steady','ENTRY_WAKE'),('look','ENTRY_CLUES'),('focus','ENTRY_MEMORY')]:
-  settle(p);assert p.locator('body').get_attribute('data-current')==scene
-  tap(p,'[data-choice="'+cid+'"]')
- settle(p);assert p.locator('body').get_attribute('data-current')=='COLD'
+def intro(p,first='t'):
+ settle(p)
+ assert p.locator('body').get_attribute('data-current')=='ENTRY_WAKE'
+ assert p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')==['canon','rescue','investigate']
+ assert '第七天' in p.locator('main').inner_text()
+ if first in ('l','g'):
+  tap(p,'[data-choice="investigate"]');settle(p)
+  assert p.locator('body').get_attribute('data-current')=='ENTRY_MEMORY'
+  tap(p,'[data-choice="'+('camera' if first=='l' else 'email')+'"]')
+ else:
+  tap(p,'[data-choice="rescue"]')
+ settle(p)
+ assert p.locator('body').get_attribute('data-current')=='COLD'
+ ids=p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')
+ assert ids==(['l','g','self'] if first in ('l','g') else ['t','s','self']),ids
+
+def original_path(p,response='witness',after='backstage'):
+ settle(p);tap(p,'[data-choice="canon"]');settle(p)
+ assert p.locator('body').get_attribute('data-current')=='ENTRY_CLUES'
+ tap(p,'[data-choice="'+response+'"]');settle(p)
+ assert p.locator('body').get_attribute('data-current')=='OP_CANON'
+ assert '钢琴' in p.locator('main').inner_text()
+ tap(p,'[data-choice="'+after+'"]');settle(p)
+ assert p.locator('body').get_attribute('data-current')=='A1b'
 def import_json(p,payload):
  p.locator('#importFile').set_input_files({'name':'test-log.json','mimeType':'application/json','buffer':json.dumps(payload).encode()})
  p.wait_for_timeout(100)
@@ -79,50 +98,66 @@ with sync_playwright() as pw:
  for first in ['t','s','l','g','self']:
   def opening(first=first):
    c,p,e=entry(browser)
-   assert '头晕' in p.locator('main').inner_text()
-   assert p.locator('[data-choice="t"]').count()==0
-   if first=='t':p.screenshot(path=str(D/'01-wake-360.png'),full_page=True)
-   intro(p);assert count(p)==3
+   assert '原著' in p.locator('main').inner_text()
+   if first=='t':p.screenshot(path=str(D/'01-first-canon-fork-360.png'),full_page=True)
+   intro(p,first)
+   baseline=2 if first in ('l','g') else 1
+   assert count(p)==baseline
    ids=p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')
-   assert ids==['t','s','l','g','self'];assert p.evaluate('document.documentElement.scrollWidth<=innerWidth')
+   assert len(ids)==3 and first in ids and p.evaluate('document.documentElement.scrollWidth<=innerWidth')
    for x in p.locator('[data-choice]').all():
     x.scroll_into_view_if_needed();box=x.bounding_box();assert box['height']>=44 and box['width']<=360
-   p.evaluate('window.scrollTo(0,0)')
-   if first=='t':p.screenshot(path=str(D/'02-first-choice-360.png'),full_page=True)
-   tap(p,'[data-choice="'+first+'"]');assert count(p)==4
+   if first=='t':p.screenshot(path=str(D/'02-rescue-methods-360.png'),full_page=True)
+   tap(p,'[data-choice="'+first+'"]')
+   assert count(p)==baseline+1
    assert p.locator('body').get_attribute('data-current')=='OP_SETTLE'
    shown=response_text(p)
    assert '陆景行' in shown and '阿衡' in shown
    assert p.locator('[data-reply-next]').count()==1
-   p.screenshot(path=str(D/f'03-{first}-payoff.png'),full_page=True)
-   tap(p,'[data-reply-next]');assert count(p)==4
-   settle(p);tap(p,'[data-choice="continue"]');assert count(p)==5
+   if first=='t':p.screenshot(path=str(D/'03-t-payoff.png'),full_page=True)
+   tap(p,'[data-reply-next]');settle(p)
+   tap(p,'[data-choice="continue"]');settle(p)
+   assert p.locator('body').get_attribute('data-current')=='OP_FORK'
+   assert '原著没有' in p.locator('main').inner_text()
+   assert p.locator('[data-choice]').count()==3
+   tap(p,'[data-choice="backup"]');settle(p)
    assert p.locator('body').get_attribute('data-current')=='OP_TALK_'+first
+   assert count(p)==baseline+3
    assert not e,e;c.close()
-   return {'commands':5,'first':first,'noRomanceGateBeforeRecognition':True,'replyReadBeforeContinuation':True}
+   return {'ordinaryCommands':baseline+3,'first':first,'firstDecisiveChoiceBeforeMethod':True,'newUnwrittenFork':True}
   test('OPENING_'+first,opening)
+ def canon():
+  outputs=[]
+  for response in ['obey','refuse','witness']:
+   c,p,e=entry(browser);original_path(p,response)
+   values=json.loads(raw(p))['commands']
+   assert [x['from'] for x in values][:3]==['ENTRY_WAKE','ENTRY_CLUES','OP_CANON']
+   assert len(values)==3
+   assert '原著' in p.locator('main').inner_text()
+   assert p.locator('[data-choice]').count()==3
+   assert not e,e;c.close();outputs.append({'paperChoice':response,'commands':3})
+  return outputs
+ test('TRUE_ORIGINAL_ROUTE_NO_BLUE_DISC',canon)
  def fast_and_double():
   c,p,e=entry(browser);intro(p)
-  # Real DOM input: deliberately immediate consecutive taps, no artificial debounce delay.
   loc=p.locator('[data-choice="t"]');loc.scroll_into_view_if_needed();loc.dblclick(delay=15)
-  assert count(p)==4
-  settle(p)
-  assert p.locator('[data-choice="continue"]').count()==1
-  tap(p,'[data-choice="continue"]');assert count(p)==5
-  settle(p);assert p.locator('body').get_attribute('data-current')=='OP_TALK_t'
+  assert count(p)==2
+  settle(p);tap(p,'[data-choice="continue"]');settle(p)
+  assert p.locator('body').get_attribute('data-current')=='OP_FORK'
+  tap(p,'[data-choice="backup"]');settle(p)
+  assert p.locator('body').get_attribute('data-current')=='OP_TALK_t'
   assert not e,e;c.close()
-  return {'doubleClickCommands':1,'immediateNextRealButtonWorks':True,'input':'DOM mouse/touch, no state injection'}
+  return {'doubleClickCommands':1,'immediateNextRealButtonWorks':True}
  test('DOUBLE_CLICK_AND_LEGITIMATE_FAST_INPUT',fast_and_double)
  def drag():
   c,p,e=entry(browser);intro(p)
   loc=p.locator('[data-choice="t"]');loc.scroll_into_view_if_needed();box=loc.bounding_box()
   x,y=box['x']+box['width']/2,box['y']+box['height']/2
   p.mouse.move(x,y);p.mouse.down();p.mouse.move(x+26,y,steps=5);p.mouse.up()
-  assert count(p)==3 and p.locator('body').get_attribute('data-current')=='COLD'
-  tap(p,'[data-choice="t"]');assert count(p)==4
+  assert count(p)==1 and p.locator('body').get_attribute('data-current')=='COLD'
+  tap(p,'[data-choice="t"]');assert count(p)==2
   assert not e,e;c.close();return {'dragPixels':26,'accidentalChoiceRejected':True,'nextTapWorks':True}
  test('DRAG_IS_NOT_A_STORY_CHOICE',drag)
-
  def imports():
   c,p,e=entry(browser);intro(p);tap(p,'[data-choice="s"]');saved=raw(p)
   variants=[]
@@ -148,7 +183,7 @@ with sync_playwright() as pw:
   assert not e,e;c.close();return {'corruptOriginalBackedUp':True,'legacyUntouched':True}
  test('CORRUPT_SAVE_BACKUP_AND_OLD_VERSION_ISOLATION',backup)
  def roundtrip():
-  c,p,e=entry(browser);intro(p);tap(p,'[data-choice="l"]')
+  c,p,e=entry(browser);intro(p,'l');tap(p,'[data-choice="l"]')
   if p.locator('[data-page-next]').count():tap(p,'[data-page-next]')
   saved=raw(p);shown=p.locator('main').inner_text()
   if MODE=='native':
@@ -159,6 +194,35 @@ with sync_playwright() as pw:
    assert not e2;c2.close()
   assert not e;c.close();return {'exactReplyPageRestored':True,'storageEvidence':'native reload' if MODE=='native' else 'explicit mock-storage re-instantiation, NOT disk persistence'}
  test('SAVE_AND_REPLY_PAGE_RECONSTRUCTION',roundtrip)
+ def decision_menu_limit():
+  c,p,e=entry(browser)
+  intro(p);assert p.locator('[data-choice]').count()==3
+  assert not e,e;c.close()
+  c,p,e=entry(browser)
+  catalogue=json.loads((R/'qa/current/choice-witness-prefixes.json').read_text())['choices']
+  witness=catalogue['A6a/rebuild']['prefix'][:-1]
+  payload={'version':'bookside-revision-r4.2','storyHash':SHA,'commands':witness,
+           'profile':{'endings':{},'bonuses':{},'readPages':[]},'ui':{'phase':'scene','page':0,'choicePage':0,'large':False}}
+  import_json(p,payload);settle(p)
+  assert p.locator('body').get_attribute('data-current')=='A6a'
+  group1=p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')
+  assert len(group1)==3 and p.locator('[data-choice-next]').count()==1,group1
+  before=count(p)
+  tap(p,'[data-choice-next]')
+  group2=p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')
+  assert len(group2)==3 and len(set(group1+group2))==6,(group1,group2)
+  assert count(p)==before,'Non-story navigation must not consume an action'
+  # Verified command export/import restores selected option page without changing game state.
+  saved=raw(p)
+  if MODE!='native':
+   c2,p2,e2=entry(browser,seed={KEY:saved})
+   assert p2.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')==group2
+   assert not e2;c2.close()
+  tap(p,'[data-choice="rebuild"]');settle(p)
+  assert count(p)==before+1
+  assert not e,e;c.close()
+  return {'firstForkChoices':3,'rescueChoices':3,'highOptionScene': 'A6a','menuGroupSizes':[len(group1),len(group2)],'allSixActionsStillReachable':True,'switchNoActionCost':True}
+ test('DECISION_MENU_MAX_FOUR',decision_menu_limit)
  def devices():
   cases=[]
   for w,h,large in [(320,568,False),(360,640,True),(390,844,False),(844,390,True)]:
@@ -170,7 +234,7 @@ with sync_playwright() as pw:
     b.scroll_into_view_if_needed();box=b.bounding_box()
     assert box['height']>=44 and box['y']>=-1 and box['y']+box['height']<=h+1,(w,h,box)
    p.screenshot(path=str(D/f'opening-{w}x{h}-large-{large}.png'),full_page=True)
-   assert not e,e;c.close();cases.append({'viewport':[w,h],'large':large,'fiveActionsReachable':True})
+   assert not e,e;c.close();cases.append({'viewport':[w,h],'large':large,'threeActualActions':True})
   return cases
  test('FOUR_VIEWPORTS_AND_LARGE_FONT',devices)
  if MODE!='native':
@@ -190,7 +254,7 @@ with sync_playwright() as pw:
    b=c.new_page();b.on('dialog',lambda d:d.accept());b.goto(URL,wait_until='load')
    tap(p,'[data-choice="t"]');saved=raw(p)
    b.wait_for_function("document.querySelector('#menu').classList.contains('unsaved')")
-   tap(b,'[data-choice="g"]');assert raw(b)==saved
+   tap(b,'[data-choice="canon"]');assert raw(b)==saved
    tap(b,'#menu');tap(b,'[data-action="reload"]')
    assert raw(b)==saved and b.locator('main').inner_text()==p.locator('main').inner_text()
    assert not e;c.close();return {'nativeStorageEvent':True,'noLostUpdate':True,'explicitReload':True}
@@ -199,7 +263,7 @@ with sync_playwright() as pw:
    opts=dict(launch_options)
    with tempfile.TemporaryDirectory(prefix='gonglue-r4-native-') as folder:
     c=pw.chromium.launch_persistent_context(folder,has_touch=True,is_mobile=True,**opts)
-    p=c.new_page();p.goto(URL,wait_until='load');intro(p);tap(p,'[data-choice="g"]')
+    p=c.new_page();p.goto(URL,wait_until='load');intro(p,'g');tap(p,'[data-choice="g"]')
     saved=raw(p);shown=p.locator('main').inner_text();c.close()
     c=pw.chromium.launch_persistent_context(folder,has_touch=True,is_mobile=True,**opts)
     p=c.new_page();p.goto(URL,wait_until='load')

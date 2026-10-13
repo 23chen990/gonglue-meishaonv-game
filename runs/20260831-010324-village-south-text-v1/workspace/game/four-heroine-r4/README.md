@@ -1,4 +1,4 @@
-> **r4.1 更新（2026-10-12）**：基于原r4正式JSON，对前期与四女主路线做63处显示文本修订。正式源码为 `data/STORY.json`，改动证据见 `docs/R41_EDITORIAL_REVIEW.md` 与 `docs/R41_QA.md`。首局离线浏览器12项通过；HTTP原生入口被环境阻止，真人/真机尚未验收。
+> **r4.2 新版（2026-10-13）**：第一个真正的决定现在是“照原著走／改变首演／先查背锅线”三选一。原著钢琴救场与第七天清退后果会在选择前出现，三条路线有不同的证据与事件，并在第 2/5/7 天回收。正式源码 `data/STORY.json`，完整记录见 `docs/R42_ORIGINAL_NOVEL_BRANCHING.md` 和 `docs/R42_QA.md`。原 r4.1 的 63 处文字修订仍保留。
 
 # 攻略美少女 · r4 完整可试玩修订版
 
@@ -32,10 +32,10 @@ npm run test:browser
 ## 阅读顺序
 `START_HERE.md` → `01_CANON_LOCK.json` → `docs/CODEX_HANDOFF.md` → `docs/QA_REPORT.md`。
 
-全部43项历史问题在 `docs/FIX_LOG.md/json`；最新15项与r3补充缺口见 `docs/LATEST_REQUIREMENTS.md`；逐场记录见 `docs/SCENE_LEDGER.md`；完整条件全文见 `docs/FULL_STORY.md`；可读全文见 `docs/FULL_STORY_READABLE.txt`。
+原 r4 的全部43项历史问题在 `docs/FIX_LOG.md/json`；最新15项与r3补充缺口见 `docs/LATEST_REQUIREMENTS.md`；逐场记录见 `docs/SCENE_LEDGER.md`；完整条件全文见 `docs/FULL_STORY.md`；可读全文见 `docs/FULL_STORY_READABLE.txt`。
 
 ## GitHub
-**r4.1已上传到隔离开发分支** `feat/gonglue-r4-1-editorial-20261012`，草稿 PR：https://github.com/23chen990/gonglue-meishaonv-game/pull/2 。该分支的 `src/main.ts` 与根 `index.html` 已加载新版；`main` 暂未合并，默认仍是旧《村口向南》。旧本地安装脚本只作为历史备选，不要对已存在 `four-heroine-r4` 的分支重复运行。最新验收见 `docs/R41_QA.md`。
+原 r4.1 已在 GitHub 草稿 PR #2 中隔离实现，当前 r4.2 预计作为该草稿 PR 的后续提交；不要误以为 main 已合并。具体远端提交 SHA、当前 CI 运行与是否完成同步，以 PR 页面核验为准。
 
 ## 验收状态
-本轮202项回归检查、全部737个选择和565个条件显示块有当前版本见证。浏览器离线普通四人路线已走到结局；只读收藏、模拟故障与手机尺寸有独立结果。真人盲玩、真实iOS/Android、原生持久化、远端分支入口源码已接通但 CI/正式入口尚未验收，正式美术/声音和IAA平台发布未完成。
+当前版本 228 场、751 个内部选项及 596 个条件块已由普通命令回放见证；14 项离线浏览器首局测试通过，四人普通触控路线 95 次输入通过。真实 HTTP CI、真人、真机和 IAA 平台验收分开记录，不能因为原 r4.1 的通过而推定本版已通过。

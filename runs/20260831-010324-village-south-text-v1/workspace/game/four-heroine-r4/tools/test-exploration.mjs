@@ -28,6 +28,12 @@ function fallback(s,opts,cs){
  }
  const id=s.current;
  let target=base[id];
+ if(id==='ENTRY_WAKE')target='rescue';
+ if(id==='ENTRY_CLUES')target='witness';
+ if(id==='ENTRY_MEMORY')target='camera';
+ if(id==='OP_CANON')target='backstage';
+ if(id==='OP_FORK')target='backup';
+ if(id==='UNWRITTEN')target='offer';
  if(id==='COLD')target=cs[0]||'self';
  if(id.startsWith('OP_TALK'))target=id.endsWith('self')?'credit':'flirt';
  if(id.startsWith('OP_SECRET'))target='truth';

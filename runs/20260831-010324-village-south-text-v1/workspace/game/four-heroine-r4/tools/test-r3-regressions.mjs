@@ -7,7 +7,7 @@ import {run,data,root} from './route-runner.mjs';
 const checks=[];
 function check(name,fn){try{fn();checks.push({name,status:'PASS'});}catch(e){checks.push({name,status:'FAIL',error:e.message});}}
 check('command_revision_is_not_ignored',()=>{
- const s=choose(createState(),data,'steady').state;
+ const s=choose(createState(),data,'rescue').state;
  assert.throws(()=>replay(data,[{...s.history[0],revision:90}]),/revision|sequence/i);
 });
 check('half_demo_is_not_a_master',()=>{

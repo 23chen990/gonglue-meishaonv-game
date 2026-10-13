@@ -1,4 +1,4 @@
-> **r4.1 更新（2026-10-12）**：基于原r4正式JSON，对前期与四女主路线做63处显示文本修订。正式源码为 `data/STORY.json`，改动证据见 `docs/R41_EDITORIAL_REVIEW.md` 与 `docs/R41_QA.md`。首局离线浏览器12项通过；HTTP原生入口被环境阻止，真人/真机尚未验收。
+> **r4.2**：第一选择即“照原著走／改变首演／先查责任”，且后续有原著外新事件。详情 `docs/R42_ORIGINAL_NOVEL_BRANCHING.md`。
 
 # 先从这里开始 · r4
 
@@ -20,4 +20,4 @@
 
 **不要直接编辑HTML、Markdown或runtime.mjs。** 改JSON或tools中的作者源后重新构建、重新测试。不得把旧COLD作为入口；现在从ENTRY_WAKE开始。
 
-r4.1 已接入 **开发分支** `feat/gonglue-r4-1-editorial-20261012`，对应草稿 PR #2；**main 未合并**，不要打开 main 的旧游戏来验收。新接手先读 `docs/R41_QA.md`、`docs/R41_EDITORIAL_REVIEW.md` 和 `docs/CODEX_HANDOFF.md`，再核对 HEAD。
+r4.1 已建立游戏仓库草稿 PR #2；r4.2 应在该分支继续开发，勿直接覆盖 main。接手开发先读 `docs/R42_CODEX_HANDOFF.md`。

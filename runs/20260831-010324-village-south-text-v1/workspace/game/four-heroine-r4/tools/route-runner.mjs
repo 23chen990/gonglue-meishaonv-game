@@ -32,9 +32,12 @@ export function defaultAction(s,cfg={}){
 }
 function preferred(s,cfg){
  const id=s.current,c=cfg.first||cfg.chars?.[0]||'self';
- if(id==='ENTRY_WAKE')return 'steady';
- if(id==='ENTRY_CLUES')return 'look';
- if(id==='ENTRY_MEMORY')return 'focus';
+ if(id==='ENTRY_WAKE')return cfg.canon?'canon':['l','g'].includes(c)||cfg.investigation?'investigate':'rescue';
+ if(id==='ENTRY_CLUES')return cfg.canonResponse||'witness';
+ if(id==='ENTRY_MEMORY')return cfg.investigation||(c==='g'?'email':'camera');
+ if(id==='OP_CANON')return cfg.canonAfter||'backstage';
+ if(id==='OP_FORK')return cfg.fork||'backup';
+ if(id==='UNWRITTEN')return cfg.future||'offer';
  if(id==='OP_SETTLE')return 'continue';
  if(id==='COLD')return c;
  if(id.startsWith('SPARK_'))return cfg.spark||'bold';

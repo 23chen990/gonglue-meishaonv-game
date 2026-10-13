@@ -33,9 +33,9 @@ def bundles():
 check('Canonical source and both builds match',bundles)
 def graph():
     d=J('data/STORY.json');c=J('data/CHOICE_CONTRACTS.json');st=J('qa/current/static-audit.json')
-    assert d['version']=='revision-r4.0' and len(d['scenes'])==225
+    assert d['version']=='revision-r4.2' and len(d['scenes'])==228
     ids={s['id']+'/'+o['id'] for s in d['scenes'].values() for o in s['choices']}
-    assert len(ids)==737 and ids=={x['id'] for x in c['choices']}
+    assert len(ids)==751 and ids=={x['id'] for x in c['choices']}
     assert c['storySha256']==hs and st['storySha256']==hs and st['status']=='PASS'
     assert len(J('data/EPILOGUES.json')['modules'])==40
     assert len(J('data/BONUS.json')['items'])==8 and len(J('data/CODA.json')['items'])==6
@@ -49,9 +49,9 @@ def evidence():
         assert d['hashes']['story']==hs and d['hashes']['engine']==he,n+' stale'
         assert not d.get('failed',0) and not d.get('failures',[]),n
     d=J('qa/current/conditional-r3.json')
-    assert d['covered']==d['total']==565 and not d['missing']
+    assert d['covered']==d['total']==596 and not d['missing']
     assert len(J('qa/current/archive-expectations.json')['endings'])==24
-    return 'Current ordinary-command evidence matches this story/engine. All 565 conditional text blocks have displayed witnesses; state combinations are not exhaustive.'
+    return 'Current ordinary-command evidence matches this story/engine. All 596 conditional text blocks have displayed witnesses; state combinations are not exhaustive.'
 check('Fresh command and displayed-text evidence',evidence)
 for n in ['README.md','START_HERE.md','docs/CODEX_HANDOFF.md','docs/ENGINE_CONTRACT.md','docs/QA_REPORT.md','docs/FIRST_PLAY_REVIEW.md','docs/SCENE_LEDGER.md']:
     if not (R/n).is_file():errors.append({'name':'Required handoff','error':'Missing '+n})

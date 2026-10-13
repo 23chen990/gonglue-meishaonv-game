@@ -19,5 +19,5 @@ const index=template.replace('<!--CSS-->','').replace('<!--SCRIPT-->','<script t
  "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws:; base-uri 'none'; form-action 'none'");
 fs.writeFileSync(new URL('repository-index.html',root),index);
 const files=['data/STORY.json','data/EPILOGUES.json','data/BONUS.json','data/CODA.json','data/HANDBOOK.json','tools/engine.mjs','tools/preview-ui.js','tools/preview.css','tools/preview-template.html','runtime.mjs','index.html','play.html','repository-index.html'];
-fs.writeFileSync(new URL('build-meta.json',root),JSON.stringify({version:'revision-r4.0',storyHash:hash,files:Object.fromEntries(files.map(p=>[p,crypto.createHash('sha256').update(read(p)).digest('hex')]))},null,2)+'\n');
+fs.writeFileSync(new URL('build-meta.json',root),JSON.stringify({version:'revision-r4.2',storyHash:hash,files:Object.fromEntries(files.map(p=>[p,crypto.createHash('sha256').update(read(p)).digest('hex')]))},null,2)+'\n');
 console.log(JSON.stringify({file:'play.html',bytes:Buffer.byteLength(html),storyHash:hash,repositoryModule:'runtime.mjs'},null,2));

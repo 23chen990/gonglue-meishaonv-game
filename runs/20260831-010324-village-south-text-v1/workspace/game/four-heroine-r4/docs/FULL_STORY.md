@@ -2,13 +2,13 @@
 
 本文件由 `tools/export-and-audit.py` 从正式 JSON 自动生成。正文、条件块、即时回应、回应条件、效果与后继全部包含；条件分支并非在一次游玩中同时出现。Markdown 不作为编辑源。
 
-正式剧情 SHA-256：`d8ebd4d349b7560b07c181b818b4793566a901e03d3127ced7612dfba4079d8e`
+正式剧情 SHA-256：`f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b`
 
 ## 人物与日程
 
 ```json
 {
-  "version": "revision-r4.0",
+  "version": "revision-r4.2",
   "cast": {
     "t": "唐映雪",
     "s": "沈清辞",
@@ -140,172 +140,284 @@
 
 ---
 
-## ENTRY_WAKE｜谁在叫“许照”？
+## ENTRY_WAKE｜你知道原著下一分钟会发生什么
 
-类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"ENTRY_CLUES","clock":{"day":1,"time":"18:59"}}`
+类型：`opening`。元数据：`{"background":"backstage","music":"none","next":null,"clock":{"day":1,"time":"18:59"}}`
 
 ### 正文
 
-**旁白**：你刚在手机上划过一页小说，突然一阵头晕，字都重了影。胃里跟着翻腾，你伸手去扶桌沿，却抓了个空。
+**旁白**：你刚看完《今夜偏爱男主》的首演片段，忽然眼前一黑。再睁眼，后背撞着舞台边的设备箱。
 
-`ENTRY_WAKE.r4.body.001`
+`ENTRY_WAKE.r42.body.001`
 
-**阿衡**：许照！许照！醒醒，演出要开了！
+**阿衡**：许照！别发愣！伴奏出错了！
 
-`ENTRY_WAKE.r4.body.002`
+`ENTRY_WAKE.r42.body.002`
 
-**旁白**：你睁开眼，后背硌着冰凉的设备箱。头顶的追光灯晃得你睁不开眼，空气里全是电线和热灰的味道。一个戴耳机的男人半蹲着扶你——你家哪来的舞台？
+**旁白**：胸前工牌写着“许照·临时场务”。台上，唐映雪正等伴奏；钢琴旁，陆景行已经抬起手。
 
-`ENTRY_WAKE.r4.body.003`
+`ENTRY_WAKE.r42.body.003`
 
-**许照**：……等等，你刚才叫我什么？
+**许照**：……我穿成了那个第十三章就被赶走的炮灰？
 
-`ENTRY_WAKE.r4.body.004`
+`ENTRY_WAKE.r42.body.004`
 
-### 选择 ENTRY_WAKE/steady
+**原著记忆**：【你记得的原著】19:03，许照按程放的吩咐待命，没有找到备用原版。陆景行弹琴救下首演，唐映雪唱完，制作人只约了陆景行。
 
-扶住箱子，看看胸前的工作证
+`ENTRY_WAKE.r42.body.005`
+
+**原著记忆**：【你记得的后果】第七天，别人换错的文件被算到许照头上；他没有留下能替自己说话的交接记录，被清退。
+
+`ENTRY_WAKE.r42.body.006`
+
+**旁白**：你还记得一条原著没被用上的线索：备用箱底有个贴蓝胶带的原版U盘。现在，箱子就在你手边。
+
+`ENTRY_WAKE.r42.body.007`
+
+**许照**：如果不动，故事会照走。我想活过第七天，就不能只背原著的答案。
+
+`ENTRY_WAKE.r42.body.008`
+
+### 选择 ENTRY_WAKE/canon
+
+按原著走：听程放的，先不插手这场救援
 
 可选条件：`null`
 
 立即回应：
 
+**旁白**：你没碰备用箱。台上，陆景行坐到了琴凳前。你知道接下来每一拍会怎么响，也知道七天后那张清退单。
 
+`ENTRY_WAKE.r42.reply.canon.001`
 
-写入与操作：`[{"op":"set","key":"badge_checked","value":true}]`
+写入与操作：`[{"op":"set","key":"badge_checked","value":true},{"op":"set","key":"novel_recognized","value":true},{"op":"set","key":"identity_confirmed","value":true},{"op":"set","key":"danger_day7_known","value":true},{"op":"set","key":"first","value":"canon"},{"op":"set","key":"bias","value":"self"},{"op":"set","key":"opening_route","value":"canon"},{"op":"set","key":"opening_strategy","value":"canon"},{"op":"set","key":"opening_method","value":"piano_original"},{"op":"set","key":"stage","value":"piano"},{"op":"set","key":"first_win","value":false},{"op":"set","key":"opening_changed","value":false},{"op":"set","key":"canon_kept","value":true},{"op":"set","key":"rival_opening_response","value":"piano_rescue"}]`
 
 后继：`ENTRY_CLUES`
 
+### 选择 ENTRY_WAKE/rescue
 
----
-
-## ENTRY_CLUES｜名字、舞台，还有那个人
-
-类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"ENTRY_MEMORY","clock":{"day":1,"time":"19:01"}}`
-
-### 正文
-
-**旁白**：工作证：许照，临时场务。侧幕上印着“北岸艺术中心·栖光计划”。你从没来过这里。
-
-`ENTRY_CLUES.r4.body.001`
-
-**程放**：沈清辞！唐映雪马上上了，伴奏这版不对！
-
-`ENTRY_CLUES.r4.body.002`
-
-**唐映雪**：停一下！这版前奏被剪过，我排练的不是这个！
-
-`ENTRY_CLUES.r4.body.003`
-
-**陆景行**：先别硬切。清辞，如果换不回来，我能用钢琴垫住前四小节。映雪，听得到吗？
-
-`ENTRY_CLUES.r4.body.004`
-
-**旁白**：你看向钢琴旁的男人。有人叫他“陆景行”。
-
-`ENTRY_CLUES.r4.body.005`
-
-**旁白**：沈清辞抓着对讲机，听另一头的人报控台情况。一名摄影师还举着相机，旁边有人急喊：“见月，时间码别停！”另一头，工作人员追着顾晚棠核对投资方邮件。
-
-`ENTRY_CLUES.r4.body.006`
-
-**许照**：陆景行……唐映雪……不会吧？我刚才看的那本小说里，不就出过这事？
-
-`ENTRY_CLUES.r4.body.007`
-
-### 选择 ENTRY_CLUES/look
-
-回想刚才还在读的那本小说
+改变首演：抢先找原版U盘，试着拦下钢琴救场
 
 可选条件：`null`
 
 立即回应：
 
+**旁白**：你蹲到设备箱旁，扒开线卷。指尖真的碰到了那截蓝胶带。原著里没有人翻到这里。
 
+`ENTRY_WAKE.r42.reply.rescue.001`
 
-写入与操作：`[{"op":"set","key":"novel_recognized","value":true},{"op":"set","key":"identity_confirmed","value":true}]`
+写入与操作：`[{"op":"set","key":"badge_checked","value":true},{"op":"set","key":"novel_recognized","value":true},{"op":"set","key":"identity_confirmed","value":true},{"op":"set","key":"blue_location_known","value":true},{"op":"set","key":"danger_day7_known","value":true},{"op":"set","key":"opening_strategy","value":"rescue"},{"op":"set","key":"canon_kept","value":false}]`
+
+后继：`COLD`
+
+### 选择 ENTRY_WAKE/investigate
+
+先查背锅线：核实错版来源，同时找回原版
+
+可选条件：`null`
+
+立即回应：
+
+**旁白**：你没有直接指控任何人。是谁换了文件、谁有权限、谁亲眼看见——先找一条真的能核实的线索。
+
+`ENTRY_WAKE.r42.reply.investigate.001`
+
+写入与操作：`[{"op":"set","key":"badge_checked","value":true},{"op":"set","key":"novel_recognized","value":true},{"op":"set","key":"identity_confirmed","value":true},{"op":"set","key":"blue_location_known","value":true},{"op":"set","key":"danger_day7_known","value":true},{"op":"set","key":"opening_strategy","value":"investigate"},{"op":"set","key":"canon_kept","value":false}]`
 
 后继：`ENTRY_MEMORY`
 
 
 ---
 
-## ENTRY_MEMORY｜你记得，炮灰是怎么退场的
+## ENTRY_CLUES｜照原著走，真的就安全了吗
 
-类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"COLD","clock":{"day":1,"time":"19:01"}}`
+类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"OP_CANON","clock":{"day":1,"time":"19:02"}}`
 
 ### 正文
 
-**原著记忆**：《今夜偏爱男主》。你认出了首演救场这一段：陆景行弹琴，唐映雪唱完，他拿到制作人的邀约。
+**旁白**：程放朝你一挥手：“临时工别添乱，守着箱子，出问题我叫你。”
 
-`ENTRY_MEMORY.r4.body.001`
+`ENTRY_CLUES.r42.body.001`
 
-**旁白**：你忽然想起许照是谁了：第十三章，入职第七天，被一纸清退通知赶走的临时场务。别人换错的文件，最后追责表上却写了他的名字。
+**唐映雪**：这不是我排练的版本！
 
-`ENTRY_MEMORY.r4.body.002`
+`ENTRY_CLUES.r42.body.002`
 
-**许照**：不是……书里那个倒霉蛋，工牌怎么挂我脖子上了？
+**陆景行**：我来垫前四小节。映雪，你看我手势。
 
-`ENTRY_MEMORY.r4.body.003`
+`ENTRY_CLUES.r42.body.003`
 
-**旁白**：你掐了一下手心。疼。刚才你还在替他骂作者，现在连呼吸都有点乱。
+**旁白**：钢琴响起。唐映雪接着唱完，观众以为这段临场救援早就排好了。
 
-`ENTRY_MEMORY.r4.body.004`
+`ENTRY_CLUES.r42.body.004`
 
-**阿衡**：脸这么白，要不要去外面坐会儿？
+**原著记忆**：原著的主角名场面照常发生。没有人问许照看见了什么。程放却拿来一张交接单，示意你签收。
 
-`ENTRY_MEMORY.r4.body.005`
+`ENTRY_CLUES.r42.body.005`
 
-**许照**：让我缓一口气……好了。我想先找样东西。
+**许照**：书里就是从这些分不清的交接开始，把错全算到了我头上。
 
-`ENTRY_MEMORY.r4.body.006`
+`ENTRY_CLUES.r42.body.006`
 
-### 选择 ENTRY_MEMORY/focus
+### 选择 ENTRY_CLUES/obey
 
-稳住呼吸，想起书里的备用伴奏
+继续照原著：签收模糊的交接单
 
 可选条件：`null`
 
 立即回应：
 
-**原著记忆**：原著提过：贴蓝胶带的U盘压在备用箱底，装着没被剪掉前奏的完整伴奏。所有人都去看钢琴，没人及时找到它。
+**程放**：早这么省事不就完了。
 
-`ENTRY_MEMORY.focus.r4.reply.001`
+`ENTRY_CLUES.r42.reply.obey.001`
 
-**旁白**：那只是书里的线索。盘到底在不在、能不能用，你得亲自确认。
+**旁白**：程放把签过字的那页夹进文件夹。你明知道第七天会出事，却还是把名字留在了错误的那一栏。
 
-`ENTRY_MEMORY.focus.r4.reply.002`
+`ENTRY_CLUES.r42.reply.obey.002`
 
-写入与操作：`[{"op":"set","key":"blue_location_known","value":true},{"op":"set","key":"danger_day7_known","value":true}]`
+写入与操作：`[{"op":"set","key":"canon_response","value":"obey"},{"op":"set","key":"canon_signed_blame","value":true},{"op":"set","key":"first_night_evidence","value":"none"},{"op":"set","key":"opening_work","value":"free"},{"op":"set","key":"opening_work_commitment","value":false}]`
+
+后继：`OP_CANON`
+
+### 选择 ENTRY_CLUES/refuse
+
+只留在原著舞台线，但拒签不清楚的责任
+
+可选条件：`null`
+
+立即回应：
+
+**许照**：我可以签我做过的。但旧版是谁导出的，我没见到。
+
+`ENTRY_CLUES.r42.reply.refuse.001`
+
+**程放**：你第一天来就这么较真？
+
+`ENTRY_CLUES.r42.reply.refuse.002`
+
+**旁白**：你留下自己拒绝签错单的文字，程放把这一幕记住了。
+
+`ENTRY_CLUES.r42.reply.refuse.003`
+
+写入与操作：`[{"op":"set","key":"canon_response","value":"refuse"},{"op":"set","key":"canon_signed_blame","value":false},{"op":"set","key":"source_declined_handover","value":true},{"op":"set","key":"first_night_evidence","value":"refusal"},{"op":"set","key":"opening_work","value":"free"},{"op":"set","key":"opening_work_commitment","value":false}]`
+
+后继：`OP_CANON`
+
+### 选择 ENTRY_CLUES/witness
+
+悄悄记下发号施令的人、时间和谁在操作
+
+可选条件：`null`
+
+立即回应：
+
+**旁白**：你把19:03、钢琴介入、控台仍在放错版记进手机。没有录音授权，更没有证据指向谁导出了它。
+
+`ENTRY_CLUES.r42.reply.witness.001`
+
+**旁白**：但这是你亲眼看见的。原著里没留的时间线，第一次有了起点。
+
+`ENTRY_CLUES.r42.reply.witness.002`
+
+写入与操作：`[{"op":"set","key":"canon_response","value":"witness"},{"op":"set","key":"canon_signed_blame","value":false},{"op":"set","key":"source_original_timeline","value":true},{"op":"set","key":"first_night_evidence","value":"timeline"},{"op":"set","key":"opening_work","value":"free"},{"op":"set","key":"opening_work_commitment","value":false}]`
+
+后继：`OP_CANON`
+
+
+---
+
+## ENTRY_MEMORY｜原著没写的证据，你先找哪一份
+
+类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"COLD","clock":{"day":1,"time":"19:01"}}`
+
+### 正文
+
+**旁白**：你找到蓝标U盘，标签写着“演出版原母带”。但手里有盘还不够，阿衡必须试听确认，才有资格决定是否切换。
+
+`ENTRY_MEMORY.r42.body.001`
+
+**程放**：是谁让临时工翻设备箱的？伴奏先按原流程！
+
+`ENTRY_MEMORY.r42.body.002`
+
+**旁白**：林见月还在拍时间码；顾晚棠的电脑上正打开节目确认邮件。原著只写了陆景行弹琴，没写他们今晚会怎么回答你。
+
+`ENTRY_MEMORY.r42.body.003`
+
+**许照**：先找一个能核对的人。没有人会因为我说“我看过书”就信我。
+
+`ENTRY_MEMORY.r42.body.004`
+
+### 选择 ENTRY_MEMORY/camera
+
+请林见月保留版本与时间戳，再把盘交给阿衡
+
+可选条件：`null`
+
+立即回应：
+
+**林见月**：我只拍现场交接。要让我留你的脸吗？
+
+`ENTRY_MEMORY.r42.reply.camera.001`
+
+**许照**：不用拍脸，先拍标签。再拍阿衡验过的时间。
+
+`ENTRY_MEMORY.r42.reply.camera.002`
+
+**旁白**：她按下录制键。至少这回，版本从哪里开始变的不只剩口说。
+
+`ENTRY_MEMORY.r42.reply.camera.003`
+
+写入与操作：`[{"op":"set","key":"opening_investigation","value":"camera"},{"op":"set","key":"source_pre_switch_timestamp","value":true}]`
+
+后继：`COLD`
+
+### 选择 ENTRY_MEMORY/email
+
+先问顾晚棠节目单权限，再把盘交给阿衡
+
+可选条件：`null`
+
+立即回应：
+
+**顾晚棠**：我批的是完整演出版。你先把盘交阿衡试听，谁改的我来核。
+
+`ENTRY_MEMORY.r42.reply.email.001`
+
+**旁白**：程放往这边看了一眼。你知道这一步已经不在书上。
+
+`ENTRY_MEMORY.r42.reply.email.002`
+
+写入与操作：`[{"op":"set","key":"opening_investigation","value":"email"},{"op":"set","key":"source_programme_approval_note","value":true},{"op":"set","key":"cheng_questioned_early","value":true}]`
 
 后继：`COLD`
 
 
 ---
 
-## COLD｜原版就在这里
+## COLD｜原著没用上的U盘，此刻在你手里
 
 类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"OP_SETTLE","beatGoal":"first_action_changes_event","clock":{"day":1,"time":"19:02"}}`
 
 ### 正文
 
-**旁白**：你掀开备用箱，接线板底下果然压着一枚贴蓝胶带的U盘。刚才还只是一句小说里的描写，现在它正硌着你的指尖。
+**旁白**：箱底那枚蓝标U盘摸起来冰凉。原著里的这段救场，钢琴本该成为唯一的答案。
 
-`COLD.r4.body.001`
+`COLD.r42.body.001`
 
-**阿衡**：我是阿衡，今晚看音控。找着了？给我听，别直接往台上放。
+**阿衡**：我是阿衡，今晚看音控。盘给我先试听，我确认能用才切。
 
-`COLD.r4.body.002`
+`COLD.r42.body.002`
 
-**旁白**：钢琴那边，陆景行已经把手落到琴键上方；对讲机里传来倒数。你把U盘攥紧，必须现在决定先找谁。
+**旁白**：陆景行已经准备好钢琴。你不能替台上所有人做决定，但可以决定把这份原版先交给谁。
 
-`COLD.r4.body.003`
+`COLD.r42.body.003`
 
 ### 选择 COLD/t
 
 把原版送到侧台，让唐映雪决定怎么接
 
-可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]}]}`
+可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]},{"eq":["opening_strategy","rescue"]}]}`
 
 立即回应：
 
@@ -341,7 +453,7 @@
 
 把盘交给沈清辞，按她的指令切换
 
-可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]}]}`
+可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]},{"eq":["opening_strategy","rescue"]}]}`
 
 立即回应：
 
@@ -377,7 +489,7 @@
 
 请林见月拍下切换过程，再把盘交音控
 
-可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]}]}`
+可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]},{"eq":["opening_strategy","investigate"]}]}`
 
 立即回应：
 
@@ -417,7 +529,7 @@
 
 请顾晚棠核实：删歌版本是谁同意的
 
-可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]}]}`
+可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]},{"eq":["opening_strategy","investigate"]}]}`
 
 立即回应：
 
@@ -457,7 +569,7 @@
 
 自己找盘、核对，交给阿衡安全切换
 
-可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]}]}`
+可选条件：`{"all":[{"eq":["novel_recognized",true]},{"eq":["blue_location_known",true]},{"any":[{"eq":["opening_strategy","rescue"]},{"eq":["opening_strategy","investigate"]}]}]}`
 
 立即回应：
 
@@ -494,7 +606,7 @@
 
 ## OP_SETTLE｜歌声还在，你却回不去了
 
-类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"@openingTalk","clock":{"day":1,"time":"19:04"}}`
+类型：`opening`。元数据：`{"background":"backstage","music":"none","next":"OP_FORK","clock":{"day":1,"time":"19:04"}}`
 
 ### 正文
 
@@ -526,7 +638,7 @@
 
 写入与操作：`[{"op":"set","key":"settled_identity","value":true},{"op":"set","key":"source_opening_record_copy","value":true}]`
 
-后继：`@openingTalk`
+后继：`OP_FORK`
 
 
 ---
@@ -3501,23 +3613,221 @@
 
 ---
 
+## OP_CANON｜钢琴救了场，炮灰仍站在原地
+
+类型：`opening`。元数据：`{"background":"backstage","music":"tense","clock":{"day":1,"time":"19:35"},"next":"A1b"}`
+
+### 正文
+
+**旁白**：19:35。后台都在夸陆景行的临场钢琴。唐映雪把话筒放下，走向录音室；没人知道备用箱底还有一个能用的原版。
+
+`OP_CANON.r42.body.001`
+
+**陆景行**：刚才陪上了四小节，算大家运气好。下次曲目单别等到临场才核。
+
+`OP_CANON.r42.body.002`
+
+**旁白**：你认得这段对白，连下一句都记得。可程放递来的交接单上，许照的名字比书里更刺眼。
+
+`OP_CANON.r42.body.003`
+
+### 条件正文 · OP_CANON.r42.block.obey
+
+条件：`{"eq":["canon_response","obey"]}`
+
+**旁白**：你签的那一页已经归档。如果想改命，就要亲手把责任边界重新查清。
+
+`OP_CANON.r42.block.obey.001`
+
+### 条件正文 · OP_CANON.r42.block.refuse
+
+条件：`{"eq":["canon_response","refuse"]}`
+
+**旁白**：程放在群里说你“不配合”。你把自己写过的拒签说明保存下来，既是保护，也是麻烦。
+
+`OP_CANON.r42.block.refuse.001`
+
+### 条件正文 · OP_CANON.r42.block.witness
+
+条件：`{"eq":["canon_response","witness"]}`
+
+**旁白**：你记下了谁在现场、几点响起钢琴。不是万能证据，却能帮助下一次核验。
+
+`OP_CANON.r42.block.witness.001`
+
+### 选择 OP_CANON/backstage
+
+不抢镜，主动帮阿衡做一次末场清点
+
+可选条件：`null`
+
+立即回应：
+
+**阿衡**：今晚错版不是你切的。我能替自己看见的部分作证，别的你还得再找。
+
+`OP_CANON.r42.reply.backstage.001`
+
+**旁白**：阿衡把你的名字写进末场清点。你没有抢走陆景行的救场，却有了自己的第一份记录。
+
+`OP_CANON.r42.reply.backstage.002`
+
+写入与操作：`[{"op":"set","key":"canon_after_action","value":"assist"},{"op":"set","key":"source_end_shift_list","value":true}]`
+
+后继：`A1b`
+
+### 选择 OP_CANON/question
+
+找程放问清楚错版来源，留住聊天记录
+
+可选条件：`null`
+
+立即回应：
+
+**程放**：出问题就先处理，谁有空跟你查版本？
+
+`OP_CANON.r42.reply.question.001`
+
+**旁白**：他没有回答你是谁导出的，却在工作群留下了这句推脱。原著从来没写过这一条消息。
+
+`OP_CANON.r42.reply.question.002`
+
+写入与操作：`[{"op":"set","key":"canon_after_action","value":"question"},{"op":"set","key":"source_cheng_message","value":true},{"op":"set","key":"cheng_questioned_early","value":true}]`
+
+后继：`A1b`
+
+### 选择 OP_CANON/silence
+
+今晚先保持沉默，记住原著第七天的危险
+
+可选条件：`null`
+
+立即回应：
+
+**旁白**：你看着原著里该有的背影逐渐走远。剧情没有因为你知道结局就自动改写。
+
+`OP_CANON.r42.reply.silence.001`
+
+写入与操作：`[{"op":"set","key":"canon_after_action","value":"silence"}]`
+
+后继：`A1b`
+
+
+---
+
+## OP_FORK｜原著没有这条工作群消息
+
+类型：`opening`。元数据：`{"background":"backstage","music":"tense","clock":{"day":1,"time":"19:05"},"next":"@openingTalk"}`
+
+### 正文
+
+**旁白**：歌曲还没结束，工作群忽然弹出程放的消息：“谁翻出了旧盘？把旧版文件清掉，后面别解释太多。”
+
+`OP_FORK.r42.body.001`
+
+**旁白**：你怔了一下。原著里没有找到U盘，自然也没有这条催删记录的命令。你这一步不仅改了首演，也惊动了本来藏在后台的人。
+
+`OP_FORK.r42.body.002`
+
+**阿衡**：旧版不能乱删。把它留着，后面真有人追责才查得清。你想怎么处理？
+
+`OP_FORK.r42.body.003`
+
+### 条件正文 · OP_FORK.r42.block.camera
+
+条件：`{"eq":["opening_investigation","camera"]}`
+
+**林见月**：见月先前拍到的版本标签能跟阿衡的检查时间互相对上。
+
+`OP_FORK.r42.block.camera.001`
+
+### 条件正文 · OP_FORK.r42.block.email
+
+条件：`{"eq":["opening_investigation","email"]}`
+
+**顾晚棠**：晚棠发来一句“我没有批准删原始文件”，程放不再回复。
+
+`OP_FORK.r42.block.email.001`
+
+### 选择 OP_FORK/backup
+
+请阿衡保存旧版与原版的核对清单，明确谁操作了切换
+
+可选条件：`null`
+
+立即回应：
+
+**阿衡**：我存两份，标上时间。只写我亲手核过的，你那一份另存。
+
+`OP_FORK.r42.reply.backup.001`
+
+**旁白**：程放在群里撤回了催删消息。你保存的时间戳没跟着消失。
+
+`OP_FORK.r42.reply.backup.002`
+
+写入与操作：`[{"op":"set","key":"new_plot_choice","value":"preserve"},{"op":"set","key":"source_dual_version_log","value":true},{"op":"set","key":"proof_version_log","value":true}]`
+
+后继：`@openingTalk`
+
+### 选择 OP_FORK/confront
+
+公开问程放：“旧版是谁导出的？”承担他记恨你的风险
+
+可选条件：`null`
+
+立即回应：
+
+**程放**：许照，你这么懂流程，不如明天来写说明？
+
+`OP_FORK.r42.reply.confront.001`
+
+**旁白**：他没有给出答案，你却被安排写情况说明。原著里第七天才找上门的麻烦，被你提前推到了今晚。
+
+`OP_FORK.r42.reply.confront.002`
+
+写入与操作：`[{"op":"set","key":"new_plot_choice","value":"confront"},{"op":"set","key":"source_cheng_message","value":true},{"op":"set","key":"cheng_questioned_early","value":true}]`
+
+后继：`@openingTalk`
+
+### 选择 OP_FORK/quiet
+
+暂不公开冲突，只保管自己的交接记录
+
+可选条件：`null`
+
+立即回应：
+
+**旁白**：你把阿衡签过的切换记录装进手机。少一份争执，也少了一条对方当场表态的线索。
+
+`OP_FORK.r42.reply.quiet.001`
+
+写入与操作：`[{"op":"set","key":"new_plot_choice","value":"quiet"},{"op":"set","key":"source_personal_record","value":true}]`
+
+后继：`@openingTalk`
+
+
+---
+
 ## A1b｜名字留下，再选下一步
 
 类型：`anchor`。元数据：`{"background":"backstage","music":"none","next":"@schedule","clock":{"day":1,"time":"22:00"}}`
 
 ### 正文
 
-**旁白**：22:00。程放递来交接单，把“此前文件导出”和“今晚现场切换”写在同一栏。
+**旁白**：22:00。程放递来交接单，试图把“此前文件导出”和“今晚现场处理”写在同一栏。
 
-`A1b.r1.body.001`
+`A1b.r42.body.001`
 
 **程放**：签了就下班。
 
-`A1b.r1.body.002`
+`A1b.r42.body.002`
 
-**旁白**：你已经改了救场，第七天的归责却还没消失。现在轮到你决定，给自己留下什么。
+**旁白**：你盯着那行字。无论首演有没有改写，第七天的责任都不会只因为你读过原著就自动消失。
 
-`A1b.r1.body.003`
+`A1b.r42.body.003`
+
+**许照**：今晚我到底做过哪一步，就写哪一步。没做的，不能让我认。
+
+`A1b.r42.body.004`
 
 ### 条件正文 · A1b.r1.block.001
 
@@ -3529,7 +3839,7 @@
 
 ### 条件正文 · A1b.r1.block.002
 
-条件：`{"eq":["opening_work_done",false]}`
+条件：`{"all":[{"eq":["opening_changed",true]},{"eq":["opening_work_done",false]}]}`
 
 **旁白**：今晚找回蓝标的记录在你手里。其他没做过的工作，你让阿衡从自己那一栏划掉。
 
@@ -3647,9 +3957,41 @@
 
 `A1b.r1.block.016.001`
 
+### 条件正文 · A1b.r42.block.canon_obey
+
+条件：`{"eq":["canon_response","obey"]}`
+
+**旁白**：你已经签过一张模糊交接单。现在不是假装没签，而是补上一份限定自己责任的说明。
+
+`A1b.r42.block.canon_obey.001`
+
+### 条件正文 · A1b.r42.block.canon_refuse
+
+条件：`{"eq":["canon_response","refuse"]}`
+
+**旁白**：程放看见你又来要求分开责任，脸色沉了下来。你的文字说明也已经留档。
+
+`A1b.r42.block.canon_refuse.001`
+
+### 条件正文 · A1b.r42.block.canon_witness
+
+条件：`{"eq":["canon_response","witness"]}`
+
+**旁白**：手机上存着原著没有的19:03现场时间线。你没有找到原版，也不能凭这几分钟证明是谁导出了错文件。
+
+`A1b.r42.block.canon_witness.001`
+
+### 条件正文 · A1b.r42.block.canon_extra
+
+条件：`{"eq":["source_end_shift_list",true]}`
+
+**旁白**：阿衡的末场清点单上有你的名字，但签的是清点，不是原版切换。
+
+`A1b.r42.block.canon_extra.001`
+
 ### 选择 A1b/check
 
-分开职责，留一份完整记录。
+要求分清旧版导出和今晚职责，写下自己的说明
 
 可选条件：`null`
 
@@ -3669,7 +4011,7 @@
 
 ### 选择 A1b/ask
 
-请阿衡当面说清，各自负责哪一步。
+请阿衡只证明亲眼见过的事，别替谁猜测
 
 可选条件：`null`
 
@@ -3689,7 +4031,7 @@
 
 ### 选择 A1b/look
 
-不签模糊归责，明天再补齐材料。
+先不签新责任单，带走交接副本再核查
 
 可选条件：`null`
 
@@ -10463,21 +10805,21 @@
 
 ### 正文
 
-**旁白**：程放在项目群里点了你的名字：“许照，你最近问得挺细啊。”
+**旁白**：第2日晚，程放在项目群里点名：“许照，最近挺会留记录啊。”
 
-`A2b.r4.body.001`
+`A2b.r42.body.001`
 
-**旁白**：你看着那句话，想起第十三章那张清退单。首演躲过去了，他还在准备往谁身上写责任。
+**旁白**：你想起原著第十三章那张清退单。原著的舞台可能照演，但你已经知道哪些事情不能不留痕。
 
-`A2b.r4.body.002`
+`A2b.r42.body.002`
 
-**旁白**：陆景行让你把自己做过的步骤补进现场名单。清辞也提醒大家，换盘记录别删。
+**旁白**：陆景行忙着他的试听。清辞提醒所有人：原始文件和交接记录别删，谁负责哪一步就写哪一步。
 
-`A2b.r4.body.003`
+`A2b.r42.body.003`
 
-**许照**：这次，我的名字得跟做过的事放在一起。
+**许照**：就算没人给我留镜头，我也得对自己做过的事负责。
 
-`A2b.r4.body.004`
+`A2b.r42.body.004`
 
 ### 条件正文 · A2b.variant.001
 
@@ -10558,6 +10900,38 @@
 **阿衡**：首演你没硬碰控台，这点我挺放心。以后想学试听可以问，真不会的地方别装。
 
 `A2b.r4.block.010.001`
+
+### 条件正文 · A2b.r42.block.canon
+
+条件：`{"eq":["canon_kept",true]}`
+
+**旁白**：首演照原著，钢琴救场属于陆景行。你没有找到U盘，阿衡也没有执行过你安排的换盘。此后的证据要从自己真正做过的事开始。
+
+`A2b.r42.block.canon.001`
+
+### 条件正文 · A2b.r42.block.fork_preserve
+
+条件：`{"eq":["new_plot_choice","preserve"]}`
+
+**旁白**：原著没有的“双版本”记录已经保存。程放知道旧版还在，之后想只拿一帧画面说事就没那么容易。
+
+`A2b.r42.block.fork_preserve.001`
+
+### 条件正文 · A2b.r42.block.fork_confront
+
+条件：`{"eq":["new_plot_choice","confront"]}`
+
+**旁白**：你提前质问过程，程放开始防着你。原著的第七天危机，也可能提前换一种样子找上门。
+
+`A2b.r42.block.fork_confront.001`
+
+### 条件正文 · A2b.r42.block.fork_quiet
+
+条件：`{"eq":["new_plot_choice","quiet"]}`
+
+**旁白**：这条新出现的群消息没被拿去争论。你保存了自己的交接，但谁下的令还没有核对。
+
+`A2b.r42.block.fork_quiet.001`
 
 ### 选择 A2b/public
 
@@ -11079,21 +11453,53 @@
 
 ### 正文
 
-**旁白**：见月在获准保管的原始素材里找到一段现场对话。程放先说：“这个版本不是许照导出的。”随后才谈起怎么向宣传解释。
+**旁白**：第5日，见月从获准保管的素材里翻出首演那晚的原声。程放曾说：“错版文件不是许照导出的。”
 
-`A4b.r4.body.001`
+`A4b.r42.body.001`
 
-**旁白**：预剪片却只留下你把U盘递到控台的画面，剪掉阿衡试听和切换的过程。看起来，像整件事都是你一个人做的。
+**旁白**：宣传部准备的预剪片却把前因后果剪成一句“临时人员操作失误”。
 
-`A4b.r4.body.002`
+`A4b.r42.body.002`
 
-**许照**：第七天那句“操作失误”，原来是这样剪出来的。
+**许照**：第十三章那句归责，原来可以靠删掉半段画面做出来。
 
-`A4b.r4.body.003`
+`A4b.r42.body.003`
 
-**林见月**：原声里还有别人的私人聊天，不能整段往外发。我们得把必要的部分核清楚。
+**林见月**：原声里有别人的私人聊天，不能整段往外发。我们得把必要的部分核清楚。
 
-`A4b.r4.body.004`
+`A4b.r42.body.004`
+
+### 条件正文 · A4b.r42.block.canon
+
+条件：`{"eq":["canon_kept",true]}`
+
+**旁白**：你那晚没有递盘，画面里只有你站在设备箱边和程放的模糊手势。宣传稿仍准备把操作失误写在你身上。
+
+`A4b.r42.block.canon.001`
+
+### 条件正文 · A4b.r42.block.changed
+
+条件：`{"eq":["opening_changed",true]}`
+
+**旁白**：预剪片只保留你把蓝标U盘递到控台的一秒，剪掉了阿衡试听和切换的部分，看起来像全程都是你在操作。
+
+`A4b.r42.block.changed.001`
+
+### 条件正文 · A4b.r42.block.forkproof
+
+条件：`{"eq":["proof_version_log",true]}`
+
+**旁白**：你首演当晚保留的双版本核对时间，可以和见月的原声比对；两份材料能相互校验，但仍要确认可公开范围。
+
+`A4b.r42.block.forkproof.001`
+
+### 条件正文 · A4b.r42.block.canonpaper
+
+条件：`{"eq":["canon_signed_blame",true]}`
+
+**旁白**：你想起自己曾签过那张模糊交接单。见月没替你抹掉它：材料里必须同时说清当时签了什么。
+
+`A4b.r42.block.canonpaper.001`
 
 ### 选择 A4b/extract
 
@@ -11534,29 +11940,29 @@
 
 ### 正文
 
-**旁白**：第7日晚，宣传片提前播出。画面里，你把蓝标盘递到控台；一剪，接上出错的音频和“临时人员操作失误”的字幕。
+**旁白**：第7日晚，宣传片提前播出。错误伴奏、临时场务的身影，被剪成一条看似完整的事故链。
 
-`A6a.r4.body.001`
+`A6a.r42.body.001`
 
-**旁白**：阿衡核对、切回原版的过程，全被剪掉了。
+**旁白**：字幕写着：“临时人员操作失误。”程放把“此前导出”和“当晚处理”混在一起，正想让你独自承担。
 
-`A6a.r4.body.002`
+`A6a.r42.body.002`
 
 **程放**：已经处理好了，别影响后面的活动。
 
-`A6a.r4.body.003`
+`A6a.r42.body.003`
 
 **原著记忆**：原著下一句，是让保安把许照请出去。第十三章，你就该从这里退场。
 
-`A6a.r4.body.004`
+`A6a.r42.body.004`
 
-**旁白**：保安已经走向侧门。你心口一紧，摸到手机里保存的记录。
+**旁白**：保安正走向侧门。你心口一紧，摸到手机里保存的记录。阿衡与见月也都在现场。
 
-`A6a.r4.body.005`
+`A6a.r42.body.005`
 
-**旁白**：阿衡看着你，见月的电脑还开着。这次得由你开口。
+**旁白**：记得原著只能提醒你危险；能不能留下，要看这几天真实做过什么。
 
-`A6a.r4.body.006`
+`A6a.r42.body.006`
 
 ### 条件正文 · A6a.variant.001
 
@@ -11653,6 +12059,46 @@
 **旁白**：那次你提前离开了核对现场。眼下能说多少，还得看后来真正留下了什么。
 
 `A6a.variant.012.001`
+
+### 条件正文 · A6a.r42.block.canon
+
+条件：`{"eq":["canon_kept",true]}`
+
+**旁白**：那晚陆景行确实弹琴救了场，许照却没有操作错版。可当晚你是否签收了模糊责任，会决定此刻有多少要解释。
+
+`A6a.r42.block.canon.001`
+
+### 条件正文 · A6a.r42.block.changed
+
+条件：`{"eq":["opening_changed",true]}`
+
+**旁白**：首演你找到蓝标盘并交给阿衡；现在宣传片只剩递盘那一秒，音控的核对步骤被剪掉了。
+
+`A6a.r42.block.changed.001`
+
+### 条件正文 · A6a.r42.block.firstsign
+
+条件：`{"eq":["canon_signed_blame",true]}`
+
+**旁白**：程放把你签的旧交接单拍到屏幕上。你不能否认签名，只能靠后来真实查到的记录解释责任范围。
+
+`A6a.r42.block.firstsign.001`
+
+### 条件正文 · A6a.r42.block.forkpreserve
+
+条件：`{"eq":["proof_version_log",true]}`
+
+**旁白**：阿衡举起首夜的双版本核对清单。它不是原著里的道具，却能把这次剪辑缺掉的时间补回来。
+
+`A6a.r42.block.forkpreserve.001`
+
+### 条件正文 · A6a.r42.block.forkconfront
+
+条件：`{"eq":["new_plot_choice","confront"]}`
+
+**旁白**：程放提醒你：“你当晚不是很会问吗？”他早就盯上你的做法，你不能只靠一句“我知道书里怎样”让他退开。
+
+`A6a.r42.block.forkconfront.001`
 
 ### 选择 A6a/public
 
@@ -11843,21 +12289,45 @@
 
 ### 正文
 
-**旁白**：走出活动现场，你在手机备忘录里删掉“第七天被清退”，手指停了好久。
+**旁白**：你走出活动现场，在备忘录里删掉“第七天被清退”，又停了一会儿。
 
-`A6b.r4.body.001`
+`A6b.r42.body.001`
 
-**许照**：真的不一样了。
+**许照**：真的和原著不一样了。
 
-`A6b.r4.body.002`
+`A6b.r42.body.002`
 
-**旁白**：群里有人发来下一次工作的安排，私人消息里也有人问你忙完没有。
+**旁白**：工作群有人提下一场，私人消息里也有人问你忙完没有。
 
-`A6b.r4.body.003`
+`A6b.r42.body.003`
 
-**旁白**：刚醒来时，你只想熬过这一晚。现在，你开始想第八天要见谁、要做什么。
+**旁白**：你不再只想着熬过第十三章。第八天要见谁、做什么、付出什么代价，书里都没写。
 
-`A6b.r4.body.004`
+`A6b.r42.body.004`
+
+### 条件正文 · A6b.r42.block.uoffer
+
+条件：`{"eq":["unwritten_future","public_method"]}`
+
+**旁白**：新的事故复盘邀约还在。你答应的是讲清事实，不是替任何团队保证永远不出错。
+
+`A6b.r42.block.uoffer.001`
+
+### 条件正文 · A6b.r42.block.uprivate
+
+条件：`{"eq":["unwritten_future","private_protection"]}`
+
+**旁白**：你保留了私人合作与归档记录，没有把每份证据都送上公共屏幕。
+
+`A6b.r42.block.uprivate.001`
+
+### 条件正文 · A6b.r42.block.uself
+
+条件：`{"eq":["unwritten_future","self_direction"]}`
+
+**旁白**：你拒绝了新邀约，生活第一次空出一个可以只属于自己的晚上。
+
+`A6b.r42.block.uself.001`
 
 ### 选择 A6b/relationships
 
@@ -23579,6 +24049,30 @@
 
 `XU_WORK.r4.body.002`
 
+### 条件正文 · XU_WORK.r42.block.uoffer
+
+条件：`{"eq":["unwritten_future","public_method"]}`
+
+**旁白**：那份事故流程说明已经有人邀请你单独制作；你能不能接，还是得看实际时间和许可。
+
+`XU_WORK.r42.block.uoffer.001`
+
+### 条件正文 · XU_WORK.r42.block.uprivate
+
+条件：`{"eq":["unwritten_future","private_protection"]}`
+
+**旁白**：阿衡提醒你，私人存证的信任不能直接变成公开作品。你把可发布版本和内部记录分开。
+
+`XU_WORK.r42.block.uprivate.001`
+
+### 条件正文 · XU_WORK.r42.block.uself
+
+条件：`{"eq":["unwritten_future","self_direction"]}`
+
+**旁白**：你先前没有答应新项目。今天选择工作方向，不需要假装自己已经签了合同。
+
+`XU_WORK.r42.block.uself.001`
+
 ### 选择 XU_WORK/original
 
 把首夜技术小样另制成演示包，不用歌手的未公开原声。
@@ -28945,6 +29439,103 @@
 写入与操作：`[{"op":"set","key":"early_spark_g","value":"friend"},{"op":"set","key":"interest_g","value":"platonic"}]`
 
 后继：`@schedule`
+
+
+---
+
+## UNWRITTEN｜书里没有第八天的你
+
+类型：`common`。元数据：`{"background":"street","music":"hopeful","clock":{"day":7,"time":"20:25"},"next":"A6b"}`
+
+### 正文
+
+**旁白**：保安停下脚步。你走出艺术中心，手机上忽然多了一条没有出现在原著里的消息。
+
+`UNWRITTEN.r42.body.001`
+
+**许照**：不是男主替我说了话，也不是剧情自己放过我。是这几天我真的做过的选择，留下了结果。
+
+`UNWRITTEN.r42.body.002`
+
+**旁白**：下一场的工作人员群邀请你提供一次独立的事故流程说明。可一旦发出去，过去那张纸也会被更多人看到。
+
+`UNWRITTEN.r42.body.003`
+
+### 条件正文 · UNWRITTEN.r42.block.original
+
+条件：`{"eq":["canon_kept",true]}`
+
+**旁白**：首演没改，结局却开始偏离。第七天，你没有完全走成书里的退场。
+
+`UNWRITTEN.r42.block.original.001`
+
+### 条件正文 · UNWRITTEN.r42.block.changed
+
+条件：`{"eq":["opening_changed",true]}`
+
+**旁白**：从首演的U盘开始，你已经撞开一串原著没有的事件；今晚，只是另一处转弯。
+
+`UNWRITTEN.r42.block.changed.001`
+
+### 条件正文 · UNWRITTEN.r42.block.proof
+
+条件：`{"eq":["proof_version_log",true]}`
+
+**旁白**：阿衡愿意在核验范围内附上首夜双版本时间线；公开需要他的确认。
+
+`UNWRITTEN.r42.block.proof.001`
+
+### 选择 UNWRITTEN/offer
+
+接受新邀约：做一份自己的流程说明，让别人也能核实
+
+可选条件：`null`
+
+立即回应：
+
+**许照**：我只写我亲历和能核对的部分，没确认的先空着。
+
+`UNWRITTEN.r42.reply.offer.001`
+
+**旁白**：对方回了一句：“那就按你说的做。下周来谈报价。”原著没有这份工作。
+
+`UNWRITTEN.r42.reply.offer.002`
+
+写入与操作：`[{"op":"set","key":"unwritten_future","value":"public_method"},{"op":"set","key":"unwritten_invite_accepted","value":true}]`
+
+后继：`A6b`
+
+### 选择 UNWRITTEN/private
+
+不公开个人经历，把证据留给需要知道的伙伴
+
+可选条件：`null`
+
+立即回应：
+
+**旁白**：你联系阿衡和见月，确认哪些材料该留下、哪些不该流出去。她们给了明确答复。这段后来没有上热搜，却真实改变了你们的合作方式。
+
+`UNWRITTEN.r42.reply.private.001`
+
+写入与操作：`[{"op":"set","key":"unwritten_future","value":"private_protection"},{"op":"set","key":"unwritten_invite_accepted","value":false}]`
+
+后继：`A6b`
+
+### 选择 UNWRITTEN/self
+
+先不接邀约：把未来的一天留给自己的生活
+
+可选条件：`null`
+
+立即回应：
+
+**旁白**：你没有把逃过清退当成必须马上成功的命令。打开备忘录，你第一次只写自己想做的事。
+
+`UNWRITTEN.r42.reply.self.001`
+
+写入与操作：`[{"op":"set","key":"unwritten_future","value":"self_direction"},{"op":"set","key":"unwritten_invite_accepted","value":false}]`
+
+后继：`A6b`
 
 
 # 40项命运尾声

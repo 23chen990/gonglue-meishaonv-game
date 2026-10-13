@@ -32,14 +32,21 @@ for(const c of ['t','s','l','g','self'])check('five_opening_'+c+'_physical_proce
  assert.ok(block);assert.ok(block.lines.every(row=>v.body.some(x=>x.id===row.id)));
  return {ordinaryCommands:r.state.history.length,method,callback:block.id};
 });
-check('scapegoat_montage_matches_all_five_physical_paths',()=>{
- for(const sid of ['A4b','A6a']){
-  const s=before(sid+'/'+data.scenes[sid].choices[0].id),v=text(renderScene(s,data).body);
-  assert.ok(v.includes('递到控台'),sid);
-  assert.ok(v.includes('阿衡'),sid);
-  assert.ok(!v.includes('你按下'));
+check('scapegoat_montage_depends_on_actual_opening',()=>{
+ for(const first of ['t','s','l','g','self'])for(const sid of ['A4b','A6a']){
+  const r=run({first,chars:first==='self'?[]:[first],stop:s=>s.current===sid});
+  const v=text(renderScene(r.state,data).body);
+  assert.ok(v.includes(sid==='A6a'?'交给阿衡':'递到控台'),first+'/'+sid);
+  assert.ok(v.includes('阿衡'),first+'/'+sid);
+  assert.ok(!v.includes('你按下'),first+'/'+sid);
  }
- return 'Xu hands USB to audio operator; later edited blame omits operator; not invented Xu keypress.';
+ for(const sid of ['A4b','A6a']){
+  const r=run({canon:true,chars:[],stop:s=>s.current===sid});
+  const v=text(renderScene(r.state,data).body);
+  assert.ok(!v.includes('你把蓝标盘递到控台'),sid);
+  assert.ok(v.includes('钢琴')||v.includes('设备箱')||v.includes('弹琴'),sid);
+ }
+ return 'Original and changed-world video edits are evidence-bounded and distinguishable.';
 });
 check('authority_challenge_has_observable_cost_not_guaranteed_praise',()=>{
  const r=run({chars:['g'],first:'g',stop:s=>s.current==='A2b'});
@@ -97,11 +104,12 @@ check('all_four_pov_extras_remain_unsent_no_canonical_transfer',()=>{
   assert.ok(/没有发|没发|没有点发送|没把消息发|没有按/.test(text(b.body)),b.id);
  }
 });
-check('all_225_scenes_have_author_second_pass_not_claimed_human_review',()=>{
+check('all_scene_editorial_records_trace_to_actual_revision',()=>{
  const a=JSON.parse(raw('qa/current/scene-editorial-audit.json'));
- assert.equal(a.total,225);assert.equal(Object.keys(a.reviewedScenes).length,225);
+ assert.equal(a.total,Object.keys(data.scenes).length);
+ assert.equal(Object.keys(a.reviewedScenes).length,a.total);
  for(const id of Object.keys(data.scenes))assert.ok(Object.hasOwn(a.reviewedScenes,id),id);
- return {scope:a.scope,manualEditRecords:a.changes.length};
+ return {scope:a.scope,manualEditRecords:a.changes.length,addedInR42:a.newlyAuthoredR42};
 });
 check('rival_has_independent_execution_and_not_only_the_protagonists_instruction',()=>{
  const r=run({chars:[]});
