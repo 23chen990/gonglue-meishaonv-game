@@ -102,6 +102,12 @@ with sync_playwright() as pw:
    assert p.locator('body').get_attribute('data-current')=='ENTRY_WAKE'
    assert p.locator('[data-page-next]').count()==0, 'First original-novel decision must not be gated by Continue'
    assert p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')==['canon','rescue','investigate']
+   assert p.locator('.first-fork-choice strong').all_inner_texts()==[
+    '照原著走：留守设备箱','抢先改写：找回原版U盘','先查真相：留证再救场'
+   ], 'Opening choice labels must be immediately legible on a phone'
+   assert p.locator('.first-fork-choice').evaluate_all(
+    'els=>els.every(el=>el.getAttribute("aria-label")&&el.getAttribute("aria-label").length>10)'
+   ), 'Full canonical choice remains available for assistive technology'
    assert p.locator('.first-fork-facts').count()==1
    assert '第七天' in p.locator('.first-fork-facts').inner_text()
    assert p.locator('.first-fork-full-story').count()==1
@@ -226,8 +232,35 @@ with sync_playwright() as pw:
    assert not e2;c2.close()
   tap(p,'[data-choice="rebuild"]');settle(p)
   assert count(p)==before+1
+  audit=json.loads((R/'qa/current/r42-choice-count-audit.json').read_text())
+  assert audit['status']=='PASS' and audit['failures']==[] and audit['observedChoices']==751
+  checks=[]
+  for case in audit['over4']:
+   sid=case['scene'];key=sid+'/'+case['choices'][0]
+   commands=catalogue[key]['prefix'][:-1]
+   bundle={'version':'bookside-revision-r4.2','storyHash':SHA,'commands':commands,
+           'profile':{'endings':{},'bonuses':{},'readPages':[]},
+           'ui':{'phase':'scene','page':0,'choicePage':0,'large':False}}
+   import_json(p,bundle);settle(p)
+   assert p.locator('body').get_attribute('data-current')==sid,sid
+   n=count(p);visited=[];groupSizes=[]
+   for j in range(4):
+    subset=p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')
+    assert 1<=len(subset)<=3,(sid,subset)
+    visited.extend(subset);groupSizes.append(len(subset))
+    assert count(p)==n,(sid,'paging should not consume action')
+    if p.locator('[data-choice-next]').count():tap(p,'[data-choice-next]')
+    else:break
+   assert len(visited)==len(set(visited))==case['count'] and set(visited)==set(case['choices']),(
+    sid,visited,case['choices'])
+   if p.locator('[data-choice-prev]').count():
+    tap(p,'[data-choice-prev]')
+    assert count(p)==n,(sid,'prev-page should not consume action')
+   checks.append({'scene':sid,'reachableActions':len(visited),'groupSizes':groupSizes})
   assert not e,e;c.close()
-  return {'firstForkChoices':3,'rescueChoices':3,'highOptionScene': 'A6a','menuGroupSizes':[len(group1),len(group2)],'allSixActionsStillReachable':True,'switchNoActionCost':True}
+  return {'firstForkChoices':3,'rescueChoices':3,'highOptionScene':'A6a',
+          'menuGroupSizes':[len(group1),len(group2)],'allSixActionsStillReachable':True,
+          'switchNoActionCost':True,'allHighChoiceStates':checks}
  test('DECISION_MENU_MAX_FOUR',decision_menu_limit)
  def devices():
   cases=[]

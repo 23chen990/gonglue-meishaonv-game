@@ -1,0 +1,202 @@
+{
+  "status": "PASS",
+  "version": "bookside-revision-r4.2",
+  "scope": "Ordinary-command replay of all authored choice witnesses; non-exhaustive state exploration, not human experience",
+  "hashes": {
+    "story": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
+    "engine": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa"
+  },
+  "observedChoices": 751,
+  "uniqueStates": 279,
+  "byChoiceWitness": {
+    "1": 29,
+    "2": 76,
+    "3": 504,
+    "4": 72,
+    "5": 64,
+    "6": 6
+  },
+  "reachableStatesWith5OrMore": 16,
+  "over4": [
+    {
+      "scene": "A2a",
+      "count": 5,
+      "choices": [
+        "independent",
+        "negotiated",
+        "duet",
+        "pause",
+        "unchanged"
+      ]
+    },
+    {
+      "scene": "A3a",
+      "count": 5,
+      "choices": [
+        "cooperative",
+        "shared",
+        "residency",
+        "exit",
+        "leave"
+      ]
+    },
+    {
+      "scene": "A3b",
+      "count": 5,
+      "choices": [
+        "t",
+        "s",
+        "l",
+        "g",
+        "none"
+      ]
+    },
+    {
+      "scene": "t03",
+      "count": 5,
+      "choices": [
+        "open",
+        "exclusive",
+        "wait",
+        "friend",
+        "decline"
+      ]
+    },
+    {
+      "scene": "A4a",
+      "count": 5,
+      "choices": [
+        "fellowship",
+        "stay",
+        "film",
+        "cut",
+        "none"
+      ]
+    },
+    {
+      "scene": "A5a",
+      "count": 5,
+      "choices": [
+        "independent",
+        "bounded",
+        "account",
+        "leave",
+        "none"
+      ]
+    },
+    {
+      "scene": "A5b",
+      "count": 5,
+      "choices": [
+        "ally",
+        "rival",
+        "distance",
+        "independent",
+        "repair"
+      ]
+    },
+    {
+      "scene": "A6a",
+      "count": 6,
+      "choices": [
+        "public",
+        "partner",
+        "backstage",
+        "exit",
+        "accept",
+        "rebuild"
+      ]
+    },
+    {
+      "scene": "LU_MOVE2",
+      "count": 5,
+      "choices": [
+        "ally",
+        "rival",
+        "distant",
+        "independent",
+        "reconciled"
+      ]
+    },
+    {
+      "scene": "A7a",
+      "count": 5,
+      "choices": [
+        "together",
+        "private",
+        "separate",
+        "work",
+        "none"
+      ]
+    },
+    {
+      "scene": "s03",
+      "count": 5,
+      "choices": [
+        "open",
+        "exclusive",
+        "wait",
+        "friend",
+        "decline"
+      ]
+    },
+    {
+      "scene": "l03",
+      "count": 5,
+      "choices": [
+        "open",
+        "exclusive",
+        "wait",
+        "friend",
+        "decline"
+      ]
+    },
+    {
+      "scene": "g03",
+      "count": 5,
+      "choices": [
+        "open",
+        "exclusive",
+        "wait",
+        "friend",
+        "decline"
+      ]
+    },
+    {
+      "scene": "H_glst",
+      "count": 5,
+      "choices": [
+        "favor_g",
+        "favor_l",
+        "favor_s",
+        "favor_t",
+        "all"
+      ]
+    },
+    {
+      "scene": "EXEC_s",
+      "count": 5,
+      "choices": [
+        "trial",
+        "slots",
+        "venue",
+        "handover",
+        "none"
+      ]
+    },
+    {
+      "scene": "EXEC_l",
+      "count": 5,
+      "choices": [
+        "application",
+        "own",
+        "screen",
+        "permissions",
+        "none"
+      ]
+    }
+  ],
+  "failures": [],
+  "decisionConstraint": "VISIBLE_CHOICES_MAX_3_BY_UI_PAGING; STRICT_TOTAL_CHOICES_MAX_4_NOT_MET",
+  "independentBrowserAssertion": "RUN tools/test-ui-r4.py; ordinary-command count alone does not verify presentation"
+}

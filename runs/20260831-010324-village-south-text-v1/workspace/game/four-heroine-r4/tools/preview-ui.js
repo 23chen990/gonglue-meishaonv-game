@@ -282,7 +282,12 @@ function firstForkHTML(cp){
  };
  // All three decisive actions must be available on the first render. Do not turn
  // the first meaningful choice into an inert "continue" button.
- const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
+ const shortTitles={
+  canon:'照原著走：留守设备箱',
+  rescue:'抢先改写：找回原版U盘',
+  investigate:'先查真相：留证再救场'
+ };
+ const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
  const allStory=rowsHTML(cp.view.body);
  return `<section class="first-fork-head"><span class="kicker">穿书第一分钟 · 你是临时场务许照</span><h2>原著里的炮灰，<br><em>这次由你来选。</em></h2><p>你读过结局。现在原著正走到改变命运的第一分钟。</p></section>`+
  `<section class="first-fork-facts" aria-label="选择前已知的原著剧情"><div><strong>原著当晚</strong><p>许照听程放的话守着设备箱，陆景行弹琴救下首演。</p></div><div><strong>原著第七天</strong><p>错版责任被推给许照；没有交接证据，他被清退。</p></div><div><strong>你知道的秘密</strong><p>箱底有一枚贴蓝胶带的原版 U 盘，原著里没人找到。</p></div></section>`+
