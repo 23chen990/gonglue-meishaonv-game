@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>攻略美少女｜竖屏互动阅读界面概念</title>
+<style>
+:root{--ink:#4a334a;--rose:#ad5c80;--paper:#fff8f6;--line:#ead2df;font-family:system-ui,-apple-system,"PingFang SC",sans-serif}
+*{box-sizing:border-box}html,body{padding:0;margin:0;width:100%;height:100%;background:#1b1124}button{font:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:3px solid #e7af70;outline-offset:2px}[hidden]{display:none!important}
+#phone{position:relative;width:min(100vw,450px);height:100dvh;min-height:540px;margin:auto;overflow:hidden;background:linear-gradient(145deg,#21142f 2%,#60415f 53%,#b0777d);color:white}
+#scene{position:absolute;inset:0 0 15%;background:radial-gradient(ellipse at 75% 36%,#f4b4a166,transparent 56%),linear-gradient(125deg,#23132c,#513454 65%,#9c6a79)}
+#scene:before{content:"";position:absolute;inset:0;background:linear-gradient(170deg,transparent 36%,#322044 97%);pointer-events:none}
+#scene:after{content:"";position:absolute;top:11%;right:11%;height:65%;width:56%;border-radius:60% 60% 27% 20%;background:radial-gradient(ellipse at 52% 32%,#ffe5d8 0 17%,#dfa2a0 18% 21%,#532b46 22% 38%,transparent 39%),linear-gradient(145deg,transparent 33%,#cf9aaf 34%,#69405f);filter:drop-shadow(0 9px 16px #21102677);opacity:.85;mask-image:linear-gradient(#000 55%,transparent 100%);pointer-events:none}
+#top{position:absolute;inset:0 0 auto;padding:calc(12px + env(safe-area-inset-top)) 15px 8px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:2;text-shadow:0 1px 6px #20132c}
+#top strong{font-size:15px;display:block}#top small{font-size:10px;opacity:.8}#top button{min-height:45px;min-width:45px;border:1px solid #ffffff66;border-radius:12px;background:#2415296c;color:#fff}
+#art-title{position:absolute;left:20px;top:24%;font-size:10px;letter-spacing:.18em;line-height:1.7;color:#ffe1da;text-shadow:0 2px 10px #211026}
+#art-title strong{display:block;font:700 28px/1.4 "Songti SC",serif;letter-spacing:0;margin-top:6px;color:white}
+#sheet{position:absolute;z-index:4;bottom:0;left:0;right:0;height:61%;border-radius:27px 27px 0 0;background:linear-gradient(160deg,#fff9f7,#f7e9ee);color:var(--ink);box-shadow:0 -16px 45px #24182e66;display:flex;flex-direction:column}
+#sheet.dialogue{height:46%;min-height:350px}#sheet.end{height:44%;min-height:335px}
+.handle{height:4px;width:40px;background:#d9bfc9;border-radius:5px;margin:12px auto;flex:none}
+#contents{overflow:auto;overscroll-behavior:contain;padding:0 19px 8px;flex:1;min-height:0}
+#contents h1{font:700 23px/1.35 "Songti SC",serif;margin:5px 0 9px}#contents p{font-size:14px;line-height:1.75;color:#665466;margin:8px 0}
+.tag{color:#ab5e7b;font-size:11px;letter-spacing:.12em;font-weight:750}
+.memory{font-size:12px;line-height:1.6;background:#f5e6ec;border:1px solid #e8cddd;border-radius:11px;color:#78566e;padding:10px;margin:12px 0}
+.option{display:flex;align-items:center;gap:10px;width:100%;min-height:60px;text-align:left;background:white;color:#573d55;border:1px solid #e7d2db;border-radius:12px;padding:10px;margin:8px 0}
+.option b{flex:1;font-weight:650;font-size:13px}.option small{display:block;font-size:10px;color:#977b8c;margin-top:4px;font-weight:400}.number{width:27px;height:27px;flex:none;border-radius:50%;display:grid;place-items:center;background:#f8e7ed;color:#a25c76;font-weight:750;font-size:12px}
+.speaker{font-size:12px;color:var(--rose);font-weight:750;margin:6px 0 18px}.text{font-size:16px;line-height:1.9!important;min-height:78px}
+#footer{display:flex;align-items:center;justify-content:space-between;padding:11px 20px calc(13px + env(safe-area-inset-bottom));border-top:1px solid #ead5dc;font-size:10px;color:#9f7c90;background:#fffbf9}
+.primary{width:100%;min-height:52px;border:0;border-radius:12px;background:linear-gradient(90deg,#b76d8b,#a94d73);color:white;font-size:14px;font-weight:750;margin-top:16px}
+#modal{position:absolute;inset:0;background:#11091ab9;z-index:10;display:flex;align-items:flex-end}
+#box{width:100%;padding:24px 19px calc(20px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;background:var(--paper);color:var(--ink);max-height:85%;overflow:auto}
+#box h2{font-size:20px;margin-top:0}#box p{font-size:13px;line-height:1.7}#box button{width:100%;min-height:50px;border-radius:11px;margin:4px 0;background:white;color:var(--ink);border:1px solid #e9d4dc}
+body.big{font-size:19px}body.big #contents p{font-size:18px}body.big #sheet.dialogue{height:53%}
+@media(max-height:700px){#sheet{height:76%;max-height:82%}#sheet.dialogue{height:68%}#sheet.end{height:65%}#contents p{font-size:13px}#contents h1{font-size:21px}}
+@media(orientation:landscape) and (max-height:450px){#phone{min-height:580px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div id="phone"><div id="scene" aria-hidden="true"></div><header id="top"><button id="back" aria-label="上一段">‹</button><div><strong>攻略美少女</strong><small>序章 · 被写好的命运</small></div><div><button id="history" aria-label="历史记录">▤</button><button id="menu" aria-label="阅读菜单">☰</button></div></header>
+<div id="art-title">19:02 · 北岸艺术中心<strong>原著之外，<br>还有你的选择。</strong></div>
+<main id="sheet"><div class="handle"></div><div id="contents"></div><footer id="footer"><span>● 独立演示存档</span><span id="step">01 / 04</span></footer></main>
+<div id="modal" hidden><div id="box"></div></div></div>
+<script>
+(function(){
+ const storeKey='gonglue:portrait-demo:20261013'; const Q=s=>document.querySelector(s);
+ let step='fork',first='',second='',big=false; const A={
+ canon:{name:'照原著走：留守设备箱',hint:'原著继续，背锅风险仍在',story:'你遵照原著留在设备箱旁。台上的钢琴声响起，第七天的危机并没有因此消失。'},
+ rescue:{name:'抢先改写：找回原版 U 盘',hint:'寻找原版，争取改写首演',story:'你翻出贴蓝胶带的原版 U 盘。阿衡重新戴上耳机核对前奏。现场终于多了一种可能。'},
+ investigate:{name:'先查真相：留证再救场',hint:'先查清错版来源',story:'你没有贸然认下责任，先寻找真正经手过错版的证据。书里的答案没有自动来到眼前。'}
+ };
+ function save(){try{localStorage.setItem(storeKey,JSON.stringify({step,first,second,big}))}catch{Q('#footer span').textContent='! 演示暂无法保存'}}
+ function item(id,n,desc){return '<button class="option" data-pick="'+id+'"><span class="number">'+n+'</span><b>'+desc+'<small>'+(A[id]?A[id].hint:id==='truth'?'坦诚，不夸大自己的功劳':'给她决定的空间')+'</small></b><span>›</span></button>'}
+ function view(){
+ Q('#sheet').className=step==='talk'||step==='result'?'dialogue':step==='done'?'end':'';
+ Q('#step').textContent={fork:'01 / 04',result:'02 / 04',talk:'03 / 04',ask:'04 / 04',done:'完成'}[step];
+ Q('#contents').innerHTML=step==='fork'?'<div class="tag">原著记忆 · 第十三章</div><h1>原著里的炮灰，这次由你来选。</h1><p>你穿成临时场务许照。原著里，第七天你会因错版被推去背锅，被清退。</p><div class="memory">✦ 你提前知道：陆景行会弹琴救场，而箱底还有一枚贴蓝胶带的原版 U 盘。</div>'+item('canon','01',A.canon.name)+item('rescue','02',A.rescue.name)+item('investigate','03',A.investigate.name):
+ step==='result'?'<div class="speaker">原著 · 已经发生改变</div><p class="text">'+A[first].story+'</p><div class="memory">你已经做出选择；后续需要在正式 r4.2 剧情中继续回收。</div><button class="primary" data-next="talk">继续剧情　›</button>':
+ step==='talk'?'<div class="speaker">唐映雪 · 舞台歌手</div><p class="text">灯光缓缓暗下来。她转过身看向你。<br>“许照，你是想帮忙，还是想跟我说点别的？”</p><button class="primary" data-next="ask">我来回答　›</button>':
+ step==='ask'?'<div class="tag">演示选择 · 非正式剧情文本</div><h1>她在等你的回答。</h1><p>此处只演示二选一的竖屏操作，不修改真实剧情。</p>'+item('truth','01','把自己做过的事说清楚')+item('respect','02','先问她需不需要帮忙'):
+ '<div class="tag">界面交互演示完成</div><h1>这一次，由你改写。</h1><p>你先「'+A[first].name+'」，接着选择「'+(second==='truth'?'坦诚交代':'尊重对方')+'」。</p><div class="memory">正式游戏仍须接入 228 场 r4.2 剧情和原有存档；本页面不冒充完整版本。</div><button class="primary" data-reset="1">从头再来</button>';
+ Q('#contents').scrollTop=0;document.body.classList.toggle('big',big);
+ }
+ function open(type){Q('#modal').hidden=false;Q('#box').innerHTML=type==='history'?'<h2>这局的经历</h2><p>原著：第七天被清退。</p><p>'+(first?'首次选择：'+A[first].name:'你还没有作出首次选择。')+'</p><button data-close="1">返回剧情</button>':'<h2>阅读设置</h2><button data-font="1">文字大小：'+(big?'大字':'普通')+'</button><button data-history="1">剧情记录</button><button data-reset="1">重新开始</button><p>独立设计样机，正式 r4.2 数据和存档不变。</p><button data-close="1">继续阅读</button>'}
+ function reset(){step='fork';first='';second='';save();Q('#modal').hidden=true;view()}
+ document.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;if(b.id==='menu')return open('menu');if(b.id==='history'||b.dataset.history)return open('history');if(b.dataset.close){Q('#modal').hidden=true;return}if(b.dataset.font){big=!big;save();open('menu');view();return}if(b.dataset.reset)return reset();if(b.id==='back'){if(!Q('#modal').hidden){Q('#modal').hidden=true;return}step=step==='done'?'ask':step==='ask'?'talk':step==='talk'?'result':'fork';save();view();return}if(b.dataset.pick){if(step==='fork'){first=b.dataset.pick;step='result'}else if(step==='ask'){second=b.dataset.pick;step='done'}save();view();return}if(b.dataset.next){step=b.dataset.next;save();view()}});
+ Q('#modal').addEventListener('click',e=>{if(e.target===Q('#modal'))Q('#modal').hidden=true});
+ try{const z=JSON.parse(localStorage.getItem(storeKey)||'null');if(z&&['fork','result','talk','ask','done'].includes(z.step)&&(!z.first||A[z.first])){step=z.step;first=z.first||'';second=z.second||'';big=!!z.big;if(step!=='fork'&&!first)step='fork'}}catch{}
+ view();
+})();
+</script></body></html>
