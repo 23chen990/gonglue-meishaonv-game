@@ -1,9 +1,9 @@
 {
   "status": "PASS",
   "hashes": {
-    "story": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
+    "story": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
     "engine": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa",
-    "html": "8c1619fc8a403824a11c1f944e4c702334743149d89cf6dc729ba16954bcaf48"
+    "html": "db1a251a35a0858970e49ec370200d6fc689c351f629b08ca0db6114bef5f4ef"
   },
   "checks": [
     {
@@ -23,9 +23,9 @@
         "epilogues": 40,
         "bonus": 8,
         "coda": 6,
-        "textBeats": 4138,
-        "hanCharacters": 87764,
-        "memoryCueMatches": 460,
+        "textBeats": 4158,
+        "hanCharacters": 88434,
+        "memoryCueMatches": 463,
         "conditionalLocations": 830,
         "dynamicConditionsNotSeenTrue": 0,
         "recordOnlyChoices": 77

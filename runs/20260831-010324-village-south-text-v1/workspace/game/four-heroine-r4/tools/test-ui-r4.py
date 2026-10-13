@@ -7,7 +7,7 @@ import os,json,hashlib,tempfile
 R=Path(__file__).resolve().parent.parent
 MODE=os.environ.get('R4_MODE','fixture');URL=os.environ.get('R4_REAL_URL','http://127.0.0.1:8765/index.html')
 D=R/'qa/current/browser'/('native-ui' if MODE=='native' else 'fixture-ui');D.mkdir(parents=True,exist_ok=True)
-HTML=(R/'index.html').read_text();KEY='gonglue:revision-r4.2:canonical'
+HTML=(R/'index.html').read_text();KEY='gonglue:revision-r4.2-intro:canonical'
 SHA=hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest()
 report={'mode':MODE,'scope':'Actual native navigation/storage' if MODE=='native' else 'Injected DOM and labelled simulated Storage; not native persistence or human play',
         'hashes':{n:hashlib.sha256((R/n).read_bytes()).hexdigest() for n in ['index.html','data/STORY.json','tools/engine.mjs','tools/preview-ui.js']},
@@ -95,12 +95,56 @@ with sync_playwright() as pw:
   test('ACTUAL_DEFAULT_URL_STARTUP',native_entry)
   if report['failures']:
    report['status']='BLOCKED';(D/'ui-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));browser.close();raise SystemExit(2)
+ def mandatory_intro():
+  c,p,e=entry(browser)
+  seen=[]
+  assert p.locator('body').get_attribute('data-current')=='ENTRY_WAKE'
+  assert p.locator('[data-choice]').count()==0,'First true decision must be after required narrative'
+  assert p.locator('[data-page-next]').count()==1
+  assert p.locator('.intro-progress').count()==1
+  assert '原著当晚' not in p.locator('main').inner_text(), 'Do not spoil canon before recognition'
+  visited=[]
+  for i in range(20):
+   visited.append(p.locator('main').inner_text())
+   if not p.locator('[data-page-next]').count():break
+   before=count(p)
+   tap(p,'[data-page-next]')
+   assert count(p)==before==0,'Reading cannot consume story actions'
+  assert len(visited)>=5, len(visited)
+  full='\n'.join(visited)
+  for marker in ['手机','眼前彻底黑了','许照','工牌','北岸艺术中心','唐映雪','陆景行','林见月','顾晚棠','第十三章','第七天','19:03','蓝胶带']:
+   assert marker in full,marker
+  assert p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')==['canon','rescue','investigate']
+  assert p.locator('[data-page-next]').count()==0
+  assert p.locator('.first-fork-full-story').count()==0
+  saved=raw(p)
+  assert len(json.loads(saved)['commands'])==0
+  assert not e,e
+  c.close()
+  return {'readPages':len(visited),'seenCanonBeforeChoice':True,'zeroDecisionsDuringIntro':True}
+ test('MANDATORY_TRANSMIGRATION_INTRO_BEFORE_FIRST_CHOICE',mandatory_intro)
+ def intro_midpage_resume():
+  c,p,e=entry(browser)
+  assert p.locator('[data-page-next]').count()
+  tap(p,'[data-page-next]');tap(p,'[data-page-next]')
+  original=p.locator('main').inner_text();saved=raw(p)
+  assert json.loads(saved)['ui']['page']==2 and json.loads(saved)['commands']==[]
+  if MODE=='native':
+   p.reload();assert p.locator('main').inner_text()==original
+  else:
+   c2,p2,e2=entry(browser,seed={KEY:saved})
+   assert p2.locator('main').inner_text()==original and not e2
+   c2.close()
+  assert not e,e;c.close()
+  return {'introResumePage':2,'noForcedReset':True,'noStoryDecision':True}
+ test('INTRO_PROGRESS_RESTORES_BEFORE_FIRST_CHOICE',intro_midpage_resume)
  for first in ['t','s','l','g','self']:
   def opening(first=first):
    c,p,e=entry(browser)
-   assert '原著' in p.locator('main').inner_text()
    assert p.locator('body').get_attribute('data-current')=='ENTRY_WAKE'
-   assert p.locator('[data-page-next]').count()==0, 'First original-novel decision must not be gated by Continue'
+   settle(p)
+   assert '原著' in p.locator('main').inner_text()
+   assert p.locator('[data-page-next]').count()==0, 'Read-through helper must settle to the first real decision'
    assert p.locator('[data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')==['canon','rescue','investigate']
    assert p.locator('.first-fork-choice strong').all_inner_texts()==[
     '照原著走：留守设备箱','抢先改写：找回原版U盘','先查真相：留证再救场'
@@ -110,7 +154,7 @@ with sync_playwright() as pw:
    ), 'Full canonical choice remains available for assistive technology'
    assert p.locator('.first-fork-facts').count()==1
    assert '第七天' in p.locator('.first-fork-facts').inner_text()
-   assert p.locator('.first-fork-full-story').count()==1
+   assert p.locator('.first-fork-full-story').count()==0, 'Transmigration is main-story content, not an optional drawer'
    if first=='t':p.screenshot(path=str(D/'01-first-canon-fork-360.png'),full_page=True)
    intro(p,first)
    baseline=2 if first in ('l','g') else 1

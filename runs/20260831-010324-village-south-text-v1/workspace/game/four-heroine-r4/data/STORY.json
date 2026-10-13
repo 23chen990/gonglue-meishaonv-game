@@ -52457,58 +52457,178 @@
     },
     "ENTRY_WAKE": {
       "id": "ENTRY_WAKE",
-      "title": "你知道原著下一分钟会发生什么",
+      "title": "有人在喊许照",
       "kind": "opening",
       "background": "backstage",
       "music": "none",
       "body": [
         {
-          "id": "ENTRY_WAKE.r42.body.001",
+          "id": "ENTRY_WAKE.intro.001",
           "speaker": "N",
-          "text": "你刚看完《今夜偏爱男主》的首演片段，忽然眼前一黑。再睁眼，后背撞着舞台边的设备箱。",
-          "textHash": "6ecbaf546b37b25c"
+          "text": "现实里，你又翻到《今夜偏爱男主》的首演章节。那个叫许照的临时工倒霉得让人窝火；你已经读过他后来的下场。",
+          "textHash": "c45e3121c5735392"
         },
         {
-          "id": "ENTRY_WAKE.r42.body.002",
+          "id": "ENTRY_WAKE.intro.002",
+          "speaker": "N",
+          "text": "手机屏幕上的字突然重了影。你想扶住桌沿，手却扑了个空。一阵眩晕之后，眼前彻底黑了。",
+          "textHash": "56976edf94040b1b"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.003",
           "speaker": "A",
-          "text": "许照！别发愣！伴奏出错了！",
-          "textHash": "39fd24c08c97de98"
+          "text": "许照！喂，许照！听得见吗？",
+          "textHash": "035417c6613d7855"
         },
         {
-          "id": "ENTRY_WAKE.r42.body.003",
+          "id": "ENTRY_WAKE.intro.004",
           "speaker": "N",
-          "text": "胸前工牌写着“许照·临时场务”。台上，唐映雪正等伴奏；钢琴旁，陆景行已经抬起手。",
-          "textHash": "ba02e9440bf8e4f7"
+          "text": "后背硌在冷冰冰的金属箱角上。你睁开眼，头顶是一排刺眼的舞台灯，耳边有人催场，还有观众说话的声音。",
+          "textHash": "95e0a71a6d884994"
         },
         {
-          "id": "ENTRY_WAKE.r42.body.004",
+          "id": "ENTRY_WAKE.intro.005",
           "speaker": "P",
-          "text": "……我穿成了那个第十三章就被赶走的炮灰？",
-          "textHash": "40d3d231a96ddae6"
+          "text": "……你叫谁？",
+          "textHash": "5ec6ba33e4014c0c"
         },
         {
-          "id": "ENTRY_WAKE.r42.body.005",
-          "speaker": "B",
-          "text": "【你记得的原著】19:03，许照按程放的吩咐待命，没有找到备用原版。陆景行弹琴救下首演，唐映雪唱完，制作人只约了陆景行。",
-          "textHash": "d20af4a06d8776fd"
+          "id": "ENTRY_WAKE.intro.006",
+          "speaker": "A",
+          "text": "你啊！刚刚还蹲在箱子旁边。能起来吗？马上要开唱了！",
+          "textHash": "747d9712034ff332"
         },
         {
-          "id": "ENTRY_WAKE.r42.body.006",
-          "speaker": "B",
-          "text": "【你记得的后果】第七天，别人换错的文件被算到许照头上；他没有留下能替自己说话的交接记录，被清退。",
-          "textHash": "a02fc88be360768d"
-        },
-        {
-          "id": "ENTRY_WAKE.r42.body.007",
+          "id": "ENTRY_WAKE.intro.007",
           "speaker": "N",
-          "text": "你还记得一条原著没被用上的线索：备用箱底有个贴蓝胶带的原版U盘。现在，箱子就在你手边。",
-          "textHash": "1e7d8d1701d634ce"
+          "text": "你撑着箱盖站起来，胸前的工牌晃到眼前：许照，临时场务。工牌上的照片，居然也是一张陌生的脸。",
+          "textHash": "e18a5bc8081e8470"
         },
         {
-          "id": "ENTRY_WAKE.r42.body.008",
+          "id": "ENTRY_WAKE.intro.008",
           "speaker": "P",
-          "text": "如果不动，故事会照走。我想活过第七天，就不能只背原著的答案。",
-          "textHash": "8846ab79b281d780"
+          "text": "（不对。我明明还在自己的房间里……）",
+          "textHash": "227e79413ef0e6a9"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.009",
+          "speaker": "N",
+          "text": "侧幕上写着“北岸艺术中心·栖光计划”。灯光、道具箱、排练表，全都不像梦。",
+          "textHash": "dde6b0f311885051"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.010",
+          "speaker": "C",
+          "text": "沈清辞！唐映雪那首歌的伴奏怎么回事？",
+          "textHash": "13b3ed6f4b9adc0e"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.011",
+          "speaker": "T",
+          "text": "等一下。前奏不对，这不是我排练的版本！",
+          "textHash": "af246860315546b5"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.012",
+          "speaker": "LU",
+          "text": "别慌。我先用钢琴垫四小节，你看我的手势接。",
+          "textHash": "403e45897ece8106"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.013",
+          "speaker": "N",
+          "text": "钢琴旁的男人刚坐下，就有人喊：“陆景行，交给你了！”",
+          "textHash": "e242ed10f076b76f"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.014",
+          "speaker": "P",
+          "text": "（唐映雪、沈清辞、陆景行……连伴奏出错都一样？）",
+          "textHash": "dd8548342686da72"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.015",
+          "speaker": "N",
+          "text": "你一转头，拿着相机的人正被叫作“林见月”；另一边，工作人员请“顾晚棠”核对节目邮件。那些小说里的名字接连落到耳朵里。",
+          "textHash": "1fcd12a327ad111d"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.016",
+          "speaker": "B",
+          "text": "《今夜偏爱男主》。北岸艺术中心的首演。书里这一段，你分明读过。",
+          "textHash": "f54ad268fe14d978"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.017",
+          "speaker": "P",
+          "text": "（等等……我不是来现场看演出的。我成了书里那个炮灰许照？）",
+          "textHash": "63df117367a8fb9e"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.018",
+          "speaker": "N",
+          "text": "你狠狠掐了一下手心，疼得倒抽气。心跳快得难受，胃也跟着往下沉。你想退开，身后却只有设备箱。",
+          "textHash": "439969fad0ae9efd"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.019",
+          "speaker": "A",
+          "text": "你脸色怎么这么白？要不先去外面歇一下？",
+          "textHash": "bbc9bf17de54370e"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.020",
+          "speaker": "P",
+          "text": "不用……让我缓十秒。",
+          "textHash": "8f15e6626b43d7b3"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.021",
+          "speaker": "B",
+          "text": "【原著今晚】19:03，许照听程放的话守着设备箱，没有找到能替换错版伴奏的原版。陆景行弹琴救下唐映雪的首演，后来拿到制作人的邀约。",
+          "textHash": "02a47294d687c043"
+        },
+        {
+          "speaker": "B",
+          "text": "【她们在原著里的后来】唐映雪后来爆红，却失去了《迟来的夏天》；沈清辞想留下的小演出空间，被改成陆景行巡演的排练基地。",
+          "id": "ENTRY_WAKE.intro.022",
+          "textHash": "49c57cd1212483a3"
+        },
+        {
+          "speaker": "B",
+          "text": "【另外两个人的后来】林见月和陆景行最终走到一起，却把自己的外出拍摄申请留在草稿里；顾晚棠背上项目安排的骂名，她的保留意见直到后来才有人提起。",
+          "id": "ENTRY_WAKE.intro.023",
+          "textHash": "e889add3f04dfc97"
+        },
+        {
+          "speaker": "B",
+          "text": "【你还知道的秘密】映雪的匿名电台、清辞另找空间的打算、见月保存的现场原声、晚棠没有公开的意见——这些都只是你从书中知道的线索，并不意味着它们现在已经在你手里。",
+          "id": "ENTRY_WAKE.intro.024",
+          "textHash": "c99723fef87aab2f"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.025",
+          "speaker": "B",
+          "text": "【原著第七天】第十三章，别人换错的文件被算在许照头上。他没有留下能说明自己当时做过什么的交接记录，最后被清退。",
+          "textHash": "05c44119a227fcb6"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.026",
+          "speaker": "N",
+          "text": "你想起书里一笔带过的线索：备用箱的接线板下，压着一枚贴蓝胶带的原版 U 盘。原著里从没人把它找出来。现在，箱子就在你手边。",
+          "textHash": "50eb096c2e20a1ec"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.027",
+          "speaker": "P",
+          "text": "（照程放说的守在这里，今晚会照原著结束，可第七天的责任也还在等着我。要是现在动手……后面的剧情就未必有答案了。）",
+          "textHash": "fe9ca5da872a3df5"
+        },
+        {
+          "id": "ENTRY_WAKE.intro.028",
+          "speaker": "N",
+          "text": "唐映雪正等着音乐。陆景行的手悬在琴键上。你知道原著里许照怎么选、最后付出了什么代价——轮到你决定第一步了。",
+          "textHash": "c88807d60b2dad59"
         }
       ],
       "blocks": [],

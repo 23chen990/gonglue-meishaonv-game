@@ -9,7 +9,7 @@ witnesses=json.loads((R/'qa/current/witnesses.json').read_text())['witnesses']
 expected=json.loads((R/'qa/current/archive-expectations.json').read_text())
 bonus=json.loads((R/'data/BONUS.json').read_text())['items']
 eps=json.loads((R/'data/EPILOGUES.json').read_text())['modules']
-KEY='gonglue:revision-r4.2:canonical'
+KEY='gonglue:revision-r4.2-intro:canonical'
 VERSION=expected['version'];SHA=hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest()
 report={'url':os.environ.get('R4_REAL_URL'), 'mode':'actual-navigation' if os.environ.get('R4_REAL_URL') else 'injected-markup', 'scope':'Chromium injected-markup DOM + simulated Storage. Not URL startup, durable save, physical phone or human play. Full-four route is ordinary touch; archives are verified-command file imports.','sourceStandaloneHtmlSha256':hashlib.sha256(html.encode()).hexdigest(),'storySha256':SHA,'cases':[],'failures':[]}
 fixture=r'''() => {const box=new Map();const storage={getItem:k=>box.get(k)||null,setItem:(k,v)=>box.set(k,String(v)),removeItem:k=>box.delete(k)};Object.defineProperty(window,'localStorage',{configurable:true,value:storage});window.__failWrites=()=>{storage.setItem=()=>{throw Error('simulated quota failure')}};}'''
@@ -22,7 +22,7 @@ def ctx(browser,w=390,h=844):
   assert response is not None and response.ok
   report['testedDocumentSha256']=hashlib.sha256(response.body()).hexdigest()
   assert p.locator('meta[name="story-sha256"]').get_attribute('content')==SHA
-  p.evaluate("""() => {window.__failWrites=()=>{const old=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==='gonglue:revision-r4.2:canonical')throw Error('deliberately injected quota failure');return old.call(this,k,v);};};}""")
+  p.evaluate("""() => {window.__failWrites=()=>{const old=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==='gonglue:revision-r4.2-intro:canonical')throw Error('deliberately injected quota failure');return old.call(this,k,v);};};}""")
  else:
   p.evaluate(fixture);p.set_content(html,wait_until='load')
  p.on('dialog',lambda d:d.accept())

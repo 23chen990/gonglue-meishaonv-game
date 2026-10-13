@@ -13,7 +13,11 @@ check('first_real_choice_is_three_canon_aware_actions',()=>{
  assert.deepEqual(opts(s),['canon','rescue','investigate']);
  const text=v.body.map(x=>x.text).join('\n');
  for(const mark of ['第七天','陆景行','钢琴','蓝胶带','程放','许照'])assert.ok(text.includes(mark),mark);
- assert.ok(text.includes('按程放')&&text.includes('清退'));
+ assert.ok(text.includes('听程放')&&text.includes('清退'));
+ assert.ok(text.indexOf('眼前彻底黑了')<text.indexOf('工牌'));
+ assert.ok(text.indexOf('工牌')<text.indexOf('《今夜偏爱男主》。北岸'));
+ assert.ok(text.indexOf('第七天')<text.indexOf('蓝胶带'));
+ assert.ok(v.body.length>=20,'Transmigration cannot be a single summary card');
  assert.throws(()=>choose(s,d,'steady'),/Unavailable/);
  return v.body.length;
 });

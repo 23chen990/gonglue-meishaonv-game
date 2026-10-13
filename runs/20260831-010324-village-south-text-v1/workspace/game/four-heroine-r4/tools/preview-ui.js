@@ -2,8 +2,8 @@
 // Offline r4 controller: canonical replay, separately scoped read-only archives.
 // No remote resources, ad SDK, analytics, or silent legacy-save migration.
 const names={N:'',P:'你',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',LU:'陆景行',C:'程放',B:'原著记忆',U:'',A:'阿衡',X:'现场'};
-const KEY='gonglue:revision-r4.2:canonical';
-const PREVIOUS_KEY='gonglue:revision-r4.1:canonical';
+const KEY='gonglue:revision-r4.2-intro:canonical';
+const PREVIOUS_KEY='gonglue:revision-r4.2:canonical';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
@@ -177,7 +177,7 @@ function markRead(cp){
 function rowsHTML(rows){
  return rows.map(b=>{
   const sid=phase==='reply'?state.history.at(-1)?.from:state.current;
-  const earlyNames=sid==='ENTRY_WAKE'?{A:'戴耳机的男人'}:sid==='ENTRY_CLUES'?{C:'场务负责人',T:'台上的女孩',LU:'钢琴旁的男人'}:{};
+  const earlyNames=sid==='ENTRY_WAKE'?{A:'戴耳机的男人',C:'对讲机里的场务',T:'台上的女孩',LU:'钢琴旁的男人'}:sid==='ENTRY_CLUES'?{C:'场务负责人',T:'台上的女孩',LU:'钢琴旁的男人'}:{};
   const who=earlyNames[b.speaker]??names[b.speaker];
   const cls=b.speaker==='N'?'narrator':b.speaker==='B'?'memory':b.speaker==='U'?'system':'dialogue';
   return `<div class="line ${cls}" data-speaker="${esc(b.speaker)}" data-beat="${esc(b.id||'')}">${who?`<span class="who">${esc(who)}</span>`:''}<p>${esc(b.text)}</p></div>`;
@@ -186,7 +186,7 @@ function rowsHTML(rows){
 function controls(cp){
  if(!cp.last){
   const read=profile.readPages.includes(pageKey(cp));
-  return `<div class="pager"><button class="next" data-page-next="1">继续</button>${read?'<button class="quiet" data-skip-read="1">跳过这页已读文字</button>':''}</div>`;
+  return `<div class="pager"><button class="next" data-page-next="1">${state.current==='ENTRY_WAKE'?'继续阅读':'继续'}</button>${read?'<button class="quiet" data-skip-read="1">跳过这页已读文字</button>':''}</div>`;
  }
  if(cp.view.isReply)return `<div class="pager"><button class="next" data-reply-next="1">${cp.view.firstWin?'先缓口气':'接着看'}</button></div>`;
  if(cp.view.terminal)return '<div class="pager"><button class="next" data-ending="'+esc(state.ending)+'">重读这个主要结局</button><button class="quiet" data-nav="history">回到读过的选择</button><button class="quiet" data-nav="collection">结局与番外收藏</button></div>'+fateHTML(state);
@@ -276,24 +276,36 @@ function openingHTML(cp){
 function firstForkHTML(cp){
  const opts=cp.view.choices.filter(o=>o.enabled);
  const notes={
-  canon:'陆景行完成救场；你还要面对第七天的背锅风险。',
-  rescue:'抢先找到原版U盘，改写首演，也改变别人看你的眼光。',
-  investigate:'先查是谁换错文件，再决定怎样把原版送上台。'
+  canon:'陆景行完成钢琴救场；你仍要面对第七天的背锅风险。',
+  rescue:'抢先找回原版 U 盘，改写首演，也改变别人看你的眼光。',
+  investigate:'先查错版来源、留下证据，再把原版交给音控确认。'
  };
- // All three decisive actions must be available on the first render. Do not turn
- // the first meaningful choice into an inert "continue" button.
  const shortTitles={
   canon:'照原著走：留守设备箱',
   rescue:'抢先改写：找回原版U盘',
   investigate:'先查真相：留证再救场'
  };
  const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
- const allStory=rowsHTML(cp.view.body);
- return `<section class="first-fork-head"><span class="kicker">穿书第一分钟 · 你是临时场务许照</span><h2>原著里的炮灰，<br><em>这次由你来选。</em></h2><p>你读过结局。现在原著正走到改变命运的第一分钟。</p></section>`+
- `<section class="first-fork-facts" aria-label="选择前已知的原著剧情"><div><strong>原著当晚</strong><p>许照听程放的话守着设备箱，陆景行弹琴救下首演。</p></div><div><strong>原著第七天</strong><p>错版责任被推给许照；没有交接证据，他被清退。</p></div><div><strong>你知道的秘密</strong><p>箱底有一枚贴蓝胶带的原版 U 盘，原著里没人找到。</p></div></section>`+
- `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
- `<p class="small first-fork-disclaimer">照原著走也不是死路。不同做法会留下不同的证据，改变之后的相遇与第七天。</p>`+
- `<details class="first-fork-full-story"><summary>先看看完整穿书经过（可选）</summary>${allStory}</details>`;
+ // Narrative is the main first-session experience, not an optional accordion.
+ // Page progress is saved without issuing a story command. The first decisive
+ // choice exists in the interpreter from the start but is not rendered or
+ // accepted by the UI until the canonical opening has actually been read.
+ const consumed=cp.pages.slice(0,page+1).flat();
+ const recognized=consumed.some(x=>x.speaker==='B');
+ const readCost=consumed.some(x=>x.text.includes('【原著第七天】'));
+ const recognizedStage=recognized?'原著的记忆对上了':consumed.some(x=>x.text.includes('工牌'))?'醒在一个陌生的身体里':'现实突然断了线';
+ const subtitle=readCost?'你已经知道照原著走的代价':recognizedStage;
+ const progress=`<div class="intro-progress"><span>穿书经过 · 主线必读</span><span>${page+1} / ${cp.pages.length}</span></div>`;
+ if(!cp.last){
+  return `<section class="first-fork-head intro-reading-head"><span class="kicker">第一章 · 醒来的不是原来的你</span><h2>${page===0?'手机上的那一页，<em>突然黑了。</em>':esc(subtitle)}</h2><p>跟着现场发生的事，一点点想起自己的处境。</p></section>`+
+   progress+`<section class="intro-story-pages" aria-label="穿书经过第${page+1}页">${rowsHTML(cp.rows)}</section>`+
+   `<p class="intro-reading-note">还没有到决定的时刻。继续阅读，不会替你作选择。</p>`+controls(cp);
+ }
+ return `<section class="first-fork-head intro-reading-head"><span class="kicker">第一章 · 原著的岔路口</span><h2>你知道了结局。<br><em>现在由你决定。</em></h2><p>这一次，不再由原著替许照选择。</p></section>`+progress+
+  `<section class="intro-story-pages" aria-label="穿书经过最后一页">${rowsHTML(cp.rows)}</section>`+
+  `<section class="first-fork-facts" aria-label="原著剧情和选择代价"><div><strong>原著第一步</strong><p>许照听程放的话留守设备箱，没找回原版。</p></div><div><strong>原著结果</strong><p>陆景行弹琴救场；第七天许照被推责清退。</p></div><div><strong>你的先知</strong><p>箱底有枚原著没用上的蓝胶带 U 盘。</p></div></section>`+
+  `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
+  `<p class="small first-fork-disclaimer">照原著走也不是必败路线。不同做法将改变证据、相遇和第七天的处境。</p>`;
 }
 
 function sourceScene(){
@@ -479,7 +491,7 @@ document.addEventListener('click',ev=>{
   }
   if(b.dataset.choice){
    if(phase!=='scene'||Number(b.dataset.render)!==renderToken||Number(b.dataset.revision)!==state.revision)return;
-   const cp=currentPage();if(!cp.last&&state.current!=='ENTRY_WAKE')return;
+   const cp=currentPage();if(!cp.last)return;
    markRead(cp);
    const out=choose(state,DATA,b.dataset.choice,state.revision);
    state=out.state;lastReply=out.reply;phase=lastReply.length?'reply':'scene';page=0;choicePage=0;

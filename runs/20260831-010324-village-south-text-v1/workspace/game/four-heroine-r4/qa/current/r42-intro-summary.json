@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "description": "r4.2 mandatory transmigration intro regression. Browser evidence is injected local DOM with explicit mocked localStorage; human tests not performed.",
+  "sourceSha256": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
+  "engineSha256": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa",
+  "standaloneHtmlSha256": "db1a251a35a0858970e49ec370200d6fc689c351f629b08ca0db6114bef5f4ef",
+  "interpreter": {
+    "status": "PASS",
+    "sceneCount": 228,
+    "choiceCount": 751,
+    "endings": 24,
+    "conditionalTextWitnessCount": 596,
+    "source": "npm run verify; qa/current/delivery-integrity.json"
+  },
+  "fixtureUi": {
+    "status": "PASS",
+    "cases": 16,
+    "source": "qa/current/browser/fixture-ui/ui-report.json",
+    "includes": [
+      "mandatory full opening",
+      "intro midpage resume",
+      "5 rescue methods",
+      "original-canon branches",
+      "state restore",
+      "4 viewports and large font"
+    ]
+  },
+  "fixtureReader": {
+    "status": "PASS",
+    "cases": 5,
+    "source": "qa/current/browser/fixture-reader/reader-chromium-all-report.json",
+    "includes": [
+      "95 real touch commands for four-heroine route",
+      "historical rewind",
+      "24 main endings + 8 bonuses",
+      "all 40 epilogues in DOM",
+      "quota failure",
+      "landscape and large font"
+    ]
+  },
+  "oldSave": {
+    "key": "gonglue:revision-r4.2:canonical",
+    "newKey": "gonglue:revision-r4.2-intro:canonical",
+    "oldUntouched": true
+  },
+  "gates": {
+    "remoteHttpCi": "PENDING_NEW_HEAD",
+    "physicalPhone": "NOT_TESTED",
+    "independentHuman": "NOT_TESTED",
+    "realRetention": "NOT_TESTED",
+    "platformAds": "NOT_TESTED"
+  },
+  "note": "Maintains 3 real initial choices after, not before, full narrative. Source story version remains revision-r4.2; story sha and save namespace isolate the content change."
+}

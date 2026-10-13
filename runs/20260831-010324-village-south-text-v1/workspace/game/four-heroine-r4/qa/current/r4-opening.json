@@ -1,13 +1,13 @@
 {
   "scope": "r4.2 first-choice canon-vs-deviation normal interpreter regression; not real player or device evidence",
   "hashes": {
-    "story": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b"
+    "story": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242"
   },
   "checks": [
     {
       "name": "first_real_choice_is_three_canon_aware_actions",
       "status": "PASS",
-      "detail": 8
+      "detail": 28
     },
     {
       "name": "canon_piano_route_keeps_original_no_blue_disc",

@@ -195,3 +195,18 @@ body[data-current=COLD][data-phase=scene] .crisis-scene h2{font-size:21px;margin
 .current-goal{margin-bottom:9px;padding:8px 12px}
 body.large .rescue-option strong{font-size:19px}
 body.large .rescue-option small{font-size:15px}
+
+/* r4.2 intro repair: trans-migration is mandatory story, not a spoiler drawer. */
+.intro-reading-head{padding:15px 16px;margin:0 0 12px;background:linear-gradient(122deg,#241d34,#17121f 75%)}
+.intro-reading-head h2{font-size:22px;line-height:1.38;margin:6px 0 7px}
+.intro-reading-head p{font-size:12px;line-height:1.55;color:#cfc4d9}
+.intro-progress{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #493a53;padding:0 2px 9px;margin-bottom:9px;font-size:12px;color:#e9cbd8;font-variant-numeric:tabular-nums}
+.intro-story-pages .line{margin:11px 0 13px}
+.intro-story-pages .line p{line-height:1.74}
+.intro-reading-note{font-size:12px;color:#c6b9d0;margin:16px 3px 0;line-height:1.5}
+body[data-current="ENTRY_WAKE"] .intro-story-pages .memory{background:#261d2c;border-left-color:#dda0bd}
+body[data-current="ENTRY_WAKE"] .first-fork-facts{margin-top:13px}
+body[data-current="ENTRY_WAKE"] .first-fork-choice{min-height:72px}
+body.large .intro-reading-head h2{font-size:27px}
+body.large .intro-reading-note,body.large .intro-progress{font-size:15px}
+@media(max-width:360px){.intro-reading-head h2{font-size:21px}.intro-reading-head{padding:13px}}

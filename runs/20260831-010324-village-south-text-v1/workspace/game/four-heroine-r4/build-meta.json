@@ -1,19 +1,19 @@
 {
   "version": "revision-r4.2",
-  "storyHash": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
+  "storyHash": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
   "files": {
-    "data/STORY.json": "f05a8fe1d90d3dd4eae03eda34557e9d1d4ba0b7799e47d3dd5915a3d1bd8c7b",
+    "data/STORY.json": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
     "data/EPILOGUES.json": "7855b10ef4ad4c9a47f5a90fc91b904f612c19cfbcf26577cfa08c5e8ffebb09",
     "data/BONUS.json": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e",
     "data/CODA.json": "f212fdb2f110d268da43380f1a84772b2c5365b48041d434fe7f8d76a3a3e07e",
     "data/HANDBOOK.json": "a51224fb015cefe58d65e3e2864218023bac95f222ed7eccf00a141a977cf5ba",
     "tools/engine.mjs": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa",
-    "tools/preview-ui.js": "381e370e1113ba33a801daf9eef0cc649f99944094c3a75d18ec311d3abb9138",
-    "tools/preview.css": "57a2e5c950935e3b63796dd436d02628f15b0006227127610e3af39018826e31",
+    "tools/preview-ui.js": "1fd76a422dbb4610a36d8f777be71088527f0df624f33f6d3e32f414c64a27b2",
+    "tools/preview.css": "ab4029e273b2231def8cbfb328fb23f404d52a1c70fffa4dbccc04f8d74e8457",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "231f700ba0509b8ad8336b384ccf0847b9e014197395413e2acbbbcff0809700",
-    "index.html": "8c1619fc8a403824a11c1f944e4c702334743149d89cf6dc729ba16954bcaf48",
-    "play.html": "8c1619fc8a403824a11c1f944e4c702334743149d89cf6dc729ba16954bcaf48",
-    "repository-index.html": "4251b6921913c768105f5b86602433ab1e7100e98ae640a4d00e1d688b5e2c55"
+    "runtime.mjs": "a6b0c7064264f01d9b1a5c9424e2583f746f4139751bb7317bd4420d35c2b4e0",
+    "index.html": "db1a251a35a0858970e49ec370200d6fc689c351f629b08ca0db6114bef5f4ef",
+    "play.html": "db1a251a35a0858970e49ec370200d6fc689c351f629b08ca0db6114bef5f4ef",
+    "repository-index.html": "73852a77a5926adf929209d0cd3b393dffc26658f6394f384a896879f88ec87e"
   }
 }
