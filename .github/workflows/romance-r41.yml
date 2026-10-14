@@ -90,3 +90,11 @@ jobs:
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-routes/**/route-report.json
           if-no-files-found: warn
           retention-days: 7
+      - name: Upload verified standalone v4.10 H5 game
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: romance-v410-offline-h5
+          path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
+          if-no-files-found: error
+          retention-days: 14
