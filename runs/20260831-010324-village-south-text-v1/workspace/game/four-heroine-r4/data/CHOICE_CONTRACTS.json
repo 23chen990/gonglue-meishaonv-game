@@ -1,6 +1,6 @@
 {
   "version": "revision-r4.3",
-  "storySha256": "473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b",
+  "storySha256": "fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a",
   "method": "全量选择登记；只列真实文本条件和明确运行时消费。留档字段不算长期影响；见测试中具体反事实案例。",
   "choices": [
     {

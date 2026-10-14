@@ -14,9 +14,18 @@ const latest=JSON.parse(storyText);
 const M=JSON.parse(read('patch/v49_story_punchup.json'));
 const contracts=JSON.parse(read('data/CHOICE_CONTRACTS.json'));
 const P410=JSON.parse(read('patch/v410_scene_polish.json'));
-assert.equal(sha(storyText),P410.newStorySha256,'v4.10 source checksum');
+const P411=JSON.parse(read('patch/v411_dialogue_pov.json'));
+assert.equal(sha(storyText),P411.newStorySha256,'v4.11 source checksum');
+assert.equal(P411.baseStorySha256,P410.newStorySha256,'v4.10 predecessor checksum');
 assert.equal(P410.baseStorySha256,M.newStorySha256,'v4.9 predecessor checksum');
 const D=structuredClone(latest);
+for(const ch of P411.changes){
+ const sc=D.scenes[ch.scene];
+ const row=ch.loc==='body'?sc.body[ch.index]:ch.loc==='block'?sc.blocks[ch.index].lines[ch.lineIndex]:sc.choices.find(x=>x.id===ch.choice).reply[ch.lineIndex];
+ assert(row && row.id===ch.id && row.speaker===ch.speaker,'v4.11 line identity '+ch.id);
+ assert.equal(row.text,ch.after);assert.equal(row.textHash,ch.afterTextHash);
+ row.text=ch.before;row.textHash=ch.beforeTextHash;
+}
 for(const ch of P410.changes){
  const choice=D.scenes[ch.scene].choices.find(x=>x.id===ch.choice);
  assert(choice,'missing choice '+ch.scene+'/'+ch.choice);
@@ -27,8 +36,8 @@ for(const ch of P410.changes){
  row.text=ch.before;row.textHash=ch.beforeTextHash;
 }
 const old=structuredClone(D);
-assert.equal(sha(storyText),P410.newStorySha256,'new canonical SHA');
-assert.equal(contracts.storySha256,P410.newStorySha256,'choice registry SHA');
+assert.equal(sha(storyText),P411.newStorySha256,'new canonical SHA');
+assert.equal(contracts.storySha256,P411.newStorySha256,'choice registry SHA');
 assert.equal(D.version,'revision-r4.3','preserve engine story revision');
 assert.equal(Object.keys(D.scenes).length,228,'scene count preserved');
 assert.equal(Object.values(D.scenes).filter(s=>s.kind==='ending').length,24,'ending count preserved');
@@ -108,7 +117,7 @@ function play(first,overrides={}){
  return {ending:s.ending,commands:count};
 }
 const routes=[play('canon',{ENTRY_CLUES:'witness',OP_CANON:'question',A6a:'public'}),play('canon',{ENTRY_CLUES:'refuse',A6a:'partner'}),play('rescue',{COLD:'t'}),play('investigate',{ENTRY_MEMORY:'email',COLD:'g'})];
-const report={storySha256:P410.newStorySha256,baseStorySha256:M.baseStorySha256,patchCounts:M.counts,
+const report={storySha256:P411.newStorySha256,baseStorySha256:M.baseStorySha256,patchCounts:M.counts,
  scenes:228,choices:751,endings:24,entryBeats:28,
  choicesWithTracedLaterConsumer:later.length,choiceConsumerRatioPct:downstream,
  note:'下游引用率是静态代理指标，不证明玩家主观认为所有选择有意义。',routes};

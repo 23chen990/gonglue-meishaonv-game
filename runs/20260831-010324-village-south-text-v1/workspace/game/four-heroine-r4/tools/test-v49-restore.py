@@ -9,9 +9,20 @@ story=(ROOT/'data/STORY.json').read_bytes()
 new=json.loads(story)
 p=json.loads((ROOT/'patch/v49_story_punchup.json').read_text())
 p410=json.loads((ROOT/'patch/v410_scene_polish.json').read_text())
-assert sha(story)==p410['newStorySha256'], 'current v4.10 hash drift'
+p411=json.loads((ROOT/'patch/v411_dialogue_pov.json').read_text())
+assert sha(story)==p411['newStorySha256'], 'current v4.11 hash drift'
+assert p411['baseStorySha256']==p410['newStorySha256'], 'v4.10 predecessor SHA drift'
 assert p410['baseStorySha256']==p['newStorySha256'], 'v4.9 predecessor SHA drift'
 old=copy.deepcopy(new)
+for ch in reversed(p411['changes']):
+ sc=old['scenes'][ch['scene']]
+ row=(sc['body'][ch['index']] if ch['loc']=='body' else
+      sc['blocks'][ch['index']]['lines'][ch['lineIndex']] if ch['loc']=='block' else
+      next(x for x in sc['choices'] if x['id']==ch['choice'])['reply'][ch['lineIndex']])
+ assert row['id']==ch['id'] and row['speaker']==ch['speaker'] and row['text']==ch['after'] and row['textHash']==ch['afterTextHash']
+ row['text']=ch['before'];row['textHash']=ch['beforeTextHash']
+v410_bytes=(json.dumps(old,ensure_ascii=False,indent=2)+'\n').encode()
+assert sha(v410_bytes)==p411['baseStorySha256'], 'v4.11 must restore exact v4.10 source'
 seen410=set()
 for ch in reversed(p410['changes']):
  key=(ch['scene'],ch['choice'],ch['id'])
@@ -45,5 +56,5 @@ old_bytes=(json.dumps(old,ensure_ascii=False,indent=2)+'\n').encode()
 assert sha(old_bytes)==p['baseStorySha256'], 'unexpected change outside listed text, label, title or textHash'
 counts=collections.Counter(ch['kind'] for ch in p['changes']);assert counts=={'text':158,'choice_label':68,'scene_title':26},counts
 assert len({ch['scene'] for ch in p['changes']})==28
-print('PASS exact v4.10 -> v4.9 -> v4.8 source rollback; no altered gameplay structures')
+print('PASS exact v4.11 -> v4.10 -> v4.9 -> v4.8 source rollback; gameplay unchanged')
 print('BASE_SHA',p['baseStorySha256'],'NEW_SHA',p['newStorySha256'])
