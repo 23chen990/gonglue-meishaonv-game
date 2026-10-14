@@ -29,6 +29,8 @@ def bundles():
     m=J('build-meta.json')
     for p,h in m['files'].items():assert sha(R/p)==h,p
     assert 'src="/src/main.ts"' in (R/'repository-index.html').read_text()
+    if (R.parent/'src/main.ts').is_file():
+        assert (R.parent/'index.html').read_bytes()==(R/'repository-index.html').read_bytes(), 'default game/index.html has stale story metadata'
     return 'Standalone and repository module contain identical canonical content; build hashes checked.'
 check('Canonical source and both builds match',bundles)
 def graph():

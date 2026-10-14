@@ -1,7 +1,7 @@
 """2026-10-14 independent render/interaction QA. Fixture DOM + simulated localStorage.
 Does NOT claim native HTTP persistence, hardware or human usability."""
 from pathlib import Path
-import json,hashlib,sys,os
+import json,hashlib,sys,os,traceback
 from playwright.sync_api import sync_playwright
 R=Path(__file__).resolve().parent.parent
 HTML=(R/'index.html').read_text()
@@ -15,7 +15,7 @@ def check(name,cb):
  try:
   detail=cb();report['cases'].append({'name':name,'status':'PASS','detail':detail});print('PASS',name,detail,flush=True)
  except Exception as e:
-  report['cases'].append({'name':name,'status':'FAIL','error':str(e)});report['errors'].append({'name':name,'error':str(e)});print('FAIL',name,str(e),flush=True)
+  report['cases'].append({'name':name,'status':'FAIL','error':str(e)});report['errors'].append({'name':name,'error':str(e) or repr(e),'trace':traceback.format_exc()});print('FAIL',name,repr(e),flush=True)
  (R/'qa/current/v45-browser-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 def page_for(browser,w=390,h=844,seed=None):
  ctx=browser.new_context(viewport={'width':w,'height':h},is_mobile=True,has_touch=True)
