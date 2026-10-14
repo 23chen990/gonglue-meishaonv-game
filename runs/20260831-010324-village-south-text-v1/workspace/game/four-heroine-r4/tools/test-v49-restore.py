@@ -8,8 +8,21 @@ sha=lambda b:hashlib.sha256(b).hexdigest()
 story=(ROOT/'data/STORY.json').read_bytes()
 new=json.loads(story)
 p=json.loads((ROOT/'patch/v49_story_punchup.json').read_text())
-assert sha(story)==p['newStorySha256']
+p410=json.loads((ROOT/'patch/v410_scene_polish.json').read_text())
+assert sha(story)==p410['newStorySha256'], 'current v4.10 hash drift'
+assert p410['baseStorySha256']==p['newStorySha256'], 'v4.9 predecessor SHA drift'
 old=copy.deepcopy(new)
+seen410=set()
+for ch in reversed(p410['changes']):
+ key=(ch['scene'],ch['choice'],ch['id'])
+ assert key not in seen410,key
+ seen410.add(key)
+ choice=next(x for x in old['scenes'][ch['scene']]['choices'] if x['id']==ch['choice'])
+ row=next(x for x in choice['reply'] if x['id']==ch['id'])
+ assert row['speaker']==ch['speaker'] and row['text']==ch['after'] and row['textHash']==ch['afterTextHash'],key
+ row['text']=ch['before'];row['textHash']=ch['beforeTextHash']
+v49_bytes=(json.dumps(old,ensure_ascii=False,indent=2)+'\n').encode()
+assert sha(v49_bytes)==p['newStorySha256'], 'v4.10 reverse must restore EXACT v4.9 bytes'
 seen=set()
 for ch in p['changes']:
  path=ch['path'];assert path not in seen,path;seen.add(path)
@@ -32,5 +45,5 @@ old_bytes=(json.dumps(old,ensure_ascii=False,indent=2)+'\n').encode()
 assert sha(old_bytes)==p['baseStorySha256'], 'unexpected change outside listed text, label, title or textHash'
 counts=collections.Counter(ch['kind'] for ch in p['changes']);assert counts=={'text':158,'choice_label':68,'scene_title':26},counts
 assert len({ch['scene'] for ch in p['changes']})==28
-print('PASS exact restore of prior v4.8 source; zero structural changes outside 252 audited items')
+print('PASS exact v4.10 -> v4.9 -> v4.8 source rollback; no altered gameplay structures')
 print('BASE_SHA',p['baseStorySha256'],'NEW_SHA',p['newStorySha256'])
