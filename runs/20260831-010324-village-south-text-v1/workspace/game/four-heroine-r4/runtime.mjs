@@ -453,11 +453,10 @@ function firstForkHTML(cp){
    progress+`<section class="intro-story-pages" aria-label="穿书经过第${page+1}页">${rowsHTML(cp.rows)}</section>`+
    `<p class="intro-reading-note">还没有到决定的时刻。继续阅读，不会替你作选择。</p>`+controls(cp);
  }
- return `<section class="first-fork-head intro-reading-head"><span class="kicker">第一章 · 原著的岔路口</span><h2>你知道了结局。<br><em>现在由你决定。</em></h2><p>这一次，不再由原著替许照选择。</p></section>`+progress+
+ return `<div class="intro-progress"><span>第一章 · 原著的岔路口</span><span>${page+1} / ${cp.pages.length}</span></div>`+
   `<section class="intro-story-pages" aria-label="穿书经过最后一页">${rowsHTML(cp.rows)}</section>`+
-  `<p class="first-fork-decision-voice">我记得原著怎样结束。现在每条路都可能付出代价，可这一回，总该由我自己决定。</p>`+
   `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
-  `<p class="small first-fork-disclaimer">照原著走也不是必败路线。不同做法将改变证据、相遇和第七天的处境。</p>`;
+  `<p class="small first-fork-disclaimer">选项会改变后续事件；不替你预先选定恋人。</p>`;
 }
 
 function sourceScene(){
@@ -506,7 +505,8 @@ function directBridge(){
 function sceneStagePortrait(cp){
  const activeChar=activePortrait();
  if(activeChar)return activeChar;
- if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
+  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)return 't';
+  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
  const rows=cp.rows||[];
  for(let i=rows.length-1;i>=0;i--){
   const c={T:'t',S:'s',L:'l',G:'g'}[rows[i].speaker];if(c)return c;
@@ -522,7 +522,7 @@ function vnFrame(cp,interior,sceneTitle,bridge=null){
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
  const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${cp.last?'选择在下方直接进行':'轻触下方继续阅读'}</div></div></section>`;
- return `<div class="vn-frame" data-phase="${phase}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
+ return `<div class="vn-frame" data-phase="${phase}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }
 function storyHTML(){
  const cp=currentPage();let interior='',bridge=null,heading=cp.view.title;
@@ -600,7 +600,7 @@ function menuHTML(){
  <button class="quiet" data-nav="collection">结局收藏</button><button class="quiet" data-action="font">${large?'恢复普通字号':'大字阅读'}</button><button class="quiet" data-action="sound">${soundOn?'关闭轻音效':'开启轻音效'}</button>
  <button class="quiet" data-action="export">导出这局记录</button><button class="quiet" data-action="import">导入本版记录</button>
  <button class="quiet" data-action="reset">备份后新开局</button><button class="quiet" data-action="reload">读取已保存记录</button></div>
- <section class="panel small"><h3>这份版本的范围</h3><p>v4.5 竖屏全剧情候选。保留四女主正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
+ <section class="panel small"><h3>这份版本的范围</h3><p>v4.8 竖屏全剧情候选。保留四女主正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
  <p>角色均为成年人。本版使用原创候选立绘和自制轻音效；没有平台广告接入或真人留存结论。原始文件和旧版存档不改写。</p>
  <p>${saveBlocked?'当前未自动保存，请离开前导出记录。':'选择、回应页与阅读位置会保存在此浏览器的本版独立记录中。'}</p></section>`;
 }
@@ -636,7 +636,13 @@ function render(scrollWindow=true){
   if(frame?.dataset.readerKey===storyScroll.key){
    if(area)area.scrollTop=storyScroll.text;
    if(dock&&storyScroll.choicePage===choicePage)dock.scrollTop=storyScroll.dock;
-  }else storyScroll={key:frame?.dataset.readerKey||null,text:0,dock:0,choicePage};
+  }else{
+   // At the final required intro beat, lead with the immediate dilemma.
+   // Earlier words stay readable by scrolling up, without extra taps.
+   if(area&&state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)
+    area.scrollTop=Math.max(0,area.scrollHeight-area.clientHeight);
+   storyScroll={key:frame?.dataset.readerKey||null,text:area?.scrollTop||0,dock:0,choicePage};
+  }
  }
  document.getElementById('menu').setAttribute('aria-expanded',String(panel==='menu'));
  showNotice();
