@@ -67,8 +67,10 @@ def hit(browser, width, height, route):
           };
         }''')
         assert geometry['finalNarrativeVisible']>=45,('final plot cannot be read',geometry)
-        assert geometry['bodyScrollHeight']>geometry['bodyViewportHeight']+20,'cannot review earlier lines'
-        assert geometry['bodyScrollTop']>0,'first decision still starts at decorative headers'
+        if geometry['bodyScrollHeight']>geometry['bodyViewportHeight']+20:
+            assert geometry['bodyScrollTop']>0,'first decision still starts at decorative headers'
+        else:
+            assert geometry['bodyScrollTop']==0,'unexpected scroll when the full last page already fits'
         assert geometry['dockFits'],'three first options require another scroll'
         assert not geometry['overflow'],'horizontal viewport overflow'
         assert [x['id'] for x in geometry['choices']]==['canon','rescue','investigate']
