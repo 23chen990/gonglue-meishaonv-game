@@ -1,3 +1,11 @@
+# 最新：2026-10-14 r4.5 完整竖屏客户端与剧情候选
+
+可直接打开 `play.html` 体验完整游戏（不需服务器）。新版候选改造在 `tools/preview-ui.js`、`tools/vn.css`、`assets/` 和 `data/STORY.json`；详情及诚实 QA 边界请先看 `docs/R45_COMPLETE_DELIVERY_AND_QA.md`。本包不是正式发布版本，不能把模拟器测试当作真人/实体手机/平台验收。
+
+---
+
+> **r4.3 current:** Mandatory 28-beat transmigration intro retained; 140 story copy/label edits, inline first-person recollection; read `docs/R43_STORY_EDITORIAL_AND_UX.md` for SHA and QA. This is a draft, not production release.
+
 > **r4.2 新版（2026-10-13）**：第一个真正的决定现在是“照原著走／改变首演／先查背锅线”三选一。原著钢琴救场与第七天清退后果会在选择前出现，三条路线有不同的证据与事件，并在第 2/5/7 天回收。正式源码 `data/STORY.json`，完整记录见 `docs/R42_ORIGINAL_NOVEL_BRANCHING.md` 和 `docs/R42_QA.md`。原 r4.1 的 63 处文字修订仍保留。
 
 # 攻略美少女 · r4 完整可试玩修订版

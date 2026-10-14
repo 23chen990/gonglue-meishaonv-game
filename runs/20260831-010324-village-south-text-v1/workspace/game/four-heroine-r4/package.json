@@ -1,6 +1,6 @@
 {
   "name": "gonglue-four-heroine-r4",
-  "version": "4.0.0",
+  "version": "4.5.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -10,9 +10,9 @@
     "build": "node tools/build-preview.mjs",
     "test": "node tools/test-r2.mjs && node tools/test-independent.mjs && node tools/test-information.mjs && node tools/test-final-edges.mjs && node tools/test-r3-regressions.mjs && node tools/test-r3-product.mjs && node tools/test-exploration.mjs && node tools/audit-choice-count.mjs && node tools/test-conditional-r3.mjs && node tools/test-r4-opening.mjs && node tools/test-r4-causality.mjs",
     "export": "node tools/archive-expectations.mjs && node tools/measure-experience.mjs && python3 tools/export-and-audit.py",
-    "verify": "npm run build && npm test && npm run export && python3 tools/verify-delivery.py",
+    "verify": "npm run build && npm test && npm run export && python3 tools/verify-delivery.py && node tools/test-r43-editorial.mjs",
     "serve": "python -m http.server 8765",
-    "test:browser:offline": "python3 tools/test-ui-r4.py && python3 tools/test-reader-r4.py",
-    "test:browser": "R4_MODE=native python3 tools/test-ui-r4.py && R4_REAL_URL=http://127.0.0.1:8765/index.html python3 tools/test-reader-r4.py"
+    "test:browser:offline": "python3 tools/test-v45-browser.py && python3 tools/test-v45-schedule.py && python3 tools/test-v45-route.py",
+    "test:browser": "R4_MODE=native R4_REAL_URL=http://127.0.0.1:8765/index.html python3 tools/test-v45-browser.py && R4_REAL_URL=http://127.0.0.1:8765/index.html python3 tools/test-v45-route.py"
   }
 }
