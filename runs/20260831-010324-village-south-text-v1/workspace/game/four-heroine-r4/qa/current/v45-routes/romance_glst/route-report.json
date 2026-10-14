@@ -1,0 +1,17 @@
+{
+  "scope": "Chromium touch with simulated localStorage. Commands must match actual story-engine witnesses; not real hardware or human play.",
+  "sha256": "c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059",
+  "routes": [
+    {
+      "route": "romance_glst",
+      "status": "PASS",
+      "ending": "R_glst",
+      "realTouchChoices": 94,
+      "recordedCommands": 95,
+      "zeroTapContinuation": 1,
+      "rewind": true
+    }
+  ],
+  "failures": [],
+  "status": "PASS"
+}

@@ -29,11 +29,13 @@ def bundles():
     m=J('build-meta.json')
     for p,h in m['files'].items():assert sha(R/p)==h,p
     assert 'src="/src/main.ts"' in (R/'repository-index.html').read_text()
+    if (R.parent/'src/main.ts').is_file():
+        assert (R.parent/'index.html').read_bytes()==(R/'repository-index.html').read_bytes(), 'default game/index.html has stale story metadata'
     return 'Standalone and repository module contain identical canonical content; build hashes checked.'
 check('Canonical source and both builds match',bundles)
 def graph():
     d=J('data/STORY.json');c=J('data/CHOICE_CONTRACTS.json');st=J('qa/current/static-audit.json')
-    assert d['version']=='revision-r4.2' and len(d['scenes'])==228
+    assert d['version']=='revision-r4.3' and len(d['scenes'])==228
     ids={s['id']+'/'+o['id'] for s in d['scenes'].values() for o in s['choices']}
     assert len(ids)==751 and ids=={x['id'] for x in c['choices']}
     assert c['storySha256']==hs and st['storySha256']==hs and st['status']=='PASS'

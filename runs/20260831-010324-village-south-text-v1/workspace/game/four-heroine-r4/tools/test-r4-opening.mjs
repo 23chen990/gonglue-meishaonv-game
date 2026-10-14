@@ -15,7 +15,7 @@ check('first_real_choice_is_three_canon_aware_actions',()=>{
  for(const mark of ['第七天','陆景行','钢琴','蓝胶带','程放','许照'])assert.ok(text.includes(mark),mark);
  assert.ok(text.includes('听程放')&&text.includes('清退'));
  assert.ok(text.indexOf('眼前彻底黑了')<text.indexOf('工牌'));
- assert.ok(text.indexOf('工牌')<text.indexOf('《今夜偏爱男主》。北岸'));
+ assert.ok(text.indexOf('工牌')<text.indexOf('我记得了！《今夜偏爱男主》'));
  assert.ok(text.indexOf('第七天')<text.indexOf('蓝胶带'));
  assert.ok(v.body.length>=20,'Transmigration cannot be a single summary card');
  assert.throws(()=>choose(s,d,'steady'),/Unavailable/);
@@ -77,7 +77,7 @@ check('all_previously_verified_canon_facts_remain',()=>{
  assert.equal(d.canon.book,'今夜偏爱男主');assert.equal(d.canon.expelledChapter,13);
  assert.equal(d.canon.criticalDay,7);assert.equal(d.canon.performanceChapter,null);
  assert.match(d.canon.originalProtagonistFirstAction.status,/creative canon expansion/);
- assert.equal(d.version,'revision-r4.2');return d.canon.originalProtagonistFirstAction.status;
+ assert.equal(d.version,'revision-r4.3');return d.canon.originalProtagonistFirstAction.status;
 });
 const dir=new URL('../qa/current/',import.meta.url);fs.mkdirSync(dir,{recursive:true});
 const report={scope:'r4.2 first-choice canon-vs-deviation normal interpreter regression; not real player or device evidence',hashes:{story:crypto.createHash('sha256').update(fs.readFileSync(new URL('../data/STORY.json',import.meta.url))).digest('hex')},checks,passed:checks.filter(c=>c.status==='PASS').length,failed:checks.filter(c=>c.status==='FAIL').length};

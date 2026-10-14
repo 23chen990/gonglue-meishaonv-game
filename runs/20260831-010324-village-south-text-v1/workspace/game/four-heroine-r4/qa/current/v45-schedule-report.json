@@ -1,0 +1,9 @@
+{
+  "mode": "fixture simulated storage + script replay, all normal-witness schedule prefixes",
+  "candidateStates": 300,
+  "visited": 300,
+  "differentSets": 151,
+  "maxRealOptions": 24,
+  "failures": [],
+  "status": "PASS"
+}

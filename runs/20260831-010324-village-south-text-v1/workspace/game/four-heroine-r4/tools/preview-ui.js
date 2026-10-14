@@ -1,14 +1,14 @@
 
 // Offline r4 controller: canonical replay, separately scoped read-only archives.
 // No remote resources, ad SDK, analytics, or silent legacy-save migration.
-const names={N:'',P:'你',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',LU:'陆景行',C:'程放',B:'原著记忆',U:'',A:'阿衡',X:'现场'};
-const KEY='gonglue:revision-r4.2-intro:canonical';
-const PREVIOUS_KEY='gonglue:revision-r4.2:canonical';
+const names={N:'',P:'你',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',LU:'陆景行',C:'程放',B:'',U:'',A:'阿衡',X:'现场'};
+const KEY='gonglue:revision-r4.5-portrait:canonical';
+const PREVIOUS_KEY='gonglue:revision-r4.3-intro:canonical';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
 let profile={endings:{},bonuses:{},readPages:[]}, notice='', saveBlocked=false, lastRaw=null;
-let choicePage=0;
+let choicePage=0, soundOn=false, soundContext=null;
 let renderToken=0, downToken=null, pointerStart=null, moved=false, previousScroll=0, large=false;
 let storage=null;
 try{storage=window.localStorage;}catch{saveBlocked=true;notice='这个窗口暂时不能保存。仍可继续阅读；离开前请在菜单导出记录。';}
@@ -40,7 +40,7 @@ function safeProfile(raw){
 }
 function snapshot(){
  return {version:VERSION,storyHash:STORY_HASH,commands:state.history,
-         ui:{phase,page,choicePage,large},profile};
+         ui:{phase,page,choicePage,large,soundOn},profile};
 }
 function save(){
  // Collection unlocks belong to memory first; a quota or permission error only prevents persistence.
@@ -64,11 +64,11 @@ function readPayload(v){
  const ui=v.ui||{};
  const ph=ui.phase==='reply'&&reply.length?'reply':'scene';
  const pg=Number.isInteger(ui.page)&&ui.page>=0&&ui.page<1000?ui.page:0;
- const choiceGroup=Number.isInteger(ui.choicePage)&&ui.choicePage>=0&&ui.choicePage<20?ui.choicePage:0;
- return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,profile:safeProfile(v.profile)};
+ const choiceGroup=Number.isInteger(ui.choicePage)&&ui.choicePage>=0&&ui.choicePage<100?ui.choicePage:0;
+ return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,profile:safeProfile(v.profile)};
 }
 function install(v){
- state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;profile=v.profile;
+ state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;soundOn=v.soundOn||false;profile=v.profile;
  panel='story';
 }
 function load(){
@@ -100,7 +100,11 @@ function splitLongBeat(b){
  return out.length?out:[b];
 }
 function paginate(rows){
- const flat=rows.flatMap(splitLongBeat), pages=[];let p=[],n=0;
+ // Only the 28-beat book-entry prologue is paced in chapters; everywhere else
+ // the actor's words and consequential choices share one scrollable sheet.
+ const flat=rows.flatMap(splitLongBeat);
+ if(!(phase==='scene'&&state.current==='ENTRY_WAKE'))return [flat];
+ const pages=[];let p=[],n=0;
  for(const b of flat){
   if(p.length&&(n+b.text.length>190||p.length>=4)){pages.push(p);p=[];n=0;}
   p.push(b);n+=b.text.length;
@@ -179,9 +183,128 @@ function rowsHTML(rows){
   const sid=phase==='reply'?state.history.at(-1)?.from:state.current;
   const earlyNames=sid==='ENTRY_WAKE'?{A:'戴耳机的男人',C:'对讲机里的场务',T:'台上的女孩',LU:'钢琴旁的男人'}:sid==='ENTRY_CLUES'?{C:'场务负责人',T:'台上的女孩',LU:'钢琴旁的男人'}:{};
   const who=earlyNames[b.speaker]??names[b.speaker];
-  const cls=b.speaker==='N'?'narrator':b.speaker==='B'?'memory':b.speaker==='U'?'system':'dialogue';
+  const cls=b.speaker==='N'?'narrator':b.speaker==='B'?'thought':b.speaker==='U'?'system':'dialogue';
   return `<div class="line ${cls}" data-speaker="${esc(b.speaker)}" data-beat="${esc(b.id||'')}">${who?`<span class="who">${esc(who)}</span>`:''}<p>${esc(b.text)}</p></div>`;
  }).join('');
+}
+
+const decisionFamilies={
+ 'A2a':[['保住她的作品',['independent','negotiated','duet']],['尊重她自己的节奏',['pause','unchanged']]],
+ 'A3a':[['让旁厅继续',['cooperative','shared','residency']],['接受不同的未来',['exit','leave']]],
+ 'A3b':[['去找映雪或清辞',['t','s']],['见月或晚棠',['l','g']],['留给自己',['none']]],
+ 'A4a':[['支持见月自己的下一步',['fellowship','stay','film']],['先处理眼前的事',['cut','none']]],
+ 'A5a':[['争取真正的决定权',['independent','bounded','account']],['离开或保持距离',['leave','none']]],
+ 'A5b':[['正面回应陆景行',['ally','rival','repair']],['先走自己的路',['distance','independent']]],
+ 'A6a':[['留下来，讲清真相',['public','partner','backstage']],['考虑自己的去留',['exit','rebuild','accept']]],
+ 'A7a':[['认真把关系说清',['together','private','work']],['独处或结束承诺',['separate','none']]],
+ 'COLD':[['先找舞台上的人',['t','s']],['让记录说话',['l','g']],['先把盘交音控',['self']]],
+ 'H_glst':[['先顾好眼前的人',['favor_g','favor_l']],['再看看其他人的需要',['favor_s','favor_t']],['先一起避雨',['all']]]
+};
+for(const c of ['t','s','l','g']){
+ decisionFamilies[c+'03']=[['认真靠近她',['open','exclusive']],['现在先慢一点',['wait','friend','decline']]];
+ decisionFamilies['OP_CHECK_'+c]=[['纠正刚才不真实的话',['admit','double','withdraw']],['把疑问说清',['present','predict','privacy']],['试着接近，或先缓一缓',['ask','space']]];
+ decisionFamilies['OP_DATE_'+c]=[['现在赴约',['attend','respect']],['另约或先处理自己的事',['work','slow','apology']]];
+ for(const family of ['EXEC_','RES_']){
+   decisionFamilies[family+c]=[['帮她实现正在做的事',[]],['接受变化，不替她决定',[]]];
+ }
+}
+const decisionTwoPlusThree={
+ 'EXEC_t':[['master','terms','duet'],['hold','none']], 'RES_t':[['master','terms','duet'],['hold','none']],
+ 'EXEC_s':[['trial','slots','venue'],['handover','none']], 'RES_s':[['trial','slots','venue'],['handover','none']],
+ 'EXEC_l':[['application','own','screen'],['permissions','none']], 'RES_l':[['application','own','screen'],['permissions','none']],
+ 'EXEC_g':[['vote','bounded','account'],['leave','none']], 'RES_g':[['vote','bounded','account'],['leave','none']],
+ 'LU_MOVE2':[['ally','rival','reconciled'],['distant','independent']],
+ 'RES_lu':[['ally','rival','reconciled'],['distant','independent']]
+};
+for(const [k,parts] of Object.entries(decisionTwoPlusThree))decisionFamilies[k]=[
+ ['参与眼前的变化',parts[0]],['调整距离或另走一步',parts[1]]];
+function semanticGroups(id,enabled){
+ let definitions=decisionFamilies[id];
+ if(id==='@schedule')definitions=[
+  ['这晚去见映雪或清辞',['visit:t','visit:s']],
+  ['这晚见见月或晚棠',['visit:l','visit:g']],
+  ['把时间留给自己的生活',enabled.map(x=>x.id).filter(x=>!x.startsWith('visit:'))]
+ ];
+ if(!definitions){
+  // Deterministic safe fallback on unfamiliar stories; not a hidden next-page drawer.
+  definitions=[];
+  for(let i=0;i<enabled.length;i+=3)definitions.push(['先看看这些做法',enabled.slice(i,i+3).map(x=>x.id)]);
+ }
+ const groups=definitions.map(([title,ids])=>{
+  const items=ids.map(id=>enabled.find(x=>x.id===id)).filter(Boolean);
+  const hint=items.map(x=>x.label.replace(/[“”]/g,'').slice(0,9)).join(' / ');
+  return {title,hint,items};
+ }).filter(x=>x.items.length);
+ // Fail loud for missing/duplicate routes; never hide a legitimate action.
+ const visible=groups.flatMap(g=>g.items.map(x=>x.id));
+ if(visible.length!==enabled.length||new Set(visible).size!==enabled.length||groups.some(g=>g.items.length>4))
+  throw Error('选择分类不完整：'+id);
+ return groups;
+}
+
+function scheduleControls(enabled){
+ // At most four actual alternatives on ANY visible decision level, even after
+ // relationships and all side quests unlock. No legitimate engine action is hidden.
+ const visits=enabled.filter(x=>x.id.startsWith('visit:'));
+ const side=enabled.filter(x=>x.id.startsWith('side:'));
+ const relations=enabled.filter(x=>!x.id.startsWith('visit:')&&!x.id.startsWith('side:')&&x.id!=='rest');
+ const rest=enabled.filter(x=>x.id==='rest');
+ const button=o=>`<button class="choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`;
+ const group=(name,desc,index)=>`<button class="vn-group" data-choice-group="${index}"><span><strong>${esc(name)}</strong><small>${esc(desc)}</small></span><i aria-hidden="true">›</i></button>`;
+ const desc=xs=>xs.slice(0,3).map(x=>x.label.replace(/[“”]/g,'').slice(0,12)).join(' / ');
+ const byFamily=(xs,rule)=>{
+  const left=[...xs],groups=[];
+  for(const [title,filter] of rule){
+   const selected=left.filter(filter);selected.forEach(x=>left.splice(left.indexOf(x),1));
+   if(selected.length)groups.push({title,items:selected});
+  }
+  if(left.length)groups.push({title:'其他事情',items:left});
+  return groups;
+ };
+ const sideBuckets=byFamily(side,[
+  ['那场首演留下的事',x=>/^side:E[0-9]/.test(x.id)],
+  ['先顾好自己的生活',x=>/^side:SELF/.test(x.id)],
+  ['其他书外的新消息',x=>true]
+ ]);
+ const relBuckets=byFamily(relations,[
+  ['认真面对已经靠近的人',x=>/^(pair:|group:)/.test(x.id)],
+  ['把误会讲清楚',x=>/^(repair|reopen)/.test(x.id)],
+  ['一次新的相遇',x=>true]
+ ]);
+ const back=parent=>`<button class="vn-choice-back" data-choice-back="1" data-choice-parent="${parent}">‹ ${parent===0?'返回今晚安排':'回到上一层'}（不消耗剧情行动）</button>`;
+ const leaf=(xs,parent)=>'<div class="choices">'+xs.map(button).join('')+back(parent)+'</div>';
+ const category=(xs,base,parent,title)=>'<div class="choices vn-choice-groups"><p class="vn-choice-question">'+esc(title)+'</p>'+xs.map((x,i)=>group(x.title,desc(x.items),base+i)).join('')+back(parent)+'</div>';
+ const parts=(xs,title)=>{
+  const out=[];for(let i=0;i<xs.length;i+=3){const items=xs.slice(i,i+3);out.push({title:items.length===1?'先处理这一件':`${title}：${items[0].label.replace(/[“”]/g,'').slice(0,11)}等`,items});}
+  return out;
+ };
+ if(choicePage===1)return leaf(visits,0);
+ if(choicePage===2)return side.length<=4?leaf(side,0):category(sideBuckets,3,0,'哪种新事更要紧？');
+ if(choicePage>=3&&choicePage<=5){
+  const bucket=sideBuckets[choicePage-3];if(!bucket)throw Error('无效日程分类');
+  return bucket.items.length<=4?leaf(bucket.items,2):category(parts(bucket.items,bucket.title),20+(choicePage-3)*10,2,'先回应哪一件？');
+ }
+ if(choicePage>=20&&choicePage<50){
+  const n=Math.floor((choicePage-20)/10),index=(choicePage-20)%10,bucket=sideBuckets[n];
+  return leaf(parts(bucket?.items||[],bucket?.title||'事件')[index]?.items||[],n+3);
+ }
+ if(choicePage===8)return relations.length<=4?leaf(relations,0):category(relBuckets,9,0,'怎样回应新关系？');
+ if(choicePage>=9&&choicePage<=11){
+  const bucket=relBuckets[choicePage-9];if(!bucket)throw Error('无效关系分类');
+  return bucket.items.length<=4?leaf(bucket.items,8):category(parts(bucket.items,bucket.title),60+(choicePage-9)*10,8,'先把哪一句说清楚？');
+ }
+ if(choicePage>=60&&choicePage<90){
+  const n=Math.floor((choicePage-60)/10),index=(choicePage-60)%10,bucket=relBuckets[n];
+  return leaf(parts(bucket?.items||[],bucket?.title||'关系')[index]?.items||[],n+9);
+ }
+ if(choicePage!==0)throw Error('无效日程选择阶段');
+ let html='<div class="choices vn-choice-groups"><p class="vn-choice-question">今晚，把时间留给谁？</p>';
+ if(visits.length)html+=group('去见一个想见的人',visits.map(x=>x.label.split(':')[0].trim()).join('、'),1);
+ if(side.length)html+=group('看看书外的新事情',desc(side),2);
+ if(relations.length)html+=group('处理关系的新变化',desc(relations),8);
+ html+=rest.map(button).join('');
+ if(visits.length+side.length+relations.length+rest.length!==enabled.length)throw Error('日程动作遗漏');
+ return html+'</div>';
 }
 function controls(cp){
  if(!cp.last){
@@ -192,24 +315,26 @@ function controls(cp){
  if(cp.view.terminal)return '<div class="pager"><button class="next" data-ending="'+esc(state.ending)+'">重读这个主要结局</button><button class="quiet" data-nav="history">回到读过的选择</button><button class="quiet" data-nav="collection">结局与番外收藏</button></div>'+fateHTML(state);
  const enabled=cp.view.choices.filter(o=>o.enabled);
  const disabled=cp.view.choices.filter(o=>!o.enabled);
+ if(state.current==='@schedule'&&enabled.length>4)return scheduleControls(enabled);
  const button=o=>`<button class="choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`;
  const primaryAll=enabled;
- // Keep every legal action accessible, including side quests and rest, without opening a 5+ choice drawer.
- const limit=primaryAll.length>4||state.current==='@schedule'?3:primaryAll.length;
- const pageCount=Math.max(1,Math.ceil(primaryAll.length/(limit||1)));
- choicePage=Math.min(choicePage,pageCount-1);
- const primary=primaryAll.slice(choicePage*limit,(choicePage+1)*limit);
- const navigation=pageCount>1?`<div class="choice-nav"><span>真实选项 ${choicePage*limit+1}–${Math.min((choicePage+1)*limit,primaryAll.length)} / ${primaryAll.length} · 切换查看不消耗剧情行动</span><div>${choicePage>0?'<button type="button" class="quiet" data-choice-prev="1">上一组</button>':''}${choicePage<pageCount-1?'<button type="button" class="quiet" data-choice-next="1">再看看别的做法</button>':''}</div></div>`:'';
+ const groups=primaryAll.length>4?semanticGroups(state.current,primaryAll):null;
+ if(groups){
+  choicePage=Math.max(0,Math.min(choicePage,groups.length));
+  if(choicePage===0)return '<div class="choices vn-choice-groups"><p class="vn-choice-question">你更想怎么做？</p>'+groups.map((g,i)=>
+    `<button class="vn-group" type="button" data-choice-group="${i+1}"><span><strong>${esc(g.title)}</strong><small>${esc(g.hint)} · ${g.items.length}种做法</small></span><i aria-hidden="true">›</i></button>`).join('')+'</div>';
+ }
+ const primary=groups?groups[choicePage-1].items:primaryAll;
+ const navigation=groups?'<button type="button" class="vn-choice-back" data-choice-back="1">‹ 我想换一种方向（不消耗剧情行动）</button>':'';
  const meetButton=(o,i)=>{
   const c=o.id.startsWith('visit:')?o.id.slice(6):null;
   if(!c||!heroineDesign[c])return button(o);
   const m=heroineDesign[c],label=o.label.split('·').slice(1).join('·').trim()||o.label;
-  return `<button class="meet-card" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}" data-char="${c}" aria-label="今晚找${esc(m.name)}：${esc(label)}"><span class="meet-portrait">${portraitSVG(c,'meet'+i)}</span><span class="meet-copy"><span class="meet-chip">今晚见她 ↗</span><strong>${esc(m.name)}</strong><small>${esc(label)}</small></span></button>`;
+  return `<button class="meet-card" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}" data-char="${c}" aria-label="今晚找${esc(m.name)}：${esc(label)}"><span class="meet-portrait"><img src="${PORTRAITS[c]}" alt=""></span><span class="meet-copy"><span class="meet-chip">今晚见她 ↗</span><strong>${esc(m.name)}</strong><small>${esc(label)}</small></span></button>`;
  };
  let html=state.current==='@schedule'?
-  '<div class="choices meet-grid">'+primary.map(meetButton).join('')+'</div>':
-  '<div class="choices">'+primary.map(button).join('')+'</div>';
- html+=navigation;
+  '<div class="choices meet-grid">'+primary.map(meetButton).join('')+navigation+'</div>':
+  '<div class="choices">'+primary.map(button).join('')+navigation+'</div>';
 
  // Hidden conditional dialogue alternatives are not tease-paywalls. Show only true alternatives.
  if(!enabled.length)html+='<p class="system">这里没有可用选择，请保留记录并回到上一决定。</p>';
@@ -292,7 +417,7 @@ function firstForkHTML(cp){
  // accepted by the UI until the canonical opening has actually been read.
  const consumed=cp.pages.slice(0,page+1).flat();
  const recognized=consumed.some(x=>x.speaker==='B');
- const readCost=consumed.some(x=>x.text.includes('【原著第七天】'));
+ const readCost=consumed.some(x=>x.text.includes('第七天')&&x.text.includes('清退'));
  const recognizedStage=recognized?'原著的记忆对上了':consumed.some(x=>x.text.includes('工牌'))?'醒在一个陌生的身体里':'现实突然断了线';
  const subtitle=readCost?'你已经知道照原著走的代价':recognizedStage;
  const progress=`<div class="intro-progress"><span>穿书经过 · 主线必读</span><span>${page+1} / ${cp.pages.length}</span></div>`;
@@ -303,7 +428,7 @@ function firstForkHTML(cp){
  }
  return `<section class="first-fork-head intro-reading-head"><span class="kicker">第一章 · 原著的岔路口</span><h2>你知道了结局。<br><em>现在由你决定。</em></h2><p>这一次，不再由原著替许照选择。</p></section>`+progress+
   `<section class="intro-story-pages" aria-label="穿书经过最后一页">${rowsHTML(cp.rows)}</section>`+
-  `<section class="first-fork-facts" aria-label="原著剧情和选择代价"><div><strong>原著第一步</strong><p>许照听程放的话留守设备箱，没找回原版。</p></div><div><strong>原著结果</strong><p>陆景行弹琴救场；第七天许照被推责清退。</p></div><div><strong>你的先知</strong><p>箱底有枚原著没用上的蓝胶带 U 盘。</p></div></section>`+
+  `<p class="first-fork-decision-voice">我记得原著怎样结束。现在每条路都可能付出代价，可这一回，总该由我自己决定。</p>`+
   `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
   `<p class="small first-fork-disclaimer">照原著走也不是必败路线。不同做法将改变证据、相遇和第七天的处境。</p>`;
 }
@@ -341,16 +466,61 @@ function openingWinHTML(cp){
  <div class="meta"><span>发生过的行动已记下</span><span>${page+1} / ${cp.pages.length}</span></div>${rowsHTML(cp.rows)}${controls(cp)}${trackHTML()}`;
 }
 
-function storyHTML(){
- const cp=currentPage(), h=state.history.at(-1);
- if(state.current==='ENTRY_WAKE'&&phase==='scene'&&!state.complete)return firstForkHTML(cp);
- if(state.current==='COLD'&&phase==='scene'&&!state.complete)return openingHTML(cp);
- if(cp.view.firstWin&&phase==='reply')return openingWinHTML(cp);
+function directBridge(){
+ if(phase!=='scene'||state.complete||state.current!=='OP_SETTLE')return null;
+ const v=renderScene(state,DATA),opts=v.choices.filter(o=>o.enabled);
+ if(opts.length!==1||opts[0].id!=='continue')return null;
+ const moved=choose(state,DATA,'continue',state.revision);
+ if(moved.reply.length)return null;
+ const next=renderScene(moved.state,DATA);
+ if(!next.choices.some(o=>o.enabled))return null;
+ return {pre:v,next,moved};
+}
+function sceneStagePortrait(cp){
+ const activeChar=activePortrait();
+ if(activeChar)return activeChar;
+ if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
+ const rows=cp.rows||[];
+ for(let i=rows.length-1;i>=0;i--){
+  const c={T:'t',S:'s',L:'l',G:'g'}[rows[i].speaker];if(c)return c;
+ }
+ return state.f?.first&&heroineDesign[state.f.first]?state.f.first:null;
+}
+function vnFrame(cp,interior,sceneTitle,bridge=null){
+ const source=sourceScene();const set=(source.scene?.background||'backstage').replace(/[^a-z0-9-]/gi,'');
+ const c=sceneStagePortrait(cp);
+ const mood=/危机|错误|清退|归责|撤回|背锅|删除/.test(sceneTitle)?'tense':'soft';
  const day=state.current==='@schedule'?DATA.calendar[state.slot]?.day:state.clock?.day||1;
- const meta=state.complete?'本轮结局':state.slot===0?'第一夜':`第${day||1}日`;
- const showTrack=!state.complete&&!!state.f.first_win&&sourceScene().id==='OP_SETTLE';
- const banner=sceneBannerHTML(cp);
- return `${goalHTML()}${showTrack?trackHTML():''}<div class="meta"><span>${esc(meta)}</span><span>${page+1} / ${cp.pages.length}</span></div>${banner||`<h2>${esc(cp.view.title)}</h2>`}${rowsHTML(cp.rows)}${controls(cp)}${state.current==='COLD'&&phase==='scene'?'<p class="endnote">不锁定攻略路线</p>':''}`;
+ const chapter=state.complete?'结局·改写的终点':state.current==='ENTRY_WAKE'?'序章 · 醒来':`第${day||1}日 · ${phase==='reply'?'决定之后':'故事继续'}`;
+ const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
+ const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
+ const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${cp.last?'选择在下方直接进行':'轻触下方继续阅读'}</div></div></section>`;
+ return `<div class="vn-frame" data-phase="${phase}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-grip" aria-hidden="true"></div><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><span>${state.current==='ENTRY_WAKE'&&phase==='scene'?`${page+1} / ${cp.pages.length}`:'向下阅读 · 直接选择'}</span></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
+}
+function storyHTML(){
+ const cp=currentPage();let interior='',bridge=null,heading=cp.view.title;
+ if(state.current==='ENTRY_WAKE'&&phase==='scene'&&!state.complete){
+  interior=firstForkHTML(cp);
+ }else if(state.current==='COLD'&&phase==='scene'&&!state.complete){
+  interior=openingHTML(cp);
+ }else if(cp.view.firstWin&&phase==='reply'){
+  interior=openingWinHTML(cp);
+ }else {
+  bridge=directBridge();
+  if(bridge){
+   heading=bridge.next.title;
+   const src=cp.rows;
+   const nextRows=bridge.next.body||[];
+   const futureActions=bridge.next.choices.filter(o=>o.enabled).map(o=>
+    `<button class="choice" data-choice="${esc(o.id)}" data-bridge="continue" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`).join('');
+   interior=`<div class="meta"><span>今晚，新的决定</span><span>同屏选择</span></div>${rowsHTML(src)}<div class="vn-choice-question">${esc(bridge.next.title)}</div>${rowsHTML(nextRows)}<div class="choices">${futureActions}</div>`;
+  }else {
+   const day=state.current==='@schedule'?DATA.calendar[state.slot]?.day:state.clock?.day||1;
+   const meta=state.complete?'本轮结局':state.slot===0?'第一夜':`第${day||1}日`;
+   interior=`${goalHTML()}<div class="meta"><span>${esc(meta)}</span><span>这是你经历过的事</span></div>${rowsHTML(cp.rows)}${controls(cp)}`;
+  }
+ }
+ return vnFrame(cp,interior,heading,bridge);
 }
 function handbookHTML(){
  if(!state.f.novel_recognized)return '<h2>记忆还没有对上</h2><p>你刚刚醒来，还没弄清这里是什么地方。先回到现场，看看工作证和舞台。</p>';
@@ -400,11 +570,11 @@ function menuHTML(){
  return `<h2>暂停在这里</h2><div class="menu-grid">
  <button class="quiet" data-nav="story">继续剧情</button><button class="quiet" data-nav="handbook">原著与四位女主</button>
  <button class="quiet" data-nav="relations">相处记录</button><button class="quiet" data-nav="history">回看重选</button>
- <button class="quiet" data-nav="collection">结局收藏</button><button class="quiet" data-action="font">${large?'恢复普通字号':'大字阅读'}</button>
+ <button class="quiet" data-nav="collection">结局收藏</button><button class="quiet" data-action="font">${large?'恢复普通字号':'大字阅读'}</button><button class="quiet" data-action="sound">${soundOn?'关闭轻音效':'开启轻音效'}</button>
  <button class="quiet" data-action="export">导出这局记录</button><button class="quiet" data-action="import">导入本版记录</button>
  <button class="quiet" data-action="reset">备份后新开局</button><button class="quiet" data-action="reload">读取已保存记录</button></div>
- <section class="panel small"><h3>这份版本的范围</h3><p>r4.2 原著分叉与全文剧情版。以 r3 四女主 JSON 为内容基线，整部故事与解释器内置，可离线玩到结局。旧版记录独立保留，不静默迁移。</p>
- <p>角色均为成年人。本版没有成品立绘、音频、广告或真人留存结论。原始文件和旧版存档不改写。</p>
+ <section class="panel small"><h3>这份版本的范围</h3><p>v4.5 竖屏全剧情候选。保留四女主正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
+ <p>角色均为成年人。本版使用原创候选立绘和自制轻音效；没有平台广告接入或真人留存结论。原始文件和旧版存档不改写。</p>
  <p>${saveBlocked?'当前未自动保存，请离开前导出记录。':'选择、回应页与阅读位置会保存在此浏览器的本版独立记录中。'}</p></section>`;
 }
 function showNotice(){
@@ -422,6 +592,15 @@ function render(scroll=true){
  document.body.classList.toggle('large',large);
  let html=panel==='story'?storyHTML():panel==='menu'?menuHTML():panel==='handbook'?handbookHTML():panel==='relations'?relationsHTML():panel==='history'?historyHTML():panel==='collection'?collectionHTML():panel==='archive'?archiveHTML():'';
  document.getElementById('app').innerHTML=(panel==='story'?'':'<button class="quiet return" data-nav="story">返回剧情</button>')+html;
+ if(panel==='story'){
+  const frame=document.querySelector('.vn-frame'), scroll=frame?.querySelector('.vn-scroll'),dock=frame?.querySelector('.vn-dock');
+  // Keep meaningful choices and continue in the SAME fixed scene as the text.
+  // Moving real DOM buttons does not change choice IDs, state or semantics.
+  const candidates=scroll?.querySelectorAll('.rescue-options, .choices, .pager');
+  const target=candidates?.length?candidates[candidates.length-1]:null;
+  if(target&&dock) dock.append(target);
+  if(scroll)scroll.scrollTop=0;
+ }
  document.getElementById('menu').setAttribute('aria-expanded',String(panel==='menu'));
  showNotice();
  if(scroll)window.scrollTo(0,0);
@@ -430,7 +609,7 @@ function arm(){downToken=null;pointerStart=null;moved=false;}
 function exportLog(){
  const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download='gonglue-r4-2-choices.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ a.href=url;a.download='gonglue-r4-5-choices.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function backToStory(){
  panel='story';render(false);window.scrollTo(0,previousScroll);
@@ -445,11 +624,27 @@ function reset(){
  if(storage){try{lastRaw=storage.getItem(KEY);saveBlocked=false;}catch{saveBlocked=true;}}
  save();render();
 }
+function choiceSound(){
+ if(!soundOn)return;
+ try{
+  const Audio=window.AudioContext||window.webkitAudioContext;
+  if(!Audio)return;
+  if(!soundContext)soundContext=new Audio();
+  if(soundContext.state==='suspended')void soundContext.resume();
+  const o=soundContext.createOscillator(),v=soundContext.createGain();
+  o.type='sine';o.frequency.value=520;
+  v.gain.setValueAtTime(.0001,soundContext.currentTime);
+  v.gain.exponentialRampToValueAtTime(.018,soundContext.currentTime+.01);
+  v.gain.exponentialRampToValueAtTime(.0001,soundContext.currentTime+.12);
+  o.connect(v).connect(soundContext.destination);o.start();o.stop(soundContext.currentTime+.125);
+ }catch{} // Sound permission is optional; never blocks a valid choice.
+}
 function doAction(action){
  if(action==='export')exportLog();
  else if(action==='import')document.getElementById('importFile').click();
  else if(action==='reset')reset();
  else if(action==='font'){large=!large;save();render();}
+ else if(action==='sound'){soundOn=!soundOn;save();render();}
  else if(action==='hide-notice'){notice='';showNotice();}
  else if(action==='reload'){
   if(!confirm('读取这个浏览器已保存的本版进度？本窗口尚未保存的选择将放下；可先取消并导出。'))return;
@@ -489,10 +684,25 @@ document.addEventListener('click',ev=>{
    else{if(panel==='story')previousScroll=window.scrollY;panel=b.dataset.nav;render();}
    arm();return;
   }
+  if(b.dataset.choiceGroup){
+   if(phase!=='scene'||!currentPage().last)return;
+   choicePage=Number(b.dataset.choiceGroup);save();render();arm();return;
+  }
+  if(b.dataset.choiceBack){
+   if(phase!=='scene')return;
+   choicePage=Math.max(0,Number(b.dataset.choiceParent||0));save();render();arm();return;
+  }
   if(b.dataset.choice){
    if(phase!=='scene'||Number(b.dataset.render)!==renderToken||Number(b.dataset.revision)!==state.revision)return;
    const cp=currentPage();if(!cp.last)return;
-   markRead(cp);
+   markRead(cp);choiceSound();
+   if(b.dataset.bridge){
+    if(b.dataset.bridge!=='continue'||state.current!=='OP_SETTLE')return;
+    const bridge=directBridge();
+    if(!bridge||!bridge.next.choices.some(x=>x.id===b.dataset.choice&&x.enabled))return;
+    const first=choose(state,DATA,'continue',state.revision);
+    state=first.state;
+   }
    const out=choose(state,DATA,b.dataset.choice,state.revision);
    state=out.state;lastReply=out.reply;phase=lastReply.length?'reply':'scene';page=0;choicePage=0;
    save();render();arm();return;
