@@ -1,4 +1,4 @@
-name: Romance r4.5 full client PR audit
+name: Romance r4.9 story and mobile full client PR audit
 
 on:
   pull_request:
@@ -83,6 +83,9 @@ jobs:
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-browser-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v46-reader-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v48-first-choice-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v49-save-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v49-editorial-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v49-consequences-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-schedule-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-routes/**/route-report.json
           if-no-files-found: warn

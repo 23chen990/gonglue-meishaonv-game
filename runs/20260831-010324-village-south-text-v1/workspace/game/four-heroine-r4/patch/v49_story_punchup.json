@@ -1,0 +1,2104 @@
+{
+  "version": "v4.9-neutral-power-progression",
+  "genre": "中性略偏男性向的穿书逆袭／轻恋爱",
+  "purpose": "前3分钟危机、可动手改命、对手压力、角色主动性；选择保留因果，不靠无效按钮凑数",
+  "baseStorySha256": "fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8",
+  "newStorySha256": "e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0",
+  "protected": [
+    "scenes count",
+    "choice IDs",
+    "when/guards",
+    "effects",
+    "next",
+    "ending rules",
+    "28 entry beats"
+  ],
+  "changes": [
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/title",
+      "before": "有人在喊许照",
+      "after": "第七天，我会替人背锅",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/0",
+      "id": "ENTRY_WAKE.intro.001",
+      "speaker": "N",
+      "before": "现实里，你又翻到《今夜偏爱男主》的首演章节。那个叫许照的临时工倒霉得让人窝火；你已经读过他后来的下场。",
+      "after": "《今夜偏爱男主》第十三章，你最想撕掉的一页：临时场务许照因演出事故被清退。错版不是他做的，交接单上的签名却是他的。你盯着那行字，越看越火。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/1",
+      "id": "ENTRY_WAKE.intro.002",
+      "speaker": "N",
+      "before": "手机屏幕上的字突然重了影。你想扶住桌沿，手却扑了个空。一阵眩晕之后，眼前彻底黑了。",
+      "after": "你正往前翻，想看他究竟哪一步被人套住，手机上的字忽然一片重影。桌沿从指尖消失，整个人向下坠去。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/3",
+      "id": "ENTRY_WAKE.intro.004",
+      "speaker": "N",
+      "before": "后背硌在冷冰冰的金属箱角上。你睁开眼，头顶是一排刺眼的舞台灯，耳边有人催场，还有观众说话的声音。",
+      "after": "后背狠狠撞上金属箱角。你猛地睁眼，舞台灯刺得睁不开眼。台前几百人的说话声混着催场的倒数，仿佛下一秒就要出事。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/6",
+      "id": "ENTRY_WAKE.intro.007",
+      "speaker": "N",
+      "before": "你撑着箱盖站起来，胸前的工牌晃到眼前：许照，临时场务。工牌上的照片，居然也是一张陌生的脸。",
+      "after": "你扶着箱盖站稳。胸前工牌晃到眼前：许照，临时场务。连照片都是陌生人的脸。那个第七天会被赶出去的炮灰，现在是你。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/7",
+      "id": "ENTRY_WAKE.intro.008",
+      "speaker": "P",
+      "before": "（不对。我明明还在自己的房间里……）",
+      "after": "（等等，我刚刚还在看小说……怎么连胸前这张工牌都是真的？）",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/9",
+      "id": "ENTRY_WAKE.intro.010",
+      "speaker": "C",
+      "before": "沈清辞！唐映雪那首歌的伴奏怎么回事？",
+      "after": "沈清辞！唐映雪的伴奏被换成什么版本了？现在就开场！",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/10",
+      "id": "ENTRY_WAKE.intro.011",
+      "speaker": "T",
+      "before": "等一下。前奏不对，这不是我排练的版本！",
+      "after": "停！前奏被剪掉了！这不是我排练的歌！",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/13",
+      "id": "ENTRY_WAKE.intro.014",
+      "speaker": "P",
+      "before": "（唐映雪、沈清辞、陆景行……连伴奏出错都一样？）",
+      "after": "（唐映雪、沈清辞、陆景行……连这场事故都一模一样。不是撞名，我真的掉进书里了。）",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/15",
+      "id": "ENTRY_WAKE.intro.016",
+      "speaker": "B",
+      "before": "我记得了！《今夜偏爱男主》，北岸艺术中心首演。刚才那些名字和那段出错的伴奏，我昨晚还在书里读到过。",
+      "after": "我记得这场！北岸艺术中心首演，19:03，错误的伴奏把唐映雪逼到台边。书里是陆景行弹琴救场，一夜出了名。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/17",
+      "id": "ENTRY_WAKE.intro.018",
+      "speaker": "N",
+      "before": "你狠狠掐了一下手心，疼得倒抽气。心跳快得难受，胃也跟着往下沉。你想退开，身后却只有设备箱。",
+      "after": "你狠狠掐了一下手心，痛得倒抽气。没有退出按钮，原著也不会替你暂停。身后就是放着事故文件的设备箱。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/19",
+      "id": "ENTRY_WAKE.intro.020",
+      "speaker": "P",
+      "before": "不用……让我缓十秒。",
+      "after": "不用。我还能站稳。（别人靠这一场翻身，我却可能从这里开始背锅。）",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/20",
+      "id": "ENTRY_WAKE.intro.021",
+      "speaker": "B",
+      "before": "我记得原著里，19:03，许照听程放的话留在设备箱旁，没发现能替换错版的原版。陆景行弹琴救下唐映雪，后来还收到了制作人的邀约。",
+      "after": "原著里，许照听程放的话守在设备箱旁，眼睁睁看陆景行接过舞台。没人核对真正的错版来源，七天后，程放把责任推到他签过的交接单上。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/21",
+      "id": "ENTRY_WAKE.intro.022",
+      "speaker": "B",
+      "before": "我还记得她们后来的结局：唐映雪成名了，却失去了《迟来的夏天》；沈清辞想留下的小演出空间，最后成了陆景行巡演的排练基地。",
+      "after": "唐映雪的歌火了，署名和版本却不由她定；沈清辞想保下来的小演出厅，最后成了巡演排练基地。她们当时还不知道，今晚就是第一道岔路。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/22",
+      "id": "ENTRY_WAKE.intro.023",
+      "speaker": "B",
+      "before": "林见月后来和陆景行在一起，可她一直想拍的外出作品没有开工。顾晚棠替项目背了骂名，等人发现她那份反对意见时，事情已经晚了。",
+      "after": "林见月的镜头本来能留下真相，可原著让她追着陆景行的巡演跑；顾晚棠反对过那个版本，最后却被当成拍板的人。书里每个人都付了代价。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/23",
+      "id": "ENTRY_WAKE.intro.024",
+      "speaker": "B",
+      "before": "还有映雪的匿名电台、清辞找新空间的计划、见月留存的现场原声、晚棠未公开的意见……我记得书里写过这些，但现在只记得一些线索，根本没拿到任何东西。",
+      "after": "匿名电台、旁厅、现场原声、没公开的意见邮件……我知道线索在哪，但现在手里一件证据都没有。记得剧情不等于能凭空拿出东西。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/24",
+      "id": "ENTRY_WAKE.intro.025",
+      "speaker": "B",
+      "before": "最糟的是第七天。原著第十三章，别人换错的文件被算在许照头上；他没留下能说明自己做过什么的交接记录，就这么被清退了。也就是说，我只剩七天。",
+      "after": "而我自己的死线只有七天。原著第十三章，许照连一句完整的解释都没说出来，就被保安送出侧门。这一次，我至少不能在第一天签下那张糊涂账。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/25",
+      "id": "ENTRY_WAKE.intro.026",
+      "speaker": "N",
+      "before": "你想起书里一笔带过的线索：备用箱的接线板下，压着一枚贴蓝胶带的原版 U 盘。原著里从没人把它找出来。现在，箱子就在你手边。",
+      "after": "还有一条被小说一笔带过的细节：接线板下面，压着一枚贴蓝胶带的原版 U 盘。书里没人找到它。你低头——设备箱就贴在膝边。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/26",
+      "id": "ENTRY_WAKE.intro.027",
+      "speaker": "P",
+      "before": "（照程放说的守在这里，今晚会照原著结束，可第七天的责任也还在等着我。要是现在动手……后面的剧情就未必有答案了。）",
+      "after": "（按原著走，我能提前看清谁想甩锅；动手找盘，我能抢在钢琴救场前改写这一幕；先查证据，也许能把第七天的陷阱提前拆了。）",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/body/27",
+      "id": "ENTRY_WAKE.intro.028",
+      "speaker": "N",
+      "before": "唐映雪正等着音乐。陆景行的手悬在琴键上。你知道原著里许照怎么选、最后付出了什么代价——轮到你决定第一步了。",
+      "after": "台上，唐映雪等着重新进歌。陆景行的手悬在琴键上，程放朝你伸手，要你别碰箱子。第一次改命的机会，只剩几个呼吸。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/canon/label",
+      "before": "按原著走：听程放的，先不插手这场救援",
+      "after": "先按原著走：看清是谁准备甩锅",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/rescue/label",
+      "before": "改变首演：抢先找原版U盘，试着拦下钢琴救场",
+      "after": "抢先救场：找到原版，让她唱回来",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/investigate/label",
+      "before": "先查背锅线：核实错版来源，同时找回原版",
+      "after": "先锁证据：找原版，也查谁换了文件",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/canon/reply/0",
+      "id": "ENTRY_WAKE.r42.reply.canon.001",
+      "speaker": "N",
+      "before": "你没碰备用箱。台上，陆景行坐到了琴凳前。你知道接下来每一拍会怎么响，也知道七天后那张清退单。",
+      "after": "你把伸向箱盖的手收回来。陆景行坐上琴凳，原著的掌声照样响起；而你盯住程放——比起钢琴声，他手里那张等着你签的交接单更危险。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/rescue/reply/0",
+      "id": "ENTRY_WAKE.r42.reply.rescue.001",
+      "speaker": "N",
+      "before": "你蹲到设备箱旁，扒开线卷。指尖真的碰到了那截蓝胶带。原著里没有人翻到这里。",
+      "after": "你不再等任何人喊“开始”。扒开压住线卷的箱盖，指尖碰到了蓝胶带。那枚原著里没人找到的 U 盘，现在就在你手里。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "path": "ENTRY_WAKE/investigate/reply/0",
+      "id": "ENTRY_WAKE.r42.reply.investigate.001",
+      "speaker": "N",
+      "before": "你没有直接指控任何人。是谁换了文件、谁有权限、谁亲眼看见——先找一条真的能核实的线索。",
+      "after": "你没有直接喊“有人做局”。一边找到蓝标盘，一边扫过控台、相机和节目邮件：救场要快，证据得比对方撤回消息更快。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/title",
+      "before": "照原著走，真的就安全了吗",
+      "after": "原著的掌声，藏着我的陷阱",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/body/0",
+      "id": "ENTRY_CLUES.r42.body.001",
+      "speaker": "N",
+      "before": "程放伸手挡住箱盖：“临时工别乱碰，守着就行。”这句话你也记得。可他看你的眼神，比书里更不耐烦。",
+      "after": "程放伸手按住箱盖：“临时工别乱碰，守好你的东西。”他看见你盯着控台时间，忽然把工作单翻到空白签名页。书里没有写过这个小动作。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/body/3",
+      "id": "ENTRY_CLUES.r42.body.004",
+      "speaker": "N",
+      "before": "琴声顶了上去。她稳住呼吸，把后半句唱完。掌声响起来，你站在暗处，几乎能听见原著翻页的声音。",
+      "after": "陆景行用四小节钢琴稳住现场。唐映雪自己接完后半句，掌声盖过了侧幕的争执。你没有抢这场救援，却把程放递交接单的时间记得清清楚楚。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/body/4",
+      "id": "ENTRY_CLUES.r42.body.005",
+      "speaker": "B",
+      "before": "我记得接下来会发生什么：大家围着陆景行，程放却会拿一张交接单来找我。果然，那张纸已经递到眼前了。",
+      "after": "下一幕果然来了。程放把交接单递到你面前，最上面写着“现场版本确认”，下面却没有划清是谁负责导出、谁负责播放。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/body/5",
+      "id": "ENTRY_CLUES.r42.body.006",
+      "speaker": "P",
+      "before": "我知道第七天会出事。可看着他把笔塞过来，我还是有点发怵。现在不签，会不会更早得罪他？",
+      "after": "（我可以继续照原著签字，也可以从第一张纸开始改命。早知道结局的人，至少该知道哪一行不能随手签。）",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/obey/label",
+      "before": "先签下：继续照原著走",
+      "after": "继续照原著签：换眼前清静，留下风险",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/refuse/label",
+      "before": "不签糊涂账：说清我没做过什么",
+      "after": "当面拒签：不给错版认账",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/witness/label",
+      "before": "先把时间和现场人员记下来",
+      "after": "先留时间线：让证据比嘴硬更早一步",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/obey/reply/1",
+      "id": "ENTRY_CLUES.r42.reply.obey.002",
+      "speaker": "N",
+      "before": "程放把签过字的那页夹进文件夹。你明知道第七天会出事，却还是把名字留在了错误的那一栏。",
+      "after": "程放合上文件夹，露出个“这才懂事”的笑。你换来了今晚的清静，却亲眼看见自己的名字压在“版本确认”下面。第七天，这一笔会回来找你。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/refuse/reply/2",
+      "id": "ENTRY_CLUES.r42.reply.refuse.003",
+      "speaker": "N",
+      "before": "你留下自己拒绝签错单的文字，程放把这一幕记住了。",
+      "after": "程放脸上的笑僵了一瞬，随即把交接单往回一抽。你留下一条明确的拒签记录，也提前把自己放进了他的视线。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "path": "ENTRY_CLUES/witness/reply/0",
+      "id": "ENTRY_CLUES.r42.reply.witness.001",
+      "speaker": "N",
+      "before": "你把19:03、钢琴介入、控台仍在放错版记进手机。没有录音授权，更没有证据指向谁导出了它。",
+      "after": "你把19:03的错误伴奏、陆景行介入与控台值守时间分成三行记下。它还不能证明谁有错，却是原著里从来没有出现过的第一条独立时间线。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/title",
+      "before": "原著没写的证据，你先找哪一份",
+      "after": "抢到原版还不够，得锁住证据",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/body/0",
+      "id": "ENTRY_MEMORY.r42.body.001",
+      "speaker": "N",
+      "before": "箱底真有那枚蓝标 U 盘，掌心被冰凉的金属硌出一道印。可你不是音控，自己乱切只会把台上害惨——得让阿衡亲耳听过。",
+      "after": "蓝标 U 盘真的压在接线板下面。你握住它，几乎想直接冲向控台，又马上停住：你没学过音控，乱切只会把救场变成另一场事故。找盘是你的本事，验盘得交给阿衡。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/body/2",
+      "id": "ENTRY_MEMORY.r42.body.003",
+      "speaker": "N",
+      "before": "林见月的镜头还对着控台；顾晚棠正在翻节目确认邮件。书里只写陆景行的琴声，根本没写这两个人会怎么选。",
+      "after": "林见月的镜头对着控台，顾晚棠手里正是演出审批邮件。一边是现场影像，一边是版本授权——这不是两个摆设，而是能让第七天那条假字幕站不住脚的两种证据。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/body/3",
+      "id": "ENTRY_MEMORY.r42.body.004",
+      "speaker": "P",
+      "before": "我记得原著结局，可她们不是书里的按钮。先找一个肯亲眼核对的人，别把“我看过”当证据。",
+      "after": "（我知道原著怎么写，但她们只认眼前能核的事。先拿出真的东西，才有资格问程放为什么急着拦。）",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/camera/label",
+      "before": "请林见月拍下真实切换过程",
+      "after": "先锁镜头：让见月留住切换前后",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/email/label",
+      "before": "请顾晚棠确认节目授权",
+      "after": "先查授权：让晚棠对照真正的节目单",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/camera/reply/2",
+      "id": "ENTRY_MEMORY.r42.reply.camera.003",
+      "speaker": "N",
+      "before": "她按下录制键。至少这回，版本从哪里开始变的不只剩口说。",
+      "after": "见月先拍清蓝标与控台时间，替接下来的试听、切换留好取证位置。录制指示灯亮起时，你知道至少这一秒不会只剩口说。",
+      "kind": "text"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "path": "ENTRY_MEMORY/email/reply/1",
+      "id": "ENTRY_MEMORY.r42.reply.email.002",
+      "speaker": "N",
+      "before": "程放往这边看了一眼。你知道这一步已经不在书上。",
+      "after": "顾晚棠看完审批邮件，抬头望向程放。他先移开了视线。你的调查还没结束，却已经逼出了原著里没有的第一反应。",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/title",
+      "before": "原著没用上的U盘，此刻在你手里",
+      "after": "原版在手，轮到我改写救场",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/body/0",
+      "id": "COLD.r42.body.001",
+      "speaker": "N",
+      "before": "贴着蓝色胶带的 U 盘被你攥得发热。原著里没有这一幕。只要有人接下它，陆景行的钢琴救场也许就不再是唯一的答案。你迈了一步，才发现腿一直在抖。",
+      "after": "蓝标盘就在掌心，台上的倒数却不会等你。原著里，它会在箱底躺到散场；现在只差一个真正能让唐映雪接回自己歌曲的人。",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/body/1",
+      "id": "COLD.r42.body.002",
+      "speaker": "A",
+      "before": "先别直接插。我得确认完整前奏能用。你去找能协调切换的人，台上的事不能靠咱俩瞎赌。",
+      "after": "先把盘拿稳，别自己插！我得亲耳试听。你去找能发切换信号的人；确认能用以后，控台由我操作。",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/body/2",
+      "id": "COLD.r42.body.003",
+      "speaker": "N",
+      "before": "陆景行还坐在琴凳旁等信号。台上的唐映雪扶着耳返，目光扫过侧幕。你张了张嘴——书里根本没写，这时候喊谁才对。",
+      "after": "陆景行的手停在琴键上，唐映雪正扶着耳返寻找侧幕的回应。你只有几秒决定：把舞台交给谁指挥，也决定谁会记住你的名字。",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/t/label",
+      "before": "把原版交给唐映雪，请她决定何时接",
+      "after": "直接找唐映雪：由她喊回原版",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/s/label",
+      "before": "请沈清辞统一指挥切换",
+      "after": "找沈清辞控场：一拍切回正确版本",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/l/label",
+      "before": "请林见月留下切换画面",
+      "after": "找林见月取证：救场和记录一起做",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/g/label",
+      "before": "请顾晚棠确认用的是哪一版",
+      "after": "找顾晚棠核授权：让程放当场解释",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/self/label",
+      "before": "我只找盘，交阿衡安全切换",
+      "after": "和阿衡搭档：我找盘，他安全切",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/t/reply/4",
+      "id": "COLD.t.r4.reply.005",
+      "speaker": "N",
+      "before": "掌声响起来。原著里的钢琴合唱，变成了她自己的独唱。",
+      "after": "映雪自己数拍，阿衡按信号接回完整前奏。她稳稳唱上那个高音，掌声像涨潮一样盖住了侧幕里的争执。程放僵在一边，映雪却朝你招手。",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/s/reply/2",
+      "id": "COLD.s.r4.reply.003",
+      "speaker": "N",
+      "before": "切换只空了一拍。唐映雪唱了下去，观众没有起哄，陆景行也没有贸然插入钢琴。",
+      "after": "切换只空了一拍，观众以为这是刻意设计的停顿。清辞把手里的对讲机放低，朝你点了一下头——这次，名字不会只写给台前的人。",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/l/reply/3",
+      "id": "COLD.l.r4.reply.004",
+      "speaker": "N",
+      "before": "你把盘交给阿衡试听。林见月拍下标签、控台时间和他的确认，没有把镜头只留给陆景行。",
+      "after": "你把盘交给阿衡试听，见月先拍下标签和他确认音轨的时间。接下来的实际切换，她要等动作发生才继续拍，绝不提前替任何人定结论。",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/g/reply/3",
+      "id": "COLD.g.r4.reply.004",
+      "speaker": "C",
+      "before": "宣传预览也用这版，我以为……",
+      "after": "宣传预览也是这份，我以为可以直接用……",
+      "kind": "text"
+    },
+    {
+      "scene": "COLD",
+      "path": "COLD/self/reply/3",
+      "id": "COLD.self.r4.reply.004",
+      "speaker": "N",
+      "before": "阿衡在切换记录里写下：许照找到备用伴奏。钢琴不再成了唯一的救场办法。",
+      "after": "阿衡在切换记录里写清：许照找到备用伴奏，阿衡执行切换。你不需要装成什么全能音控；把对的人放到对的位置，照样能改写原著。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/title",
+      "before": "原著没有这条工作群消息",
+      "after": "程放撤回的消息，我看见了",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/body/0",
+      "id": "OP_FORK.r42.body.001",
+      "speaker": "N",
+      "before": "手机又震了一下。工作群里，程放写着：“谁翻出了旧盘？旧版文件清掉，别到处解释。”你还没读完，他已经撤回了半句。",
+      "after": "你手机一震。程放在工作群丢下一句：“谁翻出的旧盘？旧版文件清掉，别多嘴。”下一秒，消息被撤回。掌声还没散，新的麻烦已经盯上你。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/body/1",
+      "id": "OP_FORK.r42.body.002",
+      "speaker": "N",
+      "before": "你盯着那个“消息已撤回”，头皮一阵发麻。原著没写过这一句——因为那本书里，根本没人把盘找出来。你只想救场，却好像碰到了别人不愿你碰的地方。",
+      "after": "（原著根本没这条消息，因为原版从来没被翻出来。）你原本只想救场，现在却逼得有人提前出手。改命的第一笔收益，是被更多人记住；第一笔风险，也是。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/body/2",
+      "id": "OP_FORK.r42.body.003",
+      "speaker": "A",
+      "before": "旧版我会留。我只签自己实际试听过的部分。阿衡指了指屏幕：你如果想回他，也别替我编我不知道的事。",
+      "after": "旧版我会照流程留着。试听和切换的部分我签；你想反击就拿自己能证明的，别让我替没看见的事背书。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/backup/label",
+      "before": "先悄悄留好两份版本与时间",
+      "after": "暗中留证：双版本和时间锁死",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/confront/label",
+      "before": "当众问程放：是谁让删文件？",
+      "after": "正面反击：群里追问谁下的删档令",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/quiet/label",
+      "before": "暂时不接话，只保管自己的那份",
+      "after": "先藏锋芒：保管交接，等他露破绽",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/backup/reply/1",
+      "id": "OP_FORK.r42.reply.backup.002",
+      "speaker": "N",
+      "before": "程放忽然撤回了那条消息。你刚才保存的时间却没有跟着消失。你盯着“消息已撤回”四个字，第一次感觉自己改变的不是一场演出，而是后面整条剧情。",
+      "after": "程放撤回得很快。可你和阿衡的两份时间记录已经存好。你第一次确定：掌握先手不是靠背台词，而是让他以后没法随便改口。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/confront/reply/1",
+      "id": "OP_FORK.r42.reply.confront.002",
+      "speaker": "N",
+      "before": "程放没回答，却把明天的情况说明丢给你。麻烦来得比原著早了六天。你甚至分不清，现在该害怕，还是该庆幸提前看见了他。",
+      "after": "群里安静了足足三秒。程放没回答你的问题，只让你明天交说明——原著里的刁难整整提前了六天。你被盯上了，也把他“急着删档”的反应留在了群里。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_FORK",
+      "path": "OP_FORK/quiet/reply/0",
+      "id": "OP_FORK.r42.reply.quiet.001",
+      "speaker": "N",
+      "before": "你把阿衡签过的切换记录装进手机。少一份争执，也少了一条对方当场表态的线索。",
+      "after": "你没有跟着吵，把阿衡签过的记录单独存好。程放暂时以为你退了；你知道代价是还没有谁肯当场确认那条删档令。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/title",
+      "before": "钢琴救了场，炮灰仍站在原地",
+      "after": "台前是他，背锅单却写我的名",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/body/0",
+      "id": "OP_CANON.r42.body.001",
+      "speaker": "N",
+      "before": "19:35。后台都在夸陆景行的临场钢琴。唐映雪把话筒放下，走向录音室；没人知道备用箱底还有一个能用的原版。",
+      "after": "陆景行的钢琴救了场，唐映雪也稳住了后半首。工作人员围着他道谢，你没有硬抢这份功劳，却看见程放在旁边把“文件出错”和“现场确认”塞进同一行责任栏。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/body/2",
+      "id": "OP_CANON.r42.body.003",
+      "speaker": "N",
+      "before": "你认得这段对白，连下一句都记得。可程放递来的交接单上，许照的名字比书里更刺眼。",
+      "after": "（这场掌声属于他们。我要抢的是第七天还能站在这里的资格。）你抬头再看交接单，原著里那一笔稀里糊涂的签名，现在正等你自己写。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/backstage/label",
+      "before": "不抢镜，主动帮阿衡做一次末场清点",
+      "after": "守住幕后：和阿衡共同清点，留第一张记录",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/question/label",
+      "before": "找程放问清楚错版来源，留住聊天记录",
+      "after": "当面追问：让程放把推托发在群里",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/silence/label",
+      "before": "今晚先保持沉默，记住原著第七天的危险",
+      "after": "暂时不亮牌：记下背锅链的每一步",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/backstage/reply/1",
+      "id": "OP_CANON.r42.reply.backstage.002",
+      "speaker": "N",
+      "before": "阿衡把你的名字写进末场清点。你没有抢走陆景行的救场，却有了自己的第一份记录。",
+      "after": "阿衡在末场清点上留下了你的真实分工。今晚你没有改变那段钢琴，却把原著里“什么都没留下”的那一步先改掉了。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_CANON",
+      "path": "OP_CANON/question/reply/1",
+      "id": "OP_CANON.r42.reply.question.002",
+      "speaker": "N",
+      "before": "他没有回答你是谁导出的，却在工作群留下了这句推脱。原著从来没写过这一条消息。",
+      "after": "程放不肯回答，群里却留下了他的推托。你没拿到直接证据，却让未来追查时多了一条可以对时的消息。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/title",
+      "before": "你抢先一步，他也没有停下",
+      "after": "原男主没停下，我也不能停",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/body/0",
+      "id": "OP_RIVAL.r4.body.001",
+      "speaker": "N",
+      "before": "19:40，首演结束。你本以为被抢了名场面的陆景行会不高兴，他却抱着乐谱从台边走下来，像刚好又想出了下一步。",
+      "after": "首演结束。你以为失去钢琴名场面的陆景行会有些难堪，他却抱着乐谱走下来，直接给制作人打了电话。原男主的机会从来不只靠这一场。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/body/4",
+      "id": "OP_RIVAL.r4.body.005",
+      "speaker": "B",
+      "before": "我记得原著里，这次录音室邀约本该三天后才有。怎么现在就来了？我抢掉的是一段钢琴，还是把所有人的明天都提前了？",
+      "after": "（原著里这份邀约三天后才出现。）你抢到一次改命机会，他就把下一个舞台提前了。想赢过这样的人，不能靠等他犯错。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/join/label",
+      "before": "一起去，给我一个真正的分工。",
+      "after": "抢一份正式试工：跟原男主同场见真本事",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/own/label",
+      "before": "“我想另录一段自己的现场样本，不跟他的场。”",
+      "after": "另做个人小样：不靠他的名单争机会",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/free/label",
+      "before": "工作机会先不抢，今晚另有安排。",
+      "after": "放掉这次名额：今晚押注另一条线",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/join/reply/1",
+      "id": "OP_RIVAL.join.r1.reply.002",
+      "speaker": "N",
+      "before": "你接下了试工。九点的新歌试听，不再只有原男主的名字。",
+      "after": "你接下试工安排。九点的新歌试听，你不再只是等人通知的场务，而是有明确职责、能被核对成果的参加者。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/own/reply/1",
+      "id": "OP_RIVAL.own.r4.reply.002",
+      "speaker": "T",
+      "before": "八点半能空五分钟。你别忙着调一堆我不懂的设备，录清楚就行。",
+      "after": "可以。八点半我空五分钟。成品先给我听，不许擅自发。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "path": "OP_RIVAL/free/reply/1",
+      "id": "OP_RIVAL.free.r1.reply.002",
+      "speaker": "N",
+      "before": "他没有停下来等你改变主意，转身去确认录音室。映雪也开始准备新歌。",
+      "after": "陆景行没有嘲笑你。他转身继续安排录音室，你则保住今晚的自由时间。你们都没有暂停，但下一次相遇，分量会不同。",
+      "kind": "text"
+    },
+    {
+      "scene": "OP_SETTLE",
+      "path": "OP_SETTLE/body/3",
+      "id": "OP_SETTLE.r4.body.004",
+      "speaker": "N",
+      "before": "阿衡把刚刚的切换记录塞给你，纸角撞上指节，疼得很真实。可真正让你不敢松手的，是上面第一次写下的那个名字。",
+      "after": "阿衡把亲手核过的切换记录塞给你。纸上终于写下“许照”两个字，你盯了半天：原著里，这个名字只会出现在被清退的名单上。",
+      "kind": "text"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/title",
+      "before": "名字留下，再选下一步",
+      "after": "第一夜：让背锅单签不了我的名",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/body/0",
+      "id": "A1b.r42.body.001",
+      "speaker": "N",
+      "before": "22:00，观众散了，程放却守在出口，把交接单往你面前一横。此前错版是谁导出的、今晚又是谁处理的，全挤在一行小字里。",
+      "after": "22:00，观众散尽。程放堵在出口，把交接单横到你面前：导出错版、现场切换、末场确认，全被挤进同一个“临时场务负责”。这是他准备给你的第一道套。",
+      "kind": "text"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/body/1",
+      "id": "A1b.r42.body.002",
+      "speaker": "C",
+      "before": "签了就能走。许照，别让我等你到明天。",
+      "after": "签完就走。许照，别拿临时工那点事耽误大家下班。",
+      "kind": "text"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/body/2",
+      "id": "A1b.r42.body.003",
+      "speaker": "N",
+      "before": "你看着那条空白签名线，想起原著里许照被请出去时那张轻飘飘的清退单。原来真正危险的不是第七天——是从今晚开始，每个人都在等你不看清楚。",
+      "after": "你低头看签名栏。七天后让原著许照退场的，不是突然出现的保安，而是每次有人催他“先签一下”。你把笔按在桌上，没急着写名字。",
+      "kind": "text"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/body/3",
+      "id": "A1b.r42.body.004",
+      "speaker": "P",
+      "before": "我愿意把自己做过的写清楚。至于之前谁导出过哪个版本、今晚是谁动的控台，得分开写。别让我替没见过的事签字。",
+      "after": "（这张纸我能签，也能拒。今晚我不必证明自己多神，只要让真正负责的人，再也不能躲在我后面。）",
+      "kind": "text"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/check/label",
+      "before": "把今晚做过的事分开写清楚",
+      "after": "逐项拆责任：签自己做的，别人的另写",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/ask/label",
+      "before": "请阿衡替亲眼见过的事作证",
+      "after": "请阿衡作证：用人证换第一层保护",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/look/label",
+      "before": "先带走副本，不签模糊责任",
+      "after": "先拿副本：今晚不签模糊责任",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/check/reply/1",
+      "id": "A1b.check.r1.reply.002",
+      "speaker": "N",
+      "before": "你留好双方确认的整张交接单。接下来，想见谁、想做什么，都由你自己安排。",
+      "after": "你拿到分项交接单的那一刻，程放不再催你“快签”。他不高兴也没用——这是两个人都核过的版本。你带着它，正式迈过了原著的第一道坑。",
+      "kind": "text"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/ask/reply/1",
+      "id": "A1b.ask.r1.reply.002",
+      "speaker": "N",
+      "before": "你把确认的范围记下，阿衡也留了一份。",
+      "after": "阿衡看了程放一眼，还是在现场确认的范围内签了自己的名字。你换来了一个肯出面的人证，也让对方知道你不会一个人背所有锅。",
+      "kind": "text"
+    },
+    {
+      "scene": "A1b",
+      "path": "A1b/look/reply/0",
+      "id": "A1b.look.r1.reply.001",
+      "speaker": "N",
+      "before": "你没有认下模糊责任，也暂时没拿到这份确认材料。要公开反击，后面还得亲自补证据。",
+      "after": "你拍下有权留存的副本，拒绝在尚未核对的责任栏落笔。程放冷下脸：“行，明天再谈。”你没赢完，却没把自己送上那张纸。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/title",
+      "before": "十七秒预告，漏了她的名字",
+      "after": "十七秒热搜，差点偷走她的歌",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/body/0",
+      "id": "A2a.r4.body.001",
+      "speaker": "N",
+      "before": "第二天中午，十七秒预告冲进热搜小榜。画面中心全是陆景行，可背景唱着的，是唐映雪熬夜改了三次的副歌。评论区有人问：“这是钢琴家的新歌吗？”",
+      "after": "第二天中午，一条十七秒预告冲上热搜小榜。视频正中是陆景行，耳朵里却全是唐映雪熬夜改了三遍的副歌。最高赞评论问：“钢琴家又出新歌了？”",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/body/1",
+      "id": "A2a.r4.body.002",
+      "speaker": "T",
+      "before": "我明明唱了那么多遍。现在他们问这是不是陆景行的新歌。",
+      "after": "明明是我写、我唱的歌，他们却问是不是陆景行的新曲。再这么发，热度越大，越没人知道它属于谁。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/body/2",
+      "id": "A2a.r4.body.003",
+      "speaker": "B",
+      "before": "我记得原著里，她为了赶时间签过确认。后来自己的歌火了，她却连在舞台上完整唱一次都要求人。手机就搁在桌边，确认键还没按下去。",
+      "after": "（原著里，她就是被“热度不能浪费”这句话催着点了确认。）歌爆了，创作者却连完整唱一遍都得看人脸色。可这次确认键还亮着，她还没按。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/body/3",
+      "id": "A2a.r4.body.004",
+      "speaker": "N",
+      "before": "映雪把手机推过来，没有让你替她按。她说话时指尖一直贴着桌沿，像怕自己先反悔。",
+      "after": "映雪没等你替她做决定，自己先关掉了确认弹窗。她抬头：“我不签这个版本。现在我想听一个能执行的办法，不想再听一句‘别难过’。”",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/body/4",
+      "id": "A2a.r4.body.005",
+      "speaker": "T",
+      "before": "我想让人听见它，也想让人记住是我唱的。我已经决定不签这个版本了——可下一步怎么走，你愿意陪我试试吗？",
+      "after": "我想要两样东西：观众听见歌，名字也认得我。你陪我想打法，但拍板还是我。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/independent/label",
+      "before": "支持她先以自己的名字发布完整版本，接受更小的初始声量。",
+      "after": "抢回首发：独立母带，小流量换所有权",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/negotiated/label",
+      "before": "帮她把名字、版本与独唱时段谈清，再借宣发的声量。",
+      "after": "借势反击：保住热度，签下姓名与时段",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/duet/label",
+      "before": "提议与陆景行重新合唱，但必须说明原作与各自参与的部分。",
+      "after": "反向合作：合唱可以，原作与分轨写明",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/pause/label",
+      "before": "支持她暂时不发。先不拿还没想好的作品交换热度。",
+      "after": "及时止损：撤预告，先守住完整版",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/unchanged/label",
+      "before": "不介入这次安排，让她与现有团队继续推进。",
+      "after": "不介入谈判：由她自己面对现有团队",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/independent/reply/2",
+      "id": "A2a.independent.r2.reply.003",
+      "speaker": "N",
+      "before": "她向制作人争到一段独立试播时间，在便签上画了一个小小的星。",
+      "after": "她从制作人手里争到一段独立试播窗口，把“唐映雪·原作原唱”写在文件第一行。流量未必赶得上原宣传，但这次名字不会凭空消失。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/negotiated/reply/2",
+      "id": "A2a.negotiated.r2.reply.003",
+      "speaker": "N",
+      "before": "她发出修改要求。对面回了“试播时谈”，还不是答应。",
+      "after": "她把“试播时谈”四个字圈给你看：“还没答应。试播那天你别只拍掌声，帮我盯着屏幕上的姓名。”",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/duet/reply/2",
+      "id": "A2a.duet.r2.reply.003",
+      "speaker": "LU",
+      "before": "我送两版过来。她挑，不用你替她保证。",
+      "after": "我送两版编曲过去，原作的署名也标好。她试听以后自己选，别替她先答应。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/pause/reply/2",
+      "id": "A2a.pause.r2.reply.003",
+      "speaker": "N",
+      "before": "她向团队提出暂缓请求。正式回应还没来，她先把自己的原稿锁进备份盘。",
+      "after": "她发出暂缓发布的正式请求，把原稿锁进备份盘。今天少一条热搜，也少一次被迫签字的风险。她看上去终于能喘气。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2a",
+      "path": "A2a/unchanged/reply/2",
+      "id": "A2a.unchanged.r2.reply.003",
+      "speaker": "N",
+      "before": "她关掉预览，自己给负责人发了条消息。正式发布前，还能再争取。",
+      "after": "她没有把这当成你替她作的决定，而是关掉预览，直接联系项目负责人。你退出了这次争取，后面她能拿回多少，将不再靠你的参与。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/title",
+      "before": "这次，名单里有你",
+      "after": "第二天，程放把矛头指向我",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/body/0",
+      "id": "A2b.r42.body.001",
+      "speaker": "N",
+      "before": "第二天晚上，程放忽然在工作群里点你：“许照，昨晚那张交接单，你到底想明白了没？”最后还跟了一个笑脸。",
+      "after": "第二天晚上，工作群突然弹出程放的 @：“许照，昨天那张责任单考虑得怎么样？”后面跟了个笑脸。那张笑脸，是他隔着屏幕伸来的第二支笔。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/body/1",
+      "id": "A2b.r42.body.002",
+      "speaker": "N",
+      "before": "群里没人接话。你第一次明白，有时候一个笑脸比一句狠话还让人不舒服。阿衡的头像亮了一下，又暗了下去。",
+      "after": "群里短暂安静。阿衡头像亮了一下，沈清辞先发了句：“谁导出、谁试听、谁切换，三项分开写。”你看见程放一直在输入，最后没发出话来。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/body/2",
+      "id": "A2b.r42.body.003",
+      "speaker": "N",
+      "before": "陆景行正在准备下一场试听，没有跟着起哄。沈清辞却在群里回了一句：“谁负责什么，分开列。不要用一句‘大家都辛苦’混过去。”",
+      "after": "阿衡随后发出值守表，标明哪个时段由谁操作、哪些项目还得复核。程放不再催你单独签字，只留下一句“明天再谈”。你没有靠吵架赢，但让那张责任单再也不能一笔带过。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/body/3",
+      "id": "A2b.r42.body.004",
+      "speaker": "P",
+      "before": "你把打了半天的“收到”删掉。原来许照在原著里不是不懂反抗，是这条消息真的发出去以前，手会忍不住发抖。",
+      "after": "（要么公开争一口气，要么把证据递进核验流程，要么让陆景行做公开转发。都要付代价，却总比原著里只回一句“收到”强。）",
+      "kind": "text"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/public/label",
+      "before": "公开讲清我和阿衡各做了什么",
+      "after": "正面亮名字：让署名与责任都摆到台面",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/quiet/label",
+      "before": "把记录交上去，暂时不出镜",
+      "after": "暗中稳住：把证据交核验人，不吃眼前风头",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/cooperate/label",
+      "before": "请陆景行转发名单，我自己回答",
+      "after": "借原男主的声量：他转发，我亲自说明",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/public/reply/2",
+      "id": "A2b.public.r4.reply.003",
+      "speaker": "N",
+      "before": "主持人随后来找你核对名字。程放看见这条消息，单独发来一句：“那你准备好解释每一步。”",
+      "after": "程放私聊你：“那就等着解释每一步。”你把这条威胁也存了。今晚没能让他闭嘴，却让所有人第一次看到，你不是一口气把责任全揽下的那个许照。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/quiet/reply/1",
+      "id": "A2b.quiet.r4.reply.002",
+      "speaker": "S",
+      "before": "收到。名单上照样写你实际做过的部分。",
+      "after": "记录我收到了。名单按实际分工列名，回执也会留下。你没上热搜，但往后谁想改口，得先面对这些材料。",
+      "kind": "text"
+    },
+    {
+      "scene": "A2b",
+      "path": "A2b/cooperate/reply/2",
+      "id": "A2b.cooperate.r4.reply.003",
+      "speaker": "N",
+      "before": "你收到采访时间，也收到了陆景行发来的分工表。这次搭档的第一步，是把各自的工作写准确。",
+      "after": "陆景行发来分工表：“我只能说我看见的，剩下你自己来。”你答应了。这次合作不是抱大腿，是让每份贡献都见得了光。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/title",
+      "before": "旁厅，到底怎么继续",
+      "after": "第三天：一间旁厅，两套未来",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/body/0",
+      "id": "A3a.r4.body.001",
+      "speaker": "N",
+      "before": "第三天傍晚，旁厅里只开着一盏顶灯。两份方案摆在折叠椅上：给巡演做固定排练，收入稳定；独立夜场继续办，空场和亏损都得自己扛。",
+      "after": "第三天傍晚，旁厅只剩一盏灯。巡演开出稳定租金，条件是让出主要时段；独立夜场若想留下，就得自己承担空场风险。沈清辞面前只剩两份难看的方案。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/body/4",
+      "id": "A3a.r4.body.005",
+      "speaker": "S",
+      "before": "清辞把纸拿回去，先在“亏损由谁承担”下面画了道线：我会自己签决定。你愿不愿意陪我先试一步？别哄我，告诉我你真能做到的。",
+      "after": "亏损由谁承担，这栏我会自己签。你要帮，就说能做哪一步，别替我承诺一座剧场。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/cooperative/label",
+      "before": "支持小规模共营：保留三排座位，但别让清辞一个人付全部代价。",
+      "after": "小规模开战：试一场能算清账的夜演",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/shared/label",
+      "before": "谈保留独立时段，让巡演与小剧场共用，不把合作当投降。",
+      "after": "借力竞争：巡演与独立演出共用时段",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/residency/label",
+      "before": "建议不死守原址，先借别的空间做流动驻场。",
+      "after": "换地图：寻找流动驻场，不死守旧厅",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/exit/label",
+      "before": "支持她主动结束这个项目，别用“初心”要求她永远守在这里。",
+      "after": "止损撤出：结清预约，保住团队",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/leave/label",
+      "before": "不参与这次协调，优先保住你自己的精力。",
+      "after": "放弃这局：先保自己的时间和精力",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/cooperative/reply/2",
+      "id": "A3a.cooperative.r2.reply.003",
+      "speaker": "N",
+      "before": "她把“共营”圈起来，开始约试场。钥匙还没交出去，预算也还没解决。",
+      "after": "她开始约试场，第一件事就让你负责记录实际到场人数。钥匙和预算都还没到手，但独立夜场从一句口号变成了能检验的一张表。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/shared/reply/2",
+      "id": "A3a.shared.r2.reply.003",
+      "speaker": "N",
+      "before": "陆景行答应让团队参加一次测试，没有先承诺每个周末都归她。",
+      "after": "陆景行答应派团队参加一次进撤场测试。清辞当场把测试日期写下来：合作能否成，取决于那天能不能真腾出两个小时。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/residency/reply/2",
+      "id": "A3a.residency.r2.reply.003",
+      "speaker": "N",
+      "before": "她把看场地址发给你。这是备选，不是已经搬走。",
+      "after": "两家新场地的地址发到你手机上。原来的厅可能留不住，独立节目却第一次有了不靠这把钥匙的退路。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/exit/reply/2",
+      "id": "A3a.exit.r2.reply.003",
+      "speaker": "N",
+      "before": "她给同事发出交接意向，暂时仍负责现有预约。",
+      "after": "她发出交接意向，保留现有预约直到有人确认接手。旁厅未必能救，但至少不让剩下的人替这次退出吞下所有损失。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3a",
+      "path": "A3a/leave/reply/2",
+      "id": "A3a.leave.r2.reply.003",
+      "speaker": "N",
+      "before": "巡演方案还占优势。清辞说会再找人一起核对，暂时没有签字。",
+      "after": "你退出协调，清辞没有把这理解成背叛，只是继续找人。代价也很清楚：巡演方案仍占优势，那个独立时段不会因你一句好话自动留下。",
+      "kind": "text"
+    },
+    {
+      "scene": "A3b",
+      "path": "A3b/body/5",
+      "id": "A3b.r4.body.006",
+      "speaker": "N",
+      "before": "你手指停在屏幕上：这些都不是任务清单，而是真人在等答复。今晚只能认真赴一场约，不能四个人都说“马上到”。",
+      "after": "你把屏幕上的四个邀约看了又看：这不是四张能无限领取的任务卡，而是四个人真会记得的约定。今晚只能到一处；被你放下的机会，也会往前走。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/title",
+      "before": "申请今晚截止，作品还能补",
+      "after": "第五天，她的报名按钮只亮到今晚",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/body/0",
+      "id": "A4a.r4.body.001",
+      "speaker": "N",
+      "before": "第五天，林见月把申请邮件打开又关上。今晚是第一轮登记截止，作品还可以在之后补，可她连“我要去”三个字都迟迟没按发送。",
+      "after": "第五天，林见月的外出项目报名只剩最后几个小时。她的短片还能补交，报名资格却不能补。另一边，陆景行的巡演跟拍合同正等她签。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/body/3",
+      "id": "A4a.r4.body.004",
+      "speaker": "L",
+      "before": "见月把申请页面重新打开，声音很轻：我想试着出去。片子也不想丢。你能陪我先做一件具体的事吗？我自己来按发送。",
+      "after": "我想试着出去。报名我自己按，你帮我选的不是去哪儿，而是接下来哪件事先落地。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/fellowship/label",
+      "before": "支持她按时提交外出项目；舍不得可以说，不用她留下来证明感情。",
+      "after": "抢报名资格：今晚先占一个窗口",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/stay/label",
+      "before": "和她一起把留在海岚做自己项目的时间排实，不让“留下”继续等于替别人随叫随到。",
+      "after": "留城自立：先锁四个自己的拍摄日",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/film/label",
+      "before": "建议先完成自己的短片小放映，不用等它足够像“正式作品”。",
+      "after": "小场首映：先交出能被看见的样片",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/cut/label",
+      "before": "支持她先完成一段由当事人确认的事实节选，再慢慢做自己的长片。",
+      "after": "把事实剪完整：逐项拿授权再公开",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/none/label",
+      "before": "不介入她的安排，把精力留给你眼前的事。",
+      "after": "不介入：把精力留给自己正在打的仗",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/fellowship/reply/1",
+      "id": "A4a.fellowship.r2.reply.002",
+      "speaker": "N",
+      "before": "见月自己发出预报名，收到第21日前补充作品的提示。",
+      "after": "申请成功的邮件弹了出来，见月把屏幕转给你看，嘴角没压住。不是拿到录取，但至少下一次，她不会再被“没报名”三个字淘汰。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/stay/reply/2",
+      "id": "A4a.stay.r2.reply.003",
+      "speaker": "N",
+      "before": "她把自制片的拍摄清单给你看，巡演邀请仍等着她回复。",
+      "after": "她拿出日历当场划掉四个跟拍空档。陆景行的邀请还在，但镜头里该先有她自己的故事。你看见她第一次主动拒绝“随叫随到”。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/film/reply/2",
+      "id": "A4a.film.r2.reply.003",
+      "speaker": "N",
+      "before": "她笑着申请候选时段。场地方要求先收到样片，并没有立刻替她挂海报。",
+      "after": "候选放映时段申请发出。场地方没有立刻答应，却给了明确的样片截止日——那部一直“等以后再做”的片子，终于有了不能再拖的日期。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/cut/reply/2",
+      "id": "A4a.cut.r2.reply.003",
+      "speaker": "N",
+      "before": "她建立授权清单，等待当事人回复。",
+      "after": "见月把需要询问的人列成清单。你没替她偷拿素材，也没有让真相被好看的剪辑盖掉。第七天能用哪一段，要由这些答复决定。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4a",
+      "path": "A4a/none/reply/2",
+      "id": "A4a.none.r2.reply.003",
+      "speaker": "N",
+      "before": "她留下一份未完成的草稿。今晚还没截止，但她还需要把它写完。",
+      "after": "她暂时保存草稿，继续独自写申请。你省下今晚的精力，也明白这次没有替她占到任何确定名额。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/title",
+      "before": "原片里，明明还有后半段",
+      "after": "第五夜：程放说漏嘴的后半句",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/body/0",
+      "id": "A4b.r42.body.001",
+      "speaker": "N",
+      "before": "第五晚，林见月把耳机推到你这边，指着一段你没听过的杂音：“别急着摘，这句听完。”然后程放的声音响起：“错版文件不是许照导出的。”",
+      "after": "第五晚，见月把耳机塞到你手里。杂音后，程放的声音突然清楚起来：“错版文件不是许照导出的。”你一瞬间忘了呼吸——这句在原著里从来没机会被播放。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/body/1",
+      "id": "A4b.r42.body.002",
+      "speaker": "N",
+      "before": "宣传片里却只剩你站在设备箱旁的一秒，字幕写着“临时人员操作失误”。你盯着屏幕，忽然想起自己这几晚是不是太相信“真相总会有人说”。",
+      "after": "宣传片却只留下你靠近设备箱的一秒，字幕写着“临时人员操作失误”。你终于看懂了这条宣传片的陷阱：只要剪掉时间顺序，谁站得离箱子近，锅就是谁的。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/body/2",
+      "id": "A4b.r42.body.003",
+      "speaker": "P",
+      "before": "原著里他连开口的机会都没有。现在他们只要剪掉后面半句，我这几天做的事，可能真的全白费了。",
+      "after": "第七天只剩两天。我不能指望一句真话自己走到台前。见月，能从头再放一遍吗？",
+      "kind": "text"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/extract/label",
+      "before": "先请当事人核对，保留可用的节选",
+      "after": "拿核验节选：锁住那句关键原声",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/witness/label",
+      "before": "不公开录音，先请现场的人证明",
+      "after": "走人证路线：让现场人亲口说出顺序",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/wait/label",
+      "before": "先不用这段，另外寻找证据",
+      "after": "暂不动录音：另找线索，承受时间风险",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/extract/reply/2",
+      "id": "A4b.extract.r4.reply.003",
+      "speaker": "N",
+      "before": "你把那段音频又听了一遍。“不是许照导出的。”像有人把压在胸口五天的石头稍微搬开了一点。只是石头还没真正落地。",
+      "after": "你听见程放那句“不是许照导出的”，胸口像被松开一只手。现在不是赢了——只是拿到了第七天能把假字幕顶回去的第一张硬牌。",
+      "kind": "text"
+    },
+    {
+      "scene": "A4b",
+      "path": "A4b/wait/reply/2",
+      "id": "A4b.wait.reply.004",
+      "speaker": "N",
+      "before": "你没有拿走录音。走出房门才发现，离第七天只剩两天。你突然有点后悔，又知道后悔不能当证据。",
+      "after": "离第七天只剩两天。你没冒险拿走未经确认的录音，也得接受没补到新证据的代价。见月望着你：“真要用，别到最后一天才来问。”",
+      "kind": "text"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/title",
+      "before": "这页签名，不能替谁都负责",
+      "after": "第六天：她拒绝替所有人签字",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/body/0",
+      "id": "A5a.r4.body.001",
+      "speaker": "N",
+      "before": "第六天，顾晚棠拿到明天要公开的文件。最后一页已经替她留好了签名栏，可她当晚反对删掉独立演出的邮件，只被缩进角落里一行不起眼的备注。",
+      "after": "第六天，晚棠面前摆着一份明天就会公开的说明：好处写得含糊，坏账全留她签。她曾在邮件里反对删掉独立演出，反对意见却被缩成一行不起眼的小字。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/body/2",
+      "id": "A5a.r4.body.003",
+      "speaker": "B",
+      "before": "我记得原著里，她还是签了。风头过去，别人翻出反对意见，她却已经离开项目。我看着她握笔的手，想提醒，又怕这一句会让她更难做。",
+      "after": "（原著里她签过这页，最后一个人吞下骂名。我明天也得跟程放摊牌。如果现在替晚棠空口保证，只会把她推到另一个坑里。真正能帮上的，是把她有权做的决定摆到台面。）",
+      "kind": "text"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/independent/label",
+      "before": "支持她争取与责任相匹配的决定权，不继续只做宣布坏消息的人。",
+      "after": "争决定权：有权说了算，才承担后果",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/bounded/label",
+      "before": "支持她留下合作，但把自己能决定的范围讲清，不替别人无限兜底。",
+      "after": "改责任边界：合作继续，拒绝无限兜底",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/account/label",
+      "before": "建议她公开有权公开的完整事实，承认自己的决定，也纠正被强加的部分。",
+      "after": "公开完整事实：好坏都认，只认自己那份",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/leave/label",
+      "before": "支持她有计划地离开现在的位置，不把离席自动写成失败。",
+      "after": "带着清单离开：不签不属于她的债",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/none/label",
+      "before": "不参与她的选择，先处理自己的退场风险。",
+      "after": "先顾自身：这场责任谈判交还给她",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/independent/reply/2",
+      "id": "A5a.independent.r2.reply.003",
+      "speaker": "N",
+      "before": "她发出异议，会议还没有结果。",
+      "after": "晚棠把异议发进正式会议流程，会议还没开，但“只让我签字不给我决定权”终于变成了一项必须回答的问题。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/bounded/reply/2",
+      "id": "A5a.bounded.r2.reply.003",
+      "speaker": "N",
+      "before": "她标好待改位置，没有把草案当成正式约定。",
+      "after": "她用红笔删掉“承担所有后续损失”那句，补上真实权限和预算。还没签字，但已经不肯再按别人准备的版本谈。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/account/reply/2",
+      "id": "A5a.account.r2.reply.003",
+      "speaker": "P",
+      "before": "我想帮你把话说全，不是帮你演无辜。",
+      "after": "你肯把难听的那部分也讲出来，我就愿意帮你把话说全。我们要争的是能经得起核验的事实，不是漂亮的口号。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/leave/reply/2",
+      "id": "A5a.leave.r2.reply.003",
+      "speaker": "N",
+      "before": "她写下准备带走的私人物品，此刻还没有离职。",
+      "after": "晚棠列出未结责任和要交还的权限，开始准备正式离开。她不是被一句“有骨气”推下悬崖的人——退路也是她自己算出来的。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5a",
+      "path": "A5a/none/reply/2",
+      "id": "A5a.none.r2.reply.003",
+      "speaker": "N",
+      "before": "签名位仍空着。她拿起电话，继续约那几个能改方案的人。",
+      "after": "她没有要求你留下帮忙，自己继续约能修改方案的人。你把时间留给第七天，晚棠这场仗却不会为你暂停。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/title",
+      "before": "他也在准备下一次机会",
+      "after": "第六天：原男主向我发战书",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/body/3",
+      "id": "A5b.r4.body.004",
+      "speaker": "LU",
+      "before": "他把两份报名表放到琴凳上：下次机会就在这儿。想合作、想比一场，还是各做各的？你说清楚，我也好安排。",
+      "after": "下一轮名额不看谁先救场，只看谁交得出成果。许照，要并肩还是对手？",
+      "kind": "text"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/ally/label",
+      "before": "“合作。我有提前察觉的地方，你有我做不到的能力。”",
+      "after": "联手争名额：分工清楚，成绩都要写上",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/rival/label",
+      "before": "“我也想报名这一轮，各交各的成果。”",
+      "after": "正面单挑：同轮投稿，用作品分胜负",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/distance/label",
+      "before": "“我不想围着你安排自己。各做各的，现场需要时再协作。”",
+      "after": "保持距离：我的计划不绕着你转",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/independent/label",
+      "before": "“各自试试新的项目，有机会再互相介绍。”",
+      "after": "另开一局：找新的项目和合作方",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/repair/label",
+      "before": "“之前对你有些先入为主，想重新认识一下。”",
+      "after": "放下成见：谈一次真正的合作",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/ally/reply/1",
+      "id": "A5b.ally.r2.reply.002",
+      "speaker": "LU",
+      "before": "行。我把分工列给你，你别只给建议，留一段自己真要做的。",
+      "after": "合作可以。音乐我来，现场流程你来；分工写清楚，别只站旁边出主意。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/rival/reply/1",
+      "id": "A5b.rival.r2.reply.002",
+      "speaker": "LU",
+      "before": "可以。同一轮征集，谁都别等对方先交。",
+      "after": "行。同一轮见。你交你的，我交我的，别谁先替谁认输。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/distance/reply/2",
+      "id": "A5b.distance.r2.reply.003",
+      "speaker": "N",
+      "before": "他仍把已经确认的试听时段发进工作群，继续安排自己的下一步。",
+      "after": "他把自己的排练计划收好。你没有拿“躲开原男主”当胜利，真正的好处是以后每一份机会，都可以按自己的时间争。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/independent/reply/2",
+      "id": "A5b.independent.r2.reply.003",
+      "speaker": "N",
+      "before": "他仍把已经确认的试听时段发进工作群，继续安排自己的下一步。",
+      "after": "你收下另一个项目的联络方式。原著只写陆景行跑完巡演，如今你也有了一张不跟着他走的新地图。",
+      "kind": "text"
+    },
+    {
+      "scene": "A5b",
+      "path": "A5b/repair/reply/2",
+      "id": "A5b.repair.r2.reply.003",
+      "speaker": "N",
+      "before": "他仍把已经确认的试听时段发进工作群，继续安排自己的下一步。",
+      "after": "陆景行听完你之前的误解，反而把修改过的分工表给你看。竞争没有消失，但你不用再把每一次合作都当成输。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/title",
+      "before": "第十三章：这次，你不退场",
+      "after": "第十三章：这次该我发声",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/body/0",
+      "id": "A6a.r42.body.001",
+      "speaker": "N",
+      "before": "第七天，宣传片忽然在大屏上亮起。错误伴奏、你站在侧幕的背影、控台的半截镜头，被剪成一条模糊的事故链。到底谁动过哪一步，画面一个字也没说。周围的人却都转头看向你。",
+      "after": "第七天，原著写好的事故视频准时上屏。你靠近设备箱的背影被截成一秒，错误伴奏和控台画面被剪在一起，底下赫然打着“临时人员操作失误”。没有时间线，只留下你这个最好推出来的名字。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/body/1",
+      "id": "A6a.r42.body.002",
+      "speaker": "N",
+      "before": "“临时人员操作失误。”八个字像钉在屏幕上。你往后退时，鞋跟撞到门槛，才发现自己一直屏着呼吸。",
+      "after": "四周的视线齐刷刷转向你。和书里一模一样的侧门、同一张清退单，都已经摆好。不同的是，你口袋里有没有能用的材料，取决于前六天到底做过什么。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/body/2",
+      "id": "A6a.r42.body.003",
+      "speaker": "C",
+      "before": "都处理好了。许照，你先出去。别让后面的活动停在这儿。",
+      "after": "许照，事情处理好了，你出去。别耽误下一场。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/body/3",
+      "id": "A6a.r42.body.004",
+      "speaker": "B",
+      "before": "我记得第十三章。就是这扇侧门，保安走过来，许照连解释都没来得及。可现在轮到我了，我才知道光背熟那一页根本没用。",
+      "after": "（第十三章到了。原著里的许照连一句反驳都没说完。今天我有多少资格让全场听我说话，就看前六天有没有留下真正能核验的材料。）",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/body/4",
+      "id": "A6a.r42.body.005",
+      "speaker": "N",
+      "before": "保安朝侧门迈了一步。你摸到口袋里的手机，听见背后阿衡小声喊你的名字。见月举着相机，却没有擅自把镜头对准谁。",
+      "after": "保安走到侧门。阿衡站在控台旁，见月握着相机却没有擅自拍人；清辞看向你，像在等你给出一句真正能核对的话。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/body/5",
+      "id": "A6a.r42.body.006",
+      "speaker": "N",
+      "before": "你想起第一晚自己从箱子边起身的那一下。七天过去，原著没写过的事情太多了。此刻能说出口的，不是“我看过书”，而是这些天亲眼见过、亲手做过的事。",
+      "after": "你抬头看向那行错误字幕。现在能当场反击的，只有这七天亲眼看过、合法留下的证据。没有的东西不能靠“我看过原著”变出来。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/label",
+      "before": "把可核对的时间线放回屏幕，自己讲清楚。",
+      "after": "当众反击：把真实时间线投回大屏",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/partner/label",
+      "before": "请在场协作者分别说清各自看到的部分，你负责自己的事实。",
+      "after": "联合反击：每个证人讲自己确认的事实",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/backstage/label",
+      "before": "不抢台前位置。提交现有材料，要求先停止错误归责。",
+      "after": "幕后翻盘：先撤假字幕，再做完整复核",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/exit/label",
+      "before": "结清自己的部分，明确要求更正后离开这家公司；不再争本场名额。",
+      "after": "带着更正书离开：不再给程放打工",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/accept/label",
+      "before": "不提出核验，接受当场清退，结束这一轮。",
+      "after": "认下这一局：不申辩，接受原著退场",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/rebuild/label",
+      "before": "提交已有记录，请求完成责任更正后暂停接新项目，先整理自己的下一步。",
+      "after": "保住名誉后暂退：重新选择下一份机会",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/replyBlocks/0/lines/0",
+      "id": "A6a.public.r2.audio.001",
+      "speaker": "P",
+      "before": "先别请我出去。把这段已经核过的原声问答放完，再决定是谁操作失误。",
+      "after": "画面先别切。请把这段得到许可的完整原声放完——谁导出错版，谁执行切换，让现场所有人自己听。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/replyBlocks/0/lines/1",
+      "id": "A6a.public.r2.audio.002",
+      "speaker": "N",
+      "before": "阿衡对上时间，现场响起程放那句“不是许照导出的”。后面关于切换的问答也没有被截掉。",
+      "after": "阿衡把时间点对上，程放那句“不是许照导出的”从大屏传出。现场的议论声一层层停下，先前那条指向你的字幕终于显得站不住脚。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/replyBlocks/0/lines/2",
+      "id": "A6a.public.r2.audio.003",
+      "speaker": "N",
+      "before": "程放伸向暂停键，清辞拦了一下：“先放完。”",
+      "after": "程放伸手想停播放，清辞挡住控制台：“完整问答先放完。任何人都不能只剪对自己有利的一秒。”",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/replyBlocks/1/lines/0",
+      "id": "A6a.public.r2.record.001",
+      "speaker": "P",
+      "before": "不用猜录音里还有什么。我只有这张交接记录，就核这张。",
+      "after": "我没有原声，就核这张双方签过的交接单。请放大导出时间和接手时间，不用猜，也不必听我编。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/replyBlocks/1/lines/1",
+      "id": "A6a.public.r2.record.002",
+      "speaker": "N",
+      "before": "导出时间早于你的接手时间，责任栏另有署名。现场复核人逐项确认，要求撤下把旧版算给你的字幕。",
+      "after": "导出时间在你接手之前，责任栏也有不同签名。核验人要求先撤下错误字幕。你第一次看见有人为了你的名字，在原著那块屏幕上按下暂停。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/replyBlocks/2/lines/0",
+      "id": "A6a.public.r2.witness.001",
+      "speaker": "P",
+      "before": "我没拿到原声。请阿衡说清自己操作的那一段。",
+      "after": "我没有录音，只有请阿衡亲自确认的那段。他看见的由他说，我看见的由我讲。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/public/replyBlocks/2/lines/2",
+      "id": "A6a.public.r2.witness.003",
+      "speaker": "N",
+      "before": "阿衡把签过的时间记录放到桌上。现场逐项核对后，错误字幕撤下，保安也停在了门边。",
+      "after": "阿衡把时间记录放到桌上，逐项核对。字幕被撤下，保安停在门边。你没靠一段凭空出现的视频翻身，只靠前面真的做过的那几步。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/partner/reply/0",
+      "id": "A6a.partner.r2.reply.001",
+      "speaker": "N",
+      "before": "你请已参与核验的人只说自己确认的部分，随后亲自讲清你的接手时间。现场没有人靠恋爱关系替你担保。",
+      "after": "已参加核验的人各自说清自己看见的部分。你负责自己的时间线；清辞要求更正屏幕上的归责字幕。没有人替你编证词，程放也没法再把所有环节塞成一句话。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/backstage/reply/1",
+      "id": "A6a.backstage.reply.002",
+      "speaker": "N",
+      "before": "公开片段暂停使用，完整复核随后进行。你没有成为这晚的新闻中心，也没有签下不属于自己的错误。",
+      "after": "屏幕暂停，核验流程正式启动。你没有当众出风头，却让“临时人员操作失误”无法作为结论继续播放。对方得拿材料说话，不能只拿你的背影。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/exit/reply/1",
+      "id": "A6a.exit.reply.002",
+      "speaker": "N",
+      "before": "你交回工作牌，不是承认宣传片，而是放弃在这个项目里争位置。已有的事实复核继续推进。",
+      "after": "你交回工作牌，留下正式更正申请并保存受理回执。程放再没法拿“明天不让你上班”逼你认错；复核结果还在路上。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/accept/reply/0",
+      "id": "A6a.accept.r4.reply.001",
+      "speaker": "N",
+      "before": "你没有要求复核，交回工作牌，跟着保安走出侧门。下一场介绍很快盖过了走廊的声音。",
+      "after": "你交回工牌，没有要求核验。原著的侧门又一次为许照打开。屏幕上的字幕未必是真相，但你把反击机会留在了门内。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6a",
+      "path": "A6a/rebuild/reply/0",
+      "id": "A6a.rebuild.reply.001",
+      "speaker": "N",
+      "before": "你把能确认的时间线交出去，要求记录自己的实际职责。清辞请现场人员逐项核验，没有把你的暂缓说成认错离开。",
+      "after": "你要求记录完整更正自己的分工，再暂停接新项目。不是输不起才退出，而是让下一次合作从清楚的条件开始。",
+      "kind": "text"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/title",
+      "before": "书里没有第八天的你",
+      "after": "第八天，有人主动问我报价",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/body/0",
+      "id": "UNWRITTEN.r42.body.001",
+      "speaker": "N",
+      "before": "保安终于停住了脚步。走出艺术中心时，夜风冷得你一激灵。手机震了一下，屏幕上是一本原著绝不可能提前告诉你的新邀约。",
+      "after": "侧门的保安停住了。你走出北岸，手机震动：一份邀请你独立复盘现场的工作询价。原著第十三章只写许照退场，却没写过有人主动问他的报价。",
+      "kind": "text"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/body/1",
+      "id": "UNWRITTEN.r42.body.002",
+      "speaker": "P",
+      "before": "原著真的没写过第八天的许照。我不敢说自己赢了，但今晚我至少没有像书里那样走掉。",
+      "after": "（第八天。）原著写到我被清退就停了。今天有人主动问我的报价，我终于不只是那张签名栏里随手能擦掉的人。",
+      "kind": "text"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/body/2",
+      "id": "UNWRITTEN.r42.body.003",
+      "speaker": "N",
+      "before": "对方想请你独立复盘这场演出。答应就得重新面对那夜的误会，不答应也有别的明天。你摸着屏幕，第一回没急着找标准答案。",
+      "after": "对方要的是一份能核验的演出复盘，而不是传奇故事。接不接、公开到哪一步、先替自己争哪份未来，都得由你做下一次选择。",
+      "kind": "text"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/offer/label",
+      "before": "去谈机会：这一次为自己发声",
+      "after": "接下邀请：凭本事谈一次报价",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/private/label",
+      "before": "先留给重要的人，不公开经历",
+      "after": "保留底牌：只在授权范围内继续合作",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/self/label",
+      "before": "今天先不接活，我想过自己的日子",
+      "after": "暂不接单：先安排自己的生活",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/offer/reply/1",
+      "id": "UNWRITTEN.r42.reply.offer.002",
+      "speaker": "N",
+      "before": "对方回了一句：“那就按你说的做。下周来谈报价。”原著没有这份工作。",
+      "after": "你报出自己的范围与交付要求，对方回了一个正式的谈价时间。这个机会没写在原著里，是你把前七天过成了能交付的履历。",
+      "kind": "text"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/private/reply/0",
+      "id": "UNWRITTEN.r42.reply.private.001",
+      "speaker": "N",
+      "before": "你联系阿衡和见月，确认哪些材料该留下、哪些不该流出去。她们给了明确答复。这段后来没有上热搜，却真实改变了你们的合作方式。",
+      "after": "你和阿衡、见月把能保留的材料分清授权范围。没人上热搜，但以后再有人想剪走某一秒，你们知道能去哪里找真实记录。",
+      "kind": "text"
+    },
+    {
+      "scene": "UNWRITTEN",
+      "path": "UNWRITTEN/self/reply/0",
+      "id": "UNWRITTEN.r42.reply.self.001",
+      "speaker": "N",
+      "before": "你没有把逃过清退当成必须马上成功的命令。打开备忘录，你第一次只写自己想做的事。",
+      "after": "你把工作邀约放进待回复，不用逃过清退就立刻把自己卖给下一份忙乱。今天的晚饭和下一周的安排，第一次轮到你自己排。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6b",
+      "path": "A6b/title",
+      "before": "第八天，原著没替你安排",
+      "after": "第八天：原著之外，我有下一局",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A6b",
+      "path": "A6b/body/0",
+      "id": "A6b.r42.body.001",
+      "speaker": "N",
+      "before": "你走出现场时天还没彻底亮。你在备忘录里找到了那句“第七天被清退”，手指悬了好久，最后把它划掉。",
+      "after": "天快亮了，你在手机备忘录里找到“第七天被清退”。把那行字划掉时，指尖竟然有点发抖——这一次，是赢过那张清退单以后的余震。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6b",
+      "path": "A6b/body/1",
+      "id": "A6b.r42.body.002",
+      "speaker": "P",
+      "before": "……我真的还在这里。",
+      "after": "……我真的留下来了。不，不只是没被赶走。下一步，我想自己选。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6b",
+      "path": "A6b/body/2",
+      "id": "A6b.r42.body.003",
+      "speaker": "N",
+      "before": "工作群里还有没结清的任务，私人消息里也有人问“到家了吗”。你不知道该先回谁，却第一次觉得这两件事可以慢慢决定。",
+      "after": "有人发来新的项目需求，也有人问你到家没有。这次你不必把工作、朋友和喜欢的人全塞进同一张责任单里；你可以选择先把哪一局打赢。",
+      "kind": "text"
+    },
+    {
+      "scene": "A6b",
+      "path": "A6b/relationships/label",
+      "before": "先把答应过的相处安排好",
+      "after": "先兑现约定：把真正想见的人约到眼前",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6b",
+      "path": "A6b/world/label",
+      "before": "继续做完她们正在争取的事",
+      "after": "继续改命：帮他们把未完的成果做出来",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A6b",
+      "path": "A6b/self/label",
+      "before": "先安顿好自己的生活和工作",
+      "after": "先强大自己：接下一份能署自己名字的活",
+      "kind": "choice_label"
+    },
+    {
+      "scene": "A7a",
+      "path": "A7a/title",
+      "before": "灯亮起来的时候，没有谁再替你选",
+      "after": "第二十一天：我不再是配角",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A7a",
+      "path": "A7a/body/0",
+      "id": "A7a.r2.body.001",
+      "speaker": "N",
+      "before": "第二十一天，北岸艺术中心的灯又亮起来。上一次你站在设备箱后面等别人决定；这次节目单上多了你做过的那一项，写得清清楚楚。",
+      "after": "第二十一天，北岸的灯又亮起来。你可能已不在那家公司，也可能拿着新的分工重新进场；无论站在哪边，七天前那张错误字幕都不再能替你定义一生。",
+      "kind": "text"
+    },
+    {
+      "scene": "A7a",
+      "path": "A7a/body/1",
+      "id": "A7a.r2.body.002",
+      "speaker": "N",
+      "before": "你没有立刻点开工作群。手机另一边是几个人发来的私人消息，你逐条看过去，终于知道今晚的选择不能再拿“我记得原著”当理由。",
+      "after": "工作有了真实结果，手机里却还有几条重要的私人消息。你终于明白：改掉炮灰结局只是上半场，下一页怎么写，得同时对得起自己和愿意走近你的人。",
+      "kind": "text"
+    },
+    {
+      "scene": "A7b",
+      "path": "A7b/title",
+      "before": "最后，再把自己的心意说清",
+      "after": "最后一局：选我要的未来",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "A7b",
+      "path": "A7b/body/0",
+      "id": "A7b.r2.body.001",
+      "speaker": "N",
+      "before": "今晚的消息渐渐安静下来。你拿着手机，把接下来真正愿意做的事说清。",
+      "after": "灯光渐暗。你把实际做成的工作、兑现过的约定，以及仍欠着的回答放在一起。这一回，没有原著标准答案，也没有能替你点头的人。",
+      "kind": "text"
+    },
+    {
+      "scene": "t01",
+      "path": "t01/title",
+      "before": "后台的盒饭",
+      "after": "救场后的她，先把位置留给我",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "t01",
+      "path": "t01/body/0",
+      "id": "t01.r4.body.001",
+      "speaker": "N",
+      "before": "你推开后台门时，映雪正把盒饭藏进外套。她动作太快，胡萝卜却不争气地从盒盖边滚了出来。",
+      "after": "后台没人时，唐映雪正偷偷藏盒饭。胡萝卜从盖边滚出来，她抬头看见你，干脆拉开旁边椅子：“后台那位，帮我挡一下，这事别让我经纪人知道。”",
+      "kind": "text"
+    },
+    {
+      "scene": "t01",
+      "path": "t01/body/4",
+      "id": "t01.r4.body.005",
+      "speaker": "N",
+      "before": "她把外套掀开，空出半张椅子。饭盒旁还有一双没拆开的筷子，像早就给你留好了，却偏不先说。",
+      "after": "她把外套掀开，旁边那双没拆封的筷子已经推到你面前。台上她能接住所有人的目光，台下却连偷偷吃饭都做得有些狼狈。",
+      "kind": "text"
+    },
+    {
+      "scene": "s01",
+      "path": "s01/title",
+      "before": "窗边空出两把椅子",
+      "after": "冷脸制作人，偷偷给我留了五分钟",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "s01",
+      "path": "s01/body/0",
+      "id": "s01.r4.body.001",
+      "speaker": "N",
+      "before": "窗缝突然灌进一阵风，清辞的排期纸哗啦飞了一地。她一边接电话一边找笔，你蹲下按住最后一页，她对电话那头说“十分钟后给你答复”。",
+      "after": "一阵风把清辞的排期单吹得到处都是。她一边处理电话一边抢纸，你按住最后一页，她朝你比了个“等等”，竟然直接跟电话那头说：“十分钟以后，我来拍板。”",
+      "kind": "text"
+    },
+    {
+      "scene": "s01",
+      "path": "s01/body/5",
+      "id": "s01.r4.body.006",
+      "speaker": "S",
+      "before": "你替她把椅子上的文件挪开。她终于坐下，伸手在手机上按了静音：只五分钟。第六分钟有人找我，你就说我去追那张吹走的纸。",
+      "after": "五分钟。我把工作手机关了，不是来让你汇报的——我想知道首演后台认识的许照，平时是什么样。",
+      "kind": "text"
+    },
+    {
+      "scene": "l01",
+      "path": "l01/title",
+      "before": "被剪掉的两秒钟",
+      "after": "她给我听了原著漏掉的两秒",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "l01",
+      "path": "l01/body/0",
+      "id": "l01.r1.body.001",
+      "speaker": "N",
+      "before": "见月反复听一段只有两秒的音频，音量调得很低。你走过去，她把耳机分你一边，连线都提前理开了。",
+      "after": "“你听。”林见月把耳机分给你一边，反复调回同一个两秒片段。有人刚说出“我其实”，声音就被关门声截断。她没有让剪辑替那个人说完后半句。",
+      "kind": "text"
+    },
+    {
+      "scene": "g01",
+      "path": "g01/title",
+      "before": "她先问你的价码",
+      "after": "顾晚棠说，别把我当老板",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "g01",
+      "path": "g01/body/0",
+      "id": "g01.r1.body.001",
+      "speaker": "N",
+      "before": "露台门被风吹得咯吱响。顾晚棠站在门边，手里转着一张折过的收据。看到你，她先把旁边的空椅子拉出来。",
+      "after": "露台风大。顾晚棠抬头看见你，把旁边的空椅子拉出来：“许照？首演那晚的临时场务，名字没记错吧？”她眼里带笑，却没用上级看临时工的口气。",
+      "kind": "text"
+    },
+    {
+      "scene": "X02",
+      "path": "X02/title",
+      "before": "我来写下一章",
+      "after": "没有主角光环，我照样能赢一局",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "X02",
+      "path": "X02/body/0",
+      "id": "X02.r2.body.001",
+      "speaker": "N",
+      "before": "夜场结束，你收到了现场负责人发来的结算确认。收款人：许照。",
+      "after": "夜场刚散，手机跳出一条结算确认：收款人，许照；工作内容，按你实际完成的分工列得一清二楚。原著里最容易被删掉的名字，这回留在了正式记录上。",
+      "kind": "text"
+    },
+    {
+      "scene": "X02",
+      "path": "X02/body/1",
+      "id": "X02.r2.body.002",
+      "speaker": "N",
+      "before": "这次没有“临时背锅”四个字，没有谁要求你消失以后再补一条更正。",
+      "after": "程放没有再把错误塞进你的栏目。你不需要满世界宣告胜利——那份有署名、有工时、结清的钱，就是这一局最硬的结果。",
+      "kind": "text"
+    },
+    {
+      "scene": "X02",
+      "path": "X02/body/4",
+      "id": "X02.r2.body.005",
+      "speaker": "N",
+      "before": "陆景行笑了一声，没替你作决定。你把下一周的日历打开，空出来的那一格由你自己填。",
+      "after": "陆景行没替你定下一步。他把下一轮征集时间发给你，你合上手机看了眼夜色：第一次轮到别人来问，你肯不肯接。",
+      "kind": "text"
+    },
+    {
+      "scene": "X02",
+      "path": "X02/work/reply/1",
+      "id": "X02.work.reply.002",
+      "speaker": "N",
+      "before": "没有人突然宣布你比原男主更有天赋，也下一份工作也还要问条件。你只是终于能把自己的名字写在需要它的地方。",
+      "after": "下一份工作不是天降大奖，但负责人直接写信问你能否按上次的质量交付。你报出职责和工期，再发出自己的报价。主角光环没有来，主动权倒是来了。",
+      "kind": "text"
+    },
+    {
+      "scene": "X03",
+      "path": "X03/title",
+      "before": "每个人都有下一页",
+      "after": "四条遗憾，全部改写",
+      "kind": "scene_title"
+    },
+    {
+      "scene": "X03",
+      "path": "X03/body/0",
+      "id": "X03.r2.body.001",
+      "speaker": "N",
+      "before": "四条消息先后挤进屏幕。映雪发了一个夸张的庆祝表情，清辞问你几点能歇下来，见月的消息附着一张工作截图，晚棠只有一句：“成了。”",
+      "after": "手机连震四次：映雪发来新歌试播的截图，清辞传来旁厅的新安排，见月的申请页面有了进展，晚棠发来终于得到记录的方案修订页。她们各自亲手推进的事，终于没照原著那样滑向失去。",
+      "kind": "text"
+    },
+    {
+      "scene": "X03",
+      "path": "X03/body/1",
+      "id": "X03.r2.body.002",
+      "speaker": "N",
+      "before": "你把每一份实际结果分别点开，和当初记下的原著结局并排看。没有一项是靠等陆景行出场等来的。",
+      "after": "你把四条真实结果与原著后来的遗憾一一对上。没人凭空成神，也没人为你停止自己的生活；可四个本来要遗憾收场的故事，确实都被你撬开了新的路。",
+      "kind": "text"
+    },
+    {
+      "scene": "X03",
+      "path": "X03/body/3",
+      "id": "X03.r2.body.004",
+      "speaker": "P",
+      "before": "以前看过一个很憋屈的故事。现在结尾不一样了。",
+      "after": "以前看过一本让我憋屈的书。现在，我终于知道亲手改结局是什么感觉。",
+      "kind": "text"
+    }
+  ],
+  "counts": {
+    "scenesTouched": 28,
+    "bodyAndReplyLines": 158,
+    "choiceLabels": 68,
+    "sceneTitles": 26
+  }
+}

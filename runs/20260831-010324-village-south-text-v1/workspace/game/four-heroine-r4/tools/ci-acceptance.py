@@ -41,7 +41,8 @@ elif ok and repo_ok:
    ui_ok=stage("native-v45-ui",[sys.executable,"tools/test-v45-browser.py"],env=env)
    reader_ok=stage("native-v47-reader-and-save-migration",[sys.executable,"tools/test-v46-reader.py"],env=env)
    first_ok=stage("native-v48-readable-first-choice",[sys.executable,"tools/test-v48-first-choice.py"],env=env)
-   if ui_ok and reader_ok and first_ok:
+   save_ok=stage("native-v49-saved-session-continuity",[sys.executable,"tools/test-v49-save-migration.py"],env=env)
+   if ui_ok and reader_ok and first_ok and save_ok:
     stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
   except Exception as e:

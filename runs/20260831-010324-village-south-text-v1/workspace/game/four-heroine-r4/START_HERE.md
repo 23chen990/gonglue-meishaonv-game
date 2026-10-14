@@ -1,3 +1,11 @@
+# v4.9 起点：中性、略偏男性向的穿书逆袭（2026-10-14）
+
+**从这里继续：** 请先读 `docs/R49_NEUTRAL_POWER_STORY_AUDIT.md`、`patch/v49_story_punchup.json`、`tools/test-v49-consequences.mjs`。历史 r4.5/v4.8 的交接说明在下文继续保留。
+
+最新正式剧本：`data/STORY.json`，最新全量可阅读导出：`docs/FULL_STORY_READABLE.txt`。本轮保持剧情选项数量、引擎状态和正式结局不变；只重写关键情绪与信息表达。**不要误称女性向产品，不要误称 89.7% 静态引用率已通过玩家盲测。**
+
+---
+
 # 最新：2026-10-14 r4.5 完整竖屏客户端与剧情候选
 
 可直接打开 `play.html` 体验完整游戏（不需服务器）。新版候选改造在 `tools/preview-ui.js`、`tools/vn.css`、`assets/` 和 `data/STORY.json`；详情及诚实 QA 边界请先看 `docs/R45_COMPLETE_DELIVERY_AND_QA.md`。本包不是正式发布版本，不能把模拟器测试当作真人/实体手机/平台验收。

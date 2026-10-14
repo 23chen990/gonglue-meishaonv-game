@@ -1,11 +1,11 @@
 {
   "version": "revision-r4.3",
-  "storySha256": "fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8",
+  "storySha256": "e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0",
   "method": "全量选择登记；只列真实文本条件和明确运行时消费。留档字段不算长期影响；见测试中具体反事实案例。",
   "choices": [
     {
       "id": "A1b/check",
-      "label": "把今晚做过的事分开写清楚",
+      "label": "逐项拆责任：签自己做的，别人的另写",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -81,7 +81,7 @@
     },
     {
       "id": "A1b/ask",
-      "label": "请阿衡替亲眼见过的事作证",
+      "label": "请阿衡作证：用人证换第一层保护",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -156,7 +156,7 @@
     },
     {
       "id": "A1b/look",
-      "label": "先带走副本，不签模糊责任",
+      "label": "先拿副本：今晚不签模糊责任",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8027,7 +8027,7 @@
     },
     {
       "id": "A2a/independent",
-      "label": "支持她先以自己的名字发布完整版本，接受更小的初始声量。",
+      "label": "抢回首发：独立母带，小流量换所有权",
       "availableWhen": {
         "eq": [
           "song_access_t",
@@ -8088,7 +8088,7 @@
     },
     {
       "id": "A2a/negotiated",
-      "label": "帮她把名字、版本与独唱时段谈清，再借宣发的声量。",
+      "label": "借势反击：保住热度，签下姓名与时段",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8144,7 +8144,7 @@
     },
     {
       "id": "A2a/duet",
-      "label": "提议与陆景行重新合唱，但必须说明原作与各自参与的部分。",
+      "label": "反向合作：合唱可以，原作与分轨写明",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8200,7 +8200,7 @@
     },
     {
       "id": "A2a/pause",
-      "label": "支持她暂时不发。先不拿还没想好的作品交换热度。",
+      "label": "及时止损：撤预告，先守住完整版",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8256,7 +8256,7 @@
     },
     {
       "id": "A2a/unchanged",
-      "label": "不介入这次安排，让她与现有团队继续推进。",
+      "label": "不介入谈判：由她自己面对现有团队",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8312,7 +8312,7 @@
     },
     {
       "id": "A2b/public",
-      "label": "公开讲清我和阿衡各做了什么",
+      "label": "正面亮名字：让署名与责任都摆到台面",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8364,7 +8364,7 @@
     },
     {
       "id": "A2b/quiet",
-      "label": "把记录交上去，暂时不出镜",
+      "label": "暗中稳住：把证据交核验人，不吃眼前风头",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8403,7 +8403,7 @@
     },
     {
       "id": "A2b/cooperate",
-      "label": "请陆景行转发名单，我自己回答",
+      "label": "借原男主的声量：他转发，我亲自说明",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8455,7 +8455,7 @@
     },
     {
       "id": "A3a/cooperative",
-      "label": "支持小规模共营：保留三排座位，但别让清辞一个人付全部代价。",
+      "label": "小规模开战：试一场能算清账的夜演",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8511,7 +8511,7 @@
     },
     {
       "id": "A3a/shared",
-      "label": "谈保留独立时段，让巡演与小剧场共用，不把合作当投降。",
+      "label": "借力竞争：巡演与独立演出共用时段",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8567,7 +8567,7 @@
     },
     {
       "id": "A3a/residency",
-      "label": "建议不死守原址，先借别的空间做流动驻场。",
+      "label": "换地图：寻找流动驻场，不死守旧厅",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8623,7 +8623,7 @@
     },
     {
       "id": "A3a/exit",
-      "label": "支持她主动结束这个项目，别用“初心”要求她永远守在这里。",
+      "label": "止损撤出：结清预约，保住团队",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8679,7 +8679,7 @@
     },
     {
       "id": "A3a/leave",
-      "label": "不参与这次协调，优先保住你自己的精力。",
+      "label": "放弃这局：先保自己的时间和精力",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8978,7 +8978,7 @@
     },
     {
       "id": "A4a/fellowship",
-      "label": "支持她按时提交外出项目；舍不得可以说，不用她留下来证明感情。",
+      "label": "抢报名资格：今晚先占一个窗口",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9037,7 +9037,7 @@
     },
     {
       "id": "A4a/stay",
-      "label": "和她一起把留在海岚做自己项目的时间排实，不让“留下”继续等于替别人随叫随到。",
+      "label": "留城自立：先锁四个自己的拍摄日",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9096,7 +9096,7 @@
     },
     {
       "id": "A4a/film",
-      "label": "建议先完成自己的短片小放映，不用等它足够像“正式作品”。",
+      "label": "小场首映：先交出能被看见的样片",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9155,7 +9155,7 @@
     },
     {
       "id": "A4a/cut",
-      "label": "支持她先完成一段由当事人确认的事实节选，再慢慢做自己的长片。",
+      "label": "把事实剪完整：逐项拿授权再公开",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9214,7 +9214,7 @@
     },
     {
       "id": "A4a/none",
-      "label": "不介入她的安排，把精力留给你眼前的事。",
+      "label": "不介入：把精力留给自己正在打的仗",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9273,7 +9273,7 @@
     },
     {
       "id": "A4b/extract",
-      "label": "先请当事人核对，保留可用的节选",
+      "label": "拿核验节选：锁住那句关键原声",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9344,7 +9344,7 @@
     },
     {
       "id": "A4b/witness",
-      "label": "不公开录音，先请现场的人证明",
+      "label": "走人证路线：让现场人亲口说出顺序",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9412,7 +9412,7 @@
     },
     {
       "id": "A4b/wait",
-      "label": "先不用这段，另外寻找证据",
+      "label": "暂不动录音：另找线索，承受时间风险",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9450,7 +9450,7 @@
     },
     {
       "id": "A5a/independent",
-      "label": "支持她争取与责任相匹配的决定权，不继续只做宣布坏消息的人。",
+      "label": "争决定权：有权说了算，才承担后果",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9506,7 +9506,7 @@
     },
     {
       "id": "A5a/bounded",
-      "label": "支持她留下合作，但把自己能决定的范围讲清，不替别人无限兜底。",
+      "label": "改责任边界：合作继续，拒绝无限兜底",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9562,7 +9562,7 @@
     },
     {
       "id": "A5a/account",
-      "label": "建议她公开有权公开的完整事实，承认自己的决定，也纠正被强加的部分。",
+      "label": "公开完整事实：好坏都认，只认自己那份",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9618,7 +9618,7 @@
     },
     {
       "id": "A5a/leave",
-      "label": "支持她有计划地离开现在的位置，不把离席自动写成失败。",
+      "label": "带着清单离开：不签不属于她的债",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9674,7 +9674,7 @@
     },
     {
       "id": "A5a/none",
-      "label": "不参与她的选择，先处理自己的退场风险。",
+      "label": "先顾自身：这场责任谈判交还给她",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9730,7 +9730,7 @@
     },
     {
       "id": "A5b/ally",
-      "label": "“合作。我有提前察觉的地方，你有我做不到的能力。”",
+      "label": "联手争名额：分工清楚，成绩都要写上",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9779,7 +9779,7 @@
     },
     {
       "id": "A5b/rival",
-      "label": "“我也想报名这一轮，各交各的成果。”",
+      "label": "正面单挑：同轮投稿，用作品分胜负",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9828,7 +9828,7 @@
     },
     {
       "id": "A5b/distance",
-      "label": "“我不想围着你安排自己。各做各的，现场需要时再协作。”",
+      "label": "保持距离：我的计划不绕着你转",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9877,7 +9877,7 @@
     },
     {
       "id": "A5b/independent",
-      "label": "“各自试试新的项目，有机会再互相介绍。”",
+      "label": "另开一局：找新的项目和合作方",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9926,7 +9926,7 @@
     },
     {
       "id": "A5b/repair",
-      "label": "“之前对你有些先入为主，想重新认识一下。”",
+      "label": "放下成见：谈一次真正的合作",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9975,7 +9975,7 @@
     },
     {
       "id": "A6a/public",
-      "label": "把可核对的时间线放回屏幕，自己讲清楚。",
+      "label": "当众反击：把真实时间线投回大屏",
       "availableWhen": {
         "any": [
           {
@@ -10151,7 +10151,7 @@
     },
     {
       "id": "A6a/partner",
-      "label": "请在场协作者分别说清各自看到的部分，你负责自己的事实。",
+      "label": "联合反击：每个证人讲自己确认的事实",
       "availableWhen": {
         "any": [
           {
@@ -10222,7 +10222,7 @@
     },
     {
       "id": "A6a/backstage",
-      "label": "不抢台前位置。提交现有材料，要求先停止错误归责。",
+      "label": "幕后翻盘：先撤假字幕，再做完整复核",
       "availableWhen": {
         "any": [
           {
@@ -10295,7 +10295,7 @@
     },
     {
       "id": "A6a/exit",
-      "label": "结清自己的部分，明确要求更正后离开这家公司；不再争本场名额。",
+      "label": "带着更正书离开：不再给程放打工",
       "availableWhen": {
         "any": [
           {
@@ -10368,7 +10368,7 @@
     },
     {
       "id": "A6a/accept",
-      "label": "不提出核验，接受当场清退，结束这一轮。",
+      "label": "认下这一局：不申辩，接受原著退场",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -10432,7 +10432,7 @@
     },
     {
       "id": "A6a/rebuild",
-      "label": "提交已有记录，请求完成责任更正后暂停接新项目，先整理自己的下一步。",
+      "label": "保住名誉后暂退：重新选择下一份机会",
       "availableWhen": {
         "any": [
           {
@@ -10505,7 +10505,7 @@
     },
     {
       "id": "A6b/relationships",
-      "label": "先把答应过的相处安排好",
+      "label": "先兑现约定：把真正想见的人约到眼前",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -10541,7 +10541,7 @@
     },
     {
       "id": "A6b/world",
-      "label": "继续做完她们正在争取的事",
+      "label": "继续改命：帮他们把未完的成果做出来",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -10577,7 +10577,7 @@
     },
     {
       "id": "A6b/self",
-      "label": "先安顿好自己的生活和工作",
+      "label": "先强大自己：接下一份能署自己名字的活",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -19958,7 +19958,7 @@
     },
     {
       "id": "COLD/t",
-      "label": "把原版交给唐映雪，请她决定何时接",
+      "label": "直接找唐映雪：由她喊回原版",
       "availableWhen": {
         "all": [
           {
@@ -20162,7 +20162,7 @@
     },
     {
       "id": "COLD/s",
-      "label": "请沈清辞统一指挥切换",
+      "label": "找沈清辞控场：一拍切回正确版本",
       "availableWhen": {
         "all": [
           {
@@ -20366,7 +20366,7 @@
     },
     {
       "id": "COLD/l",
-      "label": "请林见月留下切换画面",
+      "label": "找林见月取证：救场和记录一起做",
       "availableWhen": {
         "all": [
           {
@@ -20577,7 +20577,7 @@
     },
     {
       "id": "COLD/g",
-      "label": "请顾晚棠确认用的是哪一版",
+      "label": "找顾晚棠核授权：让程放当场解释",
       "availableWhen": {
         "all": [
           {
@@ -20794,7 +20794,7 @@
     },
     {
       "id": "COLD/self",
-      "label": "我只找盘，交阿衡安全切换",
+      "label": "和阿衡搭档：我找盘，他安全切",
       "availableWhen": {
         "all": [
           {
@@ -22611,7 +22611,7 @@
     },
     {
       "id": "OP_RIVAL/join",
-      "label": "一起去，给我一个真正的分工。",
+      "label": "抢一份正式试工：跟原男主同场见真本事",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -22671,7 +22671,7 @@
     },
     {
       "id": "OP_RIVAL/own",
-      "label": "“我想另录一段自己的现场样本，不跟他的场。”",
+      "label": "另做个人小样：不靠他的名单争机会",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -22732,7 +22732,7 @@
     },
     {
       "id": "OP_RIVAL/free",
-      "label": "工作机会先不抢，今晚另有安排。",
+      "label": "放掉这次名额：今晚押注另一条线",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40169,7 +40169,7 @@
     },
     {
       "id": "ENTRY_WAKE/canon",
-      "label": "按原著走：听程放的，先不插手这场救援",
+      "label": "先按原著走：看清是谁准备甩锅",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40363,7 +40363,7 @@
     },
     {
       "id": "ENTRY_WAKE/rescue",
-      "label": "改变首演：抢先找原版U盘，试着拦下钢琴救场",
+      "label": "抢先救场：找到原版，让她唱回来",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40471,7 +40471,7 @@
     },
     {
       "id": "ENTRY_WAKE/investigate",
-      "label": "先查背锅线：核实错版来源，同时找回原版",
+      "label": "先锁证据：找原版，也查谁换了文件",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40579,7 +40579,7 @@
     },
     {
       "id": "ENTRY_CLUES/obey",
-      "label": "先签下：继续照原著走",
+      "label": "继续照原著签：换眼前清静，留下风险",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40677,7 +40677,7 @@
     },
     {
       "id": "ENTRY_CLUES/refuse",
-      "label": "不签糊涂账：说清我没做过什么",
+      "label": "当面拒签：不给错版认账",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40782,7 +40782,7 @@
     },
     {
       "id": "ENTRY_CLUES/witness",
-      "label": "先把时间和现场人员记下来",
+      "label": "先留时间线：让证据比嘴硬更早一步",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40886,7 +40886,7 @@
     },
     {
       "id": "ENTRY_MEMORY/camera",
-      "label": "请林见月拍下真实切换过程",
+      "label": "先锁镜头：让见月留住切换前后",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40930,7 +40930,7 @@
     },
     {
       "id": "ENTRY_MEMORY/email",
-      "label": "请顾晚棠确认节目授权",
+      "label": "先查授权：让晚棠对照真正的节目单",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41010,7 +41010,7 @@
     },
     {
       "id": "OP_CANON/backstage",
-      "label": "不抢镜，主动帮阿衡做一次末场清点",
+      "label": "守住幕后：和阿衡共同清点，留第一张记录",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41052,7 +41052,7 @@
     },
     {
       "id": "OP_CANON/question",
-      "label": "找程放问清楚错版来源，留住聊天记录",
+      "label": "当面追问：让程放把推托发在群里",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41092,7 +41092,7 @@
     },
     {
       "id": "OP_CANON/silence",
-      "label": "今晚先保持沉默，记住原著第七天的危险",
+      "label": "暂时不亮牌：记下背锅链的每一步",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41119,7 +41119,7 @@
     },
     {
       "id": "OP_FORK/backup",
-      "label": "先悄悄留好两份版本与时间",
+      "label": "暗中留证：双版本和时间锁死",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41179,7 +41179,7 @@
     },
     {
       "id": "OP_FORK/confront",
-      "label": "当众问程放：是谁让删文件？",
+      "label": "正面反击：群里追问谁下的删档令",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41230,7 +41230,7 @@
     },
     {
       "id": "OP_FORK/quiet",
-      "label": "暂时不接话，只保管自己的那份",
+      "label": "先藏锋芒：保管交接，等他露破绽",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41274,7 +41274,7 @@
     },
     {
       "id": "UNWRITTEN/offer",
-      "label": "去谈机会：这一次为自己发声",
+      "label": "接下邀请：凭本事谈一次报价",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41321,7 +41321,7 @@
     },
     {
       "id": "UNWRITTEN/private",
-      "label": "先留给重要的人，不公开经历",
+      "label": "保留底牌：只在授权范围内继续合作",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41367,7 +41367,7 @@
     },
     {
       "id": "UNWRITTEN/self",
-      "label": "今天先不接活，我想过自己的日子",
+      "label": "暂不接单：先安排自己的生活",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [

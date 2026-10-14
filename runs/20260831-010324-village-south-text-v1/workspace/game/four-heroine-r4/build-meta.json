@@ -1,14 +1,14 @@
 {
   "version": "revision-r4.5-ui",
-  "storyHash": "fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8",
+  "storyHash": "e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0",
   "files": {
-    "data/STORY.json": "fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8",
+    "data/STORY.json": "e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0",
     "data/EPILOGUES.json": "7855b10ef4ad4c9a47f5a90fc91b904f612c19cfbcf26577cfa08c5e8ffebb09",
     "data/BONUS.json": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e",
     "data/CODA.json": "f212fdb2f110d268da43380f1a84772b2c5365b48041d434fe7f8d76a3a3e07e",
     "data/HANDBOOK.json": "a51224fb015cefe58d65e3e2864218023bac95f222ed7eccf00a141a977cf5ba",
     "tools/engine.mjs": "654cfd21eabac950af3ff3c1a1e31c5887abe0982d6c42dfa931b57c2d587236",
-    "tools/preview-ui.js": "14e21879b5b9532e21257b6b9efb10849391dd70dcea020d6791879242f3aea6",
+    "tools/preview-ui.js": "e191c05ddc37bf7ff7764214016e2cda5f316197e5b445ebe1a105c625c59026",
     "tools/preview.css": "dab48481e8c518148975ffb2d41525fbd987e330fec31f98d5d05e9f1fd57c4c",
     "tools/vn.css": "d719d1bf876bff8b97eed7b105261e14ba1650e60752a444a4e8772a04c5aab3",
     "assets/portraits/t.webp": "87b7504aa25e113967d97fd1b78cc4b7d43c92d57f16d74474474338d580530c",
@@ -17,9 +17,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "d56c0113cf9a1261602c2e5c381e84db99b3066ca61c72784b8b1b799d78e9e0",
-    "index.html": "b63b86b8b8d9989464e09490d821db7b76ff9f6e54a8f65bc5f45ced0eeaaeb7",
-    "play.html": "b63b86b8b8d9989464e09490d821db7b76ff9f6e54a8f65bc5f45ced0eeaaeb7",
-    "repository-index.html": "98ea09a7f3d75a13f29d16ee4cafd7c6e2226cf602b7fd70792b65e9819ac966"
+    "runtime.mjs": "5611c36b9982f255fc0c5cb615c5d0d816d7716651ee3c1d8b2f3b7de531beee",
+    "index.html": "beb1c824400c6ef1a60479098b960dfb57bcdbcfa47b23a997069793189a53a0",
+    "play.html": "beb1c824400c6ef1a60479098b960dfb57bcdbcfa47b23a997069793189a53a0",
+    "repository-index.html": "ad53ff793095eb6b1dc87028ace55551e111f0d1d70a320144a08194e0cb0f35"
   }
 }

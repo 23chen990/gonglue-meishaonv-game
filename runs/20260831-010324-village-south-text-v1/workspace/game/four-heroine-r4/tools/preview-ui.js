@@ -4,9 +4,9 @@
 const names={N:'',P:'你',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',LU:'陆景行',C:'程放',B:'',U:'',A:'阿衡',X:'现场'};
 const KEY='gonglue:revision-r4.5-portrait:canonical';
 const PREVIOUS_KEY='gonglue:revision-r4.3-intro:canonical';
-// v4.7 changes only displayed wording, not choice IDs, guards, effects or endings.
-// Existing v4.5 progress is replayed and backed up, never silently discarded.
-const COMPATIBLE_STORY_HASH='c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059';
+// v4.9 rewrites presentation text only, not choice IDs, conditions or effects.
+// Existing verified v4.5-v4.8 saves are replayed before backing up and migrating.
+const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8']);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
@@ -63,7 +63,7 @@ function save(){
  }
 }
 function readPayload(v){
- if(!v||v.version!==VERSION||(v.storyHash!==STORY_HASH&&v.storyHash!==COMPATIBLE_STORY_HASH))throw Error('这不是兼容版本的选择记录；旧记录没有被改写。');
+ if(!v||v.version!==VERSION||(v.storyHash!==STORY_HASH&&!COMPATIBLE_STORY_HASHES.has(v.storyHash)))throw Error('这不是兼容版本的选择记录；旧记录没有被改写。');
  const s=replay(DATA,v.commands);
  const reply=replyFromLog(v.commands);
  const ui=v.ui||{};
@@ -88,11 +88,11 @@ function load(){
   if(lastRaw.length>2400000)throw Error('记录过大');
   const original=JSON.parse(lastRaw);
    install(readPayload(original));
-   if(original.storyHash===COMPATIBLE_STORY_HASH&&COMPATIBLE_STORY_HASH!==STORY_HASH){
+   if(COMPATIBLE_STORY_HASHES.has(original.storyHash)&&original.storyHash!==STORY_HASH){
     try{
      storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
      save();
-     if(!saveBlocked)notice='已续接上一版进度，原始记录已备份。只修正了剧情措辞，你做过的选择都还在。';
+     if(!saveBlocked)notice='已续接上一版进度，原始记录已备份。剧情措辞升级，你做过的选择保持不变。';
     }catch{saveBlocked=true;notice='旧版进度已读到，但备份或更新未完成。请先在菜单导出记录，原始存档未覆盖。';}
    }
  }catch{
@@ -415,14 +415,14 @@ function openingHTML(cp){
 function firstForkHTML(cp){
  const opts=cp.view.choices.filter(o=>o.enabled);
  const notes={
-  canon:'陆景行完成钢琴救场；你仍要面对第七天的背锅风险。',
-  rescue:'抢先找回原版 U 盘，改写首演，也改变别人看你的眼光。',
-  investigate:'先查错版来源、留下证据，再把原版交给音控确认。'
+  canon:'不抢陆景行的名场面，先看清程放准备甩锅的那张单。',
+  rescue:'按原著线索抢到原版。真正试听和切换交给音控，先赢一局。',
+  investigate:'原版要找，错版更要追：先拿真证据，防他事后改口。'
  };
  const shortTitles={
-  canon:'照原著走：留守设备箱',
-  rescue:'抢先改写：找回原版U盘',
-  investigate:'先查真相：留证再救场'
+  canon:'按原著走：盯住背锅线',
+  rescue:'抢先救场：找出原版U盘',
+  investigate:'先锁证据：找盘查错版'
  };
  const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
  // Narrative is the main first-session experience, not an optional accordion.
@@ -587,7 +587,7 @@ function menuHTML(){
  <button class="quiet" data-nav="collection">结局收藏</button><button class="quiet" data-action="font">${large?'恢复普通字号':'大字阅读'}</button><button class="quiet" data-action="sound">${soundOn?'关闭轻音效':'开启轻音效'}</button>
  <button class="quiet" data-action="export">导出这局记录</button><button class="quiet" data-action="import">导入本版记录</button>
  <button class="quiet" data-action="reset">备份后新开局</button><button class="quiet" data-action="reload">读取已保存记录</button></div>
- <section class="panel small"><h3>这份版本的范围</h3><p>v4.8 竖屏全剧情候选。保留四女主正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
+ <section class="panel small"><h3>这份版本的范围</h3><p>v4.9 竖屏全剧情候选。保留四位独立角色正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
  <p>角色均为成年人。本版使用原创候选立绘和自制轻音效；没有平台广告接入或真人留存结论。原始文件和旧版存档不改写。</p>
  <p>${saveBlocked?'当前未自动保存，请离开前导出记录。':'选择、回应页与阅读位置会保存在此浏览器的本版独立记录中。'}</p></section>`;
 }
