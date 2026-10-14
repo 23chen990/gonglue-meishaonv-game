@@ -1,0 +1,80 @@
+{
+  "scope": "Injected inline DOM and simulated localStorage; not native URL/localStorage or humans",
+  "storySha256": "c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059",
+  "cases": [
+    {
+      "name": "PORTRAIT_FIVE_TOUCH_VIEWPORTS_AND_REQUIRED_INTRO",
+      "status": "PASS",
+      "detail": {
+        "viewports": [
+          "320x568",
+          "360x640",
+          "375x667",
+          "390x844",
+          "430x932"
+        ],
+        "singlePageDecision": true
+      }
+    },
+    {
+      "name": "ALL_THREE_STORY_OPENINGS_ORDINARY_TOUCH",
+      "status": "PASS",
+      "detail": [
+        {
+          "fork": "canon",
+          "after": "OP_CANON",
+          "commands": 2
+        },
+        {
+          "fork": "rescue",
+          "after": "OP_SETTLE",
+          "commands": 2
+        },
+        {
+          "fork": "investigate",
+          "after": "COLD",
+          "commands": 2
+        }
+      ]
+    },
+    {
+      "name": "REMOVES_EMPTY_TRANSITION_BUT_PRESERVES_TWO_STORY_COMMANDS",
+      "status": "PASS",
+      "detail": {
+        "bridgeCommands": [
+          "continue",
+          "backup"
+        ],
+        "extraTap": 0,
+        "sameSceneChoice": true
+      }
+    },
+    {
+      "name": "ALL_OBSERVED_OVERFOUR_BRANCH_STATES_GROUPED_WITHOUT_LOST_CHOICES",
+      "status": "PASS",
+      "detail": {
+        "groupedReachableStates": 16,
+        "sample": [
+          "A2a",
+          "A3a",
+          "A3b",
+          "t03",
+          "A4a",
+          "A5a",
+          "A5b",
+          "A6a"
+        ]
+      }
+    },
+    {
+      "name": "GROUP_SELECTION_PERSISTENCE_AND_LARGE_FONT",
+      "status": "PASS",
+      "detail": {
+        "restoredChoiceCategory": 2,
+        "largeFont": true
+      }
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

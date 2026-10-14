@@ -1,11 +1,11 @@
 {
-  "version": "revision-r4.2",
-  "storySha256": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
+  "version": "revision-r4.3",
+  "storySha256": "c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059",
   "method": "全量选择登记；只列真实文本条件和明确运行时消费。留档字段不算长期影响；见测试中具体反事实案例。",
   "choices": [
     {
       "id": "A1b/check",
-      "label": "要求分清旧版导出和今晚职责，写下自己的说明",
+      "label": "把今晚做过的事分开写清楚",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -81,7 +81,7 @@
     },
     {
       "id": "A1b/ask",
-      "label": "请阿衡只证明亲眼见过的事，别替谁猜测",
+      "label": "请阿衡替亲眼见过的事作证",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -156,7 +156,7 @@
     },
     {
       "id": "A1b/look",
-      "label": "先不签新责任单，带走交接副本再核查",
+      "label": "先带走副本，不签模糊责任",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8312,7 +8312,7 @@
     },
     {
       "id": "A2b/public",
-      "label": "公开说清找盘和切换的分工",
+      "label": "公开讲清我和阿衡各做了什么",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8364,7 +8364,7 @@
     },
     {
       "id": "A2b/quiet",
-      "label": "只提交记录，不接受宣传采访",
+      "label": "把记录交上去，暂时不出镜",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -8403,7 +8403,7 @@
     },
     {
       "id": "A2b/cooperate",
-      "label": "请陆景行转发分工，自己回答现场问题",
+      "label": "请陆景行转发名单，我自己回答",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9273,7 +9273,7 @@
     },
     {
       "id": "A4b/extract",
-      "label": "请她截取必要片段，由涉及的当事人核对，保留原件以备复核。",
+      "label": "先请当事人核对，保留可用的节选",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9344,7 +9344,7 @@
     },
     {
       "id": "A4b/witness",
-      "label": "不公开声音，只请在场的人先确认事实，记录各自愿意作证的范围。",
+      "label": "不公开录音，先请现场的人证明",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -9412,7 +9412,7 @@
     },
     {
       "id": "A4b/wait",
-      "label": "暂时不使用，先自己去找另一条可以独立核对的线索。",
+      "label": "先不用这段，另外寻找证据",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -19958,7 +19958,7 @@
     },
     {
       "id": "COLD/t",
-      "label": "把原版送到侧台，让唐映雪决定怎么接",
+      "label": "把原版交给唐映雪，请她决定何时接",
       "availableWhen": {
         "all": [
           {
@@ -20162,7 +20162,7 @@
     },
     {
       "id": "COLD/s",
-      "label": "把盘交给沈清辞，按她的指令切换",
+      "label": "请沈清辞统一指挥切换",
       "availableWhen": {
         "all": [
           {
@@ -20366,7 +20366,7 @@
     },
     {
       "id": "COLD/l",
-      "label": "请林见月拍下切换过程，再把盘交音控",
+      "label": "请林见月留下切换画面",
       "availableWhen": {
         "all": [
           {
@@ -20577,7 +20577,7 @@
     },
     {
       "id": "COLD/g",
-      "label": "请顾晚棠核实：删歌版本是谁同意的",
+      "label": "请顾晚棠确认用的是哪一版",
       "availableWhen": {
         "all": [
           {
@@ -20794,7 +20794,7 @@
     },
     {
       "id": "COLD/self",
-      "label": "自己找盘、核对，交给阿衡安全切换",
+      "label": "我只找盘，交阿衡安全切换",
       "availableWhen": {
         "all": [
           {
@@ -20992,7 +20992,7 @@
     },
     {
       "id": "OP_TALK_t/flirt",
-      "label": "“歌要听，你也要看。刚才差点忙不过来。”",
+      "label": "“歌很好听。你刚才看过来的时候也是。”",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -21039,7 +21039,7 @@
     },
     {
       "id": "OP_TALK_t/slow",
-      "label": "“我还没缓过来。你唱完了就好。”",
+      "label": "“我还在发抖，先让我缓缓。”",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -21086,7 +21086,7 @@
     },
     {
       "id": "OP_TALK_t/work",
-      "label": "“许照。以后再缺场务，能叫我一声吗？”",
+      "label": "“下次演出，我还能来帮忙吗？”",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -21501,7 +21501,7 @@
     },
     {
       "id": "OP_TALK_g/flirt",
-      "label": "“不谈工作，也能认识一下你吗？”",
+      "label": "“现在不谈工作，可以认识你吗？”",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -21553,7 +21553,7 @@
     },
     {
       "id": "OP_TALK_g/slow",
-      "label": "“先认识一下。你问太快，我容易说错话。”",
+      "label": "“想认识，但我得先把话说顺。”",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40579,7 +40579,7 @@
     },
     {
       "id": "ENTRY_CLUES/obey",
-      "label": "继续照原著：签收模糊的交接单",
+      "label": "先签下：继续照原著走",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40677,7 +40677,7 @@
     },
     {
       "id": "ENTRY_CLUES/refuse",
-      "label": "只留在原著舞台线，但拒签不清楚的责任",
+      "label": "不签糊涂账：说清我没做过什么",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40782,7 +40782,7 @@
     },
     {
       "id": "ENTRY_CLUES/witness",
-      "label": "悄悄记下发号施令的人、时间和谁在操作",
+      "label": "先把时间和现场人员记下来",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40886,7 +40886,7 @@
     },
     {
       "id": "ENTRY_MEMORY/camera",
-      "label": "请林见月保留版本与时间戳，再把盘交给阿衡",
+      "label": "请林见月拍下真实切换过程",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40930,7 +40930,7 @@
     },
     {
       "id": "ENTRY_MEMORY/email",
-      "label": "先问顾晚棠节目单权限，再把盘交给阿衡",
+      "label": "请顾晚棠确认节目授权",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -40979,7 +40979,7 @@
     },
     {
       "id": "OP_SETTLE/continue",
-      "label": "收好记录，回应刚才注意到你的人",
+      "label": "先缓口气，去见刚才注意到你的人",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [],
@@ -41119,7 +41119,7 @@
     },
     {
       "id": "OP_FORK/backup",
-      "label": "请阿衡保存旧版与原版的核对清单，明确谁操作了切换",
+      "label": "先悄悄留好两份版本与时间",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41179,7 +41179,7 @@
     },
     {
       "id": "OP_FORK/confront",
-      "label": "公开问程放：“旧版是谁导出的？”承担他记恨你的风险",
+      "label": "当众问程放：是谁让删文件？",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41230,7 +41230,7 @@
     },
     {
       "id": "OP_FORK/quiet",
-      "label": "暂不公开冲突，只保管自己的交接记录",
+      "label": "暂时不接话，只保管自己的那份",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41274,7 +41274,7 @@
     },
     {
       "id": "UNWRITTEN/offer",
-      "label": "接受新邀约：做一份自己的流程说明，让别人也能核实",
+      "label": "去谈机会：这一次为自己发声",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41321,7 +41321,7 @@
     },
     {
       "id": "UNWRITTEN/private",
-      "label": "不公开个人经历，把证据留给需要知道的伙伴",
+      "label": "先留给重要的人，不公开经历",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [
@@ -41367,7 +41367,7 @@
     },
     {
       "id": "UNWRITTEN/self",
-      "label": "先不接邀约：把未来的一天留给自己的生活",
+      "label": "今天先不接活，我想过自己的日子",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [

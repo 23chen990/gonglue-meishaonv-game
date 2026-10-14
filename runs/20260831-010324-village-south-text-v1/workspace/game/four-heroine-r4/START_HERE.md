@@ -1,3 +1,11 @@
+# 最新：2026-10-14 r4.5 完整竖屏客户端与剧情候选
+
+可直接打开 `play.html` 体验完整游戏（不需服务器）。新版候选改造在 `tools/preview-ui.js`、`tools/vn.css`、`assets/` 和 `data/STORY.json`；详情及诚实 QA 边界请先看 `docs/R45_COMPLETE_DELIVERY_AND_QA.md`。本包不是正式发布版本，不能把模拟器测试当作真人/实体手机/平台验收。
+
+---
+
+> **r4.3 current:** First read the complete 28-beat transmigration story; only THEN choose canon/rescue/investigate. New QA and caveats: `docs/R43_STORY_EDITORIAL_AND_UX.md`. Original prior versions remain preserved.
+
 > **r4.2**：第一选择即“照原著走／改变首演／先查责任”，且后续有原著外新事件。详情 `docs/R42_ORIGINAL_NOVEL_BRANCHING.md`。
 
 # 先从这里开始 · r4
