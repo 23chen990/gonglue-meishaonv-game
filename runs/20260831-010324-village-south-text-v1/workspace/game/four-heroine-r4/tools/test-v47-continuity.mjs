@@ -11,8 +11,10 @@ const patch = JSON.parse(fs.readFileSync(new URL('patch/v47_canon_continuity.jso
 const contracts = JSON.parse(fs.readFileSync(new URL('data/CHOICE_CONTRACTS.json',root),'utf8'));
 const sha = crypto.createHash('sha256').update(fs.readFileSync(new URL('data/STORY.json',root))).digest('hex');
 const v49=JSON.parse(fs.readFileSync(new URL('patch/v49_story_punchup.json',root),'utf8'));
+const v410=JSON.parse(fs.readFileSync(new URL('patch/v410_scene_polish.json',root),'utf8'));
 assert.equal(patch.newStorySha256,v49.baseStorySha256,'v4.7 baseline must be preserved');
-assert.equal(sha,v49.newStorySha256,'current formal story must match v4.9 patch');
+assert.equal(v49.newStorySha256,v410.baseStorySha256,'v4.9 baseline must be preserved');
+assert.equal(sha,v410.newStorySha256,'current formal story must match v4.10 patch');
 assert.equal(sha,contracts.storySha256);
 assert.equal(Object.keys(DATA.scenes).length,228);
 assert.equal(Object.values(DATA.scenes).flatMap(x=>x.choices||[]).length,751);
