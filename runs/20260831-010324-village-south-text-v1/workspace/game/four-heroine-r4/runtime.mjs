@@ -21,7 +21,9 @@ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
 let profile={endings:{},bonuses:{},readPages:[]}, notice='', saveBlocked=false, lastRaw=null;
-let choicePage=0, soundOn=false, soundContext=null;
+let choicePage=0, soundOn=false, soundContext=null, readerExpanded=false;
+// UI-only reading position: preserve scroll on menus and semantic choice navigation.
+let storyScroll={key:null,text:0,dock:0,choicePage:0};
 let renderToken=0, downToken=null, pointerStart=null, moved=false, previousScroll=0, large=false;
 let storage=null;
 try{storage=window.localStorage;}catch{saveBlocked=true;notice='这个窗口暂时不能保存。仍可继续阅读；离开前请在菜单导出记录。';}
@@ -53,7 +55,7 @@ function safeProfile(raw){
 }
 function snapshot(){
  return {version:VERSION,storyHash:STORY_HASH,commands:state.history,
-         ui:{phase,page,choicePage,large,soundOn},profile};
+         ui:{phase,page,choicePage,large,soundOn,readerExpanded},profile};
 }
 function save(){
  // Collection unlocks belong to memory first; a quota or permission error only prevents persistence.
@@ -78,10 +80,11 @@ function readPayload(v){
  const ph=ui.phase==='reply'&&reply.length?'reply':'scene';
  const pg=Number.isInteger(ui.page)&&ui.page>=0&&ui.page<1000?ui.page:0;
  const choiceGroup=Number.isInteger(ui.choicePage)&&ui.choicePage>=0&&ui.choicePage<100?ui.choicePage:0;
- return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,profile:safeProfile(v.profile)};
+ return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,readerExpanded:!!ui.readerExpanded,profile:safeProfile(v.profile)};
 }
 function install(v){
- state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;soundOn=v.soundOn||false;profile=v.profile;
+ state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;soundOn=v.soundOn||false;readerExpanded=v.readerExpanded||false;profile=v.profile;
+ storyScroll={key:null,text:0,dock:0,choicePage:0};
  panel='story';
 }
 function load(){
@@ -191,9 +194,9 @@ function pageKey(cp){
 function markRead(cp){
  const k=pageKey(cp);if(!profile.readPages.includes(k))profile.readPages.push(k);
 }
-function rowsHTML(rows){
+function rowsHTML(rows,sceneId){
  return rows.map(b=>{
-  const sid=phase==='reply'?state.history.at(-1)?.from:state.current;
+  const sid=sceneId??(phase==='reply'?state.history.at(-1)?.from:state.current);
   const earlyNames=sid==='ENTRY_WAKE'?{A:'戴耳机的男人',C:'对讲机里的场务',T:'台上的女孩',LU:'钢琴旁的男人'}:sid==='ENTRY_CLUES'?{C:'场务负责人',T:'台上的女孩',LU:'钢琴旁的男人'}:{};
   const who=earlyNames[b.speaker]??names[b.speaker];
   const cls=b.speaker==='N'?'narrator':b.speaker==='B'?'thought':b.speaker==='U'?'system':'dialogue';
@@ -508,7 +511,7 @@ function vnFrame(cp,interior,sceneTitle,bridge=null){
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
  const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${cp.last?'选择在下方直接进行':'轻触下方继续阅读'}</div></div></section>`;
- return `<div class="vn-frame" data-phase="${phase}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-grip" aria-hidden="true"></div><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><span>${state.current==='ENTRY_WAKE'&&phase==='scene'?`${page+1} / ${cp.pages.length}`:'向下阅读 · 直接选择'}</span></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
+ return `<div class="vn-frame" data-phase="${phase}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-grip" aria-hidden="true"></div><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }
 function storyHTML(){
  const cp=currentPage();let interior='',bridge=null,heading=cp.view.title;
@@ -562,7 +565,7 @@ function historyHTML(){
  for(let i=0;i<state.history.length;i++){
   const h=state.history[i],v=renderScene(s,DATA),o=v.choices.find(o=>o.id===h.id);
   const result=choose(s,DATA,h.id);
-  html+=`<section class="panel"><div class="small">${i+1} · ${esc(v.title)}</div><p>${esc(o?.label||h.id)}</p><details data-history="${i}"><summary>这次实际读到的内容</summary>${rowsHTML(v.body)}<p class="small">你的选择之后</p>${rowsHTML(result.reply)}</details><button class="quiet" data-restore="${i}">从这里重选</button></section>`;
+  html+=`<section class="panel"><div class="small">${i+1} · ${esc(v.title)}</div><p>${esc(o?.label||h.id)}</p><details data-history="${i}"><summary>这次实际读到的内容</summary>${rowsHTML(v.body,h.from)}<p class="small">你的选择之后</p>${rowsHTML(result.reply,h.from)}</details><button class="quiet" data-restore="${i}">从这里重选</button></section>`;
   s=result.state;
  }
  if(!state.history.length)html+='<p>还没有作出第一个决定。</p>';
@@ -598,26 +601,37 @@ function showNotice(){
  el.hidden=!notice;
  el.innerHTML=notice?`<div>${esc(notice)}</div><button data-action="export">导出</button><button data-action="hide-notice">收起提示</button>`:'';
 }
-function render(scroll=true){
+function render(scrollWindow=true){
+ // A menu, a font-size change or a semantic category is not a new scene.
+ // Read the OLD DOM before repainting to avoid jumping back to the start.
+ const oldFrame=document.querySelector('.vn-frame');
+ if(oldFrame){
+  const a=oldFrame.querySelector('.vn-scroll'),d=oldFrame.querySelector('.vn-dock');
+  storyScroll={key:oldFrame.dataset.readerKey,text:a?.scrollTop||0,dock:d?.scrollTop||0,choicePage:Number(oldFrame.dataset.choicePage||0)};
+ }
  renderToken++;
  document.body.dataset.current=state.current;document.body.dataset.phase=phase;document.body.dataset.panel=panel;
  document.body.dataset.ending=state.complete?state.ending:'';
  document.body.classList.toggle('large',large);
+ document.body.classList.toggle('reader-expanded',readerExpanded);
  let html=panel==='story'?storyHTML():panel==='menu'?menuHTML():panel==='handbook'?handbookHTML():panel==='relations'?relationsHTML():panel==='history'?historyHTML():panel==='collection'?collectionHTML():panel==='archive'?archiveHTML():'';
  document.getElementById('app').innerHTML=(panel==='story'?'':'<button class="quiet return" data-nav="story">返回剧情</button>')+html;
  if(panel==='story'){
-  const frame=document.querySelector('.vn-frame'), scroll=frame?.querySelector('.vn-scroll'),dock=frame?.querySelector('.vn-dock');
-  // Keep meaningful choices and continue in the SAME fixed scene as the text.
-  // Moving real DOM buttons does not change choice IDs, state or semantics.
-  const candidates=scroll?.querySelectorAll('.rescue-options, .choices, .pager');
+  const frame=document.querySelector('.vn-frame'),area=frame?.querySelector('.vn-scroll'),dock=frame?.querySelector('.vn-dock');
+  // Choices and dialogue stay in one fixed scene; categories do not spend actions.
+  const candidates=area?.querySelectorAll('.rescue-options, .choices, .pager');
   const target=candidates?.length?candidates[candidates.length-1]:null;
-  if(target&&dock) dock.append(target);
-  if(scroll)scroll.scrollTop=0;
+  if(target&&dock)dock.append(target);
+  if(frame?.dataset.readerKey===storyScroll.key){
+   if(area)area.scrollTop=storyScroll.text;
+   if(dock&&storyScroll.choicePage===choicePage)dock.scrollTop=storyScroll.dock;
+  }else storyScroll={key:frame?.dataset.readerKey||null,text:0,dock:0,choicePage};
  }
  document.getElementById('menu').setAttribute('aria-expanded',String(panel==='menu'));
  showNotice();
- if(scroll)window.scrollTo(0,0);
+ if(scrollWindow)window.scrollTo(0,0);
 }
+
 function arm(){downToken=null;pointerStart=null;moved=false;}
 function exportLog(){
  const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});
@@ -629,9 +643,11 @@ function backToStory(){
 }
 function reset(){
  if(!confirm('开始新局？当前本版记录会先备份，旧版本记录不变，已读与结局收藏保留。'))return;
- if(storage&&lastRaw){
-  try{storage.setItem(KEY+':backup:'+Date.now(),lastRaw);}
-  catch{notice='备份没有成功，未清除当前记录。请先导出。';showNotice();return;}
+ if(storage){
+  try{
+   if(storage.getItem(KEY)!==lastRaw){saveBlocked=true;notice='另一个窗口已有更新，不能用新开局覆盖它。请先读取新记录或导出这里。';showNotice();return;}
+   if(lastRaw)storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+  }catch{notice='备份没有成功，未清除当前记录。请先导出。';showNotice();return;}
  }
  state=createState();lastReply=[];phase='scene';page=0;choicePage=0;panel='story';notice='';
  if(storage){try{lastRaw=storage.getItem(KEY);saveBlocked=false;}catch{saveBlocked=true;}}
@@ -657,6 +673,7 @@ function doAction(action){
  else if(action==='import')document.getElementById('importFile').click();
  else if(action==='reset')reset();
  else if(action==='font'){large=!large;save();render();}
+  else if(action==='reader'){readerExpanded=!readerExpanded;save();render(false);}
  else if(action==='sound'){soundOn=!soundOn;save();render();}
  else if(action==='hide-notice'){notice='';showNotice();}
  else if(action==='reload'){
@@ -751,7 +768,10 @@ document.getElementById('importFile').addEventListener('change',async ev=>{
   if(f.size>2400000)throw Error('记录文件过大');
   const candidate=readPayload(JSON.parse(await f.text()));
   if(!confirm('记录已验证。用这份记录替换本窗口进度？'))return;
-  if(storage&&lastRaw)storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+  if(storage){
+   if(storage.getItem(KEY)!==lastRaw)throw Error('另一个窗口已经更新了记录，不能直接覆盖。请先导出这里或读取最新记录。');
+   if(lastRaw)storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+  }
   install(candidate);saveBlocked=!storage;notice='';
   if(storage)lastRaw=storage.getItem(KEY);
   save();render();
