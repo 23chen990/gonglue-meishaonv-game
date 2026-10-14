@@ -16,7 +16,9 @@ assert.equal(patch.newStorySha256,v49.baseStorySha256,'v4.7 baseline must be pre
 assert.equal(v49.newStorySha256,v410.baseStorySha256,'v4.9 baseline must be preserved');
 const v411=JSON.parse(fs.readFileSync(new URL('patch/v411_dialogue_pov.json',root),'utf8'));
 assert.equal(v410.newStorySha256,v411.baseStorySha256,'v4.10 predecessor must match');
-assert.equal(sha,v411.newStorySha256,'current formal story must match v4.11 patch');
+const v412=JSON.parse(fs.readFileSync(new URL('patch/v412_reaction_copy.json',root),'utf8'));
+assert.equal(v411.newStorySha256,v412.baseStorySha256,'v4.11 baseline linkage');
+assert.equal(sha,v412.newStorySha256,'v4.12 current story');
 assert.equal(sha,contracts.storySha256);
 assert.equal(Object.keys(DATA.scenes).length,228);
 assert.equal(Object.values(DATA.scenes).flatMap(x=>x.choices||[]).length,751);

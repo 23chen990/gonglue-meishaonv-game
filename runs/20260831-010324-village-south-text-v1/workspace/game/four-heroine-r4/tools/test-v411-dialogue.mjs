@@ -7,7 +7,9 @@ const read=p=>fs.readFileSync(new URL(p,R),'utf8');
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
 const raw=read('data/STORY.json');
 const data=JSON.parse(raw),patch=JSON.parse(read('patch/v411_dialogue_pov.json'));
-assert.equal(sha(raw),patch.newStorySha256);
+const newest=JSON.parse(read('patch/v412_reaction_copy.json'));
+assert.equal(sha(raw),newest.newStorySha256);
+assert.equal(newest.baseStorySha256,patch.newStorySha256);
 assert.deepEqual(patch.counts,{beats:11,scenes:9});
 const locate=c=>{
  const s=data.scenes[c.scene];

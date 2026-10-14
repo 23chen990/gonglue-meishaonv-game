@@ -10,7 +10,8 @@ KEY='gonglue:revision-r4.5-portrait:canonical'
 OLD={'v45':'c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059',
      'v48':'fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8',
      'v49':'e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0',
-     'v410':'473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b'}
+     'v410':'473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b',
+     'v411':'fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a'}
 CURRENT=hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest()
 HTML=(R/'index.html').read_text();NATIVE=os.environ.get('R4_MODE')=='native'
 URL=os.environ.get('R4_REAL_URL','http://127.0.0.1:8765/index.html')
