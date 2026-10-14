@@ -17,6 +17,7 @@ REPORT = {'sha': STORY_SHA,
           'scope': 'native HTTP Chromium' if NATIVE else 'fixture DOM/simulated storage',
           'cases': [], 'failures': []}
 VIEWPORTS = [(320,568),(360,780),(375,812),(390,844),(430,932)]
+SAVE_KEY = 'gonglue:revision-r4.5-portrait:canonical'
 
 
 def open_page(browser, width, height):
@@ -77,12 +78,12 @@ def hit(browser, width, height, route):
         # Revisiting the opening text does not change any game commands.
         p.locator('.vn-scroll').evaluate('x=>{x.scrollTop=0}')
         assert p.locator('.vn-scroll').evaluate('x=>x.scrollTop') == 0
-        assert p.evaluate('state.history.length') == 0
+        assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands.length',SAVE_KEY) == 0
         p.locator('#menu').tap();p.locator('[data-nav="story"]').first.tap()
         assert p.locator('.vn-scroll').evaluate('x=>x.scrollTop') == 0,'lost voluntary scroll position'
         p.locator('.vn-dock [data-choice="'+route+'"]').tap()
-        assert p.evaluate('state.history.length') == 1
-        assert p.evaluate('state.history[0].id') == route
+        assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands.length',SAVE_KEY) == 1
+        assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands[0].id',SAVE_KEY) == route
         assert p.locator('body').get_attribute('data-current') != 'ENTRY_WAKE'
         assert not errors,errors
         return {'viewport':f'{width}x{height}','selected':route,
