@@ -1,7 +1,7 @@
 /* Deterministic, command-replay interpreter. Canonical text is data/STORY.json.
  * No network, money, implicit consent, mutable collection replay, or state injection.
  */
-export const VERSION = 'bookside-revision-r4.2';
+export const VERSION = 'bookside-revision-r4.3';
 const CHARS = ['t','s','l','g'];
 const copy = x => JSON.parse(JSON.stringify(x));
 const sorted = xs => [...new Set(xs)].sort();

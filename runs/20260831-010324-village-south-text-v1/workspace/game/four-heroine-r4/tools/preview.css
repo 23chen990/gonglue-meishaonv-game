@@ -210,3 +210,10 @@ body[data-current="ENTRY_WAKE"] .first-fork-choice{min-height:72px}
 body.large .intro-reading-head h2{font-size:27px}
 body.large .intro-reading-note,body.large .intro-progress{font-size:15px}
 @media(max-width:360px){.intro-reading-head h2{font-size:21px}.intro-reading-head{padding:13px}}
+
+/* r4.3: mandatory intro preserved; memory is the protagonist's unboxed inner voice. */
+.line.thought{margin:10px 0;padding:0 2px;background:transparent;border:0;border-radius:0;box-shadow:none}
+.line.thought .who{display:none}.line.thought p{color:#f1dfd8;line-height:1.82;font-size:15px}
+.first-fork-decision-voice{font-size:14px;color:#f5d5cd;line-height:1.7;margin:9px 3px 14px}
+.intro-story-pages .line.thought{background:transparent;border:0}
+@media(max-width:360px){.first-fork-decision-voice{font-size:13px}}
