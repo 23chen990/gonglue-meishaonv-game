@@ -53,6 +53,26 @@ def pick(pg,id):
  touch(pg,f'[data-choice="{id}"]')
 def current(pg):return pg.locator('body').get_attribute('data-current')
 def snapshot(pg):return json.loads(pg.evaluate('localStorage.getItem(k=>k)' if False else '(k)=>localStorage.getItem(k)',KEY))
+def load_native_witness(pg,prefix):
+ """Restore canonical replay via the real persisted-save contract; never reach into module globals."""
+ payload={'version':'bookside-revision-r4.3','storyHash':STORY_SHA,'commands':prefix,
+          'ui':{'phase':'scene','page':0,'choicePage':0,'large':False,'soundOn':False},
+          'profile':{'endings':{},'bonuses':{},'readPages':[]}}
+ pg.evaluate('(v)=>localStorage.setItem(v.key,JSON.stringify(v.payload))',{'key':KEY,'payload':payload})
+ pg.reload(wait_until='load')
+ finish_beats(pg)
+ return {'id':current(pg),'groupCount':pg.locator('[data-choice-group]').count()}
+def traverse_choices(pg,depth=0):
+ if depth>6:raise AssertionError('category nesting exceeds 6 levels')
+ direct=pg.locator('.vn-dock [data-choice]').evaluate_all('els=>els.map(x=>x.dataset.choice)')
+ groups=pg.locator('.vn-dock [data-choice-group]').evaluate_all('els=>els.map(x=>x.dataset.choiceGroup)')
+ assert len(direct)<=4 and len(groups)<=4,(direct,groups)
+ found=list(direct)
+ for gid in groups:
+  touch(pg,f'[data-choice-group="{gid}"]')
+  found.extend(traverse_choices(pg,depth+1))
+  touch(pg,'[data-choice-back]')
+ return found
 with sync_playwright() as pw:
  browser=pw.chromium.launch(**dict({'headless':True,'args':['--no-sandbox']},**({'executable_path':os.environ.get('CHROMIUM','/usr/bin/chromium')} if os.environ.get('CHROMIUM') or Path('/usr/bin/chromium').exists() else {})))
  def all_viewports():
@@ -109,7 +129,12 @@ with sync_playwright() as pw:
    scene=item['scene'];choices=item['choices'];candidates=[v['prefix'][:-1] for name,v in witness['choices'].items() if name.startswith(scene+'/')]
    result=None
    for target in candidates:
-    candidate=pg.evaluate("""(prefix)=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;panel='story';render();const e=renderScene(state,DATA).choices.filter(x=>x.enabled);return {id:state.current,expected:e.map(x=>x.id),groupCount:document.querySelectorAll('[data-choice-group]').length};}""",target)
+    if NATIVE:
+     candidate=load_native_witness(pg,target)
+     if candidate['id']!=scene:continue
+     candidate['expected']=traverse_choices(pg)
+    else:
+     candidate=pg.evaluate("""(prefix)=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;panel='story';render();const e=renderScene(state,DATA).choices.filter(x=>x.enabled);return {id:state.current,expected:e.map(x=>x.id),groupCount:document.querySelectorAll('[data-choice-group]').length};}""",target)
     if candidate['expected']==choices:result=candidate;break
    if result is None:raise AssertionError('missing exact witness '+scene)
 
@@ -131,7 +156,7 @@ with sync_playwright() as pw:
   witness=json.loads((R/'qa/current/choice-witness-prefixes.json').read_text())
   # A6a witnessed action from actual canonical commands: use imported valid save seed.
   pre=witness['choices']['A6a/accept']['prefix'][:-1]
-  state_info=pg.evaluate("""prefix=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;render();return {current:state.current,history:state.history}}""",pre)
+  state_info=({'current':load_native_witness(pg,pre)['id']} if NATIVE else pg.evaluate("""prefix=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;render();return {current:state.current,history:state.history}}""",pre))
   assert state_info['current']=='A6a'
   pg.evaluate("""()=>{save()}""")
   touch(pg,'[data-choice-group="2"]')
