@@ -33,7 +33,7 @@ def bundles():
 check('Canonical source and both builds match',bundles)
 def graph():
     d=J('data/STORY.json');c=J('data/CHOICE_CONTRACTS.json');st=J('qa/current/static-audit.json')
-    assert d['version']=='revision-r4.2' and len(d['scenes'])==228
+    assert d['version']=='revision-r4.3' and len(d['scenes'])==228
     ids={s['id']+'/'+o['id'] for s in d['scenes'].values() for o in s['choices']}
     assert len(ids)==751 and ids=={x['id'] for x in c['choices']}
     assert c['storySha256']==hs and st['storySha256']==hs and st['status']=='PASS'
