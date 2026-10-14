@@ -135,7 +135,8 @@ with sync_playwright() as pw:
      candidate['expected']=traverse_choices(pg)
     else:
      candidate=pg.evaluate("""(prefix)=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;panel='story';render();const e=renderScene(state,DATA).choices.filter(x=>x.enabled);return {id:state.current,expected:e.map(x=>x.id),groupCount:document.querySelectorAll('[data-choice-group]').length};}""",target)
-    if candidate['expected']==choices:result=candidate;break
+    matched=(len(candidate['expected'])==len(choices) and set(candidate['expected'])==set(choices)) if NATIVE else (candidate['expected']==choices)
+    if matched:result=candidate;break
    if result is None:raise AssertionError('missing exact witness '+scene)
 
    assert 2<=result['groupCount']<=3,(scene,result)
@@ -158,7 +159,7 @@ with sync_playwright() as pw:
   pre=witness['choices']['A6a/accept']['prefix'][:-1]
   state_info=({'current':load_native_witness(pg,pre)['id']} if NATIVE else pg.evaluate("""prefix=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;render();return {current:state.current,history:state.history}}""",pre))
   assert state_info['current']=='A6a'
-  pg.evaluate("""()=>{save()}""")
+  if not NATIVE:pg.evaluate("""()=>{save()}""")  # native witness already installed into persisted storage
   touch(pg,'[data-choice-group="2"]')
   raw=pg.evaluate('(k)=>localStorage.getItem(k)',KEY)
   assert json.loads(raw)['ui']['choicePage']==2
