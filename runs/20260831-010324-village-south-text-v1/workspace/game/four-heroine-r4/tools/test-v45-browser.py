@@ -54,7 +54,7 @@ def pick(pg,id):
 def current(pg):return pg.locator('body').get_attribute('data-current')
 def snapshot(pg):return json.loads(pg.evaluate('localStorage.getItem(k=>k)' if False else '(k)=>localStorage.getItem(k)',KEY))
 with sync_playwright() as pw:
- browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+ browser=pw.chromium.launch(**dict({'headless':True,'args':['--no-sandbox']},**({'executable_path':os.environ.get('CHROMIUM','/usr/bin/chromium')} if os.environ.get('CHROMIUM') or Path('/usr/bin/chromium').exists() else {})))
  def all_viewports():
   out=[]
   for w,h in [(320,568),(360,640),(375,667),(390,844),(430,932)]:

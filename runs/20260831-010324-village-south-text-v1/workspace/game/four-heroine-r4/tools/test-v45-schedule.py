@@ -3,7 +3,7 @@ UI category traversal only; final touch-command route tests separately validate 
 """
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-import json,hashlib,sys
+import json,hashlib,sys,os
 R=Path(__file__).resolve().parent.parent
 W=json.loads((R/'qa/current/witnesses.json').read_text())['witnesses']
 all_prefixes=[]
@@ -44,7 +44,7 @@ for(const prefix of arr){
 return {visited,differentSets:seen.size,maxRealOptions:maxReal,failures};
 }'''
 with sync_playwright() as pw:
- b=pw.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+ b=pw.chromium.launch(**dict({'headless':True,'args':['--no-sandbox']},**({'executable_path':os.environ.get('CHROMIUM','/usr/bin/chromium')} if os.environ.get('CHROMIUM') or Path('/usr/bin/chromium').exists() else {})))
  context=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
  p=context.new_page();p.set_default_timeout(15000)
  p.evaluate("""()=>{let m=new Map;Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem:k=>m.get(k)||null,setItem:(k,v)=>m.set(k,v)}})}""")

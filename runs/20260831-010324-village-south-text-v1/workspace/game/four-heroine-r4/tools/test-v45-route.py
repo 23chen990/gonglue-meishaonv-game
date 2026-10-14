@@ -11,7 +11,7 @@ K='gonglue:revision-r4.5-portrait:canonical'
 HTML=(R/'index.html').read_text()
 report={'scope':('Native HTTP Chromium storage route replay; not physical hardware or human play.' if os.environ.get('R4_REAL_URL') else 'Chromium touch with simulated localStorage. Commands must match actual story-engine witnesses; not real hardware or human play.'),'sha256':hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest(),'routes':[],'failures':[]}
 with sync_playwright() as pw:
- b=pw.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+ b=pw.chromium.launch(**dict({'headless':True,'args':['--no-sandbox']},**({'executable_path':os.environ.get('CHROMIUM','/usr/bin/chromium')} if os.environ.get('CHROMIUM') or Path('/usr/bin/chromium').exists() else {})))
  def run(name):
   w=next(x for x in W if x['name']==name)
   ctx=b.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
