@@ -148,3 +148,8 @@ body[data-panel=story].reader-expanded .vn-sheet{height:min(88%,calc(100% - 98px
 body[data-panel=story].reader-expanded .vn-frame[data-phase=reply] .vn-sheet{height:min(88%,calc(100% - 98px))!important}
 @media(max-width:350px){.vn-reader-toggle{min-width:92px;padding:6px 6px;font-size:11px}.vn-sheet-heading{padding-left:12px;padding-right:10px}}
 @media(prefers-reduced-motion:no-preference){.vn-sheet{transition:height .18s ease-out}}
+
+/* v4.7: no fake drag handle; a deliberate expand button controls the sheet. */
+.vn-grip{display:none!important}
+body[data-panel=story] .vn-sheet-heading{padding-top:8px}
+@media(max-height:590px){body[data-panel=story].reader-expanded .vn-sheet,body[data-panel=story].reader-expanded .vn-frame[data-phase=reply] .vn-sheet{height:92%!important}}

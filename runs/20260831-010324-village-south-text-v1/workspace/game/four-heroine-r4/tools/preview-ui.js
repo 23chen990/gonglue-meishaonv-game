@@ -4,6 +4,9 @@
 const names={N:'',P:'你',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',LU:'陆景行',C:'程放',B:'',U:'',A:'阿衡',X:'现场'};
 const KEY='gonglue:revision-r4.5-portrait:canonical';
 const PREVIOUS_KEY='gonglue:revision-r4.3-intro:canonical';
+// v4.7 changes only displayed wording, not choice IDs, guards, effects or endings.
+// Existing v4.5 progress is replayed and backed up, never silently discarded.
+const COMPATIBLE_STORY_HASH='c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
@@ -60,7 +63,7 @@ function save(){
  }
 }
 function readPayload(v){
- if(!v||v.version!==VERSION||v.storyHash!==STORY_HASH)throw Error('这不是本版的选择记录；旧记录没有被改写。');
+ if(!v||v.version!==VERSION||(v.storyHash!==STORY_HASH&&v.storyHash!==COMPATIBLE_STORY_HASH))throw Error('这不是兼容版本的选择记录；旧记录没有被改写。');
  const s=replay(DATA,v.commands);
  const reply=replyFromLog(v.commands);
  const ui=v.ui||{};
@@ -83,7 +86,15 @@ function load(){
    return;
   }
   if(lastRaw.length>2400000)throw Error('记录过大');
-  install(readPayload(JSON.parse(lastRaw)));
+  const original=JSON.parse(lastRaw);
+   install(readPayload(original));
+   if(original.storyHash===COMPATIBLE_STORY_HASH&&COMPATIBLE_STORY_HASH!==STORY_HASH){
+    try{
+     storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+     save();
+     if(!saveBlocked)notice='已续接上一版进度，原始记录已备份。只修正了剧情措辞，你做过的选择都还在。';
+    }catch{saveBlocked=true;notice='旧版进度已读到，但备份或更新未完成。请先在菜单导出记录，原始存档未覆盖。';}
+   }
  }catch{
   saveBlocked=true;
   notice='这份本版记录无法验证，原记录未覆盖。当前是临时新局；可继续玩、导出，或在菜单备份后新开。';
@@ -498,7 +509,7 @@ function vnFrame(cp,interior,sceneTitle,bridge=null){
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
  const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${cp.last?'选择在下方直接进行':'轻触下方继续阅读'}</div></div></section>`;
- return `<div class="vn-frame" data-phase="${phase}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-grip" aria-hidden="true"></div><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
+ return `<div class="vn-frame" data-phase="${phase}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }
 function storyHTML(){
  const cp=currentPage();let interior='',bridge=null,heading=cp.view.title;

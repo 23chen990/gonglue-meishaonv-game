@@ -35,9 +35,11 @@ elif ok and repo_ok:
      break
     except OSError:time.sleep(.2)
    else:raise RuntimeError("Current build server did not start")
-   if stage("native-v45-ui",[sys.executable,"tools/test-v45-browser.py"],env=env):
+   ui_ok=stage("native-v45-ui",[sys.executable,"tools/test-v45-browser.py"],env=env)
+   reader_ok=stage("native-v47-reader-and-save-migration",[sys.executable,"tools/test-v46-reader.py"],env=env)
+   if ui_ok and reader_ok:
     stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
-    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
+   stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
   except Exception as e:
    report["stages"].append({"name":"actual-entry-serving","status":"BLOCKED","reason":str(e)})
   finally:
