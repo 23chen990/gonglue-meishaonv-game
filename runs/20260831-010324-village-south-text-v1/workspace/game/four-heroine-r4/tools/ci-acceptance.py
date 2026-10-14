@@ -16,7 +16,10 @@ def stage(name,args,cwd=M,env=None,timeout=1200):
  report["stages"].append({"name":name,"status":"PASS" if code==0 else ("BLOCKED" if code==2 else "FAIL"),"code":code,"command":args,"log":str(Q/(name+".log"))})
  save();return code==0
 ok=stage("canonical-source",["npm","run","verify"])
-repo_ok=stage("repository-verify",["pnpm","verify"],cwd=REPO) if ok else False
+# A build must not silently correct a stale checked-in default HTML shell.
+# This gate forces authors to commit the generated parent game/index.html too.
+entry_tracked=stage("default-entry-tracked",["git","diff","--exit-code","--",str((M.parent/"index.html").relative_to(REPO))],cwd=REPO) if ok else False
+repo_ok=stage("repository-verify",["pnpm","verify"],cwd=REPO) if ok and entry_tracked else False
 entry=GAME/"src/main.ts";doc=GAME/"dist/index.html"
 wired=entry.is_file() and "import '../four-heroine-r4/runtime.mjs';" in entry.read_text()
 if not wired or not doc.exists():
