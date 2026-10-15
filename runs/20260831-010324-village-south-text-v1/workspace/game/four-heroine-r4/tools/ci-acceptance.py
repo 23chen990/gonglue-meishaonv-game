@@ -19,7 +19,12 @@ def stage(name,args,cwd=M,env=None,timeout=1200):
   # GitHub Actions otherwise reports only an exit code: surface the real
   # assertion without suppressing the full preserved per-stage log artifact.
   print(f"::error::{name} failed with exit code {code}; last 80 log lines:", flush=True)
-  for line in (Q/(name+".log")).read_text(encoding="utf-8",errors="replace").splitlines()[-80:]:
+  log_lines=(Q/(name+".log")).read_text(encoding="utf-8",errors="replace").splitlines()
+  markers=("AssertionError","Error:","FAIL","Traceback","SyntaxError","ReferenceError","unexpected","exit code")
+  hits=[i for i,line in enumerate(log_lines) if any(word in line for word in markers)]
+  for i in hits[-12:]:
+   print(f"diagnostic line {i+1}: "+" | ".join(log_lines[i:i+3]),flush=True)
+  for line in log_lines[-80:]:
    print(line, flush=True)
  return code==0
 ok=stage("canonical-source",["npm","run","verify"])
