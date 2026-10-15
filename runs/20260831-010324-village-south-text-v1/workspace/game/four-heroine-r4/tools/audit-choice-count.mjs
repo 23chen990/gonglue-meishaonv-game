@@ -32,10 +32,33 @@ for(const [name,item] of Object.entries(witness.choices)){
  }catch(e){failures.push({choice:name,error:String(e)});}
 }
 const over4=[...states.values()].filter(x=>x.count>4);
-const report={status:failures.length?'FAIL':'PASS',version:VERSION,scope:'Ordinary-command replay of all authored choice witnesses; non-exhaustive state exploration, not human experience',hashes,
- observedChoices:Object.keys(witness.choices).length,uniqueStates:states.size,byChoiceWitness,reachableStatesWith5OrMore:over4.length,over4,failures,
+const intentStates=[];
+for(const [sid,sc] of Object.entries(data.scenes)){
+ if(!sc.decisionSteps)continue;
+ assert.equal(sc.decisionSteps.length,2,'Every new first-stage attitude has 2 meaningful choices');
+ const all=sc.decisionSteps.flatMap(g=>g.options);
+ assert.deepEqual(new Set(all),new Set(sc.choices.map(o=>o.id)),sid+' incomplete leaf cover');
+ for(const g of sc.decisionSteps)assert(g.options.length<=4 && g.options.length>=1,sid+'/'+g.id+' exceeds 4 real options');
+ const witness=Object.entries(witness.choices).find(([key])=>key.startsWith(sid+'/'));
+ assert(witness,'Unreachable staged scene '+sid);
+ const prefix=witness[1].prefix;
+ const firstIndex=prefix.findIndex(x=>x.from===sid && x.id.startsWith('intent:'));
+ assert(firstIndex>=0,'No witnessed real intent command '+sid);
+ const entry=replay(data,prefix.slice(0,firstIndex));
+ const first=renderScene(entry,data).choices.filter(x=>x.enabled);
+ assert(first.length>=1 && first.length<=3,'Stage one is not limited '+sid);
+ const decision=prefix[firstIndex];
+ const after=replay(data,prefix.slice(0,firstIndex+1));
+ const second=renderScene(after,data).choices.filter(x=>x.enabled);
+ assert(second.length>=1&&second.length<=4,'Stage two overfull '+sid);
+ assert(second.every(x=>sc.decisionSteps.find(g=>'intent:'+g.id===decision.id).options.includes(x.id)));
+ intentStates.push({scene:sid,first:first.map(x=>x.id),second:second.map(x=>x.id)});
+}
+assert.equal(intentStates.length,16,'Missing two-stage scene witness');
+const report={status:failures.length||over4.length?'FAIL':'PASS',version:VERSION,scope:'Ordinary-command replay of all authored choice witnesses; non-exhaustive state exploration, not human experience',hashes,
+ observedChoices:Object.keys(witness.choices).length,uniqueStates:states.size,byChoiceWitness,reachableStatesWith5OrMore:over4.length,over4,realIntentStages:intentStates,failures,
  decisionConstraint:over4.length?'VISIBLE_CHOICES_MAX_3_BY_UI_PAGING; STRICT_TOTAL_CHOICES_MAX_4_NOT_MET':'NO_OVER_FOUR_OBSERVED_IN_THIS_WITNESS_SET',
  independentBrowserAssertion:'RUN tools/test-ui-r4.py; ordinary-command count alone does not verify presentation'};
 fs.writeFileSync(new URL('qa/current/r42-choice-count-audit.json',root),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({status:report.status,observedChoices:report.observedChoices,uniqueStates:states.size,reachableStatesWith5OrMore:over4.length,failures:failures.length}));
-if(failures.length)process.exitCode=1;
+if(failures.length||over4.length)process.exitCode=1;
