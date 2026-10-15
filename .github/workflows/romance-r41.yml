@@ -83,11 +83,11 @@ jobs:
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/ci/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-ui/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-reader/**
-          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic/**
-          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic-webkit/**
-          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-report.json
-          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-webkit-report.json
-          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v417-intent-reader-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic/**
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic-webkit/**
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-webkit-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v417-intent-reader-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-browser-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v46-reader-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v48-first-choice-report.json
@@ -98,7 +98,7 @@ jobs:
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-routes/**/route-report.json
           if-no-files-found: warn
           retention-days: 7
-      - name: Upload verified standalone v4.16 H5 game
+      - name: Upload verified standalone v4.17 integrated H5 game
         if: success()
         uses: actions/upload-artifact@v4
         with:
