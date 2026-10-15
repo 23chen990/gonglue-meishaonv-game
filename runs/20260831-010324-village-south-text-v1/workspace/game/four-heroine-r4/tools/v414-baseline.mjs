@@ -11,11 +11,21 @@ export const PREVIOUS_V413_SHA='e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0
 export function verifiedV414(){
  const raw=read('data/STORY.json'),latest=JSON.parse(raw);
  const patch=JSON.parse(read('patch/v414_first_night_edits.json'));
+ const v415=JSON.parse(read('patch/v415_first_night_edits.json'));
+ assert.equal(sha(raw),v415.newStorySha256);
+ const v414=structuredClone(latest);
+ for(const c of [...v415.changes].reverse()){
+  const sc=v414.scenes[c.scene];
+  const row=(c.location==='body'?sc.body:sc.choices.find(o=>o.id===c.choice).reply).find(x=>x.id===c.id);
+  assert(row&&row.speaker===c.speaker&&row.text===c.after&&row.textHash===c.afterHash);
+  row.text=c.before;row.textHash=c.beforeHash;
+ }
+ assert.equal(sha(JSON.stringify(v414,null,2)+'\n'),patch.newStorySha256);
  assert.equal(patch.baseStorySha256,PREVIOUS_V413_SHA,'v4.14 must descend from exact verified v4.13');
  assert.equal(sha(raw),patch.newStorySha256,'v4.14 canonical hash must match signed reversible patch');
  assert.deepEqual(patch.counts,{beats:31,scenes:8});
  assert.equal(patch.changes.length,31);
- const legacy=structuredClone(latest),seen=new Set();
+ const legacy=structuredClone(v414),seen=new Set();
  const beatHash=b=>sha(b.speaker+'\0'+b.text).slice(0,16);
  for(const c of [...patch.changes].reverse()){
   assert(!seen.has(c.id),'duplicate v4.14 text id '+c.id);seen.add(c.id);
