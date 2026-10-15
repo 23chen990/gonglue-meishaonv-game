@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {verifiedV414} from './v414-baseline.mjs';
 import {createState,renderScene,choose,replay} from './engine.mjs';
 const root=new URL('../',import.meta.url);
 const read=p=>fs.readFileSync(new URL(p,root),'utf8');
@@ -21,7 +22,8 @@ assert.equal(P413.baseStorySha256,P412.newStorySha256,'v4.13 story predecessor c
 assert.equal(P412.baseStorySha256,P411.newStorySha256,'v4.11 predecessor checksum');
 assert.equal(P411.baseStorySha256,P410.newStorySha256,'v4.10 predecessor checksum');
 assert.equal(P410.baseStorySha256,M.newStorySha256,'v4.9 predecessor checksum');
-const D=structuredClone(latest);
+const V414=verifiedV414();
+const D=structuredClone(V414.legacy);
 for(const sid of Object.keys(P413.decisions)){
  assert(D.scenes[sid].decisionSteps?.length===2,sid+' staged story authoring absent');
  delete D.scenes[sid].decisionSteps;
@@ -50,7 +52,7 @@ for(const ch of P410.changes){
  row.text=ch.before;row.textHash=ch.beforeTextHash;
 }
 const old=structuredClone(D);
-assert.equal(sha(storyText),'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3','new v4.13 canonical SHA');
+assert.equal(sha(storyText),V414.patch.newStorySha256,'v4.14 canonical SHA');
 assert.equal(contracts.storySha256,sha(storyText),'choice registry SHA');
 assert.equal(D.version,'revision-r4.3','preserve engine story revision');
 assert.equal(Object.keys(D.scenes).length,228,'scene count preserved');

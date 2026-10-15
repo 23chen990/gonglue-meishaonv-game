@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "storySha256": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
+  "storySha256": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594",
   "errors": [],
   "counts": {
     "scenes": 228,
@@ -11,9 +11,9 @@
     "epilogues": 40,
     "bonus": 8,
     "coda": 6,
-    "textBeats": 4158,
-    "hanCharacters": 88434,
-    "memoryCueMatches": 463,
+    "textBeats": 4222,
+    "hanCharacters": 94676,
+    "memoryCueMatches": 480,
     "conditionalLocations": 830,
     "dynamicConditionsNotSeenTrue": 0,
     "recordOnlyChoices": 77

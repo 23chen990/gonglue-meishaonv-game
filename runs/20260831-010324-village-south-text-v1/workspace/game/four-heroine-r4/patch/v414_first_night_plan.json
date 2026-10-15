@@ -1,0 +1,193 @@
+{
+  "version": "v4.14-editorial-plan",
+  "baseStorySha256": "e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3",
+  "scope": "existing body text and textHash only; preserve every scene, choice, effect and dialogue speaker",
+  "changes": [
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.001",
+      "speaker": "N",
+      "text": "手机停在《今夜偏爱男主》第十三章。临时场务许照被保安带出后台，通知上写着“因现场失误清退”。你往前翻了两页，才看到一张写着他名字的交接单。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.002",
+      "speaker": "N",
+      "text": "你想看看究竟是谁让许照签的字，眼前的手机屏幕却忽然重了影。指尖一空，你连椅子都没来得及扶住。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.004",
+      "speaker": "N",
+      "text": "后背磕上一只冰凉的金属箱。你猛地睁眼，头顶的舞台灯晃得人发晕。对讲机里有人催场，隔着幕布传来密密的观众声。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.007",
+      "speaker": "N",
+      "text": "你扶着箱子站起来，胸前的工牌撞在手背上。上面写着“许照，临时场务”，照片是一张完全陌生的脸。你又看了一遍名字。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.008",
+      "speaker": "P",
+      "text": "（等等，我刚才明明在家里看书。这工牌怎么会挂在我身上？）"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.009",
+      "speaker": "N",
+      "text": "侧幕挂着“北岸艺术中心·栖光计划”的牌子。地上的胶带、箱子上的编号，还有身边忙得顾不上看你的人，都真实得让人心慌。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.014",
+      "speaker": "P",
+      "text": "（唐映雪、沈清辞、陆景行……怎么一个名字都没错？还有那段被剪掉的前奏。）"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.016",
+      "speaker": "B",
+      "text": "我记得这场。首演，19:03，前奏被剪掉；陆景行用钢琴替唐映雪接住了开场。书里写得很短，可眼前的人真的在等那四小节。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.017",
+      "speaker": "P",
+      "text": "（不可能吧……我只是在看小说。难道我真的成了那个许照？）"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.018",
+      "speaker": "N",
+      "text": "你用力掐了自己一把，疼得嘶了一声。不是梦。你连面前音控设备的按钮都认不全，周围的人却已经把你当成了这里的工作人员。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.020",
+      "speaker": "P",
+      "text": "先不用……我还能站。让我缓一下。（要是现在就走，今晚那张交接单怎么办？）"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.021",
+      "speaker": "B",
+      "text": "我记得许照在书里听程放的话，没碰过音控。可后来那张“现场版本确认”偏偏是他签的。别人做错的事，最后全算在他头上。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.022",
+      "speaker": "B",
+      "text": "唐映雪后来连自己的歌曲版本都说不上话；沈清辞想留住的那座小演出厅，也没能留住。可现在，她们还在为眼前这一首歌发愁。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.023",
+      "speaker": "B",
+      "text": "林见月的镜头拍过后台，顾晚棠手里有审批邮件。原著里这些东西都没救成许照。现在就算我记得，她们也不会凭一句话相信我。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.024",
+      "speaker": "B",
+      "text": "蓝标盘、审批邮件、切换的时间……书里提到过几个线索，可我现在手里一件证据都没有。先找到一样真的，才有机会开口。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.025",
+      "speaker": "B",
+      "text": "还有七天。第七天，那个被当成炮灰的许照会被带出剧场。眼前倒数的却不是七天，是这一首歌开始前的几秒。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.026",
+      "speaker": "N",
+      "text": "你想起小说里一个不起眼的细节：贴蓝胶带的原版 U 盘，被压在接线板下面，直到散场也没人翻出来。接线板就在你脚边。"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.027",
+      "speaker": "P",
+      "text": "（装作不知道，先看原著怎么发展；去找那枚蓝标盘，试试能不能救场；或者先记下谁动过文件。哪条路我都没把握。）"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.028",
+      "speaker": "N",
+      "text": "台上，唐映雪已经摘下一边耳返。陆景行抬手准备落下第一个琴音；程放却朝你挥手，不许你靠近箱子。你得现在决定——只剩几个呼吸。"
+    },
+    {
+      "scene": "OP_TALK_l",
+      "id": "OP_TALK_l.r4.body.004",
+      "speaker": "L",
+      "text": "那就先不拍你。……等等，你手怎么还在抖？要不要先坐一下？"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.002",
+      "speaker": "G",
+      "text": "许照，对吧？刚才那个原版盘，是你找回来的？"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.003",
+      "speaker": "P",
+      "text": "是我找到的。能不能用，是阿衡试听过才决定的。我没碰控台。"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.004",
+      "speaker": "G",
+      "text": "这倒说得清楚。先坐，你脸色都白了。"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.005",
+      "speaker": "P",
+      "text": "我刚才就怕说不清，最后什么都算我头上。听你这么问，我反倒踏实点。"
+    },
+    {
+      "scene": "OP_TALK_self",
+      "id": "OP_TALK_self.r4.body.003",
+      "speaker": "N",
+      "text": "阿衡把清点表转给你。你翻到自己的名字，旁边清清楚楚写着“找到备用盘”。这回，至少有人知道你做过什么。"
+    },
+    {
+      "scene": "OP_SECRET_s",
+      "id": "OP_SECRET_s.r4.body.004",
+      "speaker": "S",
+      "text": "你先说你亲眼看见了什么。没看见的部分，我会自己查。"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "id": "OP_RIVAL.r4.body.001",
+      "speaker": "N",
+      "text": "首演刚散场，陆景行就抱着乐谱走下台，给制作人打了电话。你还没从那阵掌声里缓过来，他已经替唐映雪问好了下一次试音的机会。"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "id": "OP_RIVAL.r4.body.005",
+      "speaker": "B",
+      "text": "（书里这次录音邀约明明是三天后才有的。看来我改变了今晚，别人接下来的决定也会变。我不能只盯着自己记得的那几页。）"
+    },
+    {
+      "scene": "OP_FORK",
+      "id": "OP_FORK.r42.body.002",
+      "speaker": "N",
+      "text": "原著里没有这条撤回的消息。你看了一眼身边的蓝标盘，忽然明白：有人发现事情没按原来的路走。可你没来得及截图，手机上只剩一行“消息已撤回”。"
+    },
+    {
+      "scene": "A1b",
+      "id": "A1b.r42.body.003",
+      "speaker": "N",
+      "text": "你盯着签名栏，忽然想起书里许照被赶出后台的那一页。纸和笔都是真的，程放就站在对面等着。你把笔放回桌上。"
+    },
+    {
+      "scene": "A1b",
+      "id": "A1b.r42.body.004",
+      "speaker": "P",
+      "text": "（签了，他明天就能说是我确认过版本。不签，他又能说我不配合。先问清责任是谁的，至少别再替别人签一张糊涂账。）"
+    }
+  ]
+}

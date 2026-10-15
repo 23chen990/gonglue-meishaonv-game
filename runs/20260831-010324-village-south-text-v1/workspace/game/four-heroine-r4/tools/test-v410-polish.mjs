@@ -1,6 +1,7 @@
 /** Source-level continuity and character-voice regression for v4.10.
  * This is an objective code guard; not a substitute for a real player review. */
 import assert from 'node:assert/strict';
+import {verifiedV414} from './v414-baseline.mjs';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 const R=new URL('../',import.meta.url);
@@ -12,7 +13,7 @@ const patch=JSON.parse(read('patch/v410_scene_polish.json'));
 const next=JSON.parse(read('patch/v411_dialogue_pov.json'));
 const newest=JSON.parse(read('patch/v412_reaction_copy.json'));
 assert.equal(JSON.parse(read('patch/v413_decision_steps.json')).baseStorySha256,newest.newStorySha256);
-assert.equal(hash(canonical),'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3');
+assert.equal(hash(canonical),verifiedV414().patch.newStorySha256);
 assert.equal(newest.baseStorySha256,next.newStorySha256);
 assert.equal(next.baseStorySha256,patch.newStorySha256);
 assert.deepEqual(patch.counts,{total:47,scenesTouched:19,cancelledVenue:3,groupWaitSpoken:16,groupWaitNarrator:16,groupAskNarrator:12});
