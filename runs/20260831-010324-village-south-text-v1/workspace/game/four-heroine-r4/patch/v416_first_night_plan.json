@@ -1,7 +1,7 @@
 {
   "version": "v4.16-opening-choice-clarity",
   "baseStorySha256": "f1cee3680592a366c6a7dae8ffda615b7d828e165bb743f94181268df58abfa0",
-  "scope": "Only existing body.text/reply.text/textHash and three contextual choice labels; preserve all speakers, choices, states and effects",
+  "scope": "Only existing body.text/reply.text/textHash and four contextual choice labels; preserve all speakers, choices, states and effects",
   "counts": {
     "beats": 28,
     "scenes": 13,
