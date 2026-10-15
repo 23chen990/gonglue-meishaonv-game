@@ -133,31 +133,47 @@ function load(){
   notice='这份本版记录无法验证，原记录未覆盖。当前是临时新局；可继续玩、导出，或在菜单备份后新开。';
  }
 }
-function splitLongBeat(b){
- // Stable across font/viewport changes, and no unbroken sentence can bypass the length cap.
+function splitLongBeat(b,limit=180){
+ // Canonical rows stay intact. These are presentation-only slices.
  const chars=Array.from(b.text),out=[];let start=0;
  while(start<chars.length){
-  let end=Math.min(start+180,chars.length);
+  let end=Math.min(start+limit,chars.length);
   if(end<chars.length){
-   for(let i=end-1;i>start+100;i--)if('。！？!?；;'.includes(chars[i])){end=i+1;break;}
+   for(let i=end-1;i>start+Math.floor(limit*.56);i--)if('。！？!?；;'.includes(chars[i])){end=i+1;break;}
   }
-  out.push({...b,text:chars.slice(start,end).join(''),id:chars.length<=180?b.id:(b.id||'')+':part'+out.length});
+  out.push({...b,text:chars.slice(start,end).join(''),id:chars.length<=limit?b.id:(b.id||'')+':part'+out.length});
   start=end;
  }
  return out.length?out:[b];
 }
 function paginate(rows){
- // Only the 28-beat book-entry prologue is paced in chapters; everywhere else
- // the actor's words and consequential choices share one scrollable sheet.
- const flat=rows.flatMap(splitLongBeat);
- if(!(phase==='scene'&&state.current==='ENTRY_WAKE'))return [flat];
- const pages=[];let p=[],n=0;
- for(const b of flat){
-  if(p.length&&(n+b.text.length>190||p.length>=4)){pages.push(p);p=[];n=0;}
-  p.push(b);n+=b.text.length;
+ // Preserve seven existing advances through the 28 mandatory opening beats.
+ // Other long scenes group meaningful turns; short exchanges have no extra click.
+ const intro=phase==='scene'&&state.current==='ENTRY_WAKE';
+ const flat=rows.flatMap(b=>splitLongBeat(b,intro?180:132));
+ if(intro){
+  const pages=[];let batch=[],size=0;
+  for(const b of flat){
+   if(batch.length&&(size+b.text.length>190||batch.length>=4)){pages.push(batch);batch=[];size=0;}
+   batch.push(b);size+=b.text.length;
+  }
+  if(batch.length||!pages.length)pages.push(batch);
+  return pages;
  }
- if(p.length||!pages.length)pages.push(p);
- return pages;
+ // Keep collection entries readable and preserve OP_SETTLE's zero-tap bridge.
+ if(panel!=='story'||(phase==='scene'&&state.current==='OP_SETTLE'))return [flat];
+ if(flat.length<=3&&flat.reduce((n,b)=>n+b.text.length,0)<=215)return [flat];
+ const pages=[];let batch=[],size=0,previous=null;
+ const flush=()=>{if(batch.length){pages.push(batch);batch=[];size=0;previous=null;}};
+ for(const b of flat){
+  const pause=b.speaker==='B'&&b.text.length<=55&&/[……！？!?]$/.test(b.text.trim());
+  const changedVoice=previous&&previous!==b.speaker&&size>=95;
+  if(batch.length&&(size+b.text.length>205||batch.length>=3||changedVoice||pause))flush();
+  batch.push(b);size+=b.text.length;previous=b.speaker;
+  if(pause)flush();
+ }
+ flush();
+ return pages.length?pages:[flat];
 }
 function endingRows(){
  if(state.f.early_end)return [{speaker:'N',text:'这一轮停在这里。回到读过的决定，你仍可以换一种做法。'}];
@@ -523,26 +539,28 @@ function directBridge(){
  return {pre:v,next,moved};
 }
 function sceneStagePortrait(cp){
- const activeChar=activePortrait();
- if(activeChar)return activeChar;
-  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)return 't';
-  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
- const rows=cp.rows||[];
- for(let i=rows.length-1;i>=0;i--){
-  const c={T:'t',S:'s',L:'l',G:'g'}[rows[i].speaker];if(c)return c;
+ if(state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)return 't';
+ if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
+ for(let i=(cp.rows||[]).length-1;i>=0;i--){
+  const c={T:'t',S:'s',L:'l',G:'g'}[cp.rows[i].speaker];if(c)return c;
  }
- return state.f?.first&&heroineDesign[state.f.first]?state.f.first:null;
+ return activePortrait()||(state.f?.first&&heroineDesign[state.f.first]?state.f.first:null);
 }
 function vnFrame(cp,interior,sceneTitle,bridge=null){
- const source=sourceScene();const set=(source.scene?.background||'backstage').replace(/[^a-z0-9-]/gi,'');
- const c=sceneStagePortrait(cp);
- const mood=/危机|错误|清退|归责|撤回|背锅|删除/.test(sceneTitle)?'tense':'soft';
+ const source=sourceScene(),set=(source.scene?.background||'backstage').replace(/[^a-z0-9-]/gi,'');
+ const c=sceneStagePortrait(cp),focus=cp.rows?.at(-1);
+ const kind=focus?.speaker==='B'?'thought':focus?.speaker==='N'?'narration':focus?.speaker==='U'?'system':'dialogue';
+ const choice=cp.last&&!cp.view.isReply&&!cp.view.terminal&&(!!bridge||cp.view.choices.some(o=>o.enabled));
+ const mode=cp.view.terminal?'ending':phase==='reply'?'reply':choice?'decision':'reading';
+ const mood=kind==='thought'?'intimate':/危机|错误|清退|归责|撤回|背锅|删除/.test(sceneTitle)?'tense':'soft';
  const day=state.current==='@schedule'?DATA.calendar[state.slot]?.day:state.clock?.day||1;
  const chapter=state.complete?'结局·改写的终点':state.current==='ENTRY_WAKE'?'序章 · 醒来':`第${day||1}日 · ${phase==='reply'?'决定之后':'故事继续'}`;
+ const who=kind==='thought'?'许照 · 心声':kind==='narration'?'剧情旁白':kind==='system'?'现场信息':names[focus?.speaker]||'当前剧情';
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
- const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${cp.last?'选择在下方直接进行':'轻触下方继续阅读'}</div></div></section>`;
- return `<div class="vn-frame" data-phase="${phase}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
+ const cue=choice?'轮到你决定':phase==='reply'?'你的决定，有了回应':cp.pages.length>1?'轻触画面继续':'阅读当前剧情';
+ const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${esc(cue)}</div></div></section>`;
+ return `<div class="vn-frame" data-phase="${phase}" data-mode="${mode}" data-beat-kind="${kind}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><span class="vn-voice"><strong>${esc(who)}</strong><small>${cp.pages.length>1?page+1+' / '+cp.pages.length:choice?'选择':'剧情'}</small></span><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起 ↓':'展开 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }
 function storyHTML(){
  const cp=currentPage();let interior='',bridge=null,heading=cp.view.title;
@@ -632,6 +650,22 @@ function showNotice(){
  el.hidden=!notice;
  el.innerHTML=notice?`<div>${esc(notice)}</div><button data-action="export">导出</button><button data-action="hide-notice">收起提示</button>`:'';
 }
+function fitOpeningReader(frame,area,dock){
+ // The eight opening pages contain all 28 canonical beats. Adapt the sheet to
+ // measured text height instead of requiring eight hidden inner-scroll gestures.
+ // On large text, an intentionally expanded reader provides an accessible fallback.
+ if(!frame||!area||!dock||panel!=='story'||phase!=='scene'||
+    state.current!=='ENTRY_WAKE'||currentPage().last||large||readerExpanded)return;
+ const story=area.querySelector('.intro-story-pages');
+ const sheet=frame.querySelector('.vn-sheet');
+ if(!story||!sheet)return;
+ const content=story.getBoundingClientRect().bottom-area.getBoundingClientRect().top;
+ const padding=parseFloat(getComputedStyle(area).paddingBottom)||0;
+ const heading=sheet.querySelector('.vn-sheet-heading')?.getBoundingClientRect().height||0;
+ const needed=Math.ceil(content+padding+heading+dock.getBoundingClientRect().height+10);
+ const maxHeight=Math.max(280,frame.clientHeight-96);
+ sheet.style.height=Math.min(maxHeight,Math.max(265,needed))+'px';
+}
 function render(scrollWindow=true){
  // A menu, a font-size change or a semantic category is not a new scene.
  // Read the OLD DOM before repainting to avoid jumping back to the start.
@@ -653,6 +687,7 @@ function render(scrollWindow=true){
   const candidates=area?.querySelectorAll('.rescue-options, .choices, .pager');
   const target=candidates?.length?candidates[candidates.length-1]:null;
   if(target&&dock)dock.append(target);
+  fitOpeningReader(frame,area,dock);
   if(frame?.dataset.readerKey===storyScroll.key){
    if(area)area.scrollTop=storyScroll.text;
    if(dock&&storyScroll.choicePage===choicePage)dock.scrollTop=storyScroll.dock;
@@ -660,7 +695,7 @@ function render(scrollWindow=true){
    // At the final required intro beat, lead with the immediate dilemma.
    // Earlier words stay readable by scrolling up, without extra taps.
    if(area&&state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)
-    area.scrollTop=Math.max(0,area.scrollHeight-area.clientHeight);
+    area.scrollTop=area.scrollHeight>area.clientHeight+20?area.scrollHeight-area.clientHeight:0;
    storyScroll={key:frame?.dataset.readerKey||null,text:area?.scrollTop||0,dock:0,choicePage};
   }
  }
@@ -670,6 +705,14 @@ function render(scrollWindow=true){
 }
 
 function arm(){downToken=null;pointerStart=null;moved=false;}
+function advanceReading(){
+ if(panel!=='story')return false;
+ const cp=currentPage();
+ if(!cp.last){markRead(cp);page++;save();render();arm();return true;}
+ if(phase==='reply'){markRead(cp);phase='scene';page=0;save();render();arm();return true;}
+ return false;
+}
+
 function exportLog(){
  const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -722,10 +765,28 @@ function doAction(action){
  }
 }
 document.addEventListener('pointerdown',e=>{
- if(e.isPrimary){downToken=renderToken;pointerStart={x:e.clientX,y:e.clientY,id:e.pointerId};moved=false;}
+ if(e.isPrimary){suppressReadingPointerClick=false;downToken=renderToken;pointerStart={x:e.clientX,y:e.clientY,id:e.pointerId};moved=false;}
 },{passive:true});
 document.addEventListener('pointermove',e=>{
  if(pointerStart&&e.pointerId===pointerStart.id&&Math.hypot(e.clientX-pointerStart.x,e.clientY-pointerStart.y)>10)moved=true;
+},{passive:true});
+// Safari/WebKit can omit a delegated click for non-native interactive scene sections.
+// Advance on a genuine primary pointer release and suppress its subsequent click.
+let suppressReadingPointerClick=false;
+document.addEventListener('pointerup',e=>{
+ if(!e.isPrimary||!pointerStart||pointerStart.id!==e.pointerId)return;
+ const target=e.target instanceof Element?e.target:null;
+ const allowed=panel==='story'&&!busy&&!moved&&downToken===renderToken&&
+  target?.closest('.vn-stage,.vn-scroll')&&
+  !target.closest('button,a,details,summary,input,textarea,[role="button"]')&&
+  !window.getSelection()?.toString();
+ pointerStart=null;
+ if(!allowed)return;
+ busy=true;
+ try{
+  if(advanceReading())suppressReadingPointerClick=true;
+ }catch(err){notice='阅读推进失败：'+err.message;showNotice();}
+ finally{busy=false;}
 },{passive:true});
 document.addEventListener('pointercancel',()=>{downToken=null;pointerStart=null;moved=true;});
 window.addEventListener('blur',()=>{downToken=null;pointerStart=null;moved=true;});
@@ -734,7 +795,18 @@ document.addEventListener('keydown',e=>{
  if(e.key==='Escape'&&panel!=='story'){e.preventDefault();backToStory();}
 });
 document.addEventListener('click',ev=>{
- const b=ev.target instanceof Element?ev.target.closest('button'):null;
+ const target=ev.target instanceof Element?ev.target:null;
+ const b=target?.closest('button');
+ if(suppressReadingPointerClick&&ev.detail>0){suppressReadingPointerClick=false;return;}
+ if(!b){
+  if(panel!=='story'||busy||!target?.closest('.vn-stage,.vn-scroll')||
+     target.closest('a,details,summary,input,textarea,[role="button"]')||window.getSelection()?.toString())return;
+  if(ev.detail>0&&(moved||(downToken!==null&&downToken!==renderToken)))return;
+  busy=true;
+  try{advanceReading();}catch(e){notice='阅读推进失败：'+e.message;showNotice();}
+  finally{busy=false;}
+  return;
+ }
  // A new rendered button may receive detail=2 after a legitimate fast touch.
  // The revision/render token and disconnected-node guard reject duplicates without swallowing that touch.
  if(!b||!b.isConnected||b.disabled||busy)return;
@@ -820,4 +892,8 @@ window.addEventListener('storage',e=>{
   saveBlocked=true;notice='另一个窗口更新了记录。本窗口不再自动覆盖它；可在菜单读取最新记录，或先导出这里。';showNotice();
  }
 });
+window.addEventListener('resize',()=>{
+ const f=document.querySelector('.vn-frame');
+ fitOpeningReader(f,f?.querySelector('.vn-scroll'),f?.querySelector('.vn-dock'));
+},{passive:true});
 load();render();
