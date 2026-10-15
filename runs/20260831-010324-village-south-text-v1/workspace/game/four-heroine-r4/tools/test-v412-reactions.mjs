@@ -6,7 +6,8 @@ const R=new URL('../',import.meta.url);
 const read=p=>fs.readFileSync(new URL(p,R),'utf8');
 const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 const text=read('data/STORY.json'),D=JSON.parse(text),p=JSON.parse(read('patch/v412_reaction_copy.json'));
-assert.equal(sha(text),p.newStorySha256);
+assert.equal(sha(text),'b8ad3c8fd3bf8afcfde22851eab7674a5ca64810b4ca53823fbc1839604a1676');
+const v413=JSON.parse(read('patch/v413_decision_steps.json'));assert.equal(v413.baseStorySha256,p.newStorySha256);
 assert.deepEqual(p.counts,{beats:56,scenes:26,crossEnd:12,pairSlow:18,pairSeparate:18,reopenWait:4,repairDelay:4});
 const seen=new Set();
 for(const ch of p.changes){
