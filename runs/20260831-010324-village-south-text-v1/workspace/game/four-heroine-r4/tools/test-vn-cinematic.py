@@ -8,8 +8,10 @@ URL=os.environ.get('R4_REAL_URL','http://127.0.0.1:8765/index.html')
 KEY='gonglue:revision-r4.5-portrait:canonical'
 H=hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest()
 W=json.loads((R/'qa/current/choice-witness-prefixes.json').read_text())['choices']
-REPORT={'scope':'real HTTP Chromium touch; not physical device','head':os.environ.get('GITHUB_SHA'),'cases':[]}
-D=R/'qa/current/browser/cinematic';D.mkdir(parents=True,exist_ok=True)
+ENGINE=os.environ.get('R4_BROWSER','chromium')
+assert ENGINE in ('chromium','webkit')
+REPORT={'scope':'real HTTP '+ENGINE+' touch; not physical device','head':os.environ.get('GITHUB_SHA'),'cases':[]}
+D=R/'qa/current/browser'/('cinematic-webkit' if ENGINE=='webkit' else 'cinematic');D.mkdir(parents=True,exist_ok=True)
 def record(name,work):
  try:
   detail=work();REPORT['cases'].append({'name':name,'status':'PASS','detail':detail});print('PASS',name,flush=True)
@@ -18,7 +20,7 @@ def record(name,work):
 def local_save(commands):
  return {'version':'bookside-revision-r4.3','storyHash':H,'commands':commands,'ui':{'phase':'scene','page':0,'choicePage':0,'large':False,'soundOn':False},'profile':{'endings':{},'bonuses':{},'readPages':[]}}
 with sync_playwright() as play:
- browser=play.chromium.launch(headless=True,args=['--no-sandbox'])
+ browser=getattr(play,ENGINE).launch(**({'headless':True,'args':['--no-sandbox']} if ENGINE=='chromium' else {'headless':True}))
  def open_game(w,h,commands=None):
   ctx=browser.new_context(viewport={'width':w,'height':h},is_mobile=True,has_touch=True)
   page=ctx.new_page();page.set_default_timeout(7000)
