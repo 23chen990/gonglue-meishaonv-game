@@ -1,4 +1,4 @@
-name: Romance v4.16 first-night story and native mobile H5 acceptance
+name: Romance v4.17 cinematic VN and mobile H5 acceptance
 
 on:
   pull_request:
@@ -47,9 +47,10 @@ jobs:
         run: |
           python3 -m pip install --user 'playwright==1.55.0'
           python3 -m playwright install --with-deps chromium
+          python3 -m playwright install --with-deps webkit
       - name: Verify source, root default entry, current native browser
         run: |
-          python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/ci-acceptance.py
+          R4_WEBKIT=1 python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/ci-acceptance.py
       - name: Validate built default player metadata
         if: always()
         run: |
@@ -77,11 +78,16 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: romance-v416-current-qa
+          name: romance-v417-cinematic-current-qa
           path: |
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/ci/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-ui/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-reader/**
+          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic/**
+          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic-webkit/**
+          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-report.json
+          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-webkit-report.json
+          runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v417-intent-reader-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-browser-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v46-reader-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v48-first-choice-report.json
@@ -96,7 +102,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: romance-v416-offline-h5
+          name: romance-v417-cinematic-offline-h5
           path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
           if-no-files-found: error
           retention-days: 14
