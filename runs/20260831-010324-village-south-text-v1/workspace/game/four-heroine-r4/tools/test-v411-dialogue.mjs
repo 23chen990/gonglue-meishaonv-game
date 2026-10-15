@@ -9,7 +9,7 @@ const raw=read('data/STORY.json');
 const data=JSON.parse(raw),patch=JSON.parse(read('patch/v411_dialogue_pov.json'));
 const newest=JSON.parse(read('patch/v412_reaction_copy.json'));
 assert.equal(JSON.parse(read('patch/v413_decision_steps.json')).baseStorySha256,newest.newStorySha256);
-assert.equal(sha(raw),'b8ad3c8fd3bf8afcfde22851eab7674a5ca64810b4ca53823fbc1839604a1676');
+assert.equal(sha(raw),'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3');
 assert.equal(newest.baseStorySha256,patch.newStorySha256);
 assert.deepEqual(patch.counts,{beats:11,scenes:9});
 const locate=c=>{
