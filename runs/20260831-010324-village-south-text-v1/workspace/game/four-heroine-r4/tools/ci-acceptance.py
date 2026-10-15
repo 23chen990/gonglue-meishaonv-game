@@ -25,7 +25,14 @@ def stage(name,args,cwd=M,env=None,timeout=1200):
 ok=stage("canonical-source",["npm","run","verify"])
 # A build must not silently correct a stale checked-in default HTML shell.
 # This gate forces authors to commit the generated parent game/index.html too.
-entry_tracked=stage("default-entry-tracked",["git","diff","--exit-code","--",str((M.parent/"index.html").relative_to(REPO))],cwd=REPO) if ok else False
+# Generated offline and module players must be committed, not merely rebuilt in CI.
+derived_paths=[str((M/n).relative_to(REPO)) for n in
+               ["index.html","play.html","runtime.mjs","repository-index.html","build-meta.json"]]
+derived_tracked=stage("generated-player-artifacts-tracked",
+                     ["git","diff","--exit-code","--",*derived_paths],cwd=REPO) if ok else False
+entry_tracked=stage("default-entry-tracked",
+                    ["git","diff","--exit-code","--",str((M.parent/"index.html").relative_to(REPO))],
+                    cwd=REPO) if ok and derived_tracked else False
 repo_ok=stage("repository-verify",["pnpm","verify"],cwd=REPO) if ok and entry_tracked else False
 entry=GAME/"src/main.ts";doc=GAME/"dist/index.html"
 wired=entry.is_file() and "import '../four-heroine-r4/runtime.mjs';" in entry.read_text()
@@ -49,7 +56,12 @@ elif ok and repo_ok:
    reader_ok=stage("native-v47-reader-and-save-migration",[sys.executable,"tools/test-v46-reader.py"],env=env)
    first_ok=stage("native-v48-readable-first-choice",[sys.executable,"tools/test-v48-first-choice.py"],env=env)
    save_ok=stage("native-v49-saved-session-continuity",[sys.executable,"tools/test-v49-save-migration.py"],env=env)
-   if ui_ok and reader_ok and first_ok and save_ok:
+   cinematic_ok=stage("native-cinematic-reader",[sys.executable,"tools/test-vn-cinematic.py"],env=env)
+   if os.environ.get("R4_WEBKIT")=="1":
+    stage("native-webkit-cinematic-reader",
+          [sys.executable,"tools/test-vn-cinematic.py"],
+          env=dict(env,R4_BROWSER="webkit"))
+   if ui_ok and reader_ok and first_ok and save_ok and cinematic_ok:
     stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
   except Exception as e:
