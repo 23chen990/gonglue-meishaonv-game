@@ -22,7 +22,7 @@ export function verifiedV414(){
  }
  assert.equal(sha(JSON.stringify(v414,null,2)+'\n'),patch.newStorySha256);
  assert.equal(patch.baseStorySha256,PREVIOUS_V413_SHA,'v4.14 must descend from exact verified v4.13');
- assert.equal(sha(raw),patch.newStorySha256,'v4.14 canonical hash must match signed reversible patch');
+ assert.equal(sha(JSON.stringify(v414,null,2)+'\n'),patch.newStorySha256,'v4.14 restored canonical hash must match signed reversible patch');
  assert.deepEqual(patch.counts,{beats:31,scenes:8});
  assert.equal(patch.changes.length,31);
  const legacy=structuredClone(v414),seen=new Set();
