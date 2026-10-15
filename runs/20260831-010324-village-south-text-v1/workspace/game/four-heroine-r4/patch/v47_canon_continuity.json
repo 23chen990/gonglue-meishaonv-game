@@ -1,0 +1,98 @@
+{
+  "version": "v4.7-canon-continuity",
+  "baseStorySha256": "c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059",
+  "newStorySha256": "fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8",
+  "constraints": "Only 9 display-text changes and matching textHash; no choice IDs, effects, conditions, routes, counts, or engine changes. Existing v4.5 saves migrate by validated replay with original backup.",
+  "changes": [
+    {
+      "scene": "A1b",
+      "choice": "check",
+      "location": "reply",
+      "lineId": "A1b.check.r1.reply.001",
+      "speaker": "P",
+      "before": "我找到备用盘，阿衡试听后切换。此前是谁导出的错版，另写一栏。",
+      "after": "今晚我何时接手、实际做过什么，阿衡负责什么，都分别写清。至于错版是谁导出的，另查。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "A2b",
+      "choice": "public",
+      "location": "reply",
+      "lineId": "A2b.public.r4.reply.001",
+      "speaker": "P",
+      "before": "盘是我找到的，音频是阿衡核对和切换的。名单按这个写。",
+      "after": "唐映雪的作品署她的名。台前是谁救场、控台是谁值守，名单照真正做过的写。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "A2b",
+      "choice": "cooperate",
+      "location": "reply",
+      "lineId": "A2b.cooperate.r4.reply.001",
+      "speaker": "P",
+      "before": "名单转发时，能把找盘和音控的分工一起带上吗？",
+      "after": "名单转发时，能把台前救场和音控的分工分别写清吗？",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "A4b",
+      "choice": "witness",
+      "location": "reply",
+      "lineId": "A4b.witness.r4.reply.001",
+      "speaker": "A",
+      "before": "开演前错版就已经在系统里了。许照醒来后找到备用盘，试听和切换都是我做的。",
+      "after": "开演前错版就已经在系统里了。谁导出的我不知道；后来谁值守控台、谁帮着补救，我只能确认亲眼见过的。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "A4b",
+      "choice": "witness",
+      "location": "reply",
+      "lineId": "A4b.witness.r4.reply.002",
+      "speaker": "N",
+      "before": "阿衡在记录上写明自己操作的时间，你只确认自己找盘、递盘的那部分。两个人各留一份。",
+      "after": "阿衡把自己实际值守的时段写进记录，你只确认自己接手的时间和亲手做过的事。两人各留一份。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "E01",
+      "choice": null,
+      "location": "body",
+      "lineId": "E01.r4.body.003",
+      "speaker": "P",
+      "before": "记录。我想留清楚，原版是谁找到的、谁切换的。",
+      "after": "记录。我要留清楚：当晚放了哪个版本、现场由谁补救、控台操作是谁签过字。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "E04",
+      "choice": "real",
+      "location": "reply",
+      "lineId": "E04.real.r4.reply.001",
+      "speaker": "N",
+      "before": "你把找回原版、协助试听、登记切换过程分开写，删掉了“核心制作”。",
+      "after": "你把实际承担的现场工作、接手时间与能核对的成果分别写清，删掉了“核心制作”。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "LU_MOVE1",
+      "choice": null,
+      "location": "body",
+      "lineId": "LU_MOVE1.r4.body.002",
+      "speaker": "LU",
+      "before": "首演不能每次靠临时找盘。下一版得提前做好。",
+      "after": "首演不能每次靠临场补救。下一版得提前排练和核对。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    },
+    {
+      "scene": "A6a",
+      "choice": "public",
+      "location": "replyBlockWitness",
+      "lineId": "A6a.public.r2.witness.002",
+      "speaker": "A",
+      "before": "错版开演前就在系统里。许照找到备用盘，我试听、我切换。别把两次播放剪成一件事。",
+      "after": "错版开演前就在系统里。许照接手时版本已经不对；后面控台由我值守。别把不同环节剪成一件事。",
+      "reason": "照原著未找盘路线的事实保持；共用节点只陈述可核验的分工"
+    }
+  ]
+}

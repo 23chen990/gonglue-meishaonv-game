@@ -1,3 +1,7 @@
+> **当前代码状态（2026-10-15）：本文件是 2026-10-01 早期双女主阶段的历史交接，不是当前运行状态。** 正在开发的完整游戏为 [PR #9](https://github.com/23chen990/gonglue-meishaonv-game/pull/9) 的 **v4.12 四女主穿书逆袭 + 恋爱 H5**，分支 `fix/romance-v46-reader-and-save-20261014`；仍为 Draft，尚未合并 `main`。当前开发入口在 `runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts`（引用 `four-heroine-r4/runtime.mjs`）；正式剧本在 `four-heroine-r4/data/STORY.json`，单文件试玩为 `four-heroine-r4/play.html`。请先读 `four-heroine-r4/START_HERE.md` 和 `four-heroine-r4/docs/R412_RELATIONSHIP_RESPONSE_QA.md`，并核对**当前 HEAD** 的 Actions；下文关于旧乡土入口、暂停美术/实现和只完成双女主剧情的描述仅用于历史追溯，不能再当成当前事实。严格两段剧情选择 [Issue #3](https://github.com/23chen990/gonglue-meishaonv-game/issues/3) 仍未完成。真实手机、真人盲玩和发布验收仍未完成。
+
+---
+
 # 攻略美少女：开发交接
 
 正式名称：**攻略美少女**。定位：有恋爱向、后宫向的多女主恋爱文字游戏；用人物魅力、暧昧、约会、被主动选择和个人/共同恋爱结局形成情感回报。重开记忆服务这些关系。

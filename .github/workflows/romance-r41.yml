@@ -1,9 +1,11 @@
-name: Romance r4.5 full client PR audit
+name: Romance v4.12 story and mobile full client PR audit
 
 on:
   pull_request:
     paths:
       - '.github/workflows/romance-r41.yml'
+      - 'AGENTS.md'
+      - 'HANDOFF.md'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/index.html'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/tests/**'
@@ -75,13 +77,26 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: romance-r45-current-qa
+          name: romance-v412-current-qa
           path: |
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/ci/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-ui/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-reader/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-browser-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v46-reader-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v48-first-choice-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v49-save-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v49-editorial-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v49-consequences-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-schedule-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-routes/**/route-report.json
           if-no-files-found: warn
           retention-days: 7
+      - name: Upload verified standalone v4.12 H5 game
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: romance-v412-offline-h5
+          path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
+          if-no-files-found: error
+          retention-days: 14

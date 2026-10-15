@@ -138,3 +138,28 @@ body.large .vn-sheet{height:77%}
 
 .vn-scroll .payoff-visual .win-portrait{display:none}
 .vn-dock .meet-card .meet-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 5%;border-radius:9px;mask-image:linear-gradient(0deg,transparent 0%,black 18%);-webkit-mask-image:linear-gradient(0deg,transparent 0%,black 18%)}
+
+/* v4.6 mobile reader polish: a real reading-area control, not a decorative fake drag handle. */
+.vn-sheet-heading{gap:8px;padding:1px 14px 4px 18px}
+.vn-sheet-heading strong{min-width:0;max-width:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vn-reader-toggle{flex:0 0 auto;min-width:104px;min-height:44px;padding:7px 9px;border:1px solid #e5cbdb;border-radius:10px;background:#fffafc;color:#8e5172;font-size:12px;font-weight:650;line-height:1.25;touch-action:manipulation}
+.vn-reader-toggle:focus-visible{outline:3px solid #b4638d;outline-offset:2px}
+body[data-panel=story].reader-expanded .vn-sheet{height:min(88%,calc(100% - 98px))!important}
+body[data-panel=story].reader-expanded .vn-frame[data-phase=reply] .vn-sheet{height:min(88%,calc(100% - 98px))!important}
+@media(max-width:350px){.vn-reader-toggle{min-width:92px;padding:6px 6px;font-size:11px}.vn-sheet-heading{padding-left:12px;padding-right:10px}}
+@media(prefers-reduced-motion:no-preference){.vn-sheet{transition:height .18s ease-out}}
+
+/* v4.7: no fake drag handle; a deliberate expand button controls the sheet. */
+.vn-grip{display:none!important}
+body[data-panel=story] .vn-sheet-heading{padding-top:8px}
+@media(max-height:590px){body[data-panel=story].reader-expanded .vn-sheet,body[data-panel=story].reader-expanded .vn-frame[data-phase=reply] .vn-sheet{height:92%!important}}
+
+/* v4.8 first consequential decision: show the actual scene ending alongside choices. */
+.vn-frame[data-intro-decision="true"] .vn-sheet{height:78%}
+.vn-frame[data-intro-decision="true"] .vn-dock{max-height:min(55%,320px)}
+.vn-frame[data-intro-decision="true"] .vn-scroll .intro-progress{margin-top:0}
+@media(max-height:650px){
+ .vn-frame[data-intro-decision="true"] .vn-sheet{height:calc(100% - 65px)}
+ .vn-frame[data-intro-decision="true"] .vn-dock{max-height:min(57%,300px)}
+}
+.vn-frame[data-intro-decision="true"] .vn-portrait{top:0;right:-8%}

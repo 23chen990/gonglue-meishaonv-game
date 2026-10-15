@@ -14,9 +14,19 @@ def stage(name,args,cwd=M,env=None,timeout=1200):
   try:code=subprocess.run(args,cwd=cwd,env=env or os.environ,stdout=log,stderr=subprocess.STDOUT,timeout=timeout).returncode
   except Exception as e:log.write(str(e));code=125
  report["stages"].append({"name":name,"status":"PASS" if code==0 else ("BLOCKED" if code==2 else "FAIL"),"code":code,"command":args,"log":str(Q/(name+".log"))})
- save();return code==0
+ save()
+ if code != 0:
+  # GitHub Actions otherwise reports only an exit code: surface the real
+  # assertion without suppressing the full preserved per-stage log artifact.
+  print(f"::error::{name} failed with exit code {code}; last 80 log lines:", flush=True)
+  for line in (Q/(name+".log")).read_text(encoding="utf-8",errors="replace").splitlines()[-80:]:
+   print(line, flush=True)
+ return code==0
 ok=stage("canonical-source",["npm","run","verify"])
-repo_ok=stage("repository-verify",["pnpm","verify"],cwd=REPO) if ok else False
+# A build must not silently correct a stale checked-in default HTML shell.
+# This gate forces authors to commit the generated parent game/index.html too.
+entry_tracked=stage("default-entry-tracked",["git","diff","--exit-code","--",str((M.parent/"index.html").relative_to(REPO))],cwd=REPO) if ok else False
+repo_ok=stage("repository-verify",["pnpm","verify"],cwd=REPO) if ok and entry_tracked else False
 entry=GAME/"src/main.ts";doc=GAME/"dist/index.html"
 wired=entry.is_file() and "import '../four-heroine-r4/runtime.mjs';" in entry.read_text()
 if not wired or not doc.exists():
@@ -35,9 +45,13 @@ elif ok and repo_ok:
      break
     except OSError:time.sleep(.2)
    else:raise RuntimeError("Current build server did not start")
-   if stage("native-v45-ui",[sys.executable,"tools/test-v45-browser.py"],env=env):
+   ui_ok=stage("native-v45-ui",[sys.executable,"tools/test-v45-browser.py"],env=env)
+   reader_ok=stage("native-v47-reader-and-save-migration",[sys.executable,"tools/test-v46-reader.py"],env=env)
+   first_ok=stage("native-v48-readable-first-choice",[sys.executable,"tools/test-v48-first-choice.py"],env=env)
+   save_ok=stage("native-v49-saved-session-continuity",[sys.executable,"tools/test-v49-save-migration.py"],env=env)
+   if ui_ok and reader_ok and first_ok and save_ok:
     stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
-    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
+   stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
   except Exception as e:
    report["stages"].append({"name":"actual-entry-serving","status":"BLOCKED","reason":str(e)})
   finally:

@@ -21,6 +21,14 @@ const index=template.replace('<!--CSS-->','').replace('<!--SCRIPT-->','<script t
  .replace("default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'",
  "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws:; base-uri 'none'; form-action 'none'");
 fs.writeFileSync(new URL('repository-index.html',root),index);
+// Keep the actual game default browser entry in sync with the canonical story.
+// Only update the parent game when its main.ts explicitly targets this VN runtime.
+const defaultMain=new URL('../src/main.ts',root);
+const defaultIndex=new URL('../index.html',root);
+if(fs.existsSync(defaultMain)&&fs.readFileSync(defaultMain,'utf8').includes("import '../four-heroine-r4/runtime.mjs';")){
+ fs.writeFileSync(defaultIndex,index);
+}
+
 const files=['data/STORY.json','data/EPILOGUES.json','data/BONUS.json','data/CODA.json','data/HANDBOOK.json','tools/engine.mjs','tools/preview-ui.js','tools/preview.css','tools/vn.css','assets/portraits/t.webp','assets/portraits/s.webp','assets/portraits/l.webp','assets/portraits/g.webp','assets/scenes/backstage.webp','tools/preview-template.html','runtime.mjs','index.html','play.html','repository-index.html'];
 fs.writeFileSync(new URL('build-meta.json',root),JSON.stringify({version:'revision-r4.5-ui',storyHash:hash,files:Object.fromEntries(files.map(p=>[p,crypto.createHash('sha256').update(fs.readFileSync(new URL(p,root))).digest('hex')]))},null,2)+'\n');
 console.log(JSON.stringify({file:'play.html',bytes:Buffer.byteLength(html),storyHash:hash,repositoryModule:'runtime.mjs'},null,2));

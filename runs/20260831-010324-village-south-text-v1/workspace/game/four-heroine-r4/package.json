@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "node tools/build-preview.mjs",
-    "test": "node tools/test-r2.mjs && node tools/test-independent.mjs && node tools/test-information.mjs && node tools/test-final-edges.mjs && node tools/test-r3-regressions.mjs && node tools/test-r3-product.mjs && node tools/test-exploration.mjs && node tools/audit-choice-count.mjs && node tools/test-conditional-r3.mjs && node tools/test-r4-opening.mjs && node tools/test-r4-causality.mjs",
+    "test": "node tools/test-r2.mjs && node tools/test-independent.mjs && node tools/test-information.mjs && node tools/test-final-edges.mjs && node tools/test-r3-regressions.mjs && node tools/test-r3-product.mjs && node tools/test-exploration.mjs && node tools/audit-choice-count.mjs && node tools/test-conditional-r3.mjs && node tools/test-r4-opening.mjs && node tools/test-r4-causality.mjs && node tools/test-v47-continuity.mjs && python3 tools/test-v49-restore.py && node tools/test-v49-editorial.mjs && node tools/test-v49-consequences.mjs && node tools/test-v410-polish.mjs && node tools/test-v411-dialogue.mjs && node tools/test-v412-reactions.mjs",
     "export": "node tools/archive-expectations.mjs && node tools/measure-experience.mjs && python3 tools/export-and-audit.py",
     "verify": "npm run build && npm test && npm run export && python3 tools/verify-delivery.py && node tools/test-r43-editorial.mjs",
     "serve": "python -m http.server 8765",

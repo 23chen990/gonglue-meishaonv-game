@@ -4,11 +4,16 @@
 const names={N:'',P:'你',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',LU:'陆景行',C:'程放',B:'',U:'',A:'阿衡',X:'现场'};
 const KEY='gonglue:revision-r4.5-portrait:canonical';
 const PREVIOUS_KEY='gonglue:revision-r4.3-intro:canonical';
+// v4.12 relationship feedback is text-only; known v4.5/v4.8/v4.9/v4.10/v4.11 saves are replayed, backed up and migrated.
+// Existing verified v4.5-v4.8 saves are replayed before backing up and migrating.
+const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8','e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0','473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b','fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a']);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
 let profile={endings:{},bonuses:{},readPages:[]}, notice='', saveBlocked=false, lastRaw=null;
-let choicePage=0, soundOn=false, soundContext=null;
+let choicePage=0, soundOn=false, soundContext=null, readerExpanded=false;
+// UI-only reading position: preserve scroll on menus and semantic choice navigation.
+let storyScroll={key:null,text:0,dock:0,choicePage:0};
 let renderToken=0, downToken=null, pointerStart=null, moved=false, previousScroll=0, large=false;
 let storage=null;
 try{storage=window.localStorage;}catch{saveBlocked=true;notice='这个窗口暂时不能保存。仍可继续阅读；离开前请在菜单导出记录。';}
@@ -40,7 +45,7 @@ function safeProfile(raw){
 }
 function snapshot(){
  return {version:VERSION,storyHash:STORY_HASH,commands:state.history,
-         ui:{phase,page,choicePage,large,soundOn},profile};
+         ui:{phase,page,choicePage,large,soundOn,readerExpanded},profile};
 }
 function save(){
  // Collection unlocks belong to memory first; a quota or permission error only prevents persistence.
@@ -58,17 +63,18 @@ function save(){
  }
 }
 function readPayload(v){
- if(!v||v.version!==VERSION||v.storyHash!==STORY_HASH)throw Error('这不是本版的选择记录；旧记录没有被改写。');
+ if(!v||v.version!==VERSION||(v.storyHash!==STORY_HASH&&!COMPATIBLE_STORY_HASHES.has(v.storyHash)))throw Error('这不是兼容版本的选择记录；旧记录没有被改写。');
  const s=replay(DATA,v.commands);
  const reply=replyFromLog(v.commands);
  const ui=v.ui||{};
  const ph=ui.phase==='reply'&&reply.length?'reply':'scene';
  const pg=Number.isInteger(ui.page)&&ui.page>=0&&ui.page<1000?ui.page:0;
  const choiceGroup=Number.isInteger(ui.choicePage)&&ui.choicePage>=0&&ui.choicePage<100?ui.choicePage:0;
- return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,profile:safeProfile(v.profile)};
+ return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,readerExpanded:!!ui.readerExpanded,profile:safeProfile(v.profile)};
 }
 function install(v){
- state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;soundOn=v.soundOn||false;profile=v.profile;
+ state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;soundOn=v.soundOn||false;readerExpanded=v.readerExpanded||false;profile=v.profile;
+ storyScroll={key:null,text:0,dock:0,choicePage:0};
  panel='story';
 }
 function load(){
@@ -80,7 +86,15 @@ function load(){
    return;
   }
   if(lastRaw.length>2400000)throw Error('记录过大');
-  install(readPayload(JSON.parse(lastRaw)));
+  const original=JSON.parse(lastRaw);
+   install(readPayload(original));
+   if(COMPATIBLE_STORY_HASHES.has(original.storyHash)&&original.storyHash!==STORY_HASH){
+    try{
+     storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+     save();
+     if(!saveBlocked)notice='已续接上一版进度，原始记录已备份。剧情措辞升级，你做过的选择保持不变。';
+    }catch{saveBlocked=true;notice='旧版进度已读到，但备份或更新未完成。请先在菜单导出记录，原始存档未覆盖。';}
+   }
  }catch{
   saveBlocked=true;
   notice='这份本版记录无法验证，原记录未覆盖。当前是临时新局；可继续玩、导出，或在菜单备份后新开。';
@@ -178,9 +192,9 @@ function pageKey(cp){
 function markRead(cp){
  const k=pageKey(cp);if(!profile.readPages.includes(k))profile.readPages.push(k);
 }
-function rowsHTML(rows){
+function rowsHTML(rows,sceneId){
  return rows.map(b=>{
-  const sid=phase==='reply'?state.history.at(-1)?.from:state.current;
+  const sid=sceneId??(phase==='reply'?state.history.at(-1)?.from:state.current);
   const earlyNames=sid==='ENTRY_WAKE'?{A:'戴耳机的男人',C:'对讲机里的场务',T:'台上的女孩',LU:'钢琴旁的男人'}:sid==='ENTRY_CLUES'?{C:'场务负责人',T:'台上的女孩',LU:'钢琴旁的男人'}:{};
   const who=earlyNames[b.speaker]??names[b.speaker];
   const cls=b.speaker==='N'?'narrator':b.speaker==='B'?'thought':b.speaker==='U'?'system':'dialogue';
@@ -401,14 +415,14 @@ function openingHTML(cp){
 function firstForkHTML(cp){
  const opts=cp.view.choices.filter(o=>o.enabled);
  const notes={
-  canon:'陆景行完成钢琴救场；你仍要面对第七天的背锅风险。',
-  rescue:'抢先找回原版 U 盘，改写首演，也改变别人看你的眼光。',
-  investigate:'先查错版来源、留下证据，再把原版交给音控确认。'
+  canon:'不抢陆景行的名场面，先看清程放准备甩锅的那张单。',
+  rescue:'按原著线索抢到原版。真正试听和切换交给音控，先赢一局。',
+  investigate:'原版要找，错版更要追：先拿真证据，防他事后改口。'
  };
  const shortTitles={
-  canon:'照原著走：留守设备箱',
-  rescue:'抢先改写：找回原版U盘',
-  investigate:'先查真相：留证再救场'
+  canon:'按原著走：盯住背锅线',
+  rescue:'抢先救场：找出原版U盘',
+  investigate:'先锁证据：找盘查错版'
  };
  const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
  // Narrative is the main first-session experience, not an optional accordion.
@@ -426,11 +440,10 @@ function firstForkHTML(cp){
    progress+`<section class="intro-story-pages" aria-label="穿书经过第${page+1}页">${rowsHTML(cp.rows)}</section>`+
    `<p class="intro-reading-note">还没有到决定的时刻。继续阅读，不会替你作选择。</p>`+controls(cp);
  }
- return `<section class="first-fork-head intro-reading-head"><span class="kicker">第一章 · 原著的岔路口</span><h2>你知道了结局。<br><em>现在由你决定。</em></h2><p>这一次，不再由原著替许照选择。</p></section>`+progress+
+ return `<div class="intro-progress"><span>第一章 · 原著的岔路口</span><span>${page+1} / ${cp.pages.length}</span></div>`+
   `<section class="intro-story-pages" aria-label="穿书经过最后一页">${rowsHTML(cp.rows)}</section>`+
-  `<p class="first-fork-decision-voice">我记得原著怎样结束。现在每条路都可能付出代价，可这一回，总该由我自己决定。</p>`+
   `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
-  `<p class="small first-fork-disclaimer">照原著走也不是必败路线。不同做法将改变证据、相遇和第七天的处境。</p>`;
+  `<p class="small first-fork-disclaimer">选项会改变后续事件；不替你预先选定恋人。</p>`;
 }
 
 function sourceScene(){
@@ -479,7 +492,8 @@ function directBridge(){
 function sceneStagePortrait(cp){
  const activeChar=activePortrait();
  if(activeChar)return activeChar;
- if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
+  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)return 't';
+  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
  const rows=cp.rows||[];
  for(let i=rows.length-1;i>=0;i--){
   const c={T:'t',S:'s',L:'l',G:'g'}[rows[i].speaker];if(c)return c;
@@ -495,7 +509,7 @@ function vnFrame(cp,interior,sceneTitle,bridge=null){
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
  const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${cp.last?'选择在下方直接进行':'轻触下方继续阅读'}</div></div></section>`;
- return `<div class="vn-frame" data-phase="${phase}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-grip" aria-hidden="true"></div><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><span>${state.current==='ENTRY_WAKE'&&phase==='scene'?`${page+1} / ${cp.pages.length}`:'向下阅读 · 直接选择'}</span></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
+ return `<div class="vn-frame" data-phase="${phase}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }
 function storyHTML(){
  const cp=currentPage();let interior='',bridge=null,heading=cp.view.title;
@@ -549,7 +563,7 @@ function historyHTML(){
  for(let i=0;i<state.history.length;i++){
   const h=state.history[i],v=renderScene(s,DATA),o=v.choices.find(o=>o.id===h.id);
   const result=choose(s,DATA,h.id);
-  html+=`<section class="panel"><div class="small">${i+1} · ${esc(v.title)}</div><p>${esc(o?.label||h.id)}</p><details data-history="${i}"><summary>这次实际读到的内容</summary>${rowsHTML(v.body)}<p class="small">你的选择之后</p>${rowsHTML(result.reply)}</details><button class="quiet" data-restore="${i}">从这里重选</button></section>`;
+  html+=`<section class="panel"><div class="small">${i+1} · ${esc(v.title)}</div><p>${esc(o?.label||h.id)}</p><details data-history="${i}"><summary>这次实际读到的内容</summary>${rowsHTML(v.body,h.from)}<p class="small">你的选择之后</p>${rowsHTML(result.reply,h.from)}</details><button class="quiet" data-restore="${i}">从这里重选</button></section>`;
   s=result.state;
  }
  if(!state.history.length)html+='<p>还没有作出第一个决定。</p>';
@@ -573,7 +587,7 @@ function menuHTML(){
  <button class="quiet" data-nav="collection">结局收藏</button><button class="quiet" data-action="font">${large?'恢复普通字号':'大字阅读'}</button><button class="quiet" data-action="sound">${soundOn?'关闭轻音效':'开启轻音效'}</button>
  <button class="quiet" data-action="export">导出这局记录</button><button class="quiet" data-action="import">导入本版记录</button>
  <button class="quiet" data-action="reset">备份后新开局</button><button class="quiet" data-action="reload">读取已保存记录</button></div>
- <section class="panel small"><h3>这份版本的范围</h3><p>v4.5 竖屏全剧情候选。保留四女主正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
+ <section class="panel small"><h3>这份版本的范围</h3><p>v4.9 竖屏全剧情候选。保留四位独立角色正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
  <p>角色均为成年人。本版使用原创候选立绘和自制轻音效；没有平台广告接入或真人留存结论。原始文件和旧版存档不改写。</p>
  <p>${saveBlocked?'当前未自动保存，请离开前导出记录。':'选择、回应页与阅读位置会保存在此浏览器的本版独立记录中。'}</p></section>`;
 }
@@ -585,26 +599,43 @@ function showNotice(){
  el.hidden=!notice;
  el.innerHTML=notice?`<div>${esc(notice)}</div><button data-action="export">导出</button><button data-action="hide-notice">收起提示</button>`:'';
 }
-function render(scroll=true){
+function render(scrollWindow=true){
+ // A menu, a font-size change or a semantic category is not a new scene.
+ // Read the OLD DOM before repainting to avoid jumping back to the start.
+ const oldFrame=document.querySelector('.vn-frame');
+ if(oldFrame){
+  const a=oldFrame.querySelector('.vn-scroll'),d=oldFrame.querySelector('.vn-dock');
+  storyScroll={key:oldFrame.dataset.readerKey,text:a?.scrollTop||0,dock:d?.scrollTop||0,choicePage:Number(oldFrame.dataset.choicePage||0)};
+ }
  renderToken++;
  document.body.dataset.current=state.current;document.body.dataset.phase=phase;document.body.dataset.panel=panel;
  document.body.dataset.ending=state.complete?state.ending:'';
  document.body.classList.toggle('large',large);
+ document.body.classList.toggle('reader-expanded',readerExpanded);
  let html=panel==='story'?storyHTML():panel==='menu'?menuHTML():panel==='handbook'?handbookHTML():panel==='relations'?relationsHTML():panel==='history'?historyHTML():panel==='collection'?collectionHTML():panel==='archive'?archiveHTML():'';
  document.getElementById('app').innerHTML=(panel==='story'?'':'<button class="quiet return" data-nav="story">返回剧情</button>')+html;
  if(panel==='story'){
-  const frame=document.querySelector('.vn-frame'), scroll=frame?.querySelector('.vn-scroll'),dock=frame?.querySelector('.vn-dock');
-  // Keep meaningful choices and continue in the SAME fixed scene as the text.
-  // Moving real DOM buttons does not change choice IDs, state or semantics.
-  const candidates=scroll?.querySelectorAll('.rescue-options, .choices, .pager');
+  const frame=document.querySelector('.vn-frame'),area=frame?.querySelector('.vn-scroll'),dock=frame?.querySelector('.vn-dock');
+  // Choices and dialogue stay in one fixed scene; categories do not spend actions.
+  const candidates=area?.querySelectorAll('.rescue-options, .choices, .pager');
   const target=candidates?.length?candidates[candidates.length-1]:null;
-  if(target&&dock) dock.append(target);
-  if(scroll)scroll.scrollTop=0;
+  if(target&&dock)dock.append(target);
+  if(frame?.dataset.readerKey===storyScroll.key){
+   if(area)area.scrollTop=storyScroll.text;
+   if(dock&&storyScroll.choicePage===choicePage)dock.scrollTop=storyScroll.dock;
+  }else{
+   // At the final required intro beat, lead with the immediate dilemma.
+   // Earlier words stay readable by scrolling up, without extra taps.
+   if(area&&state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)
+    area.scrollTop=Math.max(0,area.scrollHeight-area.clientHeight);
+   storyScroll={key:frame?.dataset.readerKey||null,text:area?.scrollTop||0,dock:0,choicePage};
+  }
  }
  document.getElementById('menu').setAttribute('aria-expanded',String(panel==='menu'));
  showNotice();
- if(scroll)window.scrollTo(0,0);
+ if(scrollWindow)window.scrollTo(0,0);
 }
+
 function arm(){downToken=null;pointerStart=null;moved=false;}
 function exportLog(){
  const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});
@@ -616,9 +647,11 @@ function backToStory(){
 }
 function reset(){
  if(!confirm('开始新局？当前本版记录会先备份，旧版本记录不变，已读与结局收藏保留。'))return;
- if(storage&&lastRaw){
-  try{storage.setItem(KEY+':backup:'+Date.now(),lastRaw);}
-  catch{notice='备份没有成功，未清除当前记录。请先导出。';showNotice();return;}
+ if(storage){
+  try{
+   if(storage.getItem(KEY)!==lastRaw){saveBlocked=true;notice='另一个窗口已有更新，不能用新开局覆盖它。请先读取新记录或导出这里。';showNotice();return;}
+   if(lastRaw)storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+  }catch{notice='备份没有成功，未清除当前记录。请先导出。';showNotice();return;}
  }
  state=createState();lastReply=[];phase='scene';page=0;choicePage=0;panel='story';notice='';
  if(storage){try{lastRaw=storage.getItem(KEY);saveBlocked=false;}catch{saveBlocked=true;}}
@@ -644,6 +677,7 @@ function doAction(action){
  else if(action==='import')document.getElementById('importFile').click();
  else if(action==='reset')reset();
  else if(action==='font'){large=!large;save();render();}
+  else if(action==='reader'){readerExpanded=!readerExpanded;save();render(false);}
  else if(action==='sound'){soundOn=!soundOn;save();render();}
  else if(action==='hide-notice'){notice='';showNotice();}
  else if(action==='reload'){
@@ -738,7 +772,10 @@ document.getElementById('importFile').addEventListener('change',async ev=>{
   if(f.size>2400000)throw Error('记录文件过大');
   const candidate=readPayload(JSON.parse(await f.text()));
   if(!confirm('记录已验证。用这份记录替换本窗口进度？'))return;
-  if(storage&&lastRaw)storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+  if(storage){
+   if(storage.getItem(KEY)!==lastRaw)throw Error('另一个窗口已经更新了记录，不能直接覆盖。请先导出这里或读取最新记录。');
+   if(lastRaw)storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
+  }
   install(candidate);saveBlocked=!storage;notice='';
   if(storage)lastRaw=storage.getItem(KEY);
   save();render();
