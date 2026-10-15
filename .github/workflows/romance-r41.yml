@@ -1,4 +1,4 @@
-name: Romance v4.12 story and mobile full client PR audit
+name: Romance v4.14 first-night story and mobile full client PR audit
 
 on:
   pull_request:
@@ -77,7 +77,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: romance-v412-current-qa
+          name: romance-v414-current-qa
           path: |
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/ci/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-ui/**
@@ -92,11 +92,11 @@ jobs:
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-routes/**/route-report.json
           if-no-files-found: warn
           retention-days: 7
-      - name: Upload verified standalone v4.12 H5 game
+      - name: Upload verified standalone v4.14 H5 game
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: romance-v412-offline-h5
+          name: romance-v414-offline-h5
           path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
           if-no-files-found: error
           retention-days: 14
