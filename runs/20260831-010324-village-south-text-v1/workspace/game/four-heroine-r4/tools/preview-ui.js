@@ -617,6 +617,22 @@ function showNotice(){
  el.hidden=!notice;
  el.innerHTML=notice?`<div>${esc(notice)}</div><button data-action="export">导出</button><button data-action="hide-notice">收起提示</button>`:'';
 }
+function fitOpeningReader(frame,area,dock){
+ // The eight opening pages contain all 28 canonical beats. Adapt the sheet to
+ // measured text height instead of requiring eight hidden inner-scroll gestures.
+ // On large text, an intentionally expanded reader provides an accessible fallback.
+ if(!frame||!area||!dock||panel!=='story'||phase!=='scene'||
+    state.current!=='ENTRY_WAKE'||currentPage().last||large||readerExpanded)return;
+ const story=area.querySelector('.intro-story-pages');
+ const sheet=frame.querySelector('.vn-sheet');
+ if(!story||!sheet)return;
+ const content=story.getBoundingClientRect().bottom-area.getBoundingClientRect().top;
+ const padding=parseFloat(getComputedStyle(area).paddingBottom)||0;
+ const heading=sheet.querySelector('.vn-sheet-heading')?.getBoundingClientRect().height||0;
+ const needed=Math.ceil(content+padding+heading+dock.getBoundingClientRect().height+10);
+ const maxHeight=Math.max(280,frame.clientHeight-96);
+ sheet.style.height=Math.min(maxHeight,Math.max(265,needed))+'px';
+}
 function render(scrollWindow=true){
  // A menu, a font-size change or a semantic category is not a new scene.
  // Read the OLD DOM before repainting to avoid jumping back to the start.
@@ -638,6 +654,7 @@ function render(scrollWindow=true){
   const candidates=area?.querySelectorAll('.rescue-options, .choices, .pager');
   const target=candidates?.length?candidates[candidates.length-1]:null;
   if(target&&dock)dock.append(target);
+  fitOpeningReader(frame,area,dock);
   if(frame?.dataset.readerKey===storyScroll.key){
    if(area)area.scrollTop=storyScroll.text;
    if(dock&&storyScroll.choicePage===choicePage)dock.scrollTop=storyScroll.dock;
@@ -823,4 +840,8 @@ window.addEventListener('storage',e=>{
   saveBlocked=true;notice='另一个窗口更新了记录。本窗口不再自动覆盖它；可在菜单读取最新记录，或先导出这里。';showNotice();
  }
 });
+window.addEventListener('resize',()=>{
+ const f=document.querySelector('.vn-frame');
+ fitOpeningReader(f,f?.querySelector('.vn-scroll'),f?.querySelector('.vn-dock'));
+},{passive:true});
 load();render();
