@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/romance-r41.yml'
+      - 'AGENTS.md'
+      - 'HANDOFF.md'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/src/main.ts'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/index.html'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/tests/**'
