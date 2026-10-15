@@ -156,20 +156,22 @@ with sync_playwright() as pw:
   ctx,pg,errors=page_for(browser)
   witness=json.loads((R/'qa/current/choice-witness-prefixes.json').read_text())
   # A6a witnessed action from actual canonical commands: use imported valid save seed.
-  pre=witness['choices']['A6a/accept']['prefix'][:-1]
+  pre=witness['choices']['A6a/accept']['prefix'][:-2]
   state_info=({'current':load_native_witness(pg,pre)['id']} if NATIVE else pg.evaluate("""prefix=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;render();return {current:state.current,history:state.history}}""",pre))
   assert state_info['current']=='A6a'
   if not NATIVE:pg.evaluate("""()=>{save()}""")  # native witness already installed into persisted storage
-  touch(pg,'[data-choice-group="2"]')
+  assert pg.locator('[data-choice="intent:leave"]').count()==1
+  touch(pg,'[data-choice="intent:leave"]')
   raw=pg.evaluate('(k)=>localStorage.getItem(k)',KEY)
-  assert json.loads(raw)['ui']['choicePage']==2
+  assert json.loads(raw)['commands'][-1]['id']=='intent:leave', 'Intent is not a persisted narrative command'
   ctx2,pg2,e2=page_for(browser,seed={KEY:raw});assert current(pg2)=='A6a'
+  finish_beats(pg2)
   assert pg2.locator('[data-choice="accept"]').count()==1
   touch(pg2,'#menu');touch(pg2,'[data-action="font"]');touch(pg2,'[data-nav="story"]')
   assert pg2.locator('body').get_attribute('class') is not None and pg2.evaluate('document.body.classList.contains("large")')
   assert not errors and not e2
-  ctx2.close();ctx.close();return {'restoredChoiceCategory':2,'largeFont':True}
- check('GROUP_SELECTION_PERSISTENCE_AND_LARGE_FONT',persisted_group_and_font)
+  ctx2.close();ctx.close();return {'restoredIntent':'leave','largeFont':True}
+ check('STAGED_INTENT_PERSISTENCE_AND_LARGE_FONT',persisted_group_and_font)
  browser.close()
 report['status']='PASS' if not report['errors'] else 'FAIL'
 (R/'qa/current/v45-browser-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

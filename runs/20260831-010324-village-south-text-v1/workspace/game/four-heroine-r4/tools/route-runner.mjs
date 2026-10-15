@@ -72,8 +72,14 @@ export function run(cfg={}){
   let target;
   if(s.current==='@schedule')target=cfg.schedule?.(s,availableActions(s,data),()=>defaultAction(s,cfg))??defaultAction(s,cfg);
   else target=preferred(s,cfg);
+  if(v.choices.some(o=>o.intentStage)){
+   const wanted=cfg.options?.[s.current] ?? target;
+   const leaf=typeof wanted==='string'?wanted:null;
+   target=v.choices.find(o=>data.scenes[s.current].decisionSteps.find(g=>'intent:'+g.id===o.id)?.options.includes(leaf))?.id
+    ??v.choices.find(o=>o.enabled)?.id;
+  }
   const override=cfg.options?.[s.current];
-  if(override!==undefined){target=typeof override==='function'?override(s,v):override;}
+  if(override!==undefined&&!v.choices.some(o=>o.intentStage)){target=typeof override==='function'?override(s,v):override;}
   let selected=opts.find(o=>o.id===target);
   if(!selected&&override!==undefined)throw Error('Configured input unavailable: '+s.current+'/'+target+'; enabled: '+opts.map(o=>o.id));
   if(!selected&&s.current==='@schedule')throw Error('Scheduled input unavailable: '+target);

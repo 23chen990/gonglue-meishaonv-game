@@ -16,11 +16,16 @@ const contracts=JSON.parse(read('data/CHOICE_CONTRACTS.json'));
 const P410=JSON.parse(read('patch/v410_scene_polish.json'));
 const P411=JSON.parse(read('patch/v411_dialogue_pov.json'));
 const P412=JSON.parse(read('patch/v412_reaction_copy.json'));
-assert.equal(sha(storyText),P412.newStorySha256,'v4.12 source checksum');
+const P413=JSON.parse(read('patch/v413_decision_steps.json'));
+assert.equal(P413.baseStorySha256,P412.newStorySha256,'v4.13 story predecessor checksum');
 assert.equal(P412.baseStorySha256,P411.newStorySha256,'v4.11 predecessor checksum');
 assert.equal(P411.baseStorySha256,P410.newStorySha256,'v4.10 predecessor checksum');
 assert.equal(P410.baseStorySha256,M.newStorySha256,'v4.9 predecessor checksum');
 const D=structuredClone(latest);
+for(const sid of Object.keys(P413.decisions)){
+ assert(D.scenes[sid].decisionSteps?.length===2,sid+' staged story authoring absent');
+ delete D.scenes[sid].decisionSteps;
+}
 for(const ch of P412.changes){
  const c=D.scenes[ch.scene].choices.find(x=>x.id===ch.choice);
  const row=c?.reply[ch.index];
@@ -45,8 +50,8 @@ for(const ch of P410.changes){
  row.text=ch.before;row.textHash=ch.beforeTextHash;
 }
 const old=structuredClone(D);
-assert.equal(sha(storyText),P412.newStorySha256,'new canonical SHA');
-assert.equal(contracts.storySha256,P412.newStorySha256,'choice registry SHA');
+assert.equal(sha(storyText),'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3','new v4.13 canonical SHA');
+assert.equal(contracts.storySha256,sha(storyText),'choice registry SHA');
 assert.equal(D.version,'revision-r4.3','preserve engine story revision');
 assert.equal(Object.keys(D.scenes).length,228,'scene count preserved');
 assert.equal(Object.values(D.scenes).filter(s=>s.kind==='ending').length,24,'ending count preserved');
@@ -109,8 +114,12 @@ function play(first,overrides={}){
   const avail=display.choices.filter(x=>x.enabled);
   assert(avail.length,'empty choices at '+id);
   let option=id==='ENTRY_WAKE'?first:overrides[id]||((id==='@schedule')?avail.find(x=>x.id==='rest')?.id:null)||avail[0].id;
+  if(display.choices.some(x=>x.intentStage)){
+   const g=D.scenes[id].decisionSteps.find(g=>g.options.includes(option));
+   option=g?'intent:'+g.id:avail[0].id;
+  }
   if(!avail.some(x=>x.id===option)){
-   if(overrides[id])throw Error('missing explicit action '+id+'/'+option);
+   if(overrides[id]&&!display.choices.some(x=>x.intentStage))throw Error('missing explicit action '+id+'/'+option);
    option=avail[0].id;
   }
   const out=choose(s,D,option,s.revision);
@@ -126,7 +135,7 @@ function play(first,overrides={}){
  return {ending:s.ending,commands:count};
 }
 const routes=[play('canon',{ENTRY_CLUES:'witness',OP_CANON:'question',A6a:'public'}),play('canon',{ENTRY_CLUES:'refuse',A6a:'partner'}),play('rescue',{COLD:'t'}),play('investigate',{ENTRY_MEMORY:'email',COLD:'g'})];
-const report={storySha256:P412.newStorySha256,baseStorySha256:M.baseStorySha256,patchCounts:M.counts,
+const report={storySha256:sha(storyText),baseStorySha256:M.baseStorySha256,patchCounts:M.counts,
  scenes:228,choices:751,endings:24,entryBeats:28,
  choicesWithTracedLaterConsumer:later.length,choiceConsumerRatioPct:downstream,
  note:'下游引用率是静态代理指标，不证明玩家主观认为所有选择有意义。',routes};

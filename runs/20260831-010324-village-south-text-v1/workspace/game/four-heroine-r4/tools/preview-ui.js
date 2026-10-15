@@ -6,7 +6,7 @@ const KEY='gonglue:revision-r4.5-portrait:canonical';
 const PREVIOUS_KEY='gonglue:revision-r4.3-intro:canonical';
 // v4.12 relationship feedback is text-only; known v4.5/v4.8/v4.9/v4.10/v4.11 saves are replayed, backed up and migrated.
 // Existing verified v4.5-v4.8 saves are replayed before backing up and migrating.
-const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8','e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0','473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b','fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a']);
+const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8','e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0','473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b','fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a','d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3']);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
@@ -35,10 +35,10 @@ function safeProfile(raw){
  const next={endings:{},bonuses:{},readPages:[]};
  for(const [id,log] of Object.entries(raw?.endings||{})){
   if(dataSceneKind(id)!=='ending')throw Error('Unknown collected ending');
-  const a=replay(DATA,log);if(a.complete&&a.ending===id)next.endings[id]=log;
+  const a=replay(DATA,expandLegacyDecisionLog(log));if(a.complete&&a.ending===id)next.endings[id]=log;
  }
  for(const [id,log] of Object.entries(raw?.bonuses||{})){
-  const b=BONUS.items.find(x=>x.id===id);if(b&&qualify(replay(DATA,log),b))next.bonuses[id]=log;
+  const b=BONUS.items.find(x=>x.id===id);if(b&&qualify(replay(DATA,expandLegacyDecisionLog(log)),b))next.bonuses[id]=log;
  }
  if(Array.isArray(raw?.readPages))next.readPages=raw.readPages.filter(x=>typeof x==='string'&&x.length<180).slice(-10000);
  return next;
@@ -62,15 +62,35 @@ function save(){
   saveBlocked=true;notice='这次进度没有保存成功。可以继续阅读；离开前请在菜单导出记录。';
  }
 }
+function expandLegacyDecisionLog(commands){
+ // Historical commands did not have first-stage intents. Insert the only
+ // compatible authored intent before each existing leaf; never guess a
+ // relationship state, scene, effect or user consent.
+ if(!Array.isArray(commands))throw Error('Invalid command history');
+ const converted=[];
+ for(const cmd of commands){
+  if(!cmd||typeof cmd.from!=='string'||typeof cmd.id!=='string')throw Error('Invalid historical choice');
+  const groups=DATA.scenes[cmd.from]?.decisionSteps;
+  if(groups&&!cmd.id.startsWith('intent:')&&!converted.some((x,i)=>i===converted.length-1 && x.from===cmd.from && x.id.startsWith('intent:'))){
+   const group=groups.find(g=>g.options.includes(cmd.id));
+   if(!group)throw Error('Unknown historical action '+cmd.from+'/'+cmd.id);
+   converted.push({from:cmd.from,id:'intent:'+group.id,revision:converted.length});
+  }
+  converted.push({from:cmd.from,id:cmd.id,revision:converted.length});
+ }
+ return converted;
+}
 function readPayload(v){
  if(!v||v.version!==VERSION||(v.storyHash!==STORY_HASH&&!COMPATIBLE_STORY_HASHES.has(v.storyHash)))throw Error('这不是兼容版本的选择记录；旧记录没有被改写。');
- const s=replay(DATA,v.commands);
- const reply=replyFromLog(v.commands);
+ const legacy=v.storyHash!==STORY_HASH;
+ const commands=legacy?expandLegacyDecisionLog(v.commands):v.commands;
+ const s=replay(DATA,commands);
+ const reply=replyFromLog(commands);
  const ui=v.ui||{};
  const ph=ui.phase==='reply'&&reply.length?'reply':'scene';
  const pg=Number.isInteger(ui.page)&&ui.page>=0&&ui.page<1000?ui.page:0;
  const choiceGroup=Number.isInteger(ui.choicePage)&&ui.choicePage>=0&&ui.choicePage<100?ui.choicePage:0;
- return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,readerExpanded:!!ui.readerExpanded,profile:safeProfile(v.profile)};
+ return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,readerExpanded:!!ui.readerExpanded,profile:safeProfile(v.profile),legacy};
 }
 function install(v){
  state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;soundOn=v.soundOn||false;readerExpanded=v.readerExpanded||false;profile=v.profile;
@@ -149,13 +169,13 @@ function fateHTML(ctx){
 }
 function openEnding(id){
  const log=profile.endings[id];if(!log)throw Error('没有这份已完成记录');
- const v=reviewEnding(DATA,log);
+ const v=reviewEnding(DATA,expandLegacyDecisionLog(log));
  archiveView={...v,kind:'ending',id};archivePage=0;panel='archive';render();
 }
 function openBonus(id){
  const b=BONUS.items.find(x=>x.id===id),log=profile.bonuses[id];
  if(!b||!log)throw Error('这个篇章尚未解锁');
- const ctx=replay(DATA,log);
+ const ctx=replay(DATA,expandLegacyDecisionLog(log));
  archiveView={title:b.title,id,kind:'bonus',context:ctx,
  body:[...b.body,...(b.blocks||[]).filter(x=>condition(ctx,x.when)).flatMap(x=>x.lines)]};
  archivePage=0;panel='archive';render();

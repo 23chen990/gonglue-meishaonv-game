@@ -29,7 +29,7 @@ for(const [id,plan] of [['ally','ally'],['rival','rival'],['distance','distant']
  test('Lu early plan receives a later independent response '+id,()=>{
   let matches=0;
   const r=run({chars:[],first:'self',options:{A5b:id},observe(s,o,result,v){
-   if(s.current==='LU_MOVE2'){
+   if(s.current==='LU_MOVE2'&&!o.id.startsWith('intent:')){
     assert.equal(s.f.plan_lu,plan);
     const b=data.scenes.LU_MOVE2.blocks.find(x=>x.when?.eq?.[0]==='plan_lu'&&x.when.eq[1]===plan);
     assert(b&&condition(s,b.when));assert(b.lines.every(x=>v.body.some(z=>z.id===x.id)));matches++;

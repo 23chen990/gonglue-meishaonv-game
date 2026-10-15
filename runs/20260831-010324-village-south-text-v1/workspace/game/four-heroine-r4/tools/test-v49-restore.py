@@ -11,11 +11,23 @@ p=json.loads((ROOT/'patch/v49_story_punchup.json').read_text())
 p410=json.loads((ROOT/'patch/v410_scene_polish.json').read_text())
 p411=json.loads((ROOT/'patch/v411_dialogue_pov.json').read_text())
 p412=json.loads((ROOT/'patch/v412_reaction_copy.json').read_text())
-assert sha(story)==p412['newStorySha256'], 'current v4.12 hash drift'
+# v4.13 adds 16 fully authored intent decision phases without changing any
+# historical leaf choice. Reverse the new fields before validating the exact
+# v4.12 -> v4.8 editorial provenance chain.
+p413=json.loads((ROOT/'patch/v413_decision_steps.json').read_text())
+assert p413['baseStorySha256']==p412['newStorySha256']
+assert len(p413['decisions'])==16
+for sid,groups in p413['decisions'].items():
+    sc=new['scenes'][sid]
+    staged=sc.pop('decisionSteps')
+    assert [x['id'] for x in staged]==[x['id'] for x in groups]
+    assert sorted(x for row in staged for x in row['options'])==sorted(x['id'] for x in sc['choices'])
+v412_bytes=(json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode()
+assert sha(v412_bytes)==p413['baseStorySha256'], 'v4.13 reverse must restore exact v4.12 bytes'
+old=copy.deepcopy(new)
 assert p412['baseStorySha256']==p411['newStorySha256'], 'v4.11 predecessor SHA drift'
 assert p411['baseStorySha256']==p410['newStorySha256'], 'v4.10 predecessor SHA drift'
 assert p410['baseStorySha256']==p['newStorySha256'], 'v4.9 predecessor SHA drift'
-old=copy.deepcopy(new)
 for ch in reversed(p412['changes']):
  c=next(x for x in old['scenes'][ch['scene']]['choices'] if x['id']==ch['choice'])
  row=c['reply'][ch['index']]

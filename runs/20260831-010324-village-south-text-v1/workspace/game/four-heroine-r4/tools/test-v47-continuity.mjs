@@ -18,7 +18,9 @@ const v411=JSON.parse(fs.readFileSync(new URL('patch/v411_dialogue_pov.json',roo
 assert.equal(v410.newStorySha256,v411.baseStorySha256,'v4.10 predecessor must match');
 const v412=JSON.parse(fs.readFileSync(new URL('patch/v412_reaction_copy.json',root),'utf8'));
 assert.equal(v411.newStorySha256,v412.baseStorySha256,'v4.11 baseline linkage');
-assert.equal(sha,v412.newStorySha256,'v4.12 current story');
+const v413=JSON.parse(fs.readFileSync(new URL('patch/v413_decision_steps.json',root),'utf8'));
+assert.equal(v413.baseStorySha256,v412.newStorySha256);
+assert.equal(sha,'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3','v4.13 current story');
 assert.equal(sha,contracts.storySha256);
 assert.equal(Object.keys(DATA.scenes).length,228);
 assert.equal(Object.values(DATA.scenes).flatMap(x=>x.choices||[]).length,751);
@@ -49,6 +51,10 @@ function run(first,overrides={}){
   assert(choices.length,`no enabled actions in ${before}`);
   let id=before==='ENTRY_WAKE'?first:overrides[before]||
    (before==='@schedule'?choices.find(c=>c.id==='rest')?.id:undefined)||choices[0].id;
+  if(choices.some(c=>c.intentStage)){
+   const group=DATA.scenes[before].decisionSteps.find(g=>g.options.includes(id));
+   id=group?'intent:'+group.id:choices[0].id;
+  }
   if(!choices.some(c=>c.id===id)){
    if(overrides[before])throw Error(`requested choice ${id} in ${before} inaccessible`);
    id=choices[0].id;

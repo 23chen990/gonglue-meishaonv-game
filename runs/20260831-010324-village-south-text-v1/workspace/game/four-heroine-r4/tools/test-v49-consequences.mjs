@@ -5,7 +5,7 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
-import {createState,renderScene,choose,replay} from './engine.mjs';
+import {createState,renderScene,choose,replay,condition} from './engine.mjs';
 const root=new URL('../',import.meta.url);
 const D=JSON.parse(fs.readFileSync(new URL('data/STORY.json',root),'utf8'));
 const contract=JSON.parse(fs.readFileSync(new URL('data/CHOICE_CONTRACTS.json',root),'utf8'));
@@ -20,6 +20,10 @@ function reach(target,entry='rescue',overrides={}){
   const avail=renderScene(s,D).choices.filter(x=>x.enabled);
   assert(avail.length,`No enabled action in ${sid}`);
   let id=sid==='ENTRY_WAKE'?entry:(overrides[sid]||(sid==='@schedule'?avail.find(x=>x.id==='rest')?.id:null)||avail[0].id);
+  if(avail.some(x=>x.intentStage)){
+   const group=D.scenes[sid].decisionSteps.find(g=>g.options.includes(id));
+   id=group?'intent:'+group.id:avail[0].id;
+  }
   assert(avail.some(x=>x.id===id),`Configured impossible ${sid}/${id}`);
   s=choose(s,D,id,s.revision).state;
  }
@@ -29,8 +33,16 @@ function choicesAt(id,entry='rescue',overrides={}){
  const s=reach(id,entry,overrides);
  const cs=renderScene(s,D).choices.filter(x=>x.enabled);
  assert(cs.length>=2,`Too few alternatives at ${id}`);
- const output=cs.map(x=>{
-  const result=choose(s,D,x.id,s.revision);
+ const optionsToCompare=D.scenes[id]?.decisionSteps
+  ?D.scenes[id].choices.filter(x=>D.scenes[id].decisionSteps.some(g=>g.options.includes(x.id))&&condition(s,x.when))
+  :cs;
+ const output=optionsToCompare.map(x=>{
+  let state=s;
+  if(D.scenes[id]?.decisionSteps){
+   const group=D.scenes[id].decisionSteps.find(g=>g.options.includes(x.id));
+   state=choose(state,D,'intent:'+group.id,state.revision).state;
+  }
+  const result=choose(state,D,x.id,state.revision);
   return {id:x.id,from:id,to:result.state.current,
     facts:result.state.f,
     reply:result.reply.map(b=>b.text).join('\n'),
@@ -71,8 +83,8 @@ const choices=s=>renderScene(s,D).choices.filter(x=>x.enabled).map(x=>x.id);
 const few=choices(noProof),more=choices(withProof);
 assert(!noProof.f.proof_audio && !noProof.f.proof_handoff,'noProof route gained phantom evidence');
 assert(withProof.f.proof_audio || withProof.f.proof_handoff,'proof route lost evidence');
-assert.deepEqual(few,['accept'],'without evidence the script must not offer a miracle public turnaround');
-assert(more.includes('public')&&more.includes('backstage')&&more.includes('partner'),'valid evidence should unlock three distinct counterattack approaches');
+assert.deepEqual(few,['intent:leave'],'without evidence the script must not offer a miracle public turnaround');
+assert(more.includes('intent:prove'),'valid evidence should unlock the real evidence-based counterattack approach');
 const candidate={storySha256:sha,baselineChoiceCount:contract.choices.length,
  traceableLaterConsumers:score,traceableConsumerPct:+pct.toFixed(1),
  disclaimer:'代码引用率不等于玩家觉得80%的选择有意义；还需目标玩家盲测及实玩路线反事实。',
