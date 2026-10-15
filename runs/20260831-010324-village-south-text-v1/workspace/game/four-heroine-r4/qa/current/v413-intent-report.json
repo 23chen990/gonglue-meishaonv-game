@@ -1,0 +1,104 @@
+{
+  "scope": "Normal-command replay of genuine v4.13 two-stage story choices, not a human review",
+  "scenes": [
+    {
+      "scene": "A2a",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 18
+    },
+    {
+      "scene": "A3a",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 24
+    },
+    {
+      "scene": "A3b",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 25
+    },
+    {
+      "scene": "t03",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 28
+    },
+    {
+      "scene": "s03",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 28
+    },
+    {
+      "scene": "l03",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 29
+    },
+    {
+      "scene": "g03",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 29
+    },
+    {
+      "scene": "A4a",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 33
+    },
+    {
+      "scene": "A5a",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 37
+    },
+    {
+      "scene": "A5b",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 38
+    },
+    {
+      "scene": "A6a",
+      "originalActions": 6,
+      "attitudes": 2,
+      "replay": 44
+    },
+    {
+      "scene": "LU_MOVE2",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 53
+    },
+    {
+      "scene": "A7a",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 79
+    },
+    {
+      "scene": "H_glst",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 56
+    },
+    {
+      "scene": "EXEC_s",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 47
+    },
+    {
+      "scene": "EXEC_l",
+      "originalActions": 5,
+      "attitudes": 2,
+      "replay": 53
+    }
+  ],
+  "originalAlternatives": 81,
+  "attitudes": 32,
+  "failed": []
+}

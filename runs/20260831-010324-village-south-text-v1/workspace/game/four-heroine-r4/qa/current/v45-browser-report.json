@@ -1,6 +1,6 @@
 {
   "scope": "Injected inline DOM and simulated localStorage; not native URL/localStorage or humans",
-  "storySha256": "c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059",
+  "storySha256": "d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3",
   "cases": [
     {
       "name": "PORTRAIT_FIVE_TOUCH_VIEWPORTS_AND_REQUIRED_INTRO",
@@ -50,10 +50,10 @@
       }
     },
     {
-      "name": "ALL_OBSERVED_OVERFOUR_BRANCH_STATES_GROUPED_WITHOUT_LOST_CHOICES",
+      "name": "ALL_16_STORY_DECISIONS_HAVE_REPLAYABLE_ATTITUDE_AND_REAL_ACTIONS",
       "status": "PASS",
       "detail": {
-        "groupedReachableStates": 16,
+        "twoStageStoryScenes": 16,
         "sample": [
           "A2a",
           "A3a",
@@ -67,10 +67,10 @@
       }
     },
     {
-      "name": "GROUP_SELECTION_PERSISTENCE_AND_LARGE_FONT",
+      "name": "REAL_ATTITUDE_SAVE_RELOAD_AND_FONT",
       "status": "PASS",
       "detail": {
-        "restoredChoiceCategory": 2,
+        "restoredAttitude": "intent:去留",
         "largeFont": true
       }
     }
