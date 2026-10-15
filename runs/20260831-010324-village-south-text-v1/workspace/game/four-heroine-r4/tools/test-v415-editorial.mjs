@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
-const s=read('../data/STORY.json'), p=read('../patch/v415_first_night_edits.json'),plan=read('../patch/v415_first_night_plan.json');
+const s=read('../data/STORY.json'), p=read('../patch/v415_first_night_edits.json'),plan=read('../patch/v415_first_night_plan.json'), successor=read('../patch/v416_first_night_edits.json');
 const H=x=>crypto.createHash('sha256').update(x).digest('hex');
 const hash=b=>H(b.speaker+'\0'+b.text).slice(0,16);
-assert.equal(H(fs.readFileSync(new URL('../data/STORY.json',import.meta.url))),p.newStorySha256);
+assert.equal(H(fs.readFileSync(new URL('../data/STORY.json',import.meta.url))),successor.newStorySha256);
 assert.deepEqual(p.counts,{beats:24,scenes:10});
 assert.equal(p.baseStorySha256,plan.baseStorySha256);
 assert.equal(Object.keys(s.scenes).length,228);
@@ -30,4 +30,4 @@ assert(beat('ENTRY_MEMORY','ENTRY_MEMORY.r42.body.003').includes('还不能知�
 assert(beat('OP_SETTLE','OP_SETTLE.r4.body.002').includes('怎么回去'));
 const witness=s.scenes.A1b.choices.find(x=>x.id==='ask').reply[0].text;
 assert(witness.includes('我没见到')&&!witness.includes('不是许照导出'));
-console.log(JSON.stringify({status:'PASS',storySha256:p.newStorySha256,changes:24,scenes:10,oldActions:751,decisionPhases:16}));
+console.log(JSON.stringify({status:'PASS',storySha256:successor.newStorySha256,changes:24,scenes:10,oldActions:751,decisionPhases:16}));

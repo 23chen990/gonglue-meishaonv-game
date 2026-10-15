@@ -11,7 +11,7 @@ const v414=verifiedV414();
 const data=v414.legacy, fresh=JSON.parse(raw),patch=JSON.parse(read('patch/v411_dialogue_pov.json'));
 const newest=JSON.parse(read('patch/v412_reaction_copy.json'));
 assert.equal(JSON.parse(read('patch/v413_decision_steps.json')).baseStorySha256,newest.newStorySha256);
-assert.equal(sha(raw),JSON.parse(read('patch/v415_first_night_edits.json')).newStorySha256);
+assert.equal(sha(raw),JSON.parse(read('patch/v416_first_night_edits.json')).newStorySha256);
 assert.equal(newest.baseStorySha256,patch.newStorySha256);
 assert.deepEqual(patch.counts,{beats:11,scenes:9});
 const locate=c=>{

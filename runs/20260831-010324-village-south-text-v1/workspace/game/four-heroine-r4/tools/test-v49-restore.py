@@ -13,8 +13,23 @@ p411=json.loads((ROOT/'patch/v411_dialogue_pov.json').read_text())
 p412=json.loads((ROOT/'patch/v412_reaction_copy.json').read_text())
 # v4.14 is only 31 edits of body text + textHash. Reverse its
 # exact annotated edits BEFORE all historical predecessor checks.
+p416=json.loads((ROOT/'patch/v416_first_night_edits.json').read_text())
+assert sha(story)==p416['newStorySha256'], 'v4.16 current story drift'
+for ch in reversed(p416['changes']):
+ sc=new['scenes'][ch['scene']]
+ if ch['location']=='label':
+  choice=next(x for x in sc['choices'] if x['id']==ch['choice'])
+  assert choice['label']==ch['after'],ch['id']
+  choice['label']=ch['before']
+ else:
+  rows=sc['body'] if ch['location']=='body' else next(x for x in sc['choices'] if x['id']==ch['choice'])['reply']
+  row=next(x for x in rows if x['id']==ch['id'])
+  assert row['speaker']==ch['speaker'] and row['text']==ch['after'] and row['textHash']==ch['afterHash'],ch['id']
+  assert sha((row['speaker']+'\0'+row['text']).encode())[:16]==row['textHash'],ch['id']
+  row['text']=ch['before'];row['textHash']=ch['beforeHash']
+assert sha((json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode())==p416['baseStorySha256'], 'v4.16 exact predecessor restore failed'
 p415=json.loads((ROOT/'patch/v415_first_night_edits.json').read_text())
-assert sha(story)==p415['newStorySha256'], 'v4.15 source drift'
+assert sha((json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode())==p415['newStorySha256'], 'v4.15 predecessor SHA drift'
 for ch in reversed(p415['changes']):
  sc=new['scenes'][ch['scene']]
  rows=sc['body'] if ch['location']=='body' else next(x for x in sc['choices'] if x['id']==ch['choice'])['reply']
@@ -100,5 +115,5 @@ old_bytes=(json.dumps(old,ensure_ascii=False,indent=2)+'\n').encode()
 assert sha(old_bytes)==p['baseStorySha256'], 'unexpected change outside listed text, label, title or textHash'
 counts=collections.Counter(ch['kind'] for ch in p['changes']);assert counts=={'text':158,'choice_label':68,'scene_title':26},counts
 assert len({ch['scene'] for ch in p['changes']})==28
-print('PASS exact v4.14 -> v4.13 -> v4.12 -> v4.11 -> v4.10 -> v4.9 -> v4.8 rollback; gameplay unchanged')
+print('PASS exact v4.16 -> v4.15 -> v4.14 -> v4.13 -> v4.12 -> v4.11 -> v4.10 -> v4.9 -> v4.8 rollback; gameplay unchanged')
 print('BASE_SHA',p['baseStorySha256'],'NEW_SHA',p['newStorySha256'])

@@ -1,6 +1,6 @@
 {
   "version": "revision-r4.3",
-  "storySha256": "f1cee3680592a366c6a7dae8ffda615b7d828e165bb743f94181268df58abfa0",
+  "storySha256": "720ce5d30cf87515c3a090c834a359a5a1589d32f8796cc91fe1cb589c426b46",
   "method": "全量选择登记；只列真实文本条件和明确运行时消费。留档字段不算长期影响；见测试中具体反事实案例。",
   "choices": [
     {
@@ -25021,7 +25021,7 @@
     },
     {
       "id": "OP_DATE_t/attend",
-      "label": "“好，八点侧门见。我想听。”",
+      "label": "“八点侧门见。一起走一段。”",
       "availableWhen": {
         "ne": [
           "opening_access_t",
@@ -25382,7 +25382,7 @@
     },
     {
       "id": "OP_DATE_s/attend",
-      "label": "“一起去。我也想看看。”",
+      "label": "“好，我有空。你带路。”",
       "availableWhen": {
         "ne": [
           "opening_access_s",
@@ -25754,7 +25754,7 @@
     },
     {
       "id": "OP_DATE_l/attend",
-      "label": "“我来。差评也能说吗？”",
+      "label": "“有空，我跟你走一趟。”",
       "availableWhen": {
         "ne": [
           "opening_access_l",
@@ -26977,7 +26977,7 @@
     },
     {
       "id": "OP_WORK_free/private",
-      "label": "把今晚留给私人相处，不拿它换履历。",
+      "label": "把这段时间留给自己的安排，不为履历硬凑",
       "availableWhen": null,
       "immediateReaction": {
         "textIds": [

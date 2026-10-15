@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "storySha256": "f1cee3680592a366c6a7dae8ffda615b7d828e165bb743f94181268df58abfa0",
+  "storySha256": "720ce5d30cf87515c3a090c834a359a5a1589d32f8796cc91fe1cb589c426b46",
   "errors": [],
   "counts": {
     "scenes": 228,
@@ -12,7 +12,7 @@
     "bonus": 8,
     "coda": 6,
     "textBeats": 4222,
-    "hanCharacters": 94725,
+    "hanCharacters": 94881,
     "memoryCueMatches": 478,
     "conditionalLocations": 830,
     "dynamicConditionsNotSeenTrue": 0,

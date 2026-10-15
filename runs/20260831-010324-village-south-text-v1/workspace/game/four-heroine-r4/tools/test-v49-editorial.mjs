@@ -54,7 +54,9 @@ for(const ch of P410.changes){
 const old=structuredClone(D);
 const P415=JSON.parse(read('patch/v415_first_night_edits.json'));
 assert.equal(P415.baseStorySha256,V414.patch.newStorySha256,'v4.15 predecessor SHA');
-assert.equal(sha(storyText),P415.newStorySha256,'v4.15 canonical SHA');
+const P416=JSON.parse(read('patch/v416_first_night_edits.json'));
+assert.equal(P416.baseStorySha256,P415.newStorySha256);
+assert.equal(sha(storyText),P416.newStorySha256,'v4.16 canonical SHA');
 assert.equal(contracts.storySha256,sha(storyText),'choice registry SHA');
 assert.equal(D.version,'revision-r4.3','preserve engine story revision');
 assert.equal(Object.keys(D.scenes).length,228,'scene count preserved');
@@ -94,8 +96,8 @@ const reconstructed=JSON.stringify(old,null,2)+'\n';
 // JavaScript reorders numeric-looking object keys; exact original-byte verification
 // is done by tools/test-v49-restore.py using Python's insertion order.
 const contractLabels=new Map(contracts.choices.map(o=>[o.id,o.label]));
-for(const s of Object.values(D.scenes))for(const o of s.choices)
- assert.equal(contractLabels.get(s.id+'/'+o.id),o.label,'choice registry mismatch '+s.id+'/'+o.id);
+for(const s of Object.values(latest.scenes))for(const o of s.choices)
+ assert.equal(contractLabels.get(s.id+'/'+o.id),o.label,'current choice registry mismatch '+s.id+'/'+o.id);
 const beats=D.scenes.ENTRY_WAKE.body;
 assert.equal(beats.length,28,'all mandatory transmigration beats preserved');
 assert.deepEqual(D.scenes.ENTRY_WAKE.choices.map(x=>x.id),['canon','rescue','investigate']);

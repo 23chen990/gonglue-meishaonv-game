@@ -1,0 +1,63 @@
+name: Romance v4.16 first-night narrative acceptance
+# Validate updated current-story labels against current choice contracts.
+on:
+  push:
+    branches:
+      - feat/romance-v416-opening-choice-clarity-20261015
+    paths:
+      - '.github/workflows/romance-v416-controlled-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply-verify-deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/romance-v416-opening-choice-clarity-20261015
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Require exact authorized source head
+        run: |
+          test "$(git branch --show-current)" = "feat/romance-v416-opening-choice-clarity-20261015"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          echo "INPUT_HEAD=$GITHUB_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply strictly bounded 28 authored first-night edits
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          python3 tools/apply-v416-first-night.py --apply
+          python3 tools/apply-v416-first-night.py --check
+          python3 tools/export-and-audit.py
+      - name: Rebuild standalone story and run full provenance, engine and narrative audits
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          npm run verify
+          python3 tools/apply-v416-first-night.py --check
+          python3 tools/test-v49-restore.py
+      - name: Commit audited canonical story and all regenerated checked-in products
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+          GAME_INDEX: runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- "$H5_ROOT" "$GAME_INDEX"
+          git add -- "$H5_ROOT/patch/v416_first_night_edits.json"
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git diff --cached --name-only
+          git commit -m "feat(v4.16): apply proven first-night timeline and contextual choices"
+          git push origin HEAD:refs/heads/feat/romance-v416-opening-choice-clarity-20261015
+      - name: Preserve verified offline HTML
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: romance-v416-offline-h5
+          path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
+          if-no-files-found: error
+          retention-days: 14

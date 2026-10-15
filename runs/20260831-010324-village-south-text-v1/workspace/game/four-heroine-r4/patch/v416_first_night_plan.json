@@ -1,0 +1,223 @@
+{
+  "version": "v4.16-opening-choice-clarity",
+  "baseStorySha256": "f1cee3680592a366c6a7dae8ffda615b7d828e165bb743f94181268df58abfa0",
+  "scope": "Only existing body.text/reply.text/textHash and four contextual choice labels; preserve all speakers, choices, states and effects",
+  "counts": {
+    "beats": 28,
+    "scenes": 13,
+    "body": 11,
+    "reply": 13,
+    "labels": 4
+  },
+  "changes": [
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "id": "COLD.t.r4.reply.004",
+      "choice": "t",
+      "speaker": "N",
+      "text": "阿衡在下一小节切回原版，唐映雪抬手给出进拍，正好接住那段被剪断的旋律。陆景行收住悬在琴键上的手，向她点了点头。"
+    },
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "id": "COLD.l.r4.reply.007",
+      "choice": "l",
+      "speaker": "N",
+      "text": "见月把相机屏幕转到你面前。画面里，你找盘时手抖得厉害。她说：“这一段也拍到了。留不留，你说了算。”"
+    },
+    {
+      "scene": "OP_SETTLE",
+      "location": "body",
+      "id": "OP_SETTLE.r4.body.001",
+      "speaker": "N",
+      "text": "后台的嘈杂声渐渐从耳边退下去，你却仍站在设备箱旁。陌生手机竟然能用这张脸解锁，里面塞满不认识的租房地址、工作群和未读消息。"
+    },
+    {
+      "scene": "OP_TALK_t",
+      "location": "body",
+      "id": "OP_TALK_t.r4.body.002",
+      "speaker": "T",
+      "text": "许照？我刚才看见你把盘交给阿衡了。台上我都快吓停了，你怎么比我脸色还差？"
+    },
+    {
+      "scene": "OP_SECRET_t",
+      "location": "body",
+      "id": "OP_SECRET_t.r4.body.002",
+      "speaker": "T",
+      "text": "盘压在接线板下面，周围那么多箱子。你怎么知道要翻那一处？"
+    },
+    {
+      "scene": "OP_SECRET_t",
+      "location": "body",
+      "id": "OP_SECRET_t.r4.body.004",
+      "speaker": "T",
+      "text": "不是审你。我是怕下回又放错了歌，连备用盘藏在哪儿都没人知道。"
+    },
+    {
+      "scene": "OP_TALK_self",
+      "location": "body",
+      "id": "OP_TALK_self.r4.body.001",
+      "speaker": "N",
+      "text": "唐映雪隔着侧幕冲你比了个谢的手势，又匆匆跟工作人员走开。阿衡核对完切换记录，才发现你还杵在箱边，问了一遍你的名字。"
+    },
+    {
+      "scene": "OP_TALK_self",
+      "location": "reply",
+      "id": "OP_TALK_self.curious.r1.reply.001",
+      "choice": "curious",
+      "speaker": "N",
+      "text": "映雪抱着耳返去找乐手，清辞往侧廊走，见月还在收镜头。晚棠经过时看了一眼你手里的记录单。你没追上去叫住谁，今晚能记下来的事已经够多了。"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "location": "body",
+      "id": "OP_TALK_g.r4.body.001",
+      "speaker": "N",
+      "text": "顾晚棠把审批邮件转发给现场负责人，屏幕随即又亮起一条工作消息。她抬眼看见你的临时工牌，停了两秒，才把手机扣在桌面上。"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "location": "reply",
+      "id": "OP_TALK_g.flirt.r4.reply.003",
+      "choice": "flirt",
+      "speaker": "N",
+      "text": "她看了你一会儿，才打开二维码：“先加着。真想认识，改天别只带着工作问题来。”"
+    },
+    {
+      "scene": "OP_DATE_t",
+      "location": "label",
+      "id": "OP_DATE_t.attend.label",
+      "choice": "attend",
+      "text": "“八点侧门见。一起走一段。”"
+    },
+    {
+      "scene": "OP_DATE_s",
+      "location": "label",
+      "id": "OP_DATE_s.attend.label",
+      "choice": "attend",
+      "text": "“好，我有空。你带路。”"
+    },
+    {
+      "scene": "OP_DATE_l",
+      "location": "label",
+      "id": "OP_DATE_l.attend.label",
+      "choice": "attend",
+      "text": "“有空，我跟你走一趟。”"
+    },
+    {
+      "scene": "OP_DATE_s",
+      "location": "reply",
+      "id": "OP_DATE_s.work.r4.reply.001",
+      "choice": "work",
+      "speaker": "S",
+      "text": "好，你先忙。今天就不拉你陪我跑这趟了。"
+    },
+    {
+      "scene": "OP_DATE_s",
+      "location": "reply",
+      "id": "OP_DATE_s.work.r4.reply.002",
+      "choice": "work",
+      "speaker": "N",
+      "text": "她收起手机，走前回头：“等你真有空，我们再约，别一边赶工一边聊天。”"
+    },
+    {
+      "scene": "OP_DATE_s",
+      "location": "reply",
+      "id": "OP_DATE_s.slow.r1.reply.001",
+      "choice": "slow",
+      "speaker": "S",
+      "text": "好。今天你也够折腾的，不急着把时间排满。"
+    },
+    {
+      "scene": "OP_DATE_s",
+      "location": "reply",
+      "id": "OP_DATE_s.slow.r1.reply.002",
+      "choice": "slow",
+      "speaker": "N",
+      "text": "清辞没继续劝，重新按下对讲机，把还没处理完的事接了回去。"
+    },
+    {
+      "scene": "OP_DATE_t",
+      "location": "reply",
+      "id": "OP_DATE_t.work.r1.reply.001",
+      "choice": "work",
+      "speaker": "N",
+      "text": "你回她：“我晚一点还答应了工作，得先准备。新歌改天再听，别让你白等。”"
+    },
+    {
+      "scene": "OP_DATE_t",
+      "location": "reply",
+      "id": "OP_DATE_t.work.r1.reply.002",
+      "choice": "work",
+      "speaker": "T",
+      "text": "好，提前说就行。下回想听歌，你自己来问。"
+    },
+    {
+      "scene": "OP_WORK_free",
+      "location": "body",
+      "id": "OP_WORK_free.r1.body.001",
+      "speaker": "N",
+      "text": "20:30，九点试听的流程发进工作群。你没有接这趟试工，也就不用赶去录音室签到。"
+    },
+    {
+      "scene": "OP_WORK_free",
+      "location": "body",
+      "id": "OP_WORK_free.r1.body.002",
+      "speaker": "LU",
+      "text": "九点按原计划试听。结束后再整理下一轮排期，今晚没做的工作不用补签。"
+    },
+    {
+      "scene": "OP_WORK_free",
+      "location": "body",
+      "id": "OP_WORK_free.r1.body.003",
+      "speaker": "N",
+      "text": "你翻开预备名单，试工一栏没有自己的名字。这不算被人抢走功劳：你本来就没接那份活。"
+    },
+    {
+      "scene": "OP_WORK_free",
+      "location": "label",
+      "id": "OP_WORK_free.private.label",
+      "choice": "private",
+      "text": "把这段时间留给自己的安排，不为履历硬凑"
+    },
+    {
+      "scene": "OP_WORK_free",
+      "location": "reply",
+      "id": "OP_WORK_free.private.r1.reply.001",
+      "choice": "private",
+      "speaker": "N",
+      "text": "你收起工作消息，没有再刷录音室群。今晚见了谁、说过什么，都比盯着一张没报名的名单更实在。"
+    },
+    {
+      "scene": "A1b",
+      "location": "body",
+      "id": "A1b.r42.body.004",
+      "speaker": "P",
+      "text": "（我做过的事我认，没碰过的控台和错版导出不能乱签。19:03 的事故已经过去，可这张纸会跟我走到第七天。先把责任分开。）"
+    },
+    {
+      "scene": "A1b",
+      "location": "reply",
+      "id": "A1b.look.r1.reply.001",
+      "choice": "look",
+      "speaker": "N",
+      "text": "你拍下获准留存的交接页，明确说：“这几栏还没核过，我今天不签。”程放冷下脸：“行，明天再谈。”他没收回这件事，也没拿到你新写的笼统认责。"
+    },
+    {
+      "scene": "OP_CANON",
+      "location": "body",
+      "id": "OP_CANON.r42.body.001",
+      "speaker": "N",
+      "text": "陆景行用钢琴救了场，唐映雪稳住后半首。她下台后先问工作人员原曲目单在哪儿，台前的掌声却都朝陆景行涌去。你留在侧幕，看见程放把“文件出错”和“现场确认”写进同一栏。"
+    },
+    {
+      "scene": "OP_SECRET_l",
+      "location": "reply",
+      "id": "OP_SECRET_l.partial.r1.reply.001",
+      "choice": "partial",
+      "speaker": "L",
+      "text": "行，不想说就先留着。你别担心我会拿这段视频替你编故事。"
+    }
+  ]
+}
