@@ -1,5 +1,5 @@
 name: Romance v4.17 P0 controlled source build
-# Run exact text-only patch from the audited 17-row source plan.
+# Verify current v4.17 against exactly restored v4.16 and earlier versions.
 on:
   push:
     branches: [feat/romance-v417-p0-implementation-20261015]
