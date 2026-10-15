@@ -1,0 +1,59 @@
+name: Romance v4.17 P0 controlled source build
+# Verify current v4.17 against exactly restored v4.16 and earlier versions.
+on:
+  push:
+    branches: [feat/romance-v417-p0-implementation-20261015]
+    paths:
+      - '.github/workflows/romance-v417-controlled-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/romance-v417-p0-implementation-20261015
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Guard head before controlled mutation
+        run: |
+          test "$(git branch --show-current)" = "feat/romance-v417-p0-implementation-20261015"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply bounded 17-beat v4.17 plan
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          python3 tools/apply-v417-p0.py --dry-run
+          python3 tools/apply-v417-p0.py --apply
+          python3 tools/apply-v417-p0.py --check
+          python3 tools/export-and-audit.py
+      - name: Full canonical, interpreter, rollback and delivery verification
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          npm run verify
+          python3 tools/apply-v417-p0.py --check
+          python3 tools/test-v49-restore.py
+      - name: Commit audited story and regenerated deliverables
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+          GAME_INDEX: runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- "$H5_ROOT" "$GAME_INDEX"
+          git add -- "$H5_ROOT/patch/v417_p0_scene_edits.json"
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "feat(v4.17): apply verified P0 first-night changes"
+          git push origin HEAD:refs/heads/feat/romance-v417-p0-implementation-20261015
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: romance-v417-controlled-h5
+          path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
+          retention-days: 14
