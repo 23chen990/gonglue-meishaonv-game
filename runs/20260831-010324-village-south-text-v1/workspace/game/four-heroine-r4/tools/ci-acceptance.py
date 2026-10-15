@@ -62,11 +62,12 @@ elif ok and repo_ok:
    first_ok=stage("native-v48-readable-first-choice",[sys.executable,"tools/test-v48-first-choice.py"],env=env)
    save_ok=stage("native-v49-saved-session-continuity",[sys.executable,"tools/test-v49-save-migration.py"],env=env)
    cinematic_ok=stage("native-v417-cinematic-chromium",[sys.executable,"tools/test-vn-cinematic.py"],env=env)
+   intent_ok=stage("native-v417-staged-intents",[sys.executable,"tools/test-v417-cinematic-intents.py"],env=env,timeout=1800)
    webkit_ok=True
    if os.environ.get("R4_WEBKIT")=="1":
     webkit_ok=stage("native-v417-cinematic-webkit",[sys.executable,"tools/test-vn-cinematic.py"],
                     env=dict(env,R4_BROWSER="webkit"))
-   if ui_ok and reader_ok and first_ok and save_ok and cinematic_ok and webkit_ok:
+   if ui_ok and reader_ok and first_ok and save_ok and cinematic_ok and intent_ok and webkit_ok:
     stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
   except Exception as e:
