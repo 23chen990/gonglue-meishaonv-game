@@ -1,5 +1,5 @@
 name: Romance v4.15 first-night verified build
-# Historical predecessor is verified by Python rollback; editorial regression checks use v4.15 SHA
+# Historical predecessor verified by Python rollback; inherited v4.10-v4.12 checks use v4.15 SHA
 on:
   push:
     branches: [feat/romance-v415-first-night-continuity-20261015]
