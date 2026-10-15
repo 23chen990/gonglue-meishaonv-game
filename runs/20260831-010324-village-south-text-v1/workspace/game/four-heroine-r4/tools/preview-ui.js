@@ -100,31 +100,47 @@ function load(){
   notice='这份本版记录无法验证，原记录未覆盖。当前是临时新局；可继续玩、导出，或在菜单备份后新开。';
  }
 }
-function splitLongBeat(b){
- // Stable across font/viewport changes, and no unbroken sentence can bypass the length cap.
+function splitLongBeat(b,limit=180){
+ // Canonical rows stay intact. These are presentation-only slices.
  const chars=Array.from(b.text),out=[];let start=0;
  while(start<chars.length){
-  let end=Math.min(start+180,chars.length);
+  let end=Math.min(start+limit,chars.length);
   if(end<chars.length){
-   for(let i=end-1;i>start+100;i--)if('。！？!?；;'.includes(chars[i])){end=i+1;break;}
+   for(let i=end-1;i>start+Math.floor(limit*.56);i--)if('。！？!?；;'.includes(chars[i])){end=i+1;break;}
   }
-  out.push({...b,text:chars.slice(start,end).join(''),id:chars.length<=180?b.id:(b.id||'')+':part'+out.length});
+  out.push({...b,text:chars.slice(start,end).join(''),id:chars.length<=limit?b.id:(b.id||'')+':part'+out.length});
   start=end;
  }
  return out.length?out:[b];
 }
 function paginate(rows){
- // Only the 28-beat book-entry prologue is paced in chapters; everywhere else
- // the actor's words and consequential choices share one scrollable sheet.
- const flat=rows.flatMap(splitLongBeat);
- if(!(phase==='scene'&&state.current==='ENTRY_WAKE'))return [flat];
- const pages=[];let p=[],n=0;
- for(const b of flat){
-  if(p.length&&(n+b.text.length>190||p.length>=4)){pages.push(p);p=[];n=0;}
-  p.push(b);n+=b.text.length;
+ // Preserve seven existing advances through the 28 mandatory opening beats.
+ // Other long scenes group meaningful turns; short exchanges have no extra click.
+ const intro=phase==='scene'&&state.current==='ENTRY_WAKE';
+ const flat=rows.flatMap(b=>splitLongBeat(b,intro?180:132));
+ if(intro){
+  const pages=[];let batch=[],size=0;
+  for(const b of flat){
+   if(batch.length&&(size+b.text.length>190||batch.length>=4)){pages.push(batch);batch=[];size=0;}
+   batch.push(b);size+=b.text.length;
+  }
+  if(batch.length||!pages.length)pages.push(batch);
+  return pages;
  }
- if(p.length||!pages.length)pages.push(p);
- return pages;
+ // Keep collection entries readable and preserve OP_SETTLE's zero-tap bridge.
+ if(panel!=='story'||(phase==='scene'&&state.current==='OP_SETTLE'))return [flat];
+ if(flat.length<=3&&flat.reduce((n,b)=>n+b.text.length,0)<=215)return [flat];
+ const pages=[];let batch=[],size=0,previous=null;
+ const flush=()=>{if(batch.length){pages.push(batch);batch=[];size=0;previous=null;}};
+ for(const b of flat){
+  const pause=b.speaker==='B'&&b.text.length<=55&&/[……！？!?]$/.test(b.text.trim());
+  const changedVoice=previous&&previous!==b.speaker&&size>=95;
+  if(batch.length&&(size+b.text.length>205||batch.length>=3||changedVoice||pause))flush();
+  batch.push(b);size+=b.text.length;previous=b.speaker;
+  if(pause)flush();
+ }
+ flush();
+ return pages.length?pages:[flat];
 }
 function endingRows(){
  if(state.f.early_end)return [{speaker:'N',text:'这一轮停在这里。回到读过的决定，你仍可以换一种做法。'}];
