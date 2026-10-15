@@ -37,6 +37,11 @@ with sync_playwright() as play:
     assert page.locator('[data-choice]').count()==0
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
     for i in range(7):
+     # Every current canonical beat must be readable without another swipe.
+     visible=page.locator('.vn-scroll').evaluate(
+      'x=>({viewport:x.clientHeight,content:x.scrollHeight,top:x.scrollTop})')
+     assert visible['content']<=visible['viewport']+2,(
+      'mandatory beat is clipped behind inner scroll',w,h,i,visible)
      assert page.locator('[data-page-next]').count()==1,(w,i)
      page.locator('[data-page-next]').tap()
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
@@ -85,6 +90,21 @@ with sync_playwright() as play:
    return {'readingAdvances':seen,'commandsPreserved':after}
   finally:ctx.close()
  record('CANONICAL_LONG_SCENE_AND_TAP_GUARD',scene_case)
+ def dynamic_height():
+  ctx,page=open_game(390,844)
+  try:
+   page.set_viewport_size({'width':360,'height':700})
+   page.wait_for_timeout(150)
+   before=page.locator('.vn-scroll').evaluate('x=>({client:x.clientHeight,total:x.scrollHeight})')
+   assert before['total']<=before['client']+2,('dynamic height clipped first beat',before)
+   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
+   page.locator('[data-page-next]').tap()
+   after=page.locator('.vn-scroll').evaluate('x=>({client:x.clientHeight,total:x.scrollHeight})')
+   assert after['total']<=after['client']+2,('dynamic height clipped next beat',after)
+   return {'resizedWidth':360,'resizedHeight':700,'firstTwoPagesFullyVisible':True}
+  finally:ctx.close()
+ record('DYNAMIC_BROWSER_VIEWPORT_RELAYOUT',dynamic_height)
+
  def large_first_fork():
   ctx,page=open_game(320,568)
   try:
