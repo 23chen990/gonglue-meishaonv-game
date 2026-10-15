@@ -138,7 +138,7 @@ for(const [name,record,raw,expected]of [['record','check','wait','proof_handoff'
  const r=run({chars:[],noSides:true,options:{A1b:record,A4b:raw,EXEC_g:'none'}}),s=save('proof_'+name,r);
  assert.ok(s.f[expected]);assert.ok(s.f.saved);assert.deepEqual(active(s),[]);
  if(name!=='audio')assert.ok(!s.f.proof_audio);
- const block=at(r,'A6a').reply.map(b=>b.id).join(' ');assert.ok(block.includes('.'+(name==='record'?'record':name)+'.'));
+ const block=r.trace.filter(x=>x.from==='A6a'&&!x.choice.startsWith('intent:')).flatMap(x=>x.reply).map(b=>b.id).join(' ');assert.ok(block.includes('.'+(name==='record'?'record':name)+'.'));
 });
 check('Same early plan, different execution, different tangible future',()=>{
  const a=save('causal_plan_shared_slots',run({chars:[],options:{A3a:'shared',EXEC_s:'slots',RES_s:'slots'}}));
