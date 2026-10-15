@@ -18,7 +18,7 @@ export function createState(){
   known:Object.fromEntries(CHARS.map(c=>[c,[]])),sources:[],denials:{},history:[],
   breakups:[],ever:[],read:[],pendingAction:null,ending:null,complete:false,
   factOrigins:{},issueOrigins:{},fateLog:{},groupVotes:{},groupHistory:[],
-  disclosureDue:[],calendarResume:null,discoveryQueue:[],discoveryResume:null};
+  disclosureDue:[],calendarResume:null,discoveryQueue:[],discoveryResume:null,decisionIntent:null};
 }
 export const active = s => sorted(CHARS.filter(c=>s.f['active_'+c]));
 const issue = (s,c) => !!(s.f['pending_'+c]||s.f['value_conflict_'+c]);
@@ -314,6 +314,21 @@ export function renderScene(s,data){
   const ref=s.issueOrigins[sc.character]?.at(-1)||s.denials[sc.character]||s.factOrigins['breach_'+sc.character];
   if(ref)rows.push({speaker:'N',text:data.reasonText.repairQuote.replace('{choice}',choiceText(data,ref)),id:sc.id+'.actual_issue'});
  }
+ const steps=sc.decisionSteps;
+ if(steps){
+  const intent=s.decisionIntent?.scene===s.current?s.decisionIntent:null;
+  if(!intent){
+   return {...sc,body:copy(rows),choices:steps.map(g=>({
+    id:'intent:'+g.id,label:g.label,enabled:g.options.some(id=>{
+     const leaf=sc.choices.find(o=>o.id===id);return leaf&&condition(s,leaf.when);
+    }),intentStage:true
+   }))};
+  }
+  const group=steps.find(g=>g.id===intent.id);
+  if(!group)throw Error('Unknown intent in '+s.current);
+  return {...sc,body:copy([...rows,...group.after]),choices:sc.choices
+   .filter(o=>group.options.includes(o.id)).map(o=>({...copy(o),enabled:condition(s,o.when)})),decisionStep:2};
+ }
  return {...sc,body:copy(rows),choices:sc.choices.map(o=>({...copy(o),enabled:condition(s,o.when)}))};
 }
 function resumeCalendar(s){
@@ -388,8 +403,25 @@ export function choose(state,data,id,expectedRevision=state.revision){
    else{s.pendingAction=a;s.current='MIS_'+target;}
   }else s.current=a.scene;
  }else{
-  const sc=data.scenes[from],o=sc?.choices.find(x=>x.id===id);
+  const sc=data.scenes[from];
+  const steps=sc?.decisionSteps;
+  if(steps&&id.startsWith('intent:')){
+   if(s.decisionIntent)throw Error('Intent already selected');
+   const group=steps.find(x=>id==='intent:'+x.id);
+   if(!group||!group.options.some(x=>{const o=sc.choices.find(c=>c.id===x);return o&&condition(s,o.when);}))
+    throw Error('Unavailable intent '+from+'/'+id);
+   s.decisionIntent={scene:from,id:group.id};
+   reply=copy(group.reply);
+   s.history.push({from,id,revision:s.revision});s.revision++;delete s.executing;
+   return {state:s,reply};
+  }
+  if(steps){
+   const group=steps.find(x=>x.id===s.decisionIntent?.id&&s.decisionIntent.scene===from);
+   if(!group||!group.options.includes(id))throw Error('Intent required before '+from+'/'+id);
+  }
+  const o=sc?.choices.find(x=>x.id===id);
   if(!o||!condition(s,o.when))throw Error('Unavailable choice '+from+'/'+id);
+  if(steps)s.decisionIntent=null;
   reply=copy([...o.reply,...(o.replyBlocks||[]).filter(b=>condition(s,b.when)).flatMap(b=>b.lines)]);
   for(const e of o.effects)applyEffect(s,e);
   if(from.startsWith('R1_')&&id==='own')setFlag(s,'repair_issue_'+from.slice(3),s.f['issue_'+from.slice(3)]);
