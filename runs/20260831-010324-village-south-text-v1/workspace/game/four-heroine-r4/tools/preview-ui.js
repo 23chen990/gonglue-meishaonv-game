@@ -62,15 +62,35 @@ function save(){
   saveBlocked=true;notice='这次进度没有保存成功。可以继续阅读；离开前请在菜单导出记录。';
  }
 }
+function expandLegacyDecisionLog(commands){
+ // Historical commands did not have first-stage intents. Insert the only
+ // compatible authored intent before each existing leaf; never guess a
+ // relationship state, scene, effect or user consent.
+ if(!Array.isArray(commands))throw Error('Invalid command history');
+ const converted=[];
+ for(const cmd of commands){
+  if(!cmd||typeof cmd.from!=='string'||typeof cmd.id!=='string')throw Error('Invalid historical choice');
+  const groups=DATA.scenes[cmd.from]?.decisionSteps;
+  if(groups&&!cmd.id.startsWith('intent:')){
+   const group=groups.find(g=>g.options.includes(cmd.id));
+   if(!group)throw Error('Unknown historical action '+cmd.from+'/'+cmd.id);
+   converted.push({from:cmd.from,id:'intent:'+group.id,revision:converted.length});
+  }
+  converted.push({from:cmd.from,id:cmd.id,revision:converted.length});
+ }
+ return converted;
+}
 function readPayload(v){
  if(!v||v.version!==VERSION||(v.storyHash!==STORY_HASH&&!COMPATIBLE_STORY_HASHES.has(v.storyHash)))throw Error('这不是兼容版本的选择记录；旧记录没有被改写。');
- const s=replay(DATA,v.commands);
- const reply=replyFromLog(v.commands);
+ const legacy=v.storyHash!==STORY_HASH;
+ const commands=legacy?expandLegacyDecisionLog(v.commands):v.commands;
+ const s=replay(DATA,commands);
+ const reply=replyFromLog(commands);
  const ui=v.ui||{};
  const ph=ui.phase==='reply'&&reply.length?'reply':'scene';
  const pg=Number.isInteger(ui.page)&&ui.page>=0&&ui.page<1000?ui.page:0;
  const choiceGroup=Number.isInteger(ui.choicePage)&&ui.choicePage>=0&&ui.choicePage<100?ui.choicePage:0;
- return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,readerExpanded:!!ui.readerExpanded,profile:safeProfile(v.profile)};
+ return {state:s,reply,phase:ph,page:pg,choiceGroup,large:!!ui.large,soundOn:!!ui.soundOn,readerExpanded:!!ui.readerExpanded,profile:safeProfile(v.profile),legacy};
 }
 function install(v){
  state=v.state;lastReply=v.reply;phase=v.phase;page=v.page;choicePage=v.choiceGroup||0;large=v.large;soundOn=v.soundOn||false;readerExpanded=v.readerExpanded||false;profile=v.profile;
