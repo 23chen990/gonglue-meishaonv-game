@@ -49,7 +49,8 @@ elif ok and repo_ok:
    reader_ok=stage("native-v47-reader-and-save-migration",[sys.executable,"tools/test-v46-reader.py"],env=env)
    first_ok=stage("native-v48-readable-first-choice",[sys.executable,"tools/test-v48-first-choice.py"],env=env)
    save_ok=stage("native-v49-saved-session-continuity",[sys.executable,"tools/test-v49-save-migration.py"],env=env)
-   if ui_ok and reader_ok and first_ok and save_ok:
+   cinematic_ok=stage("native-cinematic-reader",[sys.executable,"tools/test-vn-cinematic.py"],env=env)
+   if ui_ok and reader_ok and first_ok and save_ok and cinematic_ok:
     stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
   except Exception as e:
