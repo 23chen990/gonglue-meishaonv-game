@@ -1,7 +1,7 @@
 {
   "version": "v4.14",
   "baseStorySha256": "e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3",
-  "newStorySha256": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546",
+  "newStorySha256": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594",
   "counts": {
     "beats": 31,
     "scenes": 8
@@ -194,8 +194,8 @@
       "speaker": "G",
       "before": "许照。第一天来，就敢当面问我是不是改过节目单？",
       "beforeHash": "4ea3fb1cfc2cc48c",
-      "after": "许照，对吧？刚才后台乱成那样，交接单是谁让你签的？",
-      "afterHash": "175e36b6a70d5c05"
+      "after": "许照，对吧？刚才那个原版盘，是你找回来的？",
+      "afterHash": "c96500a9cb141d43"
     },
     {
       "scene": "OP_TALK_g",
@@ -203,8 +203,8 @@
       "speaker": "P",
       "before": "第一天。你要是介意，我明天再敢。",
       "beforeHash": "b97234c1a4fdd1fd",
-      "after": "程放一直催，纸上却没写清楚到底是谁负责导出、谁负责播放。",
-      "afterHash": "17b45efd7413318a"
+      "after": "是我找到的。能不能用，是阿衡试听过才决定的。我没碰控台。",
+      "afterHash": "b45f5d161ef45acb"
     },
     {
       "scene": "OP_TALK_g",
@@ -212,8 +212,8 @@
       "speaker": "G",
       "before": "明天未必轮到我被你质问。先坐，你刚才脸都快没血色了。",
       "beforeHash": "008d639de36adc71",
-      "after": "那就先别急着替谁认账。坐下吧，你脸色都白了。",
-      "afterHash": "9eb053506c5e2446"
+      "after": "这倒说得清楚。先坐，你脸色都白了。",
+      "afterHash": "53bae4aeffdbeb59"
     },
     {
       "scene": "OP_TALK_g",
@@ -221,8 +221,8 @@
       "speaker": "P",
       "before": "我知道自己问得冒失。可你刚才真往这边看过来的时候，我比上台还紧张。",
       "beforeHash": "889e702cf854a63e",
-      "after": "我刚才真有点慌。你一提那张纸，我才发现手还在抖。",
-      "afterHash": "5d6c3eff0d6de6c6"
+      "after": "我刚才就怕说不清，最后什么都算我头上。听你这么问，我反倒踏实点。",
+      "afterHash": "2461ca92b65d0749"
     },
     {
       "scene": "OP_TALK_self",

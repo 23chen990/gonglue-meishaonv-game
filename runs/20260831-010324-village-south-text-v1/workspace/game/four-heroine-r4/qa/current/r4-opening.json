@@ -1,7 +1,7 @@
 {
   "scope": "r4.2 first-choice canon-vs-deviation normal interpreter regression; not real player or device evidence",
   "hashes": {
-    "story": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546"
+    "story": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594"
   },
   "checks": [
     {

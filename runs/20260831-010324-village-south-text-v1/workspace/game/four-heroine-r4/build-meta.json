@@ -1,8 +1,8 @@
 {
   "version": "revision-r4.5-ui",
-  "storyHash": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546",
+  "storyHash": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594",
   "files": {
-    "data/STORY.json": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546",
+    "data/STORY.json": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594",
     "data/EPILOGUES.json": "7855b10ef4ad4c9a47f5a90fc91b904f612c19cfbcf26577cfa08c5e8ffebb09",
     "data/BONUS.json": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e",
     "data/CODA.json": "f212fdb2f110d268da43380f1a84772b2c5365b48041d434fe7f8d76a3a3e07e",
@@ -17,9 +17,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "49c75bf5febd121c6d17c948f6d0cc68eab5c883dd0121f072babeadcb67f8b3",
-    "index.html": "30655356a49ee06ea8a02a3b79aaf977c76350043b62777356d7e84a4dce5975",
-    "play.html": "30655356a49ee06ea8a02a3b79aaf977c76350043b62777356d7e84a4dce5975",
-    "repository-index.html": "0bfd4171d34c475174e02fb2ba03082432ea6f1efc4a279d474fb9c19f165a86"
+    "runtime.mjs": "141f1e7a32dbf9eaa855f72f8e0fbab394d7189252589e008f0a1caf4f6458e3",
+    "index.html": "409b5cc8f7078e85a4f341d4468cf138a5726e1a08d23ac8857682661c216484",
+    "play.html": "409b5cc8f7078e85a4f341d4468cf138a5726e1a08d23ac8857682661c216484",
+    "repository-index.html": "c07774a5433abd7f6e973521fe6abb86b9aaefc841afd9c410a3656b41da66b8"
   }
 }

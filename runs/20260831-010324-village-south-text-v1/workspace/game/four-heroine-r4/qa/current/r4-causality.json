@@ -1,7 +1,7 @@
 {
   "scope": "Current canonical r4 ordinary-command regressions plus explicitly identified editorial contracts; not human evaluation.",
   "hashes": {
-    "story": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546",
+    "story": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594",
     "engine": "e35eabd291b8f63eab1cbdada3405a3f2a7a8a9cb9b8791e7f1171eb7a7d2169",
     "bonus": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e"
   },
