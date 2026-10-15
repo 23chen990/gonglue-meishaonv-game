@@ -5,7 +5,7 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
-import {createState,renderScene,choose,replay} from './engine.mjs';
+import {createState,renderScene,choose,replay,condition} from './engine.mjs';
 const root=new URL('../',import.meta.url);
 const D=JSON.parse(fs.readFileSync(new URL('data/STORY.json',root),'utf8'));
 const contract=JSON.parse(fs.readFileSync(new URL('data/CHOICE_CONTRACTS.json',root),'utf8'));
@@ -34,7 +34,7 @@ function choicesAt(id,entry='rescue',overrides={}){
  const cs=renderScene(s,D).choices.filter(x=>x.enabled);
  assert(cs.length>=2,`Too few alternatives at ${id}`);
  const optionsToCompare=D.scenes[id]?.decisionSteps
-  ?D.scenes[id].choices.filter(x=>D.scenes[id].decisionSteps.some(g=>g.options.includes(x.id)))
+  ?D.scenes[id].choices.filter(x=>D.scenes[id].decisionSteps.some(g=>g.options.includes(x.id))&&condition(s,x.when))
   :cs;
  const output=optionsToCompare.map(x=>{
   let state=s;
