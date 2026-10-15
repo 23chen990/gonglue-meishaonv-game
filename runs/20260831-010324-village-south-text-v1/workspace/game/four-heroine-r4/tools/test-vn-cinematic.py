@@ -8,6 +8,7 @@ URL=os.environ.get('R4_REAL_URL','http://127.0.0.1:8765/index.html')
 KEY='gonglue:revision-r4.5-portrait:canonical'
 H=hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest()
 W=json.loads((R/'qa/current/choice-witness-prefixes.json').read_text())['choices']
+DATA=json.loads((R/'data/STORY.json').read_text())
 ENGINE=os.environ.get('R4_BROWSER','chromium')
 assert ENGINE in ('chromium','webkit')
 REPORT={'scope':'real HTTP '+ENGINE+' touch; not physical device','head':os.environ.get('GITHUB_SHA'),'cases':[]}
@@ -74,7 +75,9 @@ with sync_playwright() as play:
    finally:ctx.close()
   record(f'INTRO_{w}',scenario)
  def scene_case():
-  cmds=W['A6a/accept']['prefix'][:-1]
+  witness=W['A6a/accept']['prefix']
+  split=next(i for i,cmd in enumerate(witness) if cmd['from']=='A6a' and cmd['id'].startswith('intent:'))
+  cmds=witness[:split]  # Before the genuine first-stage choice, not after it.
   ctx,page=open_game(390,844,cmds)
   taps=0;stalled=0;last_key=None
   try:
@@ -96,9 +99,15 @@ with sync_playwright() as play:
    after=page.evaluate('([k])=>JSON.parse(localStorage.getItem(k)).commands.length',[KEY])
    assert before==after,('reading changed canonical history',before,after)
    groups=page.locator('.vn-dock [data-choice-group]').count()
-   assert groups>=2,('expected grouped navigation at the decision',groups,page.locator('.vn-dock').inner_text()[-450:])
+   intents=page.locator('.vn-dock [data-choice^="intent:"]').evaluate_all(
+    '(buttons)=>buttons.map(b=>b.dataset.choice)')
+   expected=['intent:'+g['id'] for g in DATA['scenes']['A6a']['decisionSteps']]
+   assert sorted(intents)==sorted(expected),(
+    'genuine first-stage decisions not visible',intents,expected)
+   assert groups==0,('genuine staged decision must not be replaced by obsolete UI navigation',groups)
    page.screenshot(path=str(D/'A6a-decision.png'))
-   return {'readingAdvances':taps,'commandsPreserved':after,'stalledTaps':stalled,'choiceGroups':groups}
+   return {'readingAdvances':taps,'commandsPreserved':after,'stalledTaps':stalled,
+           'trueIntentOptions':intents,'obsoleteGroups':groups}
   except Exception as exc:
    try:
     diagnostic=page.evaluate("""() => ({
