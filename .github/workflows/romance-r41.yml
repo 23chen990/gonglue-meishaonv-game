@@ -47,9 +47,10 @@ jobs:
         run: |
           python3 -m pip install --user 'playwright==1.55.0'
           python3 -m playwright install --with-deps chromium
+          python3 -m playwright install --with-deps webkit
       - name: Verify source, root default entry, current native browser
         run: |
-          python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/ci-acceptance.py
+          R4_WEBKIT=1 python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/ci-acceptance.py
       - name: Validate built default player metadata
         if: always()
         run: |
@@ -83,6 +84,7 @@ jobs:
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-ui/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/native-reader/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic/**
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic-webkit/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-browser-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v46-reader-report.json
