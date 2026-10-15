@@ -12,10 +12,12 @@ const beatHash=b=>sha(b.speaker+'\0'+b.text).slice(0,16);
 export const PREVIOUS_V413_SHA='e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3';
 export function verifiedV414(){
  const raw=read('data/STORY.json'),current=JSON.parse(raw);
+ const v417=JSON.parse(read('patch/v417_p0_scene_edits.json'));
  const v416=JSON.parse(read('patch/v416_first_night_edits.json'));
  const v415=JSON.parse(read('patch/v415_first_night_edits.json'));
  const patch=JSON.parse(read('patch/v414_first_night_edits.json'));
- assert.equal(sha(raw),v416.newStorySha256,'v4.16 current canonical SHA');
+ assert.equal(sha(raw),v417.newStorySha256,'v4.17 current canonical SHA');
+ assert.equal(v417.baseStorySha256,v416.newStorySha256,'v4.17 predecessor');
  assert.equal(v416.baseStorySha256,v415.newStorySha256,'v4.16 predecessor');
  assert.equal(v415.baseStorySha256,patch.newStorySha256,'v4.15 predecessor');
  const reverse=(story,changes)=>{
@@ -37,7 +39,8 @@ export function verifiedV414(){
   }
   return result;
  };
- const predecessor415=reverse(current,v416.changes);
+ const predecessor416=reverse(current,v417.changes);
+ const predecessor415=reverse(predecessor416,v416.changes);
  const v414=reverse(predecessor415,v415.changes);
  assert.equal(patch.baseStorySha256,PREVIOUS_V413_SHA,'v4.14 must descend from v4.13');
  assert.deepEqual(patch.counts,{beats:31,scenes:8});
