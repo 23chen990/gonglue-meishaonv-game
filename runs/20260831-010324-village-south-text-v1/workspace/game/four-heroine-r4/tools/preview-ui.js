@@ -71,7 +71,7 @@ function expandLegacyDecisionLog(commands){
  for(const cmd of commands){
   if(!cmd||typeof cmd.from!=='string'||typeof cmd.id!=='string')throw Error('Invalid historical choice');
   const groups=DATA.scenes[cmd.from]?.decisionSteps;
-  if(groups&&!cmd.id.startsWith('intent:')){
+  if(groups&&!cmd.id.startsWith('intent:')&&!converted.some((x,i)=>i===converted.length-1 && x.from===cmd.from && x.id.startsWith('intent:'))){
    const group=groups.find(g=>g.options.includes(cmd.id));
    if(!group)throw Error('Unknown historical action '+cmd.from+'/'+cmd.id);
    converted.push({from:cmd.from,id:'intent:'+group.id,revision:converted.length});
