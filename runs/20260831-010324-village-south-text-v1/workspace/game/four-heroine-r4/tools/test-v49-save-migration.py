@@ -14,7 +14,8 @@ OLD={'v45':'c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059',
      'v411':'fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a',
      'v412':'d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3',
      'v413':'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3',
-     'v414':'30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594'}
+     'v414':'30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594',
+     'v415':'f1cee3680592a366c6a7dae8ffda615b7d828e165bb743f94181268df58abfa0'}
 CURRENT=hashlib.sha256((R/'data/STORY.json').read_bytes()).hexdigest()
 HTML=(R/'index.html').read_text();NATIVE=os.environ.get('R4_MODE')=='native'
 URL=os.environ.get('R4_REAL_URL','http://127.0.0.1:8765/index.html')
