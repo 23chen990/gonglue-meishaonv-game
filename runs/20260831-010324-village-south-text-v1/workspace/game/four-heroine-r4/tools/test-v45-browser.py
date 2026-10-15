@@ -109,7 +109,7 @@ with sync_playwright() as pw:
   assert current(pg)=='OP_SETTLE'
   assert not pg.locator('[data-choice="continue"]').count(),'extra continue was rendered'
   assert pg.locator('.vn-dock [data-choice="backup"]').count()==1
-  assert pg.locator('.vn-scroll').inner_text().find('下一首歌')>=0
+  assert pg.locator('.vn-scroll').inner_text().find('陌生手机')>=0
   assert pg.locator('.vn-scroll').inner_text().find('程放')>=0
   before=len(snapshot(pg)['commands'])
   pick(pg,'backup');after=snapshot(pg)
