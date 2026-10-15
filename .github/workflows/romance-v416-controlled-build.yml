@@ -1,4 +1,5 @@
 name: Romance v4.16 first-night narrative acceptance
+# Validate updated current-story labels against current choice contracts.
 on:
   push:
     branches:
