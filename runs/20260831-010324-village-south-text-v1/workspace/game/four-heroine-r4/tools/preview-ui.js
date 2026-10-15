@@ -645,7 +645,7 @@ function render(scrollWindow=true){
    // At the final required intro beat, lead with the immediate dilemma.
    // Earlier words stay readable by scrolling up, without extra taps.
    if(area&&state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)
-    area.scrollTop=Math.max(0,area.scrollHeight-area.clientHeight);
+    area.scrollTop=area.scrollHeight>area.clientHeight+20?area.scrollHeight-area.clientHeight:0;
    storyScroll={key:frame?.dataset.readerKey||null,text:area?.scrollTop||0,dock:0,choicePage};
   }
  }
