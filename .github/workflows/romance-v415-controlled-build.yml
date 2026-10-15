@@ -1,0 +1,57 @@
+name: Romance v4.15 first-night verified build
+# Historical predecessor verified by Python rollback; inherited v4.10-v4.12 checks use v4.15 SHA
+on:
+  push:
+    branches: [feat/romance-v415-first-night-continuity-20261015]
+    paths:
+      - '.github/workflows/romance-v415-controlled-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply-build-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/romance-v415-first-night-continuity-20261015
+          persist-credentials: true
+      - name: Guard source branch and commit
+        run: |
+          test "$(git branch --show-current)" = "feat/romance-v415-first-night-continuity-20261015"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact 24-beat authored patch
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          python3 tools/apply-v415-first-night.py --apply
+          python3 tools/apply-v415-first-night.py --check
+          python3 tools/export-and-audit.py
+      - name: Full canonical build, all regression checks and reversible provenance
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          npm run verify
+          python3 tools/apply-v415-first-night.py --check
+          python3 tools/test-v49-restore.py
+      - name: Commit validated story and regenerated offline deliverables
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+          GAME_INDEX: runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- "$H5_ROOT" "$GAME_INDEX"
+          git add -- "$H5_ROOT/patch/v415_first_night_edits.json"
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "feat(v4.15): apply and verify first-night causal continuity edits"
+          git push origin HEAD:refs/heads/feat/romance-v415-first-night-continuity-20261015
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: romance-v415-offline-h5
+          path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
+          if-no-files-found: error

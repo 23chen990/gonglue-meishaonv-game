@@ -13,8 +13,17 @@ p411=json.loads((ROOT/'patch/v411_dialogue_pov.json').read_text())
 p412=json.loads((ROOT/'patch/v412_reaction_copy.json').read_text())
 # v4.14 is only 31 edits of body text + textHash. Reverse its
 # exact annotated edits BEFORE all historical predecessor checks.
+p415=json.loads((ROOT/'patch/v415_first_night_edits.json').read_text())
+assert sha(story)==p415['newStorySha256'], 'v4.15 source drift'
+for ch in reversed(p415['changes']):
+ sc=new['scenes'][ch['scene']]
+ rows=sc['body'] if ch['location']=='body' else next(x for x in sc['choices'] if x['id']==ch['choice'])['reply']
+ row=next(x for x in rows if x['id']==ch['id'])
+ assert row['text']==ch['after'] and row['textHash']==ch['afterHash']
+ row['text']=ch['before'];row['textHash']=ch['beforeHash']
+assert sha((json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode())==p415['baseStorySha256']
 p414=json.loads((ROOT/'patch/v414_first_night_edits.json').read_text())
-assert sha(story)==p414['newStorySha256'],'v4.14 current source SHA drift'
+assert sha((json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode())==p414['newStorySha256'],'v4.14 predecessor source SHA drift'
 assert p414['counts']=={'beats':31,'scenes':8}
 assert len(p414['changes'])==31
 for ch in reversed(p414['changes']):

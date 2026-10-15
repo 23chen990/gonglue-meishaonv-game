@@ -22,7 +22,9 @@ const v413=JSON.parse(fs.readFileSync(new URL('patch/v413_decision_steps.json',r
 assert.equal(v413.baseStorySha256,v412.newStorySha256);
 const v414=JSON.parse(fs.readFileSync(new URL('patch/v414_first_night_edits.json',root),'utf8'));
 assert.equal(v414.baseStorySha256,'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3');
-assert.equal(sha,v414.newStorySha256,'v4.14 current story');
+const v415=JSON.parse(fs.readFileSync(new URL('patch/v415_first_night_edits.json',root),'utf8'));
+assert.equal(v415.baseStorySha256,v414.newStorySha256,'v4.15 must descend from exact v4.14');
+assert.equal(sha,v415.newStorySha256,'v4.15 current story');
 assert.equal(sha,contracts.storySha256);
 assert.equal(Object.keys(DATA.scenes).length,228);
 assert.equal(Object.values(DATA.scenes).flatMap(x=>x.choices||[]).length,751);

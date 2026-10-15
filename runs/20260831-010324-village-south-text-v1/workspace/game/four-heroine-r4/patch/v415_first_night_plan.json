@@ -1,0 +1,192 @@
+{
+  "version": "v4.15-first-night-continuity",
+  "baseStorySha256": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594",
+  "scope": "Only existing body and choice reply text/textHash; no conditions, decisions, action IDs, effects, scene order or UI",
+  "counts": {
+    "beats": 24,
+    "scenes": 10
+  },
+  "changes": [
+    {
+      "scene": "ENTRY_WAKE",
+      "location": "body",
+      "id": "ENTRY_WAKE.intro.020",
+      "speaker": "P",
+      "text": "先不用……我还能站。（我得回家。可这里每个人都把我当许照，现在连该向谁求助都不知道。）"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "location": "body",
+      "id": "ENTRY_WAKE.intro.027",
+      "speaker": "P",
+      "text": "（回家的事我一点头绪都没有。至少先别让这场事故把我也拖进去。可眼下该先救歌，还是先保住证据？）"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "location": "body",
+      "id": "ENTRY_CLUES.r42.body.006",
+      "speaker": "P",
+      "text": "（书里许照签了。可握笔的是我，后面要背锅的也是我。程放正看着我，真要拒绝，得现在开口。）"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "location": "reply",
+      "choice": "witness",
+      "id": "ENTRY_CLUES.r42.reply.witness.002",
+      "speaker": "N",
+      "text": "你没碰过错版文件，也不知道它是谁导出的。可下次有人说“现场连时间都对不上”，你至少能拿出这份记录。"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "location": "body",
+      "id": "ENTRY_MEMORY.r42.body.003",
+      "speaker": "N",
+      "text": "见月能拍下版本交接，晚棠能查到节目授权。两个地方各有一份可核的东西，但光凭它们，还不能知道是谁删了前奏。你得先让她们帮忙确认。"
+    },
+    {
+      "scene": "COLD",
+      "location": "body",
+      "id": "COLD.r42.body.003",
+      "speaker": "N",
+      "text": "陆景行的指尖悬在琴键上，唐映雪扶着耳返望向侧幕。你不敢自己动控台。现在得决定先叫谁，才能赶上下一拍。"
+    },
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "choice": "t",
+      "id": "COLD.t.r4.reply.005",
+      "speaker": "N",
+      "text": "程放没有跟着鼓掌，只低头翻了翻工作群。唐映雪还站在光里，隔着幕布指向你，像是怕你转身就跑。阿衡把切换时间写进记录。"
+    },
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "choice": "s",
+      "id": "COLD.s.r4.reply.003",
+      "speaker": "N",
+      "text": "控台短短静了一拍，观众席有人抬起头。唐映雪接上完整前奏时，沈清辞握着对讲机的手才松开。她先看阿衡，再回头朝你点了点头。"
+    },
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "choice": "l",
+      "id": "COLD.l.r4.reply.004",
+      "speaker": "N",
+      "text": "你把盘交给阿衡。见月先拍清标签和试听的时间，把镜头留在控台旁：“等切换真发生了，我再把前后拍完整。”"
+    },
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "choice": "g",
+      "id": "COLD.g.r4.reply.007",
+      "speaker": "G",
+      "text": "许照，记住邮件上的版本号和时间。今天我能确认授权不对，至于谁改了文件，还得继续查。"
+    },
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "choice": "self",
+      "id": "COLD.self.r4.reply.004",
+      "speaker": "N",
+      "text": "阿衡在记录上分了两栏：许照找到备用盘，阿衡试听并完成切换。你看着那几行字，终于松开一路攥着的拳头。"
+    },
+    {
+      "scene": "OP_SETTLE",
+      "location": "body",
+      "id": "OP_SETTLE.r4.body.002",
+      "speaker": "P",
+      "text": "房租和门禁都在这部手机里，可那不是我的家。我原来的手机呢？那边会不会有人找我？我到底怎么回去？"
+    },
+    {
+      "scene": "OP_CANON",
+      "location": "body",
+      "id": "OP_CANON.r42.body.003",
+      "speaker": "N",
+      "text": "掌声在台前，你留在那张交接单前。错版是谁送上台的，你现在答不出；但自己做过什么，可以从今晚开始留下记录。程放仍拿着笔等你。"
+    },
+    {
+      "scene": "OP_FORK",
+      "location": "body",
+      "id": "OP_FORK.r42.body.001",
+      "speaker": "N",
+      "text": "你手机一震。程放在工作群发了一句：“谁找的蓝标盘？错版文件今晚清掉，谁都别留。”你还没点开详情，消息就被撤回，只剩一行系统提示。"
+    },
+    {
+      "scene": "OP_FORK",
+      "location": "body",
+      "id": "OP_FORK.r42.body.002",
+      "speaker": "N",
+      "text": "你没来得及截图。但刚才出错的版本确实播过，程放却要求删掉。你看向阿衡手里的切换记录：要是原文件也没了，明天怎么证明今晚发生过什么？"
+    },
+    {
+      "scene": "OP_FORK",
+      "location": "reply",
+      "choice": "backup",
+      "id": "OP_FORK.r42.reply.backup.002",
+      "speaker": "N",
+      "text": "阿衡把错版、原版和试听时间分别备份，你也保存了自己的时间记录。撤回的原话没截到，不能假装它还在；至少版本文件和时间线不会跟着消失。"
+    },
+    {
+      "scene": "OP_FORK",
+      "location": "reply",
+      "choice": "confront",
+      "id": "OP_FORK.r42.reply.confront.002",
+      "speaker": "N",
+      "text": "工作群安静了几秒。程放不答谁有权删文件，只让你明天写说明。你把他的回复存下——没问出真相，却得到了一条能核对时间的书面回复。"
+    },
+    {
+      "scene": "OP_FORK",
+      "location": "reply",
+      "choice": "quiet",
+      "id": "OP_FORK.r42.reply.quiet.001",
+      "speaker": "N",
+      "text": "你没有在群里争辩，把阿衡签过的切换记录单独存好。程放没再点你的名。今晚可以先过去，删档的事却还没人公开说明。"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "location": "reply",
+      "choice": "flirt",
+      "id": "OP_TALK_g.flirt.r4.reply.002",
+      "speaker": "G",
+      "text": "加好友都这么直接？你连我的全名都还没问过。"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "location": "body",
+      "id": "OP_RIVAL.r4.body.005",
+      "speaker": "B",
+      "text": "（不对，原著里要过三天才有这通电话。今晚的盘一换，他竟然把录音机会提前了。书里知道的那些事，不一定还管用了。）"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "location": "reply",
+      "choice": "join",
+      "id": "OP_RIVAL.join.r1.reply.002",
+      "speaker": "N",
+      "text": "你把“20:50，和阿衡检查设备”记进备忘录，追问具体要验哪条线路。陆景行没有替你回答；这次的活得靠你亲手做完。"
+    },
+    {
+      "scene": "A1b",
+      "location": "body",
+      "id": "A1b.r42.body.001",
+      "speaker": "N",
+      "text": "22:00，观众散尽。程放在出口拦住你，递来交接单。错版导出、现场切换、末场清点明明是三件事，纸上却只留了一个“临时场务负责”的签名栏。"
+    },
+    {
+      "scene": "A1b",
+      "location": "reply",
+      "choice": "check",
+      "id": "A1b.check.r1.reply.002",
+      "speaker": "N",
+      "text": "你和阿衡把自己能确认的栏位逐项填好，各自签名。程放还攥着原先那张笼统的表。你把补充说明发进工作群——旧表没有凭空消失，但哪件事由谁负责，现在有了另一份记录。"
+    },
+    {
+      "scene": "A1b",
+      "location": "reply",
+      "choice": "ask",
+      "id": "A1b.ask.r1.reply.001",
+      "speaker": "A",
+      "text": "我负责控台检查和末场清点。许照做过什么，我只确认亲眼看到的；错版是谁导出的，我没见到，不能替谁下结论。"
+    }
+  ]
+}

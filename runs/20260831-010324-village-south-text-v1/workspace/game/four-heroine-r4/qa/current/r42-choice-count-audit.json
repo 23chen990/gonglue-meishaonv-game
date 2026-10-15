@@ -3,7 +3,7 @@
   "version": "bookside-revision-r4.3",
   "scope": "Ordinary-command replay of all authored choice witnesses; non-exhaustive state exploration, not human experience",
   "hashes": {
-    "story": "30c8d0fce47448ddff2c3d99a86b32b4205a16012e9b50cdab9fca6738f81594",
+    "story": "f1cee3680592a366c6a7dae8ffda615b7d828e165bb743f94181268df58abfa0",
     "engine": "e35eabd291b8f63eab1cbdada3405a3f2a7a8a9cb9b8791e7f1171eb7a7d2169"
   },
   "observedChoices": 783,
