@@ -40,9 +40,9 @@ for(const [sid,sc] of Object.entries(data.scenes)){
  const all=sc.decisionSteps.flatMap(g=>g.options);
  assert.deepEqual(new Set(all),new Set(sc.choices.map(o=>o.id)),sid+' incomplete leaf cover');
  for(const g of sc.decisionSteps)assert(g.options.length<=4 && g.options.length>=1,sid+'/'+g.id+' exceeds 4 real options');
- const witness=Object.entries(witness.choices).find(([key])=>key.startsWith(sid+'/'));
- assert(witness,'Unreachable staged scene '+sid);
- const prefix=witness[1].prefix;
+ const sceneWitness=Object.entries(witness.choices).find(([key])=>key.startsWith(sid+'/'));
+ assert(sceneWitness,'Unreachable staged scene '+sid);
+ const prefix=sceneWitness[1].prefix;
  const firstIndex=prefix.findIndex(x=>x.from===sid && x.id.startsWith('intent:'));
  assert(firstIndex>=0,'No witnessed real intent command '+sid);
  const entry=replay(data,prefix.slice(0,firstIndex));
