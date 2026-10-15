@@ -216,3 +216,22 @@ body.large .vn-frame[data-mode=decision] .vn-dock{max-height:65%}
  .vn-frame[data-intro-decision="true"] .vn-sheet{height:calc(100% - 65px)}
  .vn-frame[data-intro-decision="true"] .vn-dock{max-height:min(57%,300px)}
 }
+
+/* QA-refined first decision: expose the actor's face without hiding the last
+   required beat or making the three canonical actions scroll out of reach. */
+.vn-frame[data-intro-decision="true"] .vn-portrait{height:245px;width:135px;top:52px;right:2%}
+.vn-frame[data-intro-decision="true"] .vn-portrait img{object-fit:cover;object-position:center 12%}
+.vn-frame[data-intro-decision="true"] .vn-dock .first-fork-choice{min-height:57px;padding:7px 10px}
+.vn-frame[data-intro-decision="true"] .vn-dock .first-fork-choice strong{font-size:12px;line-height:1.28}
+.vn-frame[data-intro-decision="true"] .vn-dock .first-fork-choice small{font-size:10px;line-height:1.25;margin-top:1px}
+body.large .vn-frame[data-intro-decision="true"] .vn-dock .first-fork-choice{padding:8px 10px;min-height:62px}
+body.large .vn-frame[data-intro-decision="true"] .vn-dock .first-fork-choice strong{font-size:15px;line-height:1.4}
+body.large .vn-frame[data-intro-decision="true"] .vn-dock .first-fork-choice small{font-size:12px;line-height:1.35}
+@media(max-height:650px){
+ .vn-frame[data-intro-decision="true"] .vn-sheet{height:calc(100% - 135px)!important}
+ .vn-frame[data-intro-decision="true"] .vn-dock{max-height:65%!important}
+ .vn-frame[data-intro-decision="true"] .vn-stage-top{top:65px}
+ .vn-frame[data-intro-decision="true"] .vn-scene-title,.vn-frame[data-intro-decision="true"] .vn-scene-index{display:none}
+ .vn-frame[data-intro-decision="true"] .vn-portrait{height:175px;width:94px;top:65px;right:4%}
+ body.large .vn-frame[data-intro-decision="true"] .vn-sheet{height:calc(100% - 110px)!important}
+}
