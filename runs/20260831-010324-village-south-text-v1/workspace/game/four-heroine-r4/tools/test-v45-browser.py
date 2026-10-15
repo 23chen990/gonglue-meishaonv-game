@@ -120,56 +120,79 @@ with sync_playwright() as pw:
   pg.screenshot(path=str(shots/'after-bridge.png'));ctx.close()
   return {'bridgeCommands':['continue','backup'],'extraTap':0,'sameSceneChoice':True}
  check('REMOVES_EMPTY_TRANSITION_BUT_PRESERVES_TWO_STORY_COMMANDS',no_fake_page)
- def all_group_signatures():
+ def all_stage_signatures():
   ctx,pg,errors=page_for(browser)
   witness=json.loads((R/'qa/current/choice-witness-prefixes.json').read_text())
-  scenes=json.loads((R/'qa/current/r42-choice-count-audit.json').read_text())['over4']
+  historical=json.loads((R/'qa/current/r42-choice-count-audit.json').read_text())['legacyOver4']
+  assert len(historical)==16
   sampled=[]
-  for item in scenes:
-   scene=item['scene'];choices=item['choices'];candidates=[v['prefix'][:-1] for name,v in witness['choices'].items() if name.startswith(scene+'/')]
-   result=None
-   for target in candidates:
+  for item in historical:
+   scene=item['scene'];original=item['choices']
+   candidates=[v['prefix'][:-1] for name,v in witness['choices'].items() if name.startswith(scene+'/')]
+   assert candidates,'missing original witness for '+scene
+   prefix=candidates[0]
+   seen=[];responseSamples=[]
+   def restore():
     if NATIVE:
-     candidate=load_native_witness(pg,target)
-     if candidate['id']!=scene:continue
-     candidate['expected']=traverse_choices(pg)
+     saved=load_native_witness(pg,prefix)
+     assert saved['id']==scene
     else:
-     candidate=pg.evaluate("""(prefix)=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;panel='story';render();const e=renderScene(state,DATA).choices.filter(x=>x.enabled);return {id:state.current,expected:e.map(x=>x.id),groupCount:document.querySelectorAll('[data-choice-group]').length};}""",target)
-    matched=(len(candidate['expected'])==len(choices) and set(candidate['expected'])==set(choices)) if NATIVE else (candidate['expected']==choices)
-    if matched:result=candidate;break
-   if result is None:raise AssertionError('missing exact witness '+scene)
-
-   assert 2<=result['groupCount']<=3,(scene,result)
-   found=[]
-   for i in range(1,result['groupCount']+1):
-    touch(pg,f'[data-choice-group="{i}"]')
-    subset=pg.locator('[data-choice]').evaluate_all('els=>els.map(x=>x.dataset.choice)')
-    assert 1<=len(subset)<=4 and all(x not in found for x in subset),scene
-    found+=subset
-    touch(pg,'[data-choice-back]')
-   assert found==choices or set(found)==set(choices),(scene,found,choices)
+     pg.evaluate("""prefix=>{state=replay(DATA,prefix,{intentMode:true,legacyPrefixLength:prefix.length});phase='scene';page=0;choicePage=0;panel='story';saveBlocked=true;render();}""",prefix)
+     finish_beats(pg)
+    assert current(pg)==scene
+    return pg.locator('.vn-dock [data-intent-targets]').evaluate_all('xs=>xs.map(x=>({id:x.dataset.choice,targets:x.dataset.intentTargets.split(",")}))')
+   stages=[]
+   for proposed in candidates:
+    prefix=proposed
+    stages=restore()
+    if 2<=len(stages)<=3 and set(x for g in stages for x in g['targets'])==set(original):break
+   else:raise AssertionError(('missing exact five-plus witnessed state',scene,stages))
+   for stage in stages:
+    restore()
+    touch(pg,f'[data-choice="{stage["id"]}"]')
+    assert snapshot(pg)['commands'][-1]['id']==stage['id'] if NATIVE else True
+    finish_beats(pg)
+    assert current(pg)==scene
+    leaf=pg.locator('.vn-dock [data-choice]').evaluate_all('xs=>xs.map(x=>x.dataset.choice)')
+    assert 1<=len(leaf)<=4 and set(leaf)==set(stage['targets']),(scene,leaf,stage)
+    assert not any(x in seen for x in leaf)
+    seen.extend(leaf)
+    responseSamples.append(stage['id'])
+   assert set(seen)==set(original),(scene,seen,original)
    sampled.append(scene)
   assert not errors,errors
-  ctx.close();return {'groupedReachableStates':len(sampled),'sample':sampled[:8]}
- check('ALL_OBSERVED_OVERFOUR_BRANCH_STATES_GROUPED_WITHOUT_LOST_CHOICES',all_group_signatures)
- def persisted_group_and_font():
+  ctx.close();return {'twoStageStoryScenes':len(sampled),'sample':sampled[:8]}
+ check('ALL_16_STORY_DECISIONS_HAVE_REPLAYABLE_ATTITUDE_AND_REAL_ACTIONS',all_stage_signatures)
+ def persisted_intent_and_font():
   ctx,pg,errors=page_for(browser)
   witness=json.loads((R/'qa/current/choice-witness-prefixes.json').read_text())
-  # A6a witnessed action from actual canonical commands: use imported valid save seed.
-  pre=witness['choices']['A6a/accept']['prefix'][:-1]
-  state_info=({'current':load_native_witness(pg,pre)['id']} if NATIVE else pg.evaluate("""prefix=>{state=replay(DATA,prefix);phase='scene';page=0;choicePage=0;render();return {current:state.current,history:state.history}}""",pre))
+  prefix=witness['choices']['A6a/accept']['prefix'][:-1]
+  if NATIVE:
+   state_info={'current':load_native_witness(pg,prefix)['id']}
+  else:
+   state_info=pg.evaluate("""prefix=>{
+     state=replay(DATA,prefix,{intentMode:true,legacyPrefixLength:prefix.length});phase='scene';page=0;choicePage=0;panel='story';
+     let payload=snapshot();localStorage.setItem(KEY,JSON.stringify(payload));lastRaw=localStorage.getItem(KEY);saveBlocked=false;
+     render();return {current:state.current};
+   }""",prefix)
   assert state_info['current']=='A6a'
-  if not NATIVE:pg.evaluate("""()=>{save()}""")  # native witness already installed into persisted storage
-  touch(pg,'[data-choice-group="2"]')
+  options=pg.locator('[data-intent-targets]').evaluate_all('xs=>xs.map(x=>({id:x.dataset.choice,targets:x.dataset.intentTargets.split(",")}))')
+  stage=next(x['id'] for x in options if 'accept' in x['targets'])
+  touch(pg,f'[data-choice="{stage}"]')
   raw=pg.evaluate('(k)=>localStorage.getItem(k)',KEY)
-  assert json.loads(raw)['ui']['choicePage']==2
-  ctx2,pg2,e2=page_for(browser,seed={KEY:raw});assert current(pg2)=='A6a'
+  stored=json.loads(raw)
+  assert stored['commands'][-1]['id']==stage
+  assert stored['uiSchema']=='v4.13-true-decisions'
+  assert stored['legacyPrefixLength']==len(prefix)
+  ctx2,pg2,e2=page_for(browser,seed={KEY:raw})
+  assert current(pg2)=='A6a'
+  finish_beats(pg2)
   assert pg2.locator('[data-choice="accept"]').count()==1
   touch(pg2,'#menu');touch(pg2,'[data-action="font"]');touch(pg2,'[data-nav="story"]')
-  assert pg2.locator('body').get_attribute('class') is not None and pg2.evaluate('document.body.classList.contains("large")')
+  assert pg2.evaluate('document.body.classList.contains("large")')
   assert not errors and not e2
-  ctx2.close();ctx.close();return {'restoredChoiceCategory':2,'largeFont':True}
- check('GROUP_SELECTION_PERSISTENCE_AND_LARGE_FONT',persisted_group_and_font)
+  ctx2.close();ctx.close();return {'restoredAttitude':stage,'largeFont':True}
+ check('REAL_ATTITUDE_SAVE_RELOAD_AND_FONT',persisted_intent_and_font)
  browser.close()
 report['status']='PASS' if not report['errors'] else 'FAIL'
 (R/'qa/current/v45-browser-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

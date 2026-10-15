@@ -1,0 +1,28 @@
+name: Romance v4.13 reproducible source snapshot
+on:
+  push:
+    branches:
+      - feat/romance-v413-true-decisions-20261015
+    paths:
+      - .github/workflows/romance-source-snapshot.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bundle clean checked-out source
+        run: |
+          tar -czf /tmp/romance-v413-source.tar.gz --exclude=.git -C "$GITHUB_WORKSPACE" .
+          cp /tmp/romance-v413-source.tar.gz ./romance-v413-source.tar.gz
+          echo "SNAPSHOT_HEAD=$(git rev-parse HEAD)"
+          sha256sum romance-v413-source.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: romance-v413-source
+          path: romance-v413-source.tar.gz
+          if-no-files-found: error
+          retention-days: 3

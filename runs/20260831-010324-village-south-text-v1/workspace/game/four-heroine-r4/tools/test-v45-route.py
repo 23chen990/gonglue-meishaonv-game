@@ -34,6 +34,14 @@ with sync_playwright() as pw:
    raise AssertionError('stuck page/reply loop current='+str(p.locator('body').get_attribute('data-current'))+' phase='+str(p.locator('body').get_attribute('data-phase'))+' buttons='+str(p.locator('main button').evaluate_all('els=>els.map(e=>e.outerHTML.slice(0,200))'))+' errors='+str(issues)+' notice='+p.locator('#notice').inner_text())
   def act(c):
    sel='[data-choice="'+c['id']+'"]'
+   if not p.locator(sel).count() and p.locator('[data-intent-targets]').count():
+    # The real v4.13 attitude is a recorded engine command; follow it as a player.
+    leads=p.locator('[data-intent-targets]').evaluate_all('xs=>xs.map(x=>({id:x.dataset.choice,targets:x.dataset.intentTargets.split(",")}))')
+    plan=next((x['id'] for x in leads if c['id'] in x['targets']),None)
+    if not plan:raise AssertionError('missing genuine attitude for '+str(c)+' '+str(leads))
+    tap('[data-choice="'+plan+'"]')
+    settle()
+    assert p.locator(sel).count(),('intention failed to lead to historical valid action',c,plan)
    def find(depth=0):
     if p.locator(sel).count():return True
     if depth>6:raise AssertionError('too many nested decision screens')
@@ -60,7 +68,9 @@ with sync_playwright() as pw:
     else:assert current==c['from'],(i,c,current)
     act(c)
     saved=json.loads(p.evaluate('(k)=>localStorage.getItem(k)',K))['commands']
-    assert saved==commands[:i+1],('non-matching commands at',i,c,saved[-4:])
+    played=[(x['from'],x['id']) for x in saved if not x['id'].startswith('intent:')]
+    original=[(x['from'],x['id']) for x in commands[:i+1]]
+    assert played==original,('non-matching original action order',i,c,saved[-5:])
     assert not issues,issues
     if i in [0,15,35,60,len(commands)-1] and name=='romance_glst':
      p.screenshot(path=str(D/f'{name}_{i:03}.png'))
@@ -69,11 +79,13 @@ with sync_playwright() as pw:
    assert p.locator('body').get_attribute('data-ending')==w['ending']
    # Read-only history/rewind on actual touch path.
    tap('#menu');tap('[data-nav="history"]')
-   mark=next(i for i,c in enumerate(commands) if c['from']=='t02') if any(c['from']=='t02' for c in commands) else 12
+   full=json.loads(p.evaluate('(k)=>localStorage.getItem(k)',K))['commands']
+   mark=next((i for i,c in enumerate(full) if c['from']=='t02'),min(12,len(full)-1))
+   selected=full[mark]
    tap(f'[data-restore="{mark}"]')
    after=json.loads(p.evaluate('(k)=>localStorage.getItem(k)',K))['commands']
-   assert len(after)==mark and p.locator('body').get_attribute('data-current')==commands[mark]['from']
-   report['routes'].append({'route':name,'status':'PASS','ending':w['ending'],'realTouchChoices':len(commands)-skipped,'recordedCommands':len(commands),'zeroTapContinuation':skipped,'rewind':True})
+   assert len(after)==mark and p.locator('body').get_attribute('data-current')==selected['from']
+   report['routes'].append({'route':name,'status':'PASS','ending':w['ending'],'realTouchChoices':len(full)-skipped,'recordedCommands':len(full),'addedAttitudes':len(full)-len(commands),'zeroTapContinuation':skipped,'rewind':True})
    print('PASS',name,report['routes'][-1],flush=True)
   except Exception as e:
    report['failures'].append({'route':name,'error':str(e)});print('FAIL',name,str(e),flush=True)

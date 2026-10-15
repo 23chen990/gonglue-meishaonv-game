@@ -6,9 +6,9 @@ const KEY='gonglue:revision-r4.5-portrait:canonical';
 const PREVIOUS_KEY='gonglue:revision-r4.3-intro:canonical';
 // v4.12 relationship feedback is text-only; known v4.5/v4.8/v4.9/v4.10/v4.11 saves are replayed, backed up and migrated.
 // Existing verified v4.5-v4.8 saves are replayed before backing up and migrating.
-const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8','e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0','473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b','fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a']);
+const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8','e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0','473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b','fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a','d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3']);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
+let state=createState({intentMode:true}), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
 let profile={endings:{},bonuses:{},readPages:[]}, notice='', saveBlocked=false, lastRaw=null;
 let choicePage=0, soundOn=false, soundContext=null, readerExpanded=false;
@@ -18,10 +18,10 @@ let renderToken=0, downToken=null, pointerStart=null, moved=false, previousScrol
 let storage=null;
 try{storage=window.localStorage;}catch{saveBlocked=true;notice='这个窗口暂时不能保存。仍可继续阅读；离开前请在菜单导出记录。';}
 const hashText=t=>{let h=2166136261;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0).toString(16);};
-function replyFromLog(log){
+function replyFromLog(log,legacyPrefixLength=0){
  if(!log.length)return [];
- const before=replay(DATA,log.slice(0,-1));
- return choose(before,DATA,log.at(-1).id).reply;
+ const before=replay(DATA,log.slice(0,-1),{intentMode:true,legacyPrefixLength:Math.min(legacyPrefixLength,log.length-1)});
+ return choose(before,DATA,log.at(-1).id,before.revision,{allowLegacy:log.length-1<legacyPrefixLength}).reply;
 }
 function qualify(s,b){
  const q=b.requires;
@@ -45,6 +45,7 @@ function safeProfile(raw){
 }
 function snapshot(){
  return {version:VERSION,storyHash:STORY_HASH,commands:state.history,
+         uiSchema:'v4.13-true-decisions',legacyPrefixLength:state.legacyPrefixLength||0,
          ui:{phase,page,choicePage,large,soundOn,readerExpanded},profile};
 }
 function save(){
@@ -64,8 +65,9 @@ function save(){
 }
 function readPayload(v){
  if(!v||v.version!==VERSION||(v.storyHash!==STORY_HASH&&!COMPATIBLE_STORY_HASHES.has(v.storyHash)))throw Error('这不是兼容版本的选择记录；旧记录没有被改写。');
- const s=replay(DATA,v.commands);
- const reply=replyFromLog(v.commands);
+ const legacyPrefixLength=v.uiSchema==='v4.13-true-decisions'?v.legacyPrefixLength:(Array.isArray(v.commands)?v.commands.length:0);
+ const s=replay(DATA,v.commands,{intentMode:true,legacyPrefixLength});
+ const reply=replyFromLog(v.commands,legacyPrefixLength);
  const ui=v.ui||{};
  const ph=ui.phase==='reply'&&reply.length?'reply':'scene';
  const pg=Number.isInteger(ui.page)&&ui.page>=0&&ui.page<1000?ui.page:0;
@@ -263,7 +265,7 @@ function scheduleControls(enabled){
  const side=enabled.filter(x=>x.id.startsWith('side:'));
  const relations=enabled.filter(x=>!x.id.startsWith('visit:')&&!x.id.startsWith('side:')&&x.id!=='rest');
  const rest=enabled.filter(x=>x.id==='rest');
- const button=o=>`<button class="choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`;
+ const button=o=>`<button class="choice" data-choice="${esc(o.id)}"${o.id.startsWith('intent:')?` data-intent-targets="${esc((o.coveredChoices||[]).join(','))}"`: ''} data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`;
  const group=(name,desc,index)=>`<button class="vn-group" data-choice-group="${index}"><span><strong>${esc(name)}</strong><small>${esc(desc)}</small></span><i aria-hidden="true">›</i></button>`;
  const desc=xs=>xs.slice(0,3).map(x=>x.label.replace(/[“”]/g,'').slice(0,12)).join(' / ');
  const byFamily=(xs,rule)=>{
@@ -330,7 +332,7 @@ function controls(cp){
  const enabled=cp.view.choices.filter(o=>o.enabled);
  const disabled=cp.view.choices.filter(o=>!o.enabled);
  if(state.current==='@schedule'&&enabled.length>4)return scheduleControls(enabled);
- const button=o=>`<button class="choice" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`;
+ const button=o=>`<button class="choice" data-choice="${esc(o.id)}"${o.id.startsWith('intent:')?` data-intent-targets="${esc((o.coveredChoices||[]).join(','))}"`: ''} data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`;
  const primaryAll=enabled;
  const groups=primaryAll.length>4?semanticGroups(state.current,primaryAll):null;
  if(groups){
@@ -559,10 +561,10 @@ function relationsHTML(){
 }
 function historyHTML(){
  let html='<h2>你做过的选择</h2><p class="small">回到某次选择之前，会替换其后的本轮经历。结局收藏保留。</p>';
- let s=createState();
+ let s=createState({intentMode:state.intentMode});s.legacyPrefixLength=state.legacyPrefixLength||0;
  for(let i=0;i<state.history.length;i++){
   const h=state.history[i],v=renderScene(s,DATA),o=v.choices.find(o=>o.id===h.id);
-  const result=choose(s,DATA,h.id);
+  const result=choose(s,DATA,h.id,s.revision,{allowLegacy:i<s.legacyPrefixLength});
   html+=`<section class="panel"><div class="small">${i+1} · ${esc(v.title)}</div><p>${esc(o?.label||h.id)}</p><details data-history="${i}"><summary>这次实际读到的内容</summary>${rowsHTML(v.body,h.from)}<p class="small">你的选择之后</p>${rowsHTML(result.reply,h.from)}</details><button class="quiet" data-restore="${i}">从这里重选</button></section>`;
   s=result.state;
  }
@@ -587,7 +589,7 @@ function menuHTML(){
  <button class="quiet" data-nav="collection">结局收藏</button><button class="quiet" data-action="font">${large?'恢复普通字号':'大字阅读'}</button><button class="quiet" data-action="sound">${soundOn?'关闭轻音效':'开启轻音效'}</button>
  <button class="quiet" data-action="export">导出这局记录</button><button class="quiet" data-action="import">导入本版记录</button>
  <button class="quiet" data-action="reset">备份后新开局</button><button class="quiet" data-action="reload">读取已保存记录</button></div>
- <section class="panel small"><h3>这份版本的范围</h3><p>v4.9 竖屏全剧情候选。保留四位独立角色正式剧情与真实回放；所选方向仅是免消耗的选项分类。旧存档保持独立，可自行导出。</p>
+ <section class="panel small"><h3>这份版本的范围</h3><p>v4.13 完整剧情试玩版。16 处关键决策可先表态、收到人物反馈，再选具体行动；两步都可存档和回退。日程安排仍用分类导航，不会消耗额外行动。</p>
  <p>角色均为成年人。本版使用原创候选立绘和自制轻音效；没有平台广告接入或真人留存结论。原始文件和旧版存档不改写。</p>
  <p>${saveBlocked?'当前未自动保存，请离开前导出记录。':'选择、回应页与阅读位置会保存在此浏览器的本版独立记录中。'}</p></section>`;
 }
@@ -640,7 +642,7 @@ function arm(){downToken=null;pointerStart=null;moved=false;}
 function exportLog(){
  const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download='gonglue-r4-5-choices.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ a.href=url;a.download='gonglue-v4-13-choices.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function backToStory(){
  panel='story';render(false);window.scrollTo(0,previousScroll);
@@ -653,7 +655,7 @@ function reset(){
    if(lastRaw)storage.setItem(KEY+':backup:'+Date.now(),lastRaw);
   }catch{notice='备份没有成功，未清除当前记录。请先导出。';showNotice();return;}
  }
- state=createState();lastReply=[];phase='scene';page=0;choicePage=0;panel='story';notice='';
+ state=createState({intentMode:true});lastReply=[];phase='scene';page=0;choicePage=0;panel='story';notice='';
  if(storage){try{lastRaw=storage.getItem(KEY);saveBlocked=false;}catch{saveBlocked=true;}}
  save();render();
 }

@@ -1,23 +1,90 @@
 {
   "status": "PASS",
-  "version": "bookside-revision-r4.2",
-  "scope": "Ordinary-command replay of all authored choice witnesses; non-exhaustive state exploration, not human experience",
+  "version": "bookside-revision-r4.3",
+  "scope": "Authenticated ordinary-command witness paths, replayed through actual v4.13 first-stage/second-stage interpreter options; non-exhaustive across all conceivable flag combinations.",
   "hashes": {
-    "story": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
-    "engine": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa"
+    "story": "d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3",
+    "engine": "c72b3bb6d054fc5dd636bda2d2b42af19ace04c4e2cb621aa736558d8980e4ba"
   },
   "observedChoices": 751,
-  "uniqueStates": 279,
+  "uniqueStates": 308,
   "byChoiceWitness": {
     "1": 29,
-    "2": 76,
+    "2": 146,
     "3": 504,
-    "4": 72,
-    "5": 64,
-    "6": 6
+    "4": 72
   },
-  "reachableStatesWith5OrMore": 16,
-  "over4": [
+  "stagedScenes": 16,
+  "stageOneChoices": [
+    {
+      "scene": "A2a",
+      "count": 2
+    },
+    {
+      "scene": "A3a",
+      "count": 2
+    },
+    {
+      "scene": "A3b",
+      "count": 2
+    },
+    {
+      "scene": "t03",
+      "count": 2
+    },
+    {
+      "scene": "A4a",
+      "count": 2
+    },
+    {
+      "scene": "A5a",
+      "count": 2
+    },
+    {
+      "scene": "A5b",
+      "count": 2
+    },
+    {
+      "scene": "A6a",
+      "count": 2
+    },
+    {
+      "scene": "LU_MOVE2",
+      "count": 2
+    },
+    {
+      "scene": "A7a",
+      "count": 2
+    },
+    {
+      "scene": "s03",
+      "count": 2
+    },
+    {
+      "scene": "l03",
+      "count": 2
+    },
+    {
+      "scene": "g03",
+      "count": 2
+    },
+    {
+      "scene": "H_glst",
+      "count": 2
+    },
+    {
+      "scene": "EXEC_s",
+      "count": 2
+    },
+    {
+      "scene": "EXEC_l",
+      "count": 2
+    }
+  ],
+  "convertedOriginalChoices": 70,
+  "reachableStatesWith5OrMore": 0,
+  "over4": [],
+  "legacyOver4": [
     {
       "scene": "A2a",
       "count": 5,
@@ -196,7 +263,8 @@
       ]
     }
   ],
+  "legacyOverFourStates": 16,
   "failures": [],
-  "decisionConstraint": "VISIBLE_CHOICES_MAX_3_BY_UI_PAGING; STRICT_TOTAL_CHOICES_MAX_4_NOT_MET",
-  "independentBrowserAssertion": "RUN tools/test-ui-r4.py; ordinary-command count alone does not verify presentation"
+  "decisionConstraint": "STRICT_REAL_DECISIONS_MAX_4_PASS",
+  "additionalChecks": "run test-v413-intents.mjs and native test-v45-browser.py / test-v45-route.py; UI-only groups do not count as first-stage narrative decisions"
 }
