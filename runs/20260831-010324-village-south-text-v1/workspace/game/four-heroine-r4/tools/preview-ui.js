@@ -737,6 +737,24 @@ document.addEventListener('pointerdown',e=>{
 document.addEventListener('pointermove',e=>{
  if(pointerStart&&e.pointerId===pointerStart.id&&Math.hypot(e.clientX-pointerStart.x,e.clientY-pointerStart.y)>10)moved=true;
 },{passive:true});
+// Safari/WebKit can omit a delegated click for non-native interactive scene sections.
+// Advance on a genuine primary pointer release and suppress its subsequent click.
+let lastReadingPointerAdvance=-Infinity;
+document.addEventListener('pointerup',e=>{
+ if(!e.isPrimary||!pointerStart||pointerStart.id!==e.pointerId)return;
+ const target=e.target instanceof Element?e.target:null;
+ const allowed=panel==='story'&&!busy&&!moved&&downToken===renderToken&&
+  target?.closest('.vn-stage,.vn-scroll')&&
+  !target.closest('button,a,details,summary,input,textarea,[role="button"]')&&
+  !window.getSelection()?.toString();
+ pointerStart=null;
+ if(!allowed)return;
+ busy=true;
+ try{
+  if(advanceReading())lastReadingPointerAdvance=e.timeStamp;
+ }catch(err){notice='阅读推进失败：'+err.message;showNotice();}
+ finally{busy=false;}
+},{passive:true});
 document.addEventListener('pointercancel',()=>{downToken=null;pointerStart=null;moved=true;});
 window.addEventListener('blur',()=>{downToken=null;pointerStart=null;moved=true;});
 document.addEventListener('keydown',e=>{
@@ -746,6 +764,8 @@ document.addEventListener('keydown',e=>{
 document.addEventListener('click',ev=>{
  const target=ev.target instanceof Element?ev.target:null;
  const b=target?.closest('button');
+ if(!b&&ev.detail>0&&ev.timeStamp-lastReadingPointerAdvance>=0&&
+    ev.timeStamp-lastReadingPointerAdvance<900)return;
  if(!b){
   if(panel!=='story'||busy||!target?.closest('.vn-stage,.vn-scroll')||
      target.closest('a,details,summary,input,textarea,[role="button"]')||window.getSelection()?.toString())return;
