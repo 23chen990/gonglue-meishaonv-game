@@ -2,7 +2,7 @@
 
 本文件由 `tools/export-and-audit.py` 从正式 JSON 自动生成。正文、条件块、即时回应、回应条件、效果与后继全部包含；条件分支并非在一次游玩中同时出现。Markdown 不作为编辑源。
 
-正式剧情 SHA-256：`d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3`
+正式剧情 SHA-256：`51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546`
 
 ## 人物与日程
 
@@ -146,11 +146,11 @@
 
 ### 正文
 
-**旁白**：《今夜偏爱男主》第十三章，你最想撕掉的一页：临时场务许照因演出事故被清退。错版不是他做的，交接单上的签名却是他的。你盯着那行字，越看越火。
+**旁白**：手机停在《今夜偏爱男主》第十三章。临时场务许照被保安带出后台，通知上写着“因现场失误清退”。你往前翻了两页，才看到一张写着他名字的交接单。
 
 `ENTRY_WAKE.intro.001`
 
-**旁白**：你正往前翻，想看他究竟哪一步被人套住，手机上的字忽然一片重影。桌沿从指尖消失，整个人向下坠去。
+**旁白**：你想看看究竟是谁让许照签的字，眼前的手机屏幕却忽然重了影。指尖一空，你连椅子都没来得及扶住。
 
 `ENTRY_WAKE.intro.002`
 
@@ -158,7 +158,7 @@
 
 `ENTRY_WAKE.intro.003`
 
-**旁白**：后背狠狠撞上金属箱角。你猛地睁眼，舞台灯刺得睁不开眼。台前几百人的说话声混着催场的倒数，仿佛下一秒就要出事。
+**旁白**：后背磕上一只冰凉的金属箱。你猛地睁眼，头顶的舞台灯晃得人发晕。对讲机里有人催场，隔着幕布传来密密的观众声。
 
 `ENTRY_WAKE.intro.004`
 
@@ -170,15 +170,15 @@
 
 `ENTRY_WAKE.intro.006`
 
-**旁白**：你扶着箱盖站稳。胸前工牌晃到眼前：许照，临时场务。连照片都是陌生人的脸。那个第七天会被赶出去的炮灰，现在是你。
+**旁白**：你扶着箱子站起来，胸前的工牌撞在手背上。上面写着“许照，临时场务”，照片是一张完全陌生的脸。你又看了一遍名字。
 
 `ENTRY_WAKE.intro.007`
 
-**许照**：（等等，我刚刚还在看小说……怎么连胸前这张工牌都是真的？）
+**许照**：（等等，我刚才明明在家里看书。这工牌怎么会挂在我身上？）
 
 `ENTRY_WAKE.intro.008`
 
-**旁白**：侧幕上写着“北岸艺术中心·栖光计划”。灯光、道具箱、排练表，全都不像梦。
+**旁白**：侧幕挂着“北岸艺术中心·栖光计划”的牌子。地上的胶带、箱子上的编号，还有身边忙得顾不上看你的人，都真实得让人心慌。
 
 `ENTRY_WAKE.intro.009`
 
@@ -198,7 +198,7 @@
 
 `ENTRY_WAKE.intro.013`
 
-**许照**：（唐映雪、沈清辞、陆景行……连这场事故都一模一样。不是撞名，我真的掉进书里了。）
+**许照**：（唐映雪、沈清辞、陆景行……怎么一个名字都没错？还有那段被剪掉的前奏。）
 
 `ENTRY_WAKE.intro.014`
 
@@ -206,15 +206,15 @@
 
 `ENTRY_WAKE.intro.015`
 
-**原著记忆**：我记得这场！北岸艺术中心首演，19:03，错误的伴奏把唐映雪逼到台边。书里是陆景行弹琴救场，一夜出了名。
+**原著记忆**：我记得这场。首演，19:03，前奏被剪掉；陆景行用钢琴替唐映雪接住了开场。书里写得很短，可眼前的人真的在等那四小节。
 
 `ENTRY_WAKE.intro.016`
 
-**许照**：（等等……我不是来现场看演出的。我成了书里那个炮灰许照？）
+**许照**：（不可能吧……我只是在看小说。难道我真的成了那个许照？）
 
 `ENTRY_WAKE.intro.017`
 
-**旁白**：你狠狠掐了一下手心，痛得倒抽气。没有退出按钮，原著也不会替你暂停。身后就是放着事故文件的设备箱。
+**旁白**：你用力掐了自己一把，疼得嘶了一声。不是梦。你连面前音控设备的按钮都认不全，周围的人却已经把你当成了这里的工作人员。
 
 `ENTRY_WAKE.intro.018`
 
@@ -222,39 +222,39 @@
 
 `ENTRY_WAKE.intro.019`
 
-**许照**：不用。我还能站稳。（别人靠这一场翻身，我却可能从这里开始背锅。）
+**许照**：先不用……我还能站。让我缓一下。（要是现在就走，今晚那张交接单怎么办？）
 
 `ENTRY_WAKE.intro.020`
 
-**原著记忆**：原著里，许照听程放的话守在设备箱旁，眼睁睁看陆景行接过舞台。没人核对真正的错版来源，七天后，程放把责任推到他签过的交接单上。
+**原著记忆**：我记得许照在书里听程放的话，没碰过音控。可后来那张“现场版本确认”偏偏是他签的。别人做错的事，最后全算在他头上。
 
 `ENTRY_WAKE.intro.021`
 
-**原著记忆**：唐映雪的歌火了，署名和版本却不由她定；沈清辞想保下来的小演出厅，最后成了巡演排练基地。她们当时还不知道，今晚就是第一道岔路。
+**原著记忆**：唐映雪后来连自己的歌曲版本都说不上话；沈清辞想留住的那座小演出厅，也没能留住。可现在，她们还在为眼前这一首歌发愁。
 
 `ENTRY_WAKE.intro.022`
 
-**原著记忆**：林见月的镜头本来能留下真相，可原著让她追着陆景行的巡演跑；顾晚棠反对过那个版本，最后却被当成拍板的人。书里每个人都付了代价。
+**原著记忆**：林见月的镜头拍过后台，顾晚棠手里有审批邮件。原著里这些东西都没救成许照。现在就算我记得，她们也不会凭一句话相信我。
 
 `ENTRY_WAKE.intro.023`
 
-**原著记忆**：匿名电台、旁厅、现场原声、没公开的意见邮件……我知道线索在哪，但现在手里一件证据都没有。记得剧情不等于能凭空拿出东西。
+**原著记忆**：蓝标盘、审批邮件、切换的时间……书里提到过几个线索，可我现在手里一件证据都没有。先找到一样真的，才有机会开口。
 
 `ENTRY_WAKE.intro.024`
 
-**原著记忆**：而我自己的死线只有七天。原著第十三章，许照连一句完整的解释都没说出来，就被保安送出侧门。这一次，我至少不能在第一天签下那张糊涂账。
+**原著记忆**：还有七天。第七天，那个被当成炮灰的许照会被带出剧场。眼前倒数的却不是七天，是这一首歌开始前的几秒。
 
 `ENTRY_WAKE.intro.025`
 
-**旁白**：还有一条被小说一笔带过的细节：接线板下面，压着一枚贴蓝胶带的原版 U 盘。书里没人找到它。你低头——设备箱就贴在膝边。
+**旁白**：你想起小说里一个不起眼的细节：贴蓝胶带的原版 U 盘，被压在接线板下面，直到散场也没人翻出来。接线板就在你脚边。
 
 `ENTRY_WAKE.intro.026`
 
-**许照**：（按原著走，我能提前看清谁想甩锅；动手找盘，我能抢在钢琴救场前改写这一幕；先查证据，也许能把第七天的陷阱提前拆了。）
+**许照**：（装作不知道，先看原著怎么发展；去找那枚蓝标盘，试试能不能救场；或者先记下谁动过文件。哪条路我都没把握。）
 
 `ENTRY_WAKE.intro.027`
 
-**旁白**：台上，唐映雪等着重新进歌。陆景行的手悬在琴键上，程放朝你伸手，要你别碰箱子。第一次改命的机会，只剩几个呼吸。
+**旁白**：台上，唐映雪已经摘下一边耳返。陆景行抬手准备落下第一个琴音；程放却朝你挥手，不许你靠近箱子。你得现在决定——只剩几个呼吸。
 
 `ENTRY_WAKE.intro.028`
 
@@ -935,7 +935,7 @@
 
 `OP_TALK_l.r4.body.003`
 
-**林见月**：那就先不拍。她扣上镜头盖，停了一会儿又问：你现在还有点发抖吗？
+**林见月**：那就先不拍你。……等等，你手怎么还在抖？要不要先坐一下？
 
 `OP_TALK_l.r4.body.004`
 
@@ -1020,19 +1020,19 @@
 
 `OP_TALK_g.r4.body.001`
 
-**顾晚棠**：许照。第一天来，就敢当面问我是不是改过节目单？
+**顾晚棠**：许照，对吧？刚才后台乱成那样，交接单是谁让你签的？
 
 `OP_TALK_g.r4.body.002`
 
-**许照**：第一天。你要是介意，我明天再敢。
+**许照**：程放一直催，纸上却没写清楚到底是谁负责导出、谁负责播放。
 
 `OP_TALK_g.r4.body.003`
 
-**顾晚棠**：明天未必轮到我被你质问。先坐，你刚才脸都快没血色了。
+**顾晚棠**：那就先别急着替谁认账。坐下吧，你脸色都白了。
 
 `OP_TALK_g.r4.body.004`
 
-**许照**：我知道自己问得冒失。可你刚才真往这边看过来的时候，我比上台还紧张。
+**许照**：我刚才真有点慌。你一提那张纸，我才发现手还在抖。
 
 `OP_TALK_g.r4.body.005`
 
@@ -1121,7 +1121,7 @@
 
 `OP_TALK_self.r4.body.002`
 
-**旁白**：你看着那一行字。原著写他退场时，连名字都只提了一次。现在事情没按原样发生。
+**旁白**：阿衡把清点表转给你。你翻到自己的名字，旁边清清楚楚写着“找到备用盘”。这回，至少有人知道你做过什么。
 
 `OP_TALK_self.r4.body.003`
 
@@ -1303,7 +1303,7 @@
 
 `OP_SECRET_s.r4.body.003`
 
-**沈清辞**：你先说。我听完自己核，不会因为你说得玄就把现场记录撕了。
+**沈清辞**：你先说你亲眼看见了什么。没看见的部分，我会自己查。
 
 `OP_SECRET_s.r4.body.004`
 
@@ -1602,7 +1602,7 @@
 
 ### 正文
 
-**旁白**：首演结束。你以为失去钢琴名场面的陆景行会有些难堪，他却抱着乐谱走下来，直接给制作人打了电话。原男主的机会从来不只靠这一场。
+**旁白**：首演刚散场，陆景行就抱着乐谱走下台，给制作人打了电话。你还没从那阵掌声里缓过来，他已经替唐映雪问好了下一次试音的机会。
 
 `OP_RIVAL.r4.body.001`
 
@@ -1618,7 +1618,7 @@
 
 `OP_RIVAL.r4.body.004`
 
-**原著记忆**：（原著里这份邀约三天后才出现。）你抢到一次改命机会，他就把下一个舞台提前了。想赢过这样的人，不能靠等他犯错。
+**原著记忆**：（书里这次录音邀约明明是三天后才有的。看来我改变了今晚，别人接下来的决定也会变。我不能只盯着自己记得的那几页。）
 
 `OP_RIVAL.r4.body.005`
 
@@ -3804,7 +3804,7 @@
 
 `OP_FORK.r42.body.001`
 
-**旁白**：（原著根本没这条消息，因为原版从来没被翻出来。）你原本只想救场，现在却逼得有人提前出手。改命的第一笔收益，是被更多人记住；第一笔风险，也是。
+**旁白**：原著里没有这条撤回的消息。你看了一眼身边的蓝标盘，忽然明白：有人发现事情没按原来的路走。可你没来得及截图，手机上只剩一行“消息已撤回”。
 
 `OP_FORK.r42.body.002`
 
@@ -3901,11 +3901,11 @@
 
 `A1b.r42.body.002`
 
-**旁白**：你低头看签名栏。七天后让原著许照退场的，不是突然出现的保安，而是每次有人催他“先签一下”。你把笔按在桌上，没急着写名字。
+**旁白**：你盯着签名栏，忽然想起书里许照被赶出后台的那一页。纸和笔都是真的，程放就站在对面等着。你把笔放回桌上。
 
 `A1b.r42.body.003`
 
-**许照**：（这张纸我能签，也能拒。今晚我不必证明自己多神，只要让真正负责的人，再也不能躲在我后面。）
+**许照**：（签了，他明天就能说是我确认过版本。不签，他又能说我不配合。先问清责任是谁的，至少别再替别人签一张糊涂账。）
 
 `A1b.r42.body.004`
 
@@ -4484,7 +4484,7 @@
 
 ## t03｜她给你留的第一排
 
-类型：`personal`。元数据：`{"background":"stage","music":"warm","character":"t","stage":3,"minSlot":5}`
+类型：`personal`。元数据：`{"background":"stage","music":"warm","decisionSteps":[{"id":"date","label":"告诉映雪：想把这份喜欢认真往前推","options":["open","exclusive"],"reply":[{"speaker":"T","text":"我喜欢听你亲口说想靠近。但别把“认真”说成我必须接受哪一种关系。","id":"t03.v413.date.reply.001","textHash":"c469d5d43db96369"}],"after":[{"speaker":"N","text":"她放下拨片，等你把约会的边界说明白。","id":"t03.v413.date.after.001","textHash":"10261dd06f00e813"}]},{"id":"slow","label":"珍惜她，却暂时不把今晚叫作恋爱","options":["wait","friend","decline"],"reply":[{"speaker":"T","text":"那也别替我安排以后。我今天愿意陪你坐着听完这首。","id":"t03.v413.slow.reply.001","textHash":"4bf464d48c124b73"}],"after":[{"speaker":"N","text":"映雪把第一排的椅子扶正，留给你自己选距离。","id":"t03.v413.slow.after.001","textHash":"0abdb27e135ca165"}]}],"character":"t","stage":3,"minSlot":5}`
 
 ### 正文
 
@@ -6166,7 +6166,7 @@
 
 ## s03｜没有抄送助理的邀请
 
-类型：`personal`。元数据：`{"background":"street","music":"quiet","character":"s","stage":3,"minSlot":5}`
+类型：`personal`。元数据：`{"background":"street","music":"quiet","decisionSteps":[{"id":"date","label":"对清辞说清想认真约会的心意","options":["open","exclusive"],"reply":[{"speaker":"S","text":"公事我能签流程，感情不一样。我得知道你说的“认真”具体到哪一步。","id":"s03.v413.date.reply.001","textHash":"81e8c44a50d4d72a"}],"after":[{"speaker":"N","text":"她把工作手机反扣在桌上，认真等你说出关系范围。","id":"s03.v413.date.after.001","textHash":"334943de1fb99b99"}]},{"id":"slow","label":"先把彼此放在舒适的位置，不催她答应","options":["wait","friend","decline"],"reply":[{"speaker":"S","text":"谢谢你没有把我今天出来吃饭，当成默认同意。","id":"s03.v413.slow.reply.001","textHash":"9b2b9b293f108809"}],"after":[{"speaker":"N","text":"服务员放下两杯水，她把这一刻当作一次平等的谈话。","id":"s03.v413.slow.after.001","textHash":"f0eaebd8e0a90288"}]}],"character":"s","stage":3,"minSlot":5}`
 
 ### 正文
 
@@ -7754,7 +7754,7 @@
 
 ## l03｜不借旧友的名义
 
-类型：`personal`。元数据：`{"background":"projection","music":"travel","character":"l","stage":3,"minSlot":5}`
+类型：`personal`。元数据：`{"background":"projection","music":"travel","decisionSteps":[{"id":"date","label":"认真靠近见月，也讲清与别人之间的边界","options":["open","exclusive"],"reply":[{"speaker":"L","text":"我不想再被谁的旧故事安排位置。你要说喜欢，就说自己的决定。","id":"l03.v413.date.reply.001","textHash":"7967b8dc3cf85ee1"}],"after":[{"speaker":"N","text":"见月关掉投影，只留下你们两个的声音。","id":"l03.v413.date.after.001","textHash":"c2d96fb820023f5d"}]},{"id":"slow","label":"先留出空间，别用恋爱替她证明价值","options":["wait","friend","decline"],"reply":[{"speaker":"L","text":"可以。我拍片子不用谁批准，喜欢人也不必赶截止日期。","id":"l03.v413.slow.reply.001","textHash":"b5bbd5e20551c952"}],"after":[{"speaker":"N","text":"她从背包里拿出一张没交的分镜纸，等你给出诚实的距离。","id":"l03.v413.slow.after.001","textHash":"15ddbcfc52dcb5c5"}]}],"character":"l","stage":3,"minSlot":5}`
 
 ### 正文
 
@@ -9400,7 +9400,7 @@
 
 ## g03｜今天没有文件夹
 
-类型：`personal`。元数据：`{"background":"diner","music":"glass","character":"g","stage":3,"minSlot":5}`
+类型：`personal`。元数据：`{"background":"diner","music":"glass","decisionSteps":[{"id":"date","label":"直接告诉晚棠：想认真试着交往","options":["open","exclusive"],"reply":[{"speaker":"G","text":"合作协议里能写期限，喜欢不能。我想听你自己讲清承诺到哪里。","id":"g03.v413.date.reply.001","textHash":"a565ae665868249d"}],"after":[{"speaker":"N","text":"晚棠把手机倒扣，第一次没急着找一个风险最低的答案。","id":"g03.v413.date.after.001","textHash":"b2a47bdaa76633a2"}]},{"id":"slow","label":"不凭一顿饭许下感情承诺","options":["wait","friend","decline"],"reply":[{"speaker":"G","text":"行，你愿意讲清楚就好。最怕有人吃完饭才说刚才算默认。","id":"g03.v413.slow.reply.001","textHash":"0acf3899656d930d"}],"after":[{"speaker":"N","text":"她笑了一下，拿起筷子；餐桌仍然属于你们两个人。","id":"g03.v413.slow.after.001","textHash":"ec21b224778ab660"}]}],"character":"g","stage":3,"minSlot":5}`
 
 ### 正文
 
@@ -10724,7 +10724,7 @@
 
 ## A2a｜十七秒热搜，差点偷走她的歌
 
-类型：`common`。元数据：`{"background":"recording","music":"pulse","next":"A2b","clock":{"day":2,"time":"21:00"}}`
+类型：`common`。元数据：`{"background":"recording","music":"pulse","decisionSteps":[{"id":"credit","label":"先站到她身边，把歌的署名争回来","options":["independent","negotiated"],"reply":[{"speaker":"T","text":"你先问我想不想争回来，而不是替我按确认。这一点，我记住了。","id":"A2a.v413.credit.reply.001","textHash":"3c7b50ded102aae8"}],"after":[{"speaker":"N","text":"她把发布方案拉到你面前，手指停在两种署名条件上。","id":"A2a.v413.credit.after.001","textHash":"7be56a1309c89d97"}]},{"id":"space","label":"先保留合作与退路，不替她定去留","options":["duet","pause","unchanged"],"reply":[{"speaker":"T","text":"如果还要合作，我必须听清楚边界。要停，我也想自己决定。","id":"A2a.v413.space.reply.001","textHash":"7c467607fbf074b7"}],"after":[{"speaker":"N","text":"屏幕上的预告还没播完，下一步是怎样处置它，而不是一句空泛的支持。","id":"A2a.v413.space.after.001","textHash":"58e8c5b6200931a5"}]}],"next":"A2b","clock":{"day":2,"time":"21:00"}}`
 
 ### 正文
 
@@ -11090,7 +11090,7 @@
 
 ## A3a｜第三天：一间旁厅，两套未来
 
-类型：`common`。元数据：`{"background":"theatre","music":"quiet","next":"A3b","clock":{"day":3,"time":"21:00"}}`
+类型：`common`。元数据：`{"background":"theatre","music":"quiet","decisionSteps":[{"id":"fight","label":"陪她试着把独立舞台留下来","options":["cooperative","shared","residency"],"reply":[{"speaker":"S","text":"我愿意试，但别为了哄我说一定能成。你帮我算清第一场就好。","id":"A3a.v413.fight.reply.001","textHash":"45825b4cae5e0120"}],"after":[{"speaker":"N","text":"她重新打开成本表，在场租、时段和备选空间之间画了三条线。","id":"A3a.v413.fight.after.001","textHash":"4f8afecb01cb3d6c"}]},{"id":"release","label":"尊重她退出的权利，不用情怀绑住她","options":["exit","leave"],"reply":[{"speaker":"S","text":"你没劝我死守，反倒让我敢承认自己也会累。","id":"A3a.v413.release.reply.001","textHash":"749b85d2203984d6"}],"after":[{"speaker":"N","text":"桌上的交接清单还空着；走得体面和什么都不管，是两回事。","id":"A3a.v413.release.after.001","textHash":"155e83acca76dae4"}]}],"next":"A3b","clock":{"day":3,"time":"21:00"}}`
 
 ### 正文
 
@@ -11239,7 +11239,7 @@
 
 ## A3b｜第4日晚，你先答应谁
 
-类型：`common`。元数据：`{"background":"corridor","music":"warm","next":"LU_MOVE1"}`
+类型：`common`。元数据：`{"background":"corridor","music":"warm","decisionSteps":[{"id":"creative","label":"先回应音乐和影像，不拿邀请当许诺","options":["t","l"],"reply":[{"speaker":"P","text":"我想认真听一个人的作品，今晚的时间得说准。","id":"A3b.v413.creative.reply.001","textHash":"f1bc2bdc4b1cf392"}],"after":[{"speaker":"N","text":"两条私信停在屏幕上：一条是新尾奏，一条是没剪完的短片。","id":"A3b.v413.creative.after.001","textHash":"08e9dc183d7015ea"}]},{"id":"practical","label":"先看现场与现实安排，不随口答应","options":["s","g","none"],"reply":[{"speaker":"P","text":"我不想一句“都行”让所有人白等。先把能去的说清楚。","id":"A3b.v413.practical.reply.001","textHash":"def1df97bca85c6d"}],"after":[{"speaker":"N","text":"清辞的试灯、晚棠的夜宵和留空档，都是需要你负责的真实安排。","id":"A3b.v413.practical.after.001","textHash":"6411eccc1d5a3bb0"}]}],"next":"LU_MOVE1"}`
 
 ### 正文
 
@@ -11384,7 +11384,7 @@
 
 ## A4a｜第五天，她的报名按钮只亮到今晚
 
-类型：`common`。元数据：`{"background":"projection","music":"travel","next":"A4b","clock":{"day":5,"time":"20:00"}}`
+类型：`common`。元数据：`{"background":"projection","music":"travel","decisionSteps":[{"id":"create","label":"陪她争取属于自己的镜头和发表机会","options":["fellowship","stay","film"],"reply":[{"speaker":"L","text":"你不是说“我给你拍”，而是问我想把镜头放在哪儿。那我愿意试。","id":"A4a.v413.create.reply.001","textHash":"20ea3bd565bbedbf"}],"after":[{"speaker":"N","text":"申请页倒计时还在，她把自己写的分镜移到最上方。","id":"A4a.v413.create.after.001","textHash":"8b875b5df904128a"}]},{"id":"guard","label":"先尊重许可和边界，不替她做决定","options":["cut","none"],"reply":[{"speaker":"L","text":"谢谢。素材是人的故事，不是我想用就能用，也不是你想帮就能帮。","id":"A4a.v413.guard.reply.001","textHash":"dcbb96858e384ab3"}],"after":[{"speaker":"N","text":"她关掉未经确认的文件夹，剩下的是你真正愿意承担的那一部分。","id":"A4a.v413.guard.after.001","textHash":"e89b9276d4422128"}]}],"next":"A4b","clock":{"day":5,"time":"20:00"}}`
 
 ### 正文
 
@@ -11654,7 +11654,7 @@
 
 ## A5a｜第六天：她拒绝替所有人签字
 
-类型：`common`。元数据：`{"background":"office","music":"glass","next":"A5b","clock":{"day":6,"time":"19:00"}}`
+类型：`common`。元数据：`{"background":"office","music":"glass","decisionSteps":[{"id":"defend","label":"陪晚棠把责任和决定权一并争回来","options":["independent","bounded","account"],"reply":[{"speaker":"G","text":"我不是求你给我开脱。我想让每一笔钱和每一次签字，都回到该负责的人名下。","id":"A5a.v413.defend.reply.001","textHash":"7023bf229253b9c8"}],"after":[{"speaker":"N","text":"她摊开邮件与预算记录，准备面对一场不会轻松的核对。","id":"A5a.v413.defend.after.001","textHash":"50a3ad670c5e592d"}]},{"id":"freedom","label":"承认她有权离开，也有权不用你救场","options":["leave","none"],"reply":[{"speaker":"G","text":"你没说“忍一忍就过去”。这句话反而让我敢想离开以后怎么办。","id":"A5a.v413.freedom.reply.001","textHash":"826d7343a66a8391"}],"after":[{"speaker":"N","text":"人可以退出错误的局，退出之前要不要交接，是两种不同的承担。","id":"A5a.v413.freedom.after.001","textHash":"1602ecec12866a88"}]}],"next":"A5b","clock":{"day":6,"time":"19:00"}}`
 
 ### 正文
 
@@ -11803,7 +11803,7 @@
 
 ## A5b｜第六天：原男主向我发战书
 
-类型：`common`。元数据：`{"background":"stage","music":"pulse","next":"@schedule"}`
+类型：`common`。元数据：`{"background":"stage","music":"pulse","decisionSteps":[{"id":"face","label":"和陆景行把合作、竞争、误解摆到台面","options":["ally","rival","repair"],"reply":[{"speaker":"LU","text":"行，那就拿方案说话。合作我不会送你分，竞争也不会少你那一份。","id":"A5b.v413.face.reply.001","textHash":"e6f823d081ef3064"}],"after":[{"speaker":"N","text":"他把谱夹放到一旁，等你选择是并肩做事，还是用作品分高下。","id":"A5b.v413.face.after.001","textHash":"896b5c3225470b69"}]},{"id":"leave","label":"不再围着原男主转，走自己的路","options":["distance","independent"],"reply":[{"speaker":"LU","text":"你想另走一条路，我听懂了。别到最后又把这件事算在别人头上。","id":"A5b.v413.leave.reply.001","textHash":"2f8bfe03292497dd"}],"after":[{"speaker":"N","text":"舞台依旧亮着，可下一张工作证不必由陆景行递给你。","id":"A5b.v413.leave.after.001","textHash":"fa85ebe96567f430"}]}],"next":"@schedule"}`
 
 ### 正文
 
@@ -12016,7 +12016,7 @@
 
 ## A6a｜第十三章：这次该我发声
 
-类型：`common`。元数据：`{"background":"stage","music":"pulse","next":"@afterA6","clock":{"day":7,"time":"20:00"}}`
+类型：`common`。元数据：`{"background":"stage","music":"pulse","decisionSteps":[{"id":"prove","label":"拿前六天真正得到的证据，要求纠正归责","options":["public","partner","backstage"],"reply":[{"speaker":"P","text":"别急着让我签。时间线和原始材料在这里，谁负责哪一段，我们一项一项核。","id":"A6a.v413.prove.reply.001","textHash":"410864d1c41e859e"}],"after":[{"speaker":"N","text":"有人看向控台，有人看向大屏；你必须决定让证据先出现在哪里。","id":"A6a.v413.prove.after.001","textHash":"0ea576e3c9f9aa87"}]},{"id":"leave","label":"不再任由程放安排，承担自己的去留决定","options":["exit","accept","rebuild"],"reply":[{"speaker":"C","text":"想走可以，但别以为离开就能把这张单子变成没发生过。","id":"A6a.v413.leave.reply.001","textHash":"e49e19e4029d849b"}],"after":[{"speaker":"N","text":"侧门还开着。认下指控、拿更正书退出和暂停重建，需要完全不同的凭据。","id":"A6a.v413.leave.after.001","textHash":"dedf7e17eabe1700"}]}],"next":"@afterA6","clock":{"day":7,"time":"20:00"}}`
 
 ### 正文
 
@@ -12462,7 +12462,7 @@
 
 ## A7a｜第二十一天：我不再是配角
 
-类型：`common`。元数据：`{"background":"stage","music":"finale","next":"A7b","clock":{"day":21,"time":"19:00"}}`
+类型：`common`。元数据：`{"background":"stage","music":"finale","decisionSteps":[{"id":"honest","label":"主动把重要关系说清，不再借沉默糊弄","options":["together","private","work"],"reply":[{"speaker":"P","text":"这一次，我不想再让别人靠猜，才知道自己在我心里是什么位置。","id":"A7a.v413.honest.reply.001","textHash":"3f789d08e1b1a894"}],"after":[{"speaker":"N","text":"公开给所有人看，和让真正相关的人知情，是两件不同的事。","id":"A7a.v413.honest.after.001","textHash":"b7c4525dd0220c95"}]},{"id":"boundary","label":"先收住承诺，允许关系各自拥有结局","options":["separate","none"],"reply":[{"speaker":"P","text":"不是每一次靠近都一定要走到结婚那一页，但结束也不能让人凭空猜。","id":"A7a.v413.boundary.reply.001","textHash":"bbecb1914584b95e"}],"after":[{"speaker":"N","text":"你看着那些未读消息，知道回一句话也可能改变别人往后的安排。","id":"A7a.v413.boundary.after.001","textHash":"97f151849fab6701"}]}],"next":"A7b","clock":{"day":21,"time":"19:00"}}`
 
 ### 正文
 
@@ -23501,7 +23501,7 @@
 
 ## EXEC_s｜三排椅子，先坐进人
 
-类型：`common`。元数据：`{"background":"diner","music":"warm","next":"LU_MOVE2","clock":{"day":9,"time":"10:00"}}`
+类型：`common`。元数据：`{"background":"diner","music":"warm","decisionSteps":[{"id":"trial","label":"陪清辞拿现场结果说话，不靠纸上热情","options":["trial","slots","venue"],"reply":[{"speaker":"S","text":"我能扛难听的反馈，就怕我们连一次实际试场都不做。","id":"EXEC_s.v413.trial.reply.001","textHash":"1f0f9325c1a948c1"}],"after":[{"speaker":"N","text":"三排椅子还没有摆好，场地、撤场和卖票都得落成一次行动。","id":"EXEC_s.v413.trial.after.001","textHash":"4368b01cd5034346"}]},{"id":"handover","label":"不再继续试场，至少把责任交清","options":["handover","none"],"reply":[{"speaker":"S","text":"你不做也行，告诉我边界。只要别留一句“我以为你会来”。","id":"EXEC_s.v413.handover.reply.001","textHash":"936ae07921db774b"}],"after":[{"speaker":"N","text":"交接和缺席不是同一件事；她已经把待签收的材料准备好。","id":"EXEC_s.v413.handover.after.001","textHash":"59b02fbc8b1e67ea"}]}],"next":"LU_MOVE2","clock":{"day":9,"time":"10:00"}}`
 
 ### 正文
 
@@ -23654,7 +23654,7 @@
 
 ## EXEC_l｜这次，拍她自己的片尾
 
-类型：`common`。元数据：`{"background":"diner","music":"warm","next":"@schedule","clock":{"day":12,"time":"14:00"}}`
+类型：`common`。元数据：`{"background":"diner","music":"warm","decisionSteps":[{"id":"shoot","label":"让见月先动手拍自己的作品，不再无休止代剪","options":["application","own","screen"],"reply":[{"speaker":"L","text":"好，我来掌镜。你可以帮忙，但最后按下发送键的人必须是我。","id":"EXEC_l.v413.shoot.reply.001","textHash":"efed2c8eba427667"}],"after":[{"speaker":"N","text":"她拆开云台，从申请补拍、留城拍摄到小型放映，挑真正能做的一项。","id":"EXEC_l.v413.shoot.after.001","textHash":"2700f6cac0160561"}]},{"id":"rights","label":"先确认许可与自己的精力，再决定参与多少","options":["permissions","none"],"reply":[{"speaker":"L","text":"我不想拿别人的拒绝当不存在，也不想假装自己永远有精力帮忙。","id":"EXEC_l.v413.rights.reply.001","textHash":"26071763c816d4d6"}],"after":[{"speaker":"N","text":"她把授权清单摊出来，哪一项能拍、哪一项要停，都写在纸上。","id":"EXEC_l.v413.rights.after.001","textHash":"47597af5fd3613de"}]}],"next":"@schedule","clock":{"day":12,"time":"14:00"}}`
 
 ### 正文
 
@@ -23948,7 +23948,7 @@
 
 ## LU_MOVE2｜他的试听过了，但还得重录
 
-类型：`common`。元数据：`{"background":"diner","music":"warm","next":"@schedule","clock":{"day":9,"time":"17:00"}}`
+类型：`common`。元数据：`{"background":"diner","music":"warm","decisionSteps":[{"id":"compete","label":"这回用真实作品回应合作与竞争","options":["ally","rival","reconciled"],"reply":[{"speaker":"LU","text":"上次我们谁也没听完谁的话。这一轮，至少把方案和署名都摊开。","id":"LU_MOVE2.v413.compete.reply.001","textHash":"2940640dc9aedb49"}],"after":[{"speaker":"N","text":"试听结果还热着，报名表上有合作方，也留了独立提交的一栏。","id":"LU_MOVE2.v413.compete.after.001","textHash":"32928cb5f6436a79"}]},{"id":"independence","label":"完成自己的交接，然后把方向盘拿回来","options":["distant","independent"],"reply":[{"speaker":"LU","text":"我不替你报名，也不替你解释离开。我们各自把答应的事情做完。","id":"LU_MOVE2.v413.independence.reply.001","textHash":"da1ece0ea1b7c697"}],"after":[{"speaker":"N","text":"他收起那份谱，你面前仍有两条不需要他批准的路。","id":"LU_MOVE2.v413.independence.after.001","textHash":"e7707beb302642a7"}]}],"next":"@schedule","clock":{"day":9,"time":"17:00"}}`
 
 ### 正文
 
@@ -26479,7 +26479,7 @@
 
 ## H_glst｜一把伞不够，四个人都看着你
 
-类型：`group`。元数据：`{"background":"diner","music":"warm","next":"H_glst_TALK","members":["g","l","s","t"],"minSlot":11,"requires":[]}`
+类型：`group`。元数据：`{"background":"diner","music":"warm","decisionSteps":[{"id":"together","label":"先照顾一起淋雨的人，不把谁当候补","options":["all"],"reply":[{"speaker":"S","text":"先等会儿吧。四个人都在，没必要把谁留在雨里。","id":"H_glst.v413.together.reply.001","textHash":"574f24bb76aaeb61"}],"after":[{"speaker":"N","text":"屋檐下的灯亮起来，四个人都有地方站，雨声暂时盖过了尴尬。","id":"H_glst.v413.together.after.001","textHash":"1afd16d2d03e6573"}]},{"id":"closer","label":"想先陪其中一个人，必须自己说出选择","options":["favor_g","favor_l","favor_s","favor_t"],"reply":[{"speaker":"G","text":"那就别躲着说。你先送谁，我们四个人都能听见。","id":"H_glst.v413.closer.reply.001","textHash":"609c0763cae57aee"}],"after":[{"speaker":"N","text":"同一把伞只能先容下两个人。她们都在看你会怎样照顾剩下的人。","id":"H_glst.v413.closer.after.001","textHash":"945872db2136abff"}]}],"next":"H_glst_TALK","members":["g","l","s","t"],"minSlot":11,"requires":[]}`
 
 ### 正文
 

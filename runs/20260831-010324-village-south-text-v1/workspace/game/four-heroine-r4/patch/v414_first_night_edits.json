@@ -1,0 +1,291 @@
+{
+  "version": "v4.14",
+  "baseStorySha256": "e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3",
+  "newStorySha256": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546",
+  "counts": {
+    "beats": 31,
+    "scenes": 8
+  },
+  "scope": "Only existing body.text and body.textHash edited",
+  "changes": [
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.001",
+      "speaker": "N",
+      "before": "《今夜偏爱男主》第十三章，你最想撕掉的一页：临时场务许照因演出事故被清退。错版不是他做的，交接单上的签名却是他的。你盯着那行字，越看越火。",
+      "beforeHash": "3feff40effed2977",
+      "after": "手机停在《今夜偏爱男主》第十三章。临时场务许照被保安带出后台，通知上写着“因现场失误清退”。你往前翻了两页，才看到一张写着他名字的交接单。",
+      "afterHash": "46c0a8eb694c02b0"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.002",
+      "speaker": "N",
+      "before": "你正往前翻，想看他究竟哪一步被人套住，手机上的字忽然一片重影。桌沿从指尖消失，整个人向下坠去。",
+      "beforeHash": "1e70beca1550b0f7",
+      "after": "你想看看究竟是谁让许照签的字，眼前的手机屏幕却忽然重了影。指尖一空，你连椅子都没来得及扶住。",
+      "afterHash": "4322482b78a38d1a"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.004",
+      "speaker": "N",
+      "before": "后背狠狠撞上金属箱角。你猛地睁眼，舞台灯刺得睁不开眼。台前几百人的说话声混着催场的倒数，仿佛下一秒就要出事。",
+      "beforeHash": "ca8ab384b9155d22",
+      "after": "后背磕上一只冰凉的金属箱。你猛地睁眼，头顶的舞台灯晃得人发晕。对讲机里有人催场，隔着幕布传来密密的观众声。",
+      "afterHash": "381613baa945a9ef"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.007",
+      "speaker": "N",
+      "before": "你扶着箱盖站稳。胸前工牌晃到眼前：许照，临时场务。连照片都是陌生人的脸。那个第七天会被赶出去的炮灰，现在是你。",
+      "beforeHash": "c8503d0a7c666979",
+      "after": "你扶着箱子站起来，胸前的工牌撞在手背上。上面写着“许照，临时场务”，照片是一张完全陌生的脸。你又看了一遍名字。",
+      "afterHash": "c2f8e655544b9b3f"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.008",
+      "speaker": "P",
+      "before": "（等等，我刚刚还在看小说……怎么连胸前这张工牌都是真的？）",
+      "beforeHash": "cf36b9e2a445895d",
+      "after": "（等等，我刚才明明在家里看书。这工牌怎么会挂在我身上？）",
+      "afterHash": "d07b09dda90e8d58"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.009",
+      "speaker": "N",
+      "before": "侧幕上写着“北岸艺术中心·栖光计划”。灯光、道具箱、排练表，全都不像梦。",
+      "beforeHash": "dde6b0f311885051",
+      "after": "侧幕挂着“北岸艺术中心·栖光计划”的牌子。地上的胶带、箱子上的编号，还有身边忙得顾不上看你的人，都真实得让人心慌。",
+      "afterHash": "31059f03648e45fe"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.014",
+      "speaker": "P",
+      "before": "（唐映雪、沈清辞、陆景行……连这场事故都一模一样。不是撞名，我真的掉进书里了。）",
+      "beforeHash": "61a7fd94171c63b5",
+      "after": "（唐映雪、沈清辞、陆景行……怎么一个名字都没错？还有那段被剪掉的前奏。）",
+      "afterHash": "33bef6408824cd4d"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.016",
+      "speaker": "B",
+      "before": "我记得这场！北岸艺术中心首演，19:03，错误的伴奏把唐映雪逼到台边。书里是陆景行弹琴救场，一夜出了名。",
+      "beforeHash": "ff4e1e5b19e79b1f",
+      "after": "我记得这场。首演，19:03，前奏被剪掉；陆景行用钢琴替唐映雪接住了开场。书里写得很短，可眼前的人真的在等那四小节。",
+      "afterHash": "29f50d86a155f4bd"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.017",
+      "speaker": "P",
+      "before": "（等等……我不是来现场看演出的。我成了书里那个炮灰许照？）",
+      "beforeHash": "63df117367a8fb9e",
+      "after": "（不可能吧……我只是在看小说。难道我真的成了那个许照？）",
+      "afterHash": "2a921c16decc5529"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.018",
+      "speaker": "N",
+      "before": "你狠狠掐了一下手心，痛得倒抽气。没有退出按钮，原著也不会替你暂停。身后就是放着事故文件的设备箱。",
+      "beforeHash": "3f086e9e2d48d44d",
+      "after": "你用力掐了自己一把，疼得嘶了一声。不是梦。你连面前音控设备的按钮都认不全，周围的人却已经把你当成了这里的工作人员。",
+      "afterHash": "0fba1700b8bcdc19"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.020",
+      "speaker": "P",
+      "before": "不用。我还能站稳。（别人靠这一场翻身，我却可能从这里开始背锅。）",
+      "beforeHash": "56fea1bef1e47221",
+      "after": "先不用……我还能站。让我缓一下。（要是现在就走，今晚那张交接单怎么办？）",
+      "afterHash": "1398a6189f511233"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.021",
+      "speaker": "B",
+      "before": "原著里，许照听程放的话守在设备箱旁，眼睁睁看陆景行接过舞台。没人核对真正的错版来源，七天后，程放把责任推到他签过的交接单上。",
+      "beforeHash": "d8fe10182fb29ff6",
+      "after": "我记得许照在书里听程放的话，没碰过音控。可后来那张“现场版本确认”偏偏是他签的。别人做错的事，最后全算在他头上。",
+      "afterHash": "e506fbd2c1ae2016"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.022",
+      "speaker": "B",
+      "before": "唐映雪的歌火了，署名和版本却不由她定；沈清辞想保下来的小演出厅，最后成了巡演排练基地。她们当时还不知道，今晚就是第一道岔路。",
+      "beforeHash": "bd8ed8afea6ac768",
+      "after": "唐映雪后来连自己的歌曲版本都说不上话；沈清辞想留住的那座小演出厅，也没能留住。可现在，她们还在为眼前这一首歌发愁。",
+      "afterHash": "3b8e694fa020c35f"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.023",
+      "speaker": "B",
+      "before": "林见月的镜头本来能留下真相，可原著让她追着陆景行的巡演跑；顾晚棠反对过那个版本，最后却被当成拍板的人。书里每个人都付了代价。",
+      "beforeHash": "831ee0d725a6d886",
+      "after": "林见月的镜头拍过后台，顾晚棠手里有审批邮件。原著里这些东西都没救成许照。现在就算我记得，她们也不会凭一句话相信我。",
+      "afterHash": "4f3717e9322da2d7"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.024",
+      "speaker": "B",
+      "before": "匿名电台、旁厅、现场原声、没公开的意见邮件……我知道线索在哪，但现在手里一件证据都没有。记得剧情不等于能凭空拿出东西。",
+      "beforeHash": "b278d51789bf78db",
+      "after": "蓝标盘、审批邮件、切换的时间……书里提到过几个线索，可我现在手里一件证据都没有。先找到一样真的，才有机会开口。",
+      "afterHash": "631a9ce224654b94"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.025",
+      "speaker": "B",
+      "before": "而我自己的死线只有七天。原著第十三章，许照连一句完整的解释都没说出来，就被保安送出侧门。这一次，我至少不能在第一天签下那张糊涂账。",
+      "beforeHash": "17cb99b03cd6afff",
+      "after": "还有七天。第七天，那个被当成炮灰的许照会被带出剧场。眼前倒数的却不是七天，是这一首歌开始前的几秒。",
+      "afterHash": "4c35bbdfe4a7730e"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.026",
+      "speaker": "N",
+      "before": "还有一条被小说一笔带过的细节：接线板下面，压着一枚贴蓝胶带的原版 U 盘。书里没人找到它。你低头——设备箱就贴在膝边。",
+      "beforeHash": "ba617a48e74eb77a",
+      "after": "你想起小说里一个不起眼的细节：贴蓝胶带的原版 U 盘，被压在接线板下面，直到散场也没人翻出来。接线板就在你脚边。",
+      "afterHash": "8c19f6181d538484"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.027",
+      "speaker": "P",
+      "before": "（按原著走，我能提前看清谁想甩锅；动手找盘，我能抢在钢琴救场前改写这一幕；先查证据，也许能把第七天的陷阱提前拆了。）",
+      "beforeHash": "ee1d34715b45bc70",
+      "after": "（装作不知道，先看原著怎么发展；去找那枚蓝标盘，试试能不能救场；或者先记下谁动过文件。哪条路我都没把握。）",
+      "afterHash": "93bdaffb54b20008"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "id": "ENTRY_WAKE.intro.028",
+      "speaker": "N",
+      "before": "台上，唐映雪等着重新进歌。陆景行的手悬在琴键上，程放朝你伸手，要你别碰箱子。第一次改命的机会，只剩几个呼吸。",
+      "beforeHash": "96e4031d15dedba4",
+      "after": "台上，唐映雪已经摘下一边耳返。陆景行抬手准备落下第一个琴音；程放却朝你挥手，不许你靠近箱子。你得现在决定——只剩几个呼吸。",
+      "afterHash": "416aa34ad470571c"
+    },
+    {
+      "scene": "OP_TALK_l",
+      "id": "OP_TALK_l.r4.body.004",
+      "speaker": "L",
+      "before": "那就先不拍。她扣上镜头盖，停了一会儿又问：你现在还有点发抖吗？",
+      "beforeHash": "5712fd90ba01ecbf",
+      "after": "那就先不拍你。……等等，你手怎么还在抖？要不要先坐一下？",
+      "afterHash": "2e07424e78aa99c0"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.002",
+      "speaker": "G",
+      "before": "许照。第一天来，就敢当面问我是不是改过节目单？",
+      "beforeHash": "4ea3fb1cfc2cc48c",
+      "after": "许照，对吧？刚才后台乱成那样，交接单是谁让你签的？",
+      "afterHash": "175e36b6a70d5c05"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.003",
+      "speaker": "P",
+      "before": "第一天。你要是介意，我明天再敢。",
+      "beforeHash": "b97234c1a4fdd1fd",
+      "after": "程放一直催，纸上却没写清楚到底是谁负责导出、谁负责播放。",
+      "afterHash": "17b45efd7413318a"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.004",
+      "speaker": "G",
+      "before": "明天未必轮到我被你质问。先坐，你刚才脸都快没血色了。",
+      "beforeHash": "008d639de36adc71",
+      "after": "那就先别急着替谁认账。坐下吧，你脸色都白了。",
+      "afterHash": "9eb053506c5e2446"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "id": "OP_TALK_g.r4.body.005",
+      "speaker": "P",
+      "before": "我知道自己问得冒失。可你刚才真往这边看过来的时候，我比上台还紧张。",
+      "beforeHash": "889e702cf854a63e",
+      "after": "我刚才真有点慌。你一提那张纸，我才发现手还在抖。",
+      "afterHash": "5d6c3eff0d6de6c6"
+    },
+    {
+      "scene": "OP_TALK_self",
+      "id": "OP_TALK_self.r4.body.003",
+      "speaker": "N",
+      "before": "你看着那一行字。原著写他退场时，连名字都只提了一次。现在事情没按原样发生。",
+      "beforeHash": "0342471125ac0e85",
+      "after": "阿衡把清点表转给你。你翻到自己的名字，旁边清清楚楚写着“找到备用盘”。这回，至少有人知道你做过什么。",
+      "afterHash": "240e22638bde629c"
+    },
+    {
+      "scene": "OP_SECRET_s",
+      "id": "OP_SECRET_s.r4.body.004",
+      "speaker": "S",
+      "before": "你先说。我听完自己核，不会因为你说得玄就把现场记录撕了。",
+      "beforeHash": "3386f1ec5997650d",
+      "after": "你先说你亲眼看见了什么。没看见的部分，我会自己查。",
+      "afterHash": "b630fa52b01dbf1c"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "id": "OP_RIVAL.r4.body.001",
+      "speaker": "N",
+      "before": "首演结束。你以为失去钢琴名场面的陆景行会有些难堪，他却抱着乐谱走下来，直接给制作人打了电话。原男主的机会从来不只靠这一场。",
+      "beforeHash": "8824df304fd64a23",
+      "after": "首演刚散场，陆景行就抱着乐谱走下台，给制作人打了电话。你还没从那阵掌声里缓过来，他已经替唐映雪问好了下一次试音的机会。",
+      "afterHash": "f4437339f735eca7"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "id": "OP_RIVAL.r4.body.005",
+      "speaker": "B",
+      "before": "（原著里这份邀约三天后才出现。）你抢到一次改命机会，他就把下一个舞台提前了。想赢过这样的人，不能靠等他犯错。",
+      "beforeHash": "ac87e37b6947d8a6",
+      "after": "（书里这次录音邀约明明是三天后才有的。看来我改变了今晚，别人接下来的决定也会变。我不能只盯着自己记得的那几页。）",
+      "afterHash": "bc95fb8a26d2b4aa"
+    },
+    {
+      "scene": "OP_FORK",
+      "id": "OP_FORK.r42.body.002",
+      "speaker": "N",
+      "before": "（原著根本没这条消息，因为原版从来没被翻出来。）你原本只想救场，现在却逼得有人提前出手。改命的第一笔收益，是被更多人记住；第一笔风险，也是。",
+      "beforeHash": "6f25feb7f28d4e26",
+      "after": "原著里没有这条撤回的消息。你看了一眼身边的蓝标盘，忽然明白：有人发现事情没按原来的路走。可你没来得及截图，手机上只剩一行“消息已撤回”。",
+      "afterHash": "2039bf7f604c5fff"
+    },
+    {
+      "scene": "A1b",
+      "id": "A1b.r42.body.003",
+      "speaker": "N",
+      "before": "你低头看签名栏。七天后让原著许照退场的，不是突然出现的保安，而是每次有人催他“先签一下”。你把笔按在桌上，没急着写名字。",
+      "beforeHash": "4662c51b3f6cdca4",
+      "after": "你盯着签名栏，忽然想起书里许照被赶出后台的那一页。纸和笔都是真的，程放就站在对面等着。你把笔放回桌上。",
+      "afterHash": "9e7bcde56cdc6c15"
+    },
+    {
+      "scene": "A1b",
+      "id": "A1b.r42.body.004",
+      "speaker": "P",
+      "before": "（这张纸我能签，也能拒。今晚我不必证明自己多神，只要让真正负责的人，再也不能躲在我后面。）",
+      "beforeHash": "b9d849093367ce7f",
+      "after": "（签了，他明天就能说是我确认过版本。不签，他又能说我不配合。先问清责任是谁的，至少别再替别人签一张糊涂账。）",
+      "afterHash": "491d8355b3a0eb02"
+    }
+  ]
+}

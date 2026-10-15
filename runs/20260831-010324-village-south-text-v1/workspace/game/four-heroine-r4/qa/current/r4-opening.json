@@ -1,7 +1,7 @@
 {
   "scope": "r4.2 first-choice canon-vs-deviation normal interpreter regression; not real player or device evidence",
   "hashes": {
-    "story": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242"
+    "story": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546"
   },
   "checks": [
     {
@@ -84,7 +84,7 @@
     {
       "name": "new_post_novel_scene_is_reached_by_real_choices",
       "status": "PASS",
-      "detail": 43
+      "detail": 50
     },
     {
       "name": "all_previously_verified_canon_facts_remain",

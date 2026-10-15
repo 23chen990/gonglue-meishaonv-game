@@ -1,8 +1,8 @@
 {
   "scope": "Current canonical r4 ordinary-command regressions plus explicitly identified editorial contracts; not human evaluation.",
   "hashes": {
-    "story": "bde7c453fe8c0d12b6de16500eef82a4400b8a294a291f44fb51e62111528242",
-    "engine": "cc45caefaed4d99bce8dec8035f1af26d3953104eecd2c575115fbb0a8951dfa",
+    "story": "51ea1b60e26498f95ea31645a5d8b61ed680ed35c2fb6825f4be1bacf6b90546",
+    "engine": "e35eabd291b8f63eab1cbdada3405a3f2a7a8a9cb9b8791e7f1171eb7a7d2169",
     "bonus": "a8237549ac02a89b2a2df42c933f762b55a9ba06f84a01ade94a9eccf4705e6e"
   },
   "checks": [
@@ -10,7 +10,7 @@
       "name": "five_opening_t_physical_process_and_later_callback",
       "status": "PASS",
       "detail": {
-        "ordinaryCommands": 19,
+        "ordinaryCommands": 20,
         "method": "performer_cue",
         "callback": "A2b.r4.block.006"
       }
@@ -19,7 +19,7 @@
       "name": "five_opening_s_physical_process_and_later_callback",
       "status": "PASS",
       "detail": {
-        "ordinaryCommands": 19,
+        "ordinaryCommands": 20,
         "method": "producer_switch",
         "callback": "A2b.r4.block.007"
       }
@@ -28,7 +28,7 @@
       "name": "five_opening_l_physical_process_and_later_callback",
       "status": "PASS",
       "detail": {
-        "ordinaryCommands": 20,
+        "ordinaryCommands": 21,
         "method": "record_switch",
         "callback": "A2b.r4.block.008"
       }
@@ -37,7 +37,7 @@
       "name": "five_opening_g_physical_process_and_later_callback",
       "status": "PASS",
       "detail": {
-        "ordinaryCommands": 20,
+        "ordinaryCommands": 21,
         "method": "authorization_check",
         "callback": "A2b.r4.block.009"
       }
@@ -46,7 +46,7 @@
       "name": "five_opening_self_physical_process_and_later_callback",
       "status": "PASS",
       "detail": {
-        "ordinaryCommands": 16,
+        "ordinaryCommands": 17,
         "method": "audio_handoff",
         "callback": "A2b.r4.block.010"
       }
@@ -108,6 +108,7 @@
         "finalLu": "ally",
         "actions": [
           "LU_MOVE1/own",
+          "LU_MOVE2/intent:compete",
           "LU_MOVE2/ally"
         ]
       }
