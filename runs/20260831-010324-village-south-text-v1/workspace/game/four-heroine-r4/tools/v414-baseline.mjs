@@ -38,6 +38,6 @@ export function verifiedV414(){
  }
  // JS reorders numeric object keys during stringify; Python verifies EXACT original bytes.
  assert.equal(Object.keys(legacy.scenes).length,228);
- return {raw,latest,legacy,patch,currentHash:sha(raw)};
+ return {raw,latest:v414,legacy,patch,currentHash:sha(JSON.stringify(v414,null,2)+'\n')};
 }
 
