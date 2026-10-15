@@ -235,3 +235,21 @@ body.large .vn-frame[data-intro-decision="true"] .vn-dock .first-fork-choice sma
  .vn-frame[data-intro-decision="true"] .vn-portrait{height:175px;width:94px;top:65px;right:4%}
  body.large .vn-frame[data-intro-decision="true"] .vn-sheet{height:calc(100% - 110px)!important}
 }
+
+/* The opening's eight visual pages must contain all 28 mandatory story rows,
+   not a clipped web-novel excerpt with a premature Next button. */
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-sheet{height:clamp(440px,62%,555px);transition:none!important}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .intro-reading-head,
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .intro-progress{display:none}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll{padding-top:6px;padding-bottom:8px}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .intro-story-pages .line{margin:3px 0 7px}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .intro-story-pages .line p{font-size:14.5px;line-height:1.57}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-dock{padding-top:5px;padding-bottom:8px}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .line.dialogue{margin:3px 0 6px;padding:2px 4px;background:transparent!important;border:0!important;box-shadow:none!important}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .line.dialogue .who{font-size:11px;margin:0 0 1px}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .line p{margin:0}
+body[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-scroll .line.thought{margin:3px 0 6px;padding:2px 4px}
+@media(max-height:650px){
+ body.large[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-sheet{height:calc(100% - 68px)!important}
+ body.reader-expanded[data-current="ENTRY_WAKE"] .vn-frame[data-mode="reading"] .vn-sheet{height:calc(100% - 66px)!important}
+}
