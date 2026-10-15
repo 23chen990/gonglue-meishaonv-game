@@ -1,0 +1,198 @@
+{
+  "version": "v4.17-p0-continuity",
+  "baseStorySha256": "720ce5d30cf87515c3a090c834a359a5a1589d32f8796cc91fe1cb589c426b46",
+  "scope": "Existing first-night body/reply text only; no IDs, speakers, choice labels, conditions, effects, endings or UI changes",
+  "counts": {
+    "beats": 17,
+    "scenes": 10,
+    "body": 2,
+    "reply": 15
+  },
+  "changes": [
+    {
+      "scene": "ENTRY_WAKE",
+      "location": "reply",
+      "choice": "canon",
+      "id": "ENTRY_WAKE.r42.reply.canon.001",
+      "text": "你把手从箱盖上收回来。陆景行的第一声钢琴响起，唐映雪抬头找他的节拍。程放把文件夹推到你面前，封面写着“现场交接”。",
+      "reason": "不抢先替玩家断言工作单一定更危险，只演出可见动作",
+      "speaker": "N",
+      "before": "你把伸向箱盖的手收回来。陆景行坐上琴凳，原著的掌声照样响起；而你盯住程放——比起钢琴声，他手里那张等着你签的交接单更危险。",
+      "beforeHash": "98ec6f3fb8da6df1"
+    },
+    {
+      "scene": "ENTRY_WAKE",
+      "location": "reply",
+      "choice": "investigate",
+      "id": "ENTRY_WAKE.r42.reply.investigate.001",
+      "text": "你掀开箱盖，蓝胶带就在接线板下面。程放朝这边迈了一步，你先攥紧盘，没去碰控台。那份被换掉的伴奏是谁送来的，眼下还没人说清。",
+      "reason": "不能在撤回工作群消息发生前预知它，证据并未自动取得",
+      "speaker": "N",
+      "before": "你没有直接喊“有人做局”。一边找到蓝标盘，一边扫过控台、相机和节目邮件：救场要快，证据得比对方撤回消息更快。",
+      "beforeHash": "117bc991a41c03bb"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "location": "reply",
+      "choice": "obey",
+      "id": "ENTRY_CLUES.r42.reply.obey.002",
+      "text": "程放合上文件夹，签字那栏留着你的名字；“版本导出”后面却还是空的。他随手把文件塞进下一叠交接资料里。",
+      "reason": "删掉对玩家新路线第七天结果的确定预言，保留已签字事实",
+      "speaker": "N",
+      "before": "程放合上文件夹，露出个“这才懂事”的笑。你换来了今晚的清静，却亲眼看见自己的名字压在“版本确认”下面。第七天，这一笔会回来找你。",
+      "beforeHash": "5d2bdb7c1868492f"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "location": "reply",
+      "choice": "refuse",
+      "id": "ENTRY_CLUES.r42.reply.refuse.003",
+      "text": "你把笔放下，指着“版本导出”那一栏，请程放先写明经手人。程放合起文件夹：“明天再说。”这张纸上没有你的签名。",
+      "reason": "让拒签以真实动作和纸面结果呈现，避免虚构已存在的独立文书",
+      "speaker": "N",
+      "before": "程放脸上的笑僵了一瞬，随即把交接单往回一抽。你留下一条明确的拒签记录，也提前把自己放进了他的视线。",
+      "beforeHash": "276ba46cd5472489"
+    },
+    {
+      "scene": "ENTRY_CLUES",
+      "location": "reply",
+      "choice": "witness",
+      "id": "ENTRY_CLUES.r42.reply.witness.001",
+      "text": "你在备忘录里记下19:03出错的前奏、陆景行进钢琴的时间，以及当时谁守着控台。最后一栏“错版导出人”，你没填。",
+      "reason": "不把一份时间记录吹成已形成证据链或结论",
+      "speaker": "N",
+      "before": "你把19:03的错误伴奏、陆景行介入与控台值守时间分成三行记下。它还不能证明谁有错，却是原著里从来没有出现过的第一条独立时间线。",
+      "beforeHash": "efb5246124351d8c"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "location": "body",
+      "id": "ENTRY_MEMORY.r42.body.004",
+      "text": "（盘在我手里，可我不懂音控。见月能拍，晚棠能查邮件……先找一个能帮忙确认的人。）",
+      "reason": "主角只表达此刻缺乏权限和需要协助，不点评自己是否有资格质问",
+      "speaker": "P",
+      "before": "（我知道原著怎么写，但她们只认眼前能核的事。先拿出真的东西，才有资格问程放为什么急着拦。）",
+      "beforeHash": "d7c733c3629c5989"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "location": "reply",
+      "choice": "camera",
+      "id": "ENTRY_MEMORY.r42.reply.camera.003",
+      "text": "见月把蓝标和控台时钟依次拍进画面。红灯一直亮着，她把镜头留在阿衡手边，等真正的试听和切换开始。",
+      "reason": "把你知道所以证据足够的作者判断改成相机当前的实际取景",
+      "speaker": "N",
+      "before": "见月先拍清蓝标与控台时间，替接下来的试听、切换留好取证位置。录制指示灯亮起时，你知道至少这一秒不会只剩口说。",
+      "beforeHash": "a9c8c83ad573ec45"
+    },
+    {
+      "scene": "ENTRY_MEMORY",
+      "location": "reply",
+      "choice": "email",
+      "id": "ENTRY_MEMORY.r42.reply.email.002",
+      "text": "顾晚棠把审批邮件翻回版本号那一行，抬头看向程放。程放停了一秒，偏过脸去催下一场。",
+      "reason": "只写她核授权和他可见的反应，不提前宣告幕后线索已经成立",
+      "speaker": "N",
+      "before": "顾晚棠看完审批邮件，抬头望向程放。他先移开了视线。你的调查还没结束，却已经逼出了原著里没有的第一反应。",
+      "beforeHash": "55e1de9c193eb90e"
+    },
+    {
+      "scene": "COLD",
+      "location": "reply",
+      "choice": "s",
+      "id": "COLD.s.r4.reply.006",
+      "text": "刚才你脸色白得吓人。去旁边坐一会儿，散场后再和我核记录。先别在侧台晕过去。",
+      "reason": "避免与后续 OP_TALK_s 送水演出重复，保留清辞的忙中关心",
+      "speaker": "S",
+      "before": "刚才你脸色白得吓人。喏，水在旁边。工作我会核，你先别晕在我的舞台上。",
+      "beforeHash": "fadcbbe3db660158"
+    },
+    {
+      "scene": "OP_CANON",
+      "location": "reply",
+      "choice": "backstage",
+      "id": "OP_CANON.r42.reply.backstage.002",
+      "text": "阿衡在末场清点单上写明你们核对过的箱号，签上自己的名字。程放来拿表时，清点这一栏已经填好了。",
+      "reason": "以真实表单取代作者宣告第一次改命成功",
+      "speaker": "N",
+      "before": "阿衡在末场清点上留下了你的真实分工。今晚你没有改变那段钢琴，却把原著里“什么都没留下”的那一步先改掉了。",
+      "beforeHash": "3f0bdb8c9fbbe5d0"
+    },
+    {
+      "scene": "OP_CANON",
+      "location": "reply",
+      "choice": "question",
+      "id": "OP_CANON.r42.reply.question.002",
+      "text": "程放没答是谁送来的错版，却在工作群留下一句“先处理，明天再查”。你把这条回复和19:03的时间记在一起。",
+      "reason": "展示群里确实留下的文字，删除提前总结未来追查价值",
+      "speaker": "N",
+      "before": "程放不肯回答，群里却留下了他的推托。你没拿到直接证据，却让未来追查时多了一条可以对时的消息。",
+      "beforeHash": "df3e9fc9229371a4"
+    },
+    {
+      "scene": "OP_CANON",
+      "location": "reply",
+      "choice": "silence",
+      "id": "OP_CANON.r42.reply.silence.001",
+      "text": "陆景行抱着乐谱朝台前走去。你没追上去争辩，先在手机里记下交接单的标题和程放递给你的时间。",
+      "reason": "观察路线允许克制行动，不能用抽象句教训玩家没有自动改命",
+      "speaker": "N",
+      "before": "你看着原著里该有的背影逐渐走远。剧情没有因为你知道结局就自动改写。",
+      "beforeHash": "eba5fcf6ad8bac2a"
+    },
+    {
+      "scene": "OP_SETTLE",
+      "location": "body",
+      "id": "OP_SETTLE.r4.body.004",
+      "text": "阿衡把核对过的切换记录交给你。“许照提供备用盘”写在第一栏，旁边是他的操作签名。你把纸折好，夹进工牌背面。",
+      "reason": "让拿到工作记录与主角此刻的陌生身份形成真实可见的对照",
+      "speaker": "N",
+      "before": "阿衡把亲手核过的切换记录塞给你。纸上终于写下“许照”两个字，你盯了半天：原著里，这个名字只会出现在被清退的名单上。",
+      "beforeHash": "df43a465b1dedebc"
+    },
+    {
+      "scene": "OP_RIVAL",
+      "location": "reply",
+      "choice": "free",
+      "id": "OP_RIVAL.free.r1.reply.002",
+      "text": "陆景行点点头，继续给制作人发排期。你握着手机站在侧幕边，九点试工的那一栏空着；这段时间，终于可以自己安排。",
+      "reason": "不擅自断言下一次相遇的分量或角色心理",
+      "speaker": "N",
+      "before": "陆景行没有嘲笑你。他转身继续安排录音室，你则保住今晚的自由时间。你们都没有暂停，但下一次相遇，分量会不同。",
+      "beforeHash": "e805d06912b8e468"
+    },
+    {
+      "scene": "OP_TALK_g",
+      "location": "reply",
+      "choice": "slow",
+      "id": "OP_TALK_g.slow.r4.reply.002",
+      "text": "刚才说盘和试听的事，你倒是一句也没含糊。",
+      "reason": "共用顾晚棠路线不能假定每次都曾当面指控节目单",
+      "speaker": "G",
+      "before": "刚才指出问题的时候，倒挺利落。",
+      "beforeHash": "b0b4f099342d382e"
+    },
+    {
+      "scene": "A1b",
+      "location": "reply",
+      "choice": "ask",
+      "id": "A1b.ask.r1.reply.002",
+      "text": "阿衡在自己核过的那一栏签名。程放又把表推回来，看见其他几栏还空着，手停在纸角。",
+      "reason": "让作证的效果通过动作成立，而不是旁白保证玩家已经赢过背锅",
+      "speaker": "N",
+      "before": "阿衡看了程放一眼，还是在现场确认的范围内签了自己的名字。你换来了一个肯出面的人证，也让对方知道你不会一个人背所有锅。",
+      "beforeHash": "bb4fff3d5e14ac3f"
+    },
+    {
+      "scene": "OP_TALK_t",
+      "location": "reply",
+      "choice": "flirt",
+      "id": "OP_TALK_t.flirt.r4.reply.001",
+      "text": "歌好听。你刚才朝侧幕招手那一下，我还以为自己被点名上台了。",
+      "reason": "直白、可接的调情不应使用你只顾着看她忘了看阿衡的尴尬套话",
+      "speaker": "P",
+      "before": "歌没唱砸。我倒差点只顾着看你，忘了看阿衡。",
+      "beforeHash": "09cddb47eb9a2132"
+    }
+  ]
+}
