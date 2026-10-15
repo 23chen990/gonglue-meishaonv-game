@@ -24,7 +24,7 @@ for ch in reversed(p417['changes']):
  assert sha((row['speaker']+'\0'+row['text']).encode())[:16]==row['textHash'],ch['id']
 assert sha((json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode())==p417['baseStorySha256'], 'v4.17 predecessor SHA mismatch'
 p416=json.loads((ROOT/'patch/v416_first_night_edits.json').read_text())
-assert sha(story)==p416['newStorySha256'], 'v4.16 current story drift'
+assert sha((json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode())==p416['newStorySha256'], 'v4.16 predecessor story drift'
 for ch in reversed(p416['changes']):
  sc=new['scenes'][ch['scene']]
  if ch['location']=='label':
