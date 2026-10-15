@@ -14,7 +14,14 @@ def stage(name,args,cwd=M,env=None,timeout=1200):
   try:code=subprocess.run(args,cwd=cwd,env=env or os.environ,stdout=log,stderr=subprocess.STDOUT,timeout=timeout).returncode
   except Exception as e:log.write(str(e));code=125
  report["stages"].append({"name":name,"status":"PASS" if code==0 else ("BLOCKED" if code==2 else "FAIL"),"code":code,"command":args,"log":str(Q/(name+".log"))})
- save();return code==0
+ save()
+ if code != 0:
+  # GitHub Actions otherwise reports only an exit code: surface the real
+  # assertion without suppressing the full preserved per-stage log artifact.
+  print(f"::error::{name} failed with exit code {code}; last 80 log lines:", flush=True)
+  for line in (Q/(name+".log")).read_text(encoding="utf-8",errors="replace").splitlines()[-80:]:
+   print(line, flush=True)
+ return code==0
 ok=stage("canonical-source",["npm","run","verify"])
 # A build must not silently correct a stale checked-in default HTML shell.
 # This gate forces authors to commit the generated parent game/index.html too.
