@@ -13,7 +13,7 @@ const patch=JSON.parse(read('patch/v410_scene_polish.json'));
 const next=JSON.parse(read('patch/v411_dialogue_pov.json'));
 const newest=JSON.parse(read('patch/v412_reaction_copy.json'));
 assert.equal(JSON.parse(read('patch/v413_decision_steps.json')).baseStorySha256,newest.newStorySha256);
-assert.equal(hash(canonical),JSON.parse(read('patch/v415_first_night_edits.json')).newStorySha256);
+assert.equal(hash(canonical),JSON.parse(read('patch/v416_first_night_edits.json')).newStorySha256);
 assert.equal(newest.baseStorySha256,next.newStorySha256);
 assert.equal(next.baseStorySha256,patch.newStorySha256);
 assert.deepEqual(patch.counts,{total:47,scenesTouched:19,cancelledVenue:3,groupWaitSpoken:16,groupWaitNarrator:16,groupAskNarrator:12});
