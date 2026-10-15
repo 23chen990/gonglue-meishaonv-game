@@ -1,0 +1,67 @@
+name: Romance v4.14 controlled editorial application
+on:
+  push:
+    branches:
+      - feat/romance-v414-first-night-editorial-20261015
+    paths:
+      - '.github/workflows/romance-v414-apply-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/romance-v414-first-night-editorial-20261015
+          persist-credentials: true
+          fetch-depth: 0
+      - name: Refuse a stale or detached editorial baseline
+        run: |
+          test "$(git branch --show-current)" = "feat/romance-v414-first-night-editorial-20261015"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          echo "EDITORIAL_SOURCE_HEAD=$GITHUB_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply anchored text-only 31-beat patch
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          if test -f patch/v414_first_night_edits.json; then
+            python3 tools/apply-v414-first-night.py --check
+          else
+            python3 tools/apply-v414-first-night.py --apply
+          fi
+          python3 tools/apply-v414-first-night.py --check
+      - name: Refresh choice source contracts before predecessor QA
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: python3 tools/export-and-audit.py
+      - name: Verify source, two-stage decisions, history, text and complete standalone H5
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          npm run verify
+          python3 tools/apply-v414-first-night.py --check
+      - name: Commit exact verified canonical story plus generated deliverables
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+          GAME_INDEX: runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- "$H5_ROOT" "$GAME_INDEX"
+          git add -- "$H5_ROOT/patch/v414_first_night_edits.json"
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git diff --cached --name-only
+          git commit -m "feat(v4.14): apply 31 verified first-night story edits and rebuild H5"
+          git push origin HEAD:refs/heads/feat/romance-v414-first-night-editorial-20261015
+      - name: Attach local tested offline HTML
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: romance-v414-preci-offline-h5
+          path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
+          if-no-files-found: error
+          retention-days: 7
