@@ -1,0 +1,67 @@
+name: Romance v4.17 cinematic reader controlled integration
+
+on:
+  push:
+    branches:
+      - feat/romance-v417-cinematic-integrated-20261015
+    paths:
+      - '.github/workflows/romance-v417-ui-controlled.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-audited-client:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/romance-v417-cinematic-integrated-20261015
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Verify authorized exact head and canonical story identity
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          test "$(git branch --show-current)" = "feat/romance-v417-cinematic-integrated-20261015"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          echo "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93  $H5_ROOT/data/STORY.json" | sha256sum -c -
+          node --check "$H5_ROOT/tools/preview-ui.js"
+          python3 -m py_compile "$H5_ROOT/tools/test-vn-cinematic.py" "$H5_ROOT/tools/test-v417-cinematic-intents.py"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate current story-bound player and verify ALL narrative provenance
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          npm run verify
+          python3 tools/test-v49-restore.py
+          python3 tools/apply-v417-p0.py --check
+      - name: Prove original story and canonical engine were untouched
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          echo "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93  $H5_ROOT/data/STORY.json" | sha256sum -c -
+          git diff --exit-code -- "$H5_ROOT/data/STORY.json" "$H5_ROOT/tools/engine.mjs" "$H5_ROOT/data/EPILOGUES.json" "$H5_ROOT/data/BONUS.json" "$H5_ROOT/data/CODA.json"
+      - name: Commit only regenerated story-bound client files
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+          GAME_INDEX: runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$H5_ROOT/index.html" "$H5_ROOT/play.html" "$H5_ROOT/runtime.mjs" "$H5_ROOT/repository-index.html" "$H5_ROOT/build-meta.json" "$GAME_INDEX"
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git diff --cached --name-only
+          git commit -m "build(v4.17): generate cinematic player from untouched canonical story"
+          git push origin HEAD:refs/heads/feat/romance-v417-cinematic-integrated-20261015
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: romance-v417-integrated-cinematic-offline-h5
+          path: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/play.html
+          if-no-files-found: error
+          retention-days: 14
