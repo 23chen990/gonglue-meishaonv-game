@@ -13,6 +13,16 @@ p411=json.loads((ROOT/'patch/v411_dialogue_pov.json').read_text())
 p412=json.loads((ROOT/'patch/v412_reaction_copy.json').read_text())
 # v4.14 is only 31 edits of body text + textHash. Reverse its
 # exact annotated edits BEFORE all historical predecessor checks.
+p417=json.loads((ROOT/'patch/v417_p0_scene_edits.json').read_text())
+assert sha(story)==p417['newStorySha256'], 'v4.17 current story drift'
+for ch in reversed(p417['changes']):
+ sc=new['scenes'][ch['scene']]
+ rows=sc['body'] if ch['location']=='body' else next(x for x in sc['choices'] if x['id']==ch['choice'])['reply']
+ row=next(x for x in rows if x['id']==ch['id'])
+ assert row['speaker']==ch['speaker'] and row['text']==ch['after'] and row['textHash']==ch['afterHash'],ch['id']
+ row['text']=ch['before'];row['textHash']=ch['beforeHash']
+ assert sha((row['speaker']+'\0'+row['text']).encode())[:16]==row['textHash'],ch['id']
+assert sha((json.dumps(new,ensure_ascii=False,indent=2)+'\n').encode())==p417['baseStorySha256'], 'v4.17 predecessor SHA mismatch'
 p416=json.loads((ROOT/'patch/v416_first_night_edits.json').read_text())
 assert sha(story)==p416['newStorySha256'], 'v4.16 current story drift'
 for ch in reversed(p416['changes']):
