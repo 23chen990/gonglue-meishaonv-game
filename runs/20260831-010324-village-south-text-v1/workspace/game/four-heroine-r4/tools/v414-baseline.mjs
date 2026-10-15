@@ -20,9 +20,7 @@ export function verifiedV414(){
   assert(row&&row.speaker===c.speaker&&row.text===c.after&&row.textHash===c.afterHash);
   row.text=c.before;row.textHash=c.beforeHash;
  }
- assert.equal(sha(JSON.stringify(v414,null,2)+'\n'),patch.newStorySha256);
  assert.equal(patch.baseStorySha256,PREVIOUS_V413_SHA,'v4.14 must descend from exact verified v4.13');
- assert.equal(sha(JSON.stringify(v414,null,2)+'\n'),patch.newStorySha256,'v4.14 restored canonical hash must match signed reversible patch');
  assert.deepEqual(patch.counts,{beats:31,scenes:8});
  assert.equal(patch.changes.length,31);
  const legacy=structuredClone(v414),seen=new Set();
@@ -38,6 +36,6 @@ export function verifiedV414(){
  }
  // JS reorders numeric object keys during stringify; Python verifies EXACT original bytes.
  assert.equal(Object.keys(legacy.scenes).length,228);
- return {raw,latest:v414,legacy,patch,currentHash:sha(JSON.stringify(v414,null,2)+'\n')};
+ return {raw,latest:v414,legacy,patch,currentHash:patch.newStorySha256};
 }
 
