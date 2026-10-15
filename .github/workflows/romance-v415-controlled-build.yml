@@ -1,4 +1,4 @@
-name: Romance v4.15 controlled first-night build
+name: Romance v4.15 first-night verified build
 on:
   push:
     branches: [feat/romance-v415-first-night-continuity-20261015]
