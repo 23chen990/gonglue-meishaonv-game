@@ -14,7 +14,8 @@ const witness=JSON.parse(read('qa/current/choice-witness-prefixes.json'));
 const hashes={story:sha(storyRaw),engine:sha(read('tools/engine.mjs'))};
 assert.deepEqual(witness.hashes,hashes,'Choice witness is stale for this story and engine');
 const allChoices=Object.values(data.scenes).flatMap(s=>s.choices.map(c=>s.id+'/'+c.id));
-assert.deepEqual(new Set(Object.keys(witness.choices)),new Set(allChoices),'Missing/extra choice witnesses');
+const witnessedLeaves=Object.keys(witness.choices).filter(k=>!k.includes('/intent:'));
+assert.deepEqual(new Set(witnessedLeaves),new Set(allChoices),'Missing/extra leaf choice witnesses');
 const byChoiceWitness={},states=new Map(),failures=[];
 for(const [name,item] of Object.entries(witness.choices)){
  try{
