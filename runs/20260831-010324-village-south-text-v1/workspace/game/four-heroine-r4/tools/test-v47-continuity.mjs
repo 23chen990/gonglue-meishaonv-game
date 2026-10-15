@@ -26,7 +26,9 @@ const v415=JSON.parse(fs.readFileSync(new URL('patch/v415_first_night_edits.json
 assert.equal(v415.baseStorySha256,v414.newStorySha256,'v4.15 must descend from exact v4.14');
 const v416=JSON.parse(fs.readFileSync(new URL('patch/v416_first_night_edits.json',root),'utf8'));
 assert.equal(v416.baseStorySha256,v415.newStorySha256,'v4.16 successor must match v4.15');
-assert.equal(sha,v416.newStorySha256,'v4.16 current story');
+const v417=JSON.parse(fs.readFileSync(new URL('patch/v417_p0_scene_edits.json',root),'utf8'));
+assert.equal(v417.baseStorySha256,v416.newStorySha256,'v4.17 predecessor SHA');
+assert.equal(sha,v417.newStorySha256,'v4.17 current story');
 assert.equal(sha,contracts.storySha256);
 assert.equal(Object.keys(DATA.scenes).length,228);
 assert.equal(Object.values(DATA.scenes).flatMap(x=>x.choices||[]).length,751);
