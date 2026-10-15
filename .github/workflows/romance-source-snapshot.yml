@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feat/romance-v413-true-decisions-20261015
+      - fix/romance-v414-natural-voice-20261015
     paths:
       - .github/workflows/romance-source-snapshot.yml
   workflow_dispatch:
