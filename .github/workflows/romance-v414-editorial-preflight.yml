@@ -1,0 +1,25 @@
+name: Romance v4.14 first-night editorial preflight
+on:
+  push:
+    branches:
+      - feat/romance-v414-first-night-editorial-20261015
+    paths:
+      - '.github/workflows/romance-v414-editorial-preflight.yml'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/patch/v414_first_night_plan.json'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/apply-v414-first-night.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  patch-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify proposed edit against current canonical story
+        run: |
+          python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/apply-v414-first-night.py --dry-run
+      - name: Ensure preflight never mutates committed code
+        run: |
+          git diff --exit-code
+          git diff --cached --exit-code
