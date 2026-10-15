@@ -52,7 +52,9 @@ for(const ch of P410.changes){
  row.text=ch.before;row.textHash=ch.beforeTextHash;
 }
 const old=structuredClone(D);
-assert.equal(sha(storyText),V414.patch.newStorySha256,'v4.14 canonical SHA');
+const P415=JSON.parse(read('patch/v415_first_night_edits.json'));
+assert.equal(P415.baseStorySha256,V414.patch.newStorySha256,'v4.15 predecessor SHA');
+assert.equal(sha(storyText),P415.newStorySha256,'v4.15 canonical SHA');
 assert.equal(contracts.storySha256,sha(storyText),'choice registry SHA');
 assert.equal(D.version,'revision-r4.3','preserve engine story revision');
 assert.equal(Object.keys(D.scenes).length,228,'scene count preserved');
