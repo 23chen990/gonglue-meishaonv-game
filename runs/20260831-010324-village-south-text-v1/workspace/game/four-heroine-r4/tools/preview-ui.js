@@ -6,7 +6,7 @@ const KEY='gonglue:revision-r4.5-portrait:canonical';
 const PREVIOUS_KEY='gonglue:revision-r4.3-intro:canonical';
 // v4.12 relationship feedback is text-only; known v4.5/v4.8/v4.9/v4.10/v4.11 saves are replayed, backed up and migrated.
 // Existing verified v4.5-v4.8 saves are replayed before backing up and migrating.
-const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8','e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0','473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b','fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a']);
+const COMPATIBLE_STORY_HASHES=new Set(['c457d2158f27e231cecb7dfc3b4d49031891c7f19d8bfeb99a2542658af7f059','fae2d536b2b2a12436d0f39cf7a40abe516cde13a87c4295662ecba181dedbf8','e8128d5133cfd7e00677c3bde69d757f6a6c0e1e3ca67fcc4056b2a00cdeaec0','473d7b1aa3d1eb64531c2c6654ec5bc22ea791005070a3b621719a6d7ba3717b','fd98ab48cb24dfab91ae0af8b1c13df59457237b25afe99cfe4ac2dee0e6d40a','d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3']);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=createState(), phase='scene', page=0, lastReply=[], panel='story', busy=false;
 let archiveView=null, archivePage=0;
@@ -35,10 +35,10 @@ function safeProfile(raw){
  const next={endings:{},bonuses:{},readPages:[]};
  for(const [id,log] of Object.entries(raw?.endings||{})){
   if(dataSceneKind(id)!=='ending')throw Error('Unknown collected ending');
-  const a=replay(DATA,log);if(a.complete&&a.ending===id)next.endings[id]=log;
+  const a=replay(DATA,expandLegacyDecisionLog(log));if(a.complete&&a.ending===id)next.endings[id]=log;
  }
  for(const [id,log] of Object.entries(raw?.bonuses||{})){
-  const b=BONUS.items.find(x=>x.id===id);if(b&&qualify(replay(DATA,log),b))next.bonuses[id]=log;
+  const b=BONUS.items.find(x=>x.id===id);if(b&&qualify(replay(DATA,expandLegacyDecisionLog(log)),b))next.bonuses[id]=log;
  }
  if(Array.isArray(raw?.readPages))next.readPages=raw.readPages.filter(x=>typeof x==='string'&&x.length<180).slice(-10000);
  return next;
