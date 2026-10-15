@@ -169,13 +169,13 @@ function fateHTML(ctx){
 }
 function openEnding(id){
  const log=profile.endings[id];if(!log)throw Error('没有这份已完成记录');
- const v=reviewEnding(DATA,log);
+ const v=reviewEnding(DATA,expandLegacyDecisionLog(log));
  archiveView={...v,kind:'ending',id};archivePage=0;panel='archive';render();
 }
 function openBonus(id){
  const b=BONUS.items.find(x=>x.id===id),log=profile.bonuses[id];
  if(!b||!log)throw Error('这个篇章尚未解锁');
- const ctx=replay(DATA,log);
+ const ctx=replay(DATA,expandLegacyDecisionLog(log));
  archiveView={title:b.title,id,kind:'bonus',context:ctx,
  body:[...b.body,...(b.blocks||[]).filter(x=>condition(ctx,x.when)).flatMap(x=>x.lines)]};
  archivePage=0;panel='archive';render();
