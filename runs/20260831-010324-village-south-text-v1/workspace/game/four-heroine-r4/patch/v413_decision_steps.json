@@ -1,0 +1,696 @@
+{
+  "version": "v4.13",
+  "baseStorySha256": "d473c470ade54b09c35b3bdaedcf4e0559c92f8c5ea96a3052d094fbc7dc10a3",
+  "scope": "16 authored true intent -> consequence/action scene phases; original 751 leaf actions retained",
+  "decisions": {
+    "A2a": [
+      {
+        "id": "credit",
+        "label": "先站到她身边，把歌的署名争回来",
+        "options": [
+          "independent",
+          "negotiated"
+        ],
+        "reply": [
+          {
+            "speaker": "T",
+            "text": "你先问我想不想争回来，而不是替我按确认。这一点，我记住了。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "space",
+        "label": "先保留合作与退路，不替她定去留",
+        "options": [
+          "duet",
+          "pause",
+          "unchanged"
+        ],
+        "reply": [
+          {
+            "speaker": "T",
+            "text": "如果还要合作，我必须听清楚边界。要停，我也想自己决定。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "A3a": [
+      {
+        "id": "fight",
+        "label": "陪她试着把独立舞台留下来",
+        "options": [
+          "cooperative",
+          "shared",
+          "residency"
+        ],
+        "reply": [
+          {
+            "speaker": "S",
+            "text": "我愿意试，但别为了哄我说一定能成。你帮我算清第一场就好。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "release",
+        "label": "尊重她退出的权利，不用情怀绑住她",
+        "options": [
+          "exit",
+          "leave"
+        ],
+        "reply": [
+          {
+            "speaker": "S",
+            "text": "你没劝我死守，反倒让我敢承认自己也会累。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "A3b": [
+      {
+        "id": "creative",
+        "label": "先回应音乐和影像，不拿邀请当许诺",
+        "options": [
+          "t",
+          "l"
+        ],
+        "reply": [
+          {
+            "speaker": "P",
+            "text": "我想认真听一个人的作品，今晚的时间得说准。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "practical",
+        "label": "先看现场与现实安排，不随口答应",
+        "options": [
+          "s",
+          "g",
+          "none"
+        ],
+        "reply": [
+          {
+            "speaker": "P",
+            "text": "我不想一句“都行”让所有人白等。先把能去的说清楚。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "t03": [
+      {
+        "id": "date",
+        "label": "告诉映雪：想把这份喜欢认真往前推",
+        "options": [
+          "open",
+          "exclusive"
+        ],
+        "reply": [
+          {
+            "speaker": "T",
+            "text": "我喜欢听你亲口说想靠近。但别把“认真”说成我必须接受哪一种关系。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "slow",
+        "label": "珍惜她，却暂时不把今晚叫作恋爱",
+        "options": [
+          "wait",
+          "friend",
+          "decline"
+        ],
+        "reply": [
+          {
+            "speaker": "T",
+            "text": "那也别替我安排以后。我今天愿意陪你坐着听完这首。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "s03": [
+      {
+        "id": "date",
+        "label": "对清辞说清想认真约会的心意",
+        "options": [
+          "open",
+          "exclusive"
+        ],
+        "reply": [
+          {
+            "speaker": "S",
+            "text": "公事我能签流程，感情不一样。我得知道你说的“认真”具体到哪一步。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "slow",
+        "label": "先把彼此放在舒适的位置，不催她答应",
+        "options": [
+          "wait",
+          "friend",
+          "decline"
+        ],
+        "reply": [
+          {
+            "speaker": "S",
+            "text": "谢谢你没有把我今天出来吃饭，当成默认同意。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "l03": [
+      {
+        "id": "date",
+        "label": "认真靠近见月，也讲清与别人之间的边界",
+        "options": [
+          "open",
+          "exclusive"
+        ],
+        "reply": [
+          {
+            "speaker": "L",
+            "text": "我不想再被谁的旧故事安排位置。你要说喜欢，就说自己的决定。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "slow",
+        "label": "先留出空间，别用恋爱替她证明价值",
+        "options": [
+          "wait",
+          "friend",
+          "decline"
+        ],
+        "reply": [
+          {
+            "speaker": "L",
+            "text": "可以。我拍片子不用谁批准，喜欢人也不必赶截止日期。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "g03": [
+      {
+        "id": "date",
+        "label": "直接告诉晚棠：想认真试着交往",
+        "options": [
+          "open",
+          "exclusive"
+        ],
+        "reply": [
+          {
+            "speaker": "G",
+            "text": "合作协议里能写期限，喜欢不能。我想听你自己讲清承诺到哪里。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "slow",
+        "label": "不凭一顿饭许下感情承诺",
+        "options": [
+          "wait",
+          "friend",
+          "decline"
+        ],
+        "reply": [
+          {
+            "speaker": "G",
+            "text": "行，你愿意讲清楚就好。最怕有人吃完饭才说刚才算默认。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "A4a": [
+      {
+        "id": "create",
+        "label": "陪她争取属于自己的镜头和发表机会",
+        "options": [
+          "fellowship",
+          "stay",
+          "film"
+        ],
+        "reply": [
+          {
+            "speaker": "L",
+            "text": "你不是说“我给你拍”，而是问我想把镜头放在哪儿。那我愿意试。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "guard",
+        "label": "先尊重许可和边界，不替她做决定",
+        "options": [
+          "cut",
+          "none"
+        ],
+        "reply": [
+          {
+            "speaker": "L",
+            "text": "谢谢。素材是人的故事，不是我想用就能用，也不是你想帮就能帮。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "A5a": [
+      {
+        "id": "defend",
+        "label": "陪晚棠把责任和决定权一并争回来",
+        "options": [
+          "independent",
+          "bounded",
+          "account"
+        ],
+        "reply": [
+          {
+            "speaker": "G",
+            "text": "我不是求你给我开脱。我想让每一笔钱和每一次签字，都回到该负责的人名下。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "freedom",
+        "label": "承认她有权离开，也有权不用你救场",
+        "options": [
+          "leave",
+          "none"
+        ],
+        "reply": [
+          {
+            "speaker": "G",
+            "text": "你没说“忍一忍就过去”。这句话反而让我敢想离开以后怎么办。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "A5b": [
+      {
+        "id": "face",
+        "label": "和陆景行把合作、竞争、误解摆到台面",
+        "options": [
+          "ally",
+          "rival",
+          "repair"
+        ],
+        "reply": [
+          {
+            "speaker": "LU",
+            "text": "行，那就拿方案说话。合作我不会送你分，竞争也不会少你那一份。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "leave",
+        "label": "不再围着原男主转，走自己的路",
+        "options": [
+          "distance",
+          "independent"
+        ],
+        "reply": [
+          {
+            "speaker": "LU",
+            "text": "你想另走一条路，我听懂了。别到最后又把这件事算在别人头上。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "A6a": [
+      {
+        "id": "prove",
+        "label": "拿前六天真正得到的证据，要求纠正归责",
+        "options": [
+          "public",
+          "partner",
+          "backstage"
+        ],
+        "reply": [
+          {
+            "speaker": "P",
+            "text": "别急着让我签。时间线和原始材料在这里，谁负责哪一段，我们一项一项核。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "leave",
+        "label": "不再任由程放安排，承担自己的去留决定",
+        "options": [
+          "exit",
+          "accept",
+          "rebuild"
+        ],
+        "reply": [
+          {
+            "speaker": "C",
+            "text": "想走可以，但别以为离开就能把这张单子变成没发生过。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "LU_MOVE2": [
+      {
+        "id": "compete",
+        "label": "这回用真实作品回应合作与竞争",
+        "options": [
+          "ally",
+          "rival",
+          "reconciled"
+        ],
+        "reply": [
+          {
+            "speaker": "LU",
+            "text": "上次我们谁也没听完谁的话。这一轮，至少把方案和署名都摊开。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "independence",
+        "label": "完成自己的交接，然后把方向盘拿回来",
+        "options": [
+          "distant",
+          "independent"
+        ],
+        "reply": [
+          {
+            "speaker": "LU",
+            "text": "我不替你报名，也不替你解释离开。我们各自把答应的事情做完。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "A7a": [
+      {
+        "id": "honest",
+        "label": "主动把重要关系说清，不再借沉默糊弄",
+        "options": [
+          "together",
+          "private",
+          "work"
+        ],
+        "reply": [
+          {
+            "speaker": "P",
+            "text": "这一次，我不想再让别人靠猜，才知道自己在我心里是什么位置。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "boundary",
+        "label": "先收住承诺，允许关系各自拥有结局",
+        "options": [
+          "separate",
+          "none"
+        ],
+        "reply": [
+          {
+            "speaker": "P",
+            "text": "不是每一次靠近都一定要走到结婚那一页，但结束也不能让人凭空猜。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "H_glst": [
+      {
+        "id": "together",
+        "label": "先照顾一起淋雨的人，不把谁当候补",
+        "options": [
+          "all"
+        ],
+        "reply": [
+          {
+            "speaker": "S",
+            "text": "先等会儿吧。四个人都在，没必要把谁留在雨里。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "closer",
+        "label": "想先陪其中一个人，必须自己说出选择",
+        "options": [
+          "favor_g",
+          "favor_l",
+          "favor_s",
+          "favor_t"
+        ],
+        "reply": [
+          {
+            "speaker": "G",
+            "text": "那就别躲着说。你先送谁，我们四个人都能听见。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "EXEC_s": [
+      {
+        "id": "trial",
+        "label": "陪清辞拿现场结果说话，不靠纸上热情",
+        "options": [
+          "trial",
+          "slots",
+          "venue"
+        ],
+        "reply": [
+          {
+            "speaker": "S",
+            "text": "我能扛难听的反馈，就怕我们连一次实际试场都不做。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "handover",
+        "label": "不再继续试场，至少把责任交清",
+        "options": [
+          "handover",
+          "none"
+        ],
+        "reply": [
+          {
+            "speaker": "S",
+            "text": "你不做也行，告诉我边界。只要别留一句“我以为你会来”。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ],
+    "EXEC_l": [
+      {
+        "id": "shoot",
+        "label": "让见月先动手拍自己的作品，不再无休止代剪",
+        "options": [
+          "application",
+          "own",
+          "screen"
+        ],
+        "reply": [
+          {
+            "speaker": "L",
+            "text": "好，我来掌镜。你可以帮忙，但最后按下发送键的人必须是我。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      },
+      {
+        "id": "rights",
+        "label": "先确认许可与自己的精力，再决定参与多少",
+        "options": [
+          "permissions",
+          "none"
+        ],
+        "reply": [
+          {
+            "speaker": "L",
+            "text": "我不想拿别人的拒绝当不存在，也不想假装自己永远有精力帮忙。"
+          }
+        ],
+        "after": [
+          {
+            "speaker": "N",
+            "text": "N"
+          }
+        ]
+      }
+    ]
+  }
+}
