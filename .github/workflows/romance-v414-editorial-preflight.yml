@@ -18,7 +18,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify proposed edit against current canonical story
         run: |
-          python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/apply-v414-first-night.py --dry-run
+          if test -f runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/patch/v414_first_night_edits.json; then
+            python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/apply-v414-first-night.py --check
+          else
+            python3 runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/apply-v414-first-night.py --dry-run
+          fi
       - name: Ensure preflight never mutates committed code
         run: |
           git diff --exit-code

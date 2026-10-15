@@ -127,25 +127,25 @@
       "scene": "OP_TALK_g",
       "id": "OP_TALK_g.r4.body.002",
       "speaker": "G",
-      "text": "许照，对吧？刚才后台乱成那样，交接单是谁让你签的？"
+      "text": "许照，对吧？刚才那个原版盘，是你找回来的？"
     },
     {
       "scene": "OP_TALK_g",
       "id": "OP_TALK_g.r4.body.003",
       "speaker": "P",
-      "text": "程放一直催，纸上却没写清楚到底是谁负责导出、谁负责播放。"
+      "text": "是我找到的。能不能用，是阿衡试听过才决定的。我没碰控台。"
     },
     {
       "scene": "OP_TALK_g",
       "id": "OP_TALK_g.r4.body.004",
       "speaker": "G",
-      "text": "那就先别急着替谁认账。坐下吧，你脸色都白了。"
+      "text": "这倒说得清楚。先坐，你脸色都白了。"
     },
     {
       "scene": "OP_TALK_g",
       "id": "OP_TALK_g.r4.body.005",
       "speaker": "P",
-      "text": "我刚才真有点慌。你一提那张纸，我才发现手还在抖。"
+      "text": "我刚才就怕说不清，最后什么都算我头上。听你这么问，我反倒踏实点。"
     },
     {
       "scene": "OP_TALK_self",

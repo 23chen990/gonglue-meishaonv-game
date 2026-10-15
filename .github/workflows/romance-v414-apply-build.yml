@@ -30,7 +30,7 @@ jobs:
         working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
         run: |
           if test -f patch/v414_first_night_edits.json; then
-            python3 tools/apply-v414-first-night.py --check
+            python3 tools/refine-v414-first-night.py --apply
           else
             python3 tools/apply-v414-first-night.py --apply
           fi

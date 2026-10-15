@@ -62,6 +62,10 @@ if not args.check:
 else:
     assert PATCH.exists(),'Patch missing: run --apply first'
     patch=json.loads(PATCH.read_text());assert sha(raw)==patch['newStorySha256']
+    expected={c['id']:c['text'] for c in p['changes']}
+    assert len(expected)==len(patch['changes'])
+    for c in patch['changes']:
+        assert expected[c['id']]==c['after'],'Plan / applied edit drift: '+c['id']
     back=copy.deepcopy(old)
     for ch in reversed(patch['changes']):
         row=next(x for x in back['scenes'][ch['scene']]['body'] if x['id']==ch['id'])
