@@ -506,26 +506,28 @@ function directBridge(){
  return {pre:v,next,moved};
 }
 function sceneStagePortrait(cp){
- const activeChar=activePortrait();
- if(activeChar)return activeChar;
-  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)return 't';
-  if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
- const rows=cp.rows||[];
- for(let i=rows.length-1;i>=0;i--){
-  const c={T:'t',S:'s',L:'l',G:'g'}[rows[i].speaker];if(c)return c;
+ if(state.current==='ENTRY_WAKE'&&phase==='scene'&&currentPage().last)return 't';
+ if(state.current==='ENTRY_WAKE'&&phase==='scene'&&page<3)return null;
+ for(let i=(cp.rows||[]).length-1;i>=0;i--){
+  const c={T:'t',S:'s',L:'l',G:'g'}[cp.rows[i].speaker];if(c)return c;
  }
- return state.f?.first&&heroineDesign[state.f.first]?state.f.first:null;
+ return activePortrait()||(state.f?.first&&heroineDesign[state.f.first]?state.f.first:null);
 }
 function vnFrame(cp,interior,sceneTitle,bridge=null){
- const source=sourceScene();const set=(source.scene?.background||'backstage').replace(/[^a-z0-9-]/gi,'');
- const c=sceneStagePortrait(cp);
- const mood=/危机|错误|清退|归责|撤回|背锅|删除/.test(sceneTitle)?'tense':'soft';
+ const source=sourceScene(),set=(source.scene?.background||'backstage').replace(/[^a-z0-9-]/gi,'');
+ const c=sceneStagePortrait(cp),focus=cp.rows?.at(-1);
+ const kind=focus?.speaker==='B'?'thought':focus?.speaker==='N'?'narration':focus?.speaker==='U'?'system':'dialogue';
+ const choice=cp.last&&!cp.view.isReply&&!cp.view.terminal&&(!!bridge||cp.view.choices.some(o=>o.enabled));
+ const mode=cp.view.terminal?'ending':phase==='reply'?'reply':choice?'decision':'reading';
+ const mood=kind==='thought'?'intimate':/危机|错误|清退|归责|撤回|背锅|删除/.test(sceneTitle)?'tense':'soft';
  const day=state.current==='@schedule'?DATA.calendar[state.slot]?.day:state.clock?.day||1;
  const chapter=state.complete?'结局·改写的终点':state.current==='ENTRY_WAKE'?'序章 · 醒来':`第${day||1}日 · ${phase==='reply'?'决定之后':'故事继续'}`;
+ const who=kind==='thought'?'许照 · 心声':kind==='narration'?'剧情旁白':kind==='system'?'现场信息':names[focus?.speaker]||'当前剧情';
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
- const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${cp.last?'选择在下方直接进行':'轻触下方继续阅读'}</div></div></section>`;
- return `<div class="vn-frame" data-phase="${phase}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><strong>${esc(sceneTitle)}</strong><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起文字 ↓':'展开文字 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
+ const cue=choice?'轮到你决定':phase==='reply'?'你的决定，有了回应':cp.pages.length>1?'轻触画面继续':'阅读当前剧情';
+ const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${esc(cue)}</div></div></section>`;
+ return `<div class="vn-frame" data-phase="${phase}" data-mode="${mode}" data-beat-kind="${kind}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><span class="vn-voice"><strong>${esc(who)}</strong><small>${cp.pages.length>1?page+1+' / '+cp.pages.length:choice?'选择':'剧情'}</small></span><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起 ↓':'展开 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }
 function storyHTML(){
  const cp=currentPage();let interior='',bridge=null,heading=cp.view.title;
@@ -653,6 +655,14 @@ function render(scrollWindow=true){
 }
 
 function arm(){downToken=null;pointerStart=null;moved=false;}
+function advanceReading(){
+ if(panel!=='story')return false;
+ const cp=currentPage();
+ if(!cp.last){markRead(cp);page++;save();render();arm();return true;}
+ if(phase==='reply'){markRead(cp);phase='scene';page=0;save();render();arm();return true;}
+ return false;
+}
+
 function exportLog(){
  const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -717,7 +727,17 @@ document.addEventListener('keydown',e=>{
  if(e.key==='Escape'&&panel!=='story'){e.preventDefault();backToStory();}
 });
 document.addEventListener('click',ev=>{
- const b=ev.target instanceof Element?ev.target.closest('button'):null;
+ const target=ev.target instanceof Element?ev.target:null;
+ const b=target?.closest('button');
+ if(!b){
+  if(panel!=='story'||busy||!target?.closest('.vn-stage,.vn-scroll')||
+     target.closest('a,details,summary,input,textarea,[role="button"]')||window.getSelection()?.toString())return;
+  if(ev.detail>0&&(moved||(downToken!==null&&downToken!==renderToken)))return;
+  busy=true;
+  try{advanceReading();}catch(e){notice='阅读推进失败：'+e.message;showNotice();}
+  finally{busy=false;}
+  return;
+ }
  // A new rendered button may receive detail=2 after a legitimate fast touch.
  // The revision/render token and disconnected-node guard reject duplicates without swallowing that touch.
  if(!b||!b.isConnected||b.disabled||busy)return;
