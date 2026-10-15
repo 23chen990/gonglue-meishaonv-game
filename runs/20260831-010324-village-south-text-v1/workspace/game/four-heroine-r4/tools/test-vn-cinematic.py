@@ -41,6 +41,27 @@ with sync_playwright() as play:
      page.locator('[data-page-next]').tap()
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
     assert page.locator('.vn-dock [data-choice]').count()==3
+    # Fully visible real choices and the last causal beat, not just DOM presence.
+    layout=page.evaluate("""()=>{
+      const box=x=>x.getBoundingClientRect();
+      const sheet=box(document.querySelector('.vn-sheet'));
+      const dock=box(document.querySelector('.vn-dock'));
+      const scroll=box(document.querySelector('.vn-scroll'));
+      const last=[...document.querySelectorAll('.vn-scroll .line')].at(-1);
+      const beat=last&&box(last),portrait=document.querySelector('.vn-portrait');
+      const actor=portrait&&box(portrait);
+      const choices=[...document.querySelectorAll('.vn-dock [data-choice]')].map(x=>{
+        const r=box(x);return {height:r.height,visible:Math.max(0,Math.min(dock.bottom,r.bottom)-Math.max(dock.top,r.top))};
+      });
+      return {sheetTop:sheet.top,
+        beatVisible:beat?Math.max(0,Math.min(scroll.bottom,beat.bottom)-Math.max(scroll.top,beat.top)):0,
+        actorVisible:actor?Math.max(0,Math.min(sheet.top,actor.bottom)-Math.max(65,actor.top)):0,
+        choices,overflow:document.documentElement.scrollWidth>innerWidth};
+    }""")
+    assert layout['beatVisible']>=45,(w,h,'last causal beat obscured',layout)
+    assert layout['actorVisible']>=37,(w,h,'heroine invisible behind reader sheet',layout)
+    assert not layout['overflow'],(w,h,'horizontal overflow')
+    assert all(x['height']>=44 and x['visible']>=x['height']-2 for x in layout['choices']),(w,h,layout)
     page.screenshot(path=str(D/f'intro-{w}.png'))
     return {'size':f'{w}x{h}','firstDecisionVisible':True}
    finally:ctx.close()
@@ -64,6 +85,29 @@ with sync_playwright() as play:
    return {'readingAdvances':seen,'commandsPreserved':after}
   finally:ctx.close()
  record('CANONICAL_LONG_SCENE_AND_TAP_GUARD',scene_case)
+ def large_first_fork():
+  ctx,page=open_game(320,568)
+  try:
+   page.locator('#menu').tap()
+   page.locator('[data-action="font"]').tap()
+   page.locator('[data-nav="story"]').first.tap()
+   assert page.locator('body.large').count()==1
+   for _ in range(7):page.locator('[data-page-next]').first.tap()
+   page.wait_for_timeout(250)
+   data=page.evaluate("""()=>{
+    let area=document.querySelector('.vn-scroll'),dock=document.querySelector('.vn-dock'),
+      beat=[...area.querySelectorAll('.line')].at(-1);
+    const a=area.getBoundingClientRect(),b=beat.getBoundingClientRect(),d=dock.getBoundingClientRect();
+    return {beatVisible:Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)),
+      buttons:[...dock.querySelectorAll('[data-choice]')].map(x=>{let r=x.getBoundingClientRect();return {height:r.height,visible:Math.max(0,Math.min(d.bottom,r.bottom)-Math.max(d.top,r.top))}})};
+   }""")
+   assert data['beatVisible']>=45,('large font hid causal beat',data)
+   assert len(data['buttons'])==3 and all(b['height']>=44 and b['visible']>=b['height']-2 for b in data['buttons']),data
+   page.screenshot(path=str(D/'intro-320-large.png'))
+   return data
+  finally:ctx.close()
+ record('LARGE_FONT_320_FIRST_FORK',large_first_fork)
+
  browser.close()
 REPORT['status']='PASS' if all(c['status']=='PASS' for c in REPORT['cases']) else 'FAIL'
 (R/'qa/current/vn-cinematic-report.json').write_text(json.dumps(REPORT,ensure_ascii=False,indent=2)+'\n')
