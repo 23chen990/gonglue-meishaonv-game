@@ -76,20 +76,44 @@ with sync_playwright() as play:
  def scene_case():
   cmds=W['A6a/accept']['prefix'][:-1]
   ctx,page=open_game(390,844,cmds)
+  taps=0;stalled=0;last_key=None
   try:
-   assert page.locator('body').get_attribute('data-current')=='A6a'
+   current=page.locator('body').get_attribute('data-current')
+   assert current=='A6a',('save replay restored unexpected scene',current)
    before=page.evaluate('([k])=>JSON.parse(localStorage.getItem(k)).commands.length',[KEY])
-   seen=0
-   while page.locator('[data-page-next]').count() and seen<35:
+   while page.locator('[data-page-next]').count() and taps<35:
+    key_before=page.locator('.vn-frame').get_attribute('data-reader-key')
     page.locator('.vn-stage').tap(position={'x':15,'y':210})
-    seen+=1
-   assert seen<35
-   assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
+    taps+=1
+    key_after=page.locator('.vn-frame').get_attribute('data-reader-key')
+    if key_after==key_before:stalled+=1
+    last_key=key_after
+    if stalled>=3:break
+   assert stalled<3,('touch was received but reader did not advance',taps,last_key)
+   assert taps<35,('unexpected number of reading pages',taps,last_key)
+   mode=page.locator('.vn-frame').get_attribute('data-mode')
+   assert mode=='decision',('reader did not reach decision',mode,taps,last_key)
    after=page.evaluate('([k])=>JSON.parse(localStorage.getItem(k)).commands.length',[KEY])
    assert before==after,('reading changed canonical history',before,after)
-   assert page.locator('.vn-dock [data-choice-group]').count()>=2
+   groups=page.locator('.vn-dock [data-choice-group]').count()
+   assert groups>=2,('expected grouped navigation at the decision',groups,page.locator('.vn-dock').inner_text()[-450:])
    page.screenshot(path=str(D/'A6a-decision.png'))
-   return {'readingAdvances':seen,'commandsPreserved':after}
+   return {'readingAdvances':taps,'commandsPreserved':after,'stalledTaps':stalled,'choiceGroups':groups}
+  except Exception as exc:
+   try:
+    diagnostic=page.evaluate("""() => ({
+      scene:document.body?.dataset.current,
+      mode:document.querySelector('.vn-frame')?.dataset.mode,
+      readerKey:document.querySelector('.vn-frame')?.dataset.readerKey,
+      nextButtons:document.querySelectorAll('[data-page-next]').length,
+      choiceGroups:document.querySelectorAll('.vn-dock [data-choice-group]').length,
+      stageHit:document.elementFromPoint(15,210)?.className,
+      dockTail:document.querySelector('.vn-dock')?.innerText.slice(-260),
+      notice:document.querySelector('#notice')?.innerText.slice(-180)
+    })""")
+    page.screenshot(path=str(D/'A6a-diagnostic-failure.png'))
+   except Exception as capture_exc:diagnostic={'captureError':repr(capture_exc)}
+   raise AssertionError(f'long scene {ENGINE}: taps={taps} stalled={stalled} DOM={diagnostic} original={exc!r}') from exc
   finally:ctx.close()
  record('CANONICAL_LONG_SCENE_AND_TAP_GUARD',scene_case)
  def dynamic_height():
@@ -132,5 +156,5 @@ with sync_playwright() as play:
 
  browser.close()
 REPORT['status']='PASS' if all(c['status']=='PASS' for c in REPORT['cases']) else 'FAIL'
-(R/'qa/current/vn-cinematic-report.json').write_text(json.dumps(REPORT,ensure_ascii=False,indent=2)+'\n')
+(R/'qa/current'/('vn-cinematic-webkit-report.json' if ENGINE=='webkit' else 'vn-cinematic-report.json')).write_text(json.dumps(REPORT,ensure_ascii=False,indent=2)+'\n')
 if REPORT['status']!='PASS':raise SystemExit(1)

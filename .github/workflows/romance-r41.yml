@@ -86,6 +86,7 @@ jobs:
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/browser/cinematic-webkit/**
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-report.json
+            runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/vn-cinematic-webkit-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v45-browser-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v46-reader-report.json
             runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/qa/current/v48-first-choice-report.json
