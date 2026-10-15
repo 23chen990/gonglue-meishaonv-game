@@ -33,8 +33,16 @@ function choicesAt(id,entry='rescue',overrides={}){
  const s=reach(id,entry,overrides);
  const cs=renderScene(s,D).choices.filter(x=>x.enabled);
  assert(cs.length>=2,`Too few alternatives at ${id}`);
- const output=cs.map(x=>{
-  const result=choose(s,D,x.id,s.revision);
+ const optionsToCompare=D.scenes[id]?.decisionSteps
+  ?D.scenes[id].choices.filter(x=>D.scenes[id].decisionSteps.some(g=>g.options.includes(x.id)))
+  :cs;
+ const output=optionsToCompare.map(x=>{
+  let state=s;
+  if(D.scenes[id]?.decisionSteps){
+   const group=D.scenes[id].decisionSteps.find(g=>g.options.includes(x.id));
+   state=choose(state,D,'intent:'+group.id,state.revision).state;
+  }
+  const result=choose(state,D,x.id,state.revision);
   return {id:x.id,from:id,to:result.state.current,
     facts:result.state.f,
     reply:result.reply.map(b=>b.text).join('\n'),
