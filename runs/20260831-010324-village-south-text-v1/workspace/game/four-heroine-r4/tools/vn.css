@@ -208,3 +208,11 @@ body.large .vn-frame[data-mode=decision] .vn-dock{max-height:65%}
  .vn-voice{gap:5px}
 }
 @media(prefers-reduced-motion:reduce){.vn-frame .vn-sheet{transition:none!important}}
+
+/* First fork keeps the specifically validated v4.8 28-beat/three-choice geometry. */
+.vn-frame[data-intro-decision="true"] .vn-sheet{height:78%}
+.vn-frame[data-intro-decision="true"] .vn-dock{max-height:min(55%,320px)}
+@media(max-height:650px){
+ .vn-frame[data-intro-decision="true"] .vn-sheet{height:calc(100% - 65px)}
+ .vn-frame[data-intro-decision="true"] .vn-dock{max-height:min(57%,300px)}
+}
