@@ -27,7 +27,8 @@ assert(beat('ENTRY_WAKE.intro.016').includes('我记得')&&beat('ENTRY_WAKE.intr
 assert(beat('ENTRY_WAKE.intro.025').includes('第七天')&&beat('ENTRY_WAKE.intro.025').includes('炮灰'));
 assert(beat('ENTRY_WAKE.intro.028').includes('只剩几个呼吸'));
 assert(latest.scenes.OP_TALK_l.body.find(b=>b.id==='OP_TALK_l.r4.body.004').text.startsWith('那就先不拍你'));
-assert(!latest.scenes.OP_TALK_g.body.find(b=>b.id==='OP_TALK_g.r4.body.002').text.includes('质问'));
+const guIntro=latest.scenes.OP_TALK_g.body.map(b=>b.text).join(' ');
+assert(!/质问|交接单|签字/.test(guIntro),'Premature knowledge of unsigned paperwork in Gu greeting');
 for(const c of patch.changes){
  const after=latest.scenes[c.scene].body.find(b=>b.id===c.id);
  const before=legacy.scenes[c.scene].body.find(b=>b.id===c.id);

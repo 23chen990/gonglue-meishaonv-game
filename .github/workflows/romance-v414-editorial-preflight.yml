@@ -1,4 +1,5 @@
 name: Romance v4.14 first-night editorial preflight
+# Initial plan: --dry-run; applied current story: strict --check.
 on:
   push:
     branches:
