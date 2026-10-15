@@ -28,7 +28,6 @@ jobs:
         run: |
           python3 tools/apply-v415-first-night.py --apply
           python3 tools/apply-v415-first-night.py --check
-          python3 tools/apply-v414-first-night.py --check || test -f patch/v415_first_night_edits.json
           python3 tools/export-and-audit.py
       - name: Full canonical build, all regression checks and reversible provenance
         working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
