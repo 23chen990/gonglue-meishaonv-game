@@ -2,11 +2,12 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {verifiedV414} from './v414-baseline.mjs';
 const R=new URL('../',import.meta.url);
 const read=p=>fs.readFileSync(new URL(p,R),'utf8');
 const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 const text=read('data/STORY.json'),D=JSON.parse(text),p=JSON.parse(read('patch/v412_reaction_copy.json'));
-assert.equal(sha(text),'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3');
+assert.equal(sha(text),verifiedV414().patch.newStorySha256);
 const v413=JSON.parse(read('patch/v413_decision_steps.json'));assert.equal(v413.baseStorySha256,p.newStorySha256);
 assert.deepEqual(p.counts,{beats:56,scenes:26,crossEnd:12,pairSlow:18,pairSeparate:18,reopenWait:4,repairDelay:4});
 const seen=new Set();

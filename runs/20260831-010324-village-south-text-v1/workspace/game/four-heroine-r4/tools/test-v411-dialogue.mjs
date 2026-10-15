@@ -2,14 +2,16 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {verifiedV414} from './v414-baseline.mjs';
 const R=new URL('../',import.meta.url);
 const read=p=>fs.readFileSync(new URL(p,R),'utf8');
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
 const raw=read('data/STORY.json');
-const data=JSON.parse(raw),patch=JSON.parse(read('patch/v411_dialogue_pov.json'));
+const v414=verifiedV414();
+const data=v414.legacy, fresh=JSON.parse(raw),patch=JSON.parse(read('patch/v411_dialogue_pov.json'));
 const newest=JSON.parse(read('patch/v412_reaction_copy.json'));
 assert.equal(JSON.parse(read('patch/v413_decision_steps.json')).baseStorySha256,newest.newStorySha256);
-assert.equal(sha(raw),'e7e368dff5e07d70337a492d6d79b9daaf1e61dc5f870ad0f9775bef935a44c3');
+assert.equal(sha(raw),v414.patch.newStorySha256);
 assert.equal(newest.baseStorySha256,patch.newStorySha256);
 assert.deepEqual(patch.counts,{beats:11,scenes:9});
 const locate=c=>{
@@ -31,7 +33,7 @@ assert.equal(seen.size,11);
 const sus=[];
 const cast=new Set(['T','S','L','G']);
 const scan=(b,loc)=>{if(cast.has(b.speaker)&&/(?:她|见月|晚棠)(?:把|抬眼|按下|发来)/.test(b.text))sus.push(loc)};
-for(const [id,s] of Object.entries(data.scenes)){
+for(const [id,s] of Object.entries(fresh.scenes)){
  s.body.forEach((b,i)=>scan(b,id+'/body/'+i));
  (s.blocks||[]).forEach((bl,i)=>bl.lines.forEach((b,j)=>scan(b,id+'/block/'+i+'/'+j)));
  s.choices.forEach(c=>{
