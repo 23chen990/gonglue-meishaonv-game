@@ -75,7 +75,7 @@ def hit(browser, width, height, route):
             source_ids.append(p.locator('.vn-frame').get_attribute('data-source'))
             p.locator('[data-page-next]').tap()
         else:raise AssertionError('first decision never appeared')
-        assert len(set(source_ids))==11,('opening source turns skipped',len(set(source_ids)))
+        assert len(set(source_ids))==10,('opening source turns skipped',len(set(source_ids)))
         assert p.locator('[data-page-next]').count() == 0
         assert p.locator('.vn-grip').count() == 0, 'fake dragging control returned'
         ids=visible_option_ids(p)

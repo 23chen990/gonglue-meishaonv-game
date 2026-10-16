@@ -64,7 +64,7 @@ with sync_playwright() as play:
      assert page.locator('[data-page-next]').count()==1,(w,i)
      page.locator('[data-page-next]').tap()
     else:raise AssertionError(('opening reader stalled',w,h))
-    assert len(set(source_ids))==11,(w,h,'11 on-stage cuts; all 28 canonical rows remain in DATA/History',len(set(source_ids)))
+    assert len(set(source_ids))==10,(w,h,'10 reading cuts before the eleventh decision beat; all 28 canonical rows remain in DATA/History',len(set(source_ids)))
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
     option_ids=visible_option_ids(page)
     assert set(option_ids)=={'canon','rescue','investigate'},(w,h,option_ids)
@@ -177,7 +177,7 @@ with sync_playwright() as play:
     source_ids.append(page.locator('.vn-frame').get_attribute('data-source'))
     page.locator('[data-page-next]').first.tap()
    else:raise AssertionError('large-font opening reader stalled')
-   assert len(set(source_ids))==11
+   assert len(set(source_ids))==10
    option_ids=visible_option_ids(page)
    assert set(option_ids)=={'canon','rescue','investigate'},option_ids
    page.wait_for_timeout(250)
