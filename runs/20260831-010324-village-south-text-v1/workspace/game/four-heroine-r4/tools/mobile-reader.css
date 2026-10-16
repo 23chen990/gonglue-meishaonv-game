@@ -18,6 +18,9 @@ body[data-panel=story] .mobile-vn .mobile-dock{max-height:none!important;min-hei
 .mobile-vn .mobile-dock .next{min-height:44px!important;height:44px!important;min-width:96px;width:auto!important;margin:0!important;padding:8px 4px 8px 20px!important;background:transparent!important;color:#f3bad5!important;border:0!important;box-shadow:none!important;font-size:14px!important;line-height:28px!important;text-align:right}
 .mobile-vn .mobile-dock .next:after{content:' ▸';font-size:13px}
 .mobile-vn .mobile-prompt{font:500 13px/44px system-ui;color:#eab8d1}
+.mobile-vn[data-mode=decision]>.mobile-sheet{grid-template-rows:0 0 calc(44px + var(--mobile-safe))!important;padding:6px 20px!important;background:linear-gradient(180deg,#171120d9,#19101aef)!important}
+.mobile-vn[data-mode=decision]>.mobile-sheet .mobile-speaker,.mobile-vn[data-mode=decision]>.mobile-sheet .mobile-text{display:none!important}
+.mobile-vn[data-mode=decision]>.mobile-sheet .mobile-dock{align-items:center;justify-content:flex-end}
 .mobile-vn[data-beat-kind=visual]>.mobile-sheet{background:linear-gradient(transparent,#160c23a0)!important;border-top:0!important;pointer-events:none}
 .mobile-vn[data-beat-kind=visual] .mobile-dock{pointer-events:auto}
 .mobile-vn[data-beat-kind=thought] .mobile-speaker{color:#c4b9e7}
