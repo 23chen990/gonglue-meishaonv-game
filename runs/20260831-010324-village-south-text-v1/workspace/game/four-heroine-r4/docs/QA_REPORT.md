@@ -130,3 +130,11 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - 因舞台休息饮水照与“伴奏出错”的台词不符，本次该句暂以**舞台侧幕全景 + 话筒画外声**表现，直至完成专属女主事故 CG。不能使用错误人物动作假装已完善。
 - 已本地 Chromium DOM 注入测试 320/360/390/430px 双新图 `naturalWidth=941`、首次选择同屏/≥44px、工作牌焦点、三路线、无对白滚动。禁用存储环境会真实提示存档无法持久化，截图可手动关闭警告；本地不可代替 GitHub 的原生 HTTP 浏览器验证。
 - 新图虽然手机端清楚，仍未达到 1536×2560 的先前正式 CG master 规格；其它 6 张预览仍未替换，严格美术门禁**应保持阻断**，禁止作为全部 228 场或发布完成验收。
+
+### ADV V7.1 exact-head compact save warning acceptance
+
+- Controlled build successfully regenerated the V7 game at exact HEAD `f29fac9bebecb437b27797d7ddd55c5ccf641c86`, after source modified the initial save-blocked toast. This is a docs-only acceptance trigger: no generated player, story, or image bytes change.
+- Source CG candidate 01/02: one complete 941x1672 backstage worker scene; one complete 941x1672 first-person badge scene, both embedded into actual H5. These are candidate game assets, **not approved 1536x2560 masters**. Remaining legacy art stays blocked by strict release gate.
+- Offline storage-denied state remains actionable but now has a compact non-obscuring row (short warning, 44px export, dismiss). Other save-conflict and import-failure warnings remain full size.
+- Local Chromium DOM-injected test verified warning y=62..118, 320/390/430 widths, first stage CG and all three decisions; a separate test also verified 320/360/390/430 reading-to-decision (6 unique beat IDs, 7 reading pages only on 320 due text pagination).
+- Native HTTP Chromium/WebKit on this exact regenerated player must still pass, as must full state replay/endings. No physical-device or human-30-second-retention claims.
