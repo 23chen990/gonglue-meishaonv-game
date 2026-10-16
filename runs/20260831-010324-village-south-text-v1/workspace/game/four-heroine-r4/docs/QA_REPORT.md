@@ -83,3 +83,9 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - This documentation-only commit re-triggers native HTTP Chromium/WebKit regression against the **generated game**, not a stale source-only commit.
 - Verify opening 6 reading taps, one intact full-shot CG per frame, no translucent character composite, three original first-action IDs, 320px + large type, menu font cursor, save migration and end-to-end routes.
 - No canonical story, engine, image, HTML or CSS bytes are changed by this QA trigger. No physical-phone or user-retention claims are made.
+
+### ADV V5 ES-module-compatible final-generated-head verification
+
+- The active V5 director now uses legal ES module page-signature separators. The controlled rebuild for source V5 returned SUCCESS and generated artifacts at `0f6d261acd83841946a7868b1122bcaefe387e6a`.
+- This **documentation-only** change deliberately runs PR Chromium + WebKit + full story-route regression against the final generated HTML/runtime, not a source-only intermediate commit.
+- Preserve actual scene CG, first 6 dialogue advances, 3 canonical choices, no in-dialog scroll, font/page anchor, old save replay, and all original engine behavior. Any failure must be resolved rather than declared green.
