@@ -57,24 +57,27 @@ with sync_playwright() as play:
     assert len(set(source_ids))==27,(w,h,'all 28 opening source beats were not traversed in order',len(set(source_ids)))
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
     assert page.locator('.vn-dock [data-choice]').count()==3
-    # Fully visible real choices and the last causal beat, not just DOM presence.
+    # The choice screen is a new interaction beat. Previous dialogue must not
+    # remain as a transcript just to preserve the old reader layout.
     layout=page.evaluate("""()=>{
       const box=x=>x.getBoundingClientRect();
-      const sheet=box(document.querySelector('.vn-sheet'));
-      const dock=box(document.querySelector('.vn-dock'));
-      const scroll=box(document.querySelector('.vn-scroll'));
-      const last=[...document.querySelectorAll('.vn-scroll .line')].at(-1);
-      const beat=last&&box(last),portrait=document.querySelector('.vn-portrait');
+      const sheet=box(document.querySelector('.mobile-sheet'));
+      const dock=box(document.querySelector('.mobile-options'));
+      const text=document.querySelector('.mobile-text'),portrait=document.querySelector('.mobile-portrait');
       const actor=portrait&&box(portrait);
-      const choices=[...document.querySelectorAll('.vn-dock [data-choice]')].map(x=>{
+      const choices=[...dock.querySelectorAll('[data-choice]')].map(x=>{
         const r=box(x);return {height:r.height,visible:Math.max(0,Math.min(dock.bottom,r.bottom)-Math.max(dock.top,r.top))};
       });
-      return {sheetTop:sheet.top,
-        beatVisible:beat?Math.max(0,Math.min(scroll.bottom,beat.bottom)-Math.max(scroll.top,beat.top)):0,
+      return {sheetHeight:sheet.height,inner:innerHeight,
+        dialogueBlocks:text.querySelectorAll('.line').length,
+        dialogueOverflow:text.scrollHeight>text.clientHeight+2,
+        optionOverflow:dock.scrollHeight>dock.clientHeight+2,
         actorVisible:actor?Math.max(0,Math.min(sheet.top,actor.bottom)-Math.max(65,actor.top)):0,
         choices,overflow:document.documentElement.scrollWidth>innerWidth};
     }""")
-    assert layout['beatVisible']>=45,(w,h,'last causal beat obscured',layout)
+    assert layout['sheetHeight']<=h/4+2,(w,h,'dialogue sheet too tall',layout)
+    assert layout['dialogueBlocks']<=1 and not layout['dialogueOverflow'],(w,h,layout)
+    assert not layout['optionOverflow'],(w,h,'choice layer requires hidden scroll',layout)
     assert layout['actorVisible']>=37,(w,h,'heroine invisible behind reader sheet',layout)
     assert not layout['overflow'],(w,h,'horizontal overflow')
     assert all(x['height']>=44 and x['visible']>=x['height']-2 for x in layout['choices']),(w,h,layout)
@@ -165,13 +168,16 @@ with sync_playwright() as play:
    assert len(set(source_ids))==27
    page.wait_for_timeout(250)
    data=page.evaluate("""()=>{
-    let area=document.querySelector('.vn-scroll'),dock=document.querySelector('.vn-dock'),
-      beat=[...area.querySelectorAll('.line')].at(-1);
-    const a=area.getBoundingClientRect(),b=beat.getBoundingClientRect(),d=dock.getBoundingClientRect();
-    return {beatVisible:Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)),
+    const text=document.querySelector('.mobile-text'),dock=document.querySelector('.mobile-options'),
+      sheet=document.querySelector('.mobile-sheet'),d=dock.getBoundingClientRect();
+    return {sheet:sheet.getBoundingClientRect().height,inner:innerHeight,
+      blocks:text.querySelectorAll('.line').length,overflow:text.scrollHeight>text.clientHeight+2,
+      optionOverflow:dock.scrollHeight>dock.clientHeight+2,
       buttons:[...dock.querySelectorAll('[data-choice]')].map(x=>{let r=x.getBoundingClientRect();return {height:r.height,visible:Math.max(0,Math.min(d.bottom,r.bottom)-Math.max(d.top,r.top))}})};
    }""")
-   assert data['beatVisible']>=45,('large font hid causal beat',data)
+   assert data['sheet']<=data['inner']/3+2,('large font sheet exceeds one third',data)
+   assert data['blocks']<=1 and not data['overflow'],data
+   assert not data['optionOverflow'],data
    assert len(data['buttons'])==3 and all(b['height']>=44 and b['visible']>=b['height']-2 for b in data['buttons']),data
    page.screenshot(path=str(D/'intro-320-large.png'))
    return data
