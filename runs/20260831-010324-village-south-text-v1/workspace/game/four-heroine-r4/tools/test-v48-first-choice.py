@@ -96,7 +96,7 @@ def hit(browser, width, height, route):
             })),
             overflow:document.documentElement.scrollWidth>innerWidth,
             portrait:!!document.querySelector('.mobile-stage .mobile-portrait img'),
-            sceneCG:!!document.querySelector('.adv5-scene-photo')&&document.querySelector('.adv5-scene-photo').naturalWidth>0
+            sceneCG:!!document.querySelector('.adv6-scene-photo')&&document.querySelector('.adv6-scene-photo').naturalWidth>0
           };
         }''')
         assert geometry['sheetHeight']<=height/4+2,(width,height,'dialogue sheet too tall',geometry)

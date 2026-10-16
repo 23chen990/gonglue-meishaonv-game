@@ -1,0 +1,87 @@
+/* ADV V6: one optical image per shot. No feather edges, stacked scenery, portraits or image masks. */
+body[data-panel=story],body[data-panel=story] .game-shell{margin:0!important;background:#090b12!important;overflow:hidden!important}
+body[data-panel=story] .game-shell{height:100dvh!important;min-height:0!important;max-height:100dvh!important;max-width:460px!important;box-shadow:none!important}
+body[data-panel=story] .topbar{z-index:35!important;height:calc(52px + env(safe-area-inset-top))!important;min-height:0!important;top:0!important;background:none!important;border:0!important;box-shadow:none!important;padding:calc(7px + env(safe-area-inset-top)) 12px 0!important;justify-content:flex-end!important}
+body[data-panel=story] .topbar .logo-wrap{display:none!important}
+body[data-panel=story] .topbar #menu{margin-left:auto!important;width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;border:1px solid #ffffff6b!important;background:#080b18af!important;border-radius:50%!important;box-shadow:0 4px 14px #05061770!important;backdrop-filter:blur(6px)}
+body[data-panel=story] main#app{height:100%!important;min-height:0!important;padding:0!important}
+.adv6{height:100%!important;overflow:hidden!important;position:relative;background:#0d0a18;color:#fff;isolation:isolate}
+.adv6 .adv6-stage{position:absolute!important;inset:0!important;display:block!important;overflow:hidden!important;z-index:1!important;background:#0b0e17!important;cursor:pointer}
+.adv6 .adv6-stage::before,.adv6 .adv6-stage::after{content:none!important;display:none!important}
+.adv6 .adv6-image{position:absolute;inset:0;overflow:hidden;z-index:1;background:#090b14}
+.adv6 .adv6-scene-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 36%;max-width:none!important;max-height:none!important;mask:none!important;-webkit-mask-image:none!important;opacity:1!important;filter:none!important;transform:none!important}
+/* The shot itself is a single uncomposited image; the vignette only protects text legibility. */
+.adv6 .adv6-vignette{position:absolute;z-index:2;inset:0;pointer-events:none;background:linear-gradient(180deg,#0708122e,transparent 18%,transparent 57%,#0d0b1a25 74%,#09081678 100%)}
+.adv6[data-camera=crew] .adv6-scene-photo{object-position:74% 34%}
+.adv6[data-camera=badge] .adv6-scene-photo{object-position:53% 38%}
+.adv6[data-camera=singer] .adv6-scene-photo{object-position:54% 32%}
+.adv6[data-camera=lin] .adv6-scene-photo{object-position:61% 34%}
+.adv6[data-camera=gu] .adv6-scene-photo{object-position:61% 34%}
+.adv6[data-camera=piano] .adv6-scene-photo{object-position:56% 35%}
+.adv6[data-camera=usb] .adv6-scene-photo{object-position:51% 36%}
+.adv6[data-camera=usbHeld] .adv6-scene-photo{object-position:51% 34%}
+.adv6 .adv6-chapter{position:absolute;z-index:4;top:calc(67px + env(safe-area-inset-top));left:18px;pointer-events:none;color:#fff9f8;font:600 11px/1.5 system-ui,'PingFang SC',sans-serif;letter-spacing:.2em;text-shadow:0 2px 8px #02020a}
+.adv6 .adv6-sheet{position:absolute!important;z-index:11!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;height:var(--mobile-panel)!important;min-height:0!important;max-height:var(--mobile-panel)!important;display:grid!important;grid-template-rows:27px minmax(0,1fr) calc(40px + var(--mobile-safe))!important;padding:11px 19px 3px!important;box-sizing:border-box!important;background:linear-gradient(180deg,#111021dc,#0b0c17f0 54%,#080914fa)!important;color:#fff!important;border:0!important;border-top:1px solid #fff5fc40!important;border-radius:0!important;box-shadow:0 -8px 36px #090a1647!important;overflow:hidden!important;backdrop-filter:blur(5px)!important;-webkit-backdrop-filter:blur(5px)!important}
+.adv6 .adv6-speaker{display:block!important;position:static!important;min-height:0!important;height:27px!important;max-height:27px!important;padding:0!important;margin:0!important;color:#ffc6db!important;font:600 14px/25px system-ui,-apple-system,'PingFang SC',sans-serif!important;letter-spacing:.02em!important;text-shadow:0 2px 5px #0008}
+.adv6[data-beat-kind=thought] .adv6-speaker{color:#d9d6f3!important}
+.adv6 .adv6-text{height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;padding:0!important;margin:0!important;background:none!important;border:0!important;scrollbar-width:none!important}
+.adv6 .adv6-text .line{margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;max-width:100%!important}
+.adv6 .adv6-text .line p{margin:0!important;padding:0!important;color:#fff9fc!important;font-size:var(--mobile-font)!important;line-height:var(--mobile-line)!important;letter-spacing:0!important;font-weight:400!important;font-family:system-ui,-apple-system,'PingFang SC',sans-serif!important;text-shadow:0 2px 5px #0009!important;overflow-wrap:anywhere!important;word-break:normal!important}
+.adv6 .adv6-dock{display:flex!important;align-items:flex-end!important;justify-content:flex-end!important;height:100%!important;min-height:0!important;max-height:100%!important;overflow:hidden!important;padding:0!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important}
+.adv6 .adv6-dock .pager{width:100%!important;justify-content:flex-end!important;align-items:flex-end!important;margin:0!important;display:flex!important}
+.adv6 .adv6-dock [data-page-next],.adv6 .adv6-dock [data-reply-next]{height:39px!important;min-height:39px!important;width:auto!important;min-width:88px!important;margin:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important;color:#ffe0ed!important;font-size:14px!important;text-align:right!important}
+.adv6 .adv6-dock [data-page-next]::after,.adv6 .adv6-dock [data-reply-next]::after{content:'  ›';font-size:22px!important;vertical-align:-1px}
+.adv6 .adv6-inspect{position:absolute;z-index:6;right:18px;bottom:calc(var(--mobile-panel) + 17px);font:500 12px system-ui,sans-serif;background:#0d0b1abd;color:#fff3f6;border:1px solid #f9e5fa94;border-radius:23px;min-height:44px;padding:9px 14px;backdrop-filter:blur(6px)}
+.adv6 .adv6-inspect span{font-size:15px}
+body[data-panel=story] .adv6>.mobile-options{position:absolute!important;z-index:12!important;bottom:calc(22px + var(--mobile-safe))!important;top:auto!important;left:18px!important;right:18px!important;width:auto!important;height:auto!important;min-height:0!important;max-height:calc(var(--mobile-vh) - 110px - var(--mobile-safe))!important;display:flex!important;flex-direction:column!important;gap:9px!important;background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;overflow:hidden!important}
+.adv6 .mobile-options .choices,.adv6 .mobile-options .mobile-option-items-direct,.adv6 .mobile-options .mobile-option-items{width:100%!important;display:grid!important;grid-template-columns:1fr!important;gap:9px!important;margin:0!important;min-height:0!important}
+.adv6 .mobile-options [data-choice],.adv6 .mobile-options .vn-group{width:100%!important;height:auto!important;min-height:50px!important;max-width:none!important;border-radius:10px!important;padding:10px 16px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:space-between!important;background:#141021d9!important;border:1px solid #ecd4df8e!important;box-shadow:0 4px 15px #03041175!important;color:#fff7f9!important;font-size:15px!important;line-height:1.4!important;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere!important;backdrop-filter:blur(10px)}
+.adv6 .mobile-options [data-choice]::after{content:'›'!important;font-size:22px!important;margin-left:8px;color:#ffdbe9}
+.adv6 .mobile-options [data-choice]:active{background:#543b58ed!important}
+.adv6 .mobile-options [data-choice-back]{min-height:44px!important;color:#ffe3ef!important;background:#21182cbb!important;font-size:13px!important}
+.adv6 .mobile-options .mobile-option-navigation{display:flex!important;align-items:center;justify-content:space-around;min-height:44px;color:#fff}
+.adv6 .mobile-options .mobile-option-navigation button{min-height:44px!important}
+.adv6 .adv6-modal{position:absolute;z-index:60;inset:0;display:grid;place-items:center;background:#070811ad}
+.adv6 .adv6-modal-shade{position:absolute;inset:0;backdrop-filter:blur(9px)}
+.adv6 .adv6-modal-frame{position:relative;z-index:1;width:min(90%,365px);height:min(78%,670px);display:grid;align-items:center;grid-template-rows:minmax(0,1fr) auto;overflow:hidden;background:#0e1022;border:1px solid #ffffff54;border-radius:12px;color:white;box-shadow:0 18px 50px #000a}
+.adv6 .adv6-modal-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 36%}
+.adv6 .adv6-modal-frame p{padding:12px 18px;margin:0;font-size:14px;line-height:1.6}
+.adv6 .adv6-close{position:absolute;right:8px;top:8px;width:44px;height:44px;min-width:44px;border-radius:50%;color:white;background:#090b1ec9;font-size:26px;border:1px solid #ffffff74}
+@media (max-width:350px){.adv6 .mobile-options [data-choice]{font-size:13px!important;min-height:46px!important;padding:8px 12px!important}.adv6 .adv6-sheet{padding-left:14px!important;padding-right:14px!important}}
+@media (max-height:600px){.adv6 .adv6-chapter{top:calc(52px + env(safe-area-inset-top))}.adv6 .adv6-sheet{padding-top:7px!important}.adv6 .mobile-options [data-choice]{min-height:45px!important}}
+body.large .adv6 .mobile-options [data-choice]{font-size:17px!important}
+@media(prefers-reduced-motion:reduce){.adv6 *{animation:none!important;transition:none!important}}
+
+.adv6 .adv6-sheet-hidden{display:none!important}
+/* Reserve the illustrated stage ABOVE the actual dialogue sheet, not beneath it. */
+body[data-panel=story] .topbar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.adv6[data-mode=reading] .adv6-image,.adv6[data-mode=reply] .adv6-image,.adv6[data-mode=ending] .adv6-image{bottom:var(--mobile-panel)!important}
+.adv6 .adv6-vignette{bottom:var(--mobile-panel)!important}
+.adv6[data-mode=decision] .adv6-vignette{bottom:0!important}
+
+/* ADV V6: compact story typography and full-scene clarity. Do not paste portrait layers. */
+body[data-panel=story] .game-shell{border:0!important}
+.adv6 .adv6-stage{touch-action:manipulation}
+.adv6 .adv6-scene-photo{image-rendering:auto!important;filter:contrast(1.02) saturate(1.035)!important;will-change:auto!important}
+/* Text floats over stage color, but never repaints the characters or props. */
+.adv6 .adv6-sheet{background:linear-gradient(180deg,rgba(11,10,22,.89),rgba(13,11,26,.96) 43%,rgba(11,9,23,.99))!important;border-top:1px solid rgba(255,233,248,.19)!important;box-shadow:0 -12px 32px rgba(2,2,9,.24)!important;padding-top:11px!important;grid-template-rows:29px minmax(0,1fr) calc(38px + var(--mobile-safe))!important}
+.adv6 .adv6-speaker{font-size:15px!important;font-weight:650!important;line-height:27px!important;letter-spacing:.01em!important;color:#f9c9da!important}
+.adv6 .adv6-text{align-self:start!important}
+.adv6 .adv6-text .line p{font-size:var(--mobile-font)!important;line-height:var(--mobile-line)!important;font-weight:450!important;letter-spacing:.005em!important;color:#fffafc!important}
+.adv6 .adv6-dock [data-page-next],.adv6 .adv6-dock [data-reply-next]{font-size:14px!important;opacity:.92!important;min-height:42px!important}
+.adv6[data-mode=decision] .adv6-vignette{background:linear-gradient(180deg,rgba(9,9,25,.22),transparent 33%,rgba(10,8,20,.36) 62%,rgba(8,7,18,.85))!important}
+.adv6 .mobile-options [data-choice]{border-color:#f8d7e174!important;background:rgba(16,12,29,.86)!important;min-height:56px!important;font-weight:550!important;box-shadow:0 8px 20px rgba(0,0,0,.22)!important}
+.adv6 .mobile-options [data-choice]:focus-visible{outline:2px solid #ffd1e4!important;outline-offset:2px}
+.adv6 .adv6-inspect{box-shadow:0 2px 9px rgba(0,0,0,.28)!important}
+@media(max-width:350px){.adv6 .mobile-options [data-choice]{min-height:49px!important}}
+
+.adv6-modal{position:fixed!important;z-index:9999!important;inset:0!important;display:grid!important;place-items:center!important;background:#070811bf!important}
+.adv6-modal .adv6-modal-shade{position:absolute;inset:0;backdrop-filter:blur(9px)}
+.adv6-modal .adv6-modal-frame{position:relative;z-index:1;width:min(90%,365px);height:min(78%,670px);display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden;background:#121225;border:1px solid #ffffff44;border-radius:12px}
+.adv6-modal .adv6-modal-frame img{display:block;width:100%;height:100%;object-fit:cover}
+.adv6-modal .adv6-modal-frame p{padding:12px 18px;margin:0;font-size:14px;line-height:1.6;color:#fff}
+.adv6-modal .adv6-close{position:absolute;right:8px;top:8px;width:44px;height:44px;border:1px solid #ffffff6b;background:#080a18c9;color:#fff;border-radius:50%;font-size:26px;z-index:3}
+
+/* Do not cover performers with a persistent 100px localStorage warning. Menu still displays full recovery instructions. */
+body[data-panel=story] #notice{opacity:0!important;pointer-events:none!important}
+.adv6[data-camera=stage] .adv6-scene-photo{object-position:52% 42%}

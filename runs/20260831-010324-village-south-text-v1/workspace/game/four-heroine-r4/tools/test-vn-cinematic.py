@@ -76,7 +76,7 @@ with sync_playwright() as play:
       const sheet=box(document.querySelector('.mobile-sheet'));
       const dockEl=document.querySelector('.mobile-options'),dock=box(dockEl);
       const text=document.querySelector('.mobile-text'),portrait=document.querySelector('.mobile-portrait');
-      const actor=portrait&&box(portrait);const cg=document.querySelector('.adv5-scene-photo');
+      const actor=portrait&&box(portrait);const cg=document.querySelector('.adv6-scene-photo');
       const choices=[...dockEl.querySelectorAll('[data-choice]')].map(x=>{
         const r=box(x);return {height:r.height,visible:Math.max(0,Math.min(dock.bottom,r.bottom)-Math.max(dock.top,r.top))};
       });
@@ -178,8 +178,8 @@ with sync_playwright() as play:
    assert page.locator('body.large').count()==1
    after=page.locator('.vn-frame').get_attribute('data-source')
    assert after==before,('menu font toggle lost narrative position',before,after)
-   assert page.locator('[data-cinema-inspect]').count()==1
-   page.locator('[data-cinema-inspect]').tap()
+   assert page.locator('[data-adv6-inspect]').count()==1
+   page.locator('[data-adv6-inspect]').tap()
    assert page.locator('[role="dialog"]').count()==1
    assert page.locator('.vn-frame').get_attribute('data-source')==before
    page.locator('.cinema-close').tap()
