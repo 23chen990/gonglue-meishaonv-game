@@ -2321,19 +2321,19 @@ storyHTML=function(){return ioActive()?ioStoryHTML():ioOldStoryHTML();};
 const ioOldMenuHTML=menuHTML,ioOldHistoryHTML=historyHTML,ioOldRowsHTML=rowsHTML;
 menuHTML=function(){
  const old=ioOldMenuHTML();
- if(state.current==='ENTRY_WAKE'&&!io.finished)return old.replace(/<details class="panel"><summary>当前场景文字记录<\/summary>[\s\S]*?<\/details>$/,
+ if(new URLSearchParams(location.search).get('qa')!=='canonical'&&state.current==='ENTRY_WAKE'&&!io.finished)return old.replace(/<details class="panel"><summary>当前场景文字记录<\/summary>[\s\S]*?<\/details>$/,
   '<section class="panel small"><h3>这一夜</h3><p>对话、调查和已作出的行动已经自动保存。</p></section>');
  return old;
 };
 historyHTML=function(){
- if(state.current==='ENTRY_WAKE'&&!io.finished){
+ if(new URLSearchParams(location.search).get('qa')!=='canonical'&&state.current==='ENTRY_WAKE'&&!io.finished){
   const detail=io.seen.length?'已查看：'+io.seen.map(k=>({usb:'接线板',sheet:'交接单',board:'控台'}[k])).join('、'):'还没有发现可记录的线索。';
   return '<h2>第一夜 · 我的行动</h2><section class="panel"><p>'+esc(detail)+'</p><p class="small">回到剧情继续调查。</p></section>';
  }
  return ioOldHistoryHTML();
 };
 rowsHTML=function(rows,id){
- if(panel==='history'&&id==='ENTRY_WAKE'&&io.finished){
+ if(new URLSearchParams(location.search).get('qa')!=='canonical'&&panel==='history'&&id==='ENTRY_WAKE'&&io.finished){
   const who=({shen:'沈清辞',tang:'唐映雪',solo:'自己'}[io.ally])||'现场的人';
   return '<div class="line dialogue"><p>我自己确认了工牌，检查过后台，决定先找'+esc(who)+'。之后，才做出了真正改变演出的选择。</p></div>';
  }
