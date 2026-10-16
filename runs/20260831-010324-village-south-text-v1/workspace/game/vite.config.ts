@@ -6,7 +6,8 @@ function inlineForFileProtocol(): Plugin {
   return {
     name: 'inline-for-file-protocol',
     apply: 'build',
-    // Rollup writeBundle runs only after index.html and assets are on disk.\n    async writeBundle() {
+    // Rollup writeBundle runs only after index.html and assets are on disk.
+    async writeBundle() {
       const directory = path.resolve('dist');
       const htmlPath = path.join(directory, 'index.html');
       let html = await readFile(htmlPath, 'utf8');
