@@ -1334,7 +1334,7 @@ const VN4_VIDEO_CONFIG = {
  'ENTRY_WAKE.intro.028': ['416aa34ad470571c','stage-piano','琴声要响了……来得及吗？','B'],
  'ENTRY_WAKE.r42.reply.rescue.001':['42afa151967e603b','usb-in-hand','找到了。先让音控确认版本。','P'],
  'ENTRY_WAKE.r42.reply.investigate.001':['813b9fd1476bdca9','usb-in-hand','原版在手。还有谁动过错版？','P'],
- 'ENTRY_WAKE.r42.reply.canon.001':['3631bd70b4b82c24','usb-nearby','先看清他们要我签什么。','P'],
+ 'ENTRY_WAKE.r42.reply.canon.001':['3631bd70b4b82c24','stage-piano','先把时间记下来。交接单上是谁的名字？','P'],
  't01.r4.body.001':['a0396b89328c6f11','singer-shock','她把盒饭往身后藏了藏。','N'],
  'l01.r1.body.001':['cc91e51f52899d6c','lin-camera','她把一边耳机递了过来。','N'],
  's01.r4.body.001':['095858140221e6d2','gu-mail','一沓排期表被风吹乱。她腾出一只手去按住。','N']

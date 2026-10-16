@@ -668,7 +668,17 @@ body.large .vn4 .mobile-options [data-choice]{font-size:16.5px!important}
 
 /* The CG is a feather-composited full-height photograph on the scene backdrop. */
 .vn4 .vn4-cg{inset:0!important;top:0!important;bottom:0!important;left:0!important;right:0!important}
-.vn4 .vn4-cg img,.vn4 .vn4-cg-actor img,.vn4 .vn4-cg-pov img,.vn4 .vn4-cg-wide img,.vn4 .vn4-cg-insert img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center center!important;mask-image:none!important;-webkit-mask-image:none!important;filter:none!important;transform:none!important}</style>
+.vn4 .vn4-cg img,.vn4 .vn4-cg-actor img,.vn4 .vn4-cg-pov img,.vn4 .vn4-cg-wide img,.vn4 .vn4-cg-insert img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center center!important;mask-image:none!important;-webkit-mask-image:none!important;filter:none!important;transform:none!important}
+/* ADV V4.1: quiet stage HUD and legible, translucent subtitles. */
+body[data-panel=story] .topbar{background:linear-gradient(180deg,#08091673,transparent)!important;box-shadow:none!important}
+body[data-panel=story] .topbar .logo-wrap{display:none!important}
+body[data-panel=story] .topbar .menu-button{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;border-radius:50%!important;background:#0b0b1b73!important}
+.vn4[data-mode=reading]>.mobile-sheet,.vn4[data-mode=reply]>.mobile-sheet,.vn4[data-mode=ending]>.mobile-sheet{background:linear-gradient(180deg,#111023a6,#0e0c1ed6 65%,#0d0a1df0)!important;border-top-color:#ffffff2b!important;backdrop-filter:blur(3px)!important;-webkit-backdrop-filter:blur(3px)!important}
+.vn4 .mobile-text .line p{text-shadow:0 1px 2px #000a}
+.vn4 .vn4-inspect-target{left:47%;right:11%;top:26%;height:35%;justify-content:flex-end!important;align-items:end!important}
+.vn4 .vn4-inspect-target span{font-size:11px!important;padding:5px 12px!important;background:#10101f9e!important;transform:none!important}
+.vn4[data-mode=decision] .vn4-chapter{opacity:.25}
+</style>
 </head>
 <body>
 <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
@@ -2474,7 +2484,7 @@ const VN4_VIDEO_CONFIG = {
  'ENTRY_WAKE.intro.028': ['416aa34ad470571c','stage-piano','琴声要响了……来得及吗？','B'],
  'ENTRY_WAKE.r42.reply.rescue.001':['42afa151967e603b','usb-in-hand','找到了。先让音控确认版本。','P'],
  'ENTRY_WAKE.r42.reply.investigate.001':['813b9fd1476bdca9','usb-in-hand','原版在手。还有谁动过错版？','P'],
- 'ENTRY_WAKE.r42.reply.canon.001':['3631bd70b4b82c24','usb-nearby','先看清他们要我签什么。','P'],
+ 'ENTRY_WAKE.r42.reply.canon.001':['3631bd70b4b82c24','stage-piano','先把时间记下来。交接单上是谁的名字？','P'],
  't01.r4.body.001':['a0396b89328c6f11','singer-shock','她把盒饭往身后藏了藏。','N'],
  'l01.r1.body.001':['cc91e51f52899d6c','lin-camera','她把一边耳机递了过来。','N'],
  's01.r4.body.001':['095858140221e6d2','gu-mail','一沓排期表被风吹乱。她腾出一只手去按住。','N']
