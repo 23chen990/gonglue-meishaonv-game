@@ -112,3 +112,12 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - First-night performance: the onstage woman calls backstage directly, the pianist urges finding the original, and the original canon/rescue/investigate action IDs remain unmodified. No engine/DATA changes.
 - Local Chromium tests passed at 320, 360, 390, 430px, including touched options, no internal dialogue scroll, preserved badge cursor, and save warning visibility in blocked-storage mode. These tests are not iPhone or human engagement measurements.
 - Remaining **P0 art blocker**: 8 legacy preview WebP assets are not native high-resolution vertical CGs; strict approved-art check remains blocked. No claim of matching the prior concept art or completing 228 bespoke scenes.
+
+### ADV V6.3 exact-generated-head acceptance (2026-10-17)
+
+- Source commit \`273609a7171f9836edad0949c3faa4afb83c33c9\` passed the **controlled generator**; generated player HEAD \`2e6dbf4c04e386f00045b820365fbebbdd599748\` must be tested rather than the intermediate source-only commit.
+- Updated single-shot visual direction: offscreen pianist is paired with an actual wide backstage view, not an unmanned piano close-up; a singer directly asks backstage for help without inventing an ear-monitor gesture in the existing picture.
+- Focus-safe badge inspection, explicit image-load failure, measured preview-source pixel density and original canon/rescue/investigate choice IDs.
+- New \`npm run art:preview\` reports **0 READY / 8 BLOCKED** for current in-game preview photos. Strict \`npm run art:release\` will refuse to approve the 10 missing/unapproved masters. This is expected and NOT a reason to declare CG art complete.
+- Local Chromium browser simulated touch 320 / 360 / 390 / 430 px, exact 6 unique source beats, first choices, single IMG, keypad Escape focus return and missing-image state: PASS. Physical phone and adult first-30s qualitative test still NOT DONE.
+- Documentation-only update exists to rerun the **final generated player** through native HTTP Chromium/WebKit and save/full-route regression. Do not merge main if the new tests fail.
