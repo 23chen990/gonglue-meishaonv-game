@@ -567,6 +567,46 @@ body[data-panel=story] .notice{z-index:30;max-height:30dvh;overflow:auto}
 @media(prefers-reduced-motion:reduce){.mobile-vn *{animation:none!important;transition:none!important}}
 
 .mobile-vn .mobile-options.mobile-options-paged{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+
+/* New first-five-minutes interactive direction: decisions and clues, not a novel reader. */
+body[data-panel=story] .io-vn { position: relative; width:100%; height:var(--mobile-vh)!important; overflow:hidden; --io-pink:#ffc5df; --io-blue:#bde8ee; }
+.io-vn .io-stage {position:absolute;inset:0; isolation:isolate;overflow:hidden;background:radial-gradient(circle at 75% 18%,#554053,#1c192a 63%,#131120)}
+.io-vn .io-backdrop {position:absolute;inset:0;background-size:cover;background-position:center;opacity:.75;filter:saturate(.7) blur(1px);transform:scale(1.01)}
+.io-vn .io-stage:after {content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#0c0b1c55 0%,transparent 30%,#120b23c0 94%)}
+.io-vn .io-person {position:absolute;z-index:1;inset:8% 0 0;width:100%;height:80%;object-fit:cover;object-position:center 16%;filter:saturate(.88)}
+.io-vn .io-corner {z-index:5;position:absolute;top:calc(75px + env(safe-area-inset-top));left:20px;padding:5px 9px;border:1px solid #ffffff27;border-radius:9px;color:#e5cbd9;background:#1c152277;font:600 12px/1.5 system-ui}
+.io-vn .io-corner span{color:#ffb3d1;margin:0 2px}
+.io-vn>.io-sheet {height:var(--mobile-panel)!important;max-height:var(--mobile-panel)!important;grid-template-rows:24px minmax(0,1fr) calc(45px + var(--mobile-safe))!important;background:linear-gradient(#1a1125eb,#100c1ffb)!important}
+.io-vn .io-sheet .mobile-text {pointer-events:none;font-size:var(--mobile-font)}
+.io-vn .io-bottom {display:flex;justify-content:flex-end;align-items:flex-start;gap:8px;padding:0 0 var(--mobile-safe);overflow:hidden}
+.io-vn .io-hint {align-self:center;color:#d4aebe;font:11px/16px system-ui;max-width:100%;text-align:right}
+.io-vn .io-choice-stack {width:100%;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.io-vn .io-options {position:absolute;z-index:6;bottom:calc(var(--mobile-panel) + 16px);left:20px;right:20px;max-height:calc(var(--mobile-vh) - var(--mobile-panel) - 140px);overflow:hidden}
+.io-vn .io-choice,.io-vn .io-single {display:flex!important;align-items:center;justify-content:space-between;gap:10px;min-height:48px!important;width:100%!important;padding:10px 14px!important;border:1px solid #f5b6d366!important;border-radius:12px!important;background:#1f1930f2!important;color:#fff4fa!important;box-shadow:0 7px 25px #10081a88!important;font:600 15px/1.35 system-ui!important;text-align:left}
+.io-vn .io-single {min-height:44px!important;width:auto!important;min-width:104px!important;background:transparent!important;border:0!important;box-shadow:none!important;color:#f9c3da!important;padding:8px 0!important;justify-content:flex-end}
+.io-vn .io-choice:active,.io-vn .io-single:active,.io-vn .io-hotspot:active {transform:scale(.985)}
+.io-vn .io-choice>span,.io-vn .io-single>span {color:#ffc1d9;flex-shrink:0}
+.io-vn .io-phone {position:absolute;z-index:2;top:20%;left:12%;width:76%;max-width:300px;height:180px;border:8px solid #5a435b;border-radius:25px;background:#241c32;color:#e6d2dd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transform:rotate(-8deg);box-shadow:0 24px 60px #10071880;text-align:center}
+.io-phone span{font-size:12px}.io-phone b{font-size:22px}.io-phone small{font-size:12px;color:#f6aacc}
+.io-vn .io-badge-art{position:absolute;z-index:3;top:20%;left:27%;width:46%;max-width:200px;height:240px;background:#ebe5dd;color:#544654;border-radius:13px;border:7px solid #afa3b3;box-shadow:0 18px 45px #0b091a99;transform:rotate(-9deg);display:flex;align-items:center;flex-direction:column;justify-content:space-around;padding:10px 5px}
+.io-badge-art small{font-size:11px}.io-badge-art strong{font-size:33px;letter-spacing:.14em}.io-badge-art em{font-style:normal;font-size:14px}.io-badge-head{font-size:64px;color:#6f6b86;line-height:1}
+.io-vn .io-theatre-art {position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(110deg,transparent 40%,#fff0bd35 65%,transparent 85%)}
+.io-theatre-light{position:absolute;top:9%;left:17%;width:45%;height:50%;background:conic-gradient(from 160deg at 50% 0,transparent,#ffe9c466,transparent 30%);filter:blur(14px)}.io-music{position:absolute;bottom:25%;right:14%;font-size:95px;color:#ffbada88;transform:rotate(-19deg)}
+.io-vn .io-search-art{position:absolute;z-index:2;inset:18% 3% calc(var(--mobile-panel) + 4px);font:700 13px/20px system-ui;color:#e6cdda}
+.io-search-art .io-box{position:absolute;padding:18px 10px;border:5px solid #9995a3;background:linear-gradient(#342e42,#171a2a);border-radius:6px;box-shadow:0 8px 19px #08071566}
+.io-box small{font-size:10px;color:#bcabc0}.io-box-one{top:0;right:3%;width:62%;height:105px}.io-box-two{top:35%;right:9%;height:80px;width:44%;transform:rotate(4deg)}.io-box-three{bottom:0;left:3%;height:90px;width:59%;transform:rotate(-6deg)}
+.io-box-three .io-blue{font-size:32px;color:#61b4f0;position:absolute;right:9px;bottom:4px}.io-wire{font-size:22px;color:#bfc8c7}
+.io-vn .io-hotspots {position:absolute;z-index:5;inset:20% 4% calc(var(--mobile-panel) + 23px);pointer-events:none}
+.io-vn .io-hotspot{position:absolute;pointer-events:auto;min-width:120px;min-height:50px!important;border-radius:15px!important;padding:8px 10px!important;display:flex;align-items:center;gap:6px;text-align:left;color:#fff!important;background:#281c41e8!important;border:1px solid #d0b1d9aa!important;box-shadow:0 4px 20px #0d08148a!important;font:600 13px/1.4 system-ui!important}
+.io-vn .io-hotspot>span {font-size:19px;color:#ffc0db}.io-vn .io-hotspot.seen{background:#233b40e8!important;border-color:#8fc9c4aa!important}.io-vn .io-hotspot.seen>span{color:#a0e5e6}
+.io-vn .io-hotspot.io-monitor{top:0;right:4%}.io-vn .io-hotspot.io-document{top:39%;right:0}.io-vn .io-hotspot.io-plug{bottom:3%;left:0}
+.io-vn .io-advance {position:absolute;z-index:6;left:16px;right:16px;bottom:calc(var(--mobile-panel) + 5px);min-height:48px!important;background:#553348ed!important;border:1px solid #f3afcebb!important;border-radius:12px!important;color:white!important;font:600 15px system-ui!important}
+.io-vn .io-search-cue {position:absolute;z-index:6;left:24px;right:24px;bottom:calc(var(--mobile-panel) + 4px);font:600 12px/32px system-ui;color:#f1d5e1;text-align:center;background:#15112688;border-radius:8px}
+.io-vn .io-block-art{position:absolute;z-index:2;inset:0;pointer-events:none}.io-vn .io-folder{position:absolute;bottom:calc(var(--mobile-panel) + 30px);left:11%;width:75%;max-width:300px;height:130px;padding:30px 15px;background:#e6ddcb;color:#5c4d4b;border-radius:7px;box-shadow:0 13px 28px #11091d99;transform:rotate(-10deg);font:700 18px/1.7 system-ui;text-align:center}.io-vn .io-folder small{font-size:14px}.io-vn .io-shade{position:absolute;left:10%;top:12%;width:40%;height:50%;border-radius:50% 50% 15% 15%;background:#170f2599;filter:blur(14px)}
+.io-vn .io-person+ .io-theatre-art,.io-vn .io-person + .io-phone {z-index:2}
+.io-vn .io-person {mask-image:linear-gradient(#000 0%,#000 74%,transparent 100%);-webkit-mask-image:linear-gradient(#000 0%,#000 74%,transparent 100%)}
+@media (max-height:650px){.io-vn .io-corner{top:60px}.io-vn .io-options{max-height:calc(var(--mobile-vh) - var(--mobile-panel) - 75px);bottom:calc(var(--mobile-panel) + 5px)}.io-vn .io-choice{min-height:44px!important;font-size:13px!important;padding:8px 12px!important}.io-vn .io-hotspots{inset:10% 4% calc(var(--mobile-panel) + 25px)}.io-vn .io-badge-art{transform:rotate(-9deg) scale(.7);top:5%}.io-vn .io-phone{transform:rotate(-8deg) scale(.7);top:5%}.io-vn .io-search-art{inset:10% 4% calc(var(--mobile-panel) + 15px)}.io-vn .io-box-one{height:75px}.io-vn .io-box-two{height:65px}.io-vn .io-box-three{height:64px}.io-vn .io-folder{transform:rotate(-10deg) scale(.8)}}
+@media (max-width:345px){.io-vn .io-hotspot{min-width:110px;font-size:12px!important}.io-vn .io-advance{left:10px;right:10px}.io-vn .io-box-two{right:0}}
 </style>
 </head>
 <body>
@@ -2159,6 +2199,137 @@ function mobileResize(){if(mobileResizePending)return;mobileResizePending=true;r
 window.addEventListener('resize',mobileResize,{passive:true});
 window.visualViewport?.addEventListener('resize',mobileResize,{passive:true});
 if(document.fonts)document.fonts.ready.then(()=>{mobilePageCache=null;if(panel==='story')render(false);});
+
+/* First-night playable director pass. Canonical engine commands remain the source of truth.
+ * UI-only microchoices persist in the existing save but never masquerade as story commands.
+ * This layer is mounted only at the untouched ENTRY_WAKE scene; all other scenes use the engine.
+ */
+const IO_VERSION = 1;
+const IO_STEPS = new Set(['wake','answer','badge','badge-read','alarm','crisis','ask','ask-answer','hunt','find','confront','confront-answer','bond','final']);
+function ioNew(){return {v:IO_VERSION,step:'wake',tone:'',ally:'',defiance:'',seen:[],lastFind:'',visits:0,finished:false};}
+let io = ioNew();
+const ioOldSnapshot=snapshot, ioOldReadPayload=readPayload, ioOldInstall=install, ioOldReset=reset, ioOldStoryHTML=storyHTML;
+const ioSafe=(x,possible)=>possible.includes(x)?x:'';
+function ioRead(v){
+ if(!v || v.v!==IO_VERSION || !IO_STEPS.has(v.step))return ioNew();
+ const seen=Array.isArray(v.seen)?[...new Set(v.seen.filter(x=>['usb','sheet','board'].includes(x)))].slice(0,3):[];
+ return {v:IO_VERSION,step:v.step,tone:ioSafe(v.tone,['help','steady','confused']),ally:ioSafe(v.ally,['shen','tang','solo']),defiance:ioSafe(v.defiance,['ask','hide','stand']),seen,lastFind:ioSafe(v.lastFind,['usb','sheet','board']),visits:Math.min(40,Math.max(0,Number(v.visits)||0)),finished:!!v.finished};
+}
+function ioActive(){return new URLSearchParams(location.search).get('qa')!=='canonical' && panel==='story' && phase==='scene' && state.current==='ENTRY_WAKE' && !io.finished && state.history.length===0;}
+snapshot=function(){const save=ioOldSnapshot();save.ui.firstNight={...io,seen:[...io.seen]};return save;};
+readPayload=function(raw){const result=ioOldReadPayload(raw);result.firstNight=ioRead(raw?.ui?.firstNight);if(!raw?.ui?.firstNight&&raw?.ui?.page>0)result.firstNight.finished=true;return result;};
+install=function(result){ioOldInstall(result);io=result.firstNight||ioNew();if(state.current!=='ENTRY_WAKE'||state.history.length)io.finished=true;};
+reset=function(){const before=state;ioOldReset();if(state!==before && state.current==='ENTRY_WAKE' && state.history.length===0){io=ioNew();save();render();}};
+function ioLine(){
+ switch(io.step){
+ case 'wake': return {voice:'沈清辞',portrait:'s',mood:'wake',text:'许照！你能听见我说话吗？',hint:'她正朝你伸出手。'};
+ case 'answer': return {
+    voice:'沈清辞',portrait:'s',mood:'wake',text:io.tone==='help'?'慢点。抓住我，别踩到那些线。':io.tone==='steady'?'还逞强？脸都白了。':'……你连自己叫什么都忘了？',hint:'她看了你一眼，没松开手。'};
+ case 'badge': return {voice:'',portrait:null,mood:'badge',text:'胸前挂着一张陌生的工牌。',hint:'点开工牌确认身份。'};
+ case 'badge-read': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'许照……我刚读过的小说里，也有这个名字。',hint:'你突然听见舞台上传来尖叫。'};
+ case 'alarm': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'停！这根本不是我排练的歌！',hint:'音乐骤停。观众已经在等。'};
+ case 'crisis': return {voice:'沈清辞',portrait:'s',mood:'stage',text:'有人换了伴奏。原版应该还在后台。',hint:'她盯着控台，指尖攥得发白。'};
+ case 'ask': return {voice:'沈清辞',portrait:'s',mood:'stage',text:'许照，你愿意帮我找吗？',hint:'你可以向她们靠近，也可以自己行动。'};
+ case 'ask-answer': return {
+    voice:io.ally==='tang'?'唐映雪':io.ally==='shen'?'沈清辞':'许照 · 心声',portrait:io.ally==='tang'?'t':io.ally==='shen'?'s':null,mood:'stage',
+    text:io.ally==='tang'?'我不怕重唱。我怕他们让我唱错的版本。':io.ally==='shen'?'谢谢你。我拦住他们，你去找原版。':'先把证据找出来，再决定信谁。',
+    hint:'离你最近的是控制台和一堆设备箱。'};
+ case 'hunt': return {voice:'',portrait:null,mood:'search',text:io.seen.includes('usb')?'找到蓝标盘了。还想检查别的地方吗？':'后台很乱。先找到一条真正的线索。',hint:'点击场景中的物品调查。'};
+ case 'find': return {voice:'',portrait:null,mood:'search',text:io.lastFind==='usb'?'接线板下，露出蓝胶带。是原版 U 盘！':io.lastFind==='sheet'?'交接单上预留了你的签名。你还没签。':'屏幕上播放的文件名，和排练单对不上。',hint:io.lastFind==='usb'?'你知道原版在哪里了。':'还能继续调查别的地方。'};
+ case 'confront': return {voice:'程放',portrait:null,mood:'block',text:'谁让你翻箱子的？先把这张单子签了。',hint:'他挡在你和接线板之间。'};
+ case 'confront-answer': return {voice:'程放',portrait:null,mood:'block',text:io.defiance==='ask'?'问这么多做什么？责任人写你名字就行。':io.defiance==='hide'?'还不签？演出要是出事，你担得起吗？':'……你去问沈清辞？行，我等着。',hint:'他看上去比你更急。'};
+ case 'bond': return {voice:io.ally==='tang'?'唐映雪':'沈清辞',portrait:io.ally==='tang'?'t':'s',mood:'bond',text:io.ally==='tang'?'你找到能让我唱回来的东西了吗？':io.ally==='shen'?'我相信你找到了什么。给我看一眼？':'别把东西交给程放。你得自己决定。',hint:'你已经知道蓝标盘的位置。'};
+ case 'final': return {voice:'许照 · 心声',portrait:null,mood:'decision',text:'这次，我来决定怎么做。',hint:'下一步会改变整场演出，也会改变她们对你的看法。'};
+ }
+ throw Error('Unknown interactive opening step');
+}
+const ioActions={
+ wake:[['help','让她扶自己站起来'],['steady','自己站起来'],['confused','“你刚才叫我什么？”']],
+ answer:[['next','继续']],
+ badge:[['badge','翻开工牌']],
+ 'badge-read':[['next','继续']],
+ alarm:[['next','继续']],crisis:[['next','继续']],
+ ask:[['shen','去帮沈清辞'],['tang','去问唐映雪'],['solo','先自己查查']],
+ 'ask-answer':[['next','去找线索']],
+ find:[['back','继续查看']],
+ confront:[['ask','“为什么非要我签？”'],['hide','把发现藏好'],['stand','“我要找沈清辞确认。”']],
+ 'confront-answer':[['next','继续']],
+ bond:[['next','面对选择']],
+ final:[['rescue','把原版送上台 · 救场'],['investigate','找沈清辞核验 · 留证'],['canon','暂不碰音控 · 拒绝背锅']]
+};
+const ioNext={answer:'badge','badge-read':'alarm',alarm:'crisis',crisis:'ask','ask-answer':'hunt','confront-answer':'bond',bond:'final'};
+function ioAction(action){
+ if(!ioActive())return;
+ const step=io.step;
+ const allowed=step==='hunt'?['usb','sheet','board',...(io.seen.includes('usb')?['move']:[])]:ioActions[step]?.map(x=>x[0])||[];
+ if(!allowed.includes(action))return;
+ if(step==='wake'){io.tone=action;io.step='answer';}
+ else if(step==='badge'){io.step='badge-read';}
+ else if(step==='ask'){io.ally=action;io.step='ask-answer';}
+ else if(step==='hunt'){
+  if(action==='move'){io.step='confront';}
+  else{io.lastFind=action;if(!io.seen.includes(action))io.seen.push(action);io.visits++;io.step='find';}
+ }
+ else if(step==='find'){io.step='hunt';}
+ else if(step==='confront'){io.defiance=action;io.step='confront-answer';}
+ else if(step==='final'){
+  const options=renderScene(state,DATA).choices.filter(x=>x.enabled);
+  if(!options.some(x=>x.id===action))throw Error('Canonical first decision not available');
+  const out=choose(state,DATA,action,state.revision);
+  io.finished=true;state=out.state;lastReply=out.reply;phase=lastReply.length?'reply':'scene';page=0;choicePage=0;
+ } else io.step=ioNext[step]||step;
+ save();render();arm();
+}
+function ioArt(info){
+ const img=info.portrait?'<img draggable="false" class="io-person" src="'+PORTRAITS[info.portrait]+'" alt="">':'';
+ const phone='<div class="io-phone"><span>北岸艺术中心</span><b>临时场务：许照</b><small>距离开场，不到一分钟</small></div>';
+ const badge='<div class="io-badge-art" aria-hidden="true"><small>北岸艺术中心</small><span class="io-badge-head">◉</span><strong>许照</strong><em>临时场务</em></div>';
+ const stage='<div class="io-theatre-art"><div class="io-theatre-light"></div><div class="io-music">♫</div></div>';
+ const search='<div class="io-search-art"><div class="io-box io-box-one">音控台<br><small>LIVE / TAKE</small></div><div class="io-box io-box-two">交接单<br><small>等待签字</small></div><div class="io-box io-box-three"><div class="io-wire">╭────╮</div><div class="io-blue">▰</div>接线板</div></div>';
+ const block='<div class="io-block-art"><div class="io-folder">现场版本确认<br><small>签名：_______</small></div><div class="io-shade"></div></div>';
+ const cases={wake:"",badge,stage,search,block,bond:stage,decision:stage};
+ return '<div class="io-backdrop" style="background-image:url(\''+SCENERY+'\')"></div>'+img+(cases[info.mood]||'');
+}
+function ioChoices(step){
+ if(step==='hunt'){
+  const items=[['board','看控台屏幕','monitor'],['sheet','翻交接单','document'],['usb','检查接线板','plug']];
+  return '<div class="io-hotspots" aria-label="调查场景">'+items.map(([action,title,klass])=>
+   '<button type="button" class="io-hotspot io-'+klass+' '+(io.seen.includes(action)?'seen':'')+'" data-io="'+action+'"><span aria-hidden="true">'+(io.seen.includes(action)?'✓':'◉')+'</span>'+title+'</button>').join('')+'</div>'+
+   (io.seen.includes('usb')?'<button class="io-advance" data-io="move">先处理眼前危机 →</button>':'<div class="io-search-cue">先找到原版伴奏</div>');
+ }
+ const list=ioActions[step]||[];
+ return '<div class="io-choice-stack" role="group" aria-label="选择你的行动">'+list.map(([id,label])=>
+  '<button type="button" data-io="'+id+'" class="'+(list.length===1?'io-single':'io-choice')+'">'+esc(label)+' <span aria-hidden="true">'+(list.length===1?'›':'↗')+'</span></button>').join('')+'</div>';
+}
+function ioStoryHTML(){
+ const info=ioLine(), m=mobileMetrics(), actionCount=(ioActions[io.step]||[]).length;
+ const decision=actionCount>1 || io.step==='hunt';
+ const speaker=info.voice;
+ const art=ioArt(info);
+ const sheet=Math.floor(Math.min(m.h/3,(m.h>=650?m.h/4:m.h/3)));
+ const style='--mobile-panel:'+sheet+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
+ return '<div class="vn-frame mobile-vn io-vn" data-mode="'+(decision?'decision':'reading')+'" data-current-io="'+esc(io.step)+'" style="'+style+'">'+
+ '<section class="vn-stage mobile-stage io-stage" aria-label="第一夜后台">'+art+'<div class="io-corner">第一夜 <span>·</span> 北岸剧场</div>'+
+ (io.step==='hunt'?ioChoices(io.step):'')+'</section>'+
+ (io.step!=='hunt'&&decision?'<div class="io-options">'+ioChoices(io.step)+'</div>':'')+
+ '<section class="vn-sheet mobile-sheet io-sheet"><div class="mobile-speaker">'+esc(speaker)+'</div><div class="vn-scroll mobile-text"><div class="line"><p>'+esc(info.text)+'</p></div></div>'+
+ '<div class="io-bottom">'+(io.step==='hunt'?'<span class="io-hint">'+esc(info.hint)+'</span>':!decision?ioChoices(io.step):'<span class="io-hint">'+esc(info.hint)+'</span>')+'</div></section></div>';
+}
+storyHTML=function(){return ioActive()?ioStoryHTML():ioOldStoryHTML();};
+// Capture before the legacy delegated controller. No fake story commands are generated.
+document.addEventListener('pointerup',e=>{
+ if(ioActive() && e.target instanceof Element && e.target.closest('.io-vn'))e.stopImmediatePropagation();
+},true);
+document.addEventListener('click',e=>{
+ if(!ioActive())return;
+ const element=e.target instanceof Element?e.target:null;
+ const btn=element?.closest('[data-io]');
+ if(!btn && element?.closest('.io-vn')){e.stopImmediatePropagation();return;}
+ if(!btn)return;
+ e.preventDefault();e.stopImmediatePropagation();
+ if(btn.disabled||!btn.isConnected)return;
+ try{ioAction(btn.dataset.io);}catch(err){notice='本次互动未完成：'+err.message;showNotice();}
+},true);
 
 load();render();
 </script>
