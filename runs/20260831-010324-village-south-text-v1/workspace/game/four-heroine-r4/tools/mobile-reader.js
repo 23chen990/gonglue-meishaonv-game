@@ -133,7 +133,7 @@ storyHTML=function(){
  const art=c?'<div class="vn-portrait mobile-portrait"><img src="'+PORTRAITS[c]+'" alt="" draggable="false"></div>':'';
  const controlsHTML=mobileButtons(cp);
  const stageImage=['backstage','theatre','stage','control','corridor'].includes(set)?' style="background-image:url(\''+SCENERY+'\')"':'';
- const options=decision||cp.view.terminal?'<div class="mobile-options" role="group" aria-label="选择你的行动">'+controlsHTML+'</div>':'';
+ const options=decision||cp.view.terminal?'<div class="vn-dock mobile-options" role="group" aria-label="选择你的行动">'+controlsHTML+'</div>':'';
  const footer=decision?'<span class="mobile-prompt">你会怎么做？</span>':cp.view.terminal?'':controlsHTML;
  const style='--mobile-panel:'+m.height+'px;--mobile-font:'+m.font+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  return '<div class="vn-frame mobile-vn" style="'+style+'" data-mode="'+mode+'" data-beat-kind="'+kind+'" data-shot="'+esc(b._shot)+'" data-source="'+esc(b._sourceId)+'" data-reader-key="'+esc(cp.view.id+':'+page)+'">'+
