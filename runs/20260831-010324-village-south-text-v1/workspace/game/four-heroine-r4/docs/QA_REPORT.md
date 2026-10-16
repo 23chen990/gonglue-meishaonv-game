@@ -96,3 +96,11 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - V6 source `tools/director-v6.js`, style `director-v6.css`, controlled pack `ADV6_ART_PACK`, and eight tagged `assets/v6-preview` images are now the actual generated player. No V5 stage renderer is invoked by the build.
 - Local Chromium DOM-injected viewport tests: 320x568, 360x780, 390x844, 430x932; six opening reading turns, three touch-sized canonical decisions, correct canon/rescue/investigate routing; independent badge zoom close and menu font anchor checked. This is not a physical phone or true network acceptance.
 - Exact-head native HTTP Chromium/WebKit + save migration + full routes must run after this documentation-only commit. **Art is legacy preview and not approved native 2K CG.** This is NOT release approval.
+
+
+### ADV V6 latest generated player: exact-head browser QA — 2026-10-16
+
+- Generator rebuilt successfully from `b5870356e9d4ed51d3703dd34ae0731b8fb610c6`; checked-in generated player HEAD is `0272106f97dcdbe732504984f83099e9e43bae68`.
+- Director-v6 and V6-only preview asset fallbacks are active. This documentation-only change requests Chromium/WebKit, save, first-decision and full-route acceptance against the **actual checked-in V6 player**.
+- Verified local Chromium four device sizes with one image per scene, six opening turns, three canonical choices, no scroll, work-badge modal, menu font anchor, and three distinct route targets. Browser used DOM injection, not a physical device.
+- Image master gate still reports ten missing 1536x2560 assets. Production visual approval and blind playtesting remain BLOCKED. Never treat engineering acceptance as art acceptance.
