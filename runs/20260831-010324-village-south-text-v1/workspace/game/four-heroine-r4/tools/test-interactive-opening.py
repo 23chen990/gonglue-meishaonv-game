@@ -40,7 +40,7 @@ def step(page,name):
  assert box['scroll']<=box['client']+3,('overflow in dialogue',box)
  assert box['blocks']==1,('multiple speakers per page',box)
  assert all(b['height']>=43 for b in box['buttons']),('small tap target',box)
- assert len(box['text'])<100,('novel paragraph remained',box)
+ assert len(box['text'])<=44,('long novel paragraph remained in opening',box)
  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),'horizontal overflow'
  return box
 with sync_playwright() as pw:
