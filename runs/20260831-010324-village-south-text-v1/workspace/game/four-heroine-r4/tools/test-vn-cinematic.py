@@ -42,11 +42,14 @@ with sync_playwright() as play:
     source_ids=[]
     for i in range(120):
      if page.locator('[data-choice]').count():break
-     visible=page.locator('.mobile-text').evaluate(
-      'x=>({viewport:x.clientHeight,content:x.scrollHeight,top:x.scrollTop,blocks:x.querySelectorAll(".line").length})')
+     visible=page.evaluate("""()=>{const x=document.querySelector('.mobile-text'),sheet=document.querySelector('.mobile-sheet');return {
+      viewport:x.clientHeight,content:x.scrollHeight,top:x.scrollTop,blocks:x.querySelectorAll('.line').length,
+      sheet:sheet.getBoundingClientRect().height,inner:innerHeight};}""")
      assert visible['content']<=visible['viewport']+2,(
       'mandatory beat is clipped behind inner scroll',w,h,i,visible)
      assert visible['blocks']<=1,('multiple speakers/text blocks shown together',w,h,i,visible)
+     assert visible['sheet']<=visible['inner']/3+2,('dialogue sheet exceeds one third',w,h,i,visible)
+     assert visible['sheet']<=visible['inner']/4+2,('normal phone dialogue sheet exceeds one quarter',w,h,i,visible)
      source_ids.append(page.locator('.vn-frame').get_attribute('data-source'))
      assert page.locator('[data-page-next]').count()==1,(w,i)
      page.locator('[data-page-next]').tap()
