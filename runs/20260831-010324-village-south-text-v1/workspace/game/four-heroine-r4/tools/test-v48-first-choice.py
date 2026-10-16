@@ -19,6 +19,29 @@ REPORT = {'sha': STORY_SHA,
 VIEWPORTS = [(320,568),(360,780),(375,812),(390,844),(430,932)]
 SAVE_KEY = 'gonglue:revision-r4.5-portrait:canonical'
 
+def visible_option_ids(p):
+    found=[]
+    for _ in range(12):
+        for x in p.locator('.mobile-options [data-choice]').evaluate_all('els=>els.map(x=>x.dataset.choice)'):
+            if x not in found:found.append(x)
+        nxt=p.locator('.mobile-options [data-mobile-options="1"]:not([disabled])')
+        if not nxt.count():break
+        nxt.tap()
+    return found
+
+def seek_choice(p,id):
+    # Return to the first presentation page when pagination controls exist.
+    for _ in range(12):
+        prev=p.locator('.mobile-options [data-mobile-options="-1"]:not([disabled])')
+        if not prev.count():break
+        prev.tap()
+    for _ in range(12):
+        if p.locator(f'.mobile-options [data-choice="{id}"]').count():return
+        nxt=p.locator('.mobile-options [data-mobile-options="1"]:not([disabled])')
+        if not nxt.count():break
+        nxt.tap()
+    raise AssertionError('choice not reachable: '+id)
+
 def open_page(browser, width, height):
     ctx=browser.new_context(viewport={'width':width,'height':height},is_mobile=True,has_touch=True)
     page=ctx.new_page(); errors=[];page.set_default_timeout(6000)
@@ -49,7 +72,8 @@ def hit(browser, width, height, route):
         assert len(set(source_ids))==27,('opening source turns skipped',len(set(source_ids)))
         assert p.locator('[data-page-next]').count() == 0
         assert p.locator('.vn-grip').count() == 0, 'fake dragging control returned'
-        assert p.locator('.mobile-options [data-choice]').count() == 3
+        ids=visible_option_ids(p)
+        assert set(ids)=={'canon','rescue','investigate'},(width,height,ids)
         p.wait_for_timeout(120)
         geometry=p.evaluate('''()=> {
           const sheet=document.querySelector('.mobile-sheet'),opts=document.querySelector('.mobile-options');
@@ -72,12 +96,12 @@ def hit(browser, width, height, route):
         assert geometry['dialogueBlocks']<=1 and not geometry['dialogueOverflow'],geometry
         assert not geometry['optionOverflow'],'three first options require hidden scroll'
         assert not geometry['overflow'],'horizontal viewport overflow'
-        assert [x['id'] for x in geometry['choices']]==['canon','rescue','investigate']
         assert all(x['height']>=44 and x['visible']>=x['height']-2 for x in geometry['choices']),geometry
         if height>=780:assert geometry['portrait'],'main character not shown at the moment of choice'
         assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands.length',SAVE_KEY) == 0
         p.locator('#menu').tap();p.locator('[data-nav="story"]').first.tap()
-        assert p.locator('.mobile-options [data-choice]').count()==3,'choice state changed after menu round-trip'
+        assert set(visible_option_ids(p))=={'canon','rescue','investigate'},'choice state changed after menu round-trip'
+        seek_choice(p,route)
         p.locator('.mobile-options [data-choice="'+route+'"]').tap()
         assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands.length',SAVE_KEY) == 1
         assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands[0].id',SAVE_KEY) == route
