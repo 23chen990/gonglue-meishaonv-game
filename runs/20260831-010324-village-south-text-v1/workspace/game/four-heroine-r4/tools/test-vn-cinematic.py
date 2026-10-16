@@ -308,18 +308,17 @@ with sync_playwright() as play:
 
 
  def v7_compact_storage_warning():
-  ctx,page=open_game(320,568)
+  # Exercise the *real* showNotice from an unprivileged environment rather
+  # than constructing test-only DOM. ESM does not expose module lexical functions.
+  ctx=browser.new_context(viewport={'width':320,'height':568},is_mobile=True,has_touch=True)
+  ctx.add_init_script("""Object.defineProperty(window,'localStorage',{
+   configurable:true,
+   get(){throw new DOMException('Test storage denied','SecurityError')}
+  })""")
+  page=ctx.new_page()
   try:
-   # The real app's showNotice is module-private; emulate its DOM projection
-   # while verifying production layout and the actual delegated hide handler.
-   page.evaluate("""() => {
-    const el=document.getElementById('notice');
-    const menu=document.getElementById('menu');
-    el.hidden=false;
-    el.dataset.noticeKind='save-unavailable';
-    el.innerHTML='<div class="notice-short">进度未保存 · 请导出</div><button data-action="export">导出</button><button data-action="hide-notice" aria-label="收起存档提醒">×</button>';
-    menu.setAttribute('aria-label','打开菜单，当前进度未自动保存');
-   }""")
+   assert page.goto(URL,wait_until='load').ok
+   assert page.locator('meta[name="story-sha256"]').get_attribute('content')==H
    data=page.locator('#notice').evaluate("""e=>{
     const r=e.getBoundingClientRect(),btn=e.querySelector('[data-action=export]');
     return {kind:e.dataset.noticeKind,height:r.height,top:r.top,bottom:r.bottom,exportWidth:btn.getBoundingClientRect().width,copy:e.innerText};
