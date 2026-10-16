@@ -1,0 +1,42 @@
+name: RomanceNativeSimulator
+options:
+  bundleIdPrefix: game.gonglue.qa
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGNING_ALLOWED: "NO"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  RomanceNativeSmoke:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: Romance QA
+        UILaunchScreen: {}
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: game.gonglue.qa.nativewebview
+    scheme:
+      testTargets:
+        - RomanceNativeSmokeUITests
+  RomanceNativeSmokeUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - UITests
+    dependencies:
+      - target: RomanceNativeSmoke
+    info:
+      path: UITests/Info.plist
+      properties:
+        CFBundleDisplayName: Romance Native UI Tests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: game.gonglue.qa.nativeuitests
