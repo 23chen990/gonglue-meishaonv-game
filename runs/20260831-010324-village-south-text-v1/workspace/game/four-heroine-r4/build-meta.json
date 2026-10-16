@@ -13,18 +13,18 @@
     "tools/vn.css": "9d69e5a04a3330230ff4e767d9fbac6b66cefa25b791e62acba3ebadca61be35",
     "tools/mobile-reader.js": "1e7c19b5323a72bc9ffe012e3b22bdec84c77c3056e1f3d3d442f97fb36e61ce",
     "tools/mobile-reader.css": "974b41c775f764a608c70319722f4974c290b086fb9d5841adcfcf7c7907e3fd",
-    "tools/interactive-opening.js": "4beed576a3efac3276a28e727f594d66e4cd78925372b48862cf0b5c30d7bd4a",
+    "tools/interactive-opening.js": "91b129fe8a39e38c75cf3cfa86a02a91662422ae97c8ec06b8e0bf85e10c01ac",
     "tools/interactive-opening.css": "4b77da5d02607b36bb4a174aee079babf594203f58659496f53c5bf07cb1720e",
-    "tools/interactive-follow.js": "c297f135b0c5f0b192acf91c6e62da58556a6c47fb0e3cfd3c828b8e4b8fbfd6",
+    "tools/interactive-follow.js": "241d77ddf65c2f1184d11fbddccdd6436cd18958588f567770f9c998701c5b4c",
     "assets/portraits/t.webp": "87b7504aa25e113967d97fd1b78cc4b7d43c92d57f16d74474474338d580530c",
     "assets/portraits/s.webp": "3f868d5b0412121be98e7e48944aa53bf8ca25b9ffb7084628d950c33d60dc1e",
     "assets/portraits/l.webp": "25a1de009c490ca43c739f956dcaf9902cd4bc45b550811a70c26da351d2969a",
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "b3e4376daabd88ffdb9fb84b9d92f8e595c2a84db44c68399e1a57ee4f53af6c",
-    "index.html": "f953c97329e5f036f33d2e9396cf330251829ad3fd7b04c38a0be006a3ef2c6b",
-    "play.html": "f953c97329e5f036f33d2e9396cf330251829ad3fd7b04c38a0be006a3ef2c6b",
+    "runtime.mjs": "c504c3e342bc992946a62e9df8db5fe0a26437f386f8f1560862f9918f40157f",
+    "index.html": "1074d297491b970c25545094841197ab43bb31804c3d747aa49c7ea5cfeb50f0",
+    "play.html": "1074d297491b970c25545094841197ab43bb31804c3d747aa49c7ea5cfeb50f0",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
