@@ -142,7 +142,7 @@ with sync_playwright() as pw:
    if not pg.locator('[data-page-next]').count():break
    touch(pg,'[data-page-next]')
   else:raise AssertionError('settle bridge reading stalled')
-  assert pg.locator('[data-choice="backup"]').count()==1
+  assert seek_mobile_choice(pg,'backup'),'meaningful bridge action is not reachable'
   joined=''.join(presented)
   assert '陌生手机' in joined and '程放' in joined,joined
   before=len(snapshot(pg)['commands'])
