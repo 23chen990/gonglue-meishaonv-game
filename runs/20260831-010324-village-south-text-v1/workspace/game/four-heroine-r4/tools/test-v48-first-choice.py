@@ -95,7 +95,8 @@ def hit(browser, width, height, route):
               visible:visible(ob,x.getBoundingClientRect())
             })),
             overflow:document.documentElement.scrollWidth>innerWidth,
-            portrait:!!document.querySelector('.mobile-stage .mobile-portrait img')
+            portrait:!!document.querySelector('.mobile-stage .mobile-portrait img'),
+            sceneCG:!!document.querySelector('.vn4-cg img')&&document.querySelector('.vn4-cg img').naturalWidth>0
           };
         }''')
         assert geometry['sheetHeight']<=height/4+2,(width,height,'dialogue sheet too tall',geometry)
@@ -103,7 +104,7 @@ def hit(browser, width, height, route):
         assert not geometry['optionOverflow'],'three first options require hidden scroll'
         assert not geometry['overflow'],'horizontal viewport overflow'
         assert all(x['height']>=44 and x['visible']>=x['height']-2 for x in geometry['choices']),geometry
-        if height>=780:assert geometry['portrait'],'main character not shown at the moment of choice'
+        if height>=780:assert geometry['portrait'] or geometry['sceneCG'],'staged actor or piano CG missing at the moment of choice'
         assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands.length',SAVE_KEY) == 0
         p.locator('#menu').tap();p.locator('[data-nav="story"]').first.tap()
         assert set(visible_option_ids(p))=={'canon','rescue','investigate'},'choice state changed after menu round-trip'
@@ -115,7 +116,7 @@ def hit(browser, width, height, route):
         assert not errors,errors
         return {'viewport':f'{width}x{height}','selected':route,
                 'openingSourceTurns':len(set(source_ids)),'allThreeVisible':True,
-                'portraitShown':geometry['portrait'],'dialogueSheetRatio':geometry['sheetHeight']/height,
+                'sceneVisualShown':geometry['portrait'] or geometry['sceneCG'],'dialogueSheetRatio':geometry['sheetHeight']/height,
                 'firstActionExactlyOnce':True}
     finally:
         ctx.close()

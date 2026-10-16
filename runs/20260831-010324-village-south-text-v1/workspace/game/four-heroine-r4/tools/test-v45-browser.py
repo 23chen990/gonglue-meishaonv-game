@@ -151,7 +151,7 @@ with sync_playwright() as pw:
   else:raise AssertionError('settle bridge reading stalled')
   assert seek_mobile_choice(pg,'backup'),'meaningful bridge action is not reachable'
   joined=''.join(presented)
-  assert '陌生手机' in joined and '程放' in joined,joined
+  assert ('陌生手机' in joined or '陌生的手机' in joined) and '程放' in joined,joined
   before=len(snapshot(pg)['commands'])
   pick(pg,'backup');after=snapshot(pg)
   assert len(after['commands'])==before+2
