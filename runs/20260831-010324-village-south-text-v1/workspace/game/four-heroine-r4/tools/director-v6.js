@@ -66,7 +66,7 @@ paginate=function(rows){
   }
   projected=accepted;
  }
- const signature=projected.map(b=>[b.id,b.speaker,b.text,b.textHash].join('\0')).join('\1');
+ const signature=projected.map(b=>[b.id,b.speaker,b.text,b.textHash].join(String.fromCharCode(0))).join(String.fromCharCode(1));
  if(mobilePageCache?.signature===signature&&mobilePageCache.key===m.key)return mobilePageCache.pages;
  const pages=projected.flatMap((row,i)=>mobileSplit(row,m,i).map(fragment=>[fragment]));
  if(!pages.length)pages.push([{speaker:'U',text:'',_row:0,_sourceId:'empty',_start:0,_end:0}]);
