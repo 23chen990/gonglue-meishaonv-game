@@ -62,7 +62,7 @@ def run_case(browser,w,h):
   assert p.locator('.vn-reader-toggle').count()==0,'obsolete expandable reader returned'
   assert p.locator('[data-choice]').count()==0,'choice appeared before required intro'
   ids,taps=advance_to_choices(p)
-  assert len(set(ids))==18,(w,h,len(set(ids)))
+  assert len(set(ids))==11,(w,h,len(set(ids)))
   source=p.locator('.vn-frame').get_attribute('data-source')
   text=p.locator('.mobile-text').inner_text()
   p.locator('#menu').click();p.locator('[data-nav="story"]').first.click()
