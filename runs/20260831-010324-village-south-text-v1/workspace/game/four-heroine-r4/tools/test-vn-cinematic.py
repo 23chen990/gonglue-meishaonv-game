@@ -226,6 +226,29 @@ with sync_playwright() as play:
   finally:ctx.close()
  record('LARGE_FONT_320_FIRST_FORK',large_first_fork)
 
+
+ def v62_short_dialogue_and_save_notice():
+  ctx,page=open_game(390,844)
+  try:
+   original=page.locator('.mobile-sheet').evaluate('(x)=>x.getBoundingClientRect().height')
+   assert original<=844*.22,('short line wastes too much of the scene',original)
+   assert page.locator('#notice').is_hidden()
+   page.evaluate("""() => {
+    const note=document.querySelector('#notice');
+    note.hidden=false;
+    note.innerHTML='<div>保存失败，请导出当前进度。</div><button data-action="export">导出</button>';
+   }""")
+   info=page.locator('#notice').evaluate("""x=>{
+    const r=x.getBoundingClientRect(),s=getComputedStyle(x);
+    return {opacity:s.opacity,events:s.pointerEvents,top:r.top,bottom:r.bottom,buttons:x.querySelectorAll('button').length};
+   }""")
+   assert info['opacity']=='1' and info['events']=='auto',info
+   assert info['top']>=45 and info['bottom']<844 and info['buttons']==1,info
+   page.screenshot(path=str(D/'v62-save-notice.png'))
+   return {'shortSubtitleHeight':original,'noticeVisibleAndActionable':True}
+  finally:ctx.close()
+ record('V62_COMPACT_DIALOGUE_AND_SAVE_NOTICE',v62_short_dialogue_and_save_notice)
+
  browser.close()
 REPORT['status']='PASS' if all(c['status']=='PASS' for c in REPORT['cases']) else 'FAIL'
 (R/'qa/current'/('vn-cinematic-webkit-report.json' if ENGINE=='webkit' else 'vn-cinematic-report.json')).write_text(json.dumps(REPORT,ensure_ascii=False,indent=2)+'\n')

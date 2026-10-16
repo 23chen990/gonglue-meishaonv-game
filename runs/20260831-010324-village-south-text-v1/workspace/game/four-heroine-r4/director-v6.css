@@ -85,3 +85,27 @@ body[data-panel=story] .game-shell{border:0!important}
 /* Do not cover performers with a persistent 100px localStorage warning. Menu still displays full recovery instructions. */
 body[data-panel=story] #notice{opacity:0!important;pointer-events:none!important}
 .adv6[data-camera=stage] .adv6-scene-photo{object-position:52% 42%}
+
+/* V6.2: measured short subtitle panels; same single scene photo, no image
+ * composites or digital scene extensions. */
+.adv6[data-mode=reading] .adv6-image,.adv6[data-mode=reply] .adv6-image,.adv6[data-mode=ending] .adv6-image{bottom:calc(var(--mobile-panel) * .62)!important}
+.adv6 .adv6-sheet{background:linear-gradient(180deg,rgba(12,10,24,.78),rgba(12,10,24,.92) 33%,rgba(11,9,23,.98) 82%)!important;border-top:0!important;box-shadow:none!important;backdrop-filter:blur(2px)!important;-webkit-backdrop-filter:blur(2px)!important}
+.adv6 .adv6-vignette{bottom:calc(var(--mobile-panel) * .62)!important}
+.adv6[data-mode=decision] .adv6-vignette{bottom:0!important}
+.adv6[data-camera=badge] .adv6-inspect{left:16px!important;right:auto!important;bottom:calc(var(--mobile-panel) + 12px)!important}
+/* V6 previously hid every notice, including save conflict / export warnings.
+ * Preserve cinematic calm when hidden, but make real failures actionable. */
+body[data-panel=story] #notice:not([hidden]){
+ position:fixed!important;z-index:80!important;
+ top:calc(59px + env(safe-area-inset-top))!important;
+ left:max(12px,calc((100vw - 440px)/2))!important;
+ right:max(12px,calc((100vw - 440px)/2))!important;
+ width:auto!important;max-width:none!important;max-height:38dvh!important;
+ padding:12px!important;margin:0!important;overflow:auto!important;
+ opacity:1!important;pointer-events:auto!important;
+ border:1px solid #f9d2b38a!important;border-radius:11px!important;
+ background:#372330f5!important;color:#fff3eb!important;
+ box-shadow:0 10px 35px #050511bf!important;
+ font:500 13px/1.55 system-ui,'PingFang SC',sans-serif!important;
+}
+body[data-panel=story] #notice:not([hidden]) button{min-height:44px!important;margin:8px 8px 0 0!important;color:#fff4eb!important}
