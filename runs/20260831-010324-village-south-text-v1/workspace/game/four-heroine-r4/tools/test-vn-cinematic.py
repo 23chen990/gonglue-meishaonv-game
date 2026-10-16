@@ -64,7 +64,7 @@ with sync_playwright() as play:
      assert page.locator('[data-page-next]').count()==1,(w,i)
      page.locator('[data-page-next]').tap()
     else:raise AssertionError(('opening reader stalled',w,h))
-    assert len(set(source_ids))==10,(w,h,'10 reading cuts before the eleventh decision beat; all 28 canonical rows remain in DATA/History',len(set(source_ids)))
+    assert len(set(source_ids))==6,(w,h,'6 story advances before the seventh decisive beat; all 28 canonical rows remain in DATA/History',len(set(source_ids)))
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
     option_ids=visible_option_ids(page)
     assert set(option_ids)=={'canon','rescue','investigate'},(w,h,option_ids)
@@ -76,7 +76,7 @@ with sync_playwright() as play:
       const sheet=box(document.querySelector('.mobile-sheet'));
       const dockEl=document.querySelector('.mobile-options'),dock=box(dockEl);
       const text=document.querySelector('.mobile-text'),portrait=document.querySelector('.mobile-portrait');
-      const actor=portrait&&box(portrait);const cg=document.querySelector('.vn4-cg img');
+      const actor=portrait&&box(portrait);const cg=document.querySelector('.adv5-scene-photo');
       const choices=[...dockEl.querySelectorAll('[data-choice]')].map(x=>{
         const r=box(x);return {height:r.height,visible:Math.max(0,Math.min(dock.bottom,r.bottom)-Math.max(dock.top,r.top))};
       });
@@ -167,7 +167,7 @@ with sync_playwright() as play:
  def menu_font_cursor():
   ctx,page=open_game(320,568)
   try:
-   for _ in range(3):
+   for _ in range(1):
     assert page.locator('[data-page-next]').count()==1
     page.locator('[data-page-next]').tap()
    before=page.locator('.vn-frame').get_attribute('data-source')
@@ -205,7 +205,7 @@ with sync_playwright() as play:
     source_ids.append(page.locator('.vn-frame').get_attribute('data-source'))
     page.locator('[data-page-next]').first.tap()
    else:raise AssertionError('large-font opening reader stalled')
-   assert len(set(source_ids))==10
+   assert len(set(source_ids))==6
    option_ids=visible_option_ids(page)
    assert set(option_ids)=={'canon','rescue','investigate'},option_ids
    page.wait_for_timeout(250)
