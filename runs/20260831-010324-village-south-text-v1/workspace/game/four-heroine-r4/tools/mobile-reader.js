@@ -179,8 +179,20 @@ function mobileFitOptions(){
  const box=document.querySelector('.mobile-options');if(!box)return;
  const metrics=mobileMetrics(),key=[getView().id,choicePage,large,metrics.key].join(':');
  if(key!==mobileOptionKey){mobileOptionIndex=0;mobileOptionKey=key;}
- const all=Array.from(box.querySelectorAll('button')).filter(b=>!b.matches('[data-mobile-options]'));
+ let all=Array.from(box.querySelectorAll('button')).filter(b=>!b.matches('[data-mobile-options]'));
  if(!all.length)return;
+ // For a small direct decision (the opening 3-way fork and similar beats), old
+ // wrapper geometry can exaggerate scrollHeight even though the real buttons fit.
+ // Flatten those real actions first; never paginate three ordinary choices merely
+ // because a hidden/legacy container has reader-era height.
+ const simpleDirect=all.length<=3&&all.every(b=>b.matches('[data-choice]'));
+ if(simpleDirect){
+  const host=document.createElement('div');host.className='mobile-option-items mobile-option-items-direct';
+  host.replaceChildren(...all);box.replaceChildren(host);box.classList.add('mobile-options-direct');
+  const maxHeight=parseFloat(getComputedStyle(box).maxHeight);
+  if(!Number.isFinite(maxHeight)||box.scrollHeight<=maxHeight+1)return;
+  all=Array.from(host.querySelectorAll('[data-choice]'));
+ }
  const maxHeight=parseFloat(getComputedStyle(box).maxHeight);
  if(!Number.isFinite(maxHeight)||box.scrollHeight<=maxHeight+1)return;
  // Short screens must never rely on hidden scrolling. Use deterministic
@@ -190,7 +202,7 @@ function mobileFitOptions(){
  for(let i=0;i<all.length;i+=perPage)pages.push(all.slice(i,i+perPage));
  if(pages.length<2)return;
  mobileOptionIndex=Math.max(0,Math.min(mobileOptionIndex,pages.length-1));
- box.classList.add('mobile-options-paged');box.replaceChildren();
+ box.classList.remove('mobile-options-direct');box.classList.add('mobile-options-paged');box.replaceChildren();
  const host=document.createElement('div');host.className='mobile-option-items';
  host.replaceChildren(...pages[mobileOptionIndex]);box.append(host);
  const nav=document.createElement('div');nav.className='mobile-option-navigation';
