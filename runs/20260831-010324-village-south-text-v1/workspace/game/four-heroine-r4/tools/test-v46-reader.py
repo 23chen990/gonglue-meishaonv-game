@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""v4.7 mobile reader, replay, save migration and conflict QA.
+"""Mobile VN single-turn reader, replay, save migration and conflict QA.
 Chromium viewport automation is not a physical iOS/Android or human test.
 """
 from pathlib import Path
@@ -21,43 +21,54 @@ def start(browser,w,h,seed=None):
  pg=ctx.new_page();pg.set_default_timeout(6000)
  errors=[];pg.on('pageerror',lambda e:errors.append(str(e)));pg.on('dialog',lambda d:d.accept())
  if NATIVE:
-  rsp=pg.goto(URL,wait_until='load')
-  assert rsp and rsp.ok
+  rsp=pg.goto(URL,wait_until='load');assert rsp and rsp.ok
  else:
   pg.evaluate("""seed=>{
    const values=new Map(Object.entries(seed||{}));window.__simStore=values;
    Object.defineProperty(window,'localStorage',{configurable:true,value:{
-    getItem:k=>values.has(k)?values.get(k):null,
-    setItem:(k,v)=>values.set(k,String(v)),
-    removeItem:k=>values.delete(k)
+    getItem:k=>values.has(k)?values.get(k):null,setItem:(k,v)=>values.set(k,String(v)),removeItem:k=>values.delete(k)
    }});
   }""",seed or {})
   pg.set_content(HTML,wait_until='load')
  assert pg.locator('meta[name="story-sha256"]').get_attribute('content')==CURRENT
  return ctx,pg,errors
 
+def advance_to_choices(p):
+ ids=[];parts=0
+ for i in range(120):
+  if p.locator('[data-choice]').count():break
+  assert p.locator('[data-page-next]').count()==1,('reader stalled',i)
+  assert p.locator('.mobile-text .line').count()<=1
+  geom=p.evaluate("""()=>{let x=document.querySelector('.mobile-text'),s=document.querySelector('.mobile-sheet');
+   return {content:x.scrollHeight,client:x.clientHeight,sheet:s.getBoundingClientRect().height,inner:innerHeight}}""")
+  assert geom['content']<=geom['client']+2,geom
+  assert geom['sheet']<=geom['inner']/3+2,geom
+  ids.append(p.locator('.vn-frame').get_attribute('data-source'));parts+=1
+  p.locator('[data-page-next]').first.click()
+ else:raise AssertionError('opening reader did not reach choices')
+ return ids,parts
+
+def seek_choice(p,id):
+ for _ in range(12):
+  if p.locator(f'.mobile-options [data-choice="{id}"]').count():return
+  nxt=p.locator('.mobile-options [data-mobile-options="1"]:not([disabled])')
+  if not nxt.count():break
+  nxt.tap()
+ raise AssertionError('choice not reachable: '+id)
+
 def run_case(browser,w,h):
  ctx,p,errors=start(browser,w,h)
  try:
-  assert p.locator('.vn-reader-toggle').count()==1
+  assert p.locator('.vn-reader-toggle').count()==0,'obsolete expandable reader returned'
   assert p.locator('[data-choice]').count()==0,'choice appeared before required intro'
-  before=p.locator('.vn-sheet').bounding_box()['height']
-  p.locator('.vn-reader-toggle').click()
-  expanded=p.locator('.vn-sheet').bounding_box()['height']
-  assert expanded-before >= 45,(w,h,before,expanded)
-  assert p.locator('.vn-reader-toggle').get_attribute('aria-expanded')=='true'
-  p.locator('.vn-reader-toggle').click()
-  taps=0
-  while p.locator('[data-page-next]').count():
-   assert taps<11
-   p.locator('[data-page-next]').first.click();taps+=1
-  assert taps==7 and p.locator('.vn-dock [data-choice]').count()==3,(taps,w)
-  p.locator('.vn-scroll').evaluate('e=>e.scrollTop=80')
-  scroll_before=p.locator('.vn-scroll').evaluate('e=>e.scrollTop')
+  ids,taps=advance_to_choices(p)
+  assert len(set(ids))==6,(w,h,len(set(ids)))
+  source=p.locator('.vn-frame').get_attribute('data-source')
+  text=p.locator('.mobile-text').inner_text()
   p.locator('#menu').click();p.locator('[data-nav="story"]').first.click()
-  scroll_after=p.locator('.vn-scroll').evaluate('e=>e.scrollTop')
-  assert abs(scroll_after-scroll_before)<=2
-  p.locator('[data-choice="canon"]').click()
+  assert p.locator('.vn-frame').get_attribute('data-source')==source
+  assert p.locator('.mobile-text').inner_text()==text,'menu round-trip changed source cursor'
+  seek_choice(p,'canon');p.locator('.mobile-options [data-choice="canon"]').click()
   assert p.locator('body').get_attribute('data-current')=='ENTRY_CLUES'
   p.locator('#menu').click();p.locator('[data-nav="history"]').click()
   assert '戴耳机的男人' in p.locator('[data-history="0"]').first.inner_html()
@@ -87,30 +98,33 @@ def run_case(browser,w,h):
    assert '无法验证' in bad.locator('#notice').inner_text()
    assert not errs,errs
   finally:third.close()
-  replacement=raw.replace('"page":0','"page":1',1);assert replacement!=raw
+  replacement_obj=json.loads(raw)
+  replacement_obj['ui']['page']=replacement_obj['ui'].get('page',0)+1
+  replacement=json.dumps(replacement_obj,ensure_ascii=False,separators=(',',':'))
   p.evaluate('([k,v])=>localStorage.setItem(k,v)',[KEY,replacement])
+  p.locator('[data-nav="story"]').first.click() if p.locator('[data-nav="story"]').count() else None
   p.locator('#menu').click();p.locator('[data-action="reset"]').click()
   assert p.evaluate('(k)=>localStorage.getItem(k)',KEY)==replacement
   assert '另一个窗口' in p.locator('#notice').inner_text()
   assert not errors,errors
-  return {'viewport':str(w)+'x'+str(h),'requiredIntroNext':taps,'readerHeightGain':round(expanded-before),
-          'returnScroll':round(scroll_after),'historicalIdentity':'PASS','v45BackupMigration':'PASS',
+  return {'viewport':str(w)+'x'+str(h),'openingPresentationPages':taps,
+          'singleTurnPages':True,'noInnerScroll':True,'noExpandableReader':True,
+          'sourceCursorRoundTrip':'PASS','historicalIdentity':'PASS','v45BackupMigration':'PASS',
           'rejectUnknownSave':'PASS','multiTabResetGuard':'PASS'}
  finally:ctx.close()
 
 with sync_playwright() as play:
  kwargs={'headless':True}
- if Path('/usr/bin/chromium').exists():
-  kwargs.update(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+ if Path('/usr/bin/chromium').exists():kwargs.update(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
  browser=play.chromium.launch(**kwargs)
  try:
   for w,h in [(320,568),(390,844),(430,932)]:
    try:
     d=run_case(browser,w,h)
-    REPORT['cases'].append({'status':'PASS','detail':d});print('PASS v4.7 reader',d,flush=True)
+    REPORT['cases'].append({'status':'PASS','detail':d});print('PASS mobile reader',d,flush=True)
    except Exception as exc:
     REPORT['cases'].append({'status':'FAIL','viewport':str(w)+'x'+str(h),'error':str(exc)})
-    REPORT['errors'].append(traceback.format_exc());print('FAIL v4.7 reader',w,h,repr(exc),flush=True)
+    REPORT['errors'].append(traceback.format_exc());print('FAIL mobile reader',w,h,repr(exc),flush=True)
  finally:browser.close()
 report=ROOT/'qa/current/v46-reader-report.json'
 report.parent.mkdir(parents=True,exist_ok=True)

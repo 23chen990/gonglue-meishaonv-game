@@ -1,0 +1,64 @@
+/* ADV V4: one cinematic scene, one speaking turn, bottom-fixed dialogue, no cards. */
+body[data-panel=story] .game-shell{background:#090c15!important;box-shadow:none!important}
+body[data-panel=story] .topbar{height:56px!important;min-height:0!important;padding:calc(5px + env(safe-area-inset-top)) 14px 0!important;background:linear-gradient(#080915d0,#08091566 72%,transparent)!important}
+body[data-panel=story] .topbar .brand{font-size:13px!important;opacity:.78;letter-spacing:.1em!important}
+body[data-panel=story] .topbar .logo-star{width:22px!important;height:22px!important;font-size:12px!important}
+body[data-panel=story] .topbar .menu-button{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;background:#14101c85!important;border:1px solid #ffffff3a!important;border-radius:50%!important}
+.vn4 .mobile-scene-name,.vn4 .mobile-prop,.vn4 .cinema-prop,.vn4 .cinema-inspect,.vn4 .cinema-ambient{display:none!important}
+.vn4 .vn4-stage{background-color:#0d1020;overflow:hidden!important}
+.vn4 .mobile-scenery{opacity:1!important;filter:saturate(.86) brightness(.77);z-index:1!important}
+.vn4-stage:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#0609162c 0%,transparent 26%,transparent 52%,#100d2080 92%);pointer-events:none;z-index:5}
+.vn4 .vn4-chapter{position:absolute;left:18px;top:calc(70px + env(safe-area-inset-top));z-index:9;font-size:11px;font-weight:550;letter-spacing:.15em;color:#fff0f4;text-shadow:0 2px 9px #02030e;opacity:.82}
+.vn4 .vn4-cg{position:absolute;top:7%;bottom:calc(var(--mobile-panel) + 10px);left:0;right:0;z-index:4;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none;isolation:isolate}
+.vn4 .vn4-cg img{width:100%;height:100%;max-width:480px;object-fit:contain;object-position:center center;display:block;mask-image:radial-gradient(ellipse 77% 75% at 50% 46%,black 55%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 77% 75% at 50% 46%,black 55%,transparent 100%);filter:saturate(.92) contrast(1.02);transform:scale(1.05)}
+.vn4 .vn4-cg-actor img{object-position:center 30%;mask-image:linear-gradient(to bottom,transparent 0%,#000 6%,#000 75%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 6%,#000 75%,transparent 100%)}
+.vn4 .vn4-cg-pov img{object-position:center 45%;mask-image:radial-gradient(ellipse 82% 75% at 50% 48%,black 67%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 82% 75% at 50% 48%,black 67%,transparent 100%)}
+.vn4 .vn4-cg-wide img{object-position:center 38%;mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 70%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 70%,transparent 100%)}
+.vn4 .vn4-cg-insert img{object-position:center center}
+.vn4 .vn4-inspect-target{position:absolute;z-index:16;top:30%;left:12%;right:12%;height:32%;min-height:94px;background:transparent;border:0;outline-offset:-6px;color:#fff;cursor:zoom-in;display:flex;align-items:end;justify-content:center}
+.vn4 .vn4-inspect-target span{display:block;border-radius:40px;font-size:12px;letter-spacing:.07em;padding:6px 12px;background:#0b0b17b3;border:1px solid #ffffff61;box-shadow:0 6px 20px #0b061433;transform:translateY(-8px)}
+.vn4 .mobile-portrait.vn4-portrait{opacity:.96;filter:none!important}
+.vn4 .mobile-portrait.vn4-portrait img{object-fit:cover!important;object-position:50% 15%!important;filter:brightness(.94) saturate(.93)!important}
+.vn4[data-mode=reading]>.mobile-sheet,.vn4[data-mode=reply]>.mobile-sheet,.vn4[data-mode=ending]>.mobile-sheet{background:linear-gradient(180deg,#0b0c19dc,#080a14f5 60%,#070812fa)!important;border-top:1px solid #f5e3fa2c!important;box-shadow:0 -12px 45px #05061063!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:7px 18px 5px!important;grid-template-rows:26px minmax(0,1fr) calc(44px + var(--mobile-safe))!important;overflow:hidden!important}
+.vn4 .mobile-speaker{font:650 14px/24px system-ui,-apple-system,'PingFang SC',sans-serif!important;color:#ffc9db!important;letter-spacing:.02em}
+.vn4[data-beat-kind=thought] .mobile-speaker{color:#b8c7f6!important}
+.vn4 .mobile-text .line p{font-family:system-ui,-apple-system,'PingFang SC',sans-serif!important;font-weight:400!important;color:#fdf7ff!important;line-height:var(--mobile-line)!important;font-size:var(--mobile-font)!important;letter-spacing:0!important;word-break:normal!important}
+.vn4 .mobile-dock{justify-content:flex-end!important;align-items:flex-end!important;overflow:hidden!important}
+.vn4 .mobile-dock .next{min-height:42px!important;height:42px!important;min-width:90px!important;padding:6px 3px!important;color:#f4bfd1!important;font-size:13px!important;background:none!important;box-shadow:none!important;text-align:right!important;line-height:28px!important}
+.vn4 .mobile-dock .next:after{content:'  ›'!important;font-size:21px!important;vertical-align:-1px}
+.vn4[data-beat-kind=illustration]:not([data-mode=decision])>.mobile-sheet{background:linear-gradient(180deg,#0c0a19ca,#070811f5)!important;pointer-events:auto!important;opacity:1!important}
+.vn4[data-mode=decision]>.mobile-sheet{display:none!important;opacity:0!important;height:0!important;pointer-events:none!important}
+body[data-panel=story] .vn4>.mobile-options{position:absolute!important;z-index:19!important;left:18px!important;right:18px!important;top:auto!important;bottom:calc(20px + env(safe-area-inset-bottom))!important;max-height:calc(var(--mobile-vh) - 95px - env(safe-area-inset-bottom))!important;min-height:0!important;height:auto!important;overflow:hidden!important;padding:0!important;background:none!important;border:none!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;gap:10px!important}
+.vn4 .mobile-options .mobile-option-items-direct,.vn4 .mobile-options .mobile-option-items,.vn4 .mobile-options .choices{width:100%;display:grid!important;grid-template-columns:1fr!important;gap:9px!important;margin:0!important}
+.vn4 .mobile-options [data-choice],.vn4 .mobile-options .vn-group{width:100%!important;max-width:none!important;border-radius:9px!important;background:linear-gradient(90deg,#171625dc,#1b1524df)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;color:#fff8fa!important;border:1px solid #dfb2c162!important;border-left:3px solid #e6acc7b3!important;box-shadow:0 6px 20px #0503125e!important;min-height:51px!important;height:auto!important;padding:12px 15px!important;line-height:1.38!important;font-size:14.5px!important;font-weight:520!important;letter-spacing:0!important;text-align:left!important;overflow-wrap:break-word!important;white-space:normal!important;transition:border-color .12s ease,background .12s ease!important}
+.vn4 .mobile-options [data-choice]:active{background:#483249eb!important;border-color:#fff6fc!important;transform:scale(.993)}
+.vn4 .mobile-options .vn-group strong{font-size:14px!important;color:#fff9fb!important}
+.vn4 .mobile-options .vn-choice-back{height:44px!important;min-height:44px!important;font-size:12px!important;border:1px solid #ffffff40!important;border-left-width:1px!important;text-align:center!important;background:#111424d9!important}
+.vn4 .mobile-options .mobile-option-navigation{display:flex;gap:8px;align-items:center;justify-content:center;min-height:44px!important}
+.vn4 .mobile-options .mobile-option-navigation button{min-height:44px!important;height:44px!important}
+.vn4 .mobile-options .mobile-option-navigation span{color:#f1dfef;font-size:12px}
+.vn4[data-mode=decision] .vn4-stage:after{background:linear-gradient(180deg,#0d0d1f29,#0d0a1880 45%,#090815c2 100%)}
+.vn4 .cinema-inspect-modal{z-index:75;max-height:100%;background:transparent}
+.vn4 .cinema-inspect-card{width:min(94%,380px);max-height:88%;overflow:auto;border-radius:13px;background:#171725ef;border:1px solid #eed8e63d;padding:15px}
+.vn4 .cinema-inspect-card .cinema-inspect-visual{height:min(240px,40dvh)!important;border-radius:9px;overflow:hidden;background:#090914}
+.vn4 .cinema-inspect-card .vn4-modal-cg{width:100%;height:100%;object-fit:contain}
+.vn4 .cinema-inspect-card h2{font-size:18px;color:#fff5fa}
+.vn4 .cinema-inspect-card p{font-size:13px;color:#f7deed;line-height:1.6}
+.vn4 .cinema-inspect-card .cinema-return{min-height:44px;background:#4d354b;border:1px solid #f2cdde;color:white}
+@media(max-height:650px){body[data-panel=story] .topbar{height:50px!important}.vn4 .vn4-chapter{top:calc(56px + env(safe-area-inset-top))}.vn4 .vn4-cg{top:7%;bottom:calc(var(--mobile-panel) + 4px)}.vn4 .mobile-options [data-choice]{font-size:13px!important;min-height:47px!important;padding:10px 12px!important}}
+@media(max-width:350px){.vn4 .mobile-options [data-choice]{font-size:13px!important;padding:9px 11px!important}.vn4 .mobile-speaker{font-size:13px!important}}
+body.large .vn4 .mobile-options [data-choice]{font-size:16.5px!important}
+@media(prefers-reduced-motion:reduce){.vn4 *{animation:none!important;transition:none!important}}
+
+/* The CG is a feather-composited full-height photograph on the scene backdrop. */
+.vn4 .vn4-cg{inset:0!important;top:0!important;bottom:0!important;left:0!important;right:0!important}
+.vn4 .vn4-cg img,.vn4 .vn4-cg-actor img,.vn4 .vn4-cg-pov img,.vn4 .vn4-cg-wide img,.vn4 .vn4-cg-insert img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center center!important;mask-image:none!important;-webkit-mask-image:none!important;filter:none!important;transform:none!important}
+/* ADV V4.1: quiet stage HUD and legible, translucent subtitles. */
+body[data-panel=story] .topbar{background:linear-gradient(180deg,#08091673,transparent)!important;box-shadow:none!important}
+body[data-panel=story] .topbar .logo-wrap{display:none!important}
+body[data-panel=story] .topbar .menu-button{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;border-radius:50%!important;background:#0b0b1b73!important}
+.vn4[data-mode=reading]>.mobile-sheet,.vn4[data-mode=reply]>.mobile-sheet,.vn4[data-mode=ending]>.mobile-sheet{background:linear-gradient(180deg,#111023a6,#0e0c1ed6 65%,#0d0a1df0)!important;border-top-color:#ffffff2b!important;backdrop-filter:blur(3px)!important;-webkit-backdrop-filter:blur(3px)!important}
+.vn4 .mobile-text .line p{text-shadow:0 1px 2px #000a}
+.vn4 .vn4-inspect-target{left:47%;right:11%;top:26%;height:35%;justify-content:flex-end!important;align-items:end!important}
+.vn4 .vn4-inspect-target span{font-size:11px!important;padding:5px 12px!important;background:#10101f9e!important;transform:none!important}
+.vn4[data-mode=decision] .vn4-chapter{opacity:.25}

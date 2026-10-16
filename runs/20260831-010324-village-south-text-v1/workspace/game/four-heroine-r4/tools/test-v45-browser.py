@@ -35,19 +35,39 @@ def page_for(browser,w=390,h=844,seed=None):
 def touch(pg,sel):
  locator=pg.locator(sel).first;locator.scroll_into_view_if_needed(timeout=3000);locator.tap(timeout=3000)
 def finish_beats(pg):
- for i in range(35):
+ for i in range(120):
   if pg.locator('[data-page-next]').count():touch(pg,'[data-page-next]')
   elif pg.locator('[data-reply-next]').count():touch(pg,'[data-reply-next]')
   else:return i
- raise AssertionError('repeated pagination stalled')
+ raise AssertionError('repeated pagination stalled after 120 presentation pages')
+def visible_option_ids(pg):
+ found=[]
+ for _ in range(12):
+  for x in pg.locator('.mobile-options [data-choice]').evaluate_all('els=>els.map(x=>x.dataset.choice)'):
+   if x not in found:found.append(x)
+  nxt=pg.locator('.mobile-options [data-mobile-options="1"]:not([disabled])')
+  if not nxt.count():break
+  touch(pg,'.mobile-options [data-mobile-options="1"]:not([disabled])')
+ return found
+
+def seek_mobile_choice(pg,id):
+ for _ in range(12):
+  if pg.locator(f'.mobile-options [data-choice="{id}"]').count():return True
+  nxt=pg.locator('.mobile-options [data-mobile-options="1"]:not([disabled])')
+  if not nxt.count():return False
+  touch(pg,'.mobile-options [data-mobile-options="1"]:not([disabled])')
+ return False
+
 def pick(pg,id):
  loc=pg.locator(f'[data-choice="{id}"]')
+ if not loc.count() and seek_mobile_choice(pg,id):
+  loc=pg.locator(f'[data-choice="{id}"]')
  if not loc.count():
   gs=pg.locator('[data-choice-group]')
   if not gs.count():raise AssertionError('choice not rendered: '+id)
   for i in range(gs.count()):
    touch(pg,f'[data-choice-group="{i+1}"]')
-   if pg.locator(f'[data-choice="{id}"]').count():break
+   if pg.locator(f'[data-choice="{id}"]').count() or seek_mobile_choice(pg,id):break
    touch(pg,'[data-choice-back]')
   else:raise AssertionError('choice missing even after groups: '+id)
  touch(pg,f'[data-choice="{id}"]')
@@ -83,10 +103,11 @@ with sync_playwright() as pw:
    assert pg.locator('[data-choice]').count()==0
    assert pg.evaluate('document.documentElement.scrollWidth<=window.innerWidth'),(w,h,'overflow')
    finish_beats(pg)
-   assert pg.locator('[data-choice]').count()==3 and not pg.locator('[data-page-next]').count()
-   assert pg.locator('.vn-dock [data-choice]').count()==3
+   assert not pg.locator('[data-page-next]').count()
+   ids=visible_option_ids(pg)
+   assert set(ids)=={'canon','rescue','investigate'},(w,h,ids)
    assert not errors,errors
-   for a in pg.locator('[data-choice]').all():
+   for a in pg.locator('.mobile-options [data-choice]').all():
     box=a.bounding_box();assert box['height']>=44,(w,h,box)
    if w in (320,390,430):pg.screenshot(path=str(shots/f'intro-{w}.png'))
    out.append(f'{w}x{h}');ctx.close()
@@ -105,12 +126,32 @@ with sync_playwright() as pw:
  check('ALL_THREE_STORY_OPENINGS_ORDINARY_TOUCH',three_forks)
  def no_fake_page():
   ctx,pg,errors=page_for(browser)
-  finish_beats(pg);pick(pg,'rescue');finish_beats(pg);pick(pg,'t');finish_beats(pg)
+  finish_beats(pg);pick(pg,'rescue');finish_beats(pg);pick(pg,'t')
   assert current(pg)=='OP_SETTLE'
-  assert not pg.locator('[data-choice="continue"]').count(),'extra continue was rendered'
-  assert pg.locator('.vn-dock [data-choice="backup"]').count()==1
-  assert pg.locator('.vn-scroll').inner_text().find('陌生手机')>=0
-  assert pg.locator('.vn-scroll').inner_text().find('程放')>=0
+  presented=[]
+  # The preceding meaningful choice may have a multi-page authored reply.
+  # Consume every reply continuation page and then its explicit reply-end gate
+  # before auditing the OP_SETTLE bridge reading sequence.
+  for _ in range(48):
+   if pg.locator('body').get_attribute('data-phase')!='reply':break
+   presented.append(pg.locator('.mobile-text').inner_text())
+   assert not pg.locator('[data-choice="continue"]').count(),'internal continue leaked during reply'
+   if pg.locator('[data-page-next]').count():
+    touch(pg,'[data-page-next]')
+   elif pg.locator('[data-reply-next]').count():
+    touch(pg,'[data-reply-next]')
+   else:
+    raise AssertionError('authored reply stalled before OP_SETTLE')
+  else:raise AssertionError('authored reply did not finish')
+  for _ in range(120):
+   presented.append(pg.locator('.mobile-text').inner_text())
+   assert not pg.locator('[data-choice="continue"]').count(),'internal continue leaked into player choices'
+   if not pg.locator('[data-page-next]').count():break
+   touch(pg,'[data-page-next]')
+  else:raise AssertionError('settle bridge reading stalled')
+  assert seek_mobile_choice(pg,'backup'),'meaningful bridge action is not reachable'
+  joined=''.join(presented)
+  assert ('陌生手机' in joined or '陌生的手机' in joined) and '程放' in joined,joined
   before=len(snapshot(pg)['commands'])
   pick(pg,'backup');after=snapshot(pg)
   assert len(after['commands'])==before+2
@@ -118,7 +159,7 @@ with sync_playwright() as pw:
   assert current(pg)=='OP_TALK_t'
   assert not errors,errors
   pg.screenshot(path=str(shots/'after-bridge.png'));ctx.close()
-  return {'bridgeCommands':['continue','backup'],'extraTap':0,'sameSceneChoice':True}
+  return {'bridgeCommands':['continue','backup'],'internalContinueVisible':False,'singleTurnBridgeText':True}
  check('REMOVES_EMPTY_TRANSITION_BUT_PRESERVES_TWO_STORY_COMMANDS',no_fake_page)
  def all_group_signatures():
   ctx,pg,errors=page_for(browser)

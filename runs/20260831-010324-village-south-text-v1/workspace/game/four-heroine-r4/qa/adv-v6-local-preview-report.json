@@ -1,0 +1,236 @@
+[
+  {
+    "size": "320x568",
+    "sourceIds": [
+      "ENTRY_WAKE.intro.003",
+      "ENTRY_WAKE.intro.007",
+      "ENTRY_WAKE.intro.011",
+      "ENTRY_WAKE.intro.012",
+      "ENTRY_WAKE.intro.025",
+      "ENTRY_WAKE.intro.026"
+    ],
+    "pages": 6,
+    "dialogues": [
+      "许照！原版伴奏盘呢？台上都等着呢！",
+      "许照？这不是我的名字……",
+      "等等！这不是彩排的伴奏！",
+      "映雪，听钢琴！我给你接上前奏！",
+      "我想起来了……这是那本小说。七天后，被清退的人就是许照。",
+      "原版盘……就在脚边的接线板下！"
+    ],
+    "choices": [
+      "canon",
+      "rescue",
+      "investigate"
+    ],
+    "geometry": {
+      "img": "640x960",
+      "shown": [
+        320,
+        568
+      ],
+      "dock": [
+        381,
+        546
+      ],
+      "options": [
+        {
+          "h": 49,
+          "visible": true
+        },
+        {
+          "h": 49,
+          "visible": true
+        },
+        {
+          "h": 49,
+          "visible": true
+        }
+      ],
+      "bars": false,
+      "dialogue": 12,
+      "renderedImages": 1
+    },
+    "errors": []
+  },
+  {
+    "size": "360x780",
+    "sourceIds": [
+      "ENTRY_WAKE.intro.003",
+      "ENTRY_WAKE.intro.007",
+      "ENTRY_WAKE.intro.011",
+      "ENTRY_WAKE.intro.012",
+      "ENTRY_WAKE.intro.025",
+      "ENTRY_WAKE.intro.026"
+    ],
+    "pages": 6,
+    "dialogues": [
+      "许照！原版伴奏盘呢？台上都等着呢！",
+      "许照？这不是我的名字……",
+      "等等！这不是彩排的伴奏！",
+      "映雪，听钢琴！我给你接上前奏！",
+      "我想起来了……这是那本小说。七天后，被清退的人就是许照。",
+      "原版盘……就在脚边的接线板下！"
+    ],
+    "choices": [
+      "canon",
+      "rescue",
+      "investigate"
+    ],
+    "geometry": {
+      "img": "640x960",
+      "shown": [
+        360,
+        780
+      ],
+      "dock": [
+        572,
+        758
+      ],
+      "options": [
+        {
+          "h": 56,
+          "visible": true
+        },
+        {
+          "h": 56,
+          "visible": true
+        },
+        {
+          "h": 56,
+          "visible": true
+        }
+      ],
+      "bars": false,
+      "dialogue": 12,
+      "renderedImages": 1
+    },
+    "errors": []
+  },
+  {
+    "route": "canon",
+    "current": "ENTRY_CLUES",
+    "source": "ENTRY_WAKE.r42.reply.canon.001",
+    "text": "我先核对交接单，不能乱动设备。"
+  },
+  {
+    "route": "rescue",
+    "current": "COLD",
+    "source": "ENTRY_WAKE.r42.reply.rescue.001",
+    "text": "找到原版了！交给音控确认。"
+  },
+  {
+    "route": "investigate",
+    "current": "ENTRY_MEMORY",
+    "source": "ENTRY_WAKE.r42.reply.investigate.001",
+    "text": "原版在这里。换掉它的人还没找到。"
+  },
+  {
+    "size": "390x844",
+    "sourceIds": [
+      "ENTRY_WAKE.intro.003",
+      "ENTRY_WAKE.intro.007",
+      "ENTRY_WAKE.intro.011",
+      "ENTRY_WAKE.intro.012",
+      "ENTRY_WAKE.intro.025",
+      "ENTRY_WAKE.intro.026"
+    ],
+    "pages": 6,
+    "dialogues": [
+      "许照！原版伴奏盘呢？台上都等着呢！",
+      "许照？这不是我的名字……",
+      "等等！这不是彩排的伴奏！",
+      "映雪，听钢琴！我给你接上前奏！",
+      "我想起来了……这是那本小说。七天后，被清退的人就是许照。",
+      "原版盘……就在脚边的接线板下！"
+    ],
+    "choices": [
+      "canon",
+      "rescue",
+      "investigate"
+    ],
+    "geometry": {
+      "img": "640x960",
+      "shown": [
+        390,
+        844
+      ],
+      "dock": [
+        636,
+        822
+      ],
+      "options": [
+        {
+          "h": 56,
+          "visible": true
+        },
+        {
+          "h": 56,
+          "visible": true
+        },
+        {
+          "h": 56,
+          "visible": true
+        }
+      ],
+      "bars": false,
+      "dialogue": 12,
+      "renderedImages": 1
+    },
+    "errors": []
+  },
+  {
+    "size": "430x932",
+    "sourceIds": [
+      "ENTRY_WAKE.intro.003",
+      "ENTRY_WAKE.intro.007",
+      "ENTRY_WAKE.intro.011",
+      "ENTRY_WAKE.intro.012",
+      "ENTRY_WAKE.intro.025",
+      "ENTRY_WAKE.intro.026"
+    ],
+    "pages": 6,
+    "dialogues": [
+      "许照！原版伴奏盘呢？台上都等着呢！",
+      "许照？这不是我的名字……",
+      "等等！这不是彩排的伴奏！",
+      "映雪，听钢琴！我给你接上前奏！",
+      "我想起来了……这是那本小说。七天后，被清退的人就是许照。",
+      "原版盘……就在脚边的接线板下！"
+    ],
+    "choices": [
+      "canon",
+      "rescue",
+      "investigate"
+    ],
+    "geometry": {
+      "img": "640x960",
+      "shown": [
+        430,
+        932
+      ],
+      "dock": [
+        724,
+        910
+      ],
+      "options": [
+        {
+          "h": 56,
+          "visible": true
+        },
+        {
+          "h": 56,
+          "visible": true
+        },
+        {
+          "h": 56,
+          "visible": true
+        }
+      ],
+      "bars": false,
+      "dialogue": 12,
+      "renderedImages": 1
+    },
+    "errors": []
+  }
+]

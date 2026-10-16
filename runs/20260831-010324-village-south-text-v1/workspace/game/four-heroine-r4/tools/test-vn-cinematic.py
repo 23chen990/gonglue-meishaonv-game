@@ -18,6 +18,16 @@ def record(name,work):
   detail=work();REPORT['cases'].append({'name':name,'status':'PASS','detail':detail});print('PASS',name,flush=True)
  except Exception as exc:
   REPORT['cases'].append({'name':name,'status':'FAIL','error':repr(exc)});print('FAIL',name,repr(exc),flush=True)
+def visible_option_ids(page):
+ found=[]
+ for _ in range(12):
+  for x in page.locator('.mobile-options [data-choice]').evaluate_all('els=>els.map(x=>x.dataset.choice)'):
+   if x not in found:found.append(x)
+  nxt=page.locator('.mobile-options [data-mobile-options="1"]:not([disabled])')
+  if not nxt.count():break
+  nxt.tap()
+ return found
+
 def local_save(commands):
  return {'version':'bookside-revision-r4.3','storyHash':H,'commands':commands,'ui':{'phase':'scene','page':0,'choicePage':0,'large':False,'soundOn':False},'profile':{'endings':{},'bonuses':{},'readPages':[]}}
 with sync_playwright() as play:
@@ -39,35 +49,49 @@ with sync_playwright() as play:
     assert page.locator('.vn-frame').get_attribute('data-mode')=='reading'
     assert page.locator('[data-choice]').count()==0
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-    for i in range(7):
-     # Every current canonical beat must be readable without another swipe.
-     visible=page.locator('.vn-scroll').evaluate(
-      'x=>({viewport:x.clientHeight,content:x.scrollHeight,top:x.scrollTop})')
+    source_ids=[]
+    for i in range(120):
+     if page.locator('[data-choice]').count():break
+     visible=page.evaluate("""()=>{const x=document.querySelector('.mobile-text'),sheet=document.querySelector('.mobile-sheet');return {
+      viewport:x.clientHeight,content:x.scrollHeight,top:x.scrollTop,blocks:x.querySelectorAll('.line').length,
+      sheet:sheet.getBoundingClientRect().height,inner:innerHeight};}""")
      assert visible['content']<=visible['viewport']+2,(
       'mandatory beat is clipped behind inner scroll',w,h,i,visible)
+     assert visible['blocks']<=1,('multiple speakers/text blocks shown together',w,h,i,visible)
+     assert visible['sheet']<=visible['inner']/3+2,('dialogue sheet exceeds one third',w,h,i,visible)
+     assert visible['sheet']<=visible['inner']/4+2,('normal phone dialogue sheet exceeds one quarter',w,h,i,visible)
+     source_ids.append(page.locator('.vn-frame').get_attribute('data-source'))
      assert page.locator('[data-page-next]').count()==1,(w,i)
      page.locator('[data-page-next]').tap()
+    else:raise AssertionError(('opening reader stalled',w,h))
+    assert len(set(source_ids))==6,(w,h,'6 story advances before the seventh decisive beat; all 28 canonical rows remain in DATA/History',len(set(source_ids)))
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
-    assert page.locator('.vn-dock [data-choice]').count()==3
-    # Fully visible real choices and the last causal beat, not just DOM presence.
+    option_ids=visible_option_ids(page)
+    assert set(option_ids)=={'canon','rescue','investigate'},(w,h,option_ids)
+    assert page.locator('.mobile-options [data-mobile-options]').count()==0,(w,h,'first three choices must fit without option paging')
+    # The choice screen is a new interaction beat. Previous dialogue must not
+    # remain as a transcript just to preserve the old reader layout.
     layout=page.evaluate("""()=>{
       const box=x=>x.getBoundingClientRect();
-      const sheet=box(document.querySelector('.vn-sheet'));
-      const dock=box(document.querySelector('.vn-dock'));
-      const scroll=box(document.querySelector('.vn-scroll'));
-      const last=[...document.querySelectorAll('.vn-scroll .line')].at(-1);
-      const beat=last&&box(last),portrait=document.querySelector('.vn-portrait');
-      const actor=portrait&&box(portrait);
-      const choices=[...document.querySelectorAll('.vn-dock [data-choice]')].map(x=>{
+      const sheet=box(document.querySelector('.mobile-sheet'));
+      const dockEl=document.querySelector('.mobile-options'),dock=box(dockEl);
+      const text=document.querySelector('.mobile-text'),portrait=document.querySelector('.mobile-portrait');
+      const actor=portrait&&box(portrait);const cg=document.querySelector('.adv6-scene-photo');
+      const choices=[...dockEl.querySelectorAll('[data-choice]')].map(x=>{
         const r=box(x);return {height:r.height,visible:Math.max(0,Math.min(dock.bottom,r.bottom)-Math.max(dock.top,r.top))};
       });
-      return {sheetTop:sheet.top,
-        beatVisible:beat?Math.max(0,Math.min(scroll.bottom,beat.bottom)-Math.max(scroll.top,beat.top)):0,
+      return {sheetHeight:sheet.height,inner:innerHeight,
+        dialogueBlocks:text.querySelectorAll('.line').length,
+        dialogueOverflow:text.scrollHeight>text.clientHeight+2,
+        optionOverflow:dock.scrollHeight>dock.clientHeight+2,
         actorVisible:actor?Math.max(0,Math.min(sheet.top,actor.bottom)-Math.max(65,actor.top)):0,
+        sceneCG:!!(cg&&cg.complete&&cg.naturalWidth>0&&box(cg).height>100),
         choices,overflow:document.documentElement.scrollWidth>innerWidth};
     }""")
-    assert layout['beatVisible']>=45,(w,h,'last causal beat obscured',layout)
-    assert layout['actorVisible']>=37,(w,h,'heroine invisible behind reader sheet',layout)
+    assert layout['sheetHeight']<=72,(w,h,'decision prompt strip regressed into a large empty dialogue sheet',layout)
+    assert layout['dialogueBlocks']<=1 and not layout['dialogueOverflow'],(w,h,layout)
+    assert not layout['optionOverflow'],(w,h,'choice layer requires hidden scroll',layout)
+    assert layout['sceneCG'],(w,h,'decision requires loaded cinematic scene, not heroine picker cards',layout)
     assert not layout['overflow'],(w,h,'horizontal overflow')
     assert all(x['height']>=44 and x['visible']>=x['height']-2 for x in layout['choices']),(w,h,layout)
     page.screenshot(path=str(D/f'intro-{w}.png'))
@@ -140,6 +164,33 @@ with sync_playwright() as play:
   finally:ctx.close()
  record('DYNAMIC_BROWSER_VIEWPORT_RELAYOUT',dynamic_height)
 
+ def menu_font_cursor():
+  ctx,page=open_game(320,568)
+  try:
+   for _ in range(1):
+    assert page.locator('[data-page-next]').count()==1
+    page.locator('[data-page-next]').tap()
+   before=page.locator('.vn-frame').get_attribute('data-source')
+   assert before=='ENTRY_WAKE.intro.007',before
+   page.locator('#menu').tap()
+   page.locator('[data-action="font"]').tap()
+   page.locator('[data-nav="story"]').first.tap()
+   assert page.locator('body.large').count()==1
+   after=page.locator('.vn-frame').get_attribute('data-source')
+   assert after==before,('menu font toggle lost narrative position',before,after)
+   assert page.locator('[data-adv6-inspect]').count()==1
+   page.locator('[data-adv6-inspect]').tap()
+   assert page.locator('[role="dialog"]').count()==1
+   assert page.locator('.vn-frame').get_attribute('data-source')==before
+   page.locator('.cinema-close').tap()
+   assert page.locator('.vn-frame').get_attribute('data-source')==before
+   page.locator('[data-page-next]').tap()
+   next_beat=page.locator('.vn-frame').get_attribute('data-source')
+   assert next_beat=='ENTRY_WAKE.intro.011',next_beat
+   return {'before':before,'after':after,'next':next_beat}
+  finally:ctx.close()
+ record('MENU_FONT_ANCHOR_AND_PROP_INSPECTION',menu_font_cursor)
+
  def large_first_fork():
   ctx,page=open_game(320,568)
   try:
@@ -147,21 +198,141 @@ with sync_playwright() as play:
    page.locator('[data-action="font"]').tap()
    page.locator('[data-nav="story"]').first.tap()
    assert page.locator('body.large').count()==1
-   for _ in range(7):page.locator('[data-page-next]').first.tap()
+   source_ids=[]
+   for _ in range(120):
+    if page.locator('[data-choice]').count():break
+    assert page.locator('.mobile-text .line').count()<=1
+    source_ids.append(page.locator('.vn-frame').get_attribute('data-source'))
+    page.locator('[data-page-next]').first.tap()
+   else:raise AssertionError('large-font opening reader stalled')
+   assert len(set(source_ids))==6
+   option_ids=visible_option_ids(page)
+   assert set(option_ids)=={'canon','rescue','investigate'},option_ids
    page.wait_for_timeout(250)
    data=page.evaluate("""()=>{
-    let area=document.querySelector('.vn-scroll'),dock=document.querySelector('.vn-dock'),
-      beat=[...area.querySelectorAll('.line')].at(-1);
-    const a=area.getBoundingClientRect(),b=beat.getBoundingClientRect(),d=dock.getBoundingClientRect();
-    return {beatVisible:Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)),
+    const text=document.querySelector('.mobile-text'),dock=document.querySelector('.mobile-options'),
+      sheet=document.querySelector('.mobile-sheet'),d=dock.getBoundingClientRect();
+    return {sheet:sheet.getBoundingClientRect().height,inner:innerHeight,
+      blocks:text.querySelectorAll('.line').length,overflow:text.scrollHeight>text.clientHeight+2,
+      optionOverflow:dock.scrollHeight>dock.clientHeight+2,
       buttons:[...dock.querySelectorAll('[data-choice]')].map(x=>{let r=x.getBoundingClientRect();return {height:r.height,visible:Math.max(0,Math.min(d.bottom,r.bottom)-Math.max(d.top,r.top))}})};
    }""")
-   assert data['beatVisible']>=45,('large font hid causal beat',data)
-   assert len(data['buttons'])==3 and all(b['height']>=44 and b['visible']>=b['height']-2 for b in data['buttons']),data
+   assert data['sheet']<=72,('large-font decision prompt strip regressed into empty dialogue sheet',data)
+   assert data['blocks']<=1 and not data['overflow'],data
+   assert not data['optionOverflow'],data
+   assert data['buttons'] and all(b['height']>=44 and b['visible']>=b['height']-2 for b in data['buttons']),data
    page.screenshot(path=str(D/'intro-320-large.png'))
    return data
   finally:ctx.close()
  record('LARGE_FONT_320_FIRST_FORK',large_first_fork)
+
+
+ def v62_short_dialogue_and_save_notice():
+  ctx,page=open_game(390,844)
+  try:
+   original=page.locator('.mobile-sheet').evaluate('(x)=>x.getBoundingClientRect().height')
+   assert original<=844*.22,('short line wastes too much of the scene',original)
+   assert page.locator('#notice').is_hidden()
+   page.evaluate("""() => {
+    const note=document.querySelector('#notice');
+    note.hidden=false;
+    note.innerHTML='<div>保存失败，请导出当前进度。</div><button data-action="export">导出</button>';
+   }""")
+   info=page.locator('#notice').evaluate("""x=>{
+    const r=x.getBoundingClientRect(),s=getComputedStyle(x);
+    return {opacity:s.opacity,events:s.pointerEvents,top:r.top,bottom:r.bottom,buttons:x.querySelectorAll('button').length};
+   }""")
+   assert info['opacity']=='1' and info['events']=='auto',info
+   assert info['top']>=45 and info['bottom']<844 and info['buttons']==1,info
+   page.screenshot(path=str(D/'v62-save-notice.png'))
+   return {'shortSubtitleHeight':original,'noticeVisibleAndActionable':True}
+  finally:ctx.close()
+ record('V62_COMPACT_DIALOGUE_AND_SAVE_NOTICE',v62_short_dialogue_and_save_notice)
+
+
+ def v63_optical_shot_modal_and_missing_art():
+  ctx,page=open_game(390,844)
+  try:
+   page.wait_for_function("()=>document.querySelector('.adv6')?.dataset.mediaState==='ready'")
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='cg-candidate','opening CG candidate not active'
+   assert page.locator('.adv6-stage img').count()==1,'single-frame CG stage has unexpected image layers'
+   assert page.locator('[data-page-next]').count()==1,'initial continue control absent'
+   page.locator('[data-page-next]').tap()
+   source=page.locator('.adv6').get_attribute('data-source')
+   assert source=='ENTRY_WAKE.intro.007',('badge source incorrect',source)
+   page.locator('[data-adv6-inspect]').tap()
+   assert page.locator('.adv6-modal [role="dialog"]').count()==1,'badge modal did not open'
+   page.keyboard.press('Escape')
+   assert page.locator('.adv6-modal').count()==0,'Escape left the badge modal mounted'
+   focused=page.evaluate("()=>({active:document.activeElement?.outerHTML.slice(0,250),expected:document.querySelector('[data-adv6-inspect]')?.outerHTML.slice(0,250)})")
+   assert page.locator('[data-adv6-inspect]').evaluate('(x)=>document.activeElement===x'),('badge focus not restored',focused)
+   assert page.locator('.adv6').get_attribute('data-source')==source,('close advanced story unexpectedly',source)
+   page.locator('[data-page-next]').tap()
+   page.locator('[data-page-next]').tap()
+   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012',('pianist scene did not advance to expected source',page.locator('.adv6').get_attribute('data-source'))
+   assert page.locator('.adv6').get_attribute('data-camera')=='stage',('offscreen pianist falsely shown as on-screen actor')
+   assert page.locator('.mobile-speaker').inner_text()=='琴台方向的男声',('voice label mismatch',page.locator('.mobile-speaker').inner_text())
+   assert page.locator('.adv6-stage img').count()==1,'extra image layer'
+   # Wait for the genuine current CG load before simulating an asset failure:
+   # Chrome can finish decoding data-URI frames later than WebKit.
+   page.wait_for_function("()=>{let f=document.querySelector('.adv6'),i=document.querySelector('.adv6-scene-photo');return f?.dataset.mediaState==='ready'&&i?.complete&&i?.naturalWidth>0}")
+   page.locator('.adv6-scene-photo').dispatch_event('error')
+   state=page.locator('.adv6').get_attribute('data-media-state')
+   assert state=='failed',('image failure state missing',state)
+   assert page.locator('.adv6-media-error').is_visible(),('missing-image fallback not visible',state)
+   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012','image error advanced story'
+   return {'offscreenSpeaker':'琴台方向的男声','realSingleScene':True,'modalFocusRestore':True,'missingArtworkHonest':True,'artTier':'cg-candidate'}
+  finally:ctx.close()
+ record('V63_OFFSCREEN_OPTICS_MODAL_AND_MEDIA_ERROR',v63_optical_shot_modal_and_missing_art)
+
+
+ def v7_opening_native_cg_dimensions():
+  ctx,page=open_game(390,844)
+  try:
+   page.wait_for_function("()=>{let i=document.querySelector('.adv6-scene-photo');return i?.complete&&i.naturalWidth>0}")
+   opener=page.locator('.adv6-scene-photo').evaluate("(i)=>[i.naturalWidth,i.naturalHeight]")
+   assert opener==[941,1672],('opening still uses obsolete near-square crew image',opener)
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='cg-candidate'
+   page.locator('[data-page-next]').tap()
+   page.wait_for_function("()=>{let i=document.querySelector('.adv6-scene-photo');return i?.complete&&i.naturalWidth>0}")
+   badge=page.locator('.adv6-scene-photo').evaluate("(i)=>[i.naturalWidth,i.naturalHeight]")
+   assert badge==[941,1672],('badge still uses obsolete near-square prop image',badge)
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='cg-candidate'
+   assert page.locator('.adv6-stage img').count()==1
+   assert page.locator('[data-adv6-inspect]').count()==1
+   page.screenshot(path=str(D/'v7-new-badge-full-shot.png'))
+   return {'opener':opener,'badge':badge,'singleCg':True,'artTier':'cg-candidate','notApproved2K':True}
+  finally:ctx.close()
+ record('V7_OPENING_AND_BADGE_SINGLE_CG_NATIVE_SIZE',v7_opening_native_cg_dimensions)
+
+
+
+ def v7_compact_storage_warning():
+  # Exercise the *real* showNotice from an unprivileged environment rather
+  # than constructing test-only DOM. ESM does not expose module lexical functions.
+  ctx=browser.new_context(viewport={'width':320,'height':568},is_mobile=True,has_touch=True)
+  ctx.add_init_script("""Object.defineProperty(window,'localStorage',{
+   configurable:true,
+   get(){throw new DOMException('Test storage denied','SecurityError')}
+  })""")
+  page=ctx.new_page()
+  try:
+   assert page.goto(URL,wait_until='load').ok
+   assert page.locator('meta[name="story-sha256"]').get_attribute('content')==H
+   data=page.locator('#notice').evaluate("""e=>{
+    const r=e.getBoundingClientRect(),btn=e.querySelector('[data-action=export]');
+    return {kind:e.dataset.noticeKind,height:r.height,top:r.top,bottom:r.bottom,exportWidth:btn.getBoundingClientRect().width,copy:e.innerText};
+   }""")
+   assert data['kind']=='save-unavailable',('missing compact storage banner',data)
+   assert data['height']<=65 and data['top']>=45 and data['bottom']<=140,('warning obscures actor',data)
+   assert data['exportWidth']>=44,('export tap target too small',data)
+   assert '进度未保存' in data['copy'] and '导出' in data['copy'],data
+   page.locator('[data-action="hide-notice"]').tap()
+   assert page.locator('#notice').is_hidden(),'notice cannot be dismissed'
+   assert '打开菜单' in page.locator('#menu').get_attribute('aria-label'),'menu accessibility label was lost'
+   return data
+  finally:ctx.close()
+ record('V7_SAVE_WARNING_COMPACT',v7_compact_storage_warning)
 
  browser.close()
 REPORT['status']='PASS' if all(c['status']=='PASS' for c in REPORT['cases']) else 'FAIL'

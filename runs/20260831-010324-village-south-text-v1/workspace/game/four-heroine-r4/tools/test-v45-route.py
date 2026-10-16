@@ -27,11 +27,14 @@ with sync_playwright() as pw:
   def tap(sel):
    x=p.locator(sel).first;x.scroll_into_view_if_needed();x.tap(timeout=4000)
   def settle():
-   for _ in range(30):
+   # Single-turn mobile presentation can legitimately create many continuation
+   # pages for long group-route endings. Guard actual infinite loops, not the
+   # historical multi-turn reader's 30-page ceiling.
+   for _ in range(180):
     if p.locator('[data-page-next]').count():tap('[data-page-next]')
     elif p.locator('[data-reply-next]').count():tap('[data-reply-next]')
     else:return
-   raise AssertionError('stuck page/reply loop current='+str(p.locator('body').get_attribute('data-current'))+' phase='+str(p.locator('body').get_attribute('data-phase'))+' buttons='+str(p.locator('main button').evaluate_all('els=>els.map(e=>e.outerHTML.slice(0,200))'))+' errors='+str(issues)+' notice='+p.locator('#notice').inner_text())
+   raise AssertionError('stuck page/reply loop after 180 presentation pages current='+str(p.locator('body').get_attribute('data-current'))+' phase='+str(p.locator('body').get_attribute('data-phase'))+' buttons='+str(p.locator('main button').evaluate_all('els=>els.map(e=>e.outerHTML.slice(0,200))'))+' errors='+str(issues)+' notice='+p.locator('#notice').inner_text())
   def act(c):
    sel='[data-choice="'+c['id']+'"]'
    def find(depth=0):

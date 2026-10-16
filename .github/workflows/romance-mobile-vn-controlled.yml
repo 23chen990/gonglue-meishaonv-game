@@ -1,0 +1,67 @@
+name: Romance mobile VN single-turn controlled build
+
+on:
+  push:
+    branches:
+      - fix/mobile-vn-single-turn-reader-20261016
+    paths:
+      - '.github/workflows/romance-mobile-vn-controlled.yml'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/build-preview.mjs'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/mobile-reader.js'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/mobile-reader.css'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/director-v6.js'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/director-v6.css'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/assets/v6-preview/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-vn-cinematic.py'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/UI_CINEMATIC_READER_20261015.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/mobile-vn-single-turn-reader-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Guard canonical story and syntax
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          test "$(git branch --show-current)" = "fix/mobile-vn-single-turn-reader-20261016"
+          echo "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93  $H5_ROOT/data/STORY.json" | sha256sum -c -
+          node --check "$H5_ROOT/tools/mobile-reader.js"
+          node --check "$H5_ROOT/tools/director-v6.js"
+          python3 -m py_compile "$H5_ROOT/tools/test-vn-cinematic.py"
+      - name: Rebuild and verify canonical player
+        working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: npm run verify
+      - name: Prove story and engine untouched
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+        run: |
+          echo "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93  $H5_ROOT/data/STORY.json" | sha256sum -c -
+          git diff --exit-code -- "$H5_ROOT/data/STORY.json" "$H5_ROOT/tools/engine.mjs"
+      - name: Commit generated player
+        env:
+          H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+          GAME_INDEX: runs/20260831-010324-village-south-text-v1/workspace/game/index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$H5_ROOT/index.html" "$H5_ROOT/play.html" "$H5_ROOT/runtime.mjs" "$H5_ROOT/repository-index.html" "$H5_ROOT/build-meta.json" "$GAME_INDEX"
+          git diff --cached --check
+          if test -n "$(git diff --cached --name-only)"; then
+            git commit -m "build(ui): regenerate mobile visual novel player"
+            git fetch origin fix/mobile-vn-single-turn-reader-20261016
+            git rebase --autostash origin/fix/mobile-vn-single-turn-reader-20261016
+            git push origin HEAD:refs/heads/fix/mobile-vn-single-turn-reader-20261016
+          fi
