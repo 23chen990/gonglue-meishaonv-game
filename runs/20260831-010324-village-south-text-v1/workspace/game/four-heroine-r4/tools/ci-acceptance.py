@@ -49,7 +49,7 @@ elif ok and repo_ok:
  with (Q/"http-server.log").open("w") as log:
   server=subprocess.Popen([sys.executable,"-m","http.server",port,"--bind","127.0.0.1","--directory",str(GAME/"dist")],stdout=log,stderr=subprocess.STDOUT)
   try:
-   env=dict(os.environ,R4_MODE="native",R4_REAL_URL="http://127.0.0.1:"+port+"/index.html")
+   env=dict(os.environ,R4_MODE="native",R4_REAL_URL="http://127.0.0.1:"+port+"/index.html?qa=canonical")
    for _ in range(30):
     try:
      with urllib.request.urlopen(env["R4_REAL_URL"]) as r:
@@ -57,6 +57,10 @@ elif ok and repo_ok:
      break
     except OSError:time.sleep(.2)
    else:raise RuntimeError("Current build server did not start")
+   # Real default game receives a separate full interaction acceptance pass. Historical
+   # source-command/reader tests use an explicit canonical-only QA view instead.
+   interactive_ok=stage("native-interactive-first-night",[sys.executable,"tools/test-interactive-opening.py"],
+                        env=dict(env,R4_REAL_URL="http://127.0.0.1:"+port+"/index.html"))
    ui_ok=stage("native-v45-ui",[sys.executable,"tools/test-v45-browser.py"],env=env)
    reader_ok=stage("native-v47-reader-and-save-migration",[sys.executable,"tools/test-v46-reader.py"],env=env)
    first_ok=stage("native-v48-readable-first-choice",[sys.executable,"tools/test-v48-first-choice.py"],env=env)
@@ -67,7 +71,7 @@ elif ok and repo_ok:
    if os.environ.get("R4_WEBKIT")=="1":
     webkit_ok=stage("native-v417-cinematic-webkit",[sys.executable,"tools/test-vn-cinematic.py"],
                     env=dict(env,R4_BROWSER="webkit"))
-   if ui_ok and reader_ok and first_ok and save_ok and cinematic_ok and intent_ok and webkit_ok:
+   if interactive_ok and ui_ok and reader_ok and first_ok and save_ok and cinematic_ok and intent_ok and webkit_ok:
     stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
   except Exception as e:
