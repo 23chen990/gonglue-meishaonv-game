@@ -39,14 +39,19 @@ with sync_playwright() as play:
     assert page.locator('.vn-frame').get_attribute('data-mode')=='reading'
     assert page.locator('[data-choice]').count()==0
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-    for i in range(7):
-     # Every current canonical beat must be readable without another swipe.
-     visible=page.locator('.vn-scroll').evaluate(
-      'x=>({viewport:x.clientHeight,content:x.scrollHeight,top:x.scrollTop})')
+    source_ids=[]
+    for i in range(120):
+     if page.locator('[data-choice]').count():break
+     visible=page.locator('.mobile-text').evaluate(
+      'x=>({viewport:x.clientHeight,content:x.scrollHeight,top:x.scrollTop,blocks:x.querySelectorAll(".line").length})')
      assert visible['content']<=visible['viewport']+2,(
       'mandatory beat is clipped behind inner scroll',w,h,i,visible)
+     assert visible['blocks']<=1,('multiple speakers/text blocks shown together',w,h,i,visible)
+     source_ids.append(page.locator('.vn-frame').get_attribute('data-source'))
      assert page.locator('[data-page-next]').count()==1,(w,i)
      page.locator('[data-page-next]').tap()
+    else:raise AssertionError(('opening reader stalled',w,h))
+    assert len(set(source_ids))==27,(w,h,'all 28 opening source beats were not traversed in order',len(set(source_ids)))
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
     assert page.locator('.vn-dock [data-choice]').count()==3
     # Fully visible real choices and the last causal beat, not just DOM presence.
@@ -147,7 +152,14 @@ with sync_playwright() as play:
    page.locator('[data-action="font"]').tap()
    page.locator('[data-nav="story"]').first.tap()
    assert page.locator('body.large').count()==1
-   for _ in range(7):page.locator('[data-page-next]').first.tap()
+   source_ids=[]
+   for _ in range(120):
+    if page.locator('[data-choice]').count():break
+    assert page.locator('.mobile-text .line').count()<=1
+    source_ids.append(page.locator('.vn-frame').get_attribute('data-source'))
+    page.locator('[data-page-next]').first.tap()
+   else:raise AssertionError('large-font opening reader stalled')
+   assert len(set(source_ids))==27
    page.wait_for_timeout(250)
    data=page.evaluate("""()=>{
     let area=document.querySelector('.vn-scroll'),dock=document.querySelector('.vn-dock'),
