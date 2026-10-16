@@ -129,13 +129,20 @@ with sync_playwright() as pw:
   finish_beats(pg);pick(pg,'rescue');finish_beats(pg);pick(pg,'t')
   assert current(pg)=='OP_SETTLE'
   presented=[]
-  # The preceding meaningful choice may have an authored reply. Consume that
-  # reply first; only then audit the OP_SETTLE bridge reading sequence.
-  for _ in range(24):
-   if not pg.locator('[data-reply-next]').count():break
+  # The preceding meaningful choice may have a multi-page authored reply.
+  # Consume every reply continuation page and then its explicit reply-end gate
+  # before auditing the OP_SETTLE bridge reading sequence.
+  for _ in range(48):
+   if pg.locator('body').get_attribute('data-phase')!='reply':break
    presented.append(pg.locator('.mobile-text').inner_text())
    assert not pg.locator('[data-choice="continue"]').count(),'internal continue leaked during reply'
-   touch(pg,'[data-reply-next]')
+   if pg.locator('[data-page-next]').count():
+    touch(pg,'[data-page-next]')
+   elif pg.locator('[data-reply-next]').count():
+    touch(pg,'[data-reply-next]')
+   else:
+    raise AssertionError('authored reply stalled before OP_SETTLE')
+  else:raise AssertionError('authored reply did not finish')
   for _ in range(120):
    presented.append(pg.locator('.mobile-text').inner_text())
    assert not pg.locator('[data-choice="continue"]').count(),'internal continue leaked into player choices'
