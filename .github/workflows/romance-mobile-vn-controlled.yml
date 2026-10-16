@@ -57,5 +57,7 @@ jobs:
           git diff --cached --check
           if test -n "$(git diff --cached --name-only)"; then
             git commit -m "build(ui): regenerate mobile visual novel player"
+            git fetch origin fix/mobile-vn-single-turn-reader-20261016
+            git rebase origin/fix/mobile-vn-single-turn-reader-20261016
             git push origin HEAD:refs/heads/fix/mobile-vn-single-turn-reader-20261016
           fi
