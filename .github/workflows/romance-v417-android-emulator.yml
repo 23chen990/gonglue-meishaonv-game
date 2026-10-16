@@ -1,0 +1,66 @@
+name: Romance v4.17 real Android Chrome Emulator smoke
+
+on:
+  push:
+    branches:
+      - qa/romance-v417-android-emulator-20261016
+    paths:
+      - '.github/workflows/romance-v417-android-emulator.yml'
+      - 'qa/android-emulator/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android-chrome-emulator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      H5_ROOT: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+      EXPECTED_STORY_SHA: 84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify current canonical source and start H5 on the host
+        run: |
+          set -euo pipefail
+          echo "$EXPECTED_STORY_SHA  $H5_ROOT/data/STORY.json" | sha256sum -c -
+          grep -q 'name="story-sha256"' "$H5_ROOT/index.html"
+          mkdir -p "$RUNNER_TEMP/android-native-evidence"
+          python3 -m http.server 8765 --bind 0.0.0.0 --directory "$H5_ROOT" \
+            > "$RUNNER_TEMP/android-native-evidence/host-http.log" 2>&1 &
+          echo "$!" > "$RUNNER_TEMP/android-native-evidence/host-http.pid"
+          for _ in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:8765/index.html -o /dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8765/index.html -o /dev/null
+          python3 -m pip install --disable-pip-version-check 'playwright==1.55.0'
+      - name: Enable KVM for native Android Emulator execution
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Android 13 Google Play system image, real Chrome + ADB + CDP validation
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis_playstore
+          arch: x86_64
+          profile: pixel_2
+          cores: 4
+          ram-size: 2048M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: python3 qa/android-emulator/smoke.py
+      - name: Preserve Android emulator screenshot and on-device Chrome report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: romance-v417-real-android-emulator-evidence
+          path: ${{ runner.temp }}/android-native-evidence
+          if-no-files-found: warn
+          retention-days: 7
