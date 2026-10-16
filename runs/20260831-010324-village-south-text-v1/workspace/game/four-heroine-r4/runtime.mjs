@@ -968,12 +968,25 @@ function mobileFindAnchor(pages,a){
  return exact>=0?exact:Math.max(0,pages.findIndex(p=>p[0]._row===a.row));
 }
 currentPage=function(){
- const view=getView(),pages=paginate(view.body),key=mobilePageCache.key;
+ let view=getView(),bridge=null;
+ // OP_SETTLE contains an internal canonical "continue" bridge. Keep that
+ // command invisible, but do not skip the destination scene's authored turns:
+ // present both scenes as one mobile reading sequence and commit the hidden
+ // bridge only together with the player's real destination choice.
+ if(phase==='scene'&&state.current==='OP_SETTLE'){
+  bridge=directBridge();
+  if(bridge){
+   view={...view,id:view.id+':bridge',title:bridge.next.title,
+     body:[...(view.body||[]),...(bridge.next.body||[])],
+     choices:bridge.next.choices};
+  }
+ }
+ const pages=paginate(view.body),key=mobilePageCache.key;
  if(mobilePendingAnchor){page=mobileFindAnchor(pages,mobilePendingAnchor);mobilePendingAnchor=null;}
  else if(mobilePosition?.view===view.id&&mobilePosition.page===page&&mobilePosition.key!==key)page=mobileFindAnchor(pages,mobilePosition.anchor);
  page=Math.max(0,Math.min(page,pages.length-1));
  const rows=pages[page];mobilePosition={view:view.id,page,key,anchor:mobileAnchor(rows[0])};
- return {view,pages,rows,last:page===pages.length-1};
+ return {view,pages,rows,last:page===pages.length-1,bridge};
 };
 const mobileOldSnapshot=snapshot,mobileOldReadPayload=readPayload,mobileOldInstall=install;
 snapshot=function(){const cp=currentPage(),v=mobileOldSnapshot();v.ui.readerVersion=MOBILE_READER_VERSION;v.ui.cursor=mobileAnchor(cp.rows[0]);v.ui.readerExpanded=false;return v;};
@@ -1015,6 +1028,11 @@ function mobilePortrait(cp){
  return activePortrait()||null;
 }
 function mobileButtons(cp){
+ if(cp.last&&cp.bridge){
+  const buttons=cp.bridge.next.choices.filter(o=>o.enabled).map(o=>
+   `<button class="choice" data-choice="${esc(o.id)}" data-bridge="continue" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`).join('');
+  return '<div class="choices">'+buttons+'</div>';
+ }
  const holder=document.createElement('div');holder.innerHTML=controls(cp);
  holder.querySelectorAll('[data-skip-read]').forEach(n=>n.remove());
  const next=holder.querySelector('[data-page-next]');if(next)next.textContent='继续';
@@ -1028,7 +1046,7 @@ storyHTML=function(){
  const scene=sourceScene(),set=scene.scene?.background||scene.background||'backstage';
  const isVisual=!!b._shot&&!b.text,thought=!!b._thought;
  const kind=isVisual?'visual':thought?'thought':b.speaker==='N'?'narration':'dialogue';
- const heading=scene.id==='ENTRY_WAKE'?'第一夜 · 醒来':cp.view.title;
+ const heading=scene.id==='ENTRY_WAKE'?'第一夜 · 醒来':(cp.bridge?.next?.title||cp.view.title);
  const art=c?'<div class="vn-portrait mobile-portrait"><img src="'+PORTRAITS[c]+'" alt="" draggable="false"></div>':'';
  const controlsHTML=mobileButtons(cp);
  const stageImage=['backstage','theatre','stage','control','corridor'].includes(set)?' style="background-image:url(\''+SCENERY+'\')"':'';
