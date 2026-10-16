@@ -49,4 +49,4 @@ This contract is driven by the user's explicit mobile-VN requirements and by pub
 
 ### Exact-head generation rule
 
-Any mobile-reader source change must be followed by controlled regeneration of the committed standalone/default player. Final browser acceptance is valid only when it runs against the exact post-generation branch HEAD; a green test from a pre-generation commit cannot be reused.
+Any mobile-reader source change must be followed by controlled regeneration of the committed standalone/default player. The final acceptance also verifies the generated commit plus any subsequent documentation-only trigger commit as one exact-head candidate. Final browser acceptance is valid only when it runs against the exact post-generation branch HEAD; a green test from a pre-generation commit cannot be reused.
