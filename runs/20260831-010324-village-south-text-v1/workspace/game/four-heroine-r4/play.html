@@ -2461,17 +2461,17 @@ const VN4_SCENE_IMAGES = Object.freeze({
  'stage-piano':'piano', 'usb-nearby':'usb','usb-in-hand':'usbHeld','singer-shock':'singer'
 });
 const VN4_VIDEO_CONFIG = {
- 'ENTRY_WAKE.intro.003': ['035417c6613d7855','crew-close','许照！醒醒！马上就要开唱了！','A'],
- 'ENTRY_WAKE.intro.005': ['5ec6ba33e4014c0c','crew-close','……你在叫我？','P'],
- 'ENTRY_WAKE.intro.006': ['747d9712034ff332','crew-close','不叫你叫谁？你刚才还蹲在箱子旁边。','A'],
- 'ENTRY_WAKE.intro.007': ['c2f8e655544b9b3f','pov-badge','许照……临时场务？这不是我的名字。','P'],
- 'ENTRY_WAKE.intro.011': ['7d202bbf705155d6','singer-shock','停！这不是我排练的版本！','T'],
- 'ENTRY_WAKE.intro.012': ['403e45897ece8106','stage-piano','映雪，先看我。我用钢琴撑四小节！','LU'],
- 'ENTRY_WAKE.intro.015.l': ['1fcd12a327ad111d','lin-camera','咔嚓。相机后面的女孩抬眼看向你。','N'],
- 'ENTRY_WAKE.intro.015.g': ['1fcd12a327ad111d','gu-mail','另一边，有人正追着一封版本确认邮件核对。','N'],
- 'ENTRY_WAKE.intro.025': ['4c35bbdfe4a7730e','crew-close','等等……这是我刚看过的小说。七天后，“许照”会替这场事故背锅。','B'],
- 'ENTRY_WAKE.intro.026': ['8c19f6181d538484','usb-nearby','小说里提过：贴蓝胶带的原版 U 盘，就在接线板下面。','B'],
- 'ENTRY_WAKE.intro.028': ['416aa34ad470571c','stage-piano','琴声马上要响了。现在还来得及。','B'],
+ 'ENTRY_WAKE.intro.003': ['035417c6613d7855','crew-close','许照！原版伴奏盘呢？台上都等着呢！','A'],
+ 'ENTRY_WAKE.intro.005': ['5ec6ba33e4014c0c','crew-close','……你叫我什么？','P'],
+ 'ENTRY_WAKE.intro.006': ['747d9712034ff332','crew-close','许照啊！你不是去拿盘了吗？','A'],
+ 'ENTRY_WAKE.intro.007': ['c2f8e655544b9b3f','pov-badge','许照？……这不是我的名字。','P'],
+ 'ENTRY_WAKE.intro.011': ['7d202bbf705155d6','singer-shock','等等！这不是彩排时的伴奏！','T'],
+ 'ENTRY_WAKE.intro.012': ['403e45897ece8106','stage-piano','映雪，看着我！跟着我的琴！','LU'],
+ 'ENTRY_WAKE.intro.015.l': ['1fcd12a327ad111d','lin-camera','别挡镜头。……你是新来的场务？','L'],
+ 'ENTRY_WAKE.intro.015.g': ['1fcd12a327ad111d','gu-mail','这份伴奏谁确认的？我没签过这封邮件。','G'],
+ 'ENTRY_WAKE.intro.025': ['4c35bbdfe4a7730e','crew-close','这不是我刚看完的小说吗？七天后，替所有人背锅的，就是许照。','B'],
+ 'ENTRY_WAKE.intro.026': ['8c19f6181d538484','stage-piano','我记得……原版 U 盘就藏在脚边的接线板下！','B'],
+ 'ENTRY_WAKE.intro.028': ['416aa34ad470571c','stage-piano','琴声要响了……来得及吗？','B'],
  'ENTRY_WAKE.r42.reply.rescue.001':['42afa151967e603b','usb-in-hand','找到了。先让音控确认版本。','P'],
  'ENTRY_WAKE.r42.reply.investigate.001':['813b9fd1476bdca9','usb-in-hand','原版在手。还有谁动过错版？','P'],
  'ENTRY_WAKE.r42.reply.canon.001':['3631bd70b4b82c24','usb-nearby','先看清他们要我签什么。','P'],
@@ -2535,7 +2535,7 @@ const VN4_OPENING_IDS=['ENTRY_WAKE.intro.003','ENTRY_WAKE.intro.005','ENTRY_WAKE
  'ENTRY_WAKE.intro.026','ENTRY_WAKE.intro.028'];
 const VN4_OPENING_SET=new Set(VN4_OPENING_IDS);
 paginate=function(rows){
- if(panel==='story'&&phase==='scene'&&state.current==='ENTRY_WAKE'&&
+ if(phase==='scene'&&state.current==='ENTRY_WAKE'&&
     rows.length>=25&&rows[0]?.id==='ENTRY_WAKE.intro.001'){
   // A single authored encounter is staged as two camera cuts, not as two portrait cards.
   const selected=[];
@@ -2626,14 +2626,14 @@ storyHTML=function(){
  const controlsHTML=vn4CleanOptions(mobileButtons(cp),cp),
   options=selection||cp.view.terminal?'<div class="vn-dock mobile-options vn4-options" role="group" aria-label="选择下一步行动">'+controlsHTML+'</div>':'';
  const footer=selection||cp.view.terminal?'':controlsHTML;
- const showText=!!b.text,quietVisual=!showText&&!!artSrc;
+ const showText=!!b.text&&!selection,quietVisual=!showText&&!!artSrc;
  const panelHeight=selection?Math.ceil(8+m.safe):quietVisual?Math.ceil(56+m.safe):m.height;
  const style='--mobile-panel:'+panelHeight+'px;--mobile-font:'+m.font+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  const bg=vn4SceneBackdrop(scene);
  const cg=artSrc?'<div class="vn4-cg vn4-cg-'+cam+'"><img src="'+artSrc+'" alt="" draggable="false" loading="eager" onerror="this.closest(\'.vn4-cg\').style.display=\'none\'"></div>':'';
  const portraitHTML=portrait?'<div class="vn-portrait mobile-portrait vn4-portrait"><img src="'+PORTRAITS[portrait]+'" alt="" draggable="false"></div>':'';
  const inspect=VN4_INSPECT_KIND[kind];
- const inspectButton=inspect&&artSrc?'<button class="vn4-inspect-target" data-cinema-inspect="'+inspect+'" type="button" aria-label="仔细看这件物品"><span>点按查看</span></button>':'';
+ const inspectButton=inspect&&artSrc?'<button class="vn4-inspect-target" data-cinema-inspect="'+inspect+'" type="button" aria-label="仔细看这件物品"><span>查看</span></button>':'';
  const title=(phase==='scene'&&page===0)?({ENTRY_WAKE:'第一夜 · 侧幕',A1b:'第一夜 · 交接单',A6a:'第七天 · 公开质询'}[state.current]||''):'';
  return '<div class="vn-frame mobile-vn cinema-vn vn4" data-mode="'+mode+'" data-beat-kind="'+role+'" data-shot="'+esc(kind)+'" data-mood="'+mood+'" data-camera="'+cam+'" data-room="'+esc(room)+'" data-source="'+esc(b._sourceId)+'" data-reader-key="'+esc(cp.view.id+':'+page)+'" style="'+style+'">'+
  '<section class="vn-stage mobile-stage vn4-stage" data-set="'+esc(room)+'"><div class="vn-scenery mobile-scenery"'+bg+' aria-hidden="true"></div>'+portraitHTML+cg+inspectButton+ (title?'<div class="vn4-chapter">'+esc(title)+'</div>':'')+'</section>'+options+
