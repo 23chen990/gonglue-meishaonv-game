@@ -40,7 +40,7 @@ function ioFollowOptions(){
  return actions.map(button).join('');
 }
 function ioFollowHTML(){
- const scene=IF_FOLLOW[state.current],m=mobileMetrics(),sheet=Math.floor(Math.min(m.h/3,m.h>=650?m.h/4:m.h/3));
+ const scene=IF_FOLLOW[state.current],m=mobileMetrics(),sheet=Math.floor(Math.min(148,m.h/4));
  const style='--mobile-panel:'+sheet+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  return '<div class="vn-frame mobile-vn io-vn io-follow" data-mode="decision" data-follow-scene="'+esc(state.current)+'" style="'+style+'">'+
  '<section class="vn-stage mobile-stage io-stage">'+ioArt(scene)+'<div class="io-corner">第一夜 <span>·</span> 北岸剧场</div></section>'+
