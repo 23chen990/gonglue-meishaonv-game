@@ -68,6 +68,7 @@ with sync_playwright() as play:
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
     option_ids=visible_option_ids(page)
     assert set(option_ids)=={'canon','rescue','investigate'},(w,h,option_ids)
+    assert page.locator('.mobile-options [data-mobile-options]').count()==0,(w,h,'first three choices must fit without option paging')
     # The choice screen is a new interaction beat. Previous dialogue must not
     # remain as a transcript just to preserve the old reader layout.
     layout=page.evaluate("""()=>{
@@ -86,7 +87,7 @@ with sync_playwright() as play:
         actorVisible:actor?Math.max(0,Math.min(sheet.top,actor.bottom)-Math.max(65,actor.top)):0,
         choices,overflow:document.documentElement.scrollWidth>innerWidth};
     }""")
-    assert layout['sheetHeight']<=h/4+2,(w,h,'dialogue sheet too tall',layout)
+    assert layout['sheetHeight']<=72,(w,h,'decision prompt strip regressed into a large empty dialogue sheet',layout)
     assert layout['dialogueBlocks']<=1 and not layout['dialogueOverflow'],(w,h,layout)
     assert not layout['optionOverflow'],(w,h,'choice layer requires hidden scroll',layout)
     assert layout['actorVisible']>=37,(w,h,'heroine invisible behind reader sheet',layout)
@@ -188,7 +189,7 @@ with sync_playwright() as play:
       optionOverflow:dock.scrollHeight>dock.clientHeight+2,
       buttons:[...dock.querySelectorAll('[data-choice]')].map(x=>{let r=x.getBoundingClientRect();return {height:r.height,visible:Math.max(0,Math.min(d.bottom,r.bottom)-Math.max(d.top,r.top))}})};
    }""")
-   assert data['sheet']<=data['inner']/3+2,('large font sheet exceeds one third',data)
+   assert data['sheet']<=72,('large-font decision prompt strip regressed into empty dialogue sheet',data)
    assert data['blocks']<=1 and not data['overflow'],data
    assert not data['optionOverflow'],data
    assert data['buttons'] and all(b['height']>=44 and b['visible']>=b['height']-2 for b in data['buttons']),data
