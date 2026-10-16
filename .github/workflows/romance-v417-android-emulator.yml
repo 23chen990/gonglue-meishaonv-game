@@ -6,6 +6,7 @@ on:
       - qa/romance-v417-android-emulator-20261016
     paths:
       - '.github/workflows/romance-v417-android-emulator.yml'
+      - 'qa/android-emulator/**'
   workflow_dispatch:
 
 permissions:
