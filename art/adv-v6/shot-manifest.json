@@ -1,0 +1,337 @@
+{
+  "schemaVersion": "1.0",
+  "project": "攻略美少女",
+  "purpose": "ADV first-night complete-CG production, NOT LIVE ASSETS",
+  "status": "planning",
+  "designViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "visualMaster": {
+    "width": 1536,
+    "height": 2560,
+    "aspect": 0.6
+  },
+  "approvedUIActions": [
+    "canon",
+    "rescue",
+    "investigate"
+  ],
+  "shotCount": 10,
+  "shots": [
+    {
+      "shotId": "OP01_Crew",
+      "sourceRowId": "ENTRY_WAKE.intro.003",
+      "renderBeat": "dialogue",
+      "assetPath": "assets/adv-v6/op01_crew_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.52,
+        "y": 0.38
+      },
+      "speaker": "戴耳机的工作人员",
+      "line": "许照！原版伴奏盘呢？马上要开唱了！",
+      "visualBrief": "一名普通的成年舞台工作人员向主角俯身催促，人物与后台环境为同一个完整场景。",
+      "visualReferences": [
+        "crew_reference",
+        "backstage_set"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP02_Badge",
+      "sourceRowId": "ENTRY_WAKE.intro.007",
+      "renderBeat": "dialogue",
+      "assetPath": "assets/adv-v6/op02_badge_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.42
+      },
+      "speaker": "许照 · 心声",
+      "line": "许照？……可这根本不是我的名字。",
+      "visualBrief": "主角第一视角手持写着许照／临时场务的实体工牌，真实手指、挂绳和背景透视。",
+      "visualReferences": [
+        "badge_physical_prop",
+        "first_person_hand"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP03_Singer",
+      "sourceRowId": "ENTRY_WAKE.intro.011",
+      "renderBeat": "dialogue",
+      "assetPath": "assets/adv-v6/op03_singer_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.52,
+        "y": 0.36
+      },
+      "speaker": "台上的女孩",
+      "line": "等等！这不是彩排用的版本！",
+      "visualBrief": "台上女孩按住耳返，朝侧幕看，正受到错版伴奏影响。",
+      "visualReferences": [
+        "singer_reference",
+        "main_stage"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP04_Piano",
+      "sourceRowId": "ENTRY_WAKE.intro.012",
+      "renderBeat": "dialogue",
+      "assetPath": "assets/adv-v6/op04_piano_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.54,
+        "y": 0.4
+      },
+      "speaker": "钢琴旁的男人",
+      "line": "先跟我的琴！我给你撑四小节！",
+      "visualBrief": "琴手在真实琴台演奏，镜头可见手部落键与舞台灯光连续性。",
+      "visualReferences": [
+        "pianist_reference",
+        "main_stage"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP05_Revelation",
+      "sourceRowId": "ENTRY_WAKE.intro.025",
+      "renderBeat": "dialogue",
+      "assetPath": "assets/adv-v6/op05_revelation_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.52,
+        "y": 0.37
+      },
+      "speaker": "许照 · 心声",
+      "line": "等等……这不就是我刚看完的小说？",
+      "visualBrief": "后台视角，舞台危险感真实；不把小说、倒计时或结局标题做成空中浮层。",
+      "visualReferences": [
+        "backstage_set"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP06_Clue",
+      "sourceRowId": "ENTRY_WAKE.intro.026",
+      "renderBeat": "dialogue",
+      "assetPath": "assets/adv-v6/op06_clue_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.53,
+        "y": 0.54
+      },
+      "speaker": "许照 · 心声",
+      "line": "原版盘就在接线板下面……我记得原著提过。",
+      "visualBrief": "器材箱与接线板低机位，露出蓝色标识一角，但盘尚未被拿到。",
+      "visualReferences": [
+        "cable_junction",
+        "blue_tape_usb"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP07_Choice",
+      "sourceRowId": "ENTRY_WAKE.intro.028",
+      "renderBeat": "decision",
+      "assetPath": "assets/adv-v6/op07_choice_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.48,
+        "y": 0.32
+      },
+      "speaker": "许照 · 心声",
+      "line": "七天后，我会替这场事故背锅。现在怎么办？",
+      "visualBrief": "后台朝舞台看，琴手与台上女孩同空间；下方留给真正 HTML 三项选择。",
+      "visualReferences": [
+        "main_stage",
+        "singer_reference",
+        "pianist_reference"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP08_Canon",
+      "sourceRowId": "ENTRY_WAKE.r42.reply.canon.001",
+      "renderBeat": "branch-reply",
+      "assetPath": "assets/adv-v6/op08_canon_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.49,
+        "y": 0.46
+      },
+      "speaker": "许照",
+      "line": "我先去核对交接单。不能乱碰设备。",
+      "visualBrief": "去后台交接处确认记录，主角尚未拿到原版盘。",
+      "visualReferences": [
+        "backstage_set",
+        "handover_form"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": ""
+    },
+    {
+      "shotId": "OP09_Rescue",
+      "sourceRowId": "ENTRY_WAKE.r42.reply.rescue.001",
+      "renderBeat": "branch-reply",
+      "assetPath": "assets/adv-v6/op09_rescue_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.48,
+        "y": 0.52
+      },
+      "speaker": "许照",
+      "line": "找到了，先让音控确认版本。",
+      "visualBrief": "从接线板下拿出蓝标原版盘并交音控，不直接操作不熟悉的控台。",
+      "visualReferences": [
+        "blue_tape_usb",
+        "crew_reference"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": "只在选项之后可见，不能提前展示原版已拿到。"
+    },
+    {
+      "shotId": "OP10_Investigate",
+      "sourceRowId": "ENTRY_WAKE.r42.reply.investigate.001",
+      "renderBeat": "branch-reply",
+      "assetPath": "assets/adv-v6/op10_investigate_master.webp",
+      "status": "planned",
+      "masterWidth": 1536,
+      "masterHeight": 2560,
+      "minDeliveryWidth": 1536,
+      "minDeliveryHeight": 2400,
+      "aspectMin": 0.57,
+      "aspectMax": 0.64,
+      "focalPoint": {
+        "x": 0.47,
+        "y": 0.54
+      },
+      "speaker": "许照",
+      "line": "盘在手里，但换版的人还没找到。",
+      "visualBrief": "蓝标盘取出并进行可核验记录，留证动作真实发生。",
+      "visualReferences": [
+        "blue_tape_usb",
+        "handover_form"
+      ],
+      "hasUIInImage": false,
+      "reviews": {
+        "visual": "pending",
+        "inGame": "pending",
+        "rights": "pending"
+      },
+      "notes": "只在选项之后可见，不能提前展示原版已拿到。"
+    }
+  ],
+  "warnings": [
+    "仅生产合同，所有图片的 status 均为 planned，不等于已经生成。",
+    "三项首次选择使用正典 action ID，不由本 manifest 决定实际状态和后果。"
+  ]
+}
