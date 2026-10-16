@@ -1243,6 +1243,17 @@ function adv6Speaker(b){
  }
  return names[b.speaker]||mobileVoice(b);
 }
+/* Compact subtitles preserve the scene without forcing one short sentence into
+ * a 1/4-screen blank reading slab. Respect the canonical measured paginator. */
+function adv6DialogueHeight(m,text){
+ mobileMeasure.textContent=text||' ';
+ const measured=mobileMeasure.getBoundingClientRect().height;
+ const lines=Math.max(1,Math.min(3,Math.ceil((measured-.1)/m.line)));
+ const chrome=27+42+11+3+m.safe+5;
+ const needed=Math.ceil(chrome+lines*m.line);
+ const minimum=Math.round(m.h*(m.font>18?.225:.19));
+ return Math.min(m.height,Math.max(needed,minimum));
+}
 function adv6Chapter(id){return {ENTRY_WAKE:'第一夜 · 侧幕',A1b:'第一夜  ·  交接',A6a:'第七天  ·  真相'}[id]||'';}
 storyHTML=function(){
  const cp=currentPage(),b=cp.rows[0],m=mobileMetrics(),s=sourceScene(),scene=s.scene||{};
@@ -1250,7 +1261,7 @@ storyHTML=function(){
  const mode=cp.view.terminal?'ending':decision?'decision':phase==='reply'?'reply':'reading';
  const media=adv6MediaForBeat(b,scene,decision);
  const voice=adv6Speaker(b),text=b.text||'',showText=!!text&&!decision;
- const panelHeight=decision?0:m.height;
+ const panelHeight=decision?0:adv6DialogueHeight(m,text);
  const css='--mobile-panel:'+panelHeight+'px;--mobile-font:'+m.font+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  const isHeroOpening=phase==='scene'&&s.id==='ENTRY_WAKE';
  const chapter=(page===0&&phase==='scene')?adv6Chapter(s.id):'';
