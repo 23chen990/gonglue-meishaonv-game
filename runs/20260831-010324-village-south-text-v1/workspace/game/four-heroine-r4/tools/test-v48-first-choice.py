@@ -19,7 +19,6 @@ REPORT = {'sha': STORY_SHA,
 VIEWPORTS = [(320,568),(360,780),(375,812),(390,844),(430,932)]
 SAVE_KEY = 'gonglue:revision-r4.5-portrait:canonical'
 
-
 def open_page(browser, width, height):
     ctx=browser.new_context(viewport={'width':width,'height':height},is_mobile=True,has_touch=True)
     page=ctx.new_page(); errors=[];page.set_default_timeout(6000)
@@ -35,67 +34,61 @@ def open_page(browser, width, height):
     assert page.locator('meta[name="story-sha256"]').get_attribute('content') == STORY_SHA
     return ctx,page,errors
 
-
 def hit(browser, width, height, route):
     ctx,p,errors = open_page(browser,width,height)
     try:
         assert p.locator('[data-choice]').count() == 0, 'first decision prematurely shown'
-        assert p.locator('[data-page-next]').count() == 1
-        for _ in range(7):p.locator('[data-page-next]').tap()
-        assert p.locator('[data-page-next]').count() == 0, 'added useless next-page click'
-        assert p.locator('.vn-frame').get_attribute('data-intro-decision') == 'true'
+        source_ids=[]
+        for i in range(120):
+            if p.locator('[data-choice]').count():break
+            assert p.locator('[data-page-next]').count() == 1, ('reader stalled',i)
+            assert p.locator('.mobile-text .line').count() <= 1, 'multiple turns shown together'
+            source_ids.append(p.locator('.vn-frame').get_attribute('data-source'))
+            p.locator('[data-page-next]').tap()
+        else:raise AssertionError('first decision never appeared')
+        assert len(set(source_ids))==27,('opening source turns skipped',len(set(source_ids)))
+        assert p.locator('[data-page-next]').count() == 0
         assert p.locator('.vn-grip').count() == 0, 'fake dragging control returned'
-        assert p.locator('.vn-dock [data-choice]').count() == 3
-        # Wait for a visual CSS transition: touch rectangles must reflect final layout.
-        p.wait_for_timeout(250)
-        geometry=p.evaluate('''()=>{
-          const area=document.querySelector('.vn-scroll');
-          const dock=document.querySelector('.vn-dock');
-          const text=document.querySelector('[data-beat="ENTRY_WAKE.intro.028"]');
-          const ab=area.getBoundingClientRect(),tb=text.getBoundingClientRect(),db=dock.getBoundingClientRect();
+        assert p.locator('.mobile-options [data-choice]').count() == 3
+        p.wait_for_timeout(120)
+        geometry=p.evaluate('''()=> {
+          const sheet=document.querySelector('.mobile-sheet'),opts=document.querySelector('.mobile-options');
+          const sb=sheet.getBoundingClientRect(),ob=opts.getBoundingClientRect();
           const visible=(a,b)=>Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
           return {
-            finalNarrativeVisible:visible(ab,tb),bodyScrollHeight:area.scrollHeight,
-            bodyViewportHeight:area.clientHeight,bodyScrollTop:area.scrollTop,
-            dockFits:dock.scrollHeight<=dock.clientHeight+2,
-            choices:[...dock.querySelectorAll('[data-choice]')].map(x=>({
+            sheetHeight:sb.height,inner:innerHeight,
+            dialogueBlocks:document.querySelectorAll('.mobile-text .line').length,
+            dialogueOverflow:document.querySelector('.mobile-text').scrollHeight>document.querySelector('.mobile-text').clientHeight+2,
+            optionOverflow:opts.scrollHeight>opts.clientHeight+2,
+            choices:[...opts.querySelectorAll('[data-choice]')].map(x=>({
               id:x.dataset.choice,height:x.getBoundingClientRect().height,
-              visible:visible(db,x.getBoundingClientRect())
-            })),overflow:document.documentElement.scrollWidth>innerWidth,
-            stageCast:document.querySelector('.vn-stage')?.dataset.char,
-            portrait:!!document.querySelector('.vn-stage .vn-portrait img')
+              visible:visible(ob,x.getBoundingClientRect())
+            })),
+            overflow:document.documentElement.scrollWidth>innerWidth,
+            portrait:!!document.querySelector('.mobile-stage .mobile-portrait img')
           };
         }''')
-        assert geometry['finalNarrativeVisible']>=45,('final plot cannot be read',geometry)
-        if geometry['bodyScrollHeight']>geometry['bodyViewportHeight']+20:
-            assert geometry['bodyScrollTop']>0,'first decision still starts at decorative headers'
-        else:
-            assert geometry['bodyScrollTop']==0,'unexpected scroll when the full last page already fits'
-        assert geometry['dockFits'],'three first options require another scroll'
+        assert geometry['sheetHeight']<=height/4+2,(width,height,'dialogue sheet too tall',geometry)
+        assert geometry['dialogueBlocks']<=1 and not geometry['dialogueOverflow'],geometry
+        assert not geometry['optionOverflow'],'three first options require hidden scroll'
         assert not geometry['overflow'],'horizontal viewport overflow'
         assert [x['id'] for x in geometry['choices']]==['canon','rescue','investigate']
         assert all(x['height']>=44 and x['visible']>=x['height']-2 for x in geometry['choices']),geometry
-        if height>=780:
-            assert geometry['stageCast']=='t' and geometry['portrait'],'main character not shown at the moment of choice'
-        # Revisiting the opening text does not change any game commands.
-        p.locator('.vn-scroll').evaluate('x=>{x.scrollTop=0}')
-        assert p.locator('.vn-scroll').evaluate('x=>x.scrollTop') == 0
+        if height>=780:assert geometry['portrait'],'main character not shown at the moment of choice'
         assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands.length',SAVE_KEY) == 0
         p.locator('#menu').tap();p.locator('[data-nav="story"]').first.tap()
-        assert p.locator('.vn-scroll').evaluate('x=>x.scrollTop') == 0,'lost voluntary scroll position'
-        p.locator('.vn-dock [data-choice="'+route+'"]').tap()
+        assert p.locator('.mobile-options [data-choice]').count()==3,'choice state changed after menu round-trip'
+        p.locator('.mobile-options [data-choice="'+route+'"]').tap()
         assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands.length',SAVE_KEY) == 1
         assert p.evaluate('(k)=>JSON.parse(localStorage.getItem(k)).commands[0].id',SAVE_KEY) == route
         assert p.locator('body').get_attribute('data-current') != 'ENTRY_WAKE'
         assert not errors,errors
         return {'viewport':f'{width}x{height}','selected':route,
-                'visibleFinalNarrativePx':round(geometry['finalNarrativeVisible']),
-                'allThreeVisible':True,'portraitShown':geometry['portrait'],
-                'firstSevenPagesPreserved':True,'returnScroll':'PASS',
+                'openingSourceTurns':len(set(source_ids)),'allThreeVisible':True,
+                'portraitShown':geometry['portrait'],'dialogueSheetRatio':geometry['sheetHeight']/height,
                 'firstActionExactlyOnce':True}
     finally:
         ctx.close()
-
 
 with sync_playwright() as pl:
     launch={'headless':True}
