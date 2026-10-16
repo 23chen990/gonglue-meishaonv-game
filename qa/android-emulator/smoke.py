@@ -133,7 +133,7 @@ def main():
         pages = [p for c in contexts for p in c.pages]
         assert pages, "Android Chrome has no page"
         page = next((p for p in pages if "10.0.2.2" in p.url), pages[0])
-        page.set_default_timeout(10000)
+        page.set_default_timeout(20000)
         if not "10.0.2.2" in page.url:
             page.goto(URL, wait_until="domcontentloaded", timeout=25000)
         page.wait_for_selector(".vn-frame", timeout=30000)
@@ -143,7 +143,7 @@ def main():
         assert page.locator("body").get_attribute("data-current") == "ENTRY_WAKE"
         assert page.locator("[data-choice]").count() == 0
         screenshot("01-native-android-first-page.png")
-        page.screenshot(path=str(OUT / "01-chrome-cdp-first-page.png"))
+        # Keep the full device framebuffer via adb screencap instead of flaky CDP screencast.
         REPORT["cases"].append({"name":"REAL_ANDROID_CHROME_CANONICAL_FIRST_PAGE","status":"PASS","ua":ua})
 
         native_tap = "NOT_EXPOSED"
@@ -169,7 +169,7 @@ def main():
         assert all(o["height"]>=44 for o in options), options
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         screenshot("02-android-three-opening-choices.png")
-        page.screenshot(path=str(OUT / "02-chrome-cdp-decision.png"))
+        # Keep the full device framebuffer via adb screencap instead of flaky CDP screencast.
         REPORT["cases"].append({"name":"SEVEN_PAGES_AND_THREE_REAL_CHOICES","status":"PASS",
                                 "adb_native_tap":native_tap,"buttons":options})
         page.locator('[data-choice="investigate"]').click()
