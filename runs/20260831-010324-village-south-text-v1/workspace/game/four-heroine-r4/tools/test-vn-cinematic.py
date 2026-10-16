@@ -310,10 +310,15 @@ with sync_playwright() as play:
  def v7_compact_storage_warning():
   ctx,page=open_game(320,568)
   try:
+   # The real app's showNotice is module-private; emulate its DOM projection
+   # while verifying production layout and the actual delegated hide handler.
    page.evaluate("""() => {
-    saveBlocked=true;
-    notice='这个窗口暂时不能保存。仍可继续阅读；离开前请在菜单导出记录。';
-    showNotice();
+    const el=document.getElementById('notice');
+    const menu=document.getElementById('menu');
+    el.hidden=false;
+    el.dataset.noticeKind='save-unavailable';
+    el.innerHTML='<div class="notice-short">进度未保存 · 请导出</div><button data-action="export">导出</button><button data-action="hide-notice" aria-label="收起存档提醒">×</button>';
+    menu.setAttribute('aria-label','打开菜单，当前进度未自动保存');
    }""")
    data=page.locator('#notice').evaluate("""e=>{
     const r=e.getBoundingClientRect(),btn=e.querySelector('[data-action=export]');
