@@ -1127,9 +1127,9 @@ if(document.fonts)document.fonts.ready.then(()=>{mobilePageCache=null;if(panel==
  * No portrait cutouts, masks or feather composites. DATA and engine remain untouched.
  */
 const ADV6_MEDIA_FILES=Object.freeze({
- crew:'crew_headset.webp',badge:'pov_badge.webp',piano:'stage_piano.webp',
- lin:'lin_camera.webp',gu:'gu_email.webp',singer:'girl_singer.webp',
- usb:'usb_case.webp',usbHeld:'usb_hand.webp'
+ crew:'crew.webp',badge:'badge.webp',piano:'piano.webp',
+ lin:'lin.webp',gu:'gu.webp',singer:'singer.webp',
+ usb:'usb.webp',usbHeld:'usbHeld.webp'
 });
 const ADV6_MEDIA=typeof ADV6_ART_PACK==='object'&&ADV6_ART_PACK?ADV6_ART_PACK:{};
 const ADV6_SCENES=Object.freeze({
@@ -1223,13 +1223,13 @@ function adv6Controls(cp){
 function adv6MediaForBeat(b,scene,decision){
  if(decision&&sourceScene().id==='ENTRY_WAKE')return {key:'stage',url:SCENERY};
  const key=ADV6_SCENES[b._shot];
- if(key)return {key,url:ADV6_MEDIA[key]||('assets/v4/'+ADV6_MEDIA_FILES[key])};
+ if(key)return {key,url:ADV6_MEDIA[key]||('assets/v6-preview/'+ADV6_MEDIA_FILES[key])};
  const speakerShots={T:'singer',L:'lin',G:'gu'};
  const voice=speakerShots[b.speaker];
- if(voice)return {key:voice,url:ADV6_MEDIA[voice]||('assets/v4/'+ADV6_MEDIA_FILES[voice])};
+ if(voice)return {key:voice,url:ADV6_MEDIA[voice]||('assets/v6-preview/'+ADV6_MEDIA_FILES[voice])};
  // One established CG per scene, not two unrelated images blended together.
  const bg=scene.background||'';
- if(['stage','theatre'].includes(bg))return {key:'piano',url:ADV6_MEDIA.piano||('assets/v4/'+ADV6_MEDIA_FILES.piano)};
+ if(['stage','theatre'].includes(bg))return {key:'piano',url:ADV6_MEDIA.piano||('assets/v6-preview/'+ADV6_MEDIA_FILES.piano)};
  return {key:'fallback',url:SCENERY};
 }
 function adv6Speaker(b){
@@ -1277,7 +1277,7 @@ document.addEventListener('click',event=>{
  event.preventDefault();event.stopImmediatePropagation();
  if(close){adv6CloseInspect();return;}
  adv6CloseInspect();adv6InspectOpen=true;
- const url=ADV6_MEDIA.badge||('assets/v4/'+ADV6_MEDIA_FILES.badge);
+ const url=ADV6_MEDIA.badge||('assets/v6-preview/'+ADV6_MEDIA_FILES.badge);
  const box=document.createElement('div');box.className='adv6-modal';
  box.innerHTML='<div class="adv6-modal-shade" data-adv6-close="1"></div><section class="adv6-modal-frame" role="dialog" aria-modal="true" aria-label="手中的工作牌"><img src="'+url+'" alt="许照的临时场务工作牌"><p>许照 · 临时场务<br>……这是我现在的名字？</p><button type="button" class="cinema-close adv6-close" data-adv6-close="1" aria-label="关闭工作牌特写">×</button></section>';
  document.body.append(box);box.querySelector('.adv6-close')?.focus();
