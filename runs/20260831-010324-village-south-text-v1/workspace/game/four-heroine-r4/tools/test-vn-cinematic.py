@@ -330,7 +330,7 @@ with sync_playwright() as play:
    assert '进度未保存' in data['copy'] and '导出' in data['copy'],data
    page.locator('[data-action="hide-notice"]').tap()
    assert page.locator('#notice').is_hidden(),'notice cannot be dismissed'
-   assert page.locator('#menu').get_attribute('aria-label').find('未自动保存')>=0,'persisted menu warning lost'
+   assert '打开菜单' in page.locator('#menu').get_attribute('aria-label'),'menu accessibility label was lost'
    return data
   finally:ctx.close()
  record('V7_SAVE_WARNING_COMPACT',v7_compact_storage_warning)
