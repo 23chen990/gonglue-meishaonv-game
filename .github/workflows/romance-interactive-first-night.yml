@@ -11,6 +11,9 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-interactive-opening.py'
   workflow_dispatch:
+concurrency:
+  group: romance-first-night-controlled-generator
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
