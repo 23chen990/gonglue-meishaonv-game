@@ -121,3 +121,12 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - New \`npm run art:preview\` reports **0 READY / 8 BLOCKED** for current in-game preview photos. Strict \`npm run art:release\` will refuse to approve the 10 missing/unapproved masters. This is expected and NOT a reason to declare CG art complete.
 - Local Chromium browser simulated touch 320 / 360 / 390 / 430 px, exact 6 unique source beats, first choices, single IMG, keypad Escape focus return and missing-image state: PASS. Physical phone and adult first-30s qualitative test still NOT DONE.
 - Documentation-only update exists to rerun the **final generated player** through native HTTP Chromium/WebKit and save/full-route regression. Do not merge main if the new tests fail.
+
+### ADV V7 真实单镜头 CG｜最终生成物 HTTP 验收（2026-10-17）
+
+- 受控构建已经提交最终生成的 `index.html` / `play.html` / `runtime.mjs`，对应提交 `fb2cbe2c698bd026bf51e5c63cc83f2a36409ea2`。本文件更新仅用于让 GitHub Chromium/WebKit 回归针对**实际生成物**运行，而不是以 source-only 旧提交宣称通过。
+- 第一夜工作人员与工作牌两张原创独立 941×1672 竖屏 CG 已打包进正式 HTML，非从 3×4/12 宫格截图裁切；旧 900px 方图仍留在版本历史但不被新打包程序选用。
+- 原剧情引擎、人物状态、28 条原始正典开场行、历史、保存与 `canon/rescue/investigate` 分支 ID/effects 不动。演出分页约六次推进到首个真正行动选择。
+- 因舞台休息饮水照与“伴奏出错”的台词不符，本次该句暂以**舞台侧幕全景 + 话筒画外声**表现，直至完成专属女主事故 CG。不能使用错误人物动作假装已完善。
+- 已本地 Chromium DOM 注入测试 320/360/390/430px 双新图 `naturalWidth=941`、首次选择同屏/≥44px、工作牌焦点、三路线、无对白滚动。禁用存储环境会真实提示存档无法持久化，截图可手动关闭警告；本地不可代替 GitHub 的原生 HTTP 浏览器验证。
+- 新图虽然手机端清楚，仍未达到 1536×2560 的先前正式 CG master 规格；其它 6 张预览仍未替换，严格美术门禁**应保持阻断**，禁止作为全部 228 场或发布完成验收。
