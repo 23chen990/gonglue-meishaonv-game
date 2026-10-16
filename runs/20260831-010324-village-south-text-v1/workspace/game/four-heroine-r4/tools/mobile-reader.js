@@ -176,27 +176,26 @@ render=function(scrollWindow=true){
 let mobileOptionIndex=0,mobileOptionKey='';
 function mobileFitOptions(){
  const box=document.querySelector('.mobile-options');if(!box)return;
- const key=[getView().id,choicePage,large,mobileMetrics().key].join(':');
+ const metrics=mobileMetrics(),key=[getView().id,choicePage,large,metrics.key].join(':');
  if(key!==mobileOptionKey){mobileOptionIndex=0;mobileOptionKey=key;}
- const limit=parseFloat(getComputedStyle(box).maxHeight);
- if(!Number.isFinite(limit)||box.scrollHeight<=limit+1)return;
- const buttons=Array.from(box.querySelectorAll('button'));
- if(!buttons.length)return;
- box.classList.add('mobile-options-paged');box.replaceChildren();
- const host=document.createElement('div');host.className='mobile-option-items';box.append(host);
- const max=Math.max(44,limit-52),pages=[];let batch=[];
- for(const b of buttons){
-  host.append(b);
-  if(host.getBoundingClientRect().height>max+.5&&batch.length){pages.push(batch);batch=[];host.replaceChildren(b);}
-  if(host.getBoundingClientRect().height>max+.5)throw Error('Action label cannot fit the supported viewport');
-  batch.push(b);
- }
- if(batch.length)pages.push(batch);
+ const all=Array.from(box.querySelectorAll('button')).filter(b=>!b.matches('[data-mobile-options]'));
+ if(!all.length)return;
+ const maxHeight=parseFloat(getComputedStyle(box).maxHeight);
+ if(!Number.isFinite(maxHeight)||box.scrollHeight<=maxHeight+1)return;
+ // Short screens must never rely on hidden scrolling. Use deterministic
+ // presentation-only pages so every canonical action remains reachable.
+ const perPage=(large||metrics.h<620)?1:2;
+ const pages=[];
+ for(let i=0;i<all.length;i+=perPage)pages.push(all.slice(i,i+perPage));
+ if(pages.length<2)return;
  mobileOptionIndex=Math.max(0,Math.min(mobileOptionIndex,pages.length-1));
- host.replaceChildren(...pages[mobileOptionIndex]);
+ box.classList.add('mobile-options-paged');box.replaceChildren();
+ const host=document.createElement('div');host.className='mobile-option-items';
+ host.replaceChildren(...pages[mobileOptionIndex]);box.append(host);
  const nav=document.createElement('div');nav.className='mobile-option-navigation';
- nav.innerHTML='<button data-mobile-options="-1" '+(mobileOptionIndex===0?'disabled':'')+' aria-label="上一组选项">上一组</button><span>'+(mobileOptionIndex+1)+' / '+pages.length+'</span><button data-mobile-options="1" '+(mobileOptionIndex===pages.length-1?'disabled':'')+' aria-label="下一组选项">下一组</button>';
+ nav.innerHTML='<button type="button" data-mobile-options="-1" '+(mobileOptionIndex===0?'disabled':'')+' aria-label="上一组选项">上一组</button><span>'+(mobileOptionIndex+1)+' / '+pages.length+'</span><button type="button" data-mobile-options="1" '+(mobileOptionIndex===pages.length-1?'disabled':'')+' aria-label="下一组选项">下一组</button>';
  box.append(nav);
+ if(box.scrollHeight>box.clientHeight+2)throw Error('Paged action layer exceeds the supported viewport');
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest?.('[data-mobile-options]');if(!b||b.disabled)return;
