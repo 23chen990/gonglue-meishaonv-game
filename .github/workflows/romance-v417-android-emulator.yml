@@ -47,12 +47,12 @@ jobs:
       - name: Android 35 Google Play system image, real Chrome + ADB + CDP validation
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 35
+          api-level: 33
           target: google_apis_playstore
           arch: x86_64
-          profile: pixel_7_pro
-          cores: 2
-          ram-size: 3072M
+          profile: pixel_2
+          cores: 4
+          ram-size: 2048M
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: python3 qa/android-emulator/smoke.py
