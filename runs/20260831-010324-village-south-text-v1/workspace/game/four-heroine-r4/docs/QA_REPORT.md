@@ -57,3 +57,10 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 真实仓库接入后运行 `tools/ci-acceptance.py`，只有同一HEAD/hash的实际默认构建、原生UI/存档和普通旅程证据才可解除对应阻塞。
 
 正式STORY SHA-256：`577db875a0a664b4cba8c301e9169f60b9aa831ee97e9fdd9f03368dcdea7bf3`。
+
+## Mobile VN exact-head revalidation trigger (2026-10-16)
+
+- Generated mobile-VN player source head: `6e66d66cf06dda0063722b678ffc9e36993243dc`.
+- The decision-beat correction collapses the empty dialogue sheet so choices return screen area to character/scenery presentation.
+- This note intentionally changes no story, engine, save schema, choice semantics, or generated runtime. It exists so the PR workflow validates the post-generation exact head rather than relying on a pre-generation source commit.
+- Acceptance remains engineering-only; physical-device and human-play gates are separate.
