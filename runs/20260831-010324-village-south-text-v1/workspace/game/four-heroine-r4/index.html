@@ -513,7 +513,7 @@ body[data-panel=story] .mobile-vn .mobile-dock{max-height:none!important;min-hei
 .mobile-vn[data-beat-kind=visual]>.mobile-sheet{background:linear-gradient(transparent,#160c23a0)!important;border-top:0!important;pointer-events:none}
 .mobile-vn[data-beat-kind=visual] .mobile-dock{pointer-events:auto}
 .mobile-vn[data-beat-kind=thought] .mobile-speaker{color:#c4b9e7}
-.mobile-vn .mobile-options{position:absolute;z-index:9;left:20px;right:20px;bottom:calc(var(--mobile-panel) + 18px);max-height:calc(var(--mobile-vh) - var(--mobile-panel) - 130px);overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.mobile-vn .mobile-options{position:absolute;z-index:9;left:20px;right:20px;bottom:calc(var(--mobile-panel) + 18px);max-height:calc(var(--mobile-vh) - var(--mobile-panel) - 130px);overflow:hidden!important;display:flex;flex-direction:column;gap:8px;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overscroll-behavior:none!important;scrollbar-width:none!important}
 .mobile-vn .mobile-options .choices,.mobile-vn .mobile-options .pager{margin:0!important;padding:0!important;display:grid!important;gap:8px!important}
 .mobile-vn .mobile-options button{min-height:48px!important;width:100%!important;font-size:15px!important;line-height:1.45!important;padding:10px 12px!important;background:#24182eeb!important;border:1px solid #c998b681!important;border-radius:9px!important;color:#fff1f8!important;text-align:left!important;box-shadow:0 4px 20px #11071b36}
 .mobile-vn .mobile-options .vn-group{display:flex;align-items:center;justify-content:space-between}
@@ -561,6 +561,8 @@ body[data-panel=story] .notice{z-index:30;max-height:30dvh;overflow:auto}
 @media(prefers-reduced-motion:no-preference){.mobile-vn .mobile-prop{animation:mobile-reveal .18s ease-out}.mobile-vn[data-shot=blackout] .mobile-falling-phone{animation:mobile-fall .65s ease-out both}.mobile-vn[data-shot=wake] .mobile-scenery{animation:mobile-focus .55s ease-out both}}
 @keyframes mobile-reveal{from{opacity:.35}to{opacity:1}}@keyframes mobile-fall{to{transform:translateY(50px) rotate(45deg);opacity:.12}}@keyframes mobile-focus{from{filter:blur(8px)}to{filter:blur(0)}}
 @media(prefers-reduced-motion:reduce){.mobile-vn *{animation:none!important;transition:none!important}}
+
+.mobile-vn .mobile-options.mobile-options-paged{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
 </style>
 </head>
 <body>
@@ -2110,27 +2112,26 @@ render=function(scrollWindow=true){
 let mobileOptionIndex=0,mobileOptionKey='';
 function mobileFitOptions(){
  const box=document.querySelector('.mobile-options');if(!box)return;
- const key=[getView().id,choicePage,large,mobileMetrics().key].join(':');
+ const metrics=mobileMetrics(),key=[getView().id,choicePage,large,metrics.key].join(':');
  if(key!==mobileOptionKey){mobileOptionIndex=0;mobileOptionKey=key;}
- const limit=parseFloat(getComputedStyle(box).maxHeight);
- if(!Number.isFinite(limit)||box.scrollHeight<=limit+1)return;
- const buttons=Array.from(box.querySelectorAll('button'));
- if(!buttons.length)return;
- box.classList.add('mobile-options-paged');box.replaceChildren();
- const host=document.createElement('div');host.className='mobile-option-items';box.append(host);
- const max=Math.max(44,limit-52),pages=[];let batch=[];
- for(const b of buttons){
-  host.append(b);
-  if(host.getBoundingClientRect().height>max+.5&&batch.length){pages.push(batch);batch=[];host.replaceChildren(b);}
-  if(host.getBoundingClientRect().height>max+.5)throw Error('Action label cannot fit the supported viewport');
-  batch.push(b);
- }
- if(batch.length)pages.push(batch);
+ const all=Array.from(box.querySelectorAll('button')).filter(b=>!b.matches('[data-mobile-options]'));
+ if(!all.length)return;
+ const maxHeight=parseFloat(getComputedStyle(box).maxHeight);
+ if(!Number.isFinite(maxHeight)||box.scrollHeight<=maxHeight+1)return;
+ // Short screens must never rely on hidden scrolling. Use deterministic
+ // presentation-only pages so every canonical action remains reachable.
+ const perPage=(large||metrics.h<620)?1:2;
+ const pages=[];
+ for(let i=0;i<all.length;i+=perPage)pages.push(all.slice(i,i+perPage));
+ if(pages.length<2)return;
  mobileOptionIndex=Math.max(0,Math.min(mobileOptionIndex,pages.length-1));
- host.replaceChildren(...pages[mobileOptionIndex]);
+ box.classList.add('mobile-options-paged');box.replaceChildren();
+ const host=document.createElement('div');host.className='mobile-option-items';
+ host.replaceChildren(...pages[mobileOptionIndex]);box.append(host);
  const nav=document.createElement('div');nav.className='mobile-option-navigation';
- nav.innerHTML='<button data-mobile-options="-1" '+(mobileOptionIndex===0?'disabled':'')+' aria-label="上一组选项">上一组</button><span>'+(mobileOptionIndex+1)+' / '+pages.length+'</span><button data-mobile-options="1" '+(mobileOptionIndex===pages.length-1?'disabled':'')+' aria-label="下一组选项">下一组</button>';
+ nav.innerHTML='<button type="button" data-mobile-options="-1" '+(mobileOptionIndex===0?'disabled':'')+' aria-label="上一组选项">上一组</button><span>'+(mobileOptionIndex+1)+' / '+pages.length+'</span><button type="button" data-mobile-options="1" '+(mobileOptionIndex===pages.length-1?'disabled':'')+' aria-label="下一组选项">下一组</button>';
  box.append(nav);
+ if(box.scrollHeight>box.clientHeight+2)throw Error('Paged action layer exceeds the supported viewport');
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest?.('[data-mobile-options]');if(!b||b.disabled)return;
