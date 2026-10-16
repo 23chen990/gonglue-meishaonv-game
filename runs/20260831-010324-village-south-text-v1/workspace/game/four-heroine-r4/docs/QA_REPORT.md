@@ -70,3 +70,9 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - Generated head: `1b14457aa6116b3141c472638152136abf022847`.
 - Three direct choices are flattened out of legacy reader wrappers before fit measurement; 320x568 must keep all three visible without presentation paging.
 - This line changes no runtime/story/engine and exists only to trigger exact-head PR acceptance after generated artifacts were committed.
+
+### ADV V4.1 generated-player exact-head QA trigger
+
+- Controlled generation produced head `8a782c63f299767133f80b286f829e745300412b` for source/CG/UI update; native browser PR regression must run again against the generated exact-head plus this documentation-only trigger commit.
+- Added explicit regression for changing font from the menu while preserving opening source-row cursor, opening badge close without story advance, and correct scene CG on the canonical first decision.
+- This note does not modify story, engine, image bytes, dialogue code, save format or generated player. Do not claim physical-phone playtesting or measured 30-second retention.
