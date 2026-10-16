@@ -20,6 +20,12 @@ VIEWPORTS = [(320,568),(360,780),(375,812),(390,844),(430,932)]
 SAVE_KEY = 'gonglue:revision-r4.5-portrait:canonical'
 
 def visible_option_ids(p):
+    # The player intentionally preserves the current presentation-only option
+    # page across menu round-trips. Enumerate from page 1 before checking reachability.
+    for _ in range(12):
+        prev=p.locator('.mobile-options [data-mobile-options="-1"]:not([disabled])')
+        if not prev.count():break
+        prev.tap()
     found=[]
     for _ in range(12):
         for x in p.locator('.mobile-options [data-choice]').evaluate_all('els=>els.map(x=>x.dataset.choice)'):
