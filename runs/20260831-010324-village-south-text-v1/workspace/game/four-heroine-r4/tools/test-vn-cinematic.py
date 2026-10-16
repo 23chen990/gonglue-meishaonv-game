@@ -76,7 +76,7 @@ with sync_playwright() as play:
       const sheet=box(document.querySelector('.mobile-sheet'));
       const dockEl=document.querySelector('.mobile-options'),dock=box(dockEl);
       const text=document.querySelector('.mobile-text'),portrait=document.querySelector('.mobile-portrait');
-      const actor=portrait&&box(portrait);
+      const actor=portrait&&box(portrait);const cg=document.querySelector('.vn4-cg img');
       const choices=[...dockEl.querySelectorAll('[data-choice]')].map(x=>{
         const r=box(x);return {height:r.height,visible:Math.max(0,Math.min(dock.bottom,r.bottom)-Math.max(dock.top,r.top))};
       });
@@ -85,12 +85,13 @@ with sync_playwright() as play:
         dialogueOverflow:text.scrollHeight>text.clientHeight+2,
         optionOverflow:dock.scrollHeight>dock.clientHeight+2,
         actorVisible:actor?Math.max(0,Math.min(sheet.top,actor.bottom)-Math.max(65,actor.top)):0,
+        sceneCG:!!(cg&&cg.complete&&cg.naturalWidth>0&&box(cg).height>100),
         choices,overflow:document.documentElement.scrollWidth>innerWidth};
     }""")
     assert layout['sheetHeight']<=72,(w,h,'decision prompt strip regressed into a large empty dialogue sheet',layout)
     assert layout['dialogueBlocks']<=1 and not layout['dialogueOverflow'],(w,h,layout)
     assert not layout['optionOverflow'],(w,h,'choice layer requires hidden scroll',layout)
-    assert layout['actorVisible']>=37,(w,h,'heroine invisible behind reader sheet',layout)
+    assert layout['sceneCG'],(w,h,'decision requires loaded cinematic scene, not heroine picker cards',layout)
     assert not layout['overflow'],(w,h,'horizontal overflow')
     assert all(x['height']>=44 and x['visible']>=x['height']-2 for x in layout['choices']),(w,h,layout)
     page.screenshot(path=str(D/f'intro-{w}.png'))
