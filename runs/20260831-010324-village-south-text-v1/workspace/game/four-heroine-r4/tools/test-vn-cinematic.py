@@ -164,6 +164,33 @@ with sync_playwright() as play:
   finally:ctx.close()
  record('DYNAMIC_BROWSER_VIEWPORT_RELAYOUT',dynamic_height)
 
+ def menu_font_cursor():
+  ctx,page=open_game(320,568)
+  try:
+   for _ in range(3):
+    assert page.locator('[data-page-next]').count()==1
+    page.locator('[data-page-next]').tap()
+   before=page.locator('.vn-frame').get_attribute('data-source')
+   assert before=='ENTRY_WAKE.intro.007',before
+   page.locator('#menu').tap()
+   page.locator('[data-action="font"]').tap()
+   page.locator('[data-nav="story"]').first.tap()
+   assert page.locator('body.large').count()==1
+   after=page.locator('.vn-frame').get_attribute('data-source')
+   assert after==before,('menu font toggle lost narrative position',before,after)
+   assert page.locator('[data-cinema-inspect]').count()==1
+   page.locator('[data-cinema-inspect]').tap()
+   assert page.locator('[role="dialog"]').count()==1
+   assert page.locator('.vn-frame').get_attribute('data-source')==before
+   page.locator('.cinema-close').tap()
+   assert page.locator('.vn-frame').get_attribute('data-source')==before
+   page.locator('[data-page-next]').tap()
+   next_beat=page.locator('.vn-frame').get_attribute('data-source')
+   assert next_beat=='ENTRY_WAKE.intro.011',next_beat
+   return {'before':before,'after':after,'next':next_beat}
+  finally:ctx.close()
+ record('MENU_FONT_ANCHOR_AND_PROP_INSPECTION',menu_font_cursor)
+
  def large_first_fork():
   ctx,page=open_game(320,568)
   try:

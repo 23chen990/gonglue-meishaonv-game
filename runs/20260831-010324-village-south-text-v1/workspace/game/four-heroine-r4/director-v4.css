@@ -53,3 +53,12 @@ body.large .vn4 .mobile-options [data-choice]{font-size:16.5px!important}
 /* The CG is a feather-composited full-height photograph on the scene backdrop. */
 .vn4 .vn4-cg{inset:0!important;top:0!important;bottom:0!important;left:0!important;right:0!important}
 .vn4 .vn4-cg img,.vn4 .vn4-cg-actor img,.vn4 .vn4-cg-pov img,.vn4 .vn4-cg-wide img,.vn4 .vn4-cg-insert img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center center!important;mask-image:none!important;-webkit-mask-image:none!important;filter:none!important;transform:none!important}
+/* ADV V4.1: quiet stage HUD and legible, translucent subtitles. */
+body[data-panel=story] .topbar{background:linear-gradient(180deg,#08091673,transparent)!important;box-shadow:none!important}
+body[data-panel=story] .topbar .logo-wrap{display:none!important}
+body[data-panel=story] .topbar .menu-button{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;border-radius:50%!important;background:#0b0b1b73!important}
+.vn4[data-mode=reading]>.mobile-sheet,.vn4[data-mode=reply]>.mobile-sheet,.vn4[data-mode=ending]>.mobile-sheet{background:linear-gradient(180deg,#111023a6,#0e0c1ed6 65%,#0d0a1df0)!important;border-top-color:#ffffff2b!important;backdrop-filter:blur(3px)!important;-webkit-backdrop-filter:blur(3px)!important}
+.vn4 .mobile-text .line p{text-shadow:0 1px 2px #000a}
+.vn4 .vn4-inspect-target{left:47%;right:11%;top:26%;height:35%;justify-content:flex-end!important;align-items:end!important}
+.vn4 .vn4-inspect-target span{font-size:11px!important;padding:5px 12px!important;background:#10101f9e!important;transform:none!important}
+.vn4[data-mode=decision] .vn4-chapter{opacity:.25}
