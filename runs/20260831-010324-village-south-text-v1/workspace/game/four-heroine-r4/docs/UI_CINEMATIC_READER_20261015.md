@@ -1,42 +1,48 @@
-# v4.12 UI-only cinematic reader | Design and QA contract
+# Mobile visual-novel reader | Design and QA contract
 
-Baseline: PR #9 source HEAD `df09a225a2d96ea371587f7f503d7d04065f8330`. This branch changes presentation only; **story, engine, choices, IDs, effects, schema and story hash are out of scope**.
+Baseline for this correction: PR #17 source HEAD `6488938fcedfd7fd7e2f2872f3151cd07231cf1b`. This branch changes presentation only. Canonical story text, engine choices, IDs, effects, endings and save-command history remain protected.
 
-## Root-cause audit (source-verified, not a fresh device run)
-- Previously `paginate()` produced pages only for `ENTRY_WAKE`; most other scenes and choices entered one scrolling `.vn-scroll`.
-- Previous reader permanently occupied 63% of viewport, with a separately scrolling bottom dock.
-- Reader-expansion burdened normal play; portrait often only became decorative.
-- `semanticGroups` are navigation only and do not resolve the 16 unfinished genuine two-stage decisions (Issue #3).
-- This implementation preserves the fixed first 28 beats / 7 advances and the first `canon/rescue/investigate` fork.
+## Why the previous reader was rejected
 
-## Direction selection
-A — fixed full-bleed scene + variable dialogue layer (chosen): stronger portrait focus, less page-scrolling, compatible with current canonical command engine. B — long webtoon-style vertical frames (rejected): simpler but too similar to scrolling fiction and leaves cast as decoration.
+The earlier contract was too close to a scrolling fiction reader: it allowed 1-3 turns on one page, grouped the 28 opening beats into seven advances, and retained expand/inner-scroll fallbacks. Those rules made the screen text-dominant and let engineering tests dictate the reading rhythm.
 
-## Interaction contract
-1. Ordinary speech and narration: 1–3 coherent turns or ~205 characters per presented beat; short scenes do not acquire spurious gates. A long canonical text row can be presentation-sliced at sentence boundaries; engine row IDs and text are never edited.
-2. Tap noninteractive scene/dialogue to advance only when the currently displayed page allows it; never tap-to-select. Existing visible Next control remains for motor accessibility and QA.
-3. Inner voice: a low-contrast intimate mode; isolated short emotional pause when a B-speaker line ends in an expressive mark. No timed auto-advance.
-4. Decisions: independent larger layout, choices appear only after all mandatory beats. Do not change number or identity of engine-enabled actions; overflow choice categories remain navigation only.
-5. Replies: separate feedback mode, before next consequential action.
-6. Large type, short viewport and safe areas: adjust dialogue proportions by mode; scroll inside a panel only when text exceeds physical height, and do not hide accessible actions.
-7. History, rewind, migratable localStorage, back-ups and command replays remain untouched. `ui.page` continues to mean reading position, not a story command.
-8. First fork: seven Next clicks stay stable for existing saved reading progress/tests; no early fork exposure.
-9. Other routes: all 228 canonical scenes still use the same renderer and interpreter. No static-scene substitution.
+Those rules are removed. Old tests must migrate to the mobile-VN contract below; grouped dialogue must never be restored merely to recover a historical click count.
 
-## Fresh QA to require
-- Playwright native HTTP on exact new HEAD: intro all three forks at 320×568 / 360×780 / 375×812 / 390×844 / 430×932, large font, short text and dialogue, long multi-page text, accidental scroll vs tap, choice guards, menu and history, reload, migration, four solo romance routes and group route.
-- `npm run verify`, root `pnpm verify`, baseline existing native browser tests and QA artifact review.
-- Real iOS Safari/Android Chrome manual test and independent human blind play remain NOT_RUN.
-- CI generated-asset integrity: changes to UI JS/CSS require regenerating and committing the canonical play/index/runtime/build-meta/default index output. Until this has completed and fresh CI passes, **this branch is a draft, not an approved player build**.
+## Hard interaction contract
 
-## Safe editorial integration
-Editorial PR owns `data/STORY.json`, text hashes and story artifacts. UI PR owns `tools/preview-ui.js`, `tools/vn.css`, interaction-only tests and this document.
-After editorial HEAD freezes, merge/rebase UI sources onto that exact editorial HEAD, regenerate generated output only once from the final `STORY.json`, and verify SHA across entrypoints, saved-game migration, mandatory 28 beats, all three branches and CI. No merge to main or release without a separate user decision.
+1. **One source turn at a time.** Normal play displays at most one authored speaker/turn in the dialogue sheet. Prior turns disappear instead of accumulating into a transcript.
+2. **Long lines continue, never scroll.** If one person's turn cannot fit, split it at measured grapheme/sentence boundaries. Pressing “继续” shows the remaining part with the same speaker. The source row and canonical text are not rewritten.
+3. **Small bottom sheet.** On normal portrait phones the whole dialogue sheet, including speaker, text, Continue and safe area, targets 25% of the viewport. Large type or very short screens may use up to one third. It must never exceed one third.
+4. **No inner scrolling or reader expansion in normal play.** Do not shrink text to make a paragraph fit, clip legal text, or offer an “expand novel panel” escape hatch. Paginate instead.
+5. **Choices are separate from dialogue.** Consequential actions render above the dialogue sheet. If many legal actions cannot fit, presentation-only option paging/category navigation is allowed; it must not consume a story command or hide an action.
+6. **Narration should become staging where safe.** Facts that can be shown by an existing background, portrait, prop, label, action or reaction should be represented visually. Visual replacements are hash-guarded and must retain accessible source descriptions. Unconverted narration remains losslessly paginated until it receives deliberate directing.
+7. **No timed auto-advance.** Reading advances only by explicit player input. Touching noninteractive stage/dialogue may advance where already supported, but must never select an option.
+8. **Save compatibility follows source position.** New saves store source-row/grapheme anchors. Historical grouped-page cursors resume at the beginning of their current scene rather than guessing a new page and accidentally skipping text.
+9. **History remains available outside normal play.** A menu/history surface can show prior text; the normal gameplay surface must not become a scrollable transcript.
+10. **Canonical decisions remain canonical.** The 16 genuine two-stage narrative decisions stay engine-owned. UI grouping/paging must never replace them with fake front-end choices.
 
-## Evidence-driven second UI pass (2026-10-15)
-Fresh Chromium screenshots exposed two important shortcomings despite passing the first regression: on the 320px first decision the actress was entirely behind the options; on the seven preliminary reading pages (before the first fork) roughly 300px of required text per page was hidden in a nested scroll container.
-- Decision mode now compacts only UI explanatory option copy and repositions the existing portrait, keeping all three actual actions at >=44px touch height and the ending causal beat visible. At 320px the main heroine's face remains visible above the reading sheet.
-- Reading mode no longer repeats the heading/progress card inside the body. The canonical story rows are still rendered word for word. The controller measures the actual current beat and adjusts the sheet; normal-size reading can see the whole current prologue page (seven advances for 28 beats) without swiping, across 320/360/375/390/430px widths.
-- `tools/test-vn-cinematic.py` guards those properties in real HTTP Chromium, including a 320px large-font first fork and dynamic-height relayout. The prior v4.8 geometry test remains in CI as an independent gate.
-- At 320×568, large-font reading can exceed the physically available text area; the existing explicit expand/inner-scroll control remains available and the reader must not clip or silently discard legal canonical text.
-- GitHub Actions generates and commits only `index.html`, `play.html`, `runtime.mjs`, `repository-index.html`, `build-meta.json` and the default game index from the protected story hash. Never backport these files over a newer editorial story build; regenerate after the story HEAD is selected.
+## Opening directing pass
+
+The first correction includes hash-guarded visual presentation for selected opening beats and first-fork replies: phone/novel evidence, blackout, backstage wake-up, ID badge, venue placard, piano cue, character reveal, physical pain/control console, remembered USB location, standoff, handover form and obtained/evidence USB states.
+
+This is **not** a claim that all narration has been converted to final art. It is the start of a scene-by-scene directing pass. Existing opaque RGB character art is treated as full-frame illustration rather than pretending it is a transparent cutout.
+
+## Acceptance contract
+
+For 320×568, 360×780, 375×812, 390×844 and 430×932 portrait layouts, plus large type and short-height cases:
+
+- each reading page has at most one visible text block/speaker;
+- the dialogue text area has no hidden vertical overflow and cannot be scrolled;
+- normal portrait dialogue sheet is <= 1/4 viewport; every supported mode is <= 1/3;
+- all 28 authored opening source beats are traversed in order before the first `canon/rescue/investigate` choice appears;
+- long turns preserve all source characters and speaker identity across continuation pages;
+- choices remain >=44px touch targets and all enabled actions stay reachable;
+- viewport/font changes preserve the current source turn;
+- old saves never interpret historical grouped page numbers as new single-turn indices;
+- story hash, engine, choice history and endings remain unchanged.
+
+Engineering browser acceptance is not a substitute for physical-phone or human-play acceptance. Real iOS/Android devices, independent adult blind play, final commercial art rights and platform/IAA release remain separate gates.
+
+## Research boundary
+
+This contract is driven by the user's explicit mobile-VN requirements and by public visual-storytelling references. Public store creatives or official directing docs do **not** prove exact competitor client ratios or overflow behavior, and must not be described as hands-on competitor-client testing.
