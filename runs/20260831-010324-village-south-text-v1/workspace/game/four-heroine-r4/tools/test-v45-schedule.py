@@ -36,6 +36,10 @@ for(const prefix of arr){
   const choices=renderScene(s,DATA).choices.filter(o=>o.enabled).map(o=>o.id);
   if(!seen.has(choices.join('|'))){seen.add(choices.join('|'));maxReal=Math.max(maxReal,choices.length)}
   state=s;phase='scene';page=0;choicePage=0;panel='story';render();
+  // Single-turn mobile reading intentionally keeps choices hidden until every
+  // authored turn in this scene has been presented. This fixture tests choice
+  // navigation only, so move the presentation cursor to the last reading page.
+  page=Math.max(0,paginate(getView().body).length-1);render();
   const displayed=branch(0);
   if(displayed.length!==choices.length||new Set(displayed).size!==choices.length||displayed.some(id=>!choices.includes(id)))throw Error('lost or duplicated '+JSON.stringify({expected:choices,actual:displayed}));
   visited++;
