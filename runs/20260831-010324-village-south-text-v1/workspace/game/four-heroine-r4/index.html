@@ -510,6 +510,9 @@ body[data-panel=story] .mobile-vn .mobile-dock{max-height:none!important;min-hei
 .mobile-vn .mobile-dock .next{min-height:44px!important;height:44px!important;min-width:96px;width:auto!important;margin:0!important;padding:8px 4px 8px 20px!important;background:transparent!important;color:#f3bad5!important;border:0!important;box-shadow:none!important;font-size:14px!important;line-height:28px!important;text-align:right}
 .mobile-vn .mobile-dock .next:after{content:' ▸';font-size:13px}
 .mobile-vn .mobile-prompt{font:500 13px/44px system-ui;color:#eab8d1}
+.mobile-vn[data-mode=decision]>.mobile-sheet{grid-template-rows:0 0 calc(44px + var(--mobile-safe))!important;padding:6px 20px!important;background:linear-gradient(180deg,#171120d9,#19101aef)!important}
+.mobile-vn[data-mode=decision]>.mobile-sheet .mobile-speaker,.mobile-vn[data-mode=decision]>.mobile-sheet .mobile-text{display:none!important}
+.mobile-vn[data-mode=decision]>.mobile-sheet .mobile-dock{align-items:center;justify-content:flex-end}
 .mobile-vn[data-beat-kind=visual]>.mobile-sheet{background:linear-gradient(transparent,#160c23a0)!important;border-top:0!important;pointer-events:none}
 .mobile-vn[data-beat-kind=visual] .mobile-dock{pointer-events:auto}
 .mobile-vn[data-beat-kind=thought] .mobile-speaker{color:#c4b9e7}
@@ -2089,7 +2092,8 @@ storyHTML=function(){
  const stageImage=['backstage','theatre','stage','control','corridor'].includes(set)?' style="background-image:url(\''+SCENERY+'\')"':'';
  const options=decision||cp.view.terminal?'<div class="vn-dock mobile-options" role="group" aria-label="选择你的行动">'+controlsHTML+'</div>':'';
  const footer=decision?'<span class="mobile-prompt">你会怎么做？</span>':cp.view.terminal?'':controlsHTML;
- const style='--mobile-panel:'+m.height+'px;--mobile-font:'+m.font+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
+ const panelHeight=decision?Math.ceil(56+m.safe):m.height;
+ const style='--mobile-panel:'+panelHeight+'px;--mobile-font:'+m.font+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  return '<div class="vn-frame mobile-vn" style="'+style+'" data-mode="'+mode+'" data-beat-kind="'+kind+'" data-shot="'+esc(b._shot)+'" data-source="'+esc(b._sourceId)+'" data-reader-key="'+esc(cp.view.id+':'+page)+'">'+
  '<section class="vn-stage mobile-stage" data-set="'+esc(set)+'"><div class="vn-scenery mobile-scenery"'+stageImage+' aria-hidden="true"></div>'+art+
  '<div class="mobile-scene-name">'+esc(heading)+'</div><div class="mobile-prop" '+(b._shot?'role="img" aria-label="'+esc(b._sourceText)+'"':'aria-hidden="true"')+'>'+mobileProp(b._shot)+'</div></section>'+options+
