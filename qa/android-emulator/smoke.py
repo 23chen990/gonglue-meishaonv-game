@@ -74,19 +74,33 @@ def ensure_chrome():
         raise RuntimeError("CHROME_NOT_INSTALLED_IN_AVD: cannot claim Android Chrome testing")
     adb("shell", "am", "start", "-W", "-a", "android.intent.action.VIEW",
         "-d", URL, "-p", "com.android.chrome", timeout=45)
-    for attempt in range(4):
+    # Cold AVD can present a Pixel Launcher ANR over Chrome onboarding.
+    # Dismiss OS modal first; then proceed through Chrome's documented
+    # first-run choices on this ephemeral test-only device.
+    for attempt in range(12):
         time.sleep(3)
         try:
-            tree = dump_xml("chrome-launch-setup.xml")
-            if adb_tap_labeled(tree, ["accept & continue", "use without an account",
-                                      "no thanks", "not now", "continue without",
-                                      "skip"]):
+            tree = dump_xml("chrome-launch-setup-%02d.xml" % attempt)
+            if adb_tap_labeled(tree, ["wait"]):
+                print("Dismissed transient OS application-not-responding prompt", flush=True)
                 continue
+            if adb_tap_labeled(tree, ["use without an account", "accept & continue",
+                                      "continue without", "no thanks", "not now",
+                                      "skip", "got it", "continue as guest"]):
+                print("Chrome first-run prompt completed", flush=True)
+                continue
+            break
         except Exception as ex:
             print("Chrome welcome UI inspection:", repr(ex), flush=True)
-        break
+            break
     adb("shell", "am", "start", "-W", "-a", "android.intent.action.VIEW",
         "-d", URL, "-p", "com.android.chrome", timeout=45)
+    try:
+        sockets=adb("shell", "cat", "/proc/net/unix", timeout=20)
+        (OUT/"android-unix-sockets.txt").write_text(
+            "\n".join(s for s in sockets.splitlines() if "chrome" in s.lower())+"\n")
+    except Exception as ex:
+        print("Chrome socket diagnostics unavailable:", repr(ex), flush=True)
 
 
 def main():
