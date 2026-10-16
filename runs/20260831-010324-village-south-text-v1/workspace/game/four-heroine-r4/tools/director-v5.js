@@ -31,7 +31,7 @@ for(const [id,[hash,kind,speech,speaker]] of Object.entries(ADV5_LINES))mobileSh
 paginate=function(rows){
  const m=mobileMetrics(),opening=phase==='scene'&&state.current==='ENTRY_WAKE'&&rows.length>=25&&rows[0]?.id==='ENTRY_WAKE.intro.001';
  const displayed=opening?rows.filter(r=>ADV5_OPENING.has(r.id)):rows;
- const signature=displayed.map(b=>[b.id,b.speaker,b.text,b.textHash].join('\0')).join('\1');
+ const signature=displayed.map(b=>[b.id,b.speaker,b.text,b.textHash].join(String.fromCharCode(0))).join(String.fromCharCode(1));
  if(mobilePageCache?.signature===signature&&mobilePageCache.key===m.key)return mobilePageCache.pages;
  const pages=displayed.flatMap((r,i)=>mobileSplit(r,m,i).map(x=>[x]));
  if(!pages.length)pages.push([{speaker:'U',text:'',_row:0,_sourceId:'empty',_start:0,_end:0}]);
