@@ -254,28 +254,33 @@ with sync_playwright() as play:
   ctx,page=open_game(390,844)
   try:
    page.wait_for_function("()=>document.querySelector('.adv6')?.dataset.mediaState==='ready'")
-   assert page.locator('.adv6').get_attribute('data-art-tier')=='preview-legacy'
-   assert page.locator('.adv6-stage img').count()==1
-   assert page.locator('[data-page-next]').count()==1
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='preview-legacy','source CG tier incorrectly approved'
+   assert page.locator('.adv6-stage img').count()==1,'single-frame CG stage has unexpected image layers'
+   assert page.locator('[data-page-next]').count()==1,'initial continue control absent'
    page.locator('[data-page-next]').tap()
    source=page.locator('.adv6').get_attribute('data-source')
-   assert source=='ENTRY_WAKE.intro.007',source
+   assert source=='ENTRY_WAKE.intro.007',('badge source incorrect',source)
    page.locator('[data-adv6-inspect]').tap()
-   assert page.locator('.adv6-modal [role="dialog"]').count()==1
+   assert page.locator('.adv6-modal [role="dialog"]').count()==1,'badge modal did not open'
    page.keyboard.press('Escape')
-   assert page.locator('.adv6-modal').count()==0
-   assert page.locator('[data-adv6-inspect]').evaluate('(x)=>document.activeElement===x')
-   assert page.locator('.adv6').get_attribute('data-source')==source
+   assert page.locator('.adv6-modal').count()==0,'Escape left the badge modal mounted'
+   focused=page.evaluate("()=>({active:document.activeElement?.outerHTML.slice(0,250),expected:document.querySelector('[data-adv6-inspect]')?.outerHTML.slice(0,250)})")
+   assert page.locator('[data-adv6-inspect]').evaluate('(x)=>document.activeElement===x'),('badge focus not restored',focused)
+   assert page.locator('.adv6').get_attribute('data-source')==source,('close advanced story unexpectedly',source)
    page.locator('[data-page-next]').tap()
    page.locator('[data-page-next]').tap()
-   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012'
+   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012',('pianist scene did not advance to expected source',page.locator('.adv6').get_attribute('data-source'))
    assert page.locator('.adv6').get_attribute('data-camera')=='stage',('offscreen pianist falsely shown as on-screen actor')
-   assert page.locator('.mobile-speaker').inner_text()=='琴台方向的男声'
-   assert page.locator('.adv6-stage img').count()==1
+   assert page.locator('.mobile-speaker').inner_text()=='琴台方向的男声',('voice label mismatch',page.locator('.mobile-speaker').inner_text())
+   assert page.locator('.adv6-stage img').count()==1,'extra image layer'
+   # Wait for the genuine current CG load before simulating an asset failure:
+   # Chrome can finish decoding data-URI frames later than WebKit.
+   page.wait_for_function("()=>{let f=document.querySelector('.adv6'),i=document.querySelector('.adv6-scene-photo');return f?.dataset.mediaState==='ready'&&i?.complete&&i?.naturalWidth>0}")
    page.locator('.adv6-scene-photo').dispatch_event('error')
-   assert page.locator('.adv6').get_attribute('data-media-state')=='failed'
-   assert page.locator('.adv6-media-error').is_visible()
-   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012'
+   state=page.locator('.adv6').get_attribute('data-media-state')
+   assert state=='failed',('image failure state missing',state)
+   assert page.locator('.adv6-media-error').is_visible(),('missing-image fallback not visible',state)
+   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012','image error advanced story'
    return {'offscreenSpeaker':'琴台方向的男声','realSingleScene':True,'modalFocusRestore':True,'missingArtworkHonest':True,'artTier':'preview-legacy'}
   finally:ctx.close()
  record('V63_OFFSCREEN_OPTICS_MODAL_AND_MEDIA_ERROR',v63_optical_shot_modal_and_missing_art)
