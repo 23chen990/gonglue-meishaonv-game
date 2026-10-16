@@ -43,7 +43,12 @@ with sync_playwright() as pw:
  try:
   ctx,p,errors=page(browser)
   try:
-   for i in range(7):p.locator('[data-page-next]').tap()
+   for i in range(120):
+    if p.locator('[data-choice="canon"]').count():break
+    assert p.locator('[data-page-next]').count()==1,('opening reader stalled',i)
+    assert p.locator('.mobile-text .line').count()<=1
+    p.locator('[data-page-next]').tap()
+   else:raise AssertionError('opening choices never appeared')
    p.locator('[data-choice="canon"]').tap()
    base=json.loads(p.evaluate('(k)=>localStorage.getItem(k)',KEY));assert len(base['commands'])==1
    assert not errors
