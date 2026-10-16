@@ -76,3 +76,10 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - Controlled generation produced head `8a782c63f299767133f80b286f829e745300412b` for source/CG/UI update; native browser PR regression must run again against the generated exact-head plus this documentation-only trigger commit.
 - Added explicit regression for changing font from the menu while preserving opening source-row cursor, opening badge close without story advance, and correct scene CG on the canonical first decision.
 - This note does not modify story, engine, image bytes, dialogue code, save format or generated player. Do not claim physical-phone playtesting or measured 30-second retention.
+
+### ADV V5 exact-head acceptance (2026-10-16)
+
+- Source at `579fb73ce01b1947c3b20ed6de49abde0547c0ef` rebuilt successfully via the protected game client generator; final generated player HEAD `ddc467a290914260b4d2c578e6da9b0d2575d019`.
+- This documentation-only commit re-triggers native HTTP Chromium/WebKit regression against the **generated game**, not a stale source-only commit.
+- Verify opening 6 reading taps, one intact full-shot CG per frame, no translucent character composite, three original first-action IDs, 320px + large type, menu font cursor, save migration and end-to-end routes.
+- No canonical story, engine, image, HTML or CSS bytes are changed by this QA trigger. No physical-phone or user-retention claims are made.
