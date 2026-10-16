@@ -96,8 +96,25 @@ with sync_playwright() as pw:
      raw=json.loads(page.evaluate('(key)=>localStorage.getItem(key)',KEY))
      assert len(raw['commands'])==1 and raw['commands'][0]['from']=='ENTRY_WAKE' and raw['commands'][0]['id']==fork
      assert raw['ui']['firstNight']['finished']
+     # A canonical reply may appear before the next scene. When it ends,
+     # the playable director must resume, not drop into a three-paragraph novel.
+     for _ in range(45):
+      if page.locator('.io-follow').count():break
+      if page.locator('[data-page-next]').count():page.locator('[data-page-next]').first.tap()
+      elif page.locator('[data-reply-next]').count():page.locator('[data-reply-next]').first.tap()
+      else:raise AssertionError(('post-fork lost interactive controls',fork,page.locator('#app').inner_text()[-400:]))
+     else:raise AssertionError(('post-fork dialogue stalled',fork))
+     assert page.locator('.io-follow .line').count()==1
+     assert page.locator('.io-follow .mobile-text').evaluate('x=>x.scrollHeight<=x.clientHeight+2')
+     if width==390:page.screenshot(path=str(OUT/(name+'-follow-390.png')))
+     second={'canon':'refuse','rescue':'t','investigate':'camera'}[fork]
+     assert page.locator('[data-if-pick="'+second+'"]').count()==1,('missing playable post-fork choice',fork,second)
+     page.locator('[data-if-pick="'+second+'"]').first.tap()
+     raw=json.loads(page.evaluate('(key)=>localStorage.getItem(key)',KEY))
+     assert len(raw['commands'])==2 and raw['commands'][1]['from']=={'canon':'ENTRY_CLUES','rescue':'COLD','investigate':'ENTRY_MEMORY'}[fork]
+     assert raw['commands'][1]['id']==second
      assert not errors,errors
-     return {'viewport':f'{width}x{height}','personalResponse':tone,'relationshipApproach':ally,'firstCanonicalFork':fork,'oneRealCommand':True}
+     return {'viewport':f'{width}x{height}','personalResponse':tone,'relationshipApproach':ally,'firstCanonicalFork':fork,'postFork':second,'canonicalCommands':len(raw['commands'])}
     finally:ctx.close()
    verify(f'{name}-{width}x{height}',scene_test)
   browser.close()
