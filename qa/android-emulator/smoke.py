@@ -77,8 +77,8 @@ def ensure_chrome():
     # Cold AVD can present a Pixel Launcher ANR over Chrome onboarding.
     # Dismiss OS modal first; then proceed through Chrome's documented
     # first-run choices on this ephemeral test-only device.
-    for attempt in range(12):
-        time.sleep(3)
+    for attempt in range(18):
+        time.sleep(4)
         try:
             tree = dump_xml("chrome-launch-setup-%02d.xml" % attempt)
             if adb_tap_labeled(tree, ["wait"]):
@@ -89,10 +89,16 @@ def ensure_chrome():
                                       "skip", "got it", "continue as guest"]):
                 print("Chrome first-run prompt completed", flush=True)
                 continue
-            break
+            if any("继续阅读" in node.attrib.get("text","") or
+                   "继续阅读" in node.attrib.get("content-desc","")
+                   for node in tree.iter("node")):
+                print("Chrome has reached real H5", flush=True)
+                break
         except Exception as ex:
-            print("Chrome welcome UI inspection:", repr(ex), flush=True)
-            break
+            print("Chrome UI not ready yet, waiting:", repr(ex), flush=True)
+        if attempt in (7, 13):
+            adb("shell", "am", "start", "-a", "android.intent.action.VIEW",
+                "-d", URL, "-p", "com.android.chrome", timeout=45, check=False)
     adb("shell", "am", "start", "-W", "-a", "android.intent.action.VIEW",
         "-d", URL, "-p", "com.android.chrome", timeout=45)
     try:
