@@ -64,3 +64,9 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - The decision-beat correction collapses the empty dialogue sheet so choices return screen area to character/scenery presentation.
 - This note intentionally changes no story, engine, save schema, choice semantics, or generated runtime. It exists so the PR workflow validates the post-generation exact head rather than relying on a pre-generation source commit.
 - Acceptance remains engineering-only; physical-device and human-play gates are separate.
+
+### Compact direct-choice exact-head trigger
+
+- Generated head: `1b14457aa6116b3141c472638152136abf022847`.
+- Three direct choices are flattened out of legacy reader wrappers before fit measurement; 320x568 must keep all three visible without presentation paging.
+- This line changes no runtime/story/engine and exists only to trigger exact-head PR acceptance after generated artifacts were committed.
