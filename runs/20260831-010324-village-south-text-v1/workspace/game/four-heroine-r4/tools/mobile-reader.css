@@ -21,7 +21,7 @@ body[data-panel=story] .mobile-vn .mobile-dock{max-height:none!important;min-hei
 .mobile-vn[data-beat-kind=visual]>.mobile-sheet{background:linear-gradient(transparent,#160c23a0)!important;border-top:0!important;pointer-events:none}
 .mobile-vn[data-beat-kind=visual] .mobile-dock{pointer-events:auto}
 .mobile-vn[data-beat-kind=thought] .mobile-speaker{color:#c4b9e7}
-.mobile-vn .mobile-options{position:absolute;z-index:9;left:20px;right:20px;bottom:calc(var(--mobile-panel) + 18px);max-height:calc(var(--mobile-vh) - var(--mobile-panel) - 130px);overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.mobile-vn .mobile-options{position:absolute;z-index:9;left:20px;right:20px;bottom:calc(var(--mobile-panel) + 18px);max-height:calc(var(--mobile-vh) - var(--mobile-panel) - 130px);overflow:hidden!important;display:flex;flex-direction:column;gap:8px;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overscroll-behavior:none!important;scrollbar-width:none!important}
 .mobile-vn .mobile-options .choices,.mobile-vn .mobile-options .pager{margin:0!important;padding:0!important;display:grid!important;gap:8px!important}
 .mobile-vn .mobile-options button{min-height:48px!important;width:100%!important;font-size:15px!important;line-height:1.45!important;padding:10px 12px!important;background:#24182eeb!important;border:1px solid #c998b681!important;border-radius:9px!important;color:#fff1f8!important;text-align:left!important;box-shadow:0 4px 20px #11071b36}
 .mobile-vn .mobile-options .vn-group{display:flex;align-items:center;justify-content:space-between}
@@ -69,3 +69,5 @@ body[data-panel=story] .notice{z-index:30;max-height:30dvh;overflow:auto}
 @media(prefers-reduced-motion:no-preference){.mobile-vn .mobile-prop{animation:mobile-reveal .18s ease-out}.mobile-vn[data-shot=blackout] .mobile-falling-phone{animation:mobile-fall .65s ease-out both}.mobile-vn[data-shot=wake] .mobile-scenery{animation:mobile-focus .55s ease-out both}}
 @keyframes mobile-reveal{from{opacity:.35}to{opacity:1}}@keyframes mobile-fall{to{transform:translateY(50px) rotate(45deg);opacity:.12}}@keyframes mobile-focus{from{filter:blur(8px)}to{filter:blur(0)}}
 @media(prefers-reduced-motion:reduce){.mobile-vn *{animation:none!important;transition:none!important}}
+
+.mobile-vn .mobile-options.mobile-options-paged{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
