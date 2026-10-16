@@ -129,6 +129,13 @@ with sync_playwright() as pw:
   finish_beats(pg);pick(pg,'rescue');finish_beats(pg);pick(pg,'t')
   assert current(pg)=='OP_SETTLE'
   presented=[]
+  # The preceding meaningful choice may have an authored reply. Consume that
+  # reply first; only then audit the OP_SETTLE bridge reading sequence.
+  for _ in range(24):
+   if not pg.locator('[data-reply-next]').count():break
+   presented.append(pg.locator('.mobile-text').inner_text())
+   assert not pg.locator('[data-choice="continue"]').count(),'internal continue leaked during reply'
+   touch(pg,'[data-reply-next]')
   for _ in range(120):
    presented.append(pg.locator('.mobile-text').inner_text())
    assert not pg.locator('[data-choice="continue"]').count(),'internal continue leaked into player choices'
