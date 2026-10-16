@@ -114,7 +114,7 @@ function auditBaseline() {
 }
 function auditActivePreview(){
  const names=['crew','badge','piano','singer','lin','gu','usb','usbHeld'];
- return names.map(name=>auditAsset({name,assetPath:`assets/v6-preview/${name}.webp`,status:'preview-legacy',minDeliveryWidth:1536,minDeliveryHeight:2400,aspectMin:.57,aspectMax:.64,reviews:{visual:'pending',inGame:'pending',rights:'pending'}}));
+ return names.map(name=>auditAsset({name,assetPath:`assets/v6-preview/${name==='crew'||name==='badge'?name+'-single-cg':name}.webp`,status:(name==='crew'||name==='badge')?'cg-candidate':'preview-legacy',minDeliveryWidth:1536,minDeliveryHeight:2400,aspectMin:.57,aspectMax:.64,reviews:{visual:'pending',inGame:'pending',rights:'pending'}}));
 }
 function auditManifest() {
   const file=resolveSafe(manifestPath);

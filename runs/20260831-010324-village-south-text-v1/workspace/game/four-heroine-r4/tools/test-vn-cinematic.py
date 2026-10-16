@@ -254,7 +254,7 @@ with sync_playwright() as play:
   ctx,page=open_game(390,844)
   try:
    page.wait_for_function("()=>document.querySelector('.adv6')?.dataset.mediaState==='ready'")
-   assert page.locator('.adv6').get_attribute('data-art-tier')=='preview-legacy','source CG tier incorrectly approved'
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='cg-candidate','opening CG candidate not active'
    assert page.locator('.adv6-stage img').count()==1,'single-frame CG stage has unexpected image layers'
    assert page.locator('[data-page-next]').count()==1,'initial continue control absent'
    page.locator('[data-page-next]').tap()
@@ -281,9 +281,30 @@ with sync_playwright() as play:
    assert state=='failed',('image failure state missing',state)
    assert page.locator('.adv6-media-error').is_visible(),('missing-image fallback not visible',state)
    assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012','image error advanced story'
-   return {'offscreenSpeaker':'琴台方向的男声','realSingleScene':True,'modalFocusRestore':True,'missingArtworkHonest':True,'artTier':'preview-legacy'}
+   return {'offscreenSpeaker':'琴台方向的男声','realSingleScene':True,'modalFocusRestore':True,'missingArtworkHonest':True,'artTier':'cg-candidate'}
   finally:ctx.close()
  record('V63_OFFSCREEN_OPTICS_MODAL_AND_MEDIA_ERROR',v63_optical_shot_modal_and_missing_art)
+
+
+ def v7_opening_native_cg_dimensions():
+  ctx,page=open_game(390,844)
+  try:
+   page.wait_for_function("()=>{let i=document.querySelector('.adv6-scene-photo');return i?.complete&&i.naturalWidth>0}")
+   opener=page.locator('.adv6-scene-photo').evaluate("(i)=>[i.naturalWidth,i.naturalHeight]")
+   assert opener==[941,1672],('opening still uses obsolete near-square crew image',opener)
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='cg-candidate'
+   page.locator('[data-page-next]').tap()
+   page.wait_for_function("()=>{let i=document.querySelector('.adv6-scene-photo');return i?.complete&&i.naturalWidth>0}")
+   badge=page.locator('.adv6-scene-photo').evaluate("(i)=>[i.naturalWidth,i.naturalHeight]")
+   assert badge==[941,1672],('badge still uses obsolete near-square prop image',badge)
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='cg-candidate'
+   assert page.locator('.adv6-stage img').count()==1
+   assert page.locator('[data-adv6-inspect]').count()==1
+   page.screenshot(path=str(D/'v7-new-badge-full-shot.png'))
+   return {'opener':opener,'badge':badge,'singleCg':True,'artTier':'cg-candidate','notApproved2K':True}
+  finally:ctx.close()
+ record('V7_OPENING_AND_BADGE_SINGLE_CG_NATIVE_SIZE',v7_opening_native_cg_dimensions)
+
 
  browser.close()
 REPORT['status']='PASS' if all(c['status']=='PASS' for c in REPORT['cases']) else 'FAIL'

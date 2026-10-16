@@ -11,7 +11,7 @@ const ui=baseUI.replace('load();render();',read('tools/mobile-reader.js')+'\n'+r
 const portraitManifest=Object.fromEntries(['t','s','l','g'].map(c=>[c,'data:image/webp;base64,'+fs.readFileSync(new URL('assets/portraits/'+c+'.webp',root)).toString('base64')]));
 const scenery='data:image/webp;base64,'+fs.readFileSync(new URL('assets/scenes/backstage.webp',root)).toString('base64');
 const images='\nconst PORTRAITS='+JSON.stringify(portraitManifest)+';\nconst SCENERY='+JSON.stringify(scenery)+';\n';
-const v6ArtFiles={crew:'crew.webp',badge:'badge.webp',lin:'lin.webp',gu:'gu.webp',usb:'usb.webp',usbHeld:'usbHeld.webp',piano:'piano.webp',singer:'singer.webp'};
+const v6ArtFiles={crew:'crew-single-cg.webp',badge:'badge-single-cg.webp',lin:'lin.webp',gu:'gu.webp',usb:'usb.webp',usbHeld:'usbHeld.webp',piano:'piano.webp',singer:'singer.webp'};
 const artV6='\nconst ADV6_ART_PACK='+JSON.stringify(Object.fromEntries(Object.entries(v6ArtFiles).map(([key,name])=>[key,'data:image/webp;base64,'+fs.readFileSync(new URL('assets/v6-preview/'+name,root)).toString('base64')]))).replaceAll('<','\\u003c')+';\n';
 const script=engine+'\n'+vars+images+artV6+meta+ui;
 if(script.includes('</script'))throw Error('Unescaped closing script in bundle');

@@ -3,7 +3,7 @@
  * No portrait cutouts, masks or feather composites. DATA and engine remain untouched.
  */
 const ADV6_MEDIA_FILES=Object.freeze({
- crew:'crew.webp',badge:'badge.webp',piano:'piano.webp',
+ crew:'crew-single-cg.webp',badge:'badge-single-cg.webp',piano:'piano.webp',
  lin:'lin.webp',gu:'gu.webp',singer:'singer.webp',
  usb:'usb.webp',usbHeld:'usbHeld.webp'
 });
@@ -19,13 +19,13 @@ const ADV6_CUTS=Object.freeze({
  'ENTRY_WAKE.intro.005':['5ec6ba33e4014c0c','crew','……你在叫我？','P'],
  'ENTRY_WAKE.intro.006':['747d9712034ff332','crew','许照啊！你不是去找盘了吗？','A'],
  'ENTRY_WAKE.intro.007':['c2f8e655544b9b3f','badge','许照？这不是我的名字……','P'],
- 'ENTRY_WAKE.intro.011':['7d202bbf705155d6','singer','后台能听见吗？这版我没排过……能帮我换回来吗？','T'],
+ 'ENTRY_WAKE.intro.011':['7d202bbf705155d6','stage-wide','后台能听见吗？这版我没排过……能帮我换回来吗？','T'],
  'ENTRY_WAKE.intro.012':['403e45897ece8106','stage-wide','映雪，跟着我的琴！后台，原版盘快点！','LU'],
  'ENTRY_WAKE.intro.015.l':['1fcd12a327ad111d','lin','别挡镜头。……你是新来的场务？','L'],
  'ENTRY_WAKE.intro.015.g':['1fcd12a327ad111d','gu','伴奏是谁确认的？这封邮件不是我发的。','G'],
  'ENTRY_WAKE.intro.025':['4c35bbdfe4a7730e','stage-wide','等等，这不是我刚看的小说吗？第七天替别人背锅的许照……现在是我。','B'],
  'ENTRY_WAKE.intro.026':['8c19f6181d538484','stage-memory','原版盘就在接线板下面。现在动手，也许结局就能改。','B'],
- 'ENTRY_WAKE.intro.028':['416aa34ad470571c','piano','还来得及。我必须马上决定。','P'],
+ 'ENTRY_WAKE.intro.028':['416aa34ad470571c','stage-wide','还来得及。我必须马上决定。','P'],
  'ENTRY_WAKE.r42.reply.canon.001':['3631bd70b4b82c24','piano','我先核对交接单，不能乱动设备。','P'],
  'ENTRY_WAKE.r42.reply.rescue.001':['42afa151967e603b','usbHeld','找到了！阿衡，帮她换回原版！','P'],
  'ENTRY_WAKE.r42.reply.investigate.001':['813b9fd1476bdca9','usbHeld','原版在我手里。错版和切换记录也得留住。','P'],
@@ -115,7 +115,7 @@ function adv6Speaker(b){
  if(b.speaker==='N'||b.speaker==='U')return '';
  if(sourceScene().id==='ENTRY_WAKE'){
   if(b.speaker==='A')return '戴耳机的工作人员';
-  if(b.speaker==='T')return '台上的女孩';
+  if(b.speaker==='T')return '台上女孩 · 话筒';
   if(b.speaker==='LU')return '琴台方向的男声';
  }
  return names[b.speaker]||mobileVoice(b);
@@ -148,7 +148,7 @@ storyHTML=function(){
  const inspect=isHeroOpening&&b._shot==='badge'&&media.key==='badge';
  const visual= '<div class="adv6-image" data-visual-key="'+esc(media.key)+'"><img class="adv6-scene-photo" src="'+media.url+'" alt="" loading="eager" draggable="false"></div>';
  const inspectButton=inspect?'<button class="adv6-inspect" data-adv6-inspect="badge" type="button" aria-label="仔细看工作牌">查看工作牌 <span aria-hidden="true">⌕</span></button>':'';
- return '<div class="vn-frame mobile-vn adv6" data-mode="'+mode+'" data-camera="'+esc(media.key)+'" data-art-tier="preview-legacy" data-beat-kind="'+(b._thought?'thought':b.speaker==='N'?'narration':'dialogue')+'" data-source="'+esc(b._sourceId)+'" data-reader-key="'+esc(cp.view.id+':'+page)+'" style="'+css+'">'+
+ return '<div class="vn-frame mobile-vn adv6" data-mode="'+mode+'" data-camera="'+esc(media.key)+'" data-art-tier="'+((media.key==='crew'||media.key==='badge')?'cg-candidate':'preview-legacy')+'" data-beat-kind="'+(b._thought?'thought':b.speaker==='N'?'narration':'dialogue')+'" data-source="'+esc(b._sourceId)+'" data-reader-key="'+esc(cp.view.id+':'+page)+'" style="'+css+'">'+
  '<section class="vn-stage mobile-stage adv6-stage" aria-label="剧情舞台">'+visual+'<div class="adv6-media-error" role="status">剧情图片暂时无法加载，请返回后重试。</div>'+'<div class="adv6-vignette" aria-hidden="true"></div>'+ (chapter?'<div class="adv6-chapter">'+esc(chapter)+'</div>':'')+inspectButton+'</section>'+dock+
  (decision?'<section class="vn-sheet mobile-sheet adv6-sheet adv6-sheet-hidden" aria-hidden="true"><div class="mobile-speaker"></div><div class="vn-scroll mobile-text"></div></section>':'<section class="vn-sheet mobile-sheet adv6-sheet" aria-label="当前对白"><div class="mobile-speaker adv6-speaker">'+esc(voice)+'</div><div class="vn-scroll mobile-text adv6-text" aria-live="polite" aria-atomic="true">'+
  (showText?'<div class="line" data-speaker="'+esc(b.speaker)+'" data-beat="'+esc(b._sourceId)+'"><p>'+esc(text)+'</p></div>':'')+'</div><div class="vn-dock mobile-dock adv6-dock">'+footer+'</div></section>')+
