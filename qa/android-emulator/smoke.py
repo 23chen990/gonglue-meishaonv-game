@@ -23,7 +23,7 @@ EXPECTED = "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93"
 URL = "http://10.0.2.2:8765/index.html"
 OUT = Path(os.environ.get("RUNNER_TEMP", "/tmp")) / "android-native-evidence"
 OUT.mkdir(parents=True, exist_ok=True)
-REPORT = {"scope": "Real Android 35 emulator, installed Chrome CDP, ADB simulator screenshots",
+REPORT = {"scope": "Real Android emulator (device version verified separately), Chrome CDP and ADB",
           "story_sha256": SHA, "cases": [], "status": "FAIL"}
 assert SHA == EXPECTED, "Refuse testing an unexpected canonical story."
 
@@ -161,7 +161,7 @@ def main():
         for _ in range(completed,7):
             btn = page.locator("[data-page-next]")
             assert btn.count() == 1, "Required prologue action hidden before the decision"
-            btn.tap()
+            btn.click()  # CDP on installed Android Chrome has no Playwright hasTouch context.
         assert not page.locator("[data-page-next]").count()
         options=page.locator(".vn-dock [data-choice]").evaluate_all(
             "(buttons)=>buttons.map(b=>({id:b.dataset.choice,height:b.getBoundingClientRect().height}))")
@@ -172,7 +172,7 @@ def main():
         page.screenshot(path=str(OUT / "02-chrome-cdp-decision.png"))
         REPORT["cases"].append({"name":"SEVEN_PAGES_AND_THREE_REAL_CHOICES","status":"PASS",
                                 "adb_native_tap":native_tap,"buttons":options})
-        page.locator('[data-choice="investigate"]').tap()
+        page.locator('[data-choice="investigate"]').click()
         save=json.loads(page.evaluate("(k)=>localStorage.getItem(k)",
                                       "gonglue:revision-r4.5-portrait:canonical"))
         assert [x["id"] for x in save["commands"]] == ["investigate"]
