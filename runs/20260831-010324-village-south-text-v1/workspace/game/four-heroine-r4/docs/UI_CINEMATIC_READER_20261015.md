@@ -46,3 +46,7 @@ Engineering browser acceptance is not a substitute for physical-phone or human-p
 ## Research boundary
 
 This contract is driven by the user's explicit mobile-VN requirements and by public visual-storytelling references. Public store creatives or official directing docs do **not** prove exact competitor client ratios or overflow behavior, and must not be described as hands-on competitor-client testing.
+
+### Exact-head generation rule
+
+Any mobile-reader source change must be followed by controlled regeneration of the committed standalone/default player. Final browser acceptance is valid only when it runs against the exact post-generation branch HEAD; a green test from a pre-generation commit cannot be reused.
