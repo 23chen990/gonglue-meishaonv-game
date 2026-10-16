@@ -18,6 +18,16 @@ def record(name,work):
   detail=work();REPORT['cases'].append({'name':name,'status':'PASS','detail':detail});print('PASS',name,flush=True)
  except Exception as exc:
   REPORT['cases'].append({'name':name,'status':'FAIL','error':repr(exc)});print('FAIL',name,repr(exc),flush=True)
+def visible_option_ids(page):
+ found=[]
+ for _ in range(12):
+  for x in page.locator('.mobile-options [data-choice]').evaluate_all('els=>els.map(x=>x.dataset.choice)'):
+   if x not in found:found.append(x)
+  nxt=page.locator('.mobile-options [data-mobile-options="1"]:not([disabled])')
+  if not nxt.count():break
+  nxt.tap()
+ return found
+
 def local_save(commands):
  return {'version':'bookside-revision-r4.3','storyHash':H,'commands':commands,'ui':{'phase':'scene','page':0,'choicePage':0,'large':False,'soundOn':False},'profile':{'endings':{},'bonuses':{},'readPages':[]}}
 with sync_playwright() as play:
@@ -56,16 +66,17 @@ with sync_playwright() as play:
     else:raise AssertionError(('opening reader stalled',w,h))
     assert len(set(source_ids))==27,(w,h,'all 28 opening source beats were not traversed in order',len(set(source_ids)))
     assert page.locator('.vn-frame').get_attribute('data-mode')=='decision'
-    assert page.locator('.vn-dock [data-choice]').count()==3
+    option_ids=visible_option_ids(page)
+    assert set(option_ids)=={'canon','rescue','investigate'},(w,h,option_ids)
     # The choice screen is a new interaction beat. Previous dialogue must not
     # remain as a transcript just to preserve the old reader layout.
     layout=page.evaluate("""()=>{
       const box=x=>x.getBoundingClientRect();
       const sheet=box(document.querySelector('.mobile-sheet'));
-      const dock=box(document.querySelector('.mobile-options'));
+      const dockEl=document.querySelector('.mobile-options'),dock=box(dockEl);
       const text=document.querySelector('.mobile-text'),portrait=document.querySelector('.mobile-portrait');
       const actor=portrait&&box(portrait);
-      const choices=[...dock.querySelectorAll('[data-choice]')].map(x=>{
+      const choices=[...dockEl.querySelectorAll('[data-choice]')].map(x=>{
         const r=box(x);return {height:r.height,visible:Math.max(0,Math.min(dock.bottom,r.bottom)-Math.max(dock.top,r.top))};
       });
       return {sheetHeight:sheet.height,inner:innerHeight,
@@ -166,6 +177,8 @@ with sync_playwright() as play:
     page.locator('[data-page-next]').first.tap()
    else:raise AssertionError('large-font opening reader stalled')
    assert len(set(source_ids))==27
+   option_ids=visible_option_ids(page)
+   assert set(option_ids)=={'canon','rescue','investigate'},option_ids
    page.wait_for_timeout(250)
    data=page.evaluate("""()=>{
     const text=document.querySelector('.mobile-text'),dock=document.querySelector('.mobile-options'),
@@ -178,7 +191,7 @@ with sync_playwright() as play:
    assert data['sheet']<=data['inner']/3+2,('large font sheet exceeds one third',data)
    assert data['blocks']<=1 and not data['overflow'],data
    assert not data['optionOverflow'],data
-   assert len(data['buttons'])==3 and all(b['height']>=44 and b['visible']>=b['height']-2 for b in data['buttons']),data
+   assert data['buttons'] and all(b['height']>=44 and b['visible']>=b['height']-2 for b in data['buttons']),data
    page.screenshot(path=str(D/'intro-320-large.png'))
    return data
   finally:ctx.close()
