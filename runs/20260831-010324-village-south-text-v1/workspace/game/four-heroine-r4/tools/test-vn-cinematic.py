@@ -306,6 +306,30 @@ with sync_playwright() as play:
  record('V7_OPENING_AND_BADGE_SINGLE_CG_NATIVE_SIZE',v7_opening_native_cg_dimensions)
 
 
+
+ def v7_compact_storage_warning():
+  ctx,page=open_game(320,568)
+  try:
+   page.evaluate("""() => {
+    saveBlocked=true;
+    notice='这个窗口暂时不能保存。仍可继续阅读；离开前请在菜单导出记录。';
+    showNotice();
+   }""")
+   data=page.locator('#notice').evaluate("""e=>{
+    const r=e.getBoundingClientRect(),btn=e.querySelector('[data-action=export]');
+    return {kind:e.dataset.noticeKind,height:r.height,top:r.top,bottom:r.bottom,exportWidth:btn.getBoundingClientRect().width,copy:e.innerText};
+   }""")
+   assert data['kind']=='save-unavailable',('missing compact storage banner',data)
+   assert data['height']<=65 and data['top']>=45 and data['bottom']<=140,('warning obscures actor',data)
+   assert data['exportWidth']>=44,('export tap target too small',data)
+   assert '进度未保存' in data['copy'] and '导出' in data['copy'],data
+   page.locator('[data-action="hide-notice"]').tap()
+   assert page.locator('#notice').is_hidden(),'notice cannot be dismissed'
+   assert page.locator('#menu').get_attribute('aria-label').find('未自动保存')>=0,'persisted menu warning lost'
+   return data
+  finally:ctx.close()
+ record('V7_SAVE_WARNING_COMPACT',v7_compact_storage_warning)
+
  browser.close()
 REPORT['status']='PASS' if all(c['status']=='PASS' for c in REPORT['cases']) else 'FAIL'
 (R/'qa/current'/('vn-cinematic-webkit-report.json' if ENGINE=='webkit' else 'vn-cinematic-report.json')).write_text(json.dumps(REPORT,ensure_ascii=False,indent=2)+'\n')

@@ -634,8 +634,12 @@ function showNotice(){
  const menu=document.getElementById('menu');
  menu.classList.toggle('unsaved',saveBlocked);menu.innerHTML='<span></span><span></span><span></span>';
  menu.setAttribute('aria-label',saveBlocked?'打开菜单，当前进度未自动保存':'打开菜单');
+ const saveWarning=!!notice&&saveBlocked&&/暂时不能保存|进度没有保存成功|未自动保存/.test(notice);
  el.hidden=!notice;
- el.innerHTML=notice?`<div>${esc(notice)}</div><button data-action="export">导出</button><button data-action="hide-notice">收起提示</button>`:'';
+ el.dataset.noticeKind=saveWarning?'save-unavailable':'general';
+ el.innerHTML=!notice?'':saveWarning
+  ?`<div class="notice-short" title="${esc(notice)}">进度未保存 · 请导出</div><button data-action="export">导出</button><button data-action="hide-notice" aria-label="收起存档提醒">×</button>`
+  :`<div>${esc(notice)}</div><button data-action="export">导出</button><button data-action="hide-notice">收起提示</button>`;
 }
 function fitOpeningReader(frame,area,dock){
  // The eight opening pages contain all 28 canonical beats. Adapt the sheet to
