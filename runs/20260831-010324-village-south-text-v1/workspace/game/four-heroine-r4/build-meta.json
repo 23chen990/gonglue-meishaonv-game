@@ -13,10 +13,10 @@
     "tools/vn.css": "9d69e5a04a3330230ff4e767d9fbac6b66cefa25b791e62acba3ebadca61be35",
     "tools/mobile-reader.js": "1e7c19b5323a72bc9ffe012e3b22bdec84c77c3056e1f3d3d442f97fb36e61ce",
     "tools/mobile-reader.css": "974b41c775f764a608c70319722f4974c290b086fb9d5841adcfcf7c7907e3fd",
-    "tools/director-v6.js": "3911187c00d8a7501c198f2cf89ca8e91738cd2dda25f8c2259fdf6682ea05de",
+    "tools/director-v6.js": "33c7964964e6e7c1fdf1b00f1aead6f0534267ac5054c1e2b07b2207df55a8a8",
     "director-v6.css": "f35a6b027af5219fb45538a810392d498a22c5347df7482e879c56eec51a32f6",
-    "assets/v6-preview/crew.webp": "7dacbd343a48d8670a7856ba59d75d8032bb05d9de0904e5e2711f13f6dab6d6",
-    "assets/v6-preview/badge.webp": "246c1019f7118e8a6e34b09bbb88c23139724191a7cecd1e694b0ef75a9feca4",
+    "assets/v6-preview/crew-single-cg.webp": "620619d60fd321f7b33faee21d02398b473aae5c4b4314241fd2af834f5fd37c",
+    "assets/v6-preview/badge-single-cg.webp": "474cc4c4ffce9515cc163e662d6d35a38426f79b4b80bd461b9d79d4b7782e80",
     "assets/v6-preview/lin.webp": "0db1bbcaac1c2b0f81257a2ab7a46fed8c20aa8d59a0a447c707249afa38bf4e",
     "assets/v6-preview/gu.webp": "da4f3964b463221a0c7d6a2be4e7602bafc57de92f8bf02b9d2618c8ae5f0886",
     "assets/v6-preview/usb.webp": "29b53d2267c53d80257064ff381ed265308b94cd71e1c6eeb691af48ee873212",
@@ -29,9 +29,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "113f5b7da6517c220880447a1f0ac911c6da1f89452e5e7b3fae987f05ed7321",
-    "index.html": "93e0f1e89c1bb932320270b87b095a40a9ec8d853c831e5e87d85298c2831ffa",
-    "play.html": "93e0f1e89c1bb932320270b87b095a40a9ec8d853c831e5e87d85298c2831ffa",
+    "runtime.mjs": "71b954ae71808b9719005a9db3070984ca27fbb29a103dc44cbb06faaa77de2b",
+    "index.html": "ce8c8b9eed78f96dd7d3da8d3211d9bded7d36b715139c72200312de3625082a",
+    "play.html": "ce8c8b9eed78f96dd7d3da8d3211d9bded7d36b715139c72200312de3625082a",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
