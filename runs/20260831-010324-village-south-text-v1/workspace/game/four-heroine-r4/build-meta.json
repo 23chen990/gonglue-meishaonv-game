@@ -13,7 +13,7 @@
     "tools/vn.css": "9d69e5a04a3330230ff4e767d9fbac6b66cefa25b791e62acba3ebadca61be35",
     "tools/mobile-reader.js": "1e7c19b5323a72bc9ffe012e3b22bdec84c77c3056e1f3d3d442f97fb36e61ce",
     "tools/mobile-reader.css": "974b41c775f764a608c70319722f4974c290b086fb9d5841adcfcf7c7907e3fd",
-    "tools/director-v5.js": "b4e41870f85745d3df19b69124f3ae94b98733531939aa5def188a84fa1258d9",
+    "tools/director-v5.js": "553e7d6736c2b6f5050170d6b40233de5a556c2be7abd409b5a7ad0ec6fee9a0",
     "director-v5.css": "d89e40a96e4a555d1a6601fb889aa38c1a5b8914016d29400b4f2238cb783e3f",
     "assets/v4/crew_headset.webp": "9031c69a200ad9f430728a1d1cc7fe3a62050b01a248120154024e3138693652",
     "assets/v4/pov_badge.webp": "764474a2ab98e71b60afe8cb8e4600591930325c2a56118d861826d8012396b4",
@@ -29,9 +29,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "022b031999973a8fca6749c198b75356c6f65466a77633e09310d8d87877ca18",
-    "index.html": "52412b5639526336d6b92239b96bb0262ce77622523e49542ca10724e7d83efd",
-    "play.html": "52412b5639526336d6b92239b96bb0262ce77622523e49542ca10724e7d83efd",
+    "runtime.mjs": "5a2caf2ba294242b8c11fb7d5379c26b6722f9b844cdeff211509bbb95ecb2a6",
+    "index.html": "5f5490338d9d537dccdf0066e5a72c4f3a2350461f7b3f6a4542ed0caa668c24",
+    "play.html": "5f5490338d9d537dccdf0066e5a72c4f3a2350461f7b3f6a4542ed0caa668c24",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
