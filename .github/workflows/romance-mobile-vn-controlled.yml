@@ -9,8 +9,8 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/build-preview.mjs'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/mobile-reader.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/mobile-reader.css'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/director-v4.js'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/director-v4.css'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/director-v5.js'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/director-v5.css'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/assets/v4/**'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-vn-cinematic.py'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/UI_CINEMATIC_READER_20261015.md'
@@ -39,7 +39,7 @@ jobs:
           test "$(git branch --show-current)" = "fix/mobile-vn-single-turn-reader-20261016"
           echo "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93  $H5_ROOT/data/STORY.json" | sha256sum -c -
           node --check "$H5_ROOT/tools/mobile-reader.js"
-          node --check "$H5_ROOT/tools/director-v4.js"
+          node --check "$H5_ROOT/tools/director-v5.js"
           python3 -m py_compile "$H5_ROOT/tools/test-vn-cinematic.py"
       - name: Rebuild and verify canonical player
         working-directory: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
