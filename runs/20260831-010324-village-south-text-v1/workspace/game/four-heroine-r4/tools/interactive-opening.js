@@ -13,7 +13,7 @@ function ioRead(v){
  const seen=Array.isArray(v.seen)?[...new Set(v.seen.filter(x=>['usb','sheet','board'].includes(x)))].slice(0,3):[];
  return {v:IO_VERSION,step:v.step,tone:ioSafe(v.tone,['help','steady','confused']),ally:ioSafe(v.ally,['shen','tang','solo']),defiance:ioSafe(v.defiance,['ask','hide','stand']),seen,lastFind:ioSafe(v.lastFind,['usb','sheet','board']),visits:Math.min(40,Math.max(0,Number(v.visits)||0)),finished:!!v.finished};
 }
-function ioActive(){return panel==='story' && phase==='scene' && state.current==='ENTRY_WAKE' && !io.finished && state.history.length===0;}
+function ioActive(){return new URLSearchParams(location.search).get('qa')!=='canonical' && panel==='story' && phase==='scene' && state.current==='ENTRY_WAKE' && !io.finished && state.history.length===0;}
 snapshot=function(){const save=ioOldSnapshot();save.ui.firstNight={...io,seen:[...io.seen]};return save;};
 readPayload=function(raw){const result=ioOldReadPayload(raw);result.firstNight=ioRead(raw?.ui?.firstNight);if(!raw?.ui?.firstNight&&raw?.ui?.page>0)result.firstNight.finished=true;return result;};
 install=function(result){ioOldInstall(result);io=result.firstNight||ioNew();if(state.current!=='ENTRY_WAKE'||state.history.length)io.finished=true;};
