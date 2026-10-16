@@ -19,11 +19,11 @@ const ADV6_CUTS=Object.freeze({
  'ENTRY_WAKE.intro.005':['5ec6ba33e4014c0c','crew','……你在叫我？','P'],
  'ENTRY_WAKE.intro.006':['747d9712034ff332','crew','许照啊！你不是去找盘了吗？','A'],
  'ENTRY_WAKE.intro.007':['c2f8e655544b9b3f','badge','许照？这不是我的名字……','P'],
- 'ENTRY_WAKE.intro.011':['7d202bbf705155d6','singer','后台能听见吗？这不是我彩排时的伴奏！','T'],
- 'ENTRY_WAKE.intro.012':['403e45897ece8106','piano','映雪，先跟我的琴！后台，把原版找出来！','LU'],
+ 'ENTRY_WAKE.intro.011':['7d202bbf705155d6','singer','后台能听见吗？这版我没排过……能帮我换回来吗？','T'],
+ 'ENTRY_WAKE.intro.012':['403e45897ece8106','stage-wide','映雪，跟着我的琴！后台，原版盘快点！','LU'],
  'ENTRY_WAKE.intro.015.l':['1fcd12a327ad111d','lin','别挡镜头。……你是新来的场务？','L'],
  'ENTRY_WAKE.intro.015.g':['1fcd12a327ad111d','gu','伴奏是谁确认的？这封邮件不是我发的。','G'],
- 'ENTRY_WAKE.intro.025':['4c35bbdfe4a7730e','piano','等等，这不是我刚看的小说吗？第七天替别人背锅的许照……现在是我。','B'],
+ 'ENTRY_WAKE.intro.025':['4c35bbdfe4a7730e','stage-wide','等等，这不是我刚看的小说吗？第七天替别人背锅的许照……现在是我。','B'],
  'ENTRY_WAKE.intro.026':['8c19f6181d538484','stage-memory','原版盘就在接线板下面。现在动手，也许结局就能改。','B'],
  'ENTRY_WAKE.intro.028':['416aa34ad470571c','piano','还来得及。我必须马上决定。','P'],
  'ENTRY_WAKE.r42.reply.canon.001':['3631bd70b4b82c24','piano','我先核对交接单，不能乱动设备。','P'],
@@ -98,6 +98,7 @@ function adv6Controls(cp){
 }
 function adv6MediaForBeat(b,scene,decision){
  if(decision&&sourceScene().id==='ENTRY_WAKE')return {key:'stage',url:SCENERY};
+ if(b._shot==='stage-wide')return {key:'stage',url:SCENERY};
  const key=ADV6_SCENES[b._shot];
  if(key)return {key,url:ADV6_MEDIA[key]||('assets/v6-preview/'+ADV6_MEDIA_FILES[key])};
  const speakerShots={T:'singer',L:'lin',G:'gu'};
@@ -115,7 +116,7 @@ function adv6Speaker(b){
  if(sourceScene().id==='ENTRY_WAKE'){
   if(b.speaker==='A')return '戴耳机的工作人员';
   if(b.speaker==='T')return '台上的女孩';
-  if(b.speaker==='LU')return '钢琴旁的男声';
+  if(b.speaker==='LU')return '琴台方向的男声';
  }
  return names[b.speaker]||mobileVoice(b);
 }
@@ -148,7 +149,7 @@ storyHTML=function(){
  const visual= '<div class="adv6-image" data-visual-key="'+esc(media.key)+'"><img class="adv6-scene-photo" src="'+media.url+'" alt="" loading="eager" draggable="false"></div>';
  const inspectButton=inspect?'<button class="adv6-inspect" data-adv6-inspect="badge" type="button" aria-label="仔细看工作牌">查看工作牌 <span aria-hidden="true">⌕</span></button>':'';
  return '<div class="vn-frame mobile-vn adv6" data-mode="'+mode+'" data-camera="'+esc(media.key)+'" data-art-tier="preview-legacy" data-beat-kind="'+(b._thought?'thought':b.speaker==='N'?'narration':'dialogue')+'" data-source="'+esc(b._sourceId)+'" data-reader-key="'+esc(cp.view.id+':'+page)+'" style="'+css+'">'+
- '<section class="vn-stage mobile-stage adv6-stage" aria-label="剧情舞台">'+visual+'<div class="adv6-vignette" aria-hidden="true"></div>'+ (chapter?'<div class="adv6-chapter">'+esc(chapter)+'</div>':'')+inspectButton+'</section>'+dock+
+ '<section class="vn-stage mobile-stage adv6-stage" aria-label="剧情舞台">'+visual+'<div class="adv6-media-error" role="status">剧情图片暂时无法加载，请返回后重试。</div>'+'<div class="adv6-vignette" aria-hidden="true"></div>'+ (chapter?'<div class="adv6-chapter">'+esc(chapter)+'</div>':'')+inspectButton+'</section>'+dock+
  (decision?'<section class="vn-sheet mobile-sheet adv6-sheet adv6-sheet-hidden" aria-hidden="true"><div class="mobile-speaker"></div><div class="vn-scroll mobile-text"></div></section>':'<section class="vn-sheet mobile-sheet adv6-sheet" aria-label="当前对白"><div class="mobile-speaker adv6-speaker">'+esc(voice)+'</div><div class="vn-scroll mobile-text adv6-text" aria-live="polite" aria-atomic="true">'+
  (showText?'<div class="line" data-speaker="'+esc(b.speaker)+'" data-beat="'+esc(b._sourceId)+'"><p>'+esc(text)+'</p></div>':'')+'</div><div class="vn-dock mobile-dock adv6-dock">'+footer+'</div></section>')+
  '</div>';
@@ -156,17 +157,41 @@ storyHTML=function(){
 // Real image inspection, not a fake ID card drawn with CSS. Capture and close
 // must never issue canonical choices or move the reader cursor.
 let adv6InspectOpen=false;
-function adv6CloseInspect(){document.querySelector('.adv6-modal')?.remove();adv6InspectOpen=false;}
+let adv6InspectReturnFocus=null;
+function adv6CloseInspect(){document.querySelector('.adv6-modal')?.remove();adv6InspectOpen=false;if(adv6InspectReturnFocus?.isConnected)adv6InspectReturnFocus.focus();adv6InspectReturnFocus=null;}
 document.addEventListener('click',event=>{
  const open=event.target.closest?.('[data-adv6-inspect]');
  const close=event.target.closest?.('[data-adv6-close]');
  if(!open&&!close)return;
  event.preventDefault();event.stopImmediatePropagation();
  if(close){adv6CloseInspect();return;}
- adv6CloseInspect();adv6InspectOpen=true;
+ adv6CloseInspect();adv6InspectReturnFocus=open;adv6InspectOpen=true;
  const url=ADV6_MEDIA.badge||('assets/v6-preview/'+ADV6_MEDIA_FILES.badge);
  const box=document.createElement('div');box.className='adv6-modal';
  box.innerHTML='<div class="adv6-modal-shade" data-adv6-close="1"></div><section class="adv6-modal-frame" role="dialog" aria-modal="true" aria-label="手中的工作牌"><img src="'+url+'" alt="许照的临时场务工作牌"><p>许照 · 临时场务<br>……这是我现在的名字？</p><button type="button" class="cinema-close adv6-close" data-adv6-close="1" aria-label="关闭工作牌特写">×</button></section>';
  document.body.append(box);box.querySelector('.adv6-close')?.focus();
 },true);
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&adv6InspectOpen){event.preventDefault();adv6CloseInspect();}},true);
+document.addEventListener('keydown',event=>{
+ if(!adv6InspectOpen)return;
+ if(event.key==='Escape'){
+  event.preventDefault();event.stopImmediatePropagation();adv6CloseInspect();
+ }else if(event.key==='Tab'){
+  event.preventDefault();event.stopImmediatePropagation();document.querySelector('.adv6-close')?.focus();
+ }
+},true);
+// Never substitute unrelated artwork if the intended frame cannot load.
+document.addEventListener('error',event=>{
+ const img=event.target;
+ if(!img?.matches?.('.adv6-scene-photo'))return;
+ const frame=img.closest('.adv6');if(frame)frame.dataset.mediaState='failed';
+},true);
+// Native source pixel density is reported to QA, never replaced with fake sharpening.
+document.addEventListener('load',event=>{
+ const img=event.target;
+ if(!img?.matches?.('.adv6-scene-photo'))return;
+ const frame=img.closest('.adv6');if(!frame)return;
+ frame.dataset.mediaState='ready';
+ const display=img.getBoundingClientRect(),dpr=Math.max(1,window.devicePixelRatio||1);
+ const scale=Math.max(display.width/img.naturalWidth,display.height/img.naturalHeight);
+ frame.dataset.mediaDensity=(1/scale>=dpr?'full':'below-device-density');
+},true);

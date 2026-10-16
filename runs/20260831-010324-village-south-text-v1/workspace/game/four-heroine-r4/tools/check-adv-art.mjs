@@ -28,6 +28,8 @@ function valueOf(flag, fallback) {
 const root = path.resolve(valueOf('--root', path.resolve(here, '..')));
 const strict = opts.includes('--strict');
 const baseline = opts.includes('--baseline');
+const activePreview = opts.includes('--active-preview');
+if(baseline&&activePreview)throw new Error('--baseline and --active-preview cannot be used together');
 const manifestPath = valueOf('--manifest', 'art/adv-v6/shot-manifest.json');
 const jsonPath = valueOf('--json', '');
 
@@ -110,6 +112,10 @@ function auditBaseline() {
   const names=['crew_headset','pov_badge','stage_piano','girl_singer','lin_camera','gu_email','usb_case','usb_hand'];
   return names.map(name=>auditAsset({name,assetPath:`assets/v4/${name}.webp`,status:'legacy',minDeliveryWidth:1536,minDeliveryHeight:2400,aspectMin:.57,aspectMax:.64,reviews:{visual:'pending',inGame:'pending',rights:'pending'}}));
 }
+function auditActivePreview(){
+ const names=['crew','badge','piano','singer','lin','gu','usb','usbHeld'];
+ return names.map(name=>auditAsset({name,assetPath:`assets/v6-preview/${name}.webp`,status:'preview-legacy',minDeliveryWidth:1536,minDeliveryHeight:2400,aspectMin:.57,aspectMax:.64,reviews:{visual:'pending',inGame:'pending',rights:'pending'}}));
+}
 function auditManifest() {
   const file=resolveSafe(manifestPath);
   const man=JSON.parse(fs.readFileSync(file,'utf8'));
@@ -118,8 +124,8 @@ function auditManifest() {
   for(const shot of man.shots){if(ids.has(shot.shotId))throw new Error('duplicate shotId: '+shot.shotId);ids.add(shot.shotId);}
   return man.shots.map(auditAsset);
 }
-const rows=baseline?auditBaseline():auditManifest();
-const report={mode:baseline?'baseline':'manifest',root,manifest:baseline?null:manifestPath,strict,summary:{ready:rows.filter(r=>r.status==='READY').length,blocked:rows.filter(r=>r.status==='BLOCKED').length,total:rows.length},shots:rows};
+const rows=activePreview?auditActivePreview():(baseline?auditBaseline():auditManifest());
+const report={mode:activePreview?'active-preview':(baseline?'baseline':'manifest'),root,manifest:activePreview||baseline?null:manifestPath,strict,summary:{ready:rows.filter(r=>r.status==='READY').length,blocked:rows.filter(r=>r.status==='BLOCKED').length,total:rows.length},shots:rows};
 console.log(`ADV art ${report.mode}: READY=${report.summary.ready} BLOCKED=${report.summary.blocked} TOTAL=${report.summary.total}`);
 for(const row of rows){
   const dims=row.dimensions?`${row.dimensions.width}x${row.dimensions.height} ${row.dimensions.kind}`:'MISSING';

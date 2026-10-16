@@ -109,3 +109,9 @@ body[data-panel=story] #notice:not([hidden]){
  font:500 13px/1.55 system-ui,'PingFang SC',sans-serif!important;
 }
 body[data-panel=story] #notice:not([hidden]) button{min-height:44px!important;margin:8px 8px 0 0!important;color:#fff4eb!important}
+
+/* ADV V6.3: explicit artwork failure state (never fake or silently swap shots). */
+.adv6 .adv6-media-error{display:none;position:absolute;z-index:5;left:18px;right:18px;top:35%;padding:18px 14px;text-align:center;color:#fff7f7;background:#13101fdf;border:1px solid #eabbd755;border-radius:9px;font-size:15px;line-height:1.6}
+.adv6[data-media-state=failed] .adv6-media-error{display:block}
+.adv6[data-media-state=failed] .adv6-scene-photo{visibility:hidden}
+.adv6 .adv6-modal-frame:focus-visible{outline:2px solid #ffd5eb;outline-offset:2px}

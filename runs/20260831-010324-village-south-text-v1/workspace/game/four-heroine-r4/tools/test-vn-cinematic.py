@@ -249,6 +249,37 @@ with sync_playwright() as play:
   finally:ctx.close()
  record('V62_COMPACT_DIALOGUE_AND_SAVE_NOTICE',v62_short_dialogue_and_save_notice)
 
+
+ def v63_optical_shot_modal_and_missing_art():
+  ctx,page=open_game(390,844)
+  try:
+   page.wait_for_function("()=>document.querySelector('.adv6')?.dataset.mediaState==='ready'")
+   assert page.locator('.adv6').get_attribute('data-art-tier')=='preview-legacy'
+   assert page.locator('.adv6-stage img').count()==1
+   assert page.locator('[data-page-next]').count()==1
+   page.locator('[data-page-next]').tap()
+   source=page.locator('.adv6').get_attribute('data-source')
+   assert source=='ENTRY_WAKE.intro.007',source
+   page.locator('[data-adv6-inspect]').tap()
+   assert page.locator('.adv6-modal [role="dialog"]').count()==1
+   page.keyboard.press('Escape')
+   assert page.locator('.adv6-modal').count()==0
+   assert page.locator('[data-adv6-inspect]').evaluate('(x)=>document.activeElement===x')
+   assert page.locator('.adv6').get_attribute('data-source')==source
+   page.locator('[data-page-next]').tap()
+   page.locator('[data-page-next]').tap()
+   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012'
+   assert page.locator('.adv6').get_attribute('data-camera')=='stage',('offscreen pianist falsely shown as on-screen actor')
+   assert page.locator('.mobile-speaker').inner_text()=='琴台方向的男声'
+   assert page.locator('.adv6-stage img').count()==1
+   page.locator('.adv6-scene-photo').dispatch_event('error')
+   assert page.locator('.adv6').get_attribute('data-media-state')=='failed'
+   assert page.locator('.adv6-media-error').is_visible()
+   assert page.locator('.adv6').get_attribute('data-source')=='ENTRY_WAKE.intro.012'
+   return {'offscreenSpeaker':'琴台方向的男声','realSingleScene':True,'modalFocusRestore':True,'missingArtworkHonest':True,'artTier':'preview-legacy'}
+  finally:ctx.close()
+ record('V63_OFFSCREEN_OPTICS_MODAL_AND_MEDIA_ERROR',v63_optical_shot_modal_and_missing_art)
+
  browser.close()
 REPORT['status']='PASS' if all(c['status']=='PASS' for c in REPORT['cases']) else 'FAIL'
 (R/'qa/current'/('vn-cinematic-webkit-report.json' if ENGINE=='webkit' else 'vn-cinematic-report.json')).write_text(json.dumps(REPORT,ensure_ascii=False,indent=2)+'\n')
