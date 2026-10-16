@@ -13,8 +13,8 @@
     "tools/vn.css": "9d69e5a04a3330230ff4e767d9fbac6b66cefa25b791e62acba3ebadca61be35",
     "tools/mobile-reader.js": "1e7c19b5323a72bc9ffe012e3b22bdec84c77c3056e1f3d3d442f97fb36e61ce",
     "tools/mobile-reader.css": "974b41c775f764a608c70319722f4974c290b086fb9d5841adcfcf7c7907e3fd",
-    "tools/director-v6.js": "3bbf987fd46139b8f12c997bbfc129c35f94acae6313819998c5a3c4a65d08cb",
-    "director-v6.css": "f2ad04eb3f37fd800b3ca8789620731ce582269f20c323302a3879c14c91f119",
+    "tools/director-v6.js": "3911187c00d8a7501c198f2cf89ca8e91738cd2dda25f8c2259fdf6682ea05de",
+    "director-v6.css": "f35a6b027af5219fb45538a810392d498a22c5347df7482e879c56eec51a32f6",
     "assets/v6-preview/crew.webp": "7dacbd343a48d8670a7856ba59d75d8032bb05d9de0904e5e2711f13f6dab6d6",
     "assets/v6-preview/badge.webp": "246c1019f7118e8a6e34b09bbb88c23139724191a7cecd1e694b0ef75a9feca4",
     "assets/v6-preview/lin.webp": "0db1bbcaac1c2b0f81257a2ab7a46fed8c20aa8d59a0a447c707249afa38bf4e",
@@ -29,9 +29,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "6197581b96ae7bcc1368d34f57742a09fd4d6074c0da746191fcc2c0df175d53",
-    "index.html": "bc615d699959bbc8dd97c105c4c68a4595730516d4ee212c0a114e711c5d9995",
-    "play.html": "bc615d699959bbc8dd97c105c4c68a4595730516d4ee212c0a114e711c5d9995",
+    "runtime.mjs": "113f5b7da6517c220880447a1f0ac911c6da1f89452e5e7b3fae987f05ed7321",
+    "index.html": "93e0f1e89c1bb932320270b87b095a40a9ec8d853c831e5e87d85298c2831ffa",
+    "play.html": "93e0f1e89c1bb932320270b87b095a40a9ec8d853c831e5e87d85298c2831ffa",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
