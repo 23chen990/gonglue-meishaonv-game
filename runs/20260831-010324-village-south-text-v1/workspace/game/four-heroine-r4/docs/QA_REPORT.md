@@ -89,3 +89,10 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - The active V5 director now uses legal ES module page-signature separators. The controlled rebuild for source V5 returned SUCCESS and generated artifacts at `0f6d261acd83841946a7868b1122bcaefe387e6a`.
 - This **documentation-only** change deliberately runs PR Chromium + WebKit + full story-route regression against the final generated HTML/runtime, not a source-only intermediate commit.
 - Preserve actual scene CG, first 6 dialogue advances, 3 canonical choices, no in-dialog scroll, font/page anchor, old save replay, and all original engine behavior. Any failure must be resolved rather than declared green.
+
+### ADV V6 generated-head final QA trigger — 2026-10-16
+
+- Controlled V6 rebuild completed successfully at generated HEAD `11d21f218dc54b39b123029f9eb6201644847273` after native Node strict-signature correction.
+- V6 source `tools/director-v6.js`, style `director-v6.css`, controlled pack `ADV6_ART_PACK`, and eight tagged `assets/v6-preview` images are now the actual generated player. No V5 stage renderer is invoked by the build.
+- Local Chromium DOM-injected viewport tests: 320x568, 360x780, 390x844, 430x932; six opening reading turns, three touch-sized canonical decisions, correct canon/rescue/investigate routing; independent badge zoom close and menu font anchor checked. This is not a physical phone or true network acceptance.
+- Exact-head native HTTP Chromium/WebKit + save migration + full routes must run after this documentation-only commit. **Art is legacy preview and not approved native 2K CG.** This is NOT release approval.
