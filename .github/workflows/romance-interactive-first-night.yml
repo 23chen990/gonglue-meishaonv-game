@@ -7,6 +7,7 @@ on:
       - '.github/workflows/romance-interactive-first-night.yml'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/build-preview.mjs'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.js'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-follow.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-interactive-opening.py'
   workflow_dispatch:
