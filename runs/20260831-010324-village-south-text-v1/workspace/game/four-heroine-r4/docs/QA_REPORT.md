@@ -104,3 +104,11 @@ Chromium 144.0.7559.96。以下是**离线注入HTML**；需要存储的用例�
 - Director-v6 and V6-only preview asset fallbacks are active. This documentation-only change requests Chromium/WebKit, save, first-decision and full-route acceptance against the **actual checked-in V6 player**.
 - Verified local Chromium four device sizes with one image per scene, six opening turns, three canonical choices, no scroll, work-badge modal, menu font anchor, and three distinct route targets. Browser used DOM injection, not a physical device.
 - Image master gate still reports ten missing 1536x2560 assets. Production visual approval and blind playtesting remain BLOCKED. Never treat engineering acceptance as art acceptance.
+
+### ADV V6.2 exact-generated-head native acceptance — 2026-10-17
+
+- Controlled V6.2 generator succeeded, producing the checked-in player at `2884c0ee65406b991e6ef0e6a0d0e9c0698e2c4c`. This documentation-only update re-triggers native Chromium and WebKit against generated HTML/runtime.
+- UX fixes: measured short subtitles instead of tall blank panels; single-CG scene behind a subtly blended lower dialogue layer; work badge inspect button moved off its printed name; save/write-conflict/export alerts are visible and clickable (previous CSS made every notice fully transparent).
+- First-night performance: the onstage woman calls backstage directly, the pianist urges finding the original, and the original canon/rescue/investigate action IDs remain unmodified. No engine/DATA changes.
+- Local Chromium tests passed at 320, 360, 390, 430px, including touched options, no internal dialogue scroll, preserved badge cursor, and save warning visibility in blocked-storage mode. These tests are not iPhone or human engagement measurements.
+- Remaining **P0 art blocker**: 8 legacy preview WebP assets are not native high-resolution vertical CGs; strict approved-art check remains blocked. No claim of matching the prior concept art or completing 228 bespoke scenes.
