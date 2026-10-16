@@ -2313,9 +2313,33 @@ function ioStoryHTML(){
  (io.step==='hunt'?ioChoices(io.step):'')+'</section>'+
  (io.step!=='hunt'&&decision?'<div class="io-options">'+ioChoices(io.step)+'</div>':'')+
  '<section class="vn-sheet mobile-sheet io-sheet"><div class="mobile-speaker">'+esc(speaker)+'</div><div class="vn-scroll mobile-text"><div class="line"><p>'+esc(info.text)+'</p></div></div>'+
- '<div class="io-bottom">'+(io.step==='hunt'?'<span class="io-hint">'+esc(info.hint)+'</span>':!decision?ioChoices(io.step):'<span class="io-hint">'+esc(info.hint)+'</span>')+'</div></section></div>';
+ '<div class="io-bottom">'+(!decision?ioChoices(io.step):'')+'</div></section></div>';
 }
 storyHTML=function(){return ioActive()?ioStoryHTML():ioOldStoryHTML();};
+// The first-night menu/history must describe the actual played sequence,
+// never expose the discarded 28-paragraph draft as if the player had read it.
+const ioOldMenuHTML=menuHTML,ioOldHistoryHTML=historyHTML,ioOldRowsHTML=rowsHTML;
+menuHTML=function(){
+ const old=ioOldMenuHTML();
+ if(state.current==='ENTRY_WAKE'&&!io.finished)return old.replace(/<details class="panel"><summary>当前场景文字记录<\/summary>[\s\S]*?<\/details>$/,
+  '<section class="panel small"><h3>这一夜</h3><p>对话、调查和已作出的行动已经自动保存。</p></section>');
+ return old;
+};
+historyHTML=function(){
+ if(state.current==='ENTRY_WAKE'&&!io.finished){
+  const detail=io.seen.length?'已查看：'+io.seen.map(k=>({usb:'接线板',sheet:'交接单',board:'控台'}[k])).join('、'):'还没有发现可记录的线索。';
+  return '<h2>第一夜 · 我的行动</h2><section class="panel"><p>'+esc(detail)+'</p><p class="small">回到剧情继续调查。</p></section>';
+ }
+ return ioOldHistoryHTML();
+};
+rowsHTML=function(rows,id){
+ if(panel==='history'&&id==='ENTRY_WAKE'&&io.finished){
+  const who=({shen:'沈清辞',tang:'唐映雪',solo:'自己'}[io.ally])||'现场的人';
+  return '<div class="line dialogue"><p>我自己确认了工牌，检查过后台，决定先找'+esc(who)+'。之后，才做出了真正改变演出的选择。</p></div>';
+ }
+ return ioOldRowsHTML(rows,id);
+};
+
 // Capture before the legacy delegated controller. No fake story commands are generated.
 document.addEventListener('pointerup',e=>{
  if(ioActive() && e.target instanceof Element && e.target.closest('.io-vn'))e.stopImmediatePropagation();
