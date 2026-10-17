@@ -2093,9 +2093,17 @@ function v11AfterLines(){
  });
  return lines;
 }
+function v11DirectLeafMode(){
+ // No fake two-step question in the player experience. ?qa=intent preserves
+ // the exact original staging for existing replay/story QA and older saves.
+ return new URLSearchParams(location.search).get('qa')!=='intent';
+}
 function v11Props(){
- const arc=V11_ARCS[state.current],view=renderScene(state,DATA);
- const choices=view.choices.filter(x=>x.enabled);
+ const arc=V11_ARCS[state.current],view=renderScene(state,DATA),canonical=DATA.scenes[state.current];
+ const all=canonical.decisionSteps&&!state.decisionIntent&&v11DirectLeafMode()
+  ?canonical.choices.map(c=>({...c,enabled:condition(state,c.when)}))
+  :view.choices;
+ const choices=all.filter(x=>x.enabled);
  const ids=choices.map(x=>x.id);
  for(const id of ids){
   if(!id.startsWith('intent:')&&!Object.hasOwn(arc.choices,id))throw Error('V11 unmapped canonical choice '+state.current+'/'+id);
@@ -2111,21 +2119,21 @@ function v11Props(){
  if(state.current==='A2b'&&state.f.canon_signed_blame)
   intro[0]={voice:'程放',text:'你自己签的字还在呢。现在跟我说不算？',shot:'console'};
  if(state.current==='A4a'&&state.f.private_photo==='not_taken')
-  intro[0]={voice:'林见月',text:'你那晚说不拍就不拍。我现在也不想拿别人的难过剪片子。',shot:'lin'};
+  intro[0]={voice:'林见月',text:'上回你说不拍，我就没拍。今天独立拍摄报名截止，片子还能补交。',shot:'lin'};
  if(state.current==='A4a'&&state.f.private_photo==='two_people_only')
-  intro[0]={voice:'林见月',text:'上回那张照片我只发给你了。可这段视频里还有别人。',shot:'lin'};
- if(state.current==='A4b'&&state.f.canon_signed_blame)intro[0]={voice:'程放 · 录音',text:'你签过字的，许照。别跟我说你忘了。',shot:'console'};
+  intro[0]={voice:'林见月',text:'上回那张照片只发给你了。今天独立拍摄报名截止，片子还能补交。',shot:'lin'};
+ if(state.current==='A4b'&&state.f.canon_signed_blame)intro[0]={voice:'林见月',text:'你第一晚确实签过字。但程放也承认了，错版不是你导出的。我录到了。',shot:'console'};
  if(state.current==='A5a'&&state.f.contact_g==='private')
-  intro[0]={voice:'顾晚棠',text:'你倒是知道怎么打我私人号。这事可不能只靠安慰。',shot:'gu'};
+  intro[0]={voice:'顾晚棠',text:'你有我私人号，也看到了合同。他们要我背全责，却不给我修改条款。',shot:'gu'};
  if(state.current==='A5b'&&['ally','partner'].includes(state.f.lu_relation))
   intro[0]={voice:'陆景行',text:'咱俩上次配合得不错。这回要不要各自拿点真本事出来？',shot:'stage'};
  if(state.current==='A6a'&&state.f.proof_audio&&!state.f.canon_signed_blame)
-  intro[1]={voice:'许照 · 心声',text:'见月手机里那段录音还在。我没必要再怕他了。',shot:'console'};
+  intro[1]={voice:'许照 · 心声',text:'视频只截了我碰设备箱的画面，见月录音却证明不是我换的伴奏。',shot:'console'};
  if(state.current==='A7a'&&active(state).length>1)
   intro[1]={voice:'许照 · 心声',text:'我还答应过别人。再拖下去，她们只会更受伤。',shot:'stage'};
- if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'第一晚那张字是我签的。我得把前因后果说清楚。',shot:'console'};
- if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove')&&!second)
-  intro[1]={voice:'许照 · 心声',text:'手里连能拿出来的证据都没有。我现在说什么都像狡辩。',shot:arc.shot};
+ if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'我第一晚签过责任单，可视频剪掉了真正换伴奏的人。我得说清楚。',shot:'console'};
+ if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove'||['public','partner','backstage'].includes(c.id))&&!second)
+  intro[1]={voice:'许照 · 心声',text:'视频只截了我靠近设备箱的画面。我手里还没有能公开核验的证据。',shot:arc.shot};
  return {arc,intro,choices};
 }
 function v11ChoicesHtml(choices,arc,metrics){
@@ -2140,10 +2148,10 @@ function v11ChoicesHtml(choices,arc,metrics){
    // Public work invitations may include complete strangers.
    if(!intent&&state.current==='A3b'&&c.id==='l'&&
       !state.f.source_pre_switch_timestamp&&!state.f.opening_switch_video)
-    label='去看摄影师的新片';
+    label='去剪辑室看摄影师的新片';
    if(!intent&&state.current==='A3b'&&c.id==='g'&&
       !state.f.source_programme_approval_note&&!state.f.opening_authorization_checked)
-    label='去和授权负责人对账';
+    label='去后街面馆吃饭';
    const cost=intent?'':info.risk;
    return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span>'+
     (cost?'<span class="v11-choice-risk">'+esc(cost)+'</span>':'')+'</button>';
@@ -2201,7 +2209,21 @@ document.addEventListener('click',e=>{
     const action=btn.dataset.v11Choice;
     if(!p.choices.some(x=>x.id===action))throw Error('Unavailable canonical decision');
     const scene=state.current;
-    const result=choose(state,DATA,action,state.revision);
+    // Selecting a concrete outcome in V20 also records its required genuine
+    // canonical intent command. Both commands are atomic from the UI's point
+    // of view: no state is installed until the actual leaf succeeds.
+    let intermediary=state;
+    const sc=DATA.scenes[scene],auto=!!(sc.decisionSteps&&!state.decisionIntent&&
+      v11DirectLeafMode()&&!action.startsWith('intent:'));
+    if(auto){
+     const group=sc.decisionSteps.find(g=>g.options.includes(action));
+     if(!group)throw Error('No canonical intent for '+scene+'/'+action);
+     intermediary=choose(state,DATA,'intent:'+group.id,state.revision).state;
+     if(!renderScene(intermediary,DATA).choices.some(c=>c.id===action&&c.enabled))
+      throw Error('Unavailable concrete choice after intent');
+    }
+    const result=auto?choose(intermediary,DATA,action,intermediary.revision):
+      choose(state,DATA,action,state.revision);
     state=result.state;lastReply=result.reply;page=0;choicePage=0;
     if(action.startsWith('intent:')){
      phase=lastReply.length?'reply':'scene';v11.key='';v11.step=0;v11.page=0;
