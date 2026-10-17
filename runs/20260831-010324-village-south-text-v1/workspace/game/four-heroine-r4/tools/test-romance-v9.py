@@ -32,6 +32,7 @@ def forward_to(page,goal,limit=60):
   if goal(page):return
   if page.locator('[data-page-next]').count():page.locator('[data-page-next]').first.tap()
   elif page.locator('[data-reply-next]').count():page.locator('[data-reply-next]').first.tap()
+  elif page.locator('[data-v10-next="payoff"]').count():page.locator('[data-v10-next="payoff"]').tap()
   elif page.locator('.v9-cinema[data-v9-kind="after"]').count():page.locator('[data-v9-next="after"]').first.tap()
   else:raise AssertionError(('cannot advance to next playable scene',page.locator('body').get_attribute('data-current'),page.locator('#app').inner_text()[-400:]))
  raise AssertionError('advance limit exceeded')
@@ -47,7 +48,7 @@ def one_case(browser,name,who,fork,memory,second,response):
    page.set_content(Path(LOCAL).read_text(encoding='utf-8'),wait_until='load')
   else: assert page.goto(URL,wait_until='load').ok
   assert page.locator('.io-vn[data-current-io="spotlight"]').count()==1
-  for a in ('next','help','badge','next','usb','back','move','next','next',fork):click(page,'data-io',a)
+  for a in ('next','next','badge','next','usb','back','move','next','next',fork):click(page,'data-io',a)
   assert page.locator('body').get_attribute('data-current')=={'rescue':'COLD','investigate':'ENTRY_MEMORY'}[fork]
   # Canonical reply remains visible before the director's two post-choice beats.
   forward_to(page,lambda p:p.locator('.v9-cinema[data-v9-kind="after"]').count()==1)
@@ -59,7 +60,7 @@ def one_case(browser,name,who,fork,memory,second,response):
   click(page,'data-v9-next','after')
   shot1=page.locator('.v9-cinema').get_attribute('data-v9-shot')
   check_vn(page)
-  assert [shot0,shot1]=={'rescue':['usbHeld','singerBond'],'investigate':['usbHeld','shen']}[fork]
+  assert [shot0,shot1]=={'rescue':['singerBond','console'],'investigate':['shen','stage']}[fork]
   click(page,'data-v9-next','after')
   assert page.locator('.v9-cinema[data-v9-kind="after"]').count()==0
   first=page.locator('body').get_attribute('data-current')

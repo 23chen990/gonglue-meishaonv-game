@@ -74,9 +74,9 @@ with sync_playwright() as pw:
      if page.locator('.io-vn.io-cg-ready').count():
       assert page.locator('.io-film-image').evaluate('e=>e.naturalWidth>=1024 && e.naturalHeight>=1500'),'new CG master below candidate native density'
      if width==390:page.screenshot(path=str(OUT/(name+'-spotlight-390.png')))
-     click(page,'next');step(page,'wake');assert page.locator('[data-io]').count()==3
+     click(page,'next');step(page,'wake');assert page.locator('[data-io]').count()==1
      if width==390:page.screenshot(path=str(OUT/(name+'-welcome-390.png')))
-     click(page,tone);reaction=step(page,'badge')['text']
+     click(page,'next');reaction=step(page,'badge')['text']
      assert '许照' in reaction and reaction != '工牌？我什么时候成了这里的场务？'
      click(page,'badge');step(page,'crisis')
      click(page,'next');step(page,'hunt')
@@ -85,7 +85,7 @@ with sync_playwright() as pw:
       targets=page.locator('.io-hotspot').evaluate_all('els=>els.map(el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}})')
       assert len(targets)==3 and len(set(t['x'] for t in targets))>1 and len(set(t['y'] for t in targets))>1,('still stacked fake investigation buttons',targets)
       assert all(t['w']>=44 and t['h']>=44 for t in targets),('hotspots too small',targets)
-     assert page.locator('[data-io="move"]').count()==0,'USB discovery was auto-completed'
+     assert page.locator('[data-io="move"]').count()==1,'player must be allowed to decide before finding the USB'
      # A stage tap without a labelled hotspot must not skip the investigation.
      page.locator('.io-stage').tap(position={'x': 8, 'y': 150})
      step(page,'hunt')
@@ -127,7 +127,7 @@ with sync_playwright() as pw:
       elif page.locator('[data-reply-next]').count():page.locator('[data-reply-next]').first.tap()
       else:raise AssertionError(('post-fork lost interactive controls',fork,page.locator('#app').inner_text()[-400:]))
      else:raise AssertionError(('post-fork dialogue stalled',fork))
-     assert len(after_seen)==2 and after_seen=={'canon':['stage','console'],'rescue':['usbHeld','singerBond'],'investigate':['usbHeld','shen']}[fork],('post-fork image consequences absent',fork,after_seen)
+     assert len(after_seen)==2 and after_seen=={'canon':['stage','console'],'rescue':['singerBond','console'],'investigate':['shen','stage']}[fork],('post-fork image consequences absent',fork,after_seen)
      assert page.locator('.io-follow .line').count()==1
      assert page.locator('.io-follow .mobile-text').evaluate('x=>x.scrollHeight<=x.clientHeight+2')
      if width==390:page.screenshot(path=str(OUT/(name+'-follow-390.png')))
@@ -137,6 +137,7 @@ with sync_playwright() as pw:
      raw=json.loads(page.evaluate('(key)=>localStorage.getItem(key)',KEY))
      assert len(raw['commands'])==2 and raw['commands'][1]['from']=={'canon':'ENTRY_CLUES','rescue':'COLD','investigate':'ENTRY_MEMORY'}[fork]
      assert raw['commands'][1]['id']==second
+     assert page.locator('[data-v10-next="payoff"]').count()<=1
      assert not errors,errors
      return {'viewport':f'{width}x{height}','personalResponse':tone,'relationshipApproach':ally,'firstCanonicalFork':fork,'postFork':second,'canonicalCommands':len(raw['commands'])}
     finally:ctx.close()

@@ -108,6 +108,7 @@ storyHTML=function(){
 document.addEventListener('click',e=>{
  if(!v9AfterActive()&&!v9TalkIntroActive())return;
  const el=e.target instanceof Element?e.target:null;
+ if(el?.closest('[data-v10-kind="payoff"]'))return;
  if(!el?.closest('.v9-cinema'))return;
  if(!el.closest('button,.io-stage,.io-sheet'))return;
  e.preventDefault();e.stopImmediatePropagation();

@@ -11,8 +11,11 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-interactive-opening.py'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v9.js'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v9.css'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v10.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v9.py'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v10.py'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v10.mjs'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V10_REAL_CHOICE_QA_ZH.md' 
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-adv8-single-embedding.mjs'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/art/heroines/**'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/assets/adv8/**'
@@ -65,11 +68,16 @@ jobs:
           node --check "$R4/tools/interactive-follow.js"
           node --check "$R4/tools/director-v6.js"
           node --check "$R4/tools/build-preview.mjs"
-          python -m py_compile "$R4/tools/test-interactive-opening.py" "$R4/tools/test-romance-v9.py"
           node --check "$R4/tools/romance-v9.js"
+          node --check "$R4/tools/romance-v10.js"
+          python -m py_compile "$R4/tools/test-romance-v9.py" "$R4/tools/test-romance-v10.py"
+          python -m py_compile "$R4/tools/test-interactive-opening.py"
       - name: Rebuild full offline H5 and all canonical narrative tests
         working-directory: ${{ env.R4 }}
         run: npm run verify
+      - name: Verify real negative branch flags and action-linked consequence contracts
+        working-directory: ${{ env.R4 }}
+        run: node tools/test-romance-v10.mjs
       - name: Verify all eleven ADV8 sources are unique in runtime and standalone HTML
         working-directory: ${{ env.R4 }}
         run: node tools/test-adv8-single-embedding.mjs
@@ -93,10 +101,10 @@ jobs:
           curl --fail --silent http://127.0.0.1:8765/index.html -o /dev/null
       - name: Native HTTP touchscreen acceptance in Chromium and WebKit
         working-directory: ${{ env.R4 }}
-        run: python tools/test-interactive-opening.py
-      - name: Verify all four heroine conversations and actual branch consequences
-        working-directory: ${{ env.R4 }}
-        run: python tools/test-romance-v9.py
+        run: |
+          python tools/test-interactive-opening.py
+          python tools/test-romance-v9.py
+          python tools/test-romance-v10.py
       - name: Preserve story hash; upload source and browser evidence
         run: |
           set -euo pipefail
@@ -112,7 +120,9 @@ jobs:
             ${{ env.R4 }}/qa/current/browser/first-night/**
             ${{ env.R4 }}/qa/current/first-night-interactive-report.json
             ${{ env.R4 }}/qa/current/browser/romance-v9/**
+            ${{ env.R4 }}/qa/current/browser/romance-v10/**
             ${{ env.R4 }}/qa/current/romance-v9-report.json
+            ${{ env.R4 }}/qa/current/romance-v10-report.json
           if-no-files-found: warn
           retention-days: 14
       - name: Persist generated standalone player and default entry if checks passed
