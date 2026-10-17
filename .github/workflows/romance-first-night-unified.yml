@@ -42,6 +42,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      # A reproducible source bundle lets an external UX reviewer run the real
+      # game without scraping GitHub or relying on previously generated HTML.
+      - name: Snapshot source for independent UX and browser QA
+        run: |
+          tar -czf /tmp/romance-vn-source.tgz --exclude=.git --exclude=node_modules --exclude=dist --exclude=qa/current --exclude=play.html --exclude=runtime.mjs --exclude=index.html .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: romance-vn-source-snapshot
+          path: /tmp/romance-vn-source.tgz
+          if-no-files-found: error
+          retention-days: 7
       - name: Preserve story semantics and check syntax
         run: |
           set -euo pipefail
