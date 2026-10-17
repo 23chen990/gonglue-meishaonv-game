@@ -28,7 +28,10 @@ def click(page,action):
  target.tap(timeout=7000)
 def step(page,name):
  assert page.locator('.io-vn').count()==1,('opening disappeared too early',name)
- assert page.locator('.io-vn').get_attribute('data-current-io')==name,(name,page.locator('.io-vn').get_attribute('data-current-io'))
+ actual=page.locator('.io-vn').get_attribute('data-current-io')
+ if actual!=name:
+  diagnostic=page.evaluate("""()=>{const raw=localStorage.getItem('gonglue:revision-r4.5-portrait:canonical');let parsed=null,reason='';try{parsed=raw?JSON.parse(raw):null}catch(e){reason=String(e)};return {rawLength:raw?.length??0,storedStep:parsed?.ui?.firstNight?.step??null,storedHash:parsed?.storyHash??null,storedCommands:parsed?.commands?.length??null,notice:document.body.innerText.slice(0,180),hasSaveBlocked:typeof saveBlocked!=='undefined'?saveBlocked:null,lastRawLength:typeof lastRaw!=='undefined'?lastRaw?.length:null,parseError:reason}}""")
+  raise AssertionError((name,actual,diagnostic))
  box=page.evaluate("""()=>{
   const sheet=document.querySelector('.io-sheet'),txt=document.querySelector('.io-sheet .mobile-text');
   const sh=sheet.getBoundingClientRect();
