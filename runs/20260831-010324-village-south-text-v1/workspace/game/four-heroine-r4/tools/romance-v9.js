@@ -83,7 +83,7 @@ function v9Photo(shot){
 }
 function v9Scene(info,opts){
  const m=mobileMetrics(),decision=opts.kind==='talk'&&opts.choices;
- const h=Math.min(220,Math.floor(m.h*(m.h<650?.30:.24)));
+ const h=Math.min(168,Math.max(146,Math.floor(m.h*.20)));
  const style='--mobile-panel:'+h+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  const button=opts.kind==='after'?'<button type="button" class="io-single" data-v9-next="after">继续 <span aria-hidden="true">›</span></button>':
   opts.choices?'':'<button type="button" class="io-single" data-v9-next="talk">继续 <span aria-hidden="true">›</span></button>';

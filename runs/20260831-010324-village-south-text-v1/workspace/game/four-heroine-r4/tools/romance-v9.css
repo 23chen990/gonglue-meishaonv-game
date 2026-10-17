@@ -13,3 +13,5 @@ body[data-panel=story] .v9-cinema .io-sheet .mobile-text{display:block!important
 body[data-panel=story] .v9-cinema[data-mode=decision] .io-options{z-index:9}
 .io-vn .io-film.io-stable .io-film-image{animation:none!important}
 @media(prefers-reduced-motion:reduce){.v9-cinema *{animation:none!important;transition:none!important}}
+/* Compact conversational HUD: save visible stage space for the heroines, not blank dialogue glass. */
+body[data-panel=story] .v9-cinema .io-sheet{max-height:var(--mobile-panel)!important;min-height:0!important;height:var(--mobile-panel)!important}
