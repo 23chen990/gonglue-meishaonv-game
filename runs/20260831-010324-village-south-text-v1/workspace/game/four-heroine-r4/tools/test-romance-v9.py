@@ -47,8 +47,8 @@ def one_case(browser,name,who,fork,memory,second,response):
    page.evaluate('''()=>{const d=new Map();Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem:k=>d.get(k)??null,setItem:(k,v)=>d.set(k,String(v)),removeItem:k=>d.delete(k),clear:()=>d.clear()}})}''')
    page.set_content(Path(LOCAL).read_text(encoding='utf-8'),wait_until='load')
   else: assert page.goto(URL,wait_until='load').ok
-  assert page.locator('.io-vn[data-current-io="spotlight"]').count()==1
-  for a in ('next','next','badge','next','usb','back','move','next','next',fork):click(page,'data-io',a)
+  assert page.locator('.io-vn[data-current-io="reader"]').count()==1, 'new player must first see the book'
+  for a in ('next','next','next','badge','next','next','next','usb','back','move','next','next',fork):click(page,'data-io',a)
   assert page.locator('body').get_attribute('data-current')=={'rescue':'COLD','investigate':'ENTRY_MEMORY'}[fork]
   # Canonical reply remains visible before the director's two post-choice beats.
   forward_to(page,lambda p:p.locator('.v9-cinema[data-v9-kind="after"]').count()==1)

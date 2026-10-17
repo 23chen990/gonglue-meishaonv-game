@@ -35,8 +35,8 @@ def play(browser,name,scenario,second,need_usb):
    page.evaluate('''()=>{const map=new Map();Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,String(v)),removeItem:k=>map.delete(k),clear:()=>map.clear()}})}''')
    page.set_content(Path(LOCAL).read_text(encoding='utf-8'),wait_until='load')
   else:assert page.goto(URL,wait_until='load').ok
-  assert page.locator('.io-vn[data-current-io="spotlight"]').count()==1
-  for action in ['next','next','badge','next']:tap(page,'data-io',action)
+  assert page.locator('.io-vn[data-current-io="reader"]').count()==1, 'new player must first see the book'
+  for action in ['next','next','next','badge','next','next','next']:tap(page,'data-io',action)
   assert page.locator('.io-vn[data-current-io="hunt"]').count()==1
   assert page.locator('[data-io="move"]').count()==1
   if need_usb:
