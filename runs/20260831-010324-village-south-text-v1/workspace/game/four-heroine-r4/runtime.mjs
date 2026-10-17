@@ -1374,19 +1374,19 @@ function ioLine(){
  const find=io.lastFind;
  switch(io.step){
  case 'spotlight': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'等一下。伴奏不是这一版……别关麦，我还能唱。'};
- case 'pressure': return {voice:'程放 · 身后',portrait:null,mood:'block',text:'把交接单签了。错版责任人写你，就能收场。'};
- case 'wake': return {voice:'戴耳机的工作人员',portrait:null,mood:'wake',text:'许照！站得起来吗？她的伴奏出问题了！'};
- case 'answer': return {voice:'戴耳机的工作人员',portrait:null,mood:'wake',text:io.tone==='help'?'小心脚下的线。来，抓住我。':io.tone==='steady'?'没事就快起来，舞台那边等急了。':'许照啊！你的工牌不就挂着吗？'};
+ case 'pressure': return {voice:'程放 · 身后',portrait:null,mood:'block',text:'签个字，别让大家都等你。有什么事明天再说。'};
+ case 'wake': return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:'许照！快起来！台上等着换伴奏呢！'};
+ case 'answer': return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:io.tone==='help'?'小心脚下的线。来，抓住我。':io.tone==='steady'?'没事就快起来，舞台那边等急了。':'许照啊！你的工牌不就挂着吗？'};
  case 'badge': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:io.tone==='confused'?'许照？这是我的工牌？我真的进了那本小说？':io.tone==='help'?'他把工牌塞回我手心。许照……小说里背锅的那个？':'胸口这张工作牌写着许照。我成了那个替人背锅的场务？'};
  case 'badge-read': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'许照……那个七天后会替人背锅的小说角色？'};
- case 'alarm': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'别关我的麦。伴奏错了，我还能唱。'};
+ case 'alarm': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'别切我麦！我还能把这段唱完！'};
  case 'crisis': return {voice:'沈清辞 · 对讲机',portrait:null,mood:'stage',text:'原版盘应该在后台。找到先别乱插，我来安排切换。'};
  case 'ask': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'侧幕那边的人，是你吗？看着我，给我一个信号。'};
  case 'ask-answer': return {
    voice:io.ally==='tang'?'唐映雪':io.ally==='shen'?'沈清辞 · 对讲机':'许照 · 心声',portrait:io.ally==='tang'?'t':null,mood:'stage',
    text:io.ally==='tang'?'我听你的信号。哪怕只有四小节，我也能接住。':io.ally==='shen'?'我替你拖住现场。原版盘交给音控确认。':'先找到原版，也许还能查清是谁换的。'};
- case 'hunt': return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'蓝标盘找到了。该去处理台上的事了。':'控台、交接单、接线板……先查哪儿？'};
- case 'find': return {voice:'许照 · 心声',portrait:null,mood:'search',text:find==='usb'?'接线板下面……蓝胶带！原版盘就在这儿。':find==='sheet'?'交接单上写着我的名字，但我还没签。':'控台文件名和排练单上的，根本不是同一版。'};
+ case 'hunt': return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'蓝标盘找到了。该去处理台上的事了。':'东西就在这堆箱子里。我先从哪儿找？'};
+ case 'find': return {voice:'许照 · 心声',portrait:null,mood:'search',text:find==='usb'?'有蓝胶带！这盘藏在接线板底下。':find==='sheet'?'许照？名字早印上去了，等着我签呢。':'排练单和控台对不上。谁动过文件？'};
  case 'confront': return {voice:'程放 · 身后',portrait:null,mood:'block',text:'许照，别乱碰设备。先把交接单签了。'};
  case 'confront-answer': return {voice:'程放 · 身后',portrait:null,mood:'block',text:io.defiance==='ask'?'问那么多干什么？责任人写你就行。':io.defiance==='hide'?'还不签？出了事你一个人担得起？':'沈清辞？……行，你去找她。'};
  case 'bond': return {voice:'唐映雪',portrait:'t',mood:'bond',text:'我看见你了。你能让我把这首歌唱完吗？'};
@@ -1521,16 +1521,16 @@ document.addEventListener('click',e=>{
 /* First-night continuity director: after the first fork, keep subsequent early
  * consequential scenes interactive. Choices always call the canonical engine. */
 const IF_FOLLOW={
- ENTRY_MEMORY:{voice:'沈清辞',portrait:'s',mood:'stage',text:'原版在手。谁能帮我们留下证据？',labels:{camera:'请林见月拍下切换记录',email:'找顾晚棠核对授权邮件'}},
- ENTRY_CLUES:{voice:'程放',portrait:null,mood:'block',text:'交接单在这儿。来，把字签了。',labels:{obey:'签字，先离开',refuse:'当面拒签',witness:'先留下时间线'}},
- COLD:{voice:'阿衡',portrait:null,mood:'stage',text:'原版别自己插。我试听，你去找人喊切换。',labels:{t:'找唐映雪',s:'找沈清辞',l:'找林见月',g:'找顾晚棠',self:'和阿衡一起处理'}},
- OP_SETTLE:{voice:'阿衡',portrait:null,mood:'block',text:'有人要删错版文件。今晚得留个证据。',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
- OP_FORK:{voice:'阿衡',portrait:null,mood:'block',text:'录音我留着。你想现在追问，还是先等？',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
- OP_CANON:{voice:'程放',portrait:null,mood:'block',text:'还不签？难道这场错版跟你没关系？',labels:{backstage:'和阿衡一起核对',question:'当面追问程放',silence:'先记住谁要我签字'}},
- OP_TALK_t:{voice:'唐映雪',portrait:'t',mood:'bond',text:'刚才灯那么亮，我还是认出你了。',labels:{flirt:'“我只是很想再听你唱。”',slow:'“还没缓过来。”',work:'“下场演出，我还能来吗？”'}},
- OP_TALK_s:{voice:'沈清辞',portrait:'s',mood:'bond',text:'喝点水。还有，你能留个号码吗？',labels:{flirt:'“不谈工作，也能找你吗？”',slow:'“我还紧张，先慢一点。”',work:'“先留工作号吧。”'}},
- OP_TALK_l:{voice:'林见月',portrait:'l',mood:'bond',text:'这么多人，只有你一直躲我的镜头。',labels:{flirt:'“下一张，换我拍你？”',slow:'“今天先不拍，好吗？”',work:'“先记下谁救了场。”'}},
- OP_TALK_g:{voice:'顾晚棠',portrait:'g',mood:'bond',text:'那个原版盘，你怎么找到的？',labels:{flirt:'“现在不谈工作，能认识你吗？”',slow:'“先让我把话说顺。”',work:'“我想再争取一次机会。”'}}
+ ENTRY_MEMORY:{voice:'沈清辞',portrait:'s',mood:'stage',text:'原版有了。现在得有人证明它什么时候被换的。',labels:{camera:'请林见月拍下切换记录',email:'找顾晚棠核对授权邮件'}},
+ ENTRY_CLUES:{voice:'程放',portrait:null,mood:'block',text:'小许，就差你这一个名字。签完都好下班。',labels:{obey:'签字，先离开',refuse:'当面拒签',witness:'先留下时间线'}},
+ COLD:{voice:'阿衡',portrait:null,mood:'stage',text:'盘给我先试听。你找人跟台上说一声！',labels:{t:'找唐映雪',s:'找沈清辞',l:'找林见月',g:'找顾晚棠',self:'和阿衡一起处理'}},
+ OP_SETTLE:{voice:'阿衡',portrait:null,mood:'block',text:'程放让人删文件了。再慢点儿就没了！',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
+ OP_FORK:{voice:'阿衡',portrait:null,mood:'block',text:'录音我存下来了。你是要现在问他，还是再等等？',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
+ OP_CANON:{voice:'程放',portrait:null,mood:'block',text:'你要不签，明天还想不想来上班？',labels:{backstage:'和阿衡一起核对',question:'当面追问程放',silence:'先记住谁要我签字'}},
+ OP_TALK_t:{voice:'唐映雪',portrait:'t',mood:'bond',text:'喂，我看见你了。你刚才一直躲在侧幕？',labels:{flirt:'“我只是很想再听你唱。”',slow:'“还没缓过来。”',work:'“下场演出，我还能来吗？”'}},
+ OP_TALK_s:{voice:'沈清辞',portrait:'s',mood:'bond',text:'渴不渴？……还有，等会儿加个微信？',labels:{flirt:'“不谈工作，也能找你吗？”',slow:'“我还紧张，先慢一点。”',work:'“先留工作号吧。”'}},
+ OP_TALK_l:{voice:'林见月',portrait:'l',mood:'bond',text:'你跑什么呀？我拿的又不是偷拍镜头。',labels:{flirt:'“下一张，换我拍你？”',slow:'“今天先不拍，好吗？”',work:'“先记下谁救了场。”'}},
+ OP_TALK_g:{voice:'顾晚棠',portrait:'g',mood:'bond',text:'你今天反应挺快。平时也这么会救场？',labels:{flirt:'“现在不谈工作，能认识你吗？”',slow:'“先让我把话说顺。”',work:'“我想再争取一次机会。”'}}
 };
 let ioFollowGroup='';
 const ioFPrevSnapshot=snapshot,ioFPrevReadPayload=readPayload,ioFPrevInstall=install,ioFPrevReset=reset,ioFPrevStoryHTML=storyHTML;
@@ -1735,79 +1735,79 @@ const V10_VERSION=1;
 const V10_AFTER=Object.freeze({
  'ENTRY_CLUES/obey':{
   flag:['canon_signed_blame',true],voice:'程放',shot:'console',
-  text:'签了就好。明天有人追责，我把这张给他们看。'},
+  text:'行，这就算你认了。回头查下来可别反悔。'},
  'ENTRY_CLUES/refuse':{
   flag:['source_declined_handover',true],voice:'程放',shot:'console',
-  text:'不签？行。明天你当着所有人的面解释。'},
+  text:'不签是吧？明天早会你自己跟领导说。'},
  'ENTRY_CLUES/witness':{
   flag:['source_original_timeline',true],voice:'阿衡',shot:'console',
-  text:'你记下时间，我能证明控台不是你动的。'},
+  text:'你把时间记着。我在那儿，他真没碰控台。'},
  'ENTRY_MEMORY/camera':{
   flag:['source_pre_switch_timestamp',true],voice:'林见月',shot:'lin',
-  text:'原版标签和时钟都拍到了。这段我不会删。'},
+  text:'都拍到了。原片我给你备份一份，放心。'},
  'ENTRY_MEMORY/email':{
   flag:['source_programme_approval_note',true],voice:'顾晚棠',shot:'gu',
-  text:'批准的版本没有删前奏。程放，是谁改的？'},
+  text:'审批邮件在这儿。程放，删前奏是谁的主意？'},
  'COLD/t':{
   flag:['opening_method','performer_cue'],voice:'唐映雪',shot:'singerBond',
-  text:'我把歌唱回来了。下来以后，我要找你。'},
+  text:'刚才你在侧幕打手势的吧？散场别走。'},
  'COLD/s':{
   flag:['opening_method','producer_switch'],voice:'沈清辞',shot:'shen',
-  text:'找到盘的是你，切换的是阿衡。我都记下了。'},
+  text:'盘是你找的，阿衡帮忙切的。谁也别想赖账。'},
  'COLD/l':{
   flag:['opening_switch_video',true],voice:'林见月',shot:'lin',
-  text:'谁找盘、谁验盘，我拍清楚了。不会让人乱说。'},
+  text:'看。你跑着找盘那段，我都拍下来了。'},
  'COLD/g':{
   flag:['opening_authorization_checked',true],voice:'顾晚棠',shot:'gu',
-  text:'授权没问题，是有人擅自换了版本。得追。'},
+  text:'邮件我查过了。有人没打招呼就换了伴奏。'},
  'COLD/self':{
   flag:['opening_method','audio_handoff'],voice:'阿衡',shot:'crew',
-  text:'你找的盘，我切的歌。记录要各写各的。'},
+  text:'盘是你翻出来的，歌是我切的。别把锅混一块儿。'},
  'OP_FORK/backup':{
   flag:['proof_version_log',true],voice:'阿衡',shot:'console',
-  text:'两版都备份了。明天谁想甩锅，拿时间说话。'},
+  text:'两份文件都在。谁要赖账，让他自己来看。'},
  'OP_FORK/confront':{
   flag:['cheng_questioned_early',true],voice:'程放',shot:'console',
-  text:'在群里质问我是吧？明天来写书面说明。'},
+  text:'好啊，当着群里那么多人问我。明早来办公室。'},
  'OP_FORK/quiet':{
   flag:['source_personal_record',true],voice:'许照 · 心声',shot:'console',
-  text:'今晚躲过去了。可删档的人是谁，我还是没证据。'},
+  text:'今晚算躲过去了。可文件是谁删的，我还不知道。'},
  'OP_TALK_t/flirt':{
   flag:['opening_style_t','flirt'],voice:'唐映雪',shot:'singerBond',
-  text:'刚救完场还敢夸我。好吧，这句话我收下。'},
+  text:'你这人……刚挨完骂，还有心思逗我笑。'},
  'OP_TALK_t/slow':{
   flag:['opening_style_t','slow'],voice:'唐映雪',shot:'singerBond',
-  text:'先坐一会儿。今天不用再逞强。'},
+  text:'那就坐一会儿。水在那边，我给你留的。'},
  'OP_TALK_t/work':{
   flag:['named_in_credits',true],voice:'唐映雪',shot:'singerBond',
-  text:'下场我帮你问。但可别把工作当成约会。'},
+  text:'下场缺人的话我叫你。你别又熬通宵。'},
  'OP_TALK_s/flirt':{
   flag:['contact_s','private'],voice:'沈清辞',shot:'shen',
-  text:'这是私人号。凌晨三点可别发“在吗”。'},
+  text:'号码给你。别每回都只发工作截图，行吗？'},
  'OP_TALK_s/slow':{
   flag:['opening_style_s','slow'],voice:'沈清辞',shot:'shen',
-  text:'号码先存着。等你不紧张了，我们慢慢聊。'},
+  text:'先存号码。你手还在抖呢，话可以明天再说。'},
  'OP_TALK_s/work':{
   flag:['contact_s','work'],voice:'沈清辞',shot:'shen',
-  text:'工作群给你加上。私人号码就先不留了。'},
+  text:'我拉你进工作群。下回别一个人扛事。'},
  'OP_TALK_l/flirt':{
   flag:['private_photo','two_people_only'],voice:'林见月',shot:'lin',
-  text:'照片只发你。下回拍我，得先让我挑角度。'},
+  text:'好，只发你。下次拍我记得喊一声啊！'},
  'OP_TALK_l/slow':{
   flag:['private_photo','not_taken'],voice:'林见月',shot:'lin',
-  text:'好，那张私人照片就不拍。你不用勉强。'},
+  text:'行，我收相机。你别老躲得像我拿了枪。'},
  'OP_TALK_l/work':{
   flag:['project_shot','consented'],voice:'林见月',shot:'lin',
-  text:'只拍工作证据。属于我们俩的照片，先没有。'},
+  text:'知道啦，工作照归工作照。你先别红耳朵。'},
  'OP_TALK_g/flirt':{
   flag:['contact_g','private'],voice:'顾晚棠',shot:'gu',
-  text:'工作号不谈私事。这个私人号，可以给你。'},
+  text:'这个号没工作群。你要真约我，就发这里。'},
  'OP_TALK_g/slow':{
   flag:['opening_style_g','slow'],voice:'顾晚棠',shot:'gu',
-  text:'你不用急。想认识一个人，不靠抢时间。'},
+  text:'我不赶时间。你要想说，哪天都能说。'},
  'OP_TALK_g/work':{
   flag:['contact_g','work'],voice:'顾晚棠',shot:'gu',
-  text:'负责人名片给你。私人联系方式还不合适。'}
+  text:'我把工作名片发你。下次别只会说“麻烦您”。'}
 });
 let v10={v:V10_VERSION,pending:null};
 function v10Read(raw){
@@ -1827,22 +1827,22 @@ reset=function(){const old=state;v10BeforeReset();if(old!==state&&state.history.
 ioActions.wake=[['next','站起来']];
 ioNext.wake='badge';
 ioActions.final=[
- ['rescue','把原版送上台 · 她会记住我'],
- ['investigate','先留证据 · 舞台还得再撑一会儿'],
- ['canon','暂不插手 · 让别人救她']
+ ['rescue','先救她，原版马上送过去'],
+ ['investigate','先留错版证据，让她再撑一下'],
+ ['canon','我不碰设备，让专业的人来']
 ];
 const v10BeforeLine=ioLine;
 ioLine=function(){
  switch(io.step){
- case 'spotlight':return {voice:'唐映雪',portrait:'t',mood:'stage',text:'……伴奏被换了。别关麦，我还能唱。'};
- case 'wake':return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:'许照！起来！台上的歌手快撑不住了！'};
- case 'badge':return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'许照？我穿进了刚读的小说。七天后，背锅的是我。'};
- case 'crisis':return {voice:'沈清辞 · 对讲机',portrait:null,mood:'stage',text:'我是现场负责人。原版可能在设备箱，先找，别乱动控台。'};
- case 'hunt':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'原版找到了。救她会被主管盯上，怎么办？':'台上快撑不住了。我去找原版，还是先保自己？'};
- case 'find':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.lastFind==='usb'?'蓝胶带！原版盘就在这里。她还有机会。':io.lastFind==='sheet'?'签字栏让我确认现场，可谁导出的错版却没写。':'控台播的是删减版，操作员那一栏空着。'};
- case 'pressure':return {voice:'程放 · 主管',portrait:null,mood:'block',text:'不管谁放错的，你是临时工。出了事先由你签字。'};
- case 'bond':return {voice:'唐映雪',portrait:'t',mood:'bond',text:'我还撑得住。侧幕那边的人，你能帮我吗？'};
- case 'final':return {voice:'许照 · 心声',portrait:null,mood:'decision',text:'救她会惹麻烦；先顾自己，就可能错过她。'};
+ case 'spotlight':return {voice:'唐映雪',portrait:'t',mood:'stage',text:'喂，伴奏错了！别切麦，我还能接上！'};
+ case 'wake':return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:'许照！醒醒！台上等着换伴奏呢！'};
+ case 'badge':return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'许照？……坏了，我成了小说里七天后被开除的那个。'};
+ case 'crisis':return {voice:'沈清辞 · 对讲机',portrait:null,mood:'stage',text:'许照，去箱子里找原版！阿衡先别切音乐，等我。'};
+ case 'hunt':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'盘有了。要是现在送过去，程放准找我麻烦。':'琴都快撑不住了。原版盘到底塞哪儿了？'};
+ case 'find':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.lastFind==='usb'?'找着了！蓝胶带，没错，就是这只盘。':io.lastFind==='sheet'?'上面写着我负责，谁导出的音乐怎么是空的？':'怎么少了一段前奏？昨晚排练不是这版啊。'};
+ case 'pressure':return {voice:'程放 · 主管',portrait:null,mood:'block',text:'临时工的名字最好写。你先签了，别让大家等。'};
+ case 'bond':return {voice:'唐映雪',portrait:'t',mood:'bond',text:'侧幕那边，听得到吗？我还能撑四小节！'};
+ case 'final':return {voice:'许照 · 心声',portrait:null,mood:'decision',text:'盘就在手上。送过去，还是把证据先留下？'};
  default:return v10BeforeLine();
  }
 };
@@ -1850,12 +1850,12 @@ const v10BeforeChoices=ioChoices;
 ioChoices=function(step){
  if(step==='hunt'){
   const html=v10BeforeChoices(step);
-  if(io.seen.includes('usb'))return html.replace('去处理舞台危机','现在决定下一步');
+  if(io.seen.includes('usb'))return html.replace('去处理舞台危机','先去侧幕');
   return html+'<button type="button" class="io-advance" data-io="move">现在去作决定 <span aria-hidden="true">›</span></button>';
  }
  if(step==='final'&&!io.seen.includes('usb'))return '<div class="io-choice-stack" role="group" aria-label="作出有代价的决定">'+
-  '<button type="button" class="io-choice" data-io="canon">先保自己 · 舞台让别人救 <span aria-hidden="true">↗</span></button>'+
-  '<button type="button" class="io-choice" data-io="backsearch">回去找原版 · 争取自己救她 <span aria-hidden="true">↗</span></button></div>';
+  '<button type="button" class="io-choice" data-io="canon">先别碰，我不能替人背锅 <span aria-hidden="true">↗</span></button>'+
+  '<button type="button" class="io-choice" data-io="backsearch">等等，我还是回去找盘 <span aria-hidden="true">↗</span></button></div>';
  return v10BeforeChoices(step);
 };
 const v10BeforeAction=ioAction;
@@ -1872,40 +1872,40 @@ ioAction=function(action){
 /* Decisions shown to players must answer the line they have just heard. */
 const V10_TALK=Object.freeze({
  OP_TALK_t:[
-  {voice:'唐映雪',shot:'singerBond',text:'程放刚才在找你。今晚你为了救场，得罪他了。'},
-  {voice:'唐映雪',shot:'singerBond',text:'他还在那边等着。你现在想怎么做？'}],
+  {voice:'唐映雪',shot:'singerBond',text:'许照，刚才那人是不是冲你发火了？'},
+  {voice:'唐映雪',shot:'singerBond',text:'你想先歇会儿，还是还打算留在后台？'}],
  OP_TALK_s:[
-  {voice:'沈清辞',shot:'shen',text:'错版的事有人想压下来。我不准备替他盖章。'},
-  {voice:'沈清辞',shot:'shen',text:'你要我留私人号码，还是只谈下一场工作？'}],
+  {voice:'沈清辞',shot:'shen',text:'刚才有人拿责任单来催。我让他先放桌上了。'},
+  {voice:'沈清辞',shot:'shen',text:'我这里有工作号。还有……你要不要加我的私人号？'}],
  OP_TALK_l:[
-  {voice:'林见月',shot:'lin',text:'我拍到你拿盘那一刻。但照片里也有你的脸。'},
-  {voice:'林见月',shot:'lin',text:'要我只发给你，还是干脆不拍私人照片？'}],
+  {voice:'林见月',shot:'lin',text:'给你看张照片。你钻设备箱那会儿，头发全乱了。'},
+  {voice:'林见月',shot:'lin',text:'这张拍到你正脸了。你想留吗？不想我就删。'}],
  OP_TALK_g:[
-  {voice:'顾晚棠',shot:'gu',text:'邮件能证明版本被换过，但还不能证明是谁动的。'},
-  {voice:'顾晚棠',shot:'gu',text:'你想认识我，还是更想接到下一场工作？'}]
+  {voice:'顾晚棠',shot:'gu',text:'我把邮件核了。至少能证明你没乱改那段音乐。'},
+  {voice:'顾晚棠',shot:'gu',text:'今晚也算认识了。以后你是只想找我谈工作吗？'}]
 });
 // Update only display labels: the ID and all saved story consequences remain canonical.
 Object.assign(IF_FOLLOW.ENTRY_CLUES.labels,{
- obey:'签字认账 · 今天脱身，之后可能背锅',
- refuse:'当面拒签 · 不背锅，但会得罪主管',
- witness:'先留时间线 · 现在没法直接翻案'
+ obey:'这上面不是我做的。我不能乱签',
+ refuse:'不签，谁换的音乐谁负责',
+ witness:'阿衡，咱们把当时的时间记下来'
 });
 Object.assign(IF_FOLLOW.ENTRY_MEMORY.labels,{
- camera:'让见月拍证据 · 留住换版时间',
- email:'找晚棠核授权 · 当面追问程放'
+ camera:'见月，你能帮我把这段拍下来吗？',
+ email:'晚棠，麻烦你查下这封邮件'
 });
 IF_FOLLOW.COLD.text='原版盘有了。谁来帮你把歌救回来？';
 Object.assign(IF_FOLLOW.COLD.labels,{
- t:'找唐映雪 · 她会知道是谁救了她',
- s:'找沈清辞 · 让负责人替你记下功劳',
- l:'找林见月 · 同时留下照片证据',
- g:'找顾晚棠 · 直接核查谁换了版本',
- self:'和阿衡配合 · 稳妥切换，不抢功劳'
+ t:'映雪，听我手势，我帮你切回去',
+ s:'清辞，原版在这儿！你看着切换',
+ l:'见月，你先帮我们拍个记录',
+ g:'晚棠，那封授权邮件到底怎么写的？',
+ self:'阿衡，盘给你。别冒险自己插'
 });
 Object.assign(IF_FOLLOW.OP_FORK.labels,{
- backup:'备份文件 · 明天有人甩锅时有证据',
- confront:'群里质问 · 会被主管针对',
- quiet:'暂不出声 · 今晚平安，证据可能流失'
+ backup:'先把两份文件都拷下来',
+ confront:'我现在就在群里问清楚',
+ quiet:'先别闹大，我把手里的东西收好'
 });
 Object.assign(IF_FOLLOW.OP_TALK_t.labels,{
  flirt:'“我想留下来，至少把你的歌听完。”',
@@ -1930,16 +1930,16 @@ Object.assign(IF_FOLLOW.OP_TALK_g.labels,{
 
 const V10_FORK=Object.freeze({
  canon:[
-  {voice:'许照 · 心声',shot:'stage',text:'我没冲上去。钢琴手陆景行救了场，掌声是他的。'},
-  {voice:'程放',shot:'console',text:'你是临时场务许照吧？这张交接单，签了。'}
+  {voice:'许照 · 心声',shot:'stage',text:'他接上了琴，台下在鼓掌。我躲在箱子后没敢动。'},
+  {voice:'程放',shot:'console',text:'你，临时场务？过来，把今晚的表签一下。'}
  ],
  rescue:[
-  {voice:'唐映雪',shot:'singerBond',text:'我唱回来了。你在侧幕，我看见了。'},
-  {voice:'程放 · 身后',shot:'console',text:'谁让你翻设备箱的？这事我回头跟你算。'}
+  {voice:'唐映雪',shot:'singerBond',text:'看见了吗？我接回来了！……刚才谢谢你。'},
+  {voice:'程放 · 身后',shot:'console',text:'谁让你翻箱子的？散场别走，我找你有事。'}
  ],
  investigate:[
-  {voice:'沈清辞',shot:'shen',text:'先留住证据。我能安排切换，但别把盘乱插。'},
-  {voice:'许照 · 心声',shot:'stage',text:'我拿到了线索，却让她在台上多等了一段。'}
+  {voice:'沈清辞',shot:'shen',text:'盘先别插！阿衡来切。我去找人调监控。'},
+  {voice:'许照 · 心声',shot:'stage',text:'她又等了一个四小节。我攥着盘，手心全是汗。'}
  ]
 });
 const v10BeforeStory=storyHTML;
@@ -1983,6 +1983,7 @@ document.addEventListener('click',e=>{
  e.preventDefault();e.stopImmediatePropagation();
  v10.pending=null;choiceSound();save();render();arm();
 },true);
+
 /* V11: the story already has real costs. Show them while people are choosing.
  * This is a projection of 18 authored canonical scenes, NOT a second story engine.
  * Consent, routing, endings and saved effects come only from engine.choose().
@@ -2041,21 +2042,21 @@ function v11AfterActive(){
  return true;
 }
 const V11_VOICES=Object.freeze({P:'许照',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',C:'程放',A:'阿衡',LU:'陆景行',N:'许照 · 心声'});
-function v11ShortLine(text,max=38){
- const t=String(text||'').trim();if(Array.from(t).length<=max)return t;
- const s=Array.from(t).slice(0,max-1).join('');
- const m=s.match(/^(.{16,}?[。！？!?；;])/);
- return (m?m[1]:s)+'…';
-}
 function v11AfterLines(){
  const a=v11.after,arc=V11_ARCS[a.scene],rule=arc.choices[a.choice];
  v11BoundEffect(a.scene,a.choice);
- const r=lastReply.find(x=>x.speaker!=='N'&&x.speaker!=='B'&&x.speaker!=='U'&&x.text&&x.text.trim());
+ // The old director cut an arbitrary canonical reply to 38 glyphs, then
+ // concatenated another response. It produced mid-sentence dialogue and
+ // people apparently answering different questions. The fully authored
+ // consequences below are guarded by real engine effects; complete source
+ // replies remain available from history and are never mutated.
  const response=rule.response;
- return [
-  ...(r?[{voice:V11_VOICES[r.speaker]||r.speaker,shot:response.shot,text:v11ShortLine(r.text)}]:[]),
-  {voice:response.voice,shot:response.shot,text:response.text}
- ];
+ const lines=[{voice:response.voice,shot:response.shot,text:response.text}];
+ if(rule.afterBeat)lines.push({
+  voice:rule.afterBeat.voice,shot:rule.afterBeat.shot||response.shot,
+  text:rule.afterBeat.text
+ });
+ return lines;
 }
 function v11Props(){
  const arc=V11_ARCS[state.current],view=renderScene(state,DATA);
@@ -2065,31 +2066,31 @@ function v11Props(){
   if(!id.startsWith('intent:')&&!Object.hasOwn(arc.choices,id))throw Error('V11 unmapped canonical choice '+state.current+'/'+id);
  }
  const second=!!state.decisionIntent&&state.decisionIntent.scene===state.current;
- const intro=second?[{voice:arc.intro[1].voice,text:arc.secondStage||'方向已定。现在选具体做法。',shot:arc.shot}]:arc.intro.map(x=>({...x,shot:arc.shot}));
+ const intro=second?[{voice:arc.intro[1].voice,text:arc.secondStage||'那咱们把话说具体点。',shot:arc.shot}]:arc.intro.map(x=>({...x,shot:arc.shot}));
  if(state.current==='A1b'&&state.f.canon_signed_blame)
-  intro[0]={voice:'许照 · 心声',text:'我之前签过一次模糊责任。今晚不能再把字交出去。',shot:'console'};
+  intro[0]={voice:'许照 · 心声',text:'第一晚我已经签错过一次了。这次别想再让我糊里糊涂签。',shot:'console'};
  if(state.current==='A2a'&&state.f.first_win===false)
-  intro[1]={voice:'唐映雪',text:'首演是陆景行替我撑住的。现在连歌也要算到他名下？',shot:'singer'};
+  intro[1]={voice:'唐映雪',text:'那晚是景行替我弹的。现在大家连歌都当成他写的？',shot:'singer'};
  if(state.current==='A2a'&&state.f.first_win===true)
-  intro[1]={voice:'唐映雪',text:'那晚你帮我把歌唱回来了。今天能不能帮我保住署名？',shot:'singer'};
+  intro[1]={voice:'唐映雪',text:'那晚多亏你给的信号。现在这首歌，你还愿意帮我吗？',shot:'singer'};
  if(state.current==='A2b'&&state.f.canon_signed_blame)
-  intro[0]={voice:'程放',text:'许照，你自己签过责任单。现在想当众改口？',shot:'console'};
+  intro[0]={voice:'程放',text:'你自己签的字还在呢。现在跟我说不算？',shot:'console'};
  if(state.current==='A4a'&&state.f.private_photo==='not_taken')
-  intro[0]={voice:'林见月',text:'那晚你拒绝拍私人照片，我记得。这部片也得尊重别人。',shot:'lin'};
+  intro[0]={voice:'林见月',text:'你那晚说不拍就不拍。我现在也不想拿别人的难过剪片子。',shot:'lin'};
  if(state.current==='A4a'&&state.f.private_photo==='two_people_only')
-  intro[0]={voice:'林见月',text:'私人照片我只发给你。作品里别人的脸，还得另问许可。',shot:'lin'};
- if(state.current==='A4b'&&state.f.canon_signed_blame)intro[0]={voice:'程放',text:'你那晚签过责任单。现在别想翻案。',shot:'console'};
+  intro[0]={voice:'林见月',text:'上回那张照片我只发给你了。可这段视频里还有别人。',shot:'lin'};
+ if(state.current==='A4b'&&state.f.canon_signed_blame)intro[0]={voice:'程放 · 录音',text:'你签过字的，许照。别跟我说你忘了。',shot:'console'};
  if(state.current==='A5a'&&state.f.contact_g==='private')
-  intro[0]={voice:'顾晚棠',text:'你存了我的私人号码，但今晚谈的是我能不能拒绝背债。',shot:'gu'};
+  intro[0]={voice:'顾晚棠',text:'你倒是知道怎么打我私人号。这事可不能只靠安慰。',shot:'gu'};
  if(state.current==='A5b'&&['ally','partner'].includes(state.f.lu_relation))
-  intro[0]={voice:'陆景行',text:'之前我们分工合作过。现在还有一场必须说清的比赛。',shot:'stage'};
+  intro[0]={voice:'陆景行',text:'咱俩上次配合得不错。这回要不要各自拿点真本事出来？',shot:'stage'};
  if(state.current==='A6a'&&state.f.proof_audio&&!state.f.canon_signed_blame)
-  intro[1]={voice:'许照 · 心声',text:'见月留住了程放那句原声。今天我终于能拿出来核验。',shot:'console'};
+  intro[1]={voice:'许照 · 心声',text:'见月手机里那段录音还在。我没必要再怕他了。',shot:'console'};
  if(state.current==='A7a'&&active(state).length>1)
-  intro[1]={voice:'许照 · 心声',text:'我和不止一个人有承诺。她们不能最后才知道真相。',shot:'stage'};
- if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'我签过那张责任单。现在更得拿出真实证据。',shot:'console'};
+  intro[1]={voice:'许照 · 心声',text:'我还答应过别人。再拖下去，她们只会更受伤。',shot:'stage'};
+ if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'第一晚那张字是我签的。我得把前因后果说清楚。',shot:'console'};
  if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove')&&!second)
-  intro[1]={voice:'许照 · 心声',text:'没有能核验的材料，我现在无法当众翻案。',shot:arc.shot};
+  intro[1]={voice:'许照 · 心声',text:'手里连能拿出来的证据都没有。我现在说什么都像狡辩。',shot:arc.shot};
  return {arc,intro,choices};
 }
 function v11ChoicesHtml(choices,arc,metrics){
@@ -2100,9 +2101,10 @@ function v11ChoicesHtml(choices,arc,metrics){
   part.map(c=>{
    const intent=c.id.startsWith('intent:');
    const info=intent?null:arc.choices[c.id];
-   const label=intent?c.label:info.label;
-   const cost=intent?'先选方向，再决定具体做法':info.risk;
-   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span><span class="v11-choice-risk">'+esc(cost)+'</span></button>';
+   const label=intent?(arc.intentLabels?.[c.id.slice('intent:'.length)]||c.label):info.label;
+   const cost=intent?'':info.risk;
+   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span>'+
+    (cost?'<span class="v11-choice-risk">'+esc(cost)+'</span>':'')+'</button>';
   }).join('')+
   (total>1?'<div class="v11-pages"><button type="button" data-v11-page="-1"'+(v11.page===0?' disabled':'')+'>上一组</button><span>'+ (v11.page+1)+' / '+total+'</span><button type="button" data-v11-page="1"'+(v11.page===total-1?' disabled':'')+'>下一组</button></div>':'')+'</div>';
 }
@@ -2171,4 +2173,5 @@ document.addEventListener('click',e=>{
   choiceSound();save();render();arm();
  }catch(err){notice='这个选择未能生效：'+err.message;showNotice();}
 },true);
+
 load();render();
