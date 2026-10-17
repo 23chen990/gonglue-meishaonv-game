@@ -33,12 +33,16 @@ def step(page,name):
   const sheet=document.querySelector('.io-sheet'),txt=document.querySelector('.io-sheet .mobile-text');
   const sh=sheet.getBoundingClientRect();
   return {sheet:sh.height,vh:innerHeight,scroll:txt.scrollHeight,client:txt.clientHeight,
-  blocks:txt.querySelectorAll('.line').length,text:txt.innerText,buttons:[...document.querySelectorAll('.io-vn button')].map(e=>({
+  blocks:txt.querySelectorAll('.line').length,text:txt.innerText,
+  voiceVisible:(()=>{const s=sheet.querySelector('.mobile-speaker'),r=s.getBoundingClientRect(),c=getComputedStyle(s);return c.display!=='none'&&c.visibility==='visible'&&r.width>0&&r.height>0})(),
+  textVisible:(()=>{const p=txt.querySelector('.line p'),r=p?.getBoundingClientRect(),t=txt.getBoundingClientRect(),c=getComputedStyle(txt),pc=p&&getComputedStyle(p);return !!p&&c.display!=='none'&&c.visibility==='visible'&&pc.visibility==='visible'&&r.width>0&&r.height>0&&r.top>=t.top-2&&r.bottom<=t.bottom+2})(),
+  buttons:[...document.querySelectorAll('.io-vn button')].map(e=>({
   label:e.innerText,height:e.getBoundingClientRect().height}))};
  }""")
  assert box['sheet']<=box['vh']/3+3,('sheet too big',box)
  assert box['scroll']<=box['client']+3,('overflow in dialogue',box)
  assert box['blocks']==1,('multiple speakers per page',box)
+ assert box['voiceVisible'] and box['textVisible'],('actual dialogue hidden in live CSS, not accepted',box)
  assert all(b['height']>=43 for b in box['buttons']),('small tap target',box)
  assert len(box['text'])<=44,('long novel paragraph remained in opening',box)
  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),'horizontal overflow'

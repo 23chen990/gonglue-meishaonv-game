@@ -34,3 +34,14 @@ body[data-panel=story] .io-stage{position:absolute!important;inset:0!important;d
 
 /* A full-bleed CG is never an invisible tap blocker. Choices/hotspots remain in their own layer. */
 .io-vn .io-film,.io-vn .io-film *,.io-vn .io-film-vignette{pointer-events:none!important}
+
+/* Generic mobile decision mode hid the speaker and line; that made the real H5
+ * render an empty 1/4-screen panel despite DOM-only tests succeeding. */
+body[data-panel=story] .mobile-vn.io-vn[data-mode=decision] > .mobile-sheet.io-sheet {
+ grid-template-rows:28px minmax(0,1fr) calc(44px + var(--mobile-safe))!important;
+ padding:10px 18px 4px!important;
+}
+body[data-panel=story] .mobile-vn.io-vn[data-mode=decision] > .mobile-sheet.io-sheet .mobile-speaker,
+body[data-panel=story] .mobile-vn.io-vn[data-mode=decision] > .mobile-sheet.io-sheet .mobile-text {
+ display:block!important;
+}
