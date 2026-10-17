@@ -14,7 +14,7 @@ for(const [id,editorial] of Object.entries(v13.scenes)){
  const scene=data.scenes[id];assert.ok(scene,id);
  assert.deepEqual(new Set(Object.keys(editorial.labels)),new Set(scene.choices.map(x=>x.id)),id+' choices must be complete');
  for(const [rowId,p] of Object.entries(editorial.beats)){
-  const found=scene.body.find(r=>r.id===rowId);
+  const found=[...scene.body,...scene.blocks.flatMap(block=>block.lines)].find(r=>r.id===rowId);
   assert.ok(found,'missing body beat '+rowId);
   assert.equal(found.textHash,p.hash,'source changed '+rowId);
   assert.equal(found.speaker,p.speaker,'speaker changed '+rowId);
@@ -38,13 +38,14 @@ for(const [id,editorial] of Object.entries(v13.scenes)){
   replies++;
  }
 }
-assert.deepEqual({scenes:expected.size,beats,choices,replies},{scenes:36,beats:84,choices:112,replies:14});
+assert.deepEqual({scenes:expected.size,beats,choices,replies},{scenes:36,beats:86,choices:112,replies:14});
 // Fail on accidental reintroduction of technical labels for high-risk choices.
-assert.match(v13.scenes.s06.labels.dismiss.label,/撒谎/);
-assert.match(v13.scenes.g06.labels.deny.label,/不诚实/);
+assert.ok(!v13.scenes.s06.labels.dismiss.label.includes('（')); 
+assert.ok(!v13.scenes.g06.labels.deny.label.includes('（')); 
 assert.match(v13.scenes.l07.labels.control.label,/剪掉/);
-assert.match(v13.scenes.s02.labels.promise.label,/没有这笔钱/);
+assert.ok(!v13.scenes.s02.labels.promise.label.includes('（')); 
 assert.ok(new Set(allChoiceLabels).size>95,'not enough distinct speech choices');
+assert.ok(allChoiceLabels.every(x=>!x.includes('（')&&!x.includes('）')),'buttons must be things people actually say, not explanations in parentheses');
 const originalSceneCount=Object.keys(data.scenes).length;
 const originalChoiceCount=Object.values(data.scenes).flatMap(x=>x.choices).length;
 assert.equal(originalSceneCount,228);assert.equal(originalChoiceCount,751);
@@ -52,4 +53,4 @@ for(const f of ['play.html','runtime.mjs']){
  const html=fs.readFileSync(new URL(f,base),'utf8');
  assert.ok(html.includes('ROMANCE_V13_SCENES')&&html.includes('function v13Scene()'),f+' missing live editorial implementation');
 }
-console.log('PASS V13: 36 personal episodes, 84 human dialogue beats, 112 canonical choice labels, 14 sensitive consequence reactions, original 228/751/24 game unchanged');
+console.log('PASS V13: 36 personal episodes, 86 human dialogue beats, 112 canonical choice labels, 14 sensitive consequence reactions, original 228/751/24 game unchanged');
