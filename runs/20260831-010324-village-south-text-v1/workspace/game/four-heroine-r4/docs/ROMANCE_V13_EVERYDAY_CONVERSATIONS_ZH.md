@@ -39,3 +39,10 @@
 - 只改呈现的封装：`tools/romance-v13.js`
 - 完整打包与 source hash：`tools/build-preview.mjs`
 - 不修改真实故事引擎、关系结局、用户历史记录中的正典内容。
+
+## 2026-10-17 GitHub 实机尺寸浏览器验收
+
+- **[V13 跨版本真实 HTTP 浏览器总验收 146/146 PASS](https://github.com/23chen990/gonglue-meishaonv-game/actions/runs/39021132209)**，Chromium 73 / WebKit 73，包含新增日常恋爱场景 72/72、V9–V12 老回归 74/74。原剧情 228 场、751 choice 的引擎命令及存档语义保留。
+- CI 构建并推送的独立 `play.html` 大小为 **3,940,664 bytes**，Git Blob **`b24002ab68d72a61ef8ccabefb4118555aa15bfd`**，SHA-256 **`325912669f49d0e797c3cb2308dd8469a58b8c8409eef09ae333eef7c4d16fdd`**，与当前交付的独立 HTML 一致。
+- CI 全量截图也证明 **生活场景的美术未完成**：如 s06 日常谈话仍出现舞台全景，与台词所在地点不符。不能因对白自然化和触屏通过而宣称真正的恋爱视觉体验已合格。需要逐场匹配正式 CG/背景，美术验收保持 BLOCKED。
+- 真机与陌生玩家的对白理解度、女主吸引力、负面选择触发意愿未测；这些是发布阻塞项，不以自动化通过替代。
