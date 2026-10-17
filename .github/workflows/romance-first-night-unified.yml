@@ -11,6 +11,8 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-interactive-opening.py'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/art/heroines/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/assets/adv8/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/art/adv8/**'
   workflow_dispatch:
 concurrency:
   group: first-night-unified-${{ github.ref }}
