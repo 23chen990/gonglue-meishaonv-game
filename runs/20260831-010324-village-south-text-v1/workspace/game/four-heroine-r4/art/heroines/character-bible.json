@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "1.0",
+  "artVersion": "2026-10-17-heroine-identity",
+  "truth": "VISUAL_DIRECTION_NOT_GENERATED_FINAL_ASSET",
+  "global": {
+    "genre": "adult contemporary-city romance visual novel, cinematic semi-realistic digital illustration",
+    "location": "North Shore Arts Center / stage, backstage and side curtain in one coherent space",
+    "grade": "warm amber practical stage highlights; restrained violet-blue rim lighting; natural skin, clean sharp eyes; avoid excessive skin smoothing",
+    "camera": "first-person position from backstage side whenever protagonist observes stage; physically consistent focus, lens and eye lines",
+    "forbidden": [
+      "AI doll faces cloned across all four heroines",
+      "pasted portrait over a blurry photo background",
+      "beauty advertisement still mistaken for an ongoing on-stage emergency",
+      "multiple panels, typography, choice buttons or watermark baked into event CG",
+      "excessively glamourized supporting crew",
+      "upscaling a ~900px square crop to pass source-resolution checks"
+    ],
+    "master": "1536x2560 vertical 3:5 recommended, artwork subject not occluded by 1/4-screen bottom text"
+  },
+  "characters": {
+    "tang_yingxue": {
+      "canon": "唐映雪",
+      "role": "first-night female singer; heroine introduced through action not character bio",
+      "adult": true,
+      "hierarchy": "dominant heroine focal point in singer crisis; attractive and instantly recognizable, not porcelain-doll posing",
+      "face": "oval face with slightly defined cheekbones, warm brown eyes with sharp outer corners; subtle natural lip tone; real facial texture; confident stage gaze",
+      "hair": "dark chestnut almost-black long wavy hair, loosely half-up with softly uneven forehead strands",
+      "anchors": [
+        "ONE small silver shooting-star hair pin above RIGHT temple",
+        "ONE thin silver chain ear cuff on LEFT ear",
+        "black-plum / deep burgundy tailored stage jacket, black satin asymmetric neckline",
+        "left fingertips touch left in-ear monitor when audio fails"
+      ],
+      "stagePalette": [
+        "plum wine",
+        "soft silver",
+        "deep charcoal"
+      ],
+      "behavior": "she notices the wrong mix during live performance, locks eyes toward side-curtain protagonist for a split second, asks directly for help; charm is competence plus momentary vulnerability",
+      "prohibited": [
+        "bottle at lips during live malfunction",
+        "identical overprocessed anime doll face in every angle",
+        "overly sexualized costume",
+        "only a face filling whole screen with no venue",
+        "different earring or different costume between CG shots"
+      ],
+      "consistencyTests": [
+        "same brow/eye proportions front 3/4/profile",
+        "recognizable hair accessory and left-ear cuff on two or more independent shots",
+        "actual onstage gesture visible and matched to dialogue",
+        "facial focal region remains sharp on 390x844 and 430x932 game screenshot",
+        "5-second thumbnail recognition by reviewers without looking at name"
+      ]
+    },
+    "shen_qingci": {
+      "canon": "沈清辞",
+      "role": "decisive backstage lead and romance heroine",
+      "adult": true,
+      "anchors": [
+        "precise tied-back medium brown hair",
+        "practical charcoal tailored backstage outfit and discreet comms earpiece",
+        "calm, direct gaze"
+      ],
+      "contrast": "grounded, competent, quieter intensity; not same face, hairstyle, wardrobe or silver hairpin as Tang"
+    },
+    "lin_jianyue": {
+      "canon": "林见月",
+      "role": "camera-holding lively photographer heroine",
+      "adult": true,
+      "anchors": [
+        "layered shoulder-length black hair with blue-black sheen",
+        "signature camera harness / hand-held camera",
+        "alert half-smile, slightly playful gaze"
+      ],
+      "contrast": "kinetic photographic composition and brisk gestures; not a recolored Tang portrait"
+    },
+    "gu_wantang": {
+      "canon": "顾晚棠",
+      "role": "refined email / authorization investigator heroine",
+      "adult": true,
+      "anchors": [
+        "sleek dark coffee bob with blunt side part",
+        "cool gray-blue tailored jacket and neat sleeves",
+        "composed upright posture, keen analytical eyes"
+      ],
+      "contrast": "understated urban elegance, independent from other heroines"
+    },
+    "crew": {
+      "canon": "阿衡 / 普通场务",
+      "role": "functional NPC, not love interest",
+      "adult": true,
+      "anchors": [
+        "unremarkable black stage polo, authentic headset and tool lanyard",
+        "ordinary age-appropriate friendly face",
+        "work-worn posture, believable reach"
+      ],
+      "prohibited": [
+        "idol-beauty close-up",
+        "celebrity face",
+        "more prominent glamour treatment than Tang's first entrance"
+      ]
+    }
+  },
+  "shots": [
+    {
+      "id": "TY_STAGE_CRISIS",
+      "scene": "ENTRY_WAKE / alarm",
+      "asset": "assets/v6-preview/singer.webp",
+      "status": "LEGACY_BLOCKED",
+      "existingImageRole": "backstage water break headshot",
+      "requiredImageRole": "stage singer stops mid-performance and touches left in-ear monitor, looking through side curtain",
+      "requiredCamera": "backstage-side 3/4, warm spotlights, full stage space",
+      "requiredFace": "sharp and distinctly Tang",
+      "minWidth": 1536,
+      "minHeight": 2400,
+      "reason": "old source square-ish, a bottle near mouth; conflicts with stage malfunction"
+    },
+    {
+      "id": "TY_FIRST_RESPONSE",
+      "scene": "ENTRY_WAKE / ask",
+      "asset": null,
+      "status": "NEEDS_NEW_CG",
+      "requiredImageRole": "a restrained glance toward player as stage lights return; her composure fractures, not a beauty pose",
+      "minWidth": 1536,
+      "minHeight": 2400
+    },
+    {
+      "id": "TY_AFTER_HELP",
+      "scene": "COLD and early Tang dialogue",
+      "asset": null,
+      "status": "NEEDS_NEW_CG",
+      "requiredImageRole": "thank-you shot after genuine rescue: stage-side, posture relaxes; keep same hairpin/ear cuff/outfit",
+      "minWidth": 1536,
+      "minHeight": 2400
+    },
+    {
+      "id": "SQ_COMMS",
+      "scene": "ENTRY_WAKE / crisis",
+      "asset": null,
+      "status": "NEEDS_NEW_CG",
+      "requiredImageRole": "Shen directing backstage with authentic communication gear, not a portrait card",
+      "minWidth": 1536,
+      "minHeight": 2400
+    },
+    {
+      "id": "JL_EVIDENCE",
+      "scene": "ENTRY_MEMORY / camera",
+      "asset": null,
+      "status": "NEEDS_NEW_CG",
+      "requiredImageRole": "Lin adjusting camera capturing switching evidence",
+      "minWidth": 1536,
+      "minHeight": 2400
+    },
+    {
+      "id": "GW_AUTH",
+      "scene": "ENTRY_MEMORY / email",
+      "asset": null,
+      "status": "NEEDS_NEW_CG",
+      "requiredImageRole": "Gu checking authorization mail in working art center, no UI screenshots burned into image",
+      "minWidth": 1536,
+      "minHeight": 2400
+    }
+  ],
+  "reviewGate": {
+    "expectedViewports": [
+      "320x568",
+      "390x844",
+      "430x932"
+    ],
+    "states": [
+      "first impression",
+      "single dialogue",
+      "live-stage problem",
+      "choice screen",
+      "after-choice response"
+    ],
+    "passCriteria": [
+      "all P0 close-up and stage CG are independent source master vertical scenes",
+      "physical stage geography and eyelines consistent",
+      "no clipped face or ear accessory",
+      "readable on DPR2/DPR3 without enlargement softness",
+      "5-second visual recognition and consistent age appearance",
+      "reviewed licensing/provenance"
+    ],
+    "releaseBlockedUntilAllPass": true
+  }
+}
