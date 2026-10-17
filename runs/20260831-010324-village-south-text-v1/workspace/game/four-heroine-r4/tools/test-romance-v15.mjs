@@ -16,9 +16,9 @@ assert.match(talk,/source_programme_approval_note/);
 assert.match(follow,/state\.current==='COLD'&&c\.id==='l'&&state\.f\.source_pre_switch_timestamp/);
 assert.match(follow,/state\.current==='COLD'&&c\.id==='g'&&state\.f\.source_programme_approval_note/);
 for(const [scene,fragment] of Object.entries({
- A2a:'昨晚弹钢琴的那个',A3a:'赞助商',A3b:'公开邀约',
- A4a:'我拍的短片',A5a:'主办方',A5b:'我叫陆景行',
- A6a:'第一夜',A7a:'原本这本小说里'
+ A2a:'昨晚弹钢琴的那个',A3a:'赞助商',A3b:'后街吃面',
+ A4a:'报名截止',A5a:'主办方',A5b:'我叫陆景行',
+ A6a:'视频只截了',A7a:'第二十一天'
 })){
  assert.ok(arcs[scene].intro.some(row=>row.text.includes(fragment)),scene+' first-player context still missing');
 }

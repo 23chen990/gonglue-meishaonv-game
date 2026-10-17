@@ -1,3 +1,12 @@
+## V20 FIRST-PLAYER CAUSALITY & REAL CHOICE CONTRACT
+
+The player should understand WHERE, WHAT happened, WHY heroine speaks, and WHAT an action does. V19 fixed 36 personal scenes; V20 fixes mainline source contradictions and false two-step UX. Gu Wantang's fourth-night invitation in canon is back-street noodles, not accounting. Lin Jianyue has to APPLY for independent filming by the signup deadline, NOT finish the film tonight; privately recorded distressing footage requires consent. Day-seven propaganda video is cropped to make Xu Zhao appear responsible, while audio can rebut the allegation.
+
+All 18 directed key scenes now display actual enabled leaf choices directly. In 12 scenes with canonical decisionSteps, one tap internally records intent:group then the real leaf (two engine.choose calls, atomic visible state). Historical commands/effects/states, save migration and replay must remain unchanged. ?qa=intent tests previous double-screen behavior and resumes existing midway-intent saves.
+
+Source paths: tools/romance-v11.js, romance-v11-arcs.json, romance-v11.css. Tests: test-romance-v20.mjs / test-romance-v20.py; docs/ROMANCE_V20_FIRST_PLAYER_CAUSALITY_ZH.md. Do not edit STORY.json or engine.mjs. Keep Draft PR #22. Art currently repeats stage portraits instead of location scenes; commercial usage, phone hardware and blind player QA are still blockers. No merge or release.
+
+---
 ## V19 CAUSAL EDITORIAL CONTRACT (2026-10-17, highest priority)
 
 The user reports that even V18 dialogue feels unintelligible. Root cause: a rigid two-line quota removed observable causes and conditional prior history. V19 changes 36 heroine episodes to 88 distinct single-turn spoken beats (2–3 each), grounded scene/trigger microcue, and 14 source-verified prior-choice callback candidates. Real user replies remain canonical choices, never automatic P speeches. Critical cases t02 (accidental book-song knowledge), s06/g06 (why relationship questioned), l07 (never attribute an unclicked "哦" to the player). Verify source row ID/speaker/hash before showing conditional dialogue; preserve genuine hurt/trust outcomes. Never let fewer words override comprehension. Author file tools/romance-v19-scenes.json; controller tools/romance-v19.js; contract scripts test-romance-v19.mjs / .py; ?qa=v18 tests previous version and ?qa=legacy-reader tests complete original text. Validate exact PR HEAD and compiled play.html via CI; no assertion of release. Artwork still reuses stage CG in real-world dates. No physical-phone or human perceptual QA yet.

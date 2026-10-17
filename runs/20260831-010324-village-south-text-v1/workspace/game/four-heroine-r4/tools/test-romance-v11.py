@@ -6,7 +6,7 @@ import os, sys, json, traceback
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
-URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html')
+URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]+'?qa=intent'
 LOCAL=os.getenv('R4_LOCAL_HTML')
 OUT=ROOT/'qa/current/browser/romance-v11';OUT.mkdir(parents=True,exist_ok=True)
 FIX=json.loads((ROOT/'qa/current/romance-v11-fixtures.json').read_text())['fixtures']
@@ -49,7 +49,7 @@ def one_case(browser,name,scene,choice,width,height):
  try:
   raw=json.dumps(FIX[scene],ensure_ascii=False)
   if LOCAL:
-   p.goto('about:blank')
+   p.goto('about:blank?qa=intent')
    p.evaluate('''(args)=>{const store=new Map([[args.k,args.v]]);Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem:k=>store.get(k)??null,setItem:(k,v)=>store.set(k,String(v)),removeItem:k=>store.delete(k),clear:()=>store.clear()}})}''',{'k':KEY,'v':raw})
    p.set_content(Path(LOCAL).read_text(encoding='utf8'),wait_until='load')
   else:

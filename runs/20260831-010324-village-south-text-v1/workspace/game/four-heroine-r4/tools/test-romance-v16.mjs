@@ -15,8 +15,8 @@ assert.ok(first.includes("io.seen.includes('usb')?'原版盘在手"),'no false a
 assert.ok(first.includes("obey:'我怕丢工作，先把责任单签了'"));
 assert.ok(!first.includes("obey:'这上面不是我做的。我不能乱签'"));
 assert.ok(canon.scenes.ENTRY_CLUES.choices.find(c=>c.id==='obey').effects.some(e=>e.op==='set'&&e.key==='canon_signed_blame'&&e.value===true));
-assert.ok(arcs.A3b.intro[0].text.includes('公开邀约'));
-assert.ok(arcs.A3b.intro[0].text.includes('对账'));
+assert.ok(arcs.A3b.intro[0].text.includes('后街吃面'));
+assert.ok(!arcs.A3b.intro[0].text.includes('对账'));
 assert.deepEqual(Object.keys(arcs.A3b.choices).sort(),canon.scenes.A3b.choices.map(c=>c.id).sort());
 for(const [id,c] of Object.entries(arcs.A3b.choices)){assert.ok(c.label.length<=23&&c.risk.length<=26,id);}
 assert.equal(createHash('sha256').update(read('../data/STORY.json')).digest('hex'),'84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93');

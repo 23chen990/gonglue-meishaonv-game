@@ -10,8 +10,8 @@ body[data-panel=story] .v11-director .io-film,body[data-panel=story] .v11-direct
 body[data-panel=story] .v11-director .v11-choice{box-sizing:border-box;display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;margin:0!important;width:100%;min-height:61px;padding:8px 13px;border-radius:10px;border:1px solid rgba(255,211,228,.65);background:rgba(13,15,27,.91);color:#fff;backdrop-filter:blur(6px);text-align:left;box-shadow:0 6px 20px rgba(0,0,0,.25);pointer-events:auto}
 .v11-director .v11-choice-main{font:600 15px/1.35 system-ui,'PingFang SC',sans-serif;color:#fffdfd}
 .v11-director .v11-choice-risk{font:450 12px/1.35 system-ui,'PingFang SC',sans-serif;color:#f6cddc}
-.v11-director .v11-pages{display:flex;align-items:center;justify-content:space-between;gap:8px;height:42px;color:#fff;font:500 12px/1.2 system-ui}
-.v11-director .v11-pages button{box-sizing:border-box;border:1px solid #deb9c7;border-radius:8px;background:rgba(15,18,29,.94);min-width:92px;min-height:42px;color:#fff;font:550 13px/1.2 system-ui;pointer-events:auto}
+.v11-director .v11-pages{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:46px;color:#fff;font:500 12px/1.2 system-ui}
+.v11-director .v11-pages button{box-sizing:border-box;border:1px solid #deb9c7;border-radius:8px;background:rgba(15,18,29,.94);min-width:92px;min-height:46px;color:#fff;font:550 13px/1.2 system-ui;pointer-events:auto}
 .v11-director .v11-pages button:disabled{opacity:.38}
 .v11-director button:focus-visible{outline:2px solid #ffe0eb!important;outline-offset:2px}
 body[data-panel=story] .v11-director .io-film[data-io-shot=shen] img{object-position:48% 31%!important}
