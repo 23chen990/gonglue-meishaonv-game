@@ -60,13 +60,17 @@ assert.ok(director.includes('if(rule.afterBeat)'),'narrative callback missing');
 assert.ok(director.includes('arc.intentLabels?.[c.id.slice'),'human stage-one labels not rendered');
 assert.ok(director.includes("const cost=intent?'':info.risk"),'do not label first-stage directions as finished effects');
 assert.ok(!/赋能|闭环|抓手|拉通/.test(JSON.stringify(arcs)),'product meeting words are not speech');
+// V14 moves the crisis AFTER the reader knows they were reading a novel.
+// Keep checking the actual spoken lines, not the obsolete V12 sudden start.
 for (const line of [
- '喂，伴奏错了！别切麦，我还能接上！',
- '许照！醒醒！台上等着换伴奏呢！',
- '临时工的名字最好写。你先签了，别让大家等。',
+ '伴奏怎么少了一段？别切麦！我还能唱！',
+ '小许！醒醒！你今天第一天来，别吓我啊。',
+ '临时场务是吧？交接单签一下，你今天就可以走了。',
  '今晚也算认识了。以后你是只想找我谈工作吗？'
-]) assert.ok(opening.includes(line),'V12 first-night conversation missing: '+line);
-assert.ok(night.includes('台上等着换伴奏呢！'),'fallback opening retains unnatural crisis dialogue');
+]) assert.ok(opening.includes(line),'human conversation missing: '+line);
+for(const line of ['step:\'reader\'','正在阅读','这个叫许照的临时工','书里第七天','io.step=\'recognize\'']){
+ assert.ok(night.includes(line),'newcomer orientation missing: '+line);
+}
 assert.ok(follow.includes('不签，明天还想不想来上班')||follow.includes('明天还想不想来上班'),'fallback manager pressure not revised');
 assert.equal(fs.statSync(new URL('../data/STORY.json', import.meta.url)).size,1691962,'do not mutate canonical engine/story in a presentation pass');
 const hash=createHash('sha256').update(fs.readFileSync(new URL('../data/STORY.json',import.meta.url))).digest('hex');
