@@ -72,12 +72,14 @@ function v9AfterActive(){
 function v9TalkKey(){return state.current+':'+state.history.length;}
 function v9TalkActive(){return panel==='story'&&phase==='scene'&&state.history.length>0&&Object.hasOwn(V9_TALK,state.current)&&ioFollowActive();}
 function v9TalkIntroActive(){return v9TalkActive()&&!v9.talkSeen[v9TalkKey()];}
+let v9LastEventPhoto='';
 function v9Photo(shot){
+ const stable=shot===v9LastEventPhoto;v9LastEventPhoto=shot;
  const ready=ioCGReady();
  const url=ready?(ADV8_MEDIA[shot]||ADV8_MEDIA.stage):(
-  shot==='shen'?ADV6_MEDIA.gu:shot==='lin'?ADV6_MEDIA.lin:shot==='gu'?ADV6_MEDIA.gu:
+  shot==='shen'?SCENERY:shot==='lin'?ADV6_MEDIA.lin:shot==='gu'?ADV6_MEDIA.gu:
   shot==='singerBond'?ADV6_MEDIA.singer:shot==='usbHeld'?ADV6_MEDIA.usbHeld:SCENERY);
- return '<div class="io-film" data-io-shot="'+esc(shot)+'"><img class="io-film-image" src="'+url+'" alt="" draggable="false" loading="eager"></div><div class="io-film-vignette" aria-hidden="true"></div>';
+ return '<div class="io-film'+(stable?' io-stable':'')+'" data-io-shot="'+esc(shot)+'"><img class="io-film-image" src="'+url+'" alt="" draggable="false" loading="eager"></div><div class="io-film-vignette" aria-hidden="true"></div>';
 }
 function v9Scene(info,opts){
  const m=mobileMetrics(),decision=opts.kind==='talk'&&opts.choices;
