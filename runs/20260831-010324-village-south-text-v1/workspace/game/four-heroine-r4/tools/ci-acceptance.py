@@ -39,11 +39,14 @@ entry_tracked=stage("default-entry-tracked",
                     ["git","diff","--exit-code","--",str((M.parent/"index.html").relative_to(REPO))],
                     cwd=REPO) if ok and derived_tracked else False
 repo_ok=stage("repository-verify",["pnpm","verify"],cwd=REPO) if ok and entry_tracked else False
+# A second runtime compilation must never ship a different save/restore path.
+# The default production URL and the standalone H5 are byte-for-byte identical.
+entry_same=stage("published-player-parity",["node","tools/check-published-player.mjs"],cwd=REPO) if repo_ok else False
 entry=GAME/"src/main.ts";doc=GAME/"dist/index.html"
 wired=entry.is_file() and "import '../four-heroine-r4/runtime.mjs';" in entry.read_text()
 if not wired or not doc.exists():
  report["stages"].append({"name":"default-entry","status":"BLOCKED","reason":"Canonical runtime not wired or actual dist not built."});save()
-elif ok and repo_ok:
+elif ok and repo_ok and entry_same:
  report["builtEntryHash"]=hashlib.sha256(doc.read_bytes()).hexdigest()
  port=os.environ.get("R4_QA_PORT","8765")
  with (Q/"http-server.log").open("w") as log:

@@ -66,12 +66,11 @@ jobs:
           current=hashlib.sha256((root/'data/STORY.json').read_bytes()).hexdigest()
           assert '<title>攻略美少女' in html and '村口向南' not in html
           assert ('name="story-sha256" content="'+current+'"') in html
-          # Production Vite outputs a small HTML shell and bundled JS. The story
-          # must be in the executable bundle, not forced into the HTML template.
-          bundles=list((game/'dist/assets').glob('*.js'))
-          assert bundles, 'missing compiled story bundle'
-          js='\n'.join(p.read_text(encoding='utf-8') for p in bundles)
-          assert 'ENTRY_WAKE' in js and '陆景行' in js, 'story or cast missing from built JS'
+          # Production entry deliberately shares the same exact runtime as
+          # the HTTP-tested standalone H5, not a second compiled bootstrap.
+          assert built.read_bytes()==(root/'play.html').read_bytes(), 'default entry differs from audited standalone game'
+          assert 'ENTRY_WAKE' in html and '陆景行' in html, 'current story or cast missing from shipped player'
+          assert '<script type="module" src="/src/main.ts"' not in html, 'unbuilt Vite shell leaked into release'
           print('DEFAULT_ENTRY_PASS storySha256='+current)
           PY
       - name: Preserve QA evidence even on failure
