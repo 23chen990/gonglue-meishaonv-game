@@ -1,0 +1,947 @@
+{
+  "version": 1,
+  "genre": "phone-first visual romance, original world causality never rewritten",
+  "storyHash": "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93",
+  "design": "A scene card grounds place and trigger, 2-3 individual spoken turns establish stakes, optional one source-verified prior-decision callback, then real playable canon replies. Protagonist choices only via buttons.",
+  "scenes": {
+    "t01": {
+      "cue": "演出后台｜映雪把盒饭藏进外套",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "嘘。别告诉经纪人我在这儿挑胡萝卜。"
+        },
+        {
+          "speaker": "T",
+          "text": "旁边还有双筷子。要不要陪我吃点？"
+        }
+      ],
+      "source": {
+        "id": "t01.r4.body.005",
+        "hash": "654648f7cf6eb127",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {
+        "share": "“能分我一口吗？我也没吃晚饭。”"
+      }
+    },
+    "t02": {
+      "cue": "录音室｜你提前哼出了她没播的尾奏",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "新歌才写完一半，我只给你听这一段。"
+        },
+        {
+          "speaker": "B",
+          "text": "糟了，书的番外有这段谱子，我竟唱出来了。"
+        },
+        {
+          "speaker": "T",
+          "text": "等下！后面两音我没录过。你怎么会？"
+        }
+      ],
+      "source": {
+        "id": "t02.r4.body.001",
+        "hash": "afcaeb0326355967",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {
+        "honest": "“我在一本书里看过旧版本。不是偷你的歌。”",
+        "ask": "“我还解释不清。先听你把歌唱完，好吗？”"
+      }
+    },
+    "t04": {
+      "cue": "便利店｜她请你吃关东煮，窗外有人认出她",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "今天我请，你工资不是还没发吗？"
+        },
+        {
+          "speaker": "T",
+          "text": "外头那人拍我了。你怎么没拿手机？"
+        },
+        {
+          "speaker": "T",
+          "text": "想拍照先问我。你想拍什么？"
+        }
+      ],
+      "source": {
+        "id": "t04.body.001",
+        "hash": "fd057a0e51669331",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {
+        "private": "“我只拍这碗关东煮，留给自己看。”"
+      }
+    },
+    "t05": {
+      "cue": "雨夜录音室｜她把两版尾奏递给你试听",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "两版结尾，听完告诉我哪版好。"
+        },
+        {
+          "speaker": "T",
+          "text": "你一直不说话。是在想歌，还是想别的？"
+        }
+      ],
+      "source": {
+        "id": "t05.r4.body.001",
+        "hash": "8f2ccadc9fbbd842",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {
+        "ordinary": "先认真听完两版，不急着说别的"
+      }
+    },
+    "t06": {
+      "cue": "录音室｜她合起歌词本，遮住下一行",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "上次那首，你连我没唱的地方都知道。"
+        },
+        {
+          "speaker": "T",
+          "text": "今天能不能先说实话？你到底怎么知道的？"
+        }
+      ],
+      "source": {
+        "id": "t06.r2.body.001",
+        "hash": "8de5707f87dd8b4c",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "t06.r2.heard.001",
+            "speaker": "T",
+            "hash": "cfdef47fa6510c2a"
+          },
+          "speaker": "T",
+          "text": "你上次说过那本书。我还记着。"
+        }
+      ],
+      "labels": {}
+    },
+    "t07": {
+      "cue": "排练室｜更大的场馆发来了合作邀请",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "他们请我去大舞台，但第一轮只能唱别人的歌。"
+        },
+        {
+          "speaker": "T",
+          "text": "我很想去。又舍不得自己的歌。你怎么看？"
+        }
+      ],
+      "source": {
+        "id": "t07.body.001",
+        "hash": "192864950bc40457",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "t07.variant.003.001",
+            "speaker": "T",
+            "hash": "2857a53fb7a9e8a3"
+          },
+          "speaker": "T",
+          "text": "你上次说比我更懂我。这次别替我选。"
+        }
+      ],
+      "labels": {}
+    },
+    "t08": {
+      "cue": "空舞台｜演出提前十二分钟结束了",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "你才来？我刚刚还以为你放我鸽子。"
+        },
+        {
+          "speaker": "T",
+          "text": "糟了，改时间那条消息根本没发出去。"
+        },
+        {
+          "speaker": "T",
+          "text": "让你白跑一趟。怎么补偿你才肯消气？"
+        }
+      ],
+      "source": {
+        "id": "t08.r2.body.001",
+        "hash": "e08846098f106542",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "t08.variant.003.001",
+            "speaker": "T",
+            "hash": "1972d4a0d07e98e4"
+          },
+          "speaker": "T",
+          "text": "你不想我去大舞台的事，我们还没谈完。"
+        }
+      ],
+      "labels": {}
+    },
+    "t09": {
+      "cue": "排练室｜她把新歌词推到你面前",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "新歌里有那晚的雨，还有便利店的关门铃。"
+        },
+        {
+          "speaker": "T",
+          "text": "没写你的名字。但写的时候，确实想起你了。"
+        },
+        {
+          "speaker": "T",
+          "text": "你一直笑什么？说来听听。"
+        }
+      ],
+      "source": {
+        "id": "t09.r4.body.001",
+        "hash": "972afaf85a0dc1f2",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "t10": {
+      "cue": "映雪的工作室｜试听设备堆了一地",
+      "beats": [
+        {
+          "speaker": "T",
+          "text": "今天不用帮我收设备。我不是找你来干活的。"
+        },
+        {
+          "speaker": "T",
+          "text": "就是想见你。今晚有空留下来坐会儿吗？"
+        }
+      ],
+      "source": {
+        "id": "t10.body.001",
+        "hash": "78df15e286a3d350",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "s01": {
+      "cue": "北岸后台｜风吹散排期单，你按住最后一页",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "谢谢。你不是早就能下班了吗？"
+        },
+        {
+          "speaker": "S",
+          "text": "我把工作手机关了五分钟。你还想聊工作？"
+        }
+      ],
+      "source": {
+        "id": "s01.r4.body.001",
+        "hash": "095858140221e6d2",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "s02": {
+      "cue": "小演出厅｜三排椅子，第一场只卖了七张票",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "第一场才七个人，我半夜还回来数空椅子。"
+        },
+        {
+          "speaker": "S",
+          "text": "继续办要赔钱，租给大团队又没地方给新人。"
+        },
+        {
+          "speaker": "S",
+          "text": "这回我真拿不准。你觉得呢？"
+        }
+      ],
+      "source": {
+        "id": "s02.r4.body.001",
+        "hash": "0341c85f7d92035c",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "s04": {
+      "cue": "街头｜你朝另一家店迈步，她还望着热汤店牌",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "你刚才是不是差点替我选餐馆？"
+        },
+        {
+          "speaker": "S",
+          "text": "我今天想喝热汤。你呢，想吃什么？"
+        }
+      ],
+      "source": {
+        "id": "s04.body.001",
+        "hash": "ee12e0a6a2caab1b",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "s05": {
+      "cue": "北岸侧厅｜她关掉工作消息，却没有穿外套",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "今晚终于没人等我回工作消息了。"
+        },
+        {
+          "speaker": "S",
+          "text": "我还不想走。你愿意多陪我待一会儿吗？"
+        }
+      ],
+      "source": {
+        "id": "s05.r2.body.001",
+        "hash": "bfd16a86253193e8",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "s06": {
+      "cue": "晚餐桌｜你第三次看手机，她把筷子放下",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "你一直看手机。我没想查你消息。"
+        },
+        {
+          "speaker": "S",
+          "text": "只是想问清楚，你现在还和别人约会吗？"
+        }
+      ],
+      "source": {
+        "id": "s06.r4.body.002",
+        "hash": "d5fae43a816c9d29",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "s06.variant.001.001",
+            "speaker": "S",
+            "hash": "6fc9c39bc97224ee"
+          },
+          "speaker": "S",
+          "text": "我看到了映雪的合照。照片不代表一切。"
+        }
+      ],
+      "labels": {
+        "truth": "“我和谁约过、答应过什么，现在告诉你。”"
+      }
+    },
+    "s07": {
+      "cue": "小厅｜活动报名人数太少，她没按取消",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "报名表上只有几个人，宣传明明是我做的。"
+        },
+        {
+          "speaker": "S",
+          "text": "我刚还劝别人别怕冷场，自己却想取消。"
+        },
+        {
+          "speaker": "S",
+          "text": "你觉得我该再试一次吗？"
+        }
+      ],
+      "source": {
+        "id": "s07.r2.body.001",
+        "hash": "11d586f41720f20d",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "s07.variant.003.001",
+            "speaker": "S",
+            "hash": "0bacaa1ce1a5e2c0"
+          },
+          "speaker": "S",
+          "text": "你刚才说没有别人，我是认真听的。"
+        }
+      ],
+      "labels": {}
+    },
+    "s08": {
+      "cue": "手机消息｜她删掉排得太满的周末计划",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "我把休息日也排成工作表了，真够好笑的。"
+        },
+        {
+          "speaker": "S",
+          "text": "你想去哪里？这次我们一起选。"
+        }
+      ],
+      "source": {
+        "id": "s08.body.001",
+        "hash": "82f37a7278559e56",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "s08.variant.003.001",
+            "speaker": "S",
+            "hash": "c065d85baa278b5f"
+          },
+          "speaker": "S",
+          "text": "上次那句早听你的，我还记着。"
+        }
+      ],
+      "labels": {
+        "choose": "“我想去河边走走，你愿意一起吗？”"
+      }
+    },
+    "s09": {
+      "cue": "散步回程｜她删掉给同事回复的“好”",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "他们又让我临时替班。"
+        },
+        {
+          "speaker": "S",
+          "text": "我不想去，可一拒绝就怕别人说我不靠谱。"
+        },
+        {
+          "speaker": "S",
+          "text": "你先站我这边说句话，行吗？"
+        }
+      ],
+      "source": {
+        "id": "s09.r2.body.001",
+        "hash": "914c17a843db59f3",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "s10": {
+      "cue": "北岸门口｜你递上热饮，她提前下班等你",
+      "beats": [
+        {
+          "speaker": "S",
+          "text": "我其实早下班了。特意在这儿等你。"
+        },
+        {
+          "speaker": "S",
+          "text": "就是想见你。下次我可以直接这么说吗？"
+        }
+      ],
+      "source": {
+        "id": "s10.body.001",
+        "hash": "546aa8b5976c5f95",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "l01": {
+      "cue": "剪辑室｜一段“我其实……”被关门声截断",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "这里有两秒钟，我反复听了十几遍。"
+        },
+        {
+          "speaker": "L",
+          "text": "可说话的人还没同意公开，我不能替他补后半句。"
+        },
+        {
+          "speaker": "L",
+          "text": "你觉得我该怎么处理？"
+        }
+      ],
+      "source": {
+        "id": "l01.r1.body.003",
+        "hash": "bd4437b5d1a0ce8c",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "l02": {
+      "cue": "剪辑室｜她的独立拍摄申请停在发送前",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "陆景行又找我赶片，我差点就答应了。"
+        },
+        {
+          "speaker": "L",
+          "text": "可我自己的拍摄申请，一直不敢发出去。"
+        },
+        {
+          "speaker": "L",
+          "text": "你说，我是不是该为自己试一次？"
+        }
+      ],
+      "source": {
+        "id": "l02.r4.body.001",
+        "hash": "64de7fa419561b4e",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "l02.variant.001.001",
+            "speaker": "N",
+            "hash": "85df42413fb39279"
+          },
+          "speaker": "L",
+          "text": "第一轮截止了。我在准备下一轮的申请。"
+        }
+      ],
+      "labels": {
+        "rival": "“陆景行总找你干活。别再围着他转了。”"
+      }
+    },
+    "l04": {
+      "cue": "路边｜她举着相机，你的硬币险些滚走",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "别摆姿势。你刚才找零钱那样就挺好。"
+        },
+        {
+          "speaker": "L",
+          "text": "要我怎么拍？不想拍也可以直接说。"
+        }
+      ],
+      "source": {
+        "id": "l04.body.001",
+        "hash": "25f34da1072f20f2",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "l05": {
+      "cue": "艺术中心门廊｜大雨淋湿两人，她护住相机",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "相机没进水，你倒淋透了。"
+        },
+        {
+          "speaker": "L",
+          "text": "喂，你怎么一直看着我不说话？"
+        }
+      ],
+      "source": {
+        "id": "l05.r4.body.001",
+        "hash": "636c5286dd6458dd",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "l06": {
+      "cue": "甜品店｜她挂掉陆景行电话，你放下叉子",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "他临时要我帮忙剪片，我说今晚不行。"
+        },
+        {
+          "speaker": "L",
+          "text": "你怎么连蛋糕都不吃了？有话跟我说呀。"
+        }
+      ],
+      "source": {
+        "id": "l06.r4.body.001",
+        "hash": "e33cd5565b636890",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "l07": {
+      "cue": "剪辑室｜新片有陆景行的背影，没有你的",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "那天你没在现场，所以片子里没有你。"
+        },
+        {
+          "speaker": "L",
+          "text": "我剪的是那天发生的事，不是谁比较重要。"
+        },
+        {
+          "speaker": "L",
+          "text": "你看起来不太高兴。是因为片子里没你吗？"
+        }
+      ],
+      "source": {
+        "id": "l07.r4.body.001",
+        "hash": "2a5f48adc0fe41d2",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "l07.variant.003.001",
+            "speaker": "L",
+            "hash": "b3a375ffbde3ec4c"
+          },
+          "speaker": "L",
+          "text": "你上次要我别接他电话，我没答应。"
+        }
+      ],
+      "labels": {}
+    },
+    "l08": {
+      "cue": "桌上｜两座城市的拍摄计划已经排开",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "有个外地拍摄我想接，可能要走一阵。"
+        },
+        {
+          "speaker": "L",
+          "text": "我想和你继续见面，也不想把拍片停掉。"
+        },
+        {
+          "speaker": "L",
+          "text": "我们说实话吧。你最担心什么？"
+        }
+      ],
+      "source": {
+        "id": "l08.body.001",
+        "hash": "e93388f871354f04",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "l09": {
+      "cue": "剪辑室｜录像失焦，风声盖住人声",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "这段我拍砸了，回头也补不了。"
+        },
+        {
+          "speaker": "L",
+          "text": "我现在真不想听没事你已经很好了。"
+        },
+        {
+          "speaker": "L",
+          "text": "你能先陪我待一会儿吗？"
+        }
+      ],
+      "source": {
+        "id": "l09.body.001",
+        "hash": "a9c28a1c88f4e635",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "l09.variant.003.001",
+            "speaker": "L",
+            "hash": "8e5210cfacaf5da7"
+          },
+          "speaker": "L",
+          "text": "你不想我离开那件事，我们还没说通。"
+        }
+      ],
+      "labels": {}
+    },
+    "l10": {
+      "cue": "器材室｜她点开许照的文件夹又关上",
+      "beats": [
+        {
+          "speaker": "L",
+          "text": "别紧张，里面不是偷拍你的视频。"
+        },
+        {
+          "speaker": "L",
+          "text": "是我一直想问你，却没敢开口的话。"
+        },
+        {
+          "speaker": "L",
+          "text": "你要先说，还是先听上次那段录音？"
+        }
+      ],
+      "source": {
+        "id": "l10.r2.body.001",
+        "hash": "7b84b5ecebb026a9",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "g01": {
+      "cue": "艺术中心露台｜她拉开身旁的椅子",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "许照？首演那晚的临时场务吧。"
+        },
+        {
+          "speaker": "G",
+          "text": "今天先不谈合同。你想跟我聊什么？"
+        }
+      ],
+      "source": {
+        "id": "g01.r1.body.003",
+        "hash": "39dca7beeffa6936",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "g02": {
+      "cue": "办公室｜她摊开授权邮件和你的协作合同",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "公告说新人演出被砍是我批准的，其实不是。"
+        },
+        {
+          "speaker": "G",
+          "text": "这份邮件能公开，别的材料还不能。"
+        },
+        {
+          "speaker": "G",
+          "text": "工时照实算。你想谈什么条件？"
+        }
+      ],
+      "source": {
+        "id": "g02.r4.body.001",
+        "hash": "7c838b9ea0ac5d0c",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "g04": {
+      "cue": "街角｜她第四次没夹到娃娃机里的皱脸猫",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "别笑。我知道这机器不划算。"
+        },
+        {
+          "speaker": "G",
+          "text": "但今天就是想把那只猫夹出来。你呢？"
+        }
+      ],
+      "source": {
+        "id": "g04.body.001",
+        "hash": "b6c3112bb4af218f",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "g05": {
+      "cue": "餐馆门口｜她伸手摘掉你肩上的纸片",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "别动，你肩上粘了张纸。"
+        },
+        {
+          "speaker": "G",
+          "text": "好了。今天到这儿，还是你有话想说？"
+        }
+      ],
+      "source": {
+        "id": "g05.r4.body.001",
+        "hash": "72ff206135309612",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "g06": {
+      "cue": "晚餐桌｜你看见一条消息，立刻扣住手机",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "我没打算看你消息。"
+        },
+        {
+          "speaker": "G",
+          "text": "只是想问，你现在还和别人约会吗？"
+        }
+      ],
+      "source": {
+        "id": "g06.r4.body.001",
+        "hash": "3ec6756cc0916f4a",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "g06.variant.003.001",
+            "speaker": "G",
+            "hash": "2d3e748c246da2f2"
+          },
+          "speaker": "G",
+          "text": "你之前说只和我交往。我当真了。"
+        },
+        {
+          "source": {
+            "id": "g06.variant.001.001",
+            "speaker": "G",
+            "hash": "8488f03ccd82cf15"
+          },
+          "speaker": "G",
+          "text": "映雪那张合照我看见了，但照片说明不了关系。"
+        }
+      ],
+      "labels": {
+        "clear": "“和谁见过、答应过什么，我现在讲清楚。”"
+      }
+    },
+    "g07": {
+      "cue": "办公室｜她摊开被砍掉时长的新人节目单",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "是我把新人演出时间让给了大团队。"
+        },
+        {
+          "speaker": "G",
+          "text": "后来补过一次，但他们不肯再见我。"
+        },
+        {
+          "speaker": "G",
+          "text": "这事我做错了。你怎么看我？"
+        }
+      ],
+      "source": {
+        "id": "g07.r4.body.001",
+        "hash": "220ede06b2971848",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "g07.variant.003.001",
+            "speaker": "G",
+            "hash": "7d55eacb68c16d40"
+          },
+          "speaker": "G",
+          "text": "你刚才说没有别人，我记住了。"
+        },
+        {
+          "source": {
+            "id": "g07.variant.002.001",
+            "speaker": "G",
+            "hash": "4c92180a2980cda9"
+          },
+          "speaker": "G",
+          "text": "你说今晚会讲清关系，我没忘。"
+        }
+      ],
+      "labels": {}
+    },
+    "g08": {
+      "cue": "街边小店｜老板问她是不是还不吃葱",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "老板从我上学就认识我，还记得我不吃葱。"
+        },
+        {
+          "speaker": "G",
+          "text": "凳子还跟以前一样晃，垫张纸就好了。"
+        },
+        {
+          "speaker": "G",
+          "text": "今天不聊合同。你想问什么？"
+        }
+      ],
+      "source": {
+        "id": "g08.body.001",
+        "hash": "75a489e1693ddcbd",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    },
+    "g09": {
+      "cue": "餐桌｜她把印着职位的旧名片折了一下",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "有些人来找我，只因为我手上有资源。"
+        },
+        {
+          "speaker": "G",
+          "text": "如果哪天我没了这个职位，你还愿意和我吃饭吗？"
+        }
+      ],
+      "source": {
+        "id": "g09.r2.body.001",
+        "hash": "24acaef2b18cb716",
+        "speaker": "N"
+      },
+      "callbacks": [
+        {
+          "source": {
+            "id": "g09.r2.left.001",
+            "speaker": "G",
+            "hash": "07e9b8ec5efc1b71"
+          },
+          "speaker": "G",
+          "text": "工作证已经交了。今天真不是假设。"
+        }
+      ],
+      "labels": {}
+    },
+    "g10": {
+      "cue": "餐馆｜她没带文件，也没替你点菜",
+      "beats": [
+        {
+          "speaker": "G",
+          "text": "我今天真的什么都没准备。"
+        },
+        {
+          "speaker": "G",
+          "text": "就是想约你出来坐坐。你会觉得无聊吗？"
+        }
+      ],
+      "source": {
+        "id": "g10.body.001",
+        "hash": "8edb037653217565",
+        "speaker": "N"
+      },
+      "callbacks": [],
+      "labels": {}
+    }
+  }
+}

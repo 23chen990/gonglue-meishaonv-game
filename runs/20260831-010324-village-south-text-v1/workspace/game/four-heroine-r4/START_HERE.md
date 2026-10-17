@@ -1,3 +1,58 @@
+# V20 最新交接：别再让玩家猜该选哪个分类
+
+主线 18 个场景已经改成具体行动直接可点，12 个原先先选抽象方向的场景将在内部记录正确的两个正典命令。?qa=intent 保留完整旧版可回归，不改事件、效果或结局。第四晚顾晚棠是去后街吃面而非对账，第五天林见月是独立拍摄报名截止而非交片截止，第七天视频是假字幕和有意裁剪，四位女主约会必须有明确的真实提议。详细资料见 docs/ROMANCE_V20_FIRST_PLAYER_CAUSALITY_ZH.md。
+
+工程测试要看当前 SHA 的 GitHub Actions：test-romance-v20.mjs / py，且保留所有 V11–V19 旧回归。真实生活地点 CG 仍不匹配，不能自称正式发行版；Draft PR 不合并。
+
+---
+# V19 最新编辑原则（2026-10-17，优先于下方历史 V18 文档）
+
+用户反馈 V18 台词「不明所以」。实际原因是把「两句即选择」当目标，剪断了地点、主角动作与女主追问之间的因果；旧 V18 的 26 场纯旁白被改为女主对白，但剧情信息并未自然承接。V19 36 场已按地点/触发事件→女主短对白→真实玩家点击→保留后果重新导演，88 个单人说话段、14 个真实过去决策回调候选、9 条按钮修复。绝不因为缩短篇幅而删除必要背景；绝不让未点击的主角台词在角色回应里被当作发生过。
+
+源码 tools/romance-v19-scenes.json + romance-v19.js/css；工程合同 test-romance-v19.mjs/py；说明 docs/ROMANCE_V19_CAUSAL_DIALOGUE_ZH.md。所有真实行为仍使用 engine.choose；原正典 STORY.json/engine.mjs 未修改。历史 V17/V18 叙述只供参考，不可覆盖 V19 的因果检查与 source-hash 前情条件。旧存档游标迁移到 V19 需保留正式 actions 和回复。完整旧文 ?qa=legacy-reader；V18 演出回归 ?qa=v18。
+
+V19 上线质量仍然 BLOCKED：真实都市约会缺少场景匹配并经审核的高清 CG，缺少物理机和陌生成年玩家盲玩。当前提交的 CI 须核验后才称通过；PR #22 保持 Draft。
+
+---
+
+## V18 已验证交付｜2026-10-17
+
+本轮 36 场四女主日常已经实现女主本人先开口、每场两句短对白，玩家两次点击就能开始做有真实剧情后果的选择。原先有 26 场只有旁白，现由 72 条人工编写的女主口语对白取代前置大段旁白，保留原 112 个剧情选项和所有引擎后果。
+
+- 成功 CI：https://github.com/23chen990/gonglue-meishaonv-game/actions/runs/39037578706
+- V18 Chromium/WebKit 72/72 PASS；V17 72/72；有害对照 8/8；旧 V13 文本验证 72/72；V16 第一夜 4/4；V11 主线 46/46。
+- 真实手机浏览器截图自查发现，V18 初版短动作提示与章节标题叠压；已把提示移到对白框上沿，选项态收起，并用实际浏览器矩形相交检查二次验证通过。
+- 独立 H5 play.html 与 index.html 同一 Git Blob：4fb821c3500611a59e25d1d5debc45228e7afd24，SHA-256：b71b10bab0ef6b0e08fce307d6c4c36b70d82109fe003dcdfad0654cd3b37de1，3,969,167 字节。
+- 商用品质仍阻塞：约会剧情复用舞台人物 CG，不是真正的餐厅、便利店、雨夜和录音室等场景，只有 1024×1536 工程候选图，未过 1536×2400+ 素材门槛与商用授权审查；实体 iOS/Android、8–12 位陌生成年玩家盲玩均未完成。
+- V18 是玩法与剧情演出层的工程验收通过，不是 228 场全部完成独立导演，也不是可以上架。PR #22 继续 Draft，不合并、不部署。
+
+资料：tools/romance-v18-moments.json、tools/romance-v18.js、tools/romance-v18.css、tools/test-romance-v18.mjs、tools/test-romance-v18.py，以及 docs/ROMANCE_V18_HEROINE_FIRST_ZH.md。
+
+---
+# V18 当前开发入口（2026-10-17）
+
+《攻略美少女》四女主恋爱日常：本轮已经增加 36 场女主本人主动说话的导演层。每场以极短动作提示交代现场，之后两句女主口语直接进入原正典选项；与旧 V17 最大区别是不会让 26 场私人约会主要由旁白代说。
+
+核心新增工具：tools/romance-v18-moments.json、romance-v18.js、romance-v18.css。真实选项仍用 engine.choose 和原效果记录；历史存档的 V17 页面索引升级时只重置未做的屏幕位置，不重写行动历史，选后回应可恢复。可用 ?qa=legacy-reader 核对源故事原文。
+
+新增真实手机视口 Chromium/WebKit 36×2 女主讲话与可点击按钮回归。CI 必须连同原 V17、风险选项对照、主线和默认入口一起通过，才能宣称工程验收。人物 CG 仍是候选复用图，不是已审查的约会实景、正式版权素材或真人玩家审美通过版。分支 Draft PR #22。
+
+---
+
+# 2026-10-17 当前入口（优先于下方历史记录）
+
+**继续开发 PR #22 分支 feat/first-night-playable-unified-20261017 的 V17 源码，不是 v4.12，也不是旧 main。** 本作已是四位成年女主的 H5 穿书恋爱剧情游戏。玩家先在现实读《今夜偏爱男主》，突然穿成北岸艺术中心第一天上班的临时场务许照，第一晚因伴奏被换而卷入误背锅危机，故事推进到第七天与第 21 天。目标是让玩家先看懂、尽早自己决定、随后真正喜欢角色，而不是一页页阅读长小说。
+
+进入游戏：最新 CI 从本目录源文件生成的 play.html；项目默认源码入口为父目录的 src/main.ts -> runtime.mjs。**play.html 是构建产物，不要直接修改。**
+
+源码主线：interactive-opening.js（穿书、首夜、立即自保/查证）、interactive-follow.js 和 romance-v9/v10.js（首演与选后反馈）、romance-v11.js + romance-v11-arcs.json（18 个关键场/79 底层选择）、romance-v13-scenes.json（36 场 V13 自然对话）、romance-v17.js（36 场日常恋爱事件的可选场景演出）。保留 STORY.json 与 engine.mjs、全部历史选择和效果。旧逐句完整正文对照：?qa=legacy-reader。重要演出说明：docs/ROMANCE_V17_PLAYABLE_DATES_ZH.md。
+
+运行：npm run verify，并以当前 HEAD 的 .github/workflows/romance-first-night-unified.yml 真实 Chromium/WebKit 与项目默认入口检查作为工程门禁。上一轮 CI 的绿灯不能证明下一轮修改已通过。尚未完成真实手机、陌生玩家第一印象、36 场真正匹配场景 CG 与商用素材审批。PR 保持 Draft、不合并 main、不发布。
+
+接手必须遵守 AGENTS.md 最上方产品契约；其余本文 v4.12、v4.9、r4.1 等段落仅作历史留档。
+
+---
+
 # v4.12 已落地的 56 条人物关系反馈修订（2026-10-14）
 
 本版正式剧本修改了 **26个场景、56条真实选后反馈**，重点解决不同女主在12处隐瞒关系被撞破后的重复回应，以及6组双人关系暂缓/分别相处的模板台词。228场、751底层选择、24主结局、28段必读穿书经过与命令效果均保留。代码级回退与审计见 `patch/v412_reaction_copy.json`、`docs/R412_RELATIONSHIP_RESPONSE_QA.md`。

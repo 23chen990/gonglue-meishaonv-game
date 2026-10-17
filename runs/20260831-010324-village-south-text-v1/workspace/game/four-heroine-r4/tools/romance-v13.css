@@ -1,0 +1,6 @@
+/* The last speech turn MUST remain visible when decisions appear.
+ * Never introduce a scrollable text slab or steal touches from original buttons. */
+.adv6 .v13-choice-prompt{flex:0 0 auto;box-sizing:border-box;padding:11px 14px 10px;margin:0 0 2px;border:1px solid rgba(240,218,233,.35);border-radius:10px;background:rgba(14,12,25,.9);box-shadow:0 4px 16px rgba(0,0,0,.25);color:#fff6fb;backdrop-filter:blur(5px);pointer-events:none}
+.adv6 .v13-choice-prompt strong{display:block;color:#fac8de;font:600 13px/1.5 system-ui,'PingFang SC',sans-serif;margin:0 0 3px}
+.adv6 .v13-choice-prompt p{font:450 15px/1.55 system-ui,'PingFang SC',sans-serif;color:#fff9fb;white-space:normal;overflow-wrap:anywhere;margin:0}
+@media(max-height:620px){.adv6 .v13-choice-prompt{padding:8px 11px 7px;margin-bottom:0}.adv6 .v13-choice-prompt p{font-size:13px;line-height:1.4}.adv6 .v13-choice-prompt strong{font-size:12px}}

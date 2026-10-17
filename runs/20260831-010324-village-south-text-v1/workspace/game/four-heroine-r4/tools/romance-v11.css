@@ -1,0 +1,22 @@
+/* V11: cinematic story dilemmas. Same image plane, no scrolling reading panel. */
+body[data-panel=story] .v11-director .io-stage{position:absolute!important;inset:0!important;overflow:hidden!important}
+body[data-panel=story] .v11-director .io-sheet{display:grid!important;grid-template-rows:28px minmax(0,1fr) calc(44px + var(--mobile-safe))!important;height:var(--mobile-panel)!important;max-height:var(--mobile-panel)!important;overflow:hidden!important}
+body[data-panel=story] .v11-director .io-sheet .mobile-text{display:block!important;min-height:0!important;overflow:hidden!important}
+body[data-panel=story] .v11-director .io-sheet .mobile-text p{max-width:100%;overflow-wrap:anywhere}
+body[data-panel=story] .v11-director .io-options{position:absolute!important;bottom:calc(var(--mobile-panel) + 12px)!important;left:14px!important;right:14px!important;z-index:8!important;max-height:calc(var(--mobile-vh) - var(--mobile-panel) - 72px)!important;overflow:hidden!important;pointer-events:auto}
+body[data-panel=story] .v11-director .io-film,body[data-panel=story] .v11-director .io-film *{pointer-events:none!important}
+.v11-director .v11-scene-id{position:absolute;top:calc(75px + env(safe-area-inset-top));left:17px;right:86px;z-index:6;color:#fff8f8;font:600 13px/1.45 system-ui,'PingFang SC',sans-serif;text-shadow:0 1px 9px #0b071abf;pointer-events:none;letter-spacing:.02em}
+.v11-director .v11-choices{display:flex;flex-direction:column;gap:9px;width:100%}
+body[data-panel=story] .v11-director .v11-choice{box-sizing:border-box;display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;margin:0!important;width:100%;min-height:61px;padding:8px 13px;border-radius:10px;border:1px solid rgba(255,211,228,.65);background:rgba(13,15,27,.91);color:#fff;backdrop-filter:blur(6px);text-align:left;box-shadow:0 6px 20px rgba(0,0,0,.25);pointer-events:auto}
+.v11-director .v11-choice-main{font:600 15px/1.35 system-ui,'PingFang SC',sans-serif;color:#fffdfd}
+.v11-director .v11-choice-risk{font:450 12px/1.35 system-ui,'PingFang SC',sans-serif;color:#f6cddc}
+.v11-director .v11-pages{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:46px;color:#fff;font:500 12px/1.2 system-ui}
+.v11-director .v11-pages button{box-sizing:border-box;border:1px solid #deb9c7;border-radius:8px;background:rgba(15,18,29,.94);min-width:92px;min-height:46px;color:#fff;font:550 13px/1.2 system-ui;pointer-events:auto}
+.v11-director .v11-pages button:disabled{opacity:.38}
+.v11-director button:focus-visible{outline:2px solid #ffe0eb!important;outline-offset:2px}
+body[data-panel=story] .v11-director .io-film[data-io-shot=shen] img{object-position:48% 31%!important}
+body[data-panel=story] .v11-director .io-film[data-io-shot=lin] img{object-position:50% 27%!important}
+body[data-panel=story] .v11-director .io-film[data-io-shot=gu] img{object-position:50% 27%!important}
+body[data-panel=story] .v11-director .io-film[data-io-shot=console] img{object-position:50% 54%!important}
+@media(max-height:650px){body[data-panel=story] .v11-director .io-options{bottom:calc(var(--mobile-panel) + 6px)!important;left:10px!important;right:10px!important}body[data-panel=story] .v11-director .v11-choice{min-height:55px!important;padding:6px 10px!important;gap:2px!important}.v11-director .v11-choice-main{font-size:13px!important}.v11-director .v11-choice-risk{font-size:11px!important}.v11-director .v11-scene-id{top:calc(58px + env(safe-area-inset-top))}}
+@media(prefers-reduced-motion:reduce){.v11-director *{animation:none!important;transition:none!important}}

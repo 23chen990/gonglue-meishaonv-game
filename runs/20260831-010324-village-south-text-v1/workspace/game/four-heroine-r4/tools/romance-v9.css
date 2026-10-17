@@ -1,0 +1,17 @@
+/* V9 cinematic conversation states: same phone rhythm as the opening. */
+body[data-panel=story] .v9-cinema .io-stage{inset:0;position:absolute;overflow:hidden}
+body[data-panel=story] .v9-cinema.io-cg-ready .io-film{inset:0 0 var(--mobile-panel) 0!important}
+body[data-panel=story] .v9-cinema.io-cg-ready .io-film-vignette{bottom:var(--mobile-panel)!important}
+body[data-panel=story] .v9-cinema .io-film-image{object-fit:cover;object-position:50% 40%;opacity:1}
+body[data-panel=story] .v9-cinema .io-film[data-io-shot=singerBond] img{object-position:48% 20%!important}
+body[data-panel=story] .v9-cinema .io-film[data-io-shot=shen] img{object-position:50% 23%!important}
+body[data-panel=story] .v9-cinema .io-film[data-io-shot=gu] img{object-position:49% 29%!important}
+body[data-panel=story] .v9-cinema .io-film[data-io-shot=lin] img{object-position:49% 25%!important}
+body[data-panel=story] .v9-cinema .io-film[data-io-shot=usbHeld] img{object-position:50% 37%!important}
+body[data-panel=story] .v9-cinema .io-sheet{display:grid!important;grid-template-rows:28px minmax(0,1fr) calc(44px + var(--mobile-safe))!important}
+body[data-panel=story] .v9-cinema .io-sheet .mobile-text{display:block!important;overflow:hidden!important}
+body[data-panel=story] .v9-cinema[data-mode=decision] .io-options{z-index:9}
+.io-vn .io-film.io-stable .io-film-image{animation:none!important}
+@media(prefers-reduced-motion:reduce){.v9-cinema *{animation:none!important;transition:none!important}}
+/* Compact conversational HUD: save visible stage space for the heroines, not blank dialogue glass. */
+body[data-panel=story] .v9-cinema .io-sheet{max-height:var(--mobile-panel)!important;min-height:0!important;height:var(--mobile-panel)!important}

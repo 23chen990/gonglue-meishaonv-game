@@ -1,0 +1,109 @@
+{
+  "version": "2026-10-17",
+  "status": "engineering-candidate-only",
+  "imageCount": 11,
+  "minimumNativeWidth": 1536,
+  "minimumNativeHeight": 2400,
+  "releaseApproved": false,
+  "images": {
+    "badge": {
+      "path": "assets/adv8/badge.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 167322,
+      "sha256": "aeda49ce345d549ce312eaf4a04e01fbdf1be65196243c235f4deda14e85c1f5",
+      "gitBlobSha": "73cd3d5c1659e64522fd217bf65f047dd37ec559",
+      "status": "candidate_not_final_approved"
+    },
+    "console": {
+      "path": "assets/adv8/console.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 228504,
+      "sha256": "42e992d920e1b98653c612379f9b85d45f974e5f28e7fb9da9e4a69c6ca8abea",
+      "gitBlobSha": "1bb92556ed1e33d66fc5c886403330860eb9882e",
+      "status": "candidate_not_final_approved"
+    },
+    "crew": {
+      "path": "assets/adv8/crew.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 169252,
+      "sha256": "534dabb9819e44c687a48a6416a37d05f19a66c0fa65378801e4d0a249e581e8",
+      "gitBlobSha": "daed82674e44f55edf11c79c566a7cfa42485cdf",
+      "status": "candidate_not_final_approved"
+    },
+    "gu": {
+      "path": "assets/adv8/gu.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 130362,
+      "sha256": "216104a2a5d233be5cd7564c16324728e4a05d6a7058480a919a6617df4644ea",
+      "gitBlobSha": "5c6e9eb0d8ea5746f6245c507da92f25c92732dd",
+      "status": "candidate_not_final_approved"
+    },
+    "lin": {
+      "path": "assets/adv8/lin.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 196046,
+      "sha256": "a6cf1f066ba29fa807388014a0010c71f5573c2857e917d01a96ef9ab254e589",
+      "gitBlobSha": "7e985aab5a5053de74585f2b9dc495fb079e30f5",
+      "status": "candidate_not_final_approved"
+    },
+    "shen": {
+      "path": "assets/adv8/shen.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 138092,
+      "sha256": "76247302ad62eb208eb48b425639a28582c5c7ada6afccfec9c1000da1dfdb3e",
+      "gitBlobSha": "e45b3401e5e2a67f887dd45c855f7d05411fa257",
+      "status": "candidate_not_final_approved"
+    },
+    "singer": {
+      "path": "assets/adv8/singer.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 210040,
+      "sha256": "f1773829311b172775ad8e371a7be1df88e4e19ec9d13c3cb487d4b95c41264b",
+      "gitBlobSha": "a05ac1e77c82d9b47a81f96069f4390190ba04c1",
+      "status": "candidate_not_final_approved"
+    },
+    "singerBond": {
+      "path": "assets/adv8/singerBond.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 183372,
+      "sha256": "da18f577535ee2f050223bad12d025109bb17ce6064c251caaaa49254f66ce35",
+      "gitBlobSha": "33108637f01fc5d2da1f495c2abc60a1b5634e6b",
+      "status": "candidate_not_final_approved"
+    },
+    "stage": {
+      "path": "assets/adv8/stage.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 205658,
+      "sha256": "cd9169db5d42c5ef770d6cfaca3da9f80b99aa4801cc27f5394e3eabf77fe131",
+      "gitBlobSha": "165ab8ac2f3b461210eab7d2250a9e87f8988efc",
+      "status": "candidate_not_final_approved"
+    },
+    "usbDetail": {
+      "path": "assets/adv8/usbDetail.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 154252,
+      "sha256": "f8804b888c9970fd5928328dd6d749120f7e26cae2f46faf70aa362796a6d39b",
+      "gitBlobSha": "93d32afcc240248a42a70db53126dfe6daebfb08",
+      "status": "candidate_not_final_approved"
+    },
+    "usbHeld": {
+      "path": "assets/adv8/usbHeld.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 160552,
+      "sha256": "576c55720c0ade13669c5861c8399529add9014befcd3445b6498cf11bea7880",
+      "gitBlobSha": "74865f8b11a1fbc06db86031347c3c85711c2f27",
+      "status": "candidate_not_final_approved"
+    }
+  }
+}
