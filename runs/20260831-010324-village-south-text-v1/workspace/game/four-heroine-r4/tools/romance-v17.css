@@ -1,0 +1,6 @@
+/* V17 uses the existing mobile V11 camera and single-turn dialogue rules. */
+body[data-panel=story] .v17-director .v17-choice{min-height:49px!important}
+body[data-panel=story] .v17-director .v17-choice .v11-choice-main{white-space:normal;line-height:1.35}
+body[data-panel=story] .v17-director .io-sheet .mobile-speaker{color:#ffd9e7!important}
+body[data-panel=story] .v17-director .v11-scene-id{text-shadow:0 1px 10px #000c}
+@media(max-height:650px){body[data-panel=story] .v17-director .v17-choice{min-height:44px!important}}
