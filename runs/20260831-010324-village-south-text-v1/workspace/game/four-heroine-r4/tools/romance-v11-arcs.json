@@ -1,0 +1,996 @@
+{
+  "version": 1,
+  "arcs": {
+    "A1b": {
+      "shot": "console",
+      "intro": [
+        {
+          "voice": "许照 · 心声",
+          "text": "散场了。程放在出口堵住我，递来一张表。"
+        },
+        {
+          "voice": "程放",
+          "text": "错版、切换、清点全写你负责。签完下班。"
+        }
+      ],
+      "choices": {
+        "check": {
+          "label": "只签自己做过的",
+          "risk": "有书面回执，也得当面争辩",
+          "response": {
+            "voice": "阿衡",
+            "text": "我签我值守的那一栏，错版是谁做的还得查。",
+            "shot": "crew"
+          }
+        },
+        "ask": {
+          "label": "请阿衡当场作证",
+          "risk": "人证能帮忙，但未查清导出人",
+          "response": {
+            "voice": "阿衡",
+            "text": "我能证明他没碰控台。别把我没看见的写进去。",
+            "shot": "crew"
+          }
+        },
+        "look": {
+          "label": "拿副本，今晚不签",
+          "risk": "保住签名，眼下少一份证据",
+          "response": {
+            "voice": "程放",
+            "text": "行，今天不签。明天我还会找你。",
+            "shot": "console"
+          }
+        }
+      }
+    },
+    "A2a": {
+      "shot": "singer",
+      "intro": [
+        {
+          "voice": "唐映雪",
+          "text": "十七秒视频上热搜了，画面全是陆景行。"
+        },
+        {
+          "voice": "唐映雪",
+          "text": "歌是我写的。现在发出去，我的名字会被抢走。"
+        }
+      ],
+      "choices": {
+        "independent": {
+          "label": "自己做完整版",
+          "risk": "有署名，可能失去这波热度",
+          "response": {
+            "voice": "唐映雪",
+            "text": "那就从头做我的版本。等不及的人，随他。",
+            "shot": "singerBond"
+          }
+        },
+        "negotiated": {
+          "label": "借热度，但先谈署名",
+          "risk": "能保播放量，却得跟团队周旋",
+          "response": {
+            "voice": "唐映雪",
+            "text": "我不撤歌，但署名和独唱时段要写进确认单。",
+            "shot": "singerBond"
+          }
+        },
+        "duet": {
+          "label": "谈合唱，写清作者",
+          "risk": "可能合作成功，也可能被压过",
+          "response": {
+            "voice": "唐映雪",
+            "text": "合唱可以。我的歌是谁写的，一句不能省。",
+            "shot": "singerBond"
+          }
+        },
+        "pause": {
+          "label": "撤预告，先不发布",
+          "risk": "保护作品，今晚错过热度",
+          "response": {
+            "voice": "唐映雪",
+            "text": "先停下。我的作品，不该被抢着发出去。",
+            "shot": "singerBond"
+          }
+        },
+        "unchanged": {
+          "label": "这次不替她谈",
+          "risk": "她自己扛谈判，你失去主动权",
+          "response": {
+            "voice": "唐映雪",
+            "text": "我会自己去谈。你不用替我答应。",
+            "shot": "singerBond"
+          }
+        }
+      }
+    },
+    "A2b": {
+      "shot": "console",
+      "intro": [
+        {
+          "voice": "程放",
+          "text": "许照，昨天那张责任单，考虑好了没有？"
+        },
+        {
+          "voice": "沈清辞",
+          "text": "导出、试听、切换，三件事得分开写。"
+        }
+      ],
+      "choices": {
+        "public": {
+          "label": "公开说明谁做了什么",
+          "risk": "得到关注，也可能被盯上",
+          "response": {
+            "voice": "沈清辞",
+            "text": "名单我来核对。谁也别拿别人的名字挡枪。",
+            "shot": "shen"
+          }
+        },
+        "quiet": {
+          "label": "把记录交给核验人",
+          "risk": "保住证据，放弃眼前出风头",
+          "response": {
+            "voice": "阿衡",
+            "text": "回执我收到了。以后他们改口，这张纸还在。",
+            "shot": "console"
+          }
+        },
+        "cooperate": {
+          "label": "请陆景行转发事实",
+          "risk": "借他的声量，但要主动解释",
+          "response": {
+            "voice": "陆景行",
+            "text": "我来转发，谁负责哪段，你亲自讲清。",
+            "shot": "stage"
+          }
+        }
+      }
+    },
+    "A3a": {
+      "shot": "shen",
+      "intro": [
+        {
+          "voice": "沈清辞",
+          "text": "巡演肯付钱，但要占走我们的黄金时段。"
+        },
+        {
+          "voice": "沈清辞",
+          "text": "我想留住小演出，也不能让大家拿不到工资。"
+        }
+      ],
+      "choices": {
+        "cooperative": {
+          "label": "办一场试运营夜演",
+          "risk": "有希望，也要承担空场风险",
+          "response": {
+            "voice": "沈清辞",
+            "text": "先试一场。亏了多少，我们一起把账看完。",
+            "shot": "shen"
+          }
+        },
+        "shared": {
+          "label": "跟巡演共用时段",
+          "risk": "保住空间，却得扛混乱交接",
+          "response": {
+            "voice": "沈清辞",
+            "text": "那就先排一次进出场，不只在纸上写。",
+            "shot": "shen"
+          }
+        },
+        "residency": {
+          "label": "换场地，保住节目",
+          "risk": "可能离开北岸，也得重新找观众",
+          "response": {
+            "voice": "沈清辞",
+            "text": "北岸可能留不住，但演出不必跟着死。",
+            "shot": "shen"
+          }
+        },
+        "exit": {
+          "label": "结清账后退出",
+          "risk": "团队安全，失去这间厅",
+          "response": {
+            "voice": "沈清辞",
+            "text": "至少让大家拿到工资。可我真的舍不得。",
+            "shot": "shen"
+          }
+        },
+        "leave": {
+          "label": "不参与这场救援",
+          "risk": "保住时间，她得另外找人",
+          "response": {
+            "voice": "沈清辞",
+            "text": "好。我自己再去谈。你先忙你的。",
+            "shot": "shen"
+          }
+        }
+      },
+      "secondStage": "支持她之后，具体怎么做才承担得起？"
+    },
+    "A3b": {
+      "shot": "stage",
+      "intro": [
+        {
+          "voice": "许照 · 心声",
+          "text": "第四晚，四个人都发来消息。"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "今晚只能赴一个约。回得含糊，就有人白等。"
+        }
+      ],
+      "choices": {
+        "t": {
+          "label": "去听唐映雪排歌",
+          "risk": "选择她，其他人的邀约得另约",
+          "response": {
+            "voice": "唐映雪",
+            "text": "八点侧门。我留一排给你，不留借口。",
+            "shot": "singerBond"
+          }
+        },
+        "s": {
+          "label": "陪沈清辞检查旁厅",
+          "risk": "一起处理现实压力，私人时间更少",
+          "response": {
+            "voice": "沈清辞",
+            "text": "你来，我把最难的那份预算给你看。",
+            "shot": "shen"
+          }
+        },
+        "l": {
+          "label": "去看林见月的样片",
+          "risk": "支持她，也别替她决定发表",
+          "response": {
+            "voice": "林见月",
+            "text": "带上你的眼睛。要说真话，不许捧场。",
+            "shot": "lin"
+          }
+        },
+        "g": {
+          "label": "陪顾晚棠核签字",
+          "risk": "能靠近她，但一晚上谈的都是风险",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "带好脑子。今天我不想听客套话。",
+            "shot": "gu"
+          }
+        },
+        "none": {
+          "label": "今晚不答应任何人",
+          "risk": "保住精力，但错过一次见面",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我说了今晚不去，也就不能指望她们一直等。",
+            "shot": "stage"
+          }
+        }
+      },
+      "secondStage": "选一个今晚确实能赴的约，不许同时答应。"
+    },
+    "A4a": {
+      "shot": "lin",
+      "intro": [
+        {
+          "voice": "林见月",
+          "text": "报名今晚截止。那部片子还差最后几帧。"
+        },
+        {
+          "voice": "林见月",
+          "text": "我想自己署名，但不想拿别人的私事换机会。"
+        }
+      ],
+      "choices": {
+        "fellowship": {
+          "label": "先提交报名",
+          "risk": "抢到机会，作品还得继续磨",
+          "response": {
+            "voice": "林见月",
+            "text": "我先把名字填上。之后别催我交假完成版。",
+            "shot": "lin"
+          }
+        },
+        "stay": {
+          "label": "留城接自己的拍摄",
+          "risk": "暂时不走，得自己找工作",
+          "response": {
+            "voice": "林见月",
+            "text": "那就从四个拍摄日开始，先靠自己养镜头。",
+            "shot": "lin"
+          }
+        },
+        "film": {
+          "label": "办小场试映",
+          "risk": "有人能看到，但必须解决授权",
+          "response": {
+            "voice": "林见月",
+            "text": "可以试映。我会先找每个人确认能放的片段。",
+            "shot": "lin"
+          }
+        },
+        "cut": {
+          "label": "先核授权再剪成片",
+          "risk": "少一点声量，少伤害别人",
+          "response": {
+            "voice": "林见月",
+            "text": "我宁可晚发一周，也不拿别人没答应的当素材。",
+            "shot": "lin"
+          }
+        },
+        "none": {
+          "label": "这次不帮她",
+          "risk": "她得独自赶截止时间",
+          "response": {
+            "voice": "林见月",
+            "text": "我知道了。你先去忙，我自己试。",
+            "shot": "lin"
+          }
+        }
+      },
+      "secondStage": "别替她拍板，支持她想成为的导演。"
+    },
+    "A4b": {
+      "shot": "console",
+      "intro": [
+        {
+          "voice": "林见月",
+          "text": "我录到了程放亲口说：错版不是你导出的。"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "第七天就要到了。录音怎么用，不能犯新错。"
+        }
+      ],
+      "choices": {
+        "extract": {
+          "label": "申请可核验的录音节选",
+          "risk": "最有力，但必须处理授权",
+          "response": {
+            "voice": "林见月",
+            "text": "我按时间顺序剪，不能截掉别人的半句话。",
+            "shot": "lin"
+          }
+        },
+        "witness": {
+          "label": "让阿衡写现场证言",
+          "risk": "证人可信，但没录音那么硬",
+          "response": {
+            "voice": "阿衡",
+            "text": "我只写自己看到的。谁导出的，我不乱猜。",
+            "shot": "crew"
+          }
+        },
+        "wait": {
+          "label": "先不动这份录音",
+          "risk": "安全一点，但第七天可能来不及",
+          "response": {
+            "voice": "林见月",
+            "text": "我会留着原件。你别以为它会自己上台。",
+            "shot": "lin"
+          }
+        }
+      }
+    },
+    "A5a": {
+      "shot": "gu",
+      "intro": [
+        {
+          "voice": "顾晚棠",
+          "text": "他们让我替整场合同兜底，却不给我签字权。"
+        },
+        {
+          "voice": "顾晚棠",
+          "text": "留还是走，我自己选。你能帮我把账说清吗？"
+        }
+      ],
+      "choices": {
+        "independent": {
+          "label": "争回决定权",
+          "risk": "会得罪对方，但不再白背责任",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "我要决定权，也承担我做过决定的那份。",
+            "shot": "gu"
+          }
+        },
+        "bounded": {
+          "label": "限定合作责任",
+          "risk": "可能继续合作，不能再无限兜底",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "能合作就写清边界。越模糊的字，越不能签。",
+            "shot": "gu"
+          }
+        },
+        "account": {
+          "label": "公开完整账目",
+          "risk": "承认自己部分，也暴露错误",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "我做错的我认，不属于我的一笔都不接。",
+            "shot": "gu"
+          }
+        },
+        "leave": {
+          "label": "帮她整理离开清单",
+          "risk": "失去资源，换来自由",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "走之前先把欠谁的钱算完。我不欠他们沉默。",
+            "shot": "gu"
+          }
+        },
+        "none": {
+          "label": "不介入这场谈判",
+          "risk": "你脱身了，她仍独自承压",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "好，这一局我自己打。别替我担心。",
+            "shot": "gu"
+          }
+        }
+      },
+      "secondStage": "是帮她争权，还是尊重她选择离开？"
+    },
+    "A5b": {
+      "shot": "stage",
+      "intro": [
+        {
+          "voice": "陆景行",
+          "text": "你想赢我，还是想跟我一起做好演出？"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "原著的男主，不一定永远是我的敌人。"
+        }
+      ],
+      "choices": {
+        "ally": {
+          "label": "分工合作，一起争名额",
+          "risk": "有搭档，也得分享功劳",
+          "response": {
+            "voice": "陆景行",
+            "text": "音乐我来，现场你来。署名谁也别少。",
+            "shot": "stage"
+          }
+        },
+        "rival": {
+          "label": "正面拿作品对决",
+          "risk": "赢了有名，输了得认",
+          "response": {
+            "voice": "陆景行",
+            "text": "好，凭作品说话。输了别赖别人。",
+            "shot": "stage"
+          }
+        },
+        "distance": {
+          "label": "保持距离",
+          "risk": "不被他牵着走，也少了资源",
+          "response": {
+            "voice": "陆景行",
+            "text": "我不挡你。你也别拿我当借口。",
+            "shot": "stage"
+          }
+        },
+        "independent": {
+          "label": "另找项目单干",
+          "risk": "冒风险，但成果由自己负责",
+          "response": {
+            "voice": "陆景行",
+            "text": "你要另开一局，就做出东西让我看看。",
+            "shot": "stage"
+          }
+        },
+        "repair": {
+          "label": "讲清误会后再合作",
+          "risk": "得先低头解释，才有信任",
+          "response": {
+            "voice": "陆景行",
+            "text": "说清楚就行。我不需要你输给我。",
+            "shot": "stage"
+          }
+        }
+      },
+      "secondStage": "是竞争、合作，还是不再靠他？"
+    },
+    "A6a": {
+      "shot": "stage",
+      "intro": [
+        {
+          "voice": "程放",
+          "text": "许照，清退单准备好了。你出去，别耽误下一场。"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "书里我就在这里退场。今天有证据才配反击。"
+        }
+      ],
+      "choices": {
+        "public": {
+          "label": "当众放出真实时间线",
+          "risk": "有证据可翻案，也要面对所有人",
+          "response": {
+            "voice": "程放",
+            "text": "那张字幕是谁做的？你们现在连时间都能对上？",
+            "shot": "console"
+          }
+        },
+        "partner": {
+          "label": "让证人一起讲清事实",
+          "risk": "一起翻案，功劳也要分清",
+          "response": {
+            "voice": "沈清辞",
+            "text": "大家只说亲眼看到的。更正必须逐条来。",
+            "shot": "shen"
+          }
+        },
+        "backstage": {
+          "label": "先撤假字幕，幕后复核",
+          "risk": "少出风头，但能先止住谣言",
+          "response": {
+            "voice": "沈清辞",
+            "text": "先停这段视频。拿到核验回执再继续谈。",
+            "shot": "shen"
+          }
+        },
+        "exit": {
+          "label": "拿更正书离开",
+          "risk": "保住清白，失去这份工作",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "不干了，也得带着清白走出侧门。",
+            "shot": "stage"
+          }
+        },
+        "accept": {
+          "label": "认下责任，接受退场",
+          "risk": "不再申辩，原著坏结局生效",
+          "response": {
+            "voice": "程放",
+            "text": "拿好清退单。你从今天起不用再进来了。",
+            "shot": "console"
+          }
+        },
+        "rebuild": {
+          "label": "保住名誉，先退出",
+          "risk": "不是完胜，但可以重新开始",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "名誉留下了，工作可以换个地方重做。",
+            "shot": "stage"
+          }
+        }
+      },
+      "secondStage": "想反击，先拿前几天留下的证据说话。"
+    },
+    "UNWRITTEN": {
+      "shot": "stage",
+      "intro": [
+        {
+          "voice": "许照 · 心声",
+          "text": "第八天。书里没有写这天，我却收到了工作询价。"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "有人要我独立做一份复盘，不是帮人背锅。"
+        }
+      ],
+      "choices": {
+        "offer": {
+          "label": "接下报价邀请",
+          "risk": "有署名，也要对自己的结果负责",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "这次我先问清钱和交付，再说可以。",
+            "shot": "stage"
+          }
+        },
+        "private": {
+          "label": "只在授权内继续合作",
+          "risk": "少曝光，但手里留下底牌",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我不公开别人的资料，先把自己的位置站稳。",
+            "shot": "stage"
+          }
+        },
+        "self": {
+          "label": "先不接，照顾自己",
+          "risk": "错过收入，换来喘息时间",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我可以拒绝。今天先吃顿热饭再想下一步。",
+            "shot": "stage"
+          }
+        }
+      }
+    },
+    "A6b": {
+      "shot": "stage",
+      "intro": [
+        {
+          "voice": "许照 · 心声",
+          "text": "终于过了书里那七天。新的生活却不会自动赢。"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "工作、想见的人、自己的未来，我先选哪一件？"
+        }
+      ],
+      "choices": {
+        "relationships": {
+          "label": "先兑现私人约定",
+          "risk": "工作得等一等，感情不能总拖",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我先回了那条消息。答应过的时间不能白等。",
+            "shot": "stage"
+          }
+        },
+        "world": {
+          "label": "继续帮她们完成作品",
+          "risk": "投入时间，先不拿自己的成绩",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "先把未完的事做完，不能只有救场那晚。",
+            "shot": "stage"
+          }
+        },
+        "self": {
+          "label": "接自己的项目",
+          "risk": "可能少见她们，但得到独立署名",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "这次合同上，要写我自己的名字。",
+            "shot": "stage"
+          }
+        }
+      }
+    },
+    "A7a": {
+      "shot": "stage",
+      "intro": [
+        {
+          "voice": "许照 · 心声",
+          "text": "第二十一天，假字幕已经不能决定我是谁。"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "可私人的承诺还没算清。有人还在等我答复。"
+        }
+      ],
+      "choices": {
+        "together": {
+          "label": "让关系人知情见面",
+          "risk": "坦诚，但必须尊重她们各自决定",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我不替任何人同意。今晚让她们自己回答。",
+            "shot": "stage"
+          }
+        },
+        "private": {
+          "label": "逐一私下说清楚",
+          "risk": "不公开，但不能说谎",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "不必在观众前交代，也不能瞒着当事人。",
+            "shot": "stage"
+          }
+        },
+        "separate": {
+          "label": "暂时维持各自关系",
+          "risk": "眼下轻松，误解可能扩大",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我没把关系说开。这个后果，得自己面对。",
+            "shot": "stage"
+          }
+        },
+        "work": {
+          "label": "今晚只谈工作成果",
+          "risk": "聚光灯下不谈私事，私下照实说",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "今晚公开的是我做过的事，感情留给本人听。",
+            "shot": "stage"
+          }
+        },
+        "none": {
+          "label": "结束不准备继续的承诺",
+          "risk": "不欺骗，但可能失去关系",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "舍不得也不能硬留。我要把话说完。",
+            "shot": "stage"
+          }
+        }
+      }
+    },
+    "A7b": {
+      "shot": "stage",
+      "intro": [
+        {
+          "voice": "许照 · 心声",
+          "text": "最后一局。站在这里的我，不再是纸上的炮灰。"
+        },
+        {
+          "voice": "许照 · 心声",
+          "text": "答应过谁、失去了谁，结局得自己承担。"
+        }
+      ],
+      "choices": {
+        "honor": {
+          "label": "兑现已确认的关系",
+          "risk": "有未来，也要继续维护承诺",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我不再临时改口。愿意同行的人，我认真对待。",
+            "shot": "stage"
+          }
+        },
+        "pause": {
+          "label": "承认自己还没准备好",
+          "risk": "不会再骗她们，但可能走散",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我不随便许诺。愿意等的人才有资格说等。",
+            "shot": "stage"
+          }
+        },
+        "future": {
+          "label": "先走自己的下一步",
+          "risk": "关系不自动结束，也不拿它当奖励",
+          "response": {
+            "voice": "许照 · 心声",
+            "text": "我先把自己站稳，再面对每一个真实选择。",
+            "shot": "stage"
+          }
+        }
+      }
+    },
+    "t03": {
+      "shot": "singerBond",
+      "intro": [
+        {
+          "voice": "唐映雪",
+          "text": "今晚没有演出。我给你留的第一排，只有你。"
+        },
+        {
+          "voice": "唐映雪",
+          "text": "没歌也没工作，你还想坐在这里吗？"
+        }
+      ],
+      "choices": {
+        "open": {
+          "label": "认真约会，但不承诺排他",
+          "risk": "必须如实告知其他约会",
+          "response": {
+            "voice": "唐映雪",
+            "text": "我听懂了。认真约会，但你会把其他约会也说清。",
+            "shot": "singerBond"
+          }
+        },
+        "exclusive": {
+          "label": "只和你交往",
+          "risk": "之后再向别人许诺，会伤害你",
+          "response": {
+            "voice": "唐映雪",
+            "text": "只跟我？那我要你说到做到，不是今天好听。",
+            "shot": "singerBond"
+          }
+        },
+        "wait": {
+          "label": "我喜欢你，但先慢慢来",
+          "risk": "还不是恋人，她有权继续生活",
+          "response": {
+            "voice": "唐映雪",
+            "text": "可以慢一点。但别让我一直猜你的意思。",
+            "shot": "singerBond"
+          }
+        },
+        "friend": {
+          "label": "现在只做朋友",
+          "risk": "这次约会不会变成恋爱",
+          "response": {
+            "voice": "唐映雪",
+            "text": "原来你是想做朋友。那我把那个位置留给自己。",
+            "shot": "singerBond"
+          }
+        },
+        "decline": {
+          "label": "今晚先不开始恋爱",
+          "risk": "这一次可能就此错过",
+          "response": {
+            "voice": "唐映雪",
+            "text": "今晚就唱到这里。下次要靠近，得重新问我。",
+            "shot": "singerBond"
+          }
+        }
+      },
+      "secondStage": "关系不能凭气氛默认，认真回答她。"
+    },
+    "s03": {
+      "shot": "shen",
+      "intro": [
+        {
+          "voice": "沈清辞",
+          "text": "今天没工作群，也没需要你签的表。"
+        },
+        {
+          "voice": "沈清辞",
+          "text": "如果只是两个人出来，你想怎么称呼我们？"
+        }
+      ],
+      "choices": {
+        "open": {
+          "label": "认真约会，但不承诺排他",
+          "risk": "必须如实告知其他约会",
+          "response": {
+            "voice": "沈清辞",
+            "text": "可以约会。但我需要知道你真实的边界。",
+            "shot": "shen"
+          }
+        },
+        "exclusive": {
+          "label": "只和你交往",
+          "risk": "之后再向别人许诺，会伤害你",
+          "response": {
+            "voice": "沈清辞",
+            "text": "只和我？很好。我会认真记住。",
+            "shot": "shen"
+          }
+        },
+        "wait": {
+          "label": "我喜欢你，但先慢慢来",
+          "risk": "还不是恋人，她有权继续生活",
+          "response": {
+            "voice": "沈清辞",
+            "text": "那就不急。比起仓促的答案，我更信行动。",
+            "shot": "shen"
+          }
+        },
+        "friend": {
+          "label": "现在只做朋友",
+          "risk": "这次约会不会变成恋爱",
+          "response": {
+            "voice": "沈清辞",
+            "text": "好，我们先停在朋友。你不欠我一段恋爱。",
+            "shot": "shen"
+          }
+        },
+        "decline": {
+          "label": "今晚先不开始恋爱",
+          "risk": "这一次可能就此错过",
+          "response": {
+            "voice": "沈清辞",
+            "text": "明白了。今天就到这儿，我不会追问。",
+            "shot": "shen"
+          }
+        }
+      },
+      "secondStage": "关系不能凭气氛默认，认真回答她。"
+    },
+    "l03": {
+      "shot": "lin",
+      "intro": [
+        {
+          "voice": "林见月",
+          "text": "我今天没带相机。不是每个瞬间都想被拍下来。"
+        },
+        {
+          "voice": "林见月",
+          "text": "不靠“老朋友”这三个字，你想怎么认识我？"
+        }
+      ],
+      "choices": {
+        "open": {
+          "label": "认真约会，但不承诺排他",
+          "risk": "必须如实告知其他约会",
+          "response": {
+            "voice": "林见月",
+            "text": "公开说清就好。我不当谁故事里的配角。",
+            "shot": "lin"
+          }
+        },
+        "exclusive": {
+          "label": "只和你交往",
+          "risk": "之后再向别人许诺，会伤害你",
+          "response": {
+            "voice": "林见月",
+            "text": "只有我？那先把你说的其他人讲清。",
+            "shot": "lin"
+          }
+        },
+        "wait": {
+          "label": "我喜欢你，但先慢慢来",
+          "risk": "还不是恋人，她有权继续生活",
+          "response": {
+            "voice": "林见月",
+            "text": "慢一点挺好，我还想拍很多不是恋爱的东西。",
+            "shot": "lin"
+          }
+        },
+        "friend": {
+          "label": "现在只做朋友",
+          "risk": "这次约会不会变成恋爱",
+          "response": {
+            "voice": "林见月",
+            "text": "朋友也很好。相机里的空位我留给风景。",
+            "shot": "lin"
+          }
+        },
+        "decline": {
+          "label": "今晚先不开始恋爱",
+          "risk": "这一次可能就此错过",
+          "response": {
+            "voice": "林见月",
+            "text": "今天先说再见。以后别拿旧称呼糊弄我。",
+            "shot": "lin"
+          }
+        }
+      },
+      "secondStage": "关系不能凭气氛默认，认真回答她。"
+    },
+    "g03": {
+      "shot": "gu",
+      "intro": [
+        {
+          "voice": "顾晚棠",
+          "text": "今天我把文件夹留在公司了。"
+        },
+        {
+          "voice": "顾晚棠",
+          "text": "离开工作，我们两个要从哪种关系开始？"
+        }
+      ],
+      "choices": {
+        "open": {
+          "label": "认真约会，但不承诺排他",
+          "risk": "必须如实告知其他约会",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "不许拿含糊当自由。说清楚，我才知道能不能答应。",
+            "shot": "gu"
+          }
+        },
+        "exclusive": {
+          "label": "只和你交往",
+          "risk": "之后再向别人许诺，会伤害你",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "只跟我交往，这句话我会当作承诺。",
+            "shot": "gu"
+          }
+        },
+        "wait": {
+          "label": "我喜欢你，但先慢慢来",
+          "risk": "还不是恋人，她有权继续生活",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "那先慢一点。今天不必签任何感情合同。",
+            "shot": "gu"
+          }
+        },
+        "friend": {
+          "label": "现在只做朋友",
+          "risk": "这次约会不会变成恋爱",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "好。朋友是朋友，别把边界说成试用期。",
+            "shot": "gu"
+          }
+        },
+        "decline": {
+          "label": "今晚先不开始恋爱",
+          "risk": "这一次可能就此错过",
+          "response": {
+            "voice": "顾晚棠",
+            "text": "我尊重你。今晚不再谈这件事。",
+            "shot": "gu"
+          }
+        }
+      },
+      "secondStage": "关系不能凭气氛默认，认真回答她。"
+    }
+  }
+}

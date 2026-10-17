@@ -1,0 +1,188 @@
+/* V11: the story already has real costs. Show them while people are choosing.
+ * This is a projection of 18 authored canonical scenes, NOT a second story engine.
+ * Consent, routing, endings and saved effects come only from engine.choose().
+ * Original rows and full replies remain in the scene source and read-only history.
+ */
+const V11_VERSION=1;
+const V11_ARCS=ROMANCE_V11_ARCS.arcs;
+let v11={v:V11_VERSION,key:'',step:0,page:0,after:null};
+function v11Safe(raw){
+ const blank={v:V11_VERSION,key:'',step:0,page:0,after:null};
+ if(!raw||raw.v!==V11_VERSION)return blank;
+ if(typeof raw.key==='string'&&raw.key.length<120)blank.key=raw.key;
+ if(Number.isInteger(raw.step)&&raw.step>=0&&raw.step<=5)blank.step=raw.step;
+ if(Number.isInteger(raw.page)&&raw.page>=0&&raw.page<=12)blank.page=raw.page;
+ const a=raw.after;
+ if(a&&typeof a.scene==='string'&&Object.hasOwn(V11_ARCS,a.scene)&&
+    Object.hasOwn(V11_ARCS[a.scene].choices,a.choice)&&
+    Number.isInteger(a.revision)&&a.revision>0&&a.revision<=600&&
+    Number.isInteger(a.step)&&a.step>=0&&a.step<=3)
+   blank.after={scene:a.scene,choice:a.choice,revision:a.revision,step:a.step};
+ return blank;
+}
+const v11OriginalSnapshot=snapshot,v11OriginalRead=readPayload,v11OriginalInstall=install,v11OriginalReset=reset;
+snapshot=function(){const x=v11OriginalSnapshot();x.ui.arcV11={v:V11_VERSION,key:v11.key,step:v11.step,page:v11.page,after:v11.after?{...v11.after}:null};return x;};
+readPayload=function(raw){const x=v11OriginalRead(raw);x.arcV11=v11Safe(raw?.ui?.arcV11);return x;};
+install=function(x){v11OriginalInstall(x);v11=x.arcV11||v11Safe(null);};
+reset=function(){const original=state;v11OriginalReset();if(state!==original&&state.history.length===0)v11=v11Safe(null);};
+let v11PreviousPhoto='';
+function v11Photo(kind){
+ const stable=kind===v11PreviousPhoto;v11PreviousPhoto=kind;
+ const photo=ioCGReady()?(ADV8_MEDIA[kind]||ADV8_MEDIA.stage):SCENERY;
+ return '<div class="io-film'+(stable?' io-stable':'')+'" data-io-shot="'+esc(kind)+'"><img class="io-film-image" alt="" draggable="false" loading="eager" src="'+photo+'"></div><div class="io-film-vignette" aria-hidden="true"></div>';
+}
+function v11SceneEnabled(){
+ return new URLSearchParams(location.search).get('qa')!=='canonical'&&
+   panel==='story'&&phase==='scene'&&Object.hasOwn(V11_ARCS,state.current);
+}
+function v11SceneKey(){return state.current+':'+state.history.length+':'+(state.decisionIntent?.id||'first');}
+function v11Ensure(){
+ const key=v11SceneKey();if(v11.key!==key){v11.key=key;v11.step=0;v11.page=0;}
+}
+function v11BoundEffect(scene,choice){
+ const src=DATA.scenes[scene]?.choices?.find(x=>x.id===choice);
+ if(!src)throw Error('Not a canonical leaf: '+scene+'/'+choice);
+ const effects=src.effects.filter(x=>x.op==='set');
+ const important=['cold_style','plan_t','visibility_xu','plan_s','promise_target','plan_l','raw_record','plan_g','plan_lu','final_xu','unwritten_future','post_intent','closing_mode','closing_answer',
+  'scope_t','scope_s','scope_l','scope_g'];
+ const e=effects.find(x=>important.includes(x.key))||effects[0];
+ if(!e||state.f[e.key]!==e.value)throw Error('Missing canonical consequence: '+scene+'/'+choice);
+ return e;
+}
+function v11AfterActive(){
+ const a=v11.after,h=state.history.at(-1);
+ if(!a||panel!=='story'||!h||h.from!==a.scene||h.id!==a.choice||state.history.length!==a.revision)return false;
+ try{v11BoundEffect(a.scene,a.choice);}catch{return false;}
+ return true;
+}
+const V11_VOICES=Object.freeze({P:'许照',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',C:'程放',A:'阿衡',LU:'陆景行',N:'许照 · 心声'});
+function v11ShortLine(text,max=38){
+ const t=String(text||'').trim();if(Array.from(t).length<=max)return t;
+ const s=Array.from(t).slice(0,max-1).join('');
+ const m=s.match(/^(.{16,}?[。！？!?；;])/);
+ return (m?m[1]:s)+'…';
+}
+function v11AfterLines(){
+ const a=v11.after,arc=V11_ARCS[a.scene],rule=arc.choices[a.choice];
+ v11BoundEffect(a.scene,a.choice);
+ const r=lastReply.find(x=>x.speaker!=='N'&&x.speaker!=='B'&&x.speaker!=='U'&&x.text&&x.text.trim());
+ const response=rule.response;
+ return [
+  ...(r?[{voice:V11_VOICES[r.speaker]||r.speaker,shot:response.shot,text:v11ShortLine(r.text)}]:[]),
+  {voice:response.voice,shot:response.shot,text:response.text}
+ ];
+}
+function v11Props(){
+ const arc=V11_ARCS[state.current],view=renderScene(state,DATA);
+ const choices=view.choices.filter(x=>x.enabled);
+ const ids=choices.map(x=>x.id);
+ for(const id of ids){
+  if(!id.startsWith('intent:')&&!Object.hasOwn(arc.choices,id))throw Error('V11 unmapped canonical choice '+state.current+'/'+id);
+ }
+ const second=!!state.decisionIntent&&state.decisionIntent.scene===state.current;
+ const intro=second?[{voice:arc.intro[1].voice,text:arc.secondStage||'方向已定。现在选具体做法。',shot:arc.shot}]:arc.intro.map(x=>({...x,shot:arc.shot}));
+ if(state.current==='A1b'&&state.f.canon_signed_blame)
+  intro[0]={voice:'许照 · 心声',text:'我之前签过一次模糊责任。今晚不能再把字交出去。',shot:'console'};
+ if(state.current==='A2a'&&state.f.first_win===false)
+  intro[1]={voice:'唐映雪',text:'首演是陆景行替我撑住的。现在连歌也要算到他名下？',shot:'singer'};
+ if(state.current==='A2a'&&state.f.first_win===true)
+  intro[1]={voice:'唐映雪',text:'那晚你帮我把歌唱回来了。今天能不能帮我保住署名？',shot:'singer'};
+ if(state.current==='A2b'&&state.f.canon_signed_blame)
+  intro[0]={voice:'程放',text:'许照，你自己签过责任单。现在想当众改口？',shot:'console'};
+ if(state.current==='A4a'&&state.f.private_photo==='not_taken')
+  intro[0]={voice:'林见月',text:'那晚你拒绝拍私人照片，我记得。这部片也得尊重别人。',shot:'lin'};
+ if(state.current==='A4a'&&state.f.private_photo==='two_people_only')
+  intro[0]={voice:'林见月',text:'私人照片我只发给你。作品里别人的脸，还得另问许可。',shot:'lin'};
+ if(state.current==='A4b'&&state.f.canon_signed_blame)intro[0]={voice:'程放',text:'你那晚签过责任单。现在别想翻案。',shot:'console'};
+ if(state.current==='A5a'&&state.f.contact_g==='private')
+  intro[0]={voice:'顾晚棠',text:'你存了我的私人号码，但今晚谈的是我能不能拒绝背债。',shot:'gu'};
+ if(state.current==='A5b'&&['ally','partner'].includes(state.f.lu_relation))
+  intro[0]={voice:'陆景行',text:'之前我们分工合作过。现在还有一场必须说清的比赛。',shot:'stage'};
+ if(state.current==='A6a'&&state.f.proof_audio&&!state.f.canon_signed_blame)
+  intro[1]={voice:'许照 · 心声',text:'见月留住了程放那句原声。今天我终于能拿出来核验。',shot:'console'};
+ if(state.current==='A7a'&&active(state).length>1)
+  intro[1]={voice:'许照 · 心声',text:'我和不止一个人有承诺。她们不能最后才知道真相。',shot:'stage'};
+ if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'我签过那张责任单。现在更得拿出真实证据。',shot:'console'};
+ if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove')&&!second)
+  intro[1]={voice:'许照 · 心声',text:'没有能核验的材料，我现在无法当众翻案。',shot:arc.shot};
+ return {arc,intro,choices};
+}
+function v11ChoicesHtml(choices,arc,metrics){
+ const pageSize=metrics.h<650?2:3;
+ const total=Math.max(1,Math.ceil(choices.length/pageSize));v11.page=Math.max(0,Math.min(v11.page,total-1));
+ const part=choices.slice(v11.page*pageSize,(v11.page+1)*pageSize);
+ return '<div class="v11-choices" role="group" aria-label="选一个真正影响剧情的行动">'+
+  part.map(c=>{
+   const intent=c.id.startsWith('intent:');
+   const info=intent?null:arc.choices[c.id];
+   const label=intent?c.label:info.label;
+   const cost=intent?'先选方向，再决定具体做法':info.risk;
+   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span><span class="v11-choice-risk">'+esc(cost)+'</span></button>';
+  }).join('')+
+  (total>1?'<div class="v11-pages"><button type="button" data-v11-page="-1"'+(v11.page===0?' disabled':'')+'>上一组</button><span>'+ (v11.page+1)+' / '+total+'</span><button type="button" data-v11-page="1"'+(v11.page===total-1?' disabled':'')+'>下一组</button></div>':'')+'</div>';
+}
+function v11Frame(info,{scene,decide=false,options='',after=false}={}){
+ const m=mobileMetrics(),h=Math.min(184,Math.max(144,Math.floor(m.h*.235)));
+ const style='--mobile-panel:'+h+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
+ const button=decide?'':'<button type="button" class="io-single" data-v11-next="1">继续 <span aria-hidden="true">›</span></button>';
+ const heading=scene?DATA.scenes[scene]?.title||'':'你的选择之后';
+ return '<div class="vn-frame mobile-vn io-vn v9-cinema v11-director '+(ioCGReady()?'io-cg-ready':'')+'" data-mode="'+(decide?'decision':'reading')+'" data-v11-scene="'+esc(scene)+'" data-v11-after="'+(after?'1':'0')+'" data-v11-camera="'+esc(info.shot)+'" style="'+style+'">'+
+  '<section class="io-stage" aria-label="视觉小说事件镜头">'+v11Photo(info.shot)+'<div class="v11-scene-id">'+esc(heading)+'</div></section>'+
+  (decide?'<div class="io-options">'+options+'</div>':'')+
+  '<section class="mobile-sheet io-sheet" aria-label="当前角色的一句对白"><div class="mobile-speaker">'+esc(info.voice)+'</div><div class="mobile-text" aria-live="polite" aria-atomic="true"><div class="line"><p>'+esc(info.text)+'</p></div></div><div class="io-bottom">'+(button?'<div class="io-choice-stack">'+button+'</div>':'')+'</div></section></div>';
+}
+const v11BeforeStory=storyHTML;
+storyHTML=function(){
+ if(v11AfterActive()){
+  const arr=v11AfterLines(),index=Math.min(v11.after.step,arr.length-1);
+  return v11Frame(arr[index],{scene:v11.after.scene,after:true});
+ }
+ if(v11SceneEnabled()){
+  v11Ensure();const p=v11Props();
+  if(v11.step<p.intro.length)return v11Frame(p.intro[v11.step],{scene:state.current});
+  if(!p.choices.length)return v11BeforeStory();
+  const answer=p.intro.at(-1);
+  return v11Frame(answer,{scene:state.current,decide:true,options:v11ChoicesHtml(p.choices,p.arc,mobileMetrics())});
+ }
+ return v11BeforeStory();
+};
+/* The native reader is deliberately not given vn-stage/vn-scroll: it may not
+ * steal a touch and silently skip a conversation or a canonical choice. */
+document.addEventListener('click',e=>{
+ if(!v11AfterActive()&&!v11SceneEnabled())return;
+ const el=e.target instanceof Element?e.target:null;
+ if(!el?.closest('.v11-director'))return;
+ const btn=el.closest('[data-v11-choice],[data-v11-next],[data-v11-page]');
+ if(!btn && !el.closest('.io-stage,.io-sheet'))return;
+ e.preventDefault();e.stopImmediatePropagation();
+ if(btn?.disabled|| (btn&&!btn.isConnected))return;
+ try{
+  if(v11AfterActive()){
+   const arr=v11AfterLines();
+   if(v11.after.step+1<arr.length)v11.after.step++;
+   else{v11.after=null;phase='scene';page=0;choicePage=0;}
+  }else{
+   v11Ensure();const p=v11Props();
+   if(btn?.dataset.v11Page){
+    if(v11.step<p.intro.length)return;
+    const n=Math.max(1,Math.ceil(p.choices.length/(mobileMetrics().h<650?2:3)));
+    v11.page=Math.max(0,Math.min(n-1,v11.page+Number(btn.dataset.v11Page)));
+   }else if(btn?.dataset.v11Choice){
+    if(v11.step<p.intro.length)return;
+    const action=btn.dataset.v11Choice;
+    if(!p.choices.some(x=>x.id===action))throw Error('Unavailable canonical decision');
+    const scene=state.current;
+    const result=choose(state,DATA,action,state.revision);
+    state=result.state;lastReply=result.reply;page=0;choicePage=0;
+    if(action.startsWith('intent:')){
+     phase=lastReply.length?'reply':'scene';v11.key='';v11.step=0;v11.page=0;
+    }else{
+     phase='reply';
+     v11.after={scene,choice:action,revision:state.history.length,step:0};
+     v11BoundEffect(scene,action);
+    }
+   }else if(v11.step<p.intro.length){v11.step++;}
+  }
+  choiceSound();save();render();arm();
+ }catch(err){notice='这个选择未能生效：'+err.message;showNotice();}
+},true);
