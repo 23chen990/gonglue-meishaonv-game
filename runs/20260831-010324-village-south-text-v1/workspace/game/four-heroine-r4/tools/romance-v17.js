@@ -2,17 +2,23 @@
  * episodes; ?qa=legacy-reader keeps the full V13 text parity reference.
  * Source turns, choice commands, saves and relation effects stay canonical.
  */
-const V17_VERSION=1;
+const V17_VERSION=2;
 const V17_PERSONAL=ROMANCE_V13_SCENES.scenes;
 const V17_SHOTS={t:'singerBond',s:'shen',l:'lin',g:'gu'};
 const V17_VOICES={T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',P:'许照',B:'我 · 心声',N:'现场',U:'现场'};
 let v17={v:V17_VERSION,key:'',cursor:0,page:0,after:null};
 const v17New=()=>({v:V17_VERSION,key:'',cursor:0,page:0,after:null});
 function v17Read(x){
- const o=v17New();if(!x||x.v!==V17_VERSION)return o;
- if(typeof x.key==='string'&&x.key.length<120)o.key=x.key;
- if(Number.isInteger(x.cursor)&&x.cursor>=0&&x.cursor<200)o.cursor=x.cursor;
- if(Number.isInteger(x.page)&&x.page>=0&&x.page<20)o.page=x.page;
+ const o=v17New();
+ if(!x||![1,V17_VERSION].includes(x.v))return o;
+ // Existing V17 saves counted long narrator pages. Never interpret those
+ // positions as V18 spoken turns; replay the two new lines instead.
+ // Preserve an already committed canonical choice and its pending reaction.
+ if(x.v===V17_VERSION){
+  if(typeof x.key==='string'&&x.key.length<120)o.key=x.key;
+  if(Number.isInteger(x.cursor)&&x.cursor>=0&&x.cursor<200)o.cursor=x.cursor;
+  if(Number.isInteger(x.page)&&x.page>=0&&x.page<20)o.page=x.page;
+ }
  const a=x.after;
  if(a&&Object.hasOwn(V17_PERSONAL,a.scene)&&Object.hasOwn(V17_PERSONAL[a.scene].labels,a.choice)&&
   Number.isInteger(a.revision)&&a.revision>0&&a.revision<=600&&

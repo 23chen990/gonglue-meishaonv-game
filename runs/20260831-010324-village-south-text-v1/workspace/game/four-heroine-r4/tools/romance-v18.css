@@ -1,0 +1,29 @@
+/* V18: a very short on-scene action cue replaces narrator paragraphs.
+ * Existing 1024px portraits remain engineering placeholders, NOT 36
+ * invented location CGs. Color temperature indicates the emotional scene,
+ * while the speaker and consequence always come from the canonical plot.
+ */
+.v18-director .io-stage{isolation:isolate}
+.v18-director .v18-scene-cue{
+ position:absolute;z-index:5;top:clamp(62px,9vh,84px);left:14px;
+ max-width:min(80%,360px);box-sizing:border-box;padding:7px 11px;
+ border-radius:11px;background:rgba(17,17,29,.64);
+ border:1px solid rgba(255,255,255,.13);backdrop-filter:blur(7px);
+ color:rgba(255,246,242,.89);font-size:12px;font-weight:500;
+ line-height:1.35;letter-spacing:.015em;overflow-wrap:anywhere;
+ text-shadow:0 1px 3px rgba(0,0,0,.65);pointer-events:none;
+}
+.v18-director[data-v18-tone=warm] .io-film-image{filter:saturate(1.09) sepia(.035)}
+.v18-director[data-v18-tone=tense] .io-film-image{filter:saturate(.88) contrast(1.06) brightness(.94)}
+.v18-director[data-v18-tone=rain] .io-film-image{filter:saturate(.83) hue-rotate(8deg) brightness(.9)}
+.v18-director[data-v18-tone=work] .io-film-image{filter:saturate(.95) contrast(1.04)}
+.v18-director[data-v18-tone=quiet] .io-film-image{filter:saturate(.88) brightness(.94)}
+.v18-director[data-v18-tone=intimate] .io-film-image{filter:saturate(1.06) sepia(.045) brightness(1.02)}
+.v18-director[data-v18-camera=near] .io-film-image{transform:scale(1.018);transform-origin:50% 34%}
+@media(max-height:650px){
+ .v18-director .v18-scene-cue{top:51px;padding:5px 9px;font-size:11px;
+ max-width:78%;border-radius:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ .v18-director .io-film-image{transition:none!important}
+}

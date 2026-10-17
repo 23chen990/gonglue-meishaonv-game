@@ -1,3 +1,13 @@
+# V18 CURRENT UPDATE | 2026-10-17
+
+The active branch remains Draft PR #22, feat/first-night-playable-unified-20261017. In V17, 26 of the 36 edited personal episodes had only narrator beats, so an ADV panel still felt like a prose reader. V18 adds a single short optical action cue plus TWO directly spoken, human-scale lines from the relevant heroine in ALL 36 personal scenes (72 authored female-spoken lines total). The second spoken line immediately leads to existing real canonical choices.
+
+Source-guarded authoring: tools/romance-v18-moments.json, tools/romance-v18.js, tools/romance-v18.css, docs/ROMANCE_V18_HEROINE_FIRST_ZH.md. All 36 author entries are anchored to source row ID, source speaker and story row hash; changed source must fail closed into prior V17 representation. Viewport tests require one character and one turn, minimal text, visible scene clue, >=44px option touch areas, real engine.choose/history/effects, true post-choice emotional reactions and refresh. Older V17 UI cursor values are migrated without skipping the new spoken exchange; canonical save history must be retained.
+
+Do NOT misrepresent tint/zoom of shared candidate portraits as 36 distinct finished date CGs. High-quality licensed 1536x2400+ location art, physical iPhone/Android QA and 8-12 unassisted adult playtests remain blockers. Build all H5 assets from tools/build-preview.mjs; do not directly edit play.html. Keep PR Draft. Treat old V17 CI as prior evidence, NOT acceptance for this V18 HEAD.
+
+---
+
 # 2026-10-17 CURRENT ACTIVE PROJECT | Read this FIRST
 
 This repository is the H5 mobile visual novel / multiple-heroine romance game 攻略美少女. Current development is Draft PR #22 at branch feat/first-night-playable-unified-20261017. The main branch is an old unrelated baseline. Do NOT use the older PR #9 / v4.12 “current branch” note below as current. The latest source lives in runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/.
