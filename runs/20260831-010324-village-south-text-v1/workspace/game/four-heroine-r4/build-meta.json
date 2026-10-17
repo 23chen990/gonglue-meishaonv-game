@@ -18,8 +18,9 @@
     "tools/interactive-opening.js": "a5bf133dffd7efbab8d28ed529ea57e40c08a84d9bc73d621c37e47833119a15",
     "tools/interactive-follow.js": "e93a5d22caab115dcecca113405552731cc43c79c882a72d8141db597457007d",
     "tools/interactive-opening.css": "be63f89e8db964ae351af058ba1c6cf9f62621683681ab48d6843d239e28ad26",
-    "tools/romance-v9.js": "b2544e13b46f84199c759104f1fa9234721fbad94384242a075bf3da877b02a9",
+    "tools/romance-v9.js": "77b628229ab8a007e184ba4e413f9a634ef2cbff1326d8e6079e5f2697f81d1d",
     "tools/romance-v9.css": "b35513464b52786d76d173c701b75b6ae76941fe6eda2335b1c464c54bc65850",
+    "tools/romance-v10.js": "0fbda3b5eff6ef133bdf9c82e78c9eea114cef2810642a1aa41fbf022168d44f",
     "assets/adv8/singer.webp": "f1773829311b172775ad8e371a7be1df88e4e19ec9d13c3cb487d4b95c41264b",
     "assets/adv8/crew.webp": "534dabb9819e44c687a48a6416a37d05f19a66c0fa65378801e4d0a249e581e8",
     "assets/adv8/badge.webp": "aeda49ce345d549ce312eaf4a04e01fbdf1be65196243c235f4deda14e85c1f5",
@@ -45,9 +46,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "f63cda0a17a8c1dd864485d46472501d3345baf96da249d818a9413a5b6953cd",
-    "index.html": "b8dd9430c24451f72dbcde738648e267d37b2ab0d315b1bea6790f40b7b4037e",
-    "play.html": "b8dd9430c24451f72dbcde738648e267d37b2ab0d315b1bea6790f40b7b4037e",
+    "runtime.mjs": "dfeed19ec970133d7b58d1fcb67ae7af78a0a9b6614b83dacc94e92a30550973",
+    "index.html": "2b4e75488b4a05a3a1d20ff0e3eb9cbaca2aea67bb916b6a3de953e1a80c8fd1",
+    "play.html": "2b4e75488b4a05a3a1d20ff0e3eb9cbaca2aea67bb916b6a3de953e1a80c8fd1",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
