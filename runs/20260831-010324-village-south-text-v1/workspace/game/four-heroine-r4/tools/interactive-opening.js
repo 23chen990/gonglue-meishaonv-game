@@ -128,7 +128,7 @@ function ioStoryHTML(){
  const panelHeight=Math.min(220,Math.floor(m.h*(m.h<650?.30:.24)));
  const style='--mobile-panel:'+panelHeight+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  return '<div class="vn-frame mobile-vn io-vn '+(ioCGReady()?'io-cg-ready':'')+'" data-mode="'+(decision?'decision':'reading')+'" data-current-io="'+esc(io.step)+'" data-io-art-tier="candidate-not-approved" style="'+style+'">'+
- '<section class="vn-stage mobile-stage io-stage" aria-label="第一夜的舞台后台">'+ioArt(info)+'<div class="io-corner">'+(io.step==='reader'?'一切发生之前':'第一夜 · 北岸艺术中心')+'</div>'+ 
+ '<section class="vn-stage mobile-stage io-stage" aria-label="第一夜的舞台后台">'+ioArt(info)+'<div class="io-corner">'+(io.step==='reader'?'一切发生之前':'第一夜 · 北岸艺术中心')+'</div>'+
  (io.step==='hunt'?ioChoices('hunt'):'')+'</section>'+
  (io.step!=='hunt'&&decision?'<div class="io-options">'+ioChoices(io.step)+'</div>':'')+
  '<section class="vn-sheet mobile-sheet io-sheet" aria-label="当前角色的一句对白"><div class="mobile-speaker">'+esc(info.voice)+'</div>'+
