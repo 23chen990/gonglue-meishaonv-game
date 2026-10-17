@@ -1,3 +1,17 @@
+# 2026-10-17 当前入口（优先于下方历史记录）
+
+**继续开发 PR #22 分支 feat/first-night-playable-unified-20261017 的 V17 源码，不是 v4.12，也不是旧 main。** 本作已是四位成年女主的 H5 穿书恋爱剧情游戏。玩家先在现实读《今夜偏爱男主》，突然穿成北岸艺术中心第一天上班的临时场务许照，第一晚因伴奏被换而卷入误背锅危机，故事推进到第七天与第 21 天。目标是让玩家先看懂、尽早自己决定、随后真正喜欢角色，而不是一页页阅读长小说。
+
+进入游戏：最新 CI 从本目录源文件生成的 play.html；项目默认源码入口为父目录的 src/main.ts -> runtime.mjs。**play.html 是构建产物，不要直接修改。**
+
+源码主线：interactive-opening.js（穿书、首夜、立即自保/查证）、interactive-follow.js 和 romance-v9/v10.js（首演与选后反馈）、romance-v11.js + romance-v11-arcs.json（18 个关键场/79 底层选择）、romance-v13-scenes.json（36 场 V13 自然对话）、romance-v17.js（36 场日常恋爱事件的可选场景演出）。保留 STORY.json 与 engine.mjs、全部历史选择和效果。旧逐句完整正文对照：?qa=legacy-reader。重要演出说明：docs/ROMANCE_V17_PLAYABLE_DATES_ZH.md。
+
+运行：npm run verify，并以当前 HEAD 的 .github/workflows/romance-first-night-unified.yml 真实 Chromium/WebKit 与项目默认入口检查作为工程门禁。上一轮 CI 的绿灯不能证明下一轮修改已通过。尚未完成真实手机、陌生玩家第一印象、36 场真正匹配场景 CG 与商用素材审批。PR 保持 Draft、不合并 main、不发布。
+
+接手必须遵守 AGENTS.md 最上方产品契约；其余本文 v4.12、v4.9、r4.1 等段落仅作历史留档。
+
+---
+
 # v4.12 已落地的 56 条人物关系反馈修订（2026-10-14）
 
 本版正式剧本修改了 **26个场景、56条真实选后反馈**，重点解决不同女主在12处隐瞒关系被撞破后的重复回应，以及6组双人关系暂缓/分别相处的模板台词。228场、751底层选择、24主结局、28段必读穿书经过与命令效果均保留。代码级回退与审计见 `patch/v412_reaction_copy.json`、`docs/R412_RELATIONSHIP_RESPONSE_QA.md`。

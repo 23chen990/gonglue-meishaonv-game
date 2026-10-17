@@ -1,3 +1,22 @@
+# 2026-10-17 CURRENT ACTIVE PROJECT | Read this FIRST
+
+This repository is the H5 mobile visual novel / multiple-heroine romance game 攻略美少女. Current development is Draft PR #22 at branch feat/first-night-playable-unified-20261017. The main branch is an old unrelated baseline. Do NOT use the older PR #9 / v4.12 “current branch” note below as current. The latest source lives in runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/.
+
+Newest source components: V14 established a newcomer-friendly novel-to-stage transmigration; V15 introduced unknown women only at actual first encounters; V16 moved a real loss/retreat choice into the stage emergency and corrected signing liability; V17 converts 36 personal life/romance scenes to a stage-led mobile interaction. The already directed 18 canonical milestones remain in romance-v11.js. Every improvement must keep canonical STORY.json SHA-256 84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93 and engine.mjs unchanged unless an explicit, reviewed full migration is authorized. Existing original story is 228 scenes, 751 canonical choice leaves and 24 ending classes. Source file tools/build-preview.mjs compiles play.html, index.html, runtime.mjs and default entry together; NEVER hand-edit generated assets.
+
+The product is a **game, not a novel reader**. Hard user requirements:
+- A genuinely understandable first 30 seconds: the player is reading 今夜偏爱男主, becomes the first-day temporary stagehand 许照 in 北岸艺术中心, and discovers a real threat of being wrongly dismissed on day seven. Neither the player's real-world name nor future strangers' identities are known at start.
+- One visible speaker/one concise turn at a time. Long text uses 继续 segments. Portrait/CG occupies the scene; bottom dialogue sheet targets 1/4 screen and never exceeds 1/3, never scrolls internally or shrinks type to fit. Player replies and investigations are taps, not narrated decisions.
+- Four distinct attractive adult women 唐映雪 / 沈清辞 / 林见月 / 顾晚棠 should be encountered as people with work, choices, flaws and boundaries, then develop romance. Do not substitute endless murder-mystery jargon, relationship lectures, tech notes, mission text, all-women-immediately-love-me fantasies or artificial favor numbers.
+- A choice must correspond to real engine behavior and an immediate, comprehensible reaction; lies, coercion, empty promises and signing false blame must not be disguised by positive prose or fake options. Keep genuine failures, rewinds and multi-ending variety.
+- The scene should communicate most of the mood visually. Repeating the stage portrait as the literal background of cafes and private dates is still an art-quality blocker. Do not call candidate CGs approved or claim commercial rights.
+
+V17 player scenes use tools/romance-v17.js; full authored text parity can be checked at ?qa=legacy-reader. Old save migration and first-loop to second-loop memory must remain safe. Primary automated gate is .github/workflows/romance-first-night-unified.yml, now also running 36 scene V17 tests on Chromium/WebKit. Run npm run verify and the exact current HEAD workflow; earlier green Actions are not acceptance of newer edits. The PR must remain Draft until candidate CG location/licensing review, real physical-device input and 8–12 blind players have validated comprehension and romantic appeal. Do not assert those gates passed based only on a browser simulation.
+
+The notes below are HISTORICAL and may conflict with this section. Keep them for archaeological purposes, but not to select current branch, behavior or release state.
+
+---
+
 # Project instructions
 
 - This repository is the independent source snapshot for 攻略美少女, original run `20260831-010324-village-south-text-v1`. Generated game source stays under `runs/20260831-010324-village-south-text-v1/workspace/game`; do not mix another game into this repository.
