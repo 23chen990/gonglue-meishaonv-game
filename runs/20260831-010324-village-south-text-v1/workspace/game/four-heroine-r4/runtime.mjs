@@ -1330,8 +1330,8 @@ document.addEventListener('load',event=>{
  * This layer is mounted only at the untouched ENTRY_WAKE scene; all other scenes use the engine.
  */
 const IO_VERSION = 1;
-const IO_STEPS = new Set(['wake','answer','badge','badge-read','alarm','crisis','ask','ask-answer','hunt','find','confront','confront-answer','bond','final']);
-function ioNew(){return {v:IO_VERSION,step:'wake',tone:'',ally:'',defiance:'',seen:[],lastFind:'',visits:0,finished:false};}
+const IO_STEPS = new Set(['spotlight','pressure','wake','answer','badge','badge-read','alarm','crisis','ask','ask-answer','hunt','find','confront','confront-answer','bond','final']);
+function ioNew(){return {v:IO_VERSION,step:'spotlight',tone:'',ally:'',defiance:'',seen:[],lastFind:'',visits:0,finished:false};}
 let io = ioNew();
 const ioOldSnapshot=snapshot, ioOldReadPayload=readPayload, ioOldInstall=install, ioOldReset=reset, ioOldStoryHTML=storyHTML;
 const ioSafe=(x,possible)=>possible.includes(x)?x:'';
@@ -1348,12 +1348,14 @@ reset=function(){const before=state;ioOldReset();if(state!==before && state.curr
 function ioLine(){
  const find=io.lastFind;
  switch(io.step){
+ case 'spotlight': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'等一下。伴奏不是这一版……别关麦，我还能唱。'};
+ case 'pressure': return {voice:'程放 · 身后',portrait:null,mood:'block',text:'把交接单签了。错版责任人写你，就能收场。'};
  case 'wake': return {voice:'戴耳机的工作人员',portrait:null,mood:'wake',text:'许照！站得起来吗？她的伴奏出问题了！'};
  case 'answer': return {voice:'戴耳机的工作人员',portrait:null,mood:'wake',text:io.tone==='help'?'小心脚下的线。来，抓住我。':io.tone==='steady'?'没事就快起来，舞台那边等急了。':'许照啊！你的工牌不就挂着吗？'};
- case 'badge': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'工牌？我什么时候成了这里的场务？'};
+ case 'badge': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:io.tone==='confused'?'许照？这是我的工牌？我真的进了那本小说？':io.tone==='help'?'他把工牌塞回我手心。许照……小说里背锅的那个？':'胸口这张工作牌写着许照。我成了那个替人背锅的场务？'};
  case 'badge-read': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'许照……那个七天后会替人背锅的小说角色？'};
  case 'alarm': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'别关我的麦。伴奏错了，我还能唱。'};
- case 'crisis': return {voice:'沈清辞 · 对讲机',portrait:null,mood:'stage',text:'伴奏被换了。先找到原版，我去稳住台上。'};
+ case 'crisis': return {voice:'沈清辞 · 对讲机',portrait:null,mood:'stage',text:'原版盘应该在后台。找到先别乱插，我来安排切换。'};
  case 'ask': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'侧幕那边的人，是你吗？看着我，给我一个信号。'};
  case 'ask-answer': return {
    voice:io.ally==='tang'?'唐映雪':io.ally==='shen'?'沈清辞 · 对讲机':'许照 · 心声',portrait:io.ally==='tang'?'t':null,mood:'stage',
@@ -1362,12 +1364,14 @@ function ioLine(){
  case 'find': return {voice:'许照 · 心声',portrait:null,mood:'search',text:find==='usb'?'接线板下面……蓝胶带！原版盘就在这儿。':find==='sheet'?'交接单上写着我的名字，但我还没签。':'控台文件名和排练单上的，根本不是同一版。'};
  case 'confront': return {voice:'程放 · 身后',portrait:null,mood:'block',text:'许照，别乱碰设备。先把交接单签了。'};
  case 'confront-answer': return {voice:'程放 · 身后',portrait:null,mood:'block',text:io.defiance==='ask'?'问那么多干什么？责任人写你就行。':io.defiance==='hide'?'还不签？出了事你一个人担得起？':'沈清辞？……行，你去找她。'};
- case 'bond': return {voice:io.ally==='tang'?'唐映雪':'沈清辞 · 对讲机',portrait:io.ally==='tang'?'t':null,mood:'bond',text:io.ally==='tang'?'舞台那么亮，我还是看见你了。接下来呢？':io.ally==='shen'?'不管接下来怎么选，别替别人认错。':'映雪已经上台。现在轮到你做决定了。'};
+ case 'bond': return {voice:'唐映雪',portrait:'t',mood:'bond',text:'我看见你了。你能让我把这首歌唱完吗？'};
  case 'final': return {voice:'许照 · 心声',portrait:null,mood:'decision',text:'帮她把歌唱回来，还是先保住换版证据？'};
  }
  throw Error('Unknown interactive first-night step');
 }
 const ioActions={
+ spotlight:[['next','继续']],
+ pressure:[['next','继续']],
  wake:[['help','握住他的手站起来'],['steady','自己撑着设备箱起身'],['confused','“你叫我什么？”']],
  answer:[['next','继续']],
  badge:[['badge','翻开工牌']],
@@ -1381,17 +1385,17 @@ const ioActions={
  bond:[['next','面对选择']],
  final:[['rescue','把原版送上台 · 救场'],['investigate','找沈清辞核验 · 留证'],['canon','暂不碰音控 · 拒绝背锅']]
 };
-const ioNext={answer:'badge','badge-read':'alarm',alarm:'crisis',crisis:'ask','ask-answer':'hunt','confront-answer':'bond',bond:'final'};
+const ioNext={spotlight:'wake',pressure:'bond',answer:'badge','badge-read':'alarm',alarm:'crisis',crisis:'hunt','ask-answer':'hunt','confront-answer':'bond',bond:'final'};
 function ioAction(action){
  if(!ioActive())return;
  const step=io.step;
  const allowed=step==='hunt'?['usb','sheet','board',...(io.seen.includes('usb')?['move']:[])]:ioActions[step]?.map(x=>x[0])||[];
  if(!allowed.includes(action))return;
- if(step==='wake'){io.tone=action;io.step='answer';}
- else if(step==='badge'){io.step='badge-read';}
+ if(step==='wake'){io.tone=action;io.step='badge';}
+ else if(step==='badge'){io.step='crisis';}
  else if(step==='ask'){io.ally=action;io.step='ask-answer';}
  else if(step==='hunt'){
-  if(action==='move'){io.step='confront';}
+  if(action==='move'){io.step='pressure';}
   else{io.lastFind=action;if(!io.seen.includes(action))io.seen.push(action);io.visits++;io.step='find';}
  }
  else if(step==='find'){io.step='hunt';}
@@ -1415,7 +1419,7 @@ function ioArt(info){
 }
 function ioChoices(step){
  if(step==='hunt'){
-  const items=[['board','查看控台版本'],['sheet','核对交接单'],['usb','检查接线板']];
+  const items=[['board','控台'],['sheet','交接单'],['usb','接线板']];
   return '<div class="io-hotspots" role="group" aria-label="亲手调查后台">'+items.map(([action,label])=>
    '<button type="button" class="io-hotspot '+(io.seen.includes(action)?'seen':'')+'" data-io="'+action+'"><span aria-hidden="true">'+(io.seen.includes(action)?'✓':'⌕')+'</span>'+esc(label)+'</button>').join('')+'</div>'+
    (io.seen.includes('usb')?'<button type="button" class="io-advance" data-io="move">去处理舞台危机 <span aria-hidden="true">›</span></button>':'');
