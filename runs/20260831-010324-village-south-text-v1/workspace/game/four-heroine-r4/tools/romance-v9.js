@@ -88,8 +88,8 @@ function v9Scene(info,opts){
  const controls=decision?'<div class="io-options"><div class="io-choice-stack">'+ioFollowOptions()+'</div></div>':'';
  return '<div class="vn-frame mobile-vn io-vn v9-cinema '+(ioCGReady()?'io-cg-ready':'')+(decision?' io-follow':'')+'" data-mode="'+(decision?'decision':'reading')+'" data-v9-kind="'+opts.kind+'" data-v9-shot="'+info.shot+'" style="'+style+'">'+
   '<div class="io-stage">'+v9Photo(info.shot)+'<div class="io-corner">第一夜 · '+(opts.kind==='after'?'选择之后':'余音')+'</div></div>'+controls+
-  '<section class="mobile-sheet io-sheet" aria-label="当前角色的对白"><div class="mobile-speaker">'+esc(info.voice)+'</div>'+ 
-  '<div class="mobile-text" aria-live="polite" aria-atomic="true"><div class="line"><p>'+esc(info.text)+'</p></div></div>'+ 
+  '<section class="mobile-sheet io-sheet" aria-label="当前角色的对白"><div class="mobile-speaker">'+esc(info.voice)+'</div>'+
+  '<div class="mobile-text" aria-live="polite" aria-atomic="true"><div class="line"><p>'+esc(info.text)+'</p></div></div>'+
   '<div class="io-bottom">'+(button?'<div class="io-choice-stack">'+button+'</div>':'')+'</div></section></div>';
 }
 const v9OriginalStoryHTML=storyHTML;
