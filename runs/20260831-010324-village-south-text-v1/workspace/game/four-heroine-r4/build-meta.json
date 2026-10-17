@@ -15,9 +15,9 @@
     "tools/mobile-reader.css": "974b41c775f764a608c70319722f4974c290b086fb9d5841adcfcf7c7907e3fd",
     "tools/director-v6.js": "33c7964964e6e7c1fdf1b00f1aead6f0534267ac5054c1e2b07b2207df55a8a8",
     "director-v6.css": "5d917fa91e2e0225f532c69961f49f78d5a5e3ea0713aa38c0af4cf4441a0579",
-    "tools/interactive-opening.js": "e98b9f3c877a4caa58611aab9f12b8c6a27edb19c067a7c0824eab16531e936b",
-    "tools/interactive-follow.js": "273af445984312c62b19ddd099b76584eee44d157f8219f4d0d3fb01c42b217c",
-    "tools/interactive-opening.css": "d38b7266a212292e1aa97feb9b154a04fc1f7210f5c9093037b40201b60c986e",
+    "tools/interactive-opening.js": "a5bf133dffd7efbab8d28ed529ea57e40c08a84d9bc73d621c37e47833119a15",
+    "tools/interactive-follow.js": "e93a5d22caab115dcecca113405552731cc43c79c882a72d8141db597457007d",
+    "tools/interactive-opening.css": "be63f89e8db964ae351af058ba1c6cf9f62621683681ab48d6843d239e28ad26",
     "assets/v6-preview/crew-single-cg.webp": "620619d60fd321f7b33faee21d02398b473aae5c4b4314241fd2af834f5fd37c",
     "assets/v6-preview/badge-single-cg.webp": "474cc4c4ffce9515cc163e662d6d35a38426f79b4b80bd461b9d79d4b7782e80",
     "assets/v6-preview/lin.webp": "0db1bbcaac1c2b0f81257a2ab7a46fed8c20aa8d59a0a447c707249afa38bf4e",
@@ -32,9 +32,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "adfaea4b7e730768ad778759478d7866b45ad7a66edac94a2d2c7735dd647687",
-    "index.html": "e12c2f510f635605cb136306c52e888dd0c72be9cf9342d37b558346c765b8f3",
-    "play.html": "e12c2f510f635605cb136306c52e888dd0c72be9cf9342d37b558346c765b8f3",
+    "runtime.mjs": "fe5bc9fd0a66f331e6dc1772e1acb33f27a4199588dd34bed7a69f6f0f8648d8",
+    "index.html": "6b232d1ca95948d5f485a153e4f3ddbed9dd9e1f0b0396914e44d3ba2122d87d",
+    "play.html": "6b232d1ca95948d5f485a153e4f3ddbed9dd9e1f0b0396914e44d3ba2122d87d",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
