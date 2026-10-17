@@ -69,6 +69,8 @@ with sync_playwright() as pw:
      assert page.locator('.io-stage .io-film-image').count()==1, 'single full event shot required'
      assert page.locator('.io-person,.io-badge-art,.io-theatre-art,.io-box').count()==0, 'fake character/prop layers forbidden'
      assert page.locator('.io-film-image').evaluate('e=>e.complete && e.naturalWidth>0'), 'event shot failed to load'
+     if page.locator('.io-vn.io-cg-ready').count():
+      assert page.locator('.io-film-image').evaluate('e=>e.naturalWidth>=1024 && e.naturalHeight>=1500'),'new CG master below candidate native density'
      if width==390:page.screenshot(path=str(OUT/(name+'-spotlight-390.png')))
      click(page,'next');step(page,'wake');assert page.locator('[data-io]').count()==3
      if width==390:page.screenshot(path=str(OUT/(name+'-welcome-390.png')))
@@ -76,6 +78,11 @@ with sync_playwright() as pw:
      assert '许照' in reaction and reaction != '工牌？我什么时候成了这里的场务？'
      click(page,'badge');step(page,'crisis')
      click(page,'next');step(page,'hunt')
+     if page.locator('.io-vn.io-cg-ready').count():
+      assert page.locator('.io-film[data-io-shot="console"]').count()==1
+      targets=page.locator('.io-hotspot').evaluate_all('els=>els.map(el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}})')
+      assert len(targets)==3 and len(set(t['x'] for t in targets))>1 and len(set(t['y'] for t in targets))>1,('still stacked fake investigation buttons',targets)
+      assert all(t['w']>=44 and t['h']>=44 for t in targets),('hotspots too small',targets)
      assert page.locator('[data-io="move"]').count()==0,'USB discovery was auto-completed'
      # A stage tap without a labelled hotspot must not skip the investigation.
      page.locator('.io-stage').tap(position={'x': 8, 'y': 150})

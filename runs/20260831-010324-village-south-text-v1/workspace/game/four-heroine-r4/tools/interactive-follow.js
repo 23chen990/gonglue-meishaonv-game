@@ -42,7 +42,7 @@ function ioFollowOptions(){
 function ioFollowHTML(){
  const scene=IF_FOLLOW[state.current],m=mobileMetrics(),sheet=Math.floor(Math.min(148,m.h/4));
  const style='--mobile-panel:'+sheet+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
- return '<div class="vn-frame mobile-vn io-vn io-follow" data-mode="decision" data-follow-scene="'+esc(state.current)+'" style="'+style+'">'+
+ return '<div class="vn-frame mobile-vn io-vn io-follow '+(ioCGReady()?'io-cg-ready':'')+'" data-mode="decision" data-follow-scene="'+esc(state.current)+'" style="'+style+'">'+
  '<section class="vn-stage mobile-stage io-stage">'+ioArt(scene)+'<div class="io-corner">第一夜 <span>·</span> 北岸剧场</div></section>'+
  '<div class="io-options"><div class="io-choice-stack" role="group" aria-label="选择行动">'+ioFollowOptions()+'</div></div>'+
  '<section class="vn-sheet mobile-sheet io-sheet"><div class="mobile-speaker">'+esc(scene.voice)+'</div><div class="vn-scroll mobile-text"><div class="line"><p>'+esc(scene.text)+'</p></div></div><div class="io-bottom"></div></section></div>';

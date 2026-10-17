@@ -45,3 +45,29 @@ body[data-panel=story] .mobile-vn.io-vn[data-mode=decision] > .mobile-sheet.io-s
 body[data-panel=story] .mobile-vn.io-vn[data-mode=decision] > .mobile-sheet.io-sheet .mobile-text {
  display:block!important;
 }
+
+/* ADV8: full-scene candid CGs, not composited portraits. Source exists only after full asset pack installed. */
+body[data-panel=story] .io-vn.io-cg-ready .io-film{inset:0 0 var(--mobile-panel) 0!important;pointer-events:none!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film-vignette{bottom:var(--mobile-panel)!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film-image{object-fit:cover!important;object-position:center center!important;filter:none!important;mask:none!important;opacity:1!important;transform:none!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film[data-io-shot=singer] img{object-position:48% 28%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film[data-io-shot=crew] img{object-position:48% 45%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film[data-io-shot=badge] img{object-position:48% 45%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film[data-io-shot=console] img{object-position:50% 44%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film[data-io-shot=shen] img{object-position:50% 20%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-film[data-io-shot=usbDetail] img{object-position:50% 55%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-hotspots{position:absolute!important;inset:0 0 var(--mobile-panel) 0!important;display:block!important;z-index:7!important;pointer-events:none!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-hotspot{position:absolute!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:3px!important;width:auto!important;min-width:56px!important;min-height:52px!important;padding:0!important;pointer-events:auto!important;color:#fff!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;text-align:center!important}
+.io-cg-ready .io-hotspot .io-target-mark{box-sizing:border-box;display:grid;place-items:center;width:50px;height:50px;border:1px solid rgba(255,235,241,.9);border-radius:50%;background:rgba(14,19,35,.64);box-shadow:0 0 0 4px rgba(16,19,27,.12),0 4px 16px rgba(0,0,0,.22);font:500 28px/1 system-ui;color:#ffe2ec}
+.io-cg-ready .io-magnifier{display:block;position:relative;width:17px;height:17px;box-sizing:border-box;border:2px solid #ffe2ec;border-radius:50%}
+.io-cg-ready .io-magnifier:after{content:'';position:absolute;width:10px;height:2px;background:#ffe2ec;right:-8px;bottom:-3px;transform:rotate(45deg);transform-origin:left center}
+.io-cg-ready .io-hotspot .io-target-label{padding:3px 8px;white-space:nowrap;border-radius:5px;background:rgba(9,12,25,.88);font:550 12px/1.3 system-ui,'PingFang SC',sans-serif;color:#fff}
+.io-cg-ready .io-hotspot.seen .io-target-mark{border-color:#b0dfd9;color:#b0dfd9;background:rgba(15,44,45,.77)}
+body[data-panel=story] .io-vn.io-cg-ready[data-current-io=hunt] .io-corner{display:none!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-target-board{top:19%!important;left:7%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-target-sheet{top:43%!important;right:7%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-target-usb{top:71%!important;left:22%!important}
+body[data-panel=story] .io-vn.io-cg-ready .io-hotspot:focus-visible .io-target-mark{outline:2px solid #ffd6e4;outline-offset:3px}
+body[data-panel=story] .io-vn.io-cg-ready .io-advance{background:rgba(45,27,45,.94)!important;bottom:calc(var(--mobile-panel) + 6px)}
+@media(max-height:650px){body[data-panel=story] .io-vn.io-cg-ready .io-target-usb{top:66%!important}body[data-panel=story] .io-vn.io-cg-ready .io-hotspot{min-height:48px!important}.io-cg-ready .io-hotspot .io-target-mark{width:45px;height:45px}}
+@media(prefers-reduced-motion:reduce){.io-cg-ready .io-film-image{animation:none!important}}

@@ -13,14 +13,17 @@ const scenery='data:image/webp;base64,'+fs.readFileSync(new URL('assets/scenes/b
 const images='\nconst PORTRAITS='+JSON.stringify(portraitManifest)+';\nconst SCENERY='+JSON.stringify(scenery)+';\n';
 const v6ArtFiles={crew:'crew-single-cg.webp',badge:'badge-single-cg.webp',lin:'lin.webp',gu:'gu.webp',usb:'usb.webp',usbHeld:'usbHeld.webp',piano:'piano.webp',singer:'singer.webp'};
 const artV6='\nconst ADV6_ART_PACK='+JSON.stringify(Object.fromEntries(Object.entries(v6ArtFiles).map(([key,name])=>[key,'data:image/webp;base64,'+fs.readFileSync(new URL('assets/v6-preview/'+name,root)).toString('base64')]))).replaceAll('<','\\u003c')+';\n';
-const script=engine+'\n'+vars+images+artV6+meta+ui;
+const adv8Files={singer:'singer.webp',crew:'crew.webp',badge:'badge.webp',console:'console.webp',usbDetail:'usbDetail.webp',usbHeld:'usbHeld.webp',shen:'shen.webp',singerBond:'singerBond.webp',stage:'stage.webp',lin:'lin.webp',gu:'gu.webp'};
+const adv8Complete=Object.values(adv8Files).every(name=>fs.existsSync(new URL('assets/adv8/'+name,root)));
+const artV8='\nconst ADV8_ART_PACK='+JSON.stringify(adv8Complete?Object.fromEntries(Object.entries(adv8Files).map(([key,name])=>[key,'data:image/webp;base64,'+fs.readFileSync(new URL('assets/adv8/'+name,root)).toString('base64')])):{})+';\n';
+const script=engine+'\n'+vars+images+artV6+artV8+meta+ui;
 if(script.includes('</script'))throw Error('Unescaped closing script in bundle');
 const template=read('tools/preview-template.html').replace('<!--META-->','<meta name="story-sha256" content="'+hash+'">');
 const html=template.replace('<!--CSS-->','<style>'+read('tools/preview.css')+'\n'+read('tools/vn.css')+'\n'+read('tools/mobile-reader.css')+'\n'+read('director-v6.css')+'\n'+read('tools/interactive-opening.css')+'</style>').replace('<!--SCRIPT-->','<script>'+script+'</script>');
 fs.writeFileSync(new URL('play.html',root),html);
 fs.writeFileSync(new URL('index.html',root),html);
 const imports="import {VERSION,createState,active,condition,availableActions,endingFacts,classifyEnding,renderScene,choose,replay,rewind,reviewEnding} from './tools/engine.mjs';\nimport './tools/preview.css';\nimport './tools/vn.css';\nimport './tools/mobile-reader.css';\nimport './director-v6.css';\nimport './tools/interactive-opening.css';\n";
-fs.writeFileSync(new URL('runtime.mjs',root),'// GENERATED from canonical JSON and controller. Run npm run build; never edit this file.\n'+imports+vars+images+artV6+meta+ui);
+fs.writeFileSync(new URL('runtime.mjs',root),'// GENERATED from canonical JSON and controller. Run npm run build; never edit this file.\n'+imports+vars+images+artV6+artV8+meta+ui);
 const index=template.replace('<!--CSS-->','').replace('<!--SCRIPT-->','<script type="module" src="/src/main.ts"></script>')
  .replace("default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'",
  "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws:; base-uri 'none'; form-action 'none'");
@@ -33,6 +36,6 @@ if(fs.existsSync(defaultMain)&&fs.readFileSync(defaultMain,'utf8').includes("imp
  fs.writeFileSync(defaultIndex,index);
 }
 
-const files=['data/STORY.json','data/EPILOGUES.json','data/BONUS.json','data/CODA.json','data/HANDBOOK.json','tools/engine.mjs','tools/preview-ui.js','tools/preview.css','tools/vn.css','tools/mobile-reader.js','tools/mobile-reader.css','tools/director-v6.js','director-v6.css','tools/interactive-opening.js','tools/interactive-follow.js','tools/interactive-opening.css',...Object.values(v6ArtFiles).map(name=>'assets/v6-preview/'+name),'assets/portraits/t.webp','assets/portraits/s.webp','assets/portraits/l.webp','assets/portraits/g.webp','assets/scenes/backstage.webp','tools/preview-template.html','runtime.mjs','index.html','play.html','repository-index.html'];
+const files=['data/STORY.json','data/EPILOGUES.json','data/BONUS.json','data/CODA.json','data/HANDBOOK.json','tools/engine.mjs','tools/preview-ui.js','tools/preview.css','tools/vn.css','tools/mobile-reader.js','tools/mobile-reader.css','tools/director-v6.js','director-v6.css','tools/interactive-opening.js','tools/interactive-follow.js','tools/interactive-opening.css',...(adv8Complete?Object.values(adv8Files).map(name=>'assets/adv8/'+name):[]),...Object.values(v6ArtFiles).map(name=>'assets/v6-preview/'+name),'assets/portraits/t.webp','assets/portraits/s.webp','assets/portraits/l.webp','assets/portraits/g.webp','assets/scenes/backstage.webp','tools/preview-template.html','runtime.mjs','index.html','play.html','repository-index.html'];
 fs.writeFileSync(new URL('build-meta.json',root),JSON.stringify({version:'revision-r4.5-ui',storyHash:hash,files:Object.fromEntries(files.map(p=>[p,crypto.createHash('sha256').update(fs.readFileSync(new URL(p,root))).digest('hex')]))},null,2)+'\n');
 console.log(JSON.stringify({file:'play.html',bytes:Buffer.byteLength(html),storyHash:hash,repositoryModule:'runtime.mjs'},null,2));

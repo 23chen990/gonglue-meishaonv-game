@@ -81,20 +81,32 @@ function ioAction(action){
  } else io.step=ioNext[step]||step;
  save();render();arm();
 }
+const ADV8_MEDIA=typeof ADV8_ART_PACK==='object'&&ADV8_ART_PACK?ADV8_ART_PACK:{};
+function ioCGReady(){return !!(ADV8_MEDIA.singer&&ADV8_MEDIA.crew&&ADV8_MEDIA.badge&&ADV8_MEDIA.console&&ADV8_MEDIA.usbDetail&&ADV8_MEDIA.singerBond);}
 function ioArt(info){
- // The only visual layer is one physically coherent event photograph.
- // Older portrait cutouts, CSS ID cards and fake prop drawings are never mounted.
- const key=info.mood==='wake'?'crew':info.mood==='badge'?'badge':
-   (info.portrait==='t'&&(info.mood==='stage'||info.mood==='bond'))?'singer':'stage';
- const url=key==='stage'?SCENERY:(ADV6_MEDIA[key]||('assets/v6-preview/'+ADV6_MEDIA_FILES[key]));
+ const old=info.mood==='wake'?'crew':info.mood==='badge'?'badge':
+  (info.portrait==='t'&&(info.mood==='stage'||info.mood==='bond'))?'singer':'stage';
+ let key=old,url=old==='stage'?SCENERY:(ADV6_MEDIA[old]||('assets/v6-preview/'+ADV6_MEDIA_FILES[old]));
+ if(ioCGReady()){
+  key=info.mood==='wake'?'crew':info.mood==='badge'?'badge':
+   (info.mood==='search'?(io.step==='find'&&io.lastFind==='usb'?'usbDetail':'console'):
+   ((info.voice||'').includes('沈清辞')||info.portrait==='s'?'shen':
+   info.portrait==='l'?'lin':info.portrait==='g'?'gu':
+   info.portrait==='t'?(info.mood==='bond'?'singerBond':'singer'):
+   (info.mood==='block'||info.mood==='decision')?'console':
+   (info.voice||'').includes('阿衡')?'crew':'stage'));
+  url=ADV8_MEDIA[key]||ADV8_MEDIA.stage;
+ }
  return '<div class="io-film" data-io-shot="'+esc(key)+'"><img class="io-film-image" src="'+url+'" draggable="false" loading="eager" alt="" /></div>'+
  '<div class="io-film-vignette" aria-hidden="true"></div>';
 }
 function ioChoices(step){
  if(step==='hunt'){
-  const items=[['board','控台'],['sheet','交接单'],['usb','接线板']];
-  return '<div class="io-hotspots" role="group" aria-label="亲手调查后台">'+items.map(([action,label])=>
-   '<button type="button" class="io-hotspot '+(io.seen.includes(action)?'seen':'')+'" data-io="'+action+'"><span aria-hidden="true">'+(io.seen.includes(action)?'✓':'⌕')+'</span>'+esc(label)+'</button>').join('')+'</div>'+
+  const items=[['board','控台','查看控台屏幕'],['sheet','交接单','核对交接单'],['usb','接线板','检查接线板']];
+  const spots=ioCGReady()?items.map(([id,label,aria])=>
+   '<button type="button" class="io-hotspot io-target-'+id+' '+(io.seen.includes(id)?'seen':'')+'" data-io="'+id+'" aria-label="'+aria+'"><span class="io-target-mark" aria-hidden="true">'+(io.seen.includes(id)?'✓':'<i class="io-magnifier"></i>')+'</span><span class="io-target-label">'+label+'</span></button>').join(''):
+   items.map(([id,label,aria])=>'<button type="button" class="io-hotspot '+(io.seen.includes(id)?'seen':'')+'" data-io="'+id+'" aria-label="'+aria+'"><span aria-hidden="true">'+(io.seen.includes(id)?'✓':'⌕')+'</span>'+label+'</button>').join('');
+  return '<div class="io-hotspots" role="group" aria-label="查看真实后台物品">'+spots+'</div>'+
    (io.seen.includes('usb')?'<button type="button" class="io-advance" data-io="move">去处理舞台危机 <span aria-hidden="true">›</span></button>':'');
  }
  const list=ioActions[step]||[];
@@ -106,7 +118,7 @@ function ioStoryHTML(){
  const decision=actionCount>1||io.step==='hunt';
  const panelHeight=Math.min(220,Math.floor(m.h*(m.h<650?.30:.24)));
  const style='--mobile-panel:'+panelHeight+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
- return '<div class="vn-frame mobile-vn io-vn" data-mode="'+(decision?'decision':'reading')+'" data-current-io="'+esc(io.step)+'" data-io-art-tier="candidate-not-approved" style="'+style+'">'+
+ return '<div class="vn-frame mobile-vn io-vn '+(ioCGReady()?'io-cg-ready':'')+'" data-mode="'+(decision?'decision':'reading')+'" data-current-io="'+esc(io.step)+'" data-io-art-tier="candidate-not-approved" style="'+style+'">'+
  '<section class="vn-stage mobile-stage io-stage" aria-label="第一夜的舞台后台">'+ioArt(info)+'<div class="io-corner">第一夜 · 侧幕</div>'+
  (io.step==='hunt'?ioChoices('hunt'):'')+'</section>'+
  (io.step!=='hunt'&&decision?'<div class="io-options">'+ioChoices(io.step)+'</div>':'')+
