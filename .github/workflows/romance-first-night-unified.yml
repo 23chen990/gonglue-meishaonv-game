@@ -13,6 +13,8 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v9.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v10.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v11*'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v11*'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/generate-romance-v11*'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v9.py'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v10.py'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v10.mjs'
