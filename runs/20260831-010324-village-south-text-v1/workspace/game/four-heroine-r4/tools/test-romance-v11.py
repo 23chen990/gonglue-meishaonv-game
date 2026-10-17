@@ -100,6 +100,24 @@ def one_case(browser,name,scene,choice,width,height):
    if not p.locator('.v11-director[data-v11-after="1"]').count():break
    tap(p,'[data-v11-next]')
   assert p.locator('.v11-director[data-v11-after="1"]').count()==0,'cannot exit consequence'
+  if scene=='A6a' and choice=='accept':
+   # Retry the real decision that caused the failed ending, not its epilogue.
+   assert p.locator('body').get_attribute('data-current')=='X01'
+   until(p,'[data-choice="record"]',limit=180)
+   tap(p,'[data-choice="record"]')
+   until(p,'.mobile-early-retry',limit=180)
+   button=p.locator('.mobile-early-retry')
+   restore_index=int(button.get_attribute('data-restore'))
+   cause=p.evaluate('(i)=>state.history[i]',restore_index)
+   assert cause['from']=='A6a' and cause['id']=='accept',('retry targets the wrong decision',cause)
+   if name=='chromium':p.screenshot(path=str(OUT/'A6a-bad-end-retry-390.png'))
+   p.once('dialog',lambda d:d.accept())
+   tap(p,'.mobile-early-retry')
+   restored=p.evaluate('()=>({scene:state.current,history:state.history.length,earlyEnd:!!state.f.early_end})')
+   assert restored=={'scene':'A6a','history':restore_index,'earlyEnd':False},restored
+   if not LOCAL:
+    p.reload(wait_until='load')
+    assert p.locator('body').get_attribute('data-current')=='A6a','retry did not survive reload'
   assert not errors,errors
   return {'scene':scene,'choice':choice,'viewport':f'{width}x{height}','trueEffect':opts[0]['k'],'intro':before['text'],'payoff':after['text']}
  finally:c.close()

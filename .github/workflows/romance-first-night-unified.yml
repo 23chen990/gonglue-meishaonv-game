@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/romance-first-night-unified.yml'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/build-preview.mjs'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/mobile-reader.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-follow.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'

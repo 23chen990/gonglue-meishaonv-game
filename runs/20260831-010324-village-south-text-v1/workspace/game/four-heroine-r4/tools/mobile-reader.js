@@ -128,6 +128,19 @@ function mobilePortrait(cp){
  if(sourceScene().id==='ENTRY_WAKE')return b._shot==='standoff'?'t':null;
  return activePortrait()||null;
 }
+function mobileEarlyEndRetryIndex(){
+ if(!state.complete||!state.f?.early_end)return -1;
+ // Replay the actual player actions until the first true failure. Rewinding
+ // the final epilogue sentence would leave the decision that ruined the route.
+ let probe=createState();
+ for(let i=0;i<state.history.length;i++){
+  const before=!!probe.f.early_end;
+  const next=choose(probe,DATA,state.history[i].id,probe.revision).state;
+  if(!before&&next.f.early_end)return i;
+  probe=next;
+ }
+ return -1;
+}
 function mobileButtons(cp){
  if(cp.last&&cp.bridge){
   const buttons=cp.bridge.next.choices.filter(o=>o.enabled).map(o=>
@@ -135,6 +148,16 @@ function mobileButtons(cp){
   return '<div class="choices">'+buttons+'</div>';
  }
  const holder=document.createElement('div');holder.innerHTML=controls(cp);
+ if(cp.view.terminal&&state.f?.early_end){
+  const index=mobileEarlyEndRetryIndex();
+  if(index>=0){
+   const button=document.createElement('button');
+   button.type='button';button.className='choice mobile-early-retry';
+   button.dataset.restore=String(index);button.textContent='回到那次决定，换一种做法';
+   const controls=holder.querySelector('.pager')||holder;
+   controls.prepend(button);
+  }
+ }
  holder.querySelectorAll('[data-skip-read]').forEach(n=>n.remove());
  const next=holder.querySelector('[data-page-next]');if(next)next.textContent='继续';
  if(cp.view.terminal)holder.querySelector('.fates')?.remove();
