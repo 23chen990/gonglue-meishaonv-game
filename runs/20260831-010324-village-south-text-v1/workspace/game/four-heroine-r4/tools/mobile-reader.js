@@ -147,17 +147,13 @@ function mobileButtons(cp){
    `<button class="choice" data-choice="${esc(o.id)}" data-bridge="continue" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`).join('');
   return '<div class="choices">'+buttons+'</div>';
  }
- const holder=document.createElement('div');holder.innerHTML=controls(cp);
  if(cp.view.terminal&&state.f?.early_end){
   const index=mobileEarlyEndRetryIndex();
-  if(index>=0){
-   const button=document.createElement('button');
-   button.type='button';button.className='choice mobile-early-retry';
-   button.dataset.restore=String(index);button.textContent='回到那次决定，换一种做法';
-   const controls=holder.querySelector('.pager')||holder;
-   controls.prepend(button);
-  }
+  const retry=index>=0?'<button type="button" class="choice mobile-early-retry" data-restore="'+index+'">回到那次决定，换一种做法</button>':'';
+  return '<div class="choices mobile-ending-actions">'+retry+
+   '<button type="button" class="quiet mobile-ending-collection" data-nav="collection">查看已收录结局</button></div>';
  }
+ const holder=document.createElement('div');holder.innerHTML=controls(cp);
  holder.querySelectorAll('[data-skip-read]').forEach(n=>n.remove());
  const next=holder.querySelector('[data-page-next]');if(next)next.textContent='继续';
  if(cp.view.terminal)holder.querySelector('.fates')?.remove();

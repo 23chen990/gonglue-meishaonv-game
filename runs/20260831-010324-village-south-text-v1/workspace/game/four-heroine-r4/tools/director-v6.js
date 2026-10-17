@@ -138,10 +138,12 @@ storyHTML=function(){
  const mode=cp.view.terminal?'ending':decision?'decision':phase==='reply'?'reply':'reading';
  const media=adv6MediaForBeat(b,scene,decision);
  const voice=adv6Speaker(b),text=b.text||'',showText=!!text&&!decision;
- const panelHeight=decision?0:adv6DialogueHeight(m,text);
+ const failedEnd=cp.view.terminal&&!!state.f?.early_end;
+ const hiddenSheet=decision||failedEnd;
+ const panelHeight=hiddenSheet?0:adv6DialogueHeight(m,text);
  const css='--mobile-panel:'+panelHeight+'px;--mobile-font:'+m.font+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  const isHeroOpening=phase==='scene'&&s.id==='ENTRY_WAKE';
- const chapter=(page===0&&phase==='scene')?adv6Chapter(s.id):'';
+ const chapter=failedEnd?'结局 · 这一轮失败了':(page===0&&phase==='scene')?adv6Chapter(s.id):'';
  const optionsHTML=adv6Controls(cp);
  const dock=decision||cp.view.terminal?'<div class="vn-dock mobile-options adv6-options" role="group" aria-label="选择接下来的行动">'+optionsHTML+'</div>':'';
  const footer=decision||cp.view.terminal?'':optionsHTML;
@@ -150,7 +152,7 @@ storyHTML=function(){
  const inspectButton=inspect?'<button class="adv6-inspect" data-adv6-inspect="badge" type="button" aria-label="仔细看工作牌">查看工作牌 <span aria-hidden="true">⌕</span></button>':'';
  return '<div class="vn-frame mobile-vn adv6" data-mode="'+mode+'" data-camera="'+esc(media.key)+'" data-art-tier="'+((media.key==='crew'||media.key==='badge')?'cg-candidate':'preview-legacy')+'" data-beat-kind="'+(b._thought?'thought':b.speaker==='N'?'narration':'dialogue')+'" data-source="'+esc(b._sourceId)+'" data-reader-key="'+esc(cp.view.id+':'+page)+'" style="'+css+'">'+
  '<section class="vn-stage mobile-stage adv6-stage" aria-label="剧情舞台">'+visual+'<div class="adv6-media-error" role="status">剧情图片暂时无法加载，请返回后重试。</div>'+'<div class="adv6-vignette" aria-hidden="true"></div>'+ (chapter?'<div class="adv6-chapter">'+esc(chapter)+'</div>':'')+inspectButton+'</section>'+dock+
- (decision?'<section class="vn-sheet mobile-sheet adv6-sheet adv6-sheet-hidden" aria-hidden="true"><div class="mobile-speaker"></div><div class="vn-scroll mobile-text"></div></section>':'<section class="vn-sheet mobile-sheet adv6-sheet" aria-label="当前对白"><div class="mobile-speaker adv6-speaker">'+esc(voice)+'</div><div class="vn-scroll mobile-text adv6-text" aria-live="polite" aria-atomic="true">'+
+ (hiddenSheet?'<section class="vn-sheet mobile-sheet adv6-sheet adv6-sheet-hidden" aria-hidden="true"><div class="mobile-speaker"></div><div class="vn-scroll mobile-text"></div></section>':'<section class="vn-sheet mobile-sheet adv6-sheet" aria-label="当前对白"><div class="mobile-speaker adv6-speaker">'+esc(voice)+'</div><div class="vn-scroll mobile-text adv6-text" aria-live="polite" aria-atomic="true">'+
  (showText?'<div class="line" data-speaker="'+esc(b.speaker)+'" data-beat="'+esc(b._sourceId)+'"><p>'+esc(text)+'</p></div>':'')+'</div><div class="vn-dock mobile-dock adv6-dock">'+footer+'</div></section>')+
  '</div>';
 };

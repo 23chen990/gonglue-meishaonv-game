@@ -107,6 +107,8 @@ def one_case(browser,name,scene,choice,width,height):
    tap(p,'[data-choice="record"]')
    until(p,'.mobile-early-retry',limit=180)
    button=p.locator('.mobile-early-retry')
+   assert p.locator('.adv6-sheet-hidden').count()==1,'failed ending obscured by unrelated reading sheet'
+   assert p.locator('.mobile-options button').count()==2,'too many ending menu buttons obstruct the CG'
    restore_index=int(button.get_attribute('data-restore'))
    cause=p.evaluate('(i)=>state.history[i]',restore_index)
    assert cause['from']=='A6a' and cause['id']=='accept',('retry targets the wrong decision',cause)
