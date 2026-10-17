@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 RULES=json.loads((ROOT/'tools/romance-v13-scenes.json').read_text())['scenes']
 FIX=json.loads((ROOT/'qa/current/romance-v13-fixtures.json').read_text())['fixtures']
 KEY='gonglue:revision-r4.5-portrait:canonical'
-URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html')
+URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]+'?qa=legacy-reader'
 LOCAL=os.getenv('R4_LOCAL_HTML')
 OUT=ROOT/'qa/current/browser/romance-v13';OUT.mkdir(parents=True,exist_ok=True)
 RISK={'t02':'fan','t07':'refuse','s02':'promise','s06':'dismiss','s07':'compare','l02':'rival','l06':'ban','l07':'control','l08':'stay','g02':'leverage','g06':'deny','g07':'excuse'}
@@ -36,7 +36,7 @@ def one_case(browser,engine,scene,w,h):
  raw=json.dumps(FIX[scene],ensure_ascii=False)
  try:
   if HTML:
-   page.goto('about:blank')
+   page.goto('about:blank?qa=legacy-reader')
    page.evaluate('''args=>{const store=new Map([[args.k,args.v]]);Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem:k=>store.get(k)??null,setItem:(k,v)=>store.set(k,String(v)),removeItem:k=>store.delete(k),clear:()=>store.clear()}})}''',{'k':KEY,'v':raw})
    page.set_content(HTML,wait_until='load',timeout=45000)
   else:

@@ -115,7 +115,14 @@ function v11ChoicesHtml(choices,arc,metrics){
   part.map(c=>{
    const intent=c.id.startsWith('intent:');
    const info=intent?null:arc.choices[c.id];
-   const label=intent?(arc.intentLabels?.[c.id.slice('intent:'.length)]||c.label):info.label;
+   let label=intent?(arc.intentLabels?.[c.id.slice('intent:'.length)]||c.label):info.label;
+   // Public work invitations may include complete strangers.
+   if(!intent&&state.current==='A3b'&&c.id==='l'&&
+      !state.f.source_pre_switch_timestamp&&!state.f.opening_switch_video)
+    label='去看摄影师的新片';
+   if(!intent&&state.current==='A3b'&&c.id==='g'&&
+      !state.f.source_programme_approval_note&&!state.f.opening_authorization_checked)
+    label='去和授权负责人对账';
    const cost=intent?'':info.risk;
    return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span>'+
     (cost?'<span class="v11-choice-risk">'+esc(cost)+'</span>':'')+'</button>';
