@@ -98,6 +98,11 @@ reset=function(){const old=state;v10BeforeReset();if(old!==state&&state.history.
  * keeps the VN rhythm; it no longer pretends that a hand gesture is a branch. */
 ioActions.wake=[['next','站起来']];
 ioNext.wake='badge';
+/* V16: let a newcomer make a real canonical decision at the first crisis.
+ * A refusal calls the same ENTRY_WAKE/canon engine action used at the end.
+ * It is not a UI-only choice, and loses the first-night victory.
+ */
+ioActions.crisis=[['next','先找原版盘，试着救她'],['canon','我不碰设备，先保住自己']];
 ioActions.final=[
  ['rescue','先救她，原版马上送过去'],
  ['investigate','先留错版证据，让她再撑一下'],
@@ -109,12 +114,12 @@ ioLine=function(){
  case 'spotlight':return {voice:'唐映雪',portrait:'t',mood:'stage',text:'伴奏怎么少了一段？别切麦！我还能唱！'};
  case 'wake':return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:'小许！醒醒！你今天第一天来，别吓我啊。'};
  case 'badge':return {voice:'我 · 心声',portrait:null,mood:'badge',text:'许照，临时场务……等等，这不就是书里那个名字？'};
- case 'crisis':return {voice:'沈清辞 · 演出负责人',portrait:null,mood:'stage',text:'许照，台上是唐映雪。她的伴奏被换了，快找原版盘！'};
+ case 'crisis':return {voice:'沈清辞 · 演出负责人',portrait:null,mood:'stage',text:'许照，台上是唐映雪。伴奏被换了，原版盘在后台。你帮不帮？'};
  case 'hunt':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'盘有了。要是现在送过去，程放准找我麻烦。':'原版盘应该就在这些设备旁。先找它，再查谁动过文件。'};
  case 'find':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.lastFind==='usb'?'找着了！蓝胶带，没错，就是这只盘。':io.lastFind==='sheet'?'上面写着我负责，谁导出的音乐怎么是空的？':'怎么少了一段前奏？昨晚排练不是这版啊。'};
  case 'pressure':return {voice:'程放 · 后台主管',portrait:null,mood:'block',text:'临时场务是吧？交接单签一下，你今天就可以走了。'};
  case 'bond':return {voice:'唐映雪',portrait:'t',mood:'bond',text:'侧幕那边，我看见你了。原版找到了吗？'};
- case 'final':return {voice:'我 · 心声',portrait:null,mood:'decision',text:'盘在我手里。送上台、先留证，还是干脆不碰？'};
+ case 'final':return {voice:'我 · 心声',portrait:null,mood:'decision',text:io.seen.includes('usb')?'原版盘在手。送上台，先留证，还是不碰？':'原版盘还没找到。现在走，还是回头再找找？'};
  default:return v10BeforeLine();
  }
 };
@@ -132,6 +137,10 @@ ioChoices=function(step){
 };
 const v10BeforeAction=ioAction;
 ioAction=function(action){
+ if(ioActive()&&io.step==='crisis'&&action==='canon'){
+  // V9 intercepts this original final action and records its real story fork.
+  io.step='final';v10BeforeAction('canon');return;
+ }
  if(ioActive()&&io.step==='hunt'&&action==='move'&&!io.seen.includes('usb')){
   io.step='pressure';choiceSound();save();render();arm();return;
  }
@@ -158,7 +167,7 @@ const V10_TALK=Object.freeze({
 });
 // Update only display labels: the ID and all saved story consequences remain canonical.
 Object.assign(IF_FOLLOW.ENTRY_CLUES.labels,{
- obey:'这上面不是我做的。我不能乱签',
+ obey:'我怕丢工作，先把责任单签了',
  refuse:'不签，谁换的音乐谁负责',
  witness:'阿衡，咱们把当时的时间记下来'
 });
