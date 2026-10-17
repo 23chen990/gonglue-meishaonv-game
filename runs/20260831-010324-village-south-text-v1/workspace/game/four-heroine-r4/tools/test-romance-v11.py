@@ -53,7 +53,7 @@ def one_case(browser,name,scene,choice,width,height):
    p.evaluate('''(args)=>{const store=new Map([[args.k,args.v]]);Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem:k=>store.get(k)??null,setItem:(k,v)=>store.set(k,String(v)),removeItem:k=>store.delete(k),clear:()=>store.clear()}})}''',{'k':KEY,'v':raw})
    p.set_content(Path(LOCAL).read_text(encoding='utf8'),wait_until='load')
   else:
-   p.add_init_script(script="window.localStorage.setItem("+json.dumps(KEY)+","+json.dumps(raw,ensure_ascii=False)+");")
+   p.add_init_script(script="if(window.localStorage.getItem("+json.dumps(KEY)+")===null)window.localStorage.setItem("+json.dumps(KEY)+","+json.dumps(raw,ensure_ascii=False)+");")
    assert p.goto(URL,wait_until='load').ok
   assert p.locator('.v11-director[data-v11-scene="'+scene+'"]').count()==1,('no V11 scene',scene,p.locator('#app').inner_text()[:300])
   until(p,'[data-v11-choice]')
