@@ -26,18 +26,23 @@ def validate(page,scene,viewport):
     assert frame.count()==1,(scene,page.locator('body').inner_text()[-300:])
     info=frame.evaluate('''e=>{
       const p=e.querySelector('.mobile-text p'),t=e.querySelector('.mobile-text');
-      const cue=e.querySelector('.v18-scene-cue'),q=e.querySelector('.io-sheet');
-      const a=p?.getBoundingClientRect(),b=t?.getBoundingClientRect(),c=cue?.getBoundingClientRect(),s=q?.getBoundingClientRect();
-      return {voice:e.querySelector('.mobile-speaker')?.innerText||'',text:p?.innerText||'',
+      const cue=e.querySelector('.v18-scene-cue'),q=e.querySelector('.io-sheet'),title=e.querySelector('.v11-scene-id');
+      const a=p?.getBoundingClientRect(),b=t?.getBoundingClientRect(),c=cue?.getBoundingClientRect(),s=q?.getBoundingClientRect(),h=title?.getBoundingClientRect();
+      return {mode:e.dataset.mode,voice:e.querySelector('.mobile-speaker')?.innerText||'',text:p?.innerText||'',
        lines:t?.querySelectorAll('.line').length,scroll:t?.scrollHeight||0,client:t?.clientHeight||0,
        visible:!!a&&a.width>0&&a.height>0&&a.top>=b.top-3&&a.bottom<=b.bottom+3,
-       cue:cue?.innerText||'',captionVisible:!!c&&c.top>=0&&c.bottom<innerHeight&&c.bottom<=s.top+3,
+       cue:cue?.textContent?.trim()||'',captionVisible:!!c&&c.width>0&&c.height>0&&c.top>=0&&c.bottom<innerHeight&&c.bottom<=s.top+3,
+       captionClashesTitle:!!c&&!!h&&c.width>0&&c.height>0&&Math.min(c.right,h.right)>Math.max(c.left,h.left)&&Math.min(c.bottom,h.bottom)>Math.max(c.top,h.top),
        sheet:s?.height||0,photo:!!e.querySelector('.io-film-image')?.naturalWidth,
        code:e.dataset.v18Art,overflow:document.documentElement.scrollWidth>innerWidth+2};
     }''')
     expected=PACK[scene]
     assert info['voice']==expected['voice'],(scene,'narrator instead of heroine',info)
-    assert info['cue']==expected['cue'] and info['captionVisible'],(scene,'lost scene geography',info)
+    assert info['cue']==expected['cue'],(scene,'lost scene geography',info)
+    if info['mode']=='reading':
+        assert info['captionVisible'] and not info['captionClashesTitle'],(scene,'scene cue covers title or sheet',info)
+    else:
+        assert info['mode']=='decision' and not info['captionVisible'],(scene,'caption blocks choice screen',info)
     assert info['text'] and info['lines']==1 and info['visible'],(scene,info)
     assert info['scroll']<=info['client']+2 and info['sheet']<=viewport[1]/3+3,(scene,info)
     assert info['photo'] and info['code']=='portrait-reused-not-location-cg',(scene,info)
