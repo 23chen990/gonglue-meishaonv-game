@@ -2158,11 +2158,23 @@ function v11ChoicesHtml(choices,arc,metrics){
   }).join('')+
   (total>1?'<div class="v11-pages"><button type="button" data-v11-page="-1"'+(v11.page===0?' disabled':'')+'>上一组</button><span>'+ (v11.page+1)+' / '+total+'</span><button type="button" data-v11-page="1"'+(v11.page===total-1?' disabled':'')+'>下一组</button></div>':'')+'</div>';
 }
+// Human-readable event labels for the SHOT, never replacements for canon data.
+// Avoid source titles like "你先答应谁" that imply four strangers love the player.
+const V11_VISIBLE_HEADINGS={
+ A1b:'第一夜 · 责任单',A2a:'歌曲署名被抢',A2b:'第二天 · 后台责任核查',
+ A3a:'第三天 · 赞助与旁厅',A3b:'第四晚 · 项目群的四条邀请',
+ A4a:'第五天 · 独立拍摄报名',A4b:'第五夜 · 能作证的录音',
+ A5a:'第六天 · 合同责任归属',A5b:'第六天 · 和陆景行争名额',
+ A6a:'第七天 · 被剪过的宣传视频',UNWRITTEN:'第八天 · 新项目邀约',
+ A6b:'第八天 · 工作和约会',A7a:'第二十一天 · 讲清承诺',
+ A7b:'故事的下一步',t03:'唐映雪 · 约会邀请',s03:'沈清辞 · 约会邀请',
+ l03:'林见月 · 约会邀请',g03:'顾晚棠 · 约会邀请'
+};
 function v11Frame(info,{scene,decide=false,options='',after=false}={}){
  const m=mobileMetrics(),h=Math.min(184,Math.max(144,Math.floor(m.h*.235)));
  const style='--mobile-panel:'+h+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  const button=decide?'':'<button type="button" class="io-single" data-v11-next="1">继续 <span aria-hidden="true">›</span></button>';
- const heading=scene?DATA.scenes[scene]?.title||'':'你的选择之后';
+ const heading=scene?(V11_VISIBLE_HEADINGS[scene]||DATA.scenes[scene]?.title||''):'你的选择之后';
  return '<div class="vn-frame mobile-vn io-vn v9-cinema v11-director '+(ioCGReady()?'io-cg-ready':'')+'" data-mode="'+(decide?'decision':'reading')+'" data-v11-scene="'+esc(scene)+'" data-v11-after="'+(after?'1':'0')+'" data-v11-camera="'+esc(info.shot)+'" style="'+style+'">'+
   '<section class="io-stage" aria-label="视觉小说事件镜头">'+v11Photo(info.shot)+'<div class="v11-scene-id">'+esc(heading)+'</div></section>'+
   (decide?'<div class="io-options">'+options+'</div>':'')+
