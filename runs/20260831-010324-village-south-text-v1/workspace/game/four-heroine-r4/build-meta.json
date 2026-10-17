@@ -43,9 +43,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "9af339f03feee397b5d0dfad2917c07df4638cadab58d6eb1d48e06d62f933f7",
-    "index.html": "f210fe849796f85b41364d2cdfbce049ea1f388b6f74ae4aa4c5da00b4e5ee56",
-    "play.html": "f210fe849796f85b41364d2cdfbce049ea1f388b6f74ae4aa4c5da00b4e5ee56",
+    "runtime.mjs": "8538ed4bb767e951cba3003df1eba48d6112310d8055d791c25e3e582c7904de",
+    "index.html": "25e2fc919e6be4bd086e8c57b4b5c310552cdb05bb40f663ee06372da5e04b53",
+    "play.html": "25e2fc919e6be4bd086e8c57b4b5c310552cdb05bb40f663ee06372da5e04b53",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
