@@ -61,4 +61,19 @@ for(const file of ['../play.html','../index.html','../runtime.mjs']){
  assert.ok(html.includes('ROMANCE_V19_SCENES'),file+' missing compiled rewrite');
  assert.ok(html.includes('v19-director'),file+' missing stage');
 }
+
+// V19 second editorial pass: never claim a scene has happened when only
+// registration exists, never attribute unclicked gaze/speech to the player.
+assert.ok(episodes.s07.beats[0].text.includes('报名表'));
+assert.ok(!episodes.s07.beats[0].text.includes('只来了'));
+assert.ok(!episodes.g05.beats.at(-1).text.includes('盯着我'));
+assert.ok(!episodes.t09.beats[0].text.startsWith('别找你名字'));
+const rewritten=JSON.parse(read('romance-v11-arcs.json')).arcs;
+for(const id of ['UNWRITTEN','A6b','A7a','A7b']){
+ assert.equal(rewritten[id].intro.length,2);
+ assert.ok(rewritten[id].intro.every(b=>b.text.length<=45));
+}
+assert.match(rewritten.A6b.intro[1].text,/见面邀约.*团队.*新项目/);
+assert.match(rewritten.A7a.intro[1].text,/约过.*答应过/);
+assert.ok(read('romance-v19.css').includes('.v19-director .v11-scene-id{display:none!important}'));
 console.log('PASS V19: 36 causal episodes, 88 spoken turns, 14 optional canon-grounded callbacks, 9 truthful playable choice labels; original story unchanged');
