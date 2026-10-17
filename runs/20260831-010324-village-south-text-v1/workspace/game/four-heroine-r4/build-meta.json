@@ -15,12 +15,12 @@
     "tools/mobile-reader.css": "974b41c775f764a608c70319722f4974c290b086fb9d5841adcfcf7c7907e3fd",
     "tools/director-v6.js": "730d578026e28e3d81ddfda6a7caadb48ed5292da35df3fcc228720c711fd50c",
     "director-v6.css": "5d917fa91e2e0225f532c69961f49f78d5a5e3ea0713aa38c0af4cf4441a0579",
-    "tools/interactive-opening.js": "f1308265117f516dccc9baa735f45e0455e9564096b114b57ff8904c79cf487c",
+    "tools/interactive-opening.js": "6a2683a497d6508d6e163638d6da1499820eff04c7ae5c13204fd2bab24fbe53",
     "tools/interactive-follow.js": "57e7b70db197b699d0984581f5aea1e6f6226112b5976e49dba431efc0f5bc8f",
-    "tools/interactive-opening.css": "be63f89e8db964ae351af058ba1c6cf9f62621683681ab48d6843d239e28ad26",
+    "tools/interactive-opening.css": "81a1b2940a28453c0bbef5bbe78f0aa9499bcc3b27def6ba18d128c7ac39c8fb",
     "tools/romance-v9.js": "77b628229ab8a007e184ba4e413f9a634ef2cbff1326d8e6079e5f2697f81d1d",
     "tools/romance-v9.css": "b35513464b52786d76d173c701b75b6ae76941fe6eda2335b1c464c54bc65850",
-    "tools/romance-v10.js": "2e6dc29703d6c3a1b3be063a78bdad0696efea600dc51640cee63a1908f087de",
+    "tools/romance-v10.js": "28dc3683f450050221ed05adacb1c67dede9056e518686fd6da36f18d8232c15",
     "tools/romance-v11.js": "5157244d14f39a78fd662870fc5d414c4b2912d6e27932e5f6cf716a27485a5c",
     "tools/romance-v11-arcs.json": "0309fc657160f3054f68e9a88aebea79618042ff4bda42373fbc081002e8b54d",
     "tools/romance-v11.css": "b702a29d3c61194b8c4047ffb63e2e02e6c20cb627e6c2a94878749f474c6c19",
@@ -52,9 +52,9 @@
     "assets/portraits/g.webp": "f8ffa013002524902b64ea8ae097f5f9ca26dbc289c6a7c0f15bdb907e67f60e",
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
-    "runtime.mjs": "0f49a16bf9b64824016e03892ac0ef6ae82739e67e06b50e7c6013f2d683f6ad",
-    "index.html": "486e7e64d22cea16581f54768a177e28c6958fb0c4385632e1073ab84cdc6944",
-    "play.html": "486e7e64d22cea16581f54768a177e28c6958fb0c4385632e1073ab84cdc6944",
+    "runtime.mjs": "69075c5094e74fb3c5c06bb22b8d19be95f31016fcaf724cc1746f87a0a152d4",
+    "index.html": "835be34584549cd425eb5c1d3144bd7e4a2e62fd1efe7f55c3cd52056a1121d3",
+    "play.html": "835be34584549cd425eb5c1d3144bd7e4a2e62fd1efe7f55c3cd52056a1121d3",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
