@@ -11,6 +11,8 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-follow.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-interactive-opening.py'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-v14-orientation.mjs'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V14_ENTRY_ORIENTATION_ZH.md'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v9.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v10.js'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v11*'
@@ -75,6 +77,7 @@ jobs:
           test "$(git branch --show-current)" = "feat/first-night-playable-unified-20261017"
           echo "$SOURCE_HASH  $R4/data/STORY.json" | sha256sum -c -
           node --check "$R4/tools/interactive-opening.js"
+          node --check "$R4/tools/test-v14-orientation.mjs"
           node --check "$R4/tools/interactive-follow.js"
           node --check "$R4/tools/director-v6.js"
           node --check "$R4/tools/build-preview.mjs"
@@ -98,6 +101,7 @@ jobs:
           node tools/test-romance-v10.mjs
           node tools/test-romance-v11.mjs
           node tools/test-natural-dialogue-v12.mjs
+          node tools/test-v14-orientation.mjs
           node tools/generate-romance-v11-fixtures.mjs
           node tools/test-romance-v13.mjs
           node tools/generate-romance-v13-fixtures.mjs

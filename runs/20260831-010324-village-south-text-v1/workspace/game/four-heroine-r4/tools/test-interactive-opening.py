@@ -68,20 +68,34 @@ with sync_playwright() as pw:
     try:
      assert page.goto(URL,wait_until='load').ok
      assert page.locator('meta[name="story-sha256"]').get_attribute('content')==H
-     step(page,'spotlight')
+     # A fresh player first sees that they were reading a novel, NOT a cast
+     # of strangers acting as though the player has worked at the venue for years.
+     first=step(page,'reader')
+     assert '许照' in first['text'] and ('开除' in first['text'] or '赶出' in first['text'])
+     assert page.locator('.io-reading-film .io-reading-mark strong').inner_text().strip()=='《今夜偏爱男主》'
+     assert page.locator('.io-film-image').count()==0, 'do not fake the real-world phone with the backstage CG'
+     if width==390:page.screenshot(path=str(OUT/(name+'-reading-390.png')))
+     click(page,'next');step(page,'transport')
+     assert page.locator('.io-film[data-io-shot="stage"] .io-film-image').count()==1
+     click(page,'next');intro=step(page,'wake')['text']
+     assert '第一天' in intro,'crew must not speak like a long-time acquaintance'
+     if width==390:page.screenshot(path=str(OUT/(name+'-welcome-390.png')))
+     click(page,'next');badge=step(page,'badge')['text']
+     assert '许照' in badge and '书里' in badge
+     assert page.locator('.io-film[data-io-shot="badge"] .io-film-image').count()==1
+     click(page,'badge');recognition=step(page,'recognize')['text']
+     assert '第七天' in recognition and '背锅' in recognition
+     click(page,'next');step(page,'spotlight')
      assert page.locator('.io-sheet .mobile-speaker').inner_text().strip()=='唐映雪'
      assert page.locator('.io-film[data-io-shot="singer"] .io-film-image').count()==1
      assert page.locator('.io-stage .io-film-image').count()==1, 'single full event shot required'
      assert page.locator('.io-person,.io-badge-art,.io-theatre-art,.io-box').count()==0, 'fake character/prop layers forbidden'
      assert page.locator('.io-film-image').evaluate('e=>e.complete && e.naturalWidth>0'), 'event shot failed to load'
      if page.locator('.io-vn.io-cg-ready').count():
-      assert page.locator('.io-film-image').evaluate('e=>e.naturalWidth>=1024 && e.naturalHeight>=1500'),'new CG master below candidate native density'
+      assert page.locator('.io-film-image').evaluate('e=>e.naturalWidth>=1024 && e.naturalHeight>=1500'),'candidate native density'
      if width==390:page.screenshot(path=str(OUT/(name+'-spotlight-390.png')))
-     click(page,'next');step(page,'wake');assert page.locator('[data-io]').count()==1
-     if width==390:page.screenshot(path=str(OUT/(name+'-welcome-390.png')))
-     click(page,'next');reaction=step(page,'badge')['text']
-     assert '许照' in reaction and reaction != '工牌？我什么时候成了这里的场务？'
-     click(page,'badge');step(page,'crisis')
+     click(page,'next');crisis=step(page,'crisis')['text']
+     assert '唐映雪' in crisis and '原版盘' in crisis
      click(page,'next');step(page,'hunt')
      if page.locator('.io-vn.io-cg-ready').count():
       assert page.locator('.io-film[data-io-shot="console"]').count()==1
@@ -142,7 +156,7 @@ with sync_playwright() as pw:
      assert raw['commands'][1]['id']==second
      assert page.locator('[data-v10-next="payoff"]').count()<=1
      assert not errors,errors
-     return {'viewport':f'{width}x{height}','personalResponse':tone,'relationshipApproach':ally,'firstCanonicalFork':fork,'postFork':second,'canonicalCommands':len(raw['commands'])}
+     return {'viewport':f'{width}x{height}','orientation':'book→venue→badge→day7→singer→mission','firstCanonicalFork':fork,'postFork':second,'canonicalCommands':len(raw['commands'])}
     finally:ctx.close()
    verify(f'{name}-{width}x{height}',scene_test)
   browser.close()

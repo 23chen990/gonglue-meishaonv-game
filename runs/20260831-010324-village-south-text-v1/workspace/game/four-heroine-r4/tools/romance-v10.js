@@ -106,15 +106,15 @@ ioActions.final=[
 const v10BeforeLine=ioLine;
 ioLine=function(){
  switch(io.step){
- case 'spotlight':return {voice:'唐映雪',portrait:'t',mood:'stage',text:'喂，伴奏错了！别切麦，我还能接上！'};
- case 'wake':return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:'许照！醒醒！台上等着换伴奏呢！'};
- case 'badge':return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'许照？……坏了，我成了小说里七天后被开除的那个。'};
- case 'crisis':return {voice:'沈清辞 · 对讲机',portrait:null,mood:'stage',text:'许照，去箱子里找原版！阿衡先别切音乐，等我。'};
- case 'hunt':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'盘有了。要是现在送过去，程放准找我麻烦。':'琴都快撑不住了。原版盘到底塞哪儿了？'};
+ case 'spotlight':return {voice:'唐映雪',portrait:'t',mood:'stage',text:'伴奏怎么少了一段？别切麦！我还能唱！'};
+ case 'wake':return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:'小许！醒醒！你今天第一天来，别吓我啊。'};
+ case 'badge':return {voice:'我 · 心声',portrait:null,mood:'badge',text:'许照，临时场务……等等，这不就是书里那个名字？'};
+ case 'crisis':return {voice:'沈清辞 · 演出负责人',portrait:null,mood:'stage',text:'许照，台上是唐映雪。她的伴奏被换了，快找原版盘！'};
+ case 'hunt':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'盘有了。要是现在送过去，程放准找我麻烦。':'原版盘应该就在这些设备旁。先找它，再查谁动过文件。'};
  case 'find':return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.lastFind==='usb'?'找着了！蓝胶带，没错，就是这只盘。':io.lastFind==='sheet'?'上面写着我负责，谁导出的音乐怎么是空的？':'怎么少了一段前奏？昨晚排练不是这版啊。'};
- case 'pressure':return {voice:'程放 · 主管',portrait:null,mood:'block',text:'临时工的名字最好写。你先签了，别让大家等。'};
- case 'bond':return {voice:'唐映雪',portrait:'t',mood:'bond',text:'侧幕那边，听得到吗？我还能撑四小节！'};
- case 'final':return {voice:'许照 · 心声',portrait:null,mood:'decision',text:'盘就在手上。送过去，还是把证据先留下？'};
+ case 'pressure':return {voice:'程放 · 后台主管',portrait:null,mood:'block',text:'临时场务是吧？交接单签一下，你今天就可以走了。'};
+ case 'bond':return {voice:'唐映雪',portrait:'t',mood:'bond',text:'侧幕那边，我看见你了。原版找到了吗？'};
+ case 'final':return {voice:'我 · 心声',portrait:null,mood:'decision',text:'盘在我手里。送上台、先留证，还是干脆不碰？'};
  default:return v10BeforeLine();
  }
 };

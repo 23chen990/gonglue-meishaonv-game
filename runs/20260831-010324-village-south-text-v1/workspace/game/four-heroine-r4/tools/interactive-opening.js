@@ -2,16 +2,16 @@
  * UI-only microchoices persist in the existing save but never masquerade as story commands.
  * This layer is mounted only at the untouched ENTRY_WAKE scene; all other scenes use the engine.
  */
-const IO_VERSION = 1;
-const IO_STEPS = new Set(['spotlight','pressure','wake','answer','badge','badge-read','alarm','crisis','ask','ask-answer','hunt','find','confront','confront-answer','bond','final']);
-function ioNew(){return {v:IO_VERSION,step:'spotlight',tone:'',ally:'',defiance:'',seen:[],lastFind:'',visits:0,finished:false};}
+const IO_VERSION = 2;
+const IO_STEPS = new Set(['reader','transport','recognize','spotlight','pressure','wake','answer','badge','badge-read','alarm','crisis','ask','ask-answer','hunt','find','confront','confront-answer','bond','final']);
+function ioNew(){return {v:IO_VERSION,step:'reader',tone:'',ally:'',defiance:'',seen:[],lastFind:'',visits:0,finished:false};}
 let io = ioNew();
 const ioOldSnapshot=snapshot, ioOldReadPayload=readPayload, ioOldInstall=install, ioOldReset=reset, ioOldStoryHTML=storyHTML;
 const ioSafe=(x,possible)=>possible.includes(x)?x:'';
 function ioRead(v){
- if(!v || v.v!==IO_VERSION || !IO_STEPS.has(v.step))return ioNew();
+ if(!v || ![1,IO_VERSION].includes(v.v) || !IO_STEPS.has(v.step))return ioNew();
  const seen=Array.isArray(v.seen)?[...new Set(v.seen.filter(x=>['usb','sheet','board'].includes(x)))].slice(0,3):[];
- return {v:IO_VERSION,step:v.step,tone:ioSafe(v.tone,['help','steady','confused']),ally:ioSafe(v.ally,['shen','tang','solo']),defiance:ioSafe(v.defiance,['ask','hide','stand']),seen,lastFind:ioSafe(v.lastFind,['usb','sheet','board']),visits:Math.min(40,Math.max(0,Number(v.visits)||0)),finished:!!v.finished};
+ return {v:IO_VERSION,step:v.v===1&&v.step==='spotlight'&&!v.finished?'reader':v.step,tone:ioSafe(v.tone,['help','steady','confused']),ally:ioSafe(v.ally,['shen','tang','solo']),defiance:ioSafe(v.defiance,['ask','hide','stand']),seen,lastFind:ioSafe(v.lastFind,['usb','sheet','board']),visits:Math.min(40,Math.max(0,Number(v.visits)||0)),finished:!!v.finished};
 }
 function ioActive(){return new URLSearchParams(location.search).get('qa')!=='canonical' && panel==='story' && phase==='scene' && state.current==='ENTRY_WAKE' && !io.finished && state.history.length===0;}
 snapshot=function(){const save=ioOldSnapshot();save.ui.firstNight={...io,seen:[...io.seen]};return save;};
@@ -21,6 +21,9 @@ reset=function(){const before=state;ioOldReset();if(state!==before && state.curr
 function ioLine(){
  const find=io.lastFind;
  switch(io.step){
+ case 'reader': return {voice:'我 · 心声',portrait:null,mood:'reading',text:'这个叫许照的临时工，没碰过控台，怎么就被开除了？'};
+ case 'transport': return {voice:'我 · 心声',portrait:null,mood:'stage',text:'……我刚才不是在家里看小说吗？这是什么地方？'};
+ case 'recognize': return {voice:'我 · 心声',portrait:null,mood:'badge',text:'书里第七天，他会替人背锅被赶走。现在……我成了他？'};
  case 'spotlight': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'等一下。伴奏不是这一版……别关麦，我还能唱。'};
  case 'pressure': return {voice:'程放 · 身后',portrait:null,mood:'block',text:'签个字，别让大家都等你。有什么事明天再说。'};
  case 'wake': return {voice:'阿衡 · 场务',portrait:null,mood:'wake',text:'许照！快起来！台上等着换伴奏呢！'};
@@ -43,6 +46,9 @@ function ioLine(){
  throw Error('Unknown interactive first-night step');
 }
 const ioActions={
+ reader:[['next','继续']],
+ transport:[['next','继续']],
+ recognize:[['next','继续']],
  spotlight:[['next','继续']],
  pressure:[['next','继续']],
  wake:[['help','握住他的手站起来'],['steady','自己撑着设备箱起身'],['confused','“你叫我什么？”']],
@@ -58,14 +64,14 @@ const ioActions={
  bond:[['next','面对选择']],
  final:[['rescue','把原版送上台 · 救场'],['investigate','找沈清辞核验 · 留证'],['canon','暂不碰音控 · 拒绝背锅']]
 };
-const ioNext={spotlight:'wake',pressure:'bond',answer:'badge','badge-read':'alarm',alarm:'crisis',crisis:'hunt','ask-answer':'hunt','confront-answer':'bond',bond:'final'};
+const ioNext={reader:'transport',transport:'wake',recognize:'spotlight',spotlight:'crisis',pressure:'bond',answer:'badge','badge-read':'alarm',alarm:'crisis',crisis:'hunt','ask-answer':'hunt','confront-answer':'bond',bond:'final'};
 function ioAction(action){
  if(!ioActive())return;
  const step=io.step;
  const allowed=step==='hunt'?['usb','sheet','board',...(io.seen.includes('usb')?['move']:[])]:ioActions[step]?.map(x=>x[0])||[];
  if(!allowed.includes(action))return;
  if(step==='wake'){io.tone=action;io.step='badge';}
- else if(step==='badge'){io.step='crisis';}
+ else if(step==='badge'){io.step='recognize';}
  else if(step==='ask'){io.ally=action;io.step='ask-answer';}
  else if(step==='hunt'){
   if(action==='move'){io.step='pressure';}
@@ -84,6 +90,9 @@ function ioAction(action){
 const ADV8_MEDIA=typeof ADV8_ART_PACK==='object'&&ADV8_ART_PACK?ADV8_ART_PACK:{};
 function ioCGReady(){return !!(ADV8_MEDIA.singer&&ADV8_MEDIA.crew&&ADV8_MEDIA.badge&&ADV8_MEDIA.console&&ADV8_MEDIA.usbDetail&&ADV8_MEDIA.singerBond);}
 function ioArt(info){
+ // The first screen is a two-second chapter card from the book the player
+ // was reading, not a fake CG of a phone or a live concert occurring at home.
+ if(info.mood==='reading')return '<div class="io-film io-reading-film" data-io-shot="novel" aria-label="手机上正在阅读的小说"><div class="io-reading-mark"><span>正在阅读</span><strong>《今夜偏爱男主》</strong><small>第十三章 · 临时场务许照</small></div></div>';
  const old=info.mood==='wake'?'crew':info.mood==='badge'?'badge':
   (info.portrait==='t'&&(info.mood==='stage'||info.mood==='bond'))?'singer':'stage';
  let key=old,url=old==='stage'?SCENERY:(ADV6_MEDIA[old]||('assets/v6-preview/'+ADV6_MEDIA_FILES[old]));
@@ -119,7 +128,7 @@ function ioStoryHTML(){
  const panelHeight=Math.min(220,Math.floor(m.h*(m.h<650?.30:.24)));
  const style='--mobile-panel:'+panelHeight+'px;--mobile-font:'+Math.min(20,m.font)+'px;--mobile-line:'+m.line+'px;--mobile-safe:'+m.safe+'px;--mobile-vh:'+m.h+'px';
  return '<div class="vn-frame mobile-vn io-vn '+(ioCGReady()?'io-cg-ready':'')+'" data-mode="'+(decision?'decision':'reading')+'" data-current-io="'+esc(io.step)+'" data-io-art-tier="candidate-not-approved" style="'+style+'">'+
- '<section class="vn-stage mobile-stage io-stage" aria-label="第一夜的舞台后台">'+ioArt(info)+'<div class="io-corner">第一夜 · 侧幕</div>'+
+ '<section class="vn-stage mobile-stage io-stage" aria-label="第一夜的舞台后台">'+ioArt(info)+'<div class="io-corner">'+(io.step==='reader'?'一切发生之前':'第一夜 · 北岸艺术中心')+'</div>'+ 
  (io.step==='hunt'?ioChoices('hunt'):'')+'</section>'+
  (io.step!=='hunt'&&decision?'<div class="io-options">'+ioChoices(io.step)+'</div>':'')+
  '<section class="vn-sheet mobile-sheet io-sheet" aria-label="当前角色的一句对白"><div class="mobile-speaker">'+esc(info.voice)+'</div>'+

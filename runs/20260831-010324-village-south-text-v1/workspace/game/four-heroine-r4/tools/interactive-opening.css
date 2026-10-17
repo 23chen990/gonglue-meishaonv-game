@@ -71,3 +71,13 @@ body[data-panel=story] .io-vn.io-cg-ready .io-hotspot:focus-visible .io-target-m
 body[data-panel=story] .io-vn.io-cg-ready .io-advance{background:rgba(45,27,45,.94)!important;bottom:calc(var(--mobile-panel) + 6px)}
 @media(max-height:650px){body[data-panel=story] .io-vn.io-cg-ready .io-target-usb{top:66%!important}body[data-panel=story] .io-vn.io-cg-ready .io-hotspot{min-height:48px!important}.io-cg-ready .io-hotspot .io-target-mark{width:45px;height:45px}}
 @media(prefers-reduced-motion:reduce){.io-cg-ready .io-film-image{animation:none!important}}
+
+/* V14 player orientation: one quiet chapter card before the sudden cut into
+   the real backstage CG.  No fake phone mockup, composited character or long text. */
+body[data-panel=story] .io-vn .io-reading-film {background:radial-gradient(circle at 60% 30%,#25213b 0%,#111321 48%,#080a11 100%)!important;}
+body[data-panel=story] .io-vn.io-cg-ready .io-reading-film{bottom:0!important;}
+.io-vn .io-reading-mark {position:absolute;top:28%;left:8%;right:8%;display:flex;align-items:flex-start;flex-direction:column;gap:15px;font-family:system-ui,"PingFang SC",sans-serif;text-align:left;color:#fcecf2;}
+.io-vn .io-reading-mark span{font-size:12px;letter-spacing:.21em;color:#c9b6d0;}
+.io-vn .io-reading-mark strong{font-weight:650;font-size:clamp(23px,7vw,34px);line-height:1.35;letter-spacing:.06em;text-shadow:0 2px 12px #0009;}
+.io-vn .io-reading-mark small{font-size:14px;line-height:1.4;letter-spacing:.04em;color:#d7becb;}
+@media(max-height:650px){.io-vn .io-reading-mark{top:21%;gap:10px}.io-vn .io-reading-mark small{font-size:12px}}
