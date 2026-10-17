@@ -8,7 +8,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parents[1]
-URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]
+URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]+'?qa=v18'
 FIX=json.loads((ROOT/'qa/current/romance-v13-fixtures.json').read_text())['fixtures']
 SCENES=json.loads((ROOT/'tools/romance-v13-scenes.json').read_text())['scenes']
 KEY='gonglue:revision-r4.5-portrait:canonical'

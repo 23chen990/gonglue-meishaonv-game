@@ -1,0 +1,7 @@
+/* V19: show a grounded optical event card only while a line is being said.
+ * It is temporary scaffolding for still-missing licensed location CG artwork.
+ */
+.v19-director .v18-scene-cue{max-width:calc(100% - 28px);font-size:12px;line-height:1.35;}
+.v19-director[data-mode=decision] .v18-scene-cue,
+.v19-director[data-v17-after="1"] .v18-scene-cue{display:none!important}
+@media(max-height:650px){.v19-director .v18-scene-cue{font-size:11px;max-width:82%}}
