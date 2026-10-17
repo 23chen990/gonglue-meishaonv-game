@@ -1,3 +1,8 @@
+## V18 VERIFIED QA (2026-10-17)
+
+Active branch feat/first-night-playable-unified-20261017 / Draft PR #22. The game now contains 36 heroine-first edited everyday events with 72 spoken lines (two continue taps to real canonical options across 36 scenes). Verified success: https://github.com/23chen990/gonglue-meishaonv-game/actions/runs/39037578706 . V18 72/72; V17 72/72; harm-vs-honest 8/8; V13 original scene 72/72; V16 first night 4/4; V11 critical story 46/46. Compiled index.html/play.html Git Blob 4fb821c3500611a59e25d1d5debc45228e7afd24 (SHA256 b71b10bab0ef6b0e08fce307d6c4c36b70d82109fe003dcdfad0654cd3b37de1). The latest UI prevents short action caption from overlapping scene title and hides caption while choices appear. Full playwright screenshots reviewed. Remaining: location-specific commercial-approved CG, 1536x2400+ original art, physical phones, unassisted players. Do not merge PR. See docs/ROMANCE_V18_VERIFIED_DELIVERY_20261017.md.
+
+---
 # V18 CURRENT UPDATE | 2026-10-17
 
 The active branch remains Draft PR #22, feat/first-night-playable-unified-20261017. In V17, 26 of the 36 edited personal episodes had only narrator beats, so an ADV panel still felt like a prose reader. V18 adds a single short optical action cue plus TWO directly spoken, human-scale lines from the relevant heroine in ALL 36 personal scenes (72 authored female-spoken lines total). The second spoken line immediately leads to existing real canonical choices.
