@@ -63,19 +63,18 @@ with sync_playwright() as pw:
     try:
      assert page.goto(URL,wait_until='load').ok
      assert page.locator('meta[name="story-sha256"]').get_attribute('content')==H
-     step(page,'wake');assert page.locator('[data-io]').count()==3
+     step(page,'spotlight')
+     assert page.locator('.io-sheet .mobile-speaker').inner_text().strip()=='唐映雪'
+     assert page.locator('.io-film[data-io-shot="singer"] .io-film-image').count()==1
      assert page.locator('.io-stage .io-film-image').count()==1, 'single full event shot required'
      assert page.locator('.io-person,.io-badge-art,.io-theatre-art,.io-box').count()==0, 'fake character/prop layers forbidden'
      assert page.locator('.io-film-image').evaluate('e=>e.complete && e.naturalWidth>0'), 'event shot failed to load'
+     if width==390:page.screenshot(path=str(OUT/(name+'-spotlight-390.png')))
+     click(page,'next');step(page,'wake');assert page.locator('[data-io]').count()==3
      if width==390:page.screenshot(path=str(OUT/(name+'-welcome-390.png')))
-     click(page,tone);reaction=step(page,'answer')['text']
-     assert reaction != '许照！你能听见我说话吗？'
-     click(page,'next');step(page,'badge');click(page,'badge');step(page,'badge-read')
-     click(page,'next');step(page,'alarm')
-     assert page.locator('.io-film[data-io-shot="singer"] .io-film-image').count()==1, 'first heroine entrance must use a character CG'
-     assert page.locator('.io-sheet .mobile-text').inner_text().strip()=='别关我的麦。伴奏错了，我还能唱。'
-     click(page,'next');step(page,'crisis')
-     click(page,'next');step(page,'ask');click(page,ally);step(page,'ask-answer')
+     click(page,tone);reaction=step(page,'badge')['text']
+     assert '许照' in reaction and reaction != '工牌？我什么时候成了这里的场务？'
+     click(page,'badge');step(page,'crisis')
      click(page,'next');step(page,'hunt')
      assert page.locator('[data-io="move"]').count()==0,'USB discovery was auto-completed'
      # A stage tap without a labelled hotspot must not skip the investigation.
@@ -94,8 +93,7 @@ with sync_playwright() as pw:
      step(page,'hunt')
      page.reload(wait_until='load')
      step(page,'hunt')
-     click(page,'move');step(page,'confront')
-     click(page,'ask');step(page,'confront-answer')
+     click(page,'move');step(page,'pressure')
      click(page,'next');step(page,'bond')
      click(page,'next');step(page,'final')
      assert page.locator('[data-io]').count()==3
