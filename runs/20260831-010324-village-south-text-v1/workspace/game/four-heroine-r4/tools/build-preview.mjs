@@ -10,22 +10,27 @@ if(baseUI.split('load();render();').length!==2)throw Error('Ambiguous UI startup
 const ui=baseUI.replace('load();render();',read('tools/mobile-reader.js')+'\n'+read('tools/director-v6.js')+'\n'+read('tools/interactive-opening.js')+'\n'+read('tools/interactive-follow.js')+'\nload();render();'),meta='\nconst STORY_HASH='+JSON.stringify(hash)+';\n';
 const adv8Files={singer:'singer.webp',crew:'crew.webp',badge:'badge.webp',console:'console.webp',usbDetail:'usbDetail.webp',usbHeld:'usbHeld.webp',shen:'shen.webp',singerBond:'singerBond.webp',stage:'stage.webp',lin:'lin.webp',gu:'gu.webp'};
 const adv8Complete=Object.values(adv8Files).every(name=>fs.existsSync(new URL('assets/adv8/'+name,root)));
+// A photo is packed exactly once: all old scene/portrait compatibility APIs share
+// the same data URI, rather than embedding the same 1024x1536 WebP 2-3 times.
 const portraitsV8={t:'singerBond',s:'shen',l:'lin',g:'gu'};
-const portraitManifest=Object.fromEntries(['t','s','l','g'].map(c=>[c,'data:image/webp;base64,'+fs.readFileSync(new URL(adv8Complete?'assets/adv8/'+adv8Files[portraitsV8[c]]:'assets/portraits/'+c+'.webp',root)).toString('base64')]));
-const scenery='data:image/webp;base64,'+fs.readFileSync(new URL(adv8Complete?'assets/adv8/stage.webp':'assets/scenes/backstage.webp',root)).toString('base64');
-const images='\nconst PORTRAITS='+JSON.stringify(portraitManifest)+';\nconst SCENERY='+JSON.stringify(scenery)+';\n';
 const v6ArtFiles={crew:'crew-single-cg.webp',badge:'badge-single-cg.webp',lin:'lin.webp',gu:'gu.webp',usb:'usb.webp',usbHeld:'usbHeld.webp',piano:'piano.webp',singer:'singer.webp'};
 const v6ToV8={crew:'crew',badge:'badge',lin:'lin',gu:'gu',usb:'usbDetail',usbHeld:'usbHeld',piano:'stage',singer:'singerBond'};
-const artV6='\nconst ADV6_ART_PACK='+JSON.stringify(Object.fromEntries(Object.entries(v6ArtFiles).map(([key,name])=>[key,'data:image/webp;base64,'+fs.readFileSync(new URL(adv8Complete?'assets/adv8/'+adv8Files[v6ToV8[key]]:'assets/v6-preview/'+name,root)).toString('base64')]))).replaceAll('<','\\u003c')+';\n';
 const artV8='\nconst ADV8_ART_PACK='+JSON.stringify(adv8Complete?Object.fromEntries(Object.entries(adv8Files).map(([key,name])=>[key,'data:image/webp;base64,'+fs.readFileSync(new URL('assets/adv8/'+name,root)).toString('base64')])):{})+';\n';
-const script=engine+'\n'+vars+images+artV6+artV8+meta+ui;
+const images=adv8Complete
+ ? '\nconst PORTRAITS={'+Object.entries(portraitsV8).map(([k,v])=>JSON.stringify(k)+':ADV8_ART_PACK.'+v).join(',')+'};\nconst SCENERY=ADV8_ART_PACK.stage;\n'
+ : '\nconst PORTRAITS='+JSON.stringify(Object.fromEntries(['t','s','l','g'].map(c=>[c,'data:image/webp;base64,'+fs.readFileSync(new URL('assets/portraits/'+c+'.webp',root)).toString('base64')])))+';\nconst SCENERY='+JSON.stringify('data:image/webp;base64,'+fs.readFileSync(new URL('assets/scenes/backstage.webp',root)).toString('base64'))+';\n';
+const artV6=adv8Complete
+ ? '\nconst ADV6_ART_PACK={'+Object.entries(v6ToV8).map(([key,v])=>JSON.stringify(key)+':ADV8_ART_PACK.'+v).join(',')+'};\n'
+ : '\nconst ADV6_ART_PACK='+JSON.stringify(Object.fromEntries(Object.entries(v6ArtFiles).map(([key,name])=>[key,'data:image/webp;base64,'+fs.readFileSync(new URL('assets/v6-preview/'+name,root)).toString('base64')]))).replaceAll('<','\\u003c')+';\n';
+
+const script=engine+'\n'+vars+artV8+images+artV6+meta+ui;
 if(script.includes('</script'))throw Error('Unescaped closing script in bundle');
 const template=read('tools/preview-template.html').replace('<!--META-->','<meta name="story-sha256" content="'+hash+'">');
 const html=template.replace('<!--CSS-->','<style>'+read('tools/preview.css')+'\n'+read('tools/vn.css')+'\n'+read('tools/mobile-reader.css')+'\n'+read('director-v6.css')+'\n'+read('tools/interactive-opening.css')+'</style>').replace('<!--SCRIPT-->','<script>'+script+'</script>');
 fs.writeFileSync(new URL('play.html',root),html);
 fs.writeFileSync(new URL('index.html',root),html);
 const imports="import {VERSION,createState,active,condition,availableActions,endingFacts,classifyEnding,renderScene,choose,replay,rewind,reviewEnding} from './tools/engine.mjs';\nimport './tools/preview.css';\nimport './tools/vn.css';\nimport './tools/mobile-reader.css';\nimport './director-v6.css';\nimport './tools/interactive-opening.css';\n";
-fs.writeFileSync(new URL('runtime.mjs',root),'// GENERATED from canonical JSON and controller. Run npm run build; never edit this file.\n'+imports+vars+images+artV6+artV8+meta+ui);
+fs.writeFileSync(new URL('runtime.mjs',root),'// GENERATED from canonical JSON and controller. Run npm run build; never edit this file.\n'+imports+vars+artV8+images+artV6+meta+ui);
 const index=template.replace('<!--CSS-->','').replace('<!--SCRIPT-->','<script type="module" src="/src/main.ts"></script>')
  .replace("default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'",
  "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws:; base-uri 'none'; form-action 'none'");
