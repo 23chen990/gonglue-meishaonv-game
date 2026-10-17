@@ -1,16 +1,16 @@
 /* First-night continuity director: after the first fork, keep subsequent early
  * consequential scenes interactive. Choices always call the canonical engine. */
 const IF_FOLLOW={
- ENTRY_MEMORY:{voice:'沈清辞',portrait:'s',mood:'stage',text:'原版在手。谁能帮我们留下证据？',labels:{camera:'请林见月拍下切换记录',email:'找顾晚棠核对授权邮件'}},
- ENTRY_CLUES:{voice:'程放',portrait:null,mood:'block',text:'交接单在这儿。来，把字签了。',labels:{obey:'签字，先离开',refuse:'当面拒签',witness:'先留下时间线'}},
- COLD:{voice:'阿衡',portrait:null,mood:'stage',text:'原版别自己插。我试听，你去找人喊切换。',labels:{t:'找唐映雪',s:'找沈清辞',l:'找林见月',g:'找顾晚棠',self:'和阿衡一起处理'}},
- OP_SETTLE:{voice:'阿衡',portrait:null,mood:'block',text:'有人要删错版文件。今晚得留个证据。',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
- OP_FORK:{voice:'阿衡',portrait:null,mood:'block',text:'录音我留着。你想现在追问，还是先等？',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
- OP_CANON:{voice:'程放',portrait:null,mood:'block',text:'还不签？难道这场错版跟你没关系？',labels:{backstage:'和阿衡一起核对',question:'当面追问程放',silence:'先记住谁要我签字'}},
- OP_TALK_t:{voice:'唐映雪',portrait:'t',mood:'bond',text:'刚才灯那么亮，我还是认出你了。',labels:{flirt:'“我只是很想再听你唱。”',slow:'“还没缓过来。”',work:'“下场演出，我还能来吗？”'}},
- OP_TALK_s:{voice:'沈清辞',portrait:'s',mood:'bond',text:'喝点水。还有，你能留个号码吗？',labels:{flirt:'“不谈工作，也能找你吗？”',slow:'“我还紧张，先慢一点。”',work:'“先留工作号吧。”'}},
- OP_TALK_l:{voice:'林见月',portrait:'l',mood:'bond',text:'这么多人，只有你一直躲我的镜头。',labels:{flirt:'“下一张，换我拍你？”',slow:'“今天先不拍，好吗？”',work:'“先记下谁救了场。”'}},
- OP_TALK_g:{voice:'顾晚棠',portrait:'g',mood:'bond',text:'那个原版盘，你怎么找到的？',labels:{flirt:'“现在不谈工作，能认识你吗？”',slow:'“先让我把话说顺。”',work:'“我想再争取一次机会。”'}}
+ ENTRY_MEMORY:{voice:'沈清辞',portrait:'s',mood:'stage',text:'原版有了。现在得有人证明它什么时候被换的。',labels:{camera:'请林见月拍下切换记录',email:'找顾晚棠核对授权邮件'}},
+ ENTRY_CLUES:{voice:'程放',portrait:null,mood:'block',text:'小许，就差你这一个名字。签完都好下班。',labels:{obey:'签字，先离开',refuse:'当面拒签',witness:'先留下时间线'}},
+ COLD:{voice:'阿衡',portrait:null,mood:'stage',text:'盘给我先试听。你找人跟台上说一声！',labels:{t:'找唐映雪',s:'找沈清辞',l:'找林见月',g:'找顾晚棠',self:'和阿衡一起处理'}},
+ OP_SETTLE:{voice:'阿衡',portrait:null,mood:'block',text:'程放让人删文件了。再慢点儿就没了！',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
+ OP_FORK:{voice:'阿衡',portrait:null,mood:'block',text:'录音我存下来了。你是要现在问他，还是再等等？',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
+ OP_CANON:{voice:'程放',portrait:null,mood:'block',text:'你要不签，明天还想不想来上班？',labels:{backstage:'和阿衡一起核对',question:'当面追问程放',silence:'先记住谁要我签字'}},
+ OP_TALK_t:{voice:'唐映雪',portrait:'t',mood:'bond',text:'喂，我看见你了。你刚才一直躲在侧幕？',labels:{flirt:'“我只是很想再听你唱。”',slow:'“还没缓过来。”',work:'“下场演出，我还能来吗？”'}},
+ OP_TALK_s:{voice:'沈清辞',portrait:'s',mood:'bond',text:'渴不渴？……还有，等会儿加个微信？',labels:{flirt:'“不谈工作，也能找你吗？”',slow:'“我还紧张，先慢一点。”',work:'“先留工作号吧。”'}},
+ OP_TALK_l:{voice:'林见月',portrait:'l',mood:'bond',text:'你跑什么呀？我拿的又不是偷拍镜头。',labels:{flirt:'“下一张，换我拍你？”',slow:'“今天先不拍，好吗？”',work:'“先记下谁救了场。”'}},
+ OP_TALK_g:{voice:'顾晚棠',portrait:'g',mood:'bond',text:'你今天反应挺快。平时也这么会救场？',labels:{flirt:'“现在不谈工作，能认识你吗？”',slow:'“先让我把话说顺。”',work:'“我想再争取一次机会。”'}}
 };
 let ioFollowGroup='';
 const ioFPrevSnapshot=snapshot,ioFPrevReadPayload=readPayload,ioFPrevInstall=install,ioFPrevReset=reset,ioFPrevStoryHTML=storyHTML;

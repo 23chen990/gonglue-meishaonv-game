@@ -57,6 +57,12 @@ def one_case(browser,name,scene,choice,width,height):
    assert p.goto(URL,wait_until='load').ok
   assert p.locator('.v11-director[data-v11-scene="'+scene+'"]').count()==1,('no V11 scene',scene,p.locator('#app').inner_text()[:300])
   until(p,'[data-v11-choice]')
+  # Canonical intent buttons must read like choices a person would make.
+  if p.locator('[data-v11-choice^="intent:"]').count():
+   mapping=RULES[scene].get('intentLabels',{})
+   visible=p.locator('[data-v11-choice^="intent:"]').evaluate_all(
+    'els=>els.map(e=>({id:e.dataset.v11Choice.slice(7),label:e.querySelector(".v11-choice-main")?.innerText,risk:!!e.querySelector(".v11-choice-risk")}))')
+   assert visible and all(x['label']==mapping.get(x['id']) and not x['risk'] for x in visible),('outdated technical intent label',scene,visible)
   if name=='chromium' and scene in ('A2a','A3a','A4b','A6a','t03'):
    p.screenshot(path=str(OUT/(scene+'-'+str(width)+'-choices.png')))
   before=read_display(p)
@@ -83,6 +89,7 @@ def one_case(browser,name,scene,choice,width,height):
   assert p.locator('.v11-director[data-v11-after="1"]').count()==1,('real leaf without payoff',scene,choice)
   after=read_display(p)
   assert after['textVisible'] and after['photoLoaded'],after
+  assert after['text']==RULES[scene]['choices'][choice]['response']['text'],('stale/clipped on-screen speech',scene,choice,after['text'])
   result=p.evaluate('''()=>({h:state.history.at(-1),f:state.f,ui:v11.after})''')
   assert result['h']['from']==scene and result['h']['id']==choice,result['h']
   opts=p.evaluate('''(ids)=>DATA.scenes[state.history.at(-1).from].choices.find(x=>x.id===ids).effects.filter(x=>x.op==='set').map(x=>({k:x.key,v:x.value}))''',choice)
@@ -96,6 +103,12 @@ def one_case(browser,name,scene,choice,width,height):
    p.reload(wait_until='load')
    assert p.locator('.v11-director[data-v11-after="1"]').count()==1,'lost reply on refresh'
    assert p.locator('.v11-director .mobile-text').inner_text()==prior
+  act=RULES[scene]['choices'][choice].get('afterBeat')
+  if act:
+   tap(p,'[data-v11-next]')
+   second=read_display(p)
+   assert second['text']==act['text'] and second['voice']==act['voice'],('acting beat missing/clipped',scene,choice,second)
+   assert second['scroll']<=second['client']+2,('acting overflow',scene,choice)
   for _ in range(4):
    if not p.locator('.v11-director[data-v11-after="1"]').count():break
    tap(p,'[data-v11-next]')

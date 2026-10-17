@@ -56,21 +56,21 @@ function v11AfterActive(){
  return true;
 }
 const V11_VOICES=Object.freeze({P:'许照',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',C:'程放',A:'阿衡',LU:'陆景行',N:'许照 · 心声'});
-function v11ShortLine(text,max=38){
- const t=String(text||'').trim();if(Array.from(t).length<=max)return t;
- const s=Array.from(t).slice(0,max-1).join('');
- const m=s.match(/^(.{16,}?[。！？!?；;])/);
- return (m?m[1]:s)+'…';
-}
 function v11AfterLines(){
  const a=v11.after,arc=V11_ARCS[a.scene],rule=arc.choices[a.choice];
  v11BoundEffect(a.scene,a.choice);
- const r=lastReply.find(x=>x.speaker!=='N'&&x.speaker!=='B'&&x.speaker!=='U'&&x.text&&x.text.trim());
+ // The old director cut an arbitrary canonical reply to 38 glyphs, then
+ // concatenated another response. It produced mid-sentence dialogue and
+ // people apparently answering different questions. The fully authored
+ // consequences below are guarded by real engine effects; complete source
+ // replies remain available from history and are never mutated.
  const response=rule.response;
- return [
-  ...(r?[{voice:V11_VOICES[r.speaker]||r.speaker,shot:response.shot,text:v11ShortLine(r.text)}]:[]),
-  {voice:response.voice,shot:response.shot,text:response.text}
- ];
+ const lines=[{voice:response.voice,shot:response.shot,text:response.text}];
+ if(rule.afterBeat)lines.push({
+  voice:rule.afterBeat.voice,shot:rule.afterBeat.shot||response.shot,
+  text:rule.afterBeat.text
+ });
+ return lines;
 }
 function v11Props(){
  const arc=V11_ARCS[state.current],view=renderScene(state,DATA);
@@ -80,31 +80,31 @@ function v11Props(){
   if(!id.startsWith('intent:')&&!Object.hasOwn(arc.choices,id))throw Error('V11 unmapped canonical choice '+state.current+'/'+id);
  }
  const second=!!state.decisionIntent&&state.decisionIntent.scene===state.current;
- const intro=second?[{voice:arc.intro[1].voice,text:arc.secondStage||'方向已定。现在选具体做法。',shot:arc.shot}]:arc.intro.map(x=>({...x,shot:arc.shot}));
+ const intro=second?[{voice:arc.intro[1].voice,text:arc.secondStage||'那咱们把话说具体点。',shot:arc.shot}]:arc.intro.map(x=>({...x,shot:arc.shot}));
  if(state.current==='A1b'&&state.f.canon_signed_blame)
-  intro[0]={voice:'许照 · 心声',text:'我之前签过一次模糊责任。今晚不能再把字交出去。',shot:'console'};
+  intro[0]={voice:'许照 · 心声',text:'第一晚我已经签错过一次了。这次别想再让我糊里糊涂签。',shot:'console'};
  if(state.current==='A2a'&&state.f.first_win===false)
-  intro[1]={voice:'唐映雪',text:'首演是陆景行替我撑住的。现在连歌也要算到他名下？',shot:'singer'};
+  intro[1]={voice:'唐映雪',text:'那晚是景行替我弹的。现在大家连歌都当成他写的？',shot:'singer'};
  if(state.current==='A2a'&&state.f.first_win===true)
-  intro[1]={voice:'唐映雪',text:'那晚你帮我把歌唱回来了。今天能不能帮我保住署名？',shot:'singer'};
+  intro[1]={voice:'唐映雪',text:'那晚多亏你给的信号。现在这首歌，你还愿意帮我吗？',shot:'singer'};
  if(state.current==='A2b'&&state.f.canon_signed_blame)
-  intro[0]={voice:'程放',text:'许照，你自己签过责任单。现在想当众改口？',shot:'console'};
+  intro[0]={voice:'程放',text:'你自己签的字还在呢。现在跟我说不算？',shot:'console'};
  if(state.current==='A4a'&&state.f.private_photo==='not_taken')
-  intro[0]={voice:'林见月',text:'那晚你拒绝拍私人照片，我记得。这部片也得尊重别人。',shot:'lin'};
+  intro[0]={voice:'林见月',text:'你那晚说不拍就不拍。我现在也不想拿别人的难过剪片子。',shot:'lin'};
  if(state.current==='A4a'&&state.f.private_photo==='two_people_only')
-  intro[0]={voice:'林见月',text:'私人照片我只发给你。作品里别人的脸，还得另问许可。',shot:'lin'};
- if(state.current==='A4b'&&state.f.canon_signed_blame)intro[0]={voice:'程放',text:'你那晚签过责任单。现在别想翻案。',shot:'console'};
+  intro[0]={voice:'林见月',text:'上回那张照片我只发给你了。可这段视频里还有别人。',shot:'lin'};
+ if(state.current==='A4b'&&state.f.canon_signed_blame)intro[0]={voice:'程放 · 录音',text:'你签过字的，许照。别跟我说你忘了。',shot:'console'};
  if(state.current==='A5a'&&state.f.contact_g==='private')
-  intro[0]={voice:'顾晚棠',text:'你存了我的私人号码，但今晚谈的是我能不能拒绝背债。',shot:'gu'};
+  intro[0]={voice:'顾晚棠',text:'你倒是知道怎么打我私人号。这事可不能只靠安慰。',shot:'gu'};
  if(state.current==='A5b'&&['ally','partner'].includes(state.f.lu_relation))
-  intro[0]={voice:'陆景行',text:'之前我们分工合作过。现在还有一场必须说清的比赛。',shot:'stage'};
+  intro[0]={voice:'陆景行',text:'咱俩上次配合得不错。这回要不要各自拿点真本事出来？',shot:'stage'};
  if(state.current==='A6a'&&state.f.proof_audio&&!state.f.canon_signed_blame)
-  intro[1]={voice:'许照 · 心声',text:'见月留住了程放那句原声。今天我终于能拿出来核验。',shot:'console'};
+  intro[1]={voice:'许照 · 心声',text:'见月手机里那段录音还在。我没必要再怕他了。',shot:'console'};
  if(state.current==='A7a'&&active(state).length>1)
-  intro[1]={voice:'许照 · 心声',text:'我和不止一个人有承诺。她们不能最后才知道真相。',shot:'stage'};
- if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'我签过那张责任单。现在更得拿出真实证据。',shot:'console'};
+  intro[1]={voice:'许照 · 心声',text:'我还答应过别人。再拖下去，她们只会更受伤。',shot:'stage'};
+ if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'第一晚那张字是我签的。我得把前因后果说清楚。',shot:'console'};
  if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove')&&!second)
-  intro[1]={voice:'许照 · 心声',text:'没有能核验的材料，我现在无法当众翻案。',shot:arc.shot};
+  intro[1]={voice:'许照 · 心声',text:'手里连能拿出来的证据都没有。我现在说什么都像狡辩。',shot:arc.shot};
  return {arc,intro,choices};
 }
 function v11ChoicesHtml(choices,arc,metrics){
@@ -115,9 +115,10 @@ function v11ChoicesHtml(choices,arc,metrics){
   part.map(c=>{
    const intent=c.id.startsWith('intent:');
    const info=intent?null:arc.choices[c.id];
-   const label=intent?c.label:info.label;
-   const cost=intent?'先选方向，再决定具体做法':info.risk;
-   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span><span class="v11-choice-risk">'+esc(cost)+'</span></button>';
+   const label=intent?(arc.intentLabels?.[c.id.slice('intent:'.length)]||c.label):info.label;
+   const cost=intent?'':info.risk;
+   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span>'+
+    (cost?'<span class="v11-choice-risk">'+esc(cost)+'</span>':'')+'</button>';
   }).join('')+
   (total>1?'<div class="v11-pages"><button type="button" data-v11-page="-1"'+(v11.page===0?' disabled':'')+'>上一组</button><span>'+ (v11.page+1)+' / '+total+'</span><button type="button" data-v11-page="1"'+(v11.page===total-1?' disabled':'')+'>下一组</button></div>':'')+'</div>';
 }
