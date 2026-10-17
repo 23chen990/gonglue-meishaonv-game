@@ -105,7 +105,7 @@ jobs:
           python -m py_compile "$R4/tools/test-romance-v9.py" "$R4/tools/test-romance-v10.py" "$R4/tools/test-romance-v11.py"
           python -m py_compile "$R4/tools/test-interactive-opening.py"
           python -m py_compile "$R4/tools/test-romance-v13.py"
-          python -m py_compile "$R4/tools/test-romance-v15.py" "$R4/tools/test-romance-v16.py" "$R4/tools/test-romance-v17.py"
+          python -m py_compile "$R4/tools/test-romance-v15.py" "$R4/tools/test-romance-v16.py" "$R4/tools/test-romance-v17.py" "$R4/tools/test-romance-v17-contrast.py"
       - name: Rebuild full offline H5 and all canonical narrative tests
         working-directory: ${{ env.R4 }}
         run: npm run verify
@@ -154,6 +154,7 @@ jobs:
           python tools/test-romance-v15.py
           python tools/test-romance-v16.py
           python tools/test-romance-v17.py
+          python tools/test-romance-v17-contrast.py
       - name: Preserve story hash; upload source and browser evidence
         run: |
           set -euo pipefail
@@ -180,6 +181,7 @@ jobs:
             ${{ env.R4 }}/qa/current/romance-v16-report.json
             ${{ env.R4 }}/qa/current/browser/romance-v16/**
             ${{ env.R4 }}/qa/current/romance-v17-report.json
+            ${{ env.R4 }}/qa/current/romance-v17-contrast-report.json
             ${{ env.R4 }}/qa/current/browser/romance-v17/**
             ${{ env.R4 }}/qa/current/browser/romance-v15/**
           if-no-files-found: warn
