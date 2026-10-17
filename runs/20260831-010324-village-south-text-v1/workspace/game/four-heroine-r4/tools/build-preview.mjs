@@ -7,7 +7,7 @@ const hash=crypto.createHash('sha256').update(read('data/STORY.json')).digest('h
 const engine=read('tools/engine.mjs').replace(/^export\s+/gm,'');
 const baseUI=read('tools/preview-ui.js');
 if(baseUI.split('load();render();').length!==2)throw Error('Ambiguous UI startup anchor');
-const ui=baseUI.replace('load();render();',read('tools/mobile-reader.js')+'\n'+read('tools/director-v6.js')+'\n'+read('tools/interactive-opening.js')+'\n'+read('tools/interactive-follow.js')+'\nload();render();'),meta='\nconst STORY_HASH='+JSON.stringify(hash)+';\n';
+const ui=baseUI.replace('load();render();',read('tools/mobile-reader.js')+'\n'+read('tools/director-v6.js')+'\n'+read('tools/interactive-opening.js')+'\n'+read('tools/interactive-follow.js')+'\n'+read('tools/romance-v9.js')+'\nload();render();'),meta='\nconst STORY_HASH='+JSON.stringify(hash)+';\n';
 const adv8Files={singer:'singer.webp',crew:'crew.webp',badge:'badge.webp',console:'console.webp',usbDetail:'usbDetail.webp',usbHeld:'usbHeld.webp',shen:'shen.webp',singerBond:'singerBond.webp',stage:'stage.webp',lin:'lin.webp',gu:'gu.webp'};
 const adv8Complete=Object.values(adv8Files).every(name=>fs.existsSync(new URL('assets/adv8/'+name,root)));
 // A photo is packed exactly once: all old scene/portrait compatibility APIs share
@@ -26,10 +26,10 @@ const artV6=adv8Complete
 const script=engine+'\n'+vars+artV8+images+artV6+meta+ui;
 if(script.includes('</script'))throw Error('Unescaped closing script in bundle');
 const template=read('tools/preview-template.html').replace('<!--META-->','<meta name="story-sha256" content="'+hash+'">');
-const html=template.replace('<!--CSS-->','<style>'+read('tools/preview.css')+'\n'+read('tools/vn.css')+'\n'+read('tools/mobile-reader.css')+'\n'+read('director-v6.css')+'\n'+read('tools/interactive-opening.css')+'</style>').replace('<!--SCRIPT-->','<script>'+script+'</script>');
+const html=template.replace('<!--CSS-->','<style>'+read('tools/preview.css')+'\n'+read('tools/vn.css')+'\n'+read('tools/mobile-reader.css')+'\n'+read('director-v6.css')+'\n'+read('tools/interactive-opening.css')+'\n'+read('tools/romance-v9.css')+'</style>').replace('<!--SCRIPT-->','<script>'+script+'</script>');
 fs.writeFileSync(new URL('play.html',root),html);
 fs.writeFileSync(new URL('index.html',root),html);
-const imports="import {VERSION,createState,active,condition,availableActions,endingFacts,classifyEnding,renderScene,choose,replay,rewind,reviewEnding} from './tools/engine.mjs';\nimport './tools/preview.css';\nimport './tools/vn.css';\nimport './tools/mobile-reader.css';\nimport './director-v6.css';\nimport './tools/interactive-opening.css';\n";
+const imports="import {VERSION,createState,active,condition,availableActions,endingFacts,classifyEnding,renderScene,choose,replay,rewind,reviewEnding} from './tools/engine.mjs';\nimport './tools/preview.css';\nimport './tools/vn.css';\nimport './tools/mobile-reader.css';\nimport './director-v6.css';\nimport './tools/interactive-opening.css';\nimport './tools/romance-v9.css';\n";
 fs.writeFileSync(new URL('runtime.mjs',root),'// GENERATED from canonical JSON and controller. Run npm run build; never edit this file.\n'+imports+vars+artV8+images+artV6+meta+ui);
 const index=template.replace('<!--CSS-->','').replace('<!--SCRIPT-->','<script type="module" src="/src/main.ts"></script>')
  .replace("default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'",
@@ -43,6 +43,6 @@ if(fs.existsSync(defaultMain)&&fs.readFileSync(defaultMain,'utf8').includes("imp
  fs.writeFileSync(defaultIndex,index);
 }
 
-const files=['data/STORY.json','data/EPILOGUES.json','data/BONUS.json','data/CODA.json','data/HANDBOOK.json','tools/engine.mjs','tools/preview-ui.js','tools/preview.css','tools/vn.css','tools/mobile-reader.js','tools/mobile-reader.css','tools/director-v6.js','director-v6.css','tools/interactive-opening.js','tools/interactive-follow.js','tools/interactive-opening.css',...(adv8Complete?Object.values(adv8Files).map(name=>'assets/adv8/'+name):[]),...Object.values(v6ArtFiles).map(name=>'assets/v6-preview/'+name),'assets/portraits/t.webp','assets/portraits/s.webp','assets/portraits/l.webp','assets/portraits/g.webp','assets/scenes/backstage.webp','tools/preview-template.html','runtime.mjs','index.html','play.html','repository-index.html'];
+const files=['data/STORY.json','data/EPILOGUES.json','data/BONUS.json','data/CODA.json','data/HANDBOOK.json','tools/engine.mjs','tools/preview-ui.js','tools/preview.css','tools/vn.css','tools/mobile-reader.js','tools/mobile-reader.css','tools/director-v6.js','director-v6.css','tools/interactive-opening.js','tools/interactive-follow.js','tools/interactive-opening.css','tools/romance-v9.js','tools/romance-v9.css',...(adv8Complete?Object.values(adv8Files).map(name=>'assets/adv8/'+name):[]),...Object.values(v6ArtFiles).map(name=>'assets/v6-preview/'+name),'assets/portraits/t.webp','assets/portraits/s.webp','assets/portraits/l.webp','assets/portraits/g.webp','assets/scenes/backstage.webp','tools/preview-template.html','runtime.mjs','index.html','play.html','repository-index.html'];
 fs.writeFileSync(new URL('build-meta.json',root),JSON.stringify({version:'revision-r4.5-ui',storyHash:hash,files:Object.fromEntries(files.map(p=>[p,crypto.createHash('sha256').update(fs.readFileSync(new URL(p,root))).digest('hex')]))},null,2)+'\n');
 console.log(JSON.stringify({file:'play.html',bytes:Buffer.byteLength(html),storyHash:hash,repositoryModule:'runtime.mjs'},null,2));

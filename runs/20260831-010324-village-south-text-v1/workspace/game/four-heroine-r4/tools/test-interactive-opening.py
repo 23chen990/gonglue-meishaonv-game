@@ -50,7 +50,9 @@ def step(page,name):
 with sync_playwright() as pw:
  names=['chromium']+(['webkit'] if os.environ.get('R4_WEBKIT')=='1' else [])
  for name in names:
-  browser=getattr(pw,name).launch(**({'headless':True,'args':['--no-sandbox']} if name=='chromium' else {'headless':True}))
+  kwargs={'headless':True,'args':['--no-sandbox']} if name=='chromium' else {'headless':True}
+  if name=='chromium' and os.environ.get('R4_CHROMIUM_EXECUTABLE'):kwargs['executable_path']=os.environ['R4_CHROMIUM_EXECUTABLE']
+  browser=getattr(pw,name).launch(**kwargs)
   for width,height,tone,ally,fork in [
    (320,568,'help','shen','rescue'),(360,780,'steady','tang','investigate'),
    (375,812,'confused','solo','canon'),(390,844,'help','tang','canon'),
@@ -113,12 +115,19 @@ with sync_playwright() as pw:
      assert raw['ui']['firstNight']['finished']
      # A canonical reply may appear before the next scene. When it ends,
      # the playable director must resume, not drop into a three-paragraph novel.
+     after_seen=[]
      for _ in range(45):
-      if page.locator('.io-follow').count():break
-      if page.locator('[data-page-next]').count():page.locator('[data-page-next]').first.tap()
+      if page.locator('.v9-cinema[data-v9-kind="after"]').count():
+       after_seen.append(page.locator('.v9-cinema').get_attribute('data-v9-shot'))
+       assert page.locator('.v9-cinema .mobile-text').inner_text().strip()
+       assert page.locator('.v9-cinema .mobile-speaker').inner_text().strip()
+       page.locator('[data-v9-next="after"]').tap()
+      elif page.locator('.io-follow').count():break
+      elif page.locator('[data-page-next]').count():page.locator('[data-page-next]').first.tap()
       elif page.locator('[data-reply-next]').count():page.locator('[data-reply-next]').first.tap()
       else:raise AssertionError(('post-fork lost interactive controls',fork,page.locator('#app').inner_text()[-400:]))
      else:raise AssertionError(('post-fork dialogue stalled',fork))
+     assert len(after_seen)==2 and after_seen=={'canon':['stage','console'],'rescue':['usbHeld','singerBond'],'investigate':['usbHeld','shen']}[fork],('post-fork image consequences absent',fork,after_seen)
      assert page.locator('.io-follow .line').count()==1
      assert page.locator('.io-follow .mobile-text').evaluate('x=>x.scrollHeight<=x.clientHeight+2')
      if width==390:page.screenshot(path=str(OUT/(name+'-follow-390.png')))
