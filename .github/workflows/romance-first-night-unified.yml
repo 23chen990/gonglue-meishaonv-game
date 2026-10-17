@@ -1,0 +1,104 @@
+name: Romance first-night interactive cinema H5
+on:
+  push:
+    branches:
+      - feat/first-night-playable-unified-20261017
+    paths:
+      - '.github/workflows/romance-first-night-unified.yml'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/build-preview.mjs'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.js'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-follow.js'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-interactive-opening.py'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/art/heroines/**'
+  workflow_dispatch:
+concurrency:
+  group: first-night-unified-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  verify-real-client:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      R4: runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4
+      GAME: runs/20260831-010324-village-south-text-v1/workspace/game
+      SOURCE_HASH: 84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93
+      R4_WEBKIT: '1'
+      R4_REAL_URL: http://127.0.0.1:8765/index.html
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/first-night-playable-unified-20261017
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Preserve story semantics and check syntax
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = "feat/first-night-playable-unified-20261017"
+          echo "$SOURCE_HASH  $R4/data/STORY.json" | sha256sum -c -
+          node --check "$R4/tools/interactive-opening.js"
+          node --check "$R4/tools/interactive-follow.js"
+          node --check "$R4/tools/director-v6.js"
+          node --check "$R4/tools/build-preview.mjs"
+          python -m py_compile "$R4/tools/test-interactive-opening.py"
+      - name: Rebuild full offline H5 and all canonical narrative tests
+        working-directory: ${{ env.R4 }}
+        run: npm run verify
+      - name: Run compiled default-entry lint, types and browser build
+        run: |
+          corepack enable
+          corepack pnpm install --frozen-lockfile
+          corepack pnpm verify
+      - name: Prepare headless Chromium and WebKit
+        run: |
+          python -m pip install 'playwright==1.55.0'
+          python -m playwright install --with-deps chromium webkit
+      - name: Serve actual newly generated HTML
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 --directory "$R4" > /tmp/romance-first-night-http.log 2>&1 &
+          echo "$!" > /tmp/romance-first-night-http.pid
+          for i in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8765/index.html -o /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8765/index.html -o /dev/null
+      - name: Native HTTP touchscreen acceptance in Chromium and WebKit
+        working-directory: ${{ env.R4 }}
+        run: python tools/test-interactive-opening.py
+      - name: Preserve story hash; upload source and browser evidence
+        run: |
+          set -euo pipefail
+          echo "$SOURCE_HASH  $R4/data/STORY.json" | sha256sum -c -
+          git diff --exit-code -- "$R4/data/STORY.json" "$R4/tools/engine.mjs"
+          git diff --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: romance-first-night-unified-H5-and-browser-evidence
+          path: |
+            ${{ env.R4 }}/play.html
+            ${{ env.R4 }}/qa/current/browser/first-night/**
+            ${{ env.R4 }}/qa/current/first-night-interactive-report.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Persist generated standalone player and default entry if checks passed
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$R4/index.html" "$R4/play.html" "$R4/runtime.mjs" "$R4/repository-index.html" "$R4/build-meta.json" "$GAME/index.html"
+          git diff --cached --check
+          if test -n "$(git diff --cached --name-only)"; then
+            git commit -m "build(vn): regenerate validated single-CG interactive mobile H5"
+            git fetch origin feat/first-night-playable-unified-20261017
+            git rebase --autostash origin/feat/first-night-playable-unified-20261017
+            git push origin HEAD:refs/heads/feat/first-night-playable-unified-20261017
+          fi
