@@ -32,7 +32,7 @@ def visible(page,scene,height):
  v=el.evaluate('''e=>{
  const t=e.querySelector('.mobile-text'),p=t?.querySelector('p'),s=e.querySelector('.io-sheet');
  const r=p?.getBoundingClientRect(),b=t?.getBoundingClientRect(),q=s?.getBoundingClientRect();
- return {text:p?.innerText||'',voice:e.querySelector('.mobile-speaker')?.innerText||'',mode:e.dataset.mode,
+ return {heading:e.querySelector('.v11-scene-id')?.innerText||'',text:p?.innerText||'',voice:e.querySelector('.mobile-speaker')?.innerText||'',mode:e.dataset.mode,
  visible:!!r&&!!b&&r.height>0&&r.top>=b.top-3&&r.bottom<=b.bottom+3,
  scroll:t?.scrollHeight||0,client:t?.clientHeight||0,sheet:q?.height||0,
  overflow:document.documentElement.scrollWidth>innerWidth+2,
@@ -78,6 +78,7 @@ def test_case(browser,engine,scene,i):
    assert label==ARCS[scene]['choices'][id]['label'] or (scene=='A3b' and id in ('l','g')),(scene,id,label)
   if scene=='A3b':
    assert '面馆' in shown['g'] and '对账' not in shown['g']
+   assert '项目群的四条邀请' in decision['heading'] and '先答应谁' not in decision['heading'],(scene,decision['heading'])
   if scene=='A4a':assert any('报名截止' in s for s in intro)
   if scene=='A4b':assert any('不是许照导出的' in s for s in intro)
   if scene=='A6a':

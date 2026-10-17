@@ -89,5 +89,15 @@ assert.ok(verifiedLeaves>=65 && verifiedIntentPairs>=40,{verifiedLeaves,verified
 assert.ok(runtime.includes('v11DirectLeafMode'));
 assert.ok(runtime.includes("choose(state,DATA,'intent:'+group.id,state.revision)"));
 assert.ok(runtime.includes('v11DirectLeafMode()&&!action.startsWith'));
+const expectedHeadings={
+ A3b:'第四晚 · 项目群的四条邀请', A4a:'第五天 · 独立拍摄报名',
+ A4b:'第五夜 · 能作证的录音', A6a:'第七天 · 被剪过的宣传视频',
+ t03:'唐映雪 · 约会邀请', s03:'沈清辞 · 约会邀请',
+ l03:'林见月 · 约会邀请', g03:'顾晚棠 · 约会邀请'
+};
+assert.ok(runtime.includes('const V11_VISIBLE_HEADINGS={'));
+for(const [scene,heading] of Object.entries(expectedHeadings))
+ assert.ok(runtime.includes(scene+":'"+heading+"'"),scene+' must show contextual event title');
+assert.ok(runtime.includes('V11_VISIBLE_HEADINGS[scene]||DATA.scenes[scene]?.title'));
 console.log('PASS V20 transparent direct-leaf staging:',verifiedLeaves,'true actions and',verifiedIntentPairs,'canonical intent+leaf pairs');
 console.log('PASS V20 source-grounded semantic accuracy: group dinner, late project signup, recording privacy, fake-video trap, four real date invitations, 79 canonical choices');
