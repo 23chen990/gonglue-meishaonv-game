@@ -84,7 +84,7 @@ function v11Props(){
  if(state.current==='A1b'&&state.f.canon_signed_blame)
   intro[0]={voice:'许照 · 心声',text:'第一晚我已经签错过一次了。这次别想再让我糊里糊涂签。',shot:'console'};
  if(state.current==='A2a'&&state.f.first_win===false)
-  intro[1]={voice:'唐映雪',text:'那晚是景行替我弹的。现在大家连歌都当成他写的？',shot:'singer'};
+  intro[1]={voice:'唐映雪',text:'那晚是钢琴家陆景行替我弹的。现在连歌都算他的？',shot:'singer'};
  if(state.current==='A2a'&&state.f.first_win===true)
   intro[1]={voice:'唐映雪',text:'那晚多亏你给的信号。现在这首歌，你还愿意帮我吗？',shot:'singer'};
  if(state.current==='A2b'&&state.f.canon_signed_blame)

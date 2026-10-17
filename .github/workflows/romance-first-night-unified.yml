@@ -22,6 +22,8 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-natural-dialogue-v12.mjs'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v13*'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v13*'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v15*'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V15_FIRST_MEET_KNOWLEDGE_ZH.md'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/generate-romance-v13*'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V13_EVERYDAY_CONVERSATIONS_ZH.md'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V12_NATURAL_DIALOGUE_ZH.md'
@@ -88,12 +90,14 @@ jobs:
           node --check "$R4/tools/romance-v11.js"
           node --check "$R4/tools/romance-v13.js"
           node --check "$R4/tools/test-romance-v13.mjs"
+          node --check "$R4/tools/test-romance-v15.mjs"
           node --check "$R4/tools/generate-romance-v13-fixtures.mjs"
           node --check "$R4/tools/test-romance-v11.mjs"
           node --check "$R4/tools/generate-romance-v11-fixtures.mjs"
           python -m py_compile "$R4/tools/test-romance-v9.py" "$R4/tools/test-romance-v10.py" "$R4/tools/test-romance-v11.py"
           python -m py_compile "$R4/tools/test-interactive-opening.py"
           python -m py_compile "$R4/tools/test-romance-v13.py"
+          python -m py_compile "$R4/tools/test-romance-v15.py"
       - name: Rebuild full offline H5 and all canonical narrative tests
         working-directory: ${{ env.R4 }}
         run: npm run verify
@@ -106,6 +110,7 @@ jobs:
           node tools/test-v14-orientation.mjs
           node tools/generate-romance-v11-fixtures.mjs
           node tools/test-romance-v13.mjs
+          node tools/test-romance-v15.mjs
           node tools/generate-romance-v13-fixtures.mjs
       - name: Verify all eleven ADV8 sources are unique in runtime and standalone HTML
         working-directory: ${{ env.R4 }}
@@ -136,6 +141,7 @@ jobs:
           python tools/test-romance-v10.py
           python tools/test-romance-v11.py
           python tools/test-romance-v13.py
+          python tools/test-romance-v15.py
       - name: Preserve story hash; upload source and browser evidence
         run: |
           set -euo pipefail
@@ -158,6 +164,8 @@ jobs:
             ${{ env.R4 }}/qa/current/romance-v11-report.json
             ${{ env.R4 }}/qa/current/browser/romance-v13/**
             ${{ env.R4 }}/qa/current/romance-v13-report.json
+            ${{ env.R4 }}/qa/current/romance-v15-report.json
+            ${{ env.R4 }}/qa/current/browser/romance-v15/**
           if-no-files-found: warn
           retention-days: 14
       - name: Persist generated standalone player and default entry if checks passed

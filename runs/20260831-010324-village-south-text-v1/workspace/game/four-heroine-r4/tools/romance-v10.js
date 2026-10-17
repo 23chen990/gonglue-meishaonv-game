@@ -16,10 +16,10 @@ const V10_AFTER=Object.freeze({
   text:'你把时间记着。我在那儿，他真没碰控台。'},
  'ENTRY_MEMORY/camera':{
   flag:['source_pre_switch_timestamp',true],voice:'林见月',shot:'lin',
-  text:'都拍到了。原片我给你备份一份，放心。'},
+  text:'我叫林见月，今晚负责拍摄。刚才那段录到了，原片我留着。'},
  'ENTRY_MEMORY/email':{
   flag:['source_programme_approval_note',true],voice:'顾晚棠',shot:'gu',
-  text:'审批邮件在这儿。程放，删前奏是谁的主意？'},
+  text:'顾晚棠，负责这场的授权。邮件在这儿，没人批过删前奏。'},
  'COLD/t':{
   flag:['opening_method','performer_cue'],voice:'唐映雪',shot:'singerBond',
   text:'刚才你在侧幕打手势的吧？散场别走。'},
@@ -163,16 +163,16 @@ Object.assign(IF_FOLLOW.ENTRY_CLUES.labels,{
  witness:'阿衡，咱们把当时的时间记下来'
 });
 Object.assign(IF_FOLLOW.ENTRY_MEMORY.labels,{
- camera:'见月，你能帮我把这段拍下来吗？',
- email:'晚棠，麻烦你查下这封邮件'
+ camera:'找侧幕的摄影师，把切歌过程拍下来',
+ email:'找负责授权的人，核对原来的节目单'
 });
-IF_FOLLOW.COLD.text='原版盘有了。谁来帮你把歌救回来？';
+IF_FOLLOW.COLD.text='盘在我手里，可我不会切歌。先找谁帮忙？';
 Object.assign(IF_FOLLOW.COLD.labels,{
- t:'映雪，听我手势，我帮你切回去',
- s:'清辞，原版在这儿！你看着切换',
- l:'见月，你先帮我们拍个记录',
- g:'晚棠，那封授权邮件到底怎么写的？',
- self:'阿衡，盘给你。别冒险自己插'
+ t:'去找台上的唐映雪，让她准备接歌',
+ s:'找指挥现场的沈清辞，让她安排切换',
+ l:'找侧幕扛相机的摄影师，留一段录像',
+ g:'找负责授权的人，核对换版的邮件',
+ self:'交给音控阿衡，先确认盘里的内容'
 });
 Object.assign(IF_FOLLOW.OP_FORK.labels,{
  backup:'先把两份文件都拷下来',
@@ -223,7 +223,15 @@ function v10PayoffActive(){
   state.f[V10_AFTER[p.key].flag[0]]===V10_AFTER[p.key].flag[1];
 }
 function v10PayoffHTML(){
- const info=V10_AFTER[v10.pending.key];
+ let info=V10_AFTER[v10.pending.key];
+ // Never treat a stranger as an old acquaintance. The first approach to the
+ // camera / licensing contacts reveals the name; later approaches remember it.
+ if(v10.pending.key==='COLD/l')info={...info,text:state.f.source_pre_switch_timestamp
+  ?'刚才那段也拍好了，备份在我手里。你要用，先跟我说。'
+  :'我叫林见月，今晚拍演出。你找盘的那段，我已经录下来了。'};
+ if(v10.pending.key==='COLD/g')info={...info,text:state.f.source_programme_approval_note
+  ?'刚才的邮件我留着。走，我跟你去问问程放。'
+  :'我是顾晚棠，负责演出授权。我刚查过，改伴奏没经过批准。'};
  return v9Scene(info,{kind:'after'})
   .replace('data-v9-kind="after"','data-v10-kind="payoff"')
   .replace('data-v9-next="after"','data-v10-next="payoff"');

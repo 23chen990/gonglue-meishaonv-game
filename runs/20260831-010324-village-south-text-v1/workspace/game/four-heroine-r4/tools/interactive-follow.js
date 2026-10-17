@@ -28,7 +28,12 @@ function ioFollowEnabled(){
 }
 function ioFollowOptions(){
  const scene=IF_FOLLOW[state.current],actions=ioFollowEnabled();
- const button=(c)=>'<button type="button" data-if-pick="'+esc(c.id)+'" class="io-choice">'+esc(scene.labels[c.id]||c.label)+' <span aria-hidden="true">↗</span></button>';
+ const button=(c)=>{
+  let label=scene.labels[c.id]||c.label;
+  if(state.current==='COLD'&&c.id==='l'&&state.f.source_pre_switch_timestamp)label='找林见月，把刚才拍的证据留住';
+  if(state.current==='COLD'&&c.id==='g'&&state.f.source_programme_approval_note)label='找顾晚棠，拿着授权邮件去问清楚';
+  return '<button type="button" data-if-pick="'+esc(c.id)+'" class="io-choice">'+esc(label)+' <span aria-hidden="true">↗</span></button>';
+ };
  if(state.current==='COLD'&&actions.length>3){
   if(!ioFollowGroup){
    const self=actions.find(x=>x.id==='self');
