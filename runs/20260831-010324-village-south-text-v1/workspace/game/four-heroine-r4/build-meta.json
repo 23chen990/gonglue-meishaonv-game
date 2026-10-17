@@ -25,7 +25,7 @@
     "tools/romance-v11-arcs.json": "0309fc657160f3054f68e9a88aebea79618042ff4bda42373fbc081002e8b54d",
     "tools/romance-v11.css": "b702a29d3c61194b8c4047ffb63e2e02e6c20cb627e6c2a94878749f474c6c19",
     "tools/romance-v13.js": "f26f0def2aaa0639cef7302f2f46a70bd9046fe1559e2174d9adcd4104c9b749",
-    "tools/romance-v13-scenes.json": "fa19d493eba069a56cf48e0043dc728cbe575b4b0963c16ba347e4de96fa3b5c",
+    "tools/romance-v13-scenes.json": "1d55e7e5b674f9310c180210bd7a3738f8ee8e8d2413852fa0e51f6c7752ad6f",
     "tools/romance-v13.css": "17dc4026b6b88addd4bd99b42b0bd6e0f9cd8eb59f29f3d0bb7f26aa7199a9da",
     "assets/adv8/singer.webp": "f1773829311b172775ad8e371a7be1df88e4e19ec9d13c3cb487d4b95c41264b",
     "assets/adv8/crew.webp": "534dabb9819e44c687a48a6416a37d05f19a66c0fa65378801e4d0a249e581e8",
@@ -53,8 +53,8 @@
     "assets/scenes/backstage.webp": "26d6add5ec99fc5d51cf1d9bf561de0d1f27587c48a0f3325ed473251babeee2",
     "tools/preview-template.html": "ef63ed5d4d510ebba8315c4832c98b247a481c2f9b09169494112623d1b23818",
     "runtime.mjs": "0f49a16bf9b64824016e03892ac0ef6ae82739e67e06b50e7c6013f2d683f6ad",
-    "index.html": "325912669f49d0e797c3cb2308dd8469a58b8c8409eef09ae333eef7c4d16fdd",
-    "play.html": "325912669f49d0e797c3cb2308dd8469a58b8c8409eef09ae333eef7c4d16fdd",
+    "index.html": "486e7e64d22cea16581f54768a177e28c6958fb0c4385632e1073ab84cdc6944",
+    "play.html": "486e7e64d22cea16581f54768a177e28c6958fb0c4385632e1073ab84cdc6944",
     "repository-index.html": "9130565969c21dcdb33909b30e1fb2844b57e2312041f0d8517ccb321ad08124"
   }
 }
