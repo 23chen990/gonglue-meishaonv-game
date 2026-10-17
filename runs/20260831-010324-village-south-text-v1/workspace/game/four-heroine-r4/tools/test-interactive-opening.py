@@ -67,12 +67,15 @@ with sync_playwright() as pw:
      click(page,tone);reaction=step(page,'answer')['text']
      assert reaction != '许照！你能听见我说话吗？'
      click(page,'next');step(page,'badge');click(page,'badge');step(page,'badge-read')
-     click(page,'next');step(page,'alarm');click(page,'next');step(page,'crisis')
+     click(page,'next');step(page,'alarm')
+     assert page.locator('.io-film[data-io-shot="singer"] .io-film-image').count()==1, 'first heroine entrance must use a character CG'
+     assert page.locator('.io-sheet .mobile-text').inner_text().strip()=='别关我的麦。伴奏错了，我还能唱。'
+     click(page,'next');step(page,'crisis')
      click(page,'next');step(page,'ask');click(page,ally);step(page,'ask-answer')
      click(page,'next');step(page,'hunt')
      assert page.locator('[data-io="move"]').count()==0,'USB discovery was auto-completed'
      # A stage tap without a labelled hotspot must not skip the investigation.
-     page.locator('.io-corner').tap()
+     page.locator('.io-stage').tap(position={'x': 8, 'y': 150})
      step(page,'hunt')
      if width==390:page.screenshot(path=str(OUT/(name+'-investigate-390.png')))
      for item in ['board','sheet','usb']:

@@ -31,3 +31,6 @@ body[data-panel=story] .io-stage{position:absolute!important;inset:0!important;d
 @keyframes io-cut{from{opacity:.45}to{opacity:1}}
 @media(max-height:650px){.io-vn .io-corner{top:calc(54px + env(safe-area-inset-top))}.io-vn .io-sheet{padding:7px 14px 3px!important;grid-template-rows:25px minmax(0,1fr) calc(44px + var(--mobile-safe))!important}.io-vn .io-options{bottom:calc(var(--mobile-panel) + 7px);left:12px;right:12px}.io-vn .io-choice,.io-vn .io-hotspot{min-height:44px!important;font-size:13px!important;padding:7px 11px!important}.io-vn .io-hotspots{top:16%;left:12px;right:12px;bottom:calc(var(--mobile-panel) + 58px);gap:7px}.io-vn .io-advance{bottom:calc(var(--mobile-panel) + 6px);left:12px;width:calc(100% - 24px)!important}}
 @media(prefers-reduced-motion:reduce){.io-vn *{animation:none!important;transition:none!important}}
+
+/* A full-bleed CG is never an invisible tap blocker. Choices/hotspots remain in their own layer. */
+.io-vn .io-film,.io-vn .io-film *,.io-vn .io-film-vignette{pointer-events:none!important}

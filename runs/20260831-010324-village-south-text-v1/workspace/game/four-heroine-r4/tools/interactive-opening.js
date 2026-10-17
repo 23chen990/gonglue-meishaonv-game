@@ -25,17 +25,17 @@ function ioLine(){
  case 'answer': return {voice:'戴耳机的工作人员',portrait:null,mood:'wake',text:io.tone==='help'?'小心脚下的线。来，抓住我。':io.tone==='steady'?'没事就快起来，舞台那边等急了。':'许照啊！你的工牌不就挂着吗？'};
  case 'badge': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'工牌？我什么时候成了这里的场务？'};
  case 'badge-read': return {voice:'许照 · 心声',portrait:null,mood:'badge',text:'许照……那个七天后会替人背锅的小说角色？'};
- case 'alarm': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'耳返里的音乐不对。你是来帮我的吗？'};
+ case 'alarm': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'别关我的麦。伴奏错了，我还能唱。'};
  case 'crisis': return {voice:'沈清辞 · 对讲机',portrait:null,mood:'stage',text:'伴奏被换了。先找到原版，我去稳住台上。'};
- case 'ask': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'舞台马上亮灯了。许照，我能相信你吗？'};
+ case 'ask': return {voice:'唐映雪',portrait:'t',mood:'stage',text:'侧幕那边的人，是你吗？看着我，给我一个信号。'};
  case 'ask-answer': return {
    voice:io.ally==='tang'?'唐映雪':io.ally==='shen'?'沈清辞 · 对讲机':'许照 · 心声',portrait:io.ally==='tang'?'t':null,mood:'stage',
-   text:io.ally==='tang'?'我不怕重唱，只怕唱错别人安排的歌。':io.ally==='shen'?'我替你拖住现场。原版盘交给音控确认。':'先找到原版，也许还能查清是谁换的。'};
+   text:io.ally==='tang'?'我听你的信号。哪怕只有四小节，我也能接住。':io.ally==='shen'?'我替你拖住现场。原版盘交给音控确认。':'先找到原版，也许还能查清是谁换的。'};
  case 'hunt': return {voice:'许照 · 心声',portrait:null,mood:'search',text:io.seen.includes('usb')?'蓝标盘找到了。该去处理台上的事了。':'控台、交接单、接线板……先查哪儿？'};
  case 'find': return {voice:'许照 · 心声',portrait:null,mood:'search',text:find==='usb'?'接线板下面……蓝胶带！原版盘就在这儿。':find==='sheet'?'交接单上写着我的名字，但我还没签。':'控台文件名和排练单上的，根本不是同一版。'};
  case 'confront': return {voice:'程放 · 身后',portrait:null,mood:'block',text:'许照，别乱碰设备。先把交接单签了。'};
  case 'confront-answer': return {voice:'程放 · 身后',portrait:null,mood:'block',text:io.defiance==='ask'?'问那么多干什么？责任人写你就行。':io.defiance==='hide'?'还不签？出了事你一个人担得起？':'沈清辞？……行，你去找她。'};
- case 'bond': return {voice:io.ally==='tang'?'唐映雪':'沈清辞 · 对讲机',portrait:io.ally==='tang'?'t':null,mood:'bond',text:io.ally==='tang'?'你还在吗？我在等你给我一个信号。':io.ally==='shen'?'不管接下来怎么选，别替别人认错。':'映雪已经上台。现在轮到你做决定了。'};
+ case 'bond': return {voice:io.ally==='tang'?'唐映雪':'沈清辞 · 对讲机',portrait:io.ally==='tang'?'t':null,mood:'bond',text:io.ally==='tang'?'舞台那么亮，我还是看见你了。接下来呢？':io.ally==='shen'?'不管接下来怎么选，别替别人认错。':'映雪已经上台。现在轮到你做决定了。'};
  case 'final': return {voice:'许照 · 心声',portrait:null,mood:'decision',text:'帮她把歌唱回来，还是先保住换版证据？'};
  }
  throw Error('Unknown interactive first-night step');

@@ -7,7 +7,7 @@ const IF_FOLLOW={
  OP_SETTLE:{voice:'阿衡',portrait:null,mood:'block',text:'有人要删错版文件。今晚得留个证据。',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
  OP_FORK:{voice:'阿衡',portrait:null,mood:'block',text:'录音我留着。你想现在追问，还是先等？',labels:{backup:'暗中备份两种版本',confront:'在工作群追问删档令',quiet:'先保留交接记录'}},
  OP_CANON:{voice:'程放',portrait:null,mood:'block',text:'还不签？难道这场错版跟你没关系？',labels:{backstage:'和阿衡一起核对',question:'当面追问程放',silence:'先记住谁要我签字'}},
- OP_TALK_t:{voice:'唐映雪',portrait:'t',mood:'bond',text:'刚才，你是不是一直在替我着急？',labels:{flirt:'“我只是很想再听你唱。”',slow:'“还没缓过来。”',work:'“下场演出，我还能来吗？”'}},
+ OP_TALK_t:{voice:'唐映雪',portrait:'t',mood:'bond',text:'刚才灯那么亮，我还是认出你了。',labels:{flirt:'“我只是很想再听你唱。”',slow:'“还没缓过来。”',work:'“下场演出，我还能来吗？”'}},
  OP_TALK_s:{voice:'沈清辞',portrait:'s',mood:'bond',text:'喝点水。还有，你能留个号码吗？',labels:{flirt:'“不谈工作，也能找你吗？”',slow:'“我还紧张，先慢一点。”',work:'“先留工作号吧。”'}},
  OP_TALK_l:{voice:'林见月',portrait:'l',mood:'bond',text:'这么多人，只有你一直躲我的镜头。',labels:{flirt:'“下一张，换我拍你？”',slow:'“今天先不拍，好吗？”',work:'“先记下谁救了场。”'}},
  OP_TALK_g:{voice:'顾晚棠',portrait:'g',mood:'bond',text:'那个原版盘，你怎么找到的？',labels:{flirt:'“现在不谈工作，能认识你吗？”',slow:'“先让我把话说顺。”',work:'“我想再争取一次机会。”'}}
