@@ -168,6 +168,7 @@ jobs:
       - name: Native HTTP touchscreen acceptance in Chromium and WebKit
         working-directory: ${{ env.R4 }}
         run: |
+          python tools/test-romance-v21.py
           python tools/test-interactive-opening.py
           python tools/test-romance-v9.py
           python tools/test-romance-v10.py
@@ -180,7 +181,6 @@ jobs:
           python tools/test-romance-v18.py
           python tools/test-romance-v19.py
           python tools/test-romance-v20.py
-          python tools/test-romance-v21.py
       - name: Preserve story hash; upload source and browser evidence
         run: |
           set -euo pipefail

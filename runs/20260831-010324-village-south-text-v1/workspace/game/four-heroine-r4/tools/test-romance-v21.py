@@ -58,15 +58,21 @@ def date_trial(browser,engine,scene,index):
   assert state['message'][0]['text']==ARCS[scene]['choices']['open']['response']['text']
   assert state['message'][1]['voice']==NAMES[scene]
   assert page.locator('.v11-director[data-v11-after="1"]').count()==1
-  first=page.locator('.v11-director .mobile-text').inner_text()
-  assert first==state['message'][0]['text']
+  text_node=page.locator('.v11-director .mobile-text p')
+  assert text_node.is_visible(),(scene,'result text hidden')
+  first=text_node.text_content().strip()
+  step=page.evaluate('v11.after.step')
+  assert step==0,(scene,'WebKit duplicate tap advanced consequence unexpectedly',step)
+  assert first==state['message'][0]['text'],(scene,repr(first),repr(state['message'][0]['text']),page.locator('.v11-director .mobile-text').inner_text())
   tap(page,'[data-v11-next]')
-  second=page.locator('.v11-director .mobile-text').inner_text()
-  assert second==state['message'][1]['text'],(scene,second)
+  text_node=page.locator('.v11-director .mobile-text p')
+  assert text_node.is_visible(),(scene,'follow-up text hidden')
+  second=text_node.text_content().strip()
+  assert second==state['message'][1]['text'],(scene,repr(second),repr(state['message'][1]['text']))
   if engine=='chromium':
    page.screenshot(path=str(OUT/(scene+'-accepted.png')))
    page.reload(wait_until='load')
-   assert page.locator('.v11-director .mobile-text').inner_text()==second,(scene,'lost second result after reload')
+   assert page.locator('.v11-director .mobile-text p').text_content().strip()==second,(scene,'lost second result after reload')
   assert not errors,errors
   return {'scene':scene,'savedCommands':2,'actualRelation':'open','afterBeats':2}
  finally:ctx.close()
