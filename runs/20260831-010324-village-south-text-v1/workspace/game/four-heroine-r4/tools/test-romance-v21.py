@@ -12,6 +12,8 @@ URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]
 FIX=json.loads((ROOT/'qa/current/romance-v11-fixtures.json').read_text())['fixtures']
 ARCS=json.loads((ROOT/'tools/romance-v11-arcs.json').read_text())['arcs']
 KEY='gonglue:revision-r4.5-portrait:canonical'
+OFFLINE=os.getenv('R4_OFFLINE_SMOKE')=='1'
+HTML=(ROOT/'index.html').read_text() if OFFLINE else None
 OUT=ROOT/'qa/current/browser/romance-v21';OUT.mkdir(parents=True,exist_ok=True)
 REPORT={'scope':'V21 real HTTP date acceptance + synthetic display-only promise conflict','cases':[]}
 DATES=['t03','s03','l03','g03']
@@ -26,8 +28,14 @@ def load(browser,scene,w=390,h=844):
  ctx=browser.new_context(viewport={'width':w,'height':h},is_mobile=True,has_touch=True)
  page=ctx.new_page()
  raw=json.dumps(FIX[scene],ensure_ascii=False)
- page.add_init_script(script='if(localStorage.getItem('+json.dumps(KEY)+')===null)localStorage.setItem('+json.dumps(KEY)+','+json.dumps(raw,ensure_ascii=False)+');')
- assert page.goto(URL,wait_until='load',timeout=45000).ok
+ if OFFLINE:
+  script='''(()=>{const m=new Map([[__KEY__,__RAW__]]);const store={getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(k,String(v)),removeItem:k=>m.delete(k),clear:()=>m.clear(),key:i=>[...m.keys()][i]||null,get length(){return m.size}};Object.defineProperty(window,'localStorage',{value:store,configurable:true});})();'''.replace('__KEY__',json.dumps(KEY)).replace('__RAW__',json.dumps(raw,ensure_ascii=False))
+  page.add_init_script(script=script)
+  page.goto('about:blank')
+  page.set_content(HTML,wait_until='load',timeout=50000)
+ else:
+  page.add_init_script(script='if(localStorage.getItem('+json.dumps(KEY)+')===null)localStorage.setItem('+json.dumps(KEY)+','+json.dumps(raw,ensure_ascii=False)+');')
+  assert page.goto(URL,wait_until='load',timeout=45000).ok
  assert page.locator('body').get_attribute('data-current')==scene
  return ctx,page
 
@@ -71,8 +79,9 @@ def date_trial(browser,engine,scene,index):
   assert second==state['message'][1]['text'],(scene,repr(second),repr(state['message'][1]['text']))
   if engine=='chromium':
    page.screenshot(path=str(OUT/(scene+'-accepted.png')))
-   page.reload(wait_until='load')
-   assert page.locator('.v11-director .mobile-text p').text_content().strip()==second,(scene,'lost second result after reload')
+   if not OFFLINE:
+    page.reload(wait_until='load')
+    assert page.locator('.v11-director .mobile-text p').text_content().strip()==second,(scene,'lost second result after reload')
   assert not errors,errors
   return {'scene':scene,'savedCommands':2,'actualRelation':'open','afterBeats':2}
  finally:ctx.close()
@@ -80,23 +89,23 @@ def date_trial(browser,engine,scene,index):
 def conflict_visual(browser,engine):
  ctx,page=load(browser,'s03',390,844)
  try:
-  # A legal prior-exclusive status exists in canonical game. This controlled
-  # flag change tests display logic only; we never call choose or save.
+  # The previous exclusive commitment exists in memory but is never turned
+  # into a moral warning or a spoiler subtitle on the next heroine's choices.
   seen=page.evaluate('''()=>{
     state.f.active_t=true;state.f.scope_t='exclusive';render();
     return v11Props().intro.map(x=>({voice:x.voice,text:x.text}));
   }''')
-  assert len(seen)==3,seen
-  assert seen[1]['voice']=='许照 · 心声' and '唐映雪' in seen[1]['text'],seen
-  assert seen[-1]['voice']=='沈清辞',seen
+  assert len(seen)==2,seen
+  assert all('骗她们' not in x['text'] and '必须' not in x['text'] for x in seen),seen
   advance(page)
+  assert page.locator('.v11-choice-risk').count()==0,'predicted costs appeared in choices'
   for action in ('open','exclusive'):
    item=page.locator('[data-v11-choice="'+action+'"]')
    assert item.count()==1,action
-   assert '唐映雪' in item.inner_text(),(action,item.inner_text())
-   assert '只和' in item.inner_text(),item.inner_text()
-  if engine=='chromium':page.screenshot(path=str(OUT/'s03-prior-exclusive-warning.png'))
-  return {'scene':'s03','prior':'t03/exclusive','riskVisible':True,'protagonistThought':True}
+   assert '唐映雪' not in item.inner_text(),(action,item.inner_text())
+  assert page.evaluate("state.f.active_t===true&&state.f.scope_t==='exclusive'"), 'engine forgot commitment'
+  if engine=='chromium':page.screenshot(path=str(OUT/'s03-no-spoilers.png'))
+  return {'scene':'s03','prior':'t03/exclusive','riskVisible':False,'protagonistLecture':False}
  finally:ctx.close()
 
 def finale_visual(browser,engine):
@@ -106,20 +115,20 @@ def finale_visual(browser,engine):
    visual=page.evaluate('''(active)=>{
      for(const c of 'tslg'){state.f['active_'+c]=active.includes(c);state.f['scope_'+c]=active.includes(c)?'open':'none';}
      v11.page=0;v11.step=0;
-     const props=v11Props(),lab=(id)=>v21FinaleLabel(state.f,id,props.arc.choices[id].label);
+     const props=v11Props(),lab=id=>v21FinaleLabel(state.f,id,props.arc.choices[id].label);
      const result={intro:props.intro.map(x=>x.text),together:lab('together'),
        none:lab('none'),reply:v21FinaleReply(state.f,'together',props.arc.choices.together.response.text)};
      v11.step=props.intro.length;render();return result;
    }''',active)
+   assert all(x not in visual['together'] for x in ['接受关系变冷','不准备兑现','必须','会受伤']),visual
    if kind=='none':
-    assert '没有确定的恋人' in visual['intro'][-1],visual
-    assert '曾经' in visual['together'] and '她们' not in visual['reply'],visual
+    assert '消息' in visual['intro'][-1] and '她们' not in visual['together'],visual
    elif kind=='one':
-    assert '唐映雪' in visual['intro'][-1],visual
-    assert '她' in visual['together'] and '她们' not in visual['reply'],visual
+    assert '唐映雪' in visual['intro'][-1] and '她' in visual['together'],visual
    else:
-    assert '她们' in visual['together'] and '许' not in visual['together'],visual
-  if engine=='chromium':page.screenshot(path=str(OUT/'A7a-multiple-choices.png'))
+    assert '几条消息' in visual['intro'][-1] and '她们' in visual['together'],visual
+   assert page.locator('.v11-choice-risk').count()==0,kind
+  if engine=='chromium':page.screenshot(path=str(OUT/'A7a-actions-not-warnings.png'))
   return {'scene':'A7a','displayStates':['none','one','multiple']}
  finally:ctx.close()
 

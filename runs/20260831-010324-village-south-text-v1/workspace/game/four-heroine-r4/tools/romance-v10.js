@@ -130,7 +130,7 @@ ioChoices=function(step){
   if(io.seen.includes('usb'))return html.replace('去处理舞台危机','先去侧幕');
   return html+'<button type="button" class="io-advance" data-io="move">现在去作决定 <span aria-hidden="true">›</span></button>';
  }
- if(step==='final'&&!io.seen.includes('usb'))return '<div class="io-choice-stack" role="group" aria-label="作出有代价的决定">'+
+ if(step==='final'&&!io.seen.includes('usb'))return '<div class="io-choice-stack" role="group" aria-label="选择下一步行动">'+
   '<button type="button" class="io-choice" data-io="canon">先别碰，我不能替人背锅 <span aria-hidden="true">↗</span></button>'+
   '<button type="button" class="io-choice" data-io="backsearch">等等，我还是回去找盘 <span aria-hidden="true">↗</span></button></div>';
  return v10BeforeChoices(step);

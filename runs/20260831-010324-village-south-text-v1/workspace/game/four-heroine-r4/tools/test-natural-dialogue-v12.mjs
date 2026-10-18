@@ -58,10 +58,10 @@ assert.ok(!director.includes("lastReply.find(x=>x.speaker"),'do not concatenate 
 assert.ok(director.includes('v11BoundEffect(a.scene,a.choice);'),'must bind performed consequence to engine flag');
 assert.ok(director.includes('if(rule.afterBeat)'),'narrative callback missing');
 assert.ok(director.includes('arc.intentLabels?.[c.id.slice'),'human stage-one labels not rendered');
-assert.ok(director.includes("const cost=intent?'':")&&
-  director.includes('v21ChoiceRisk(state.f,state.current,c.id,info.risk)')&&
-  director.includes("v11V21Presentation()?v21ChoiceRisk"),
-  'intermediate intents must never show consequences; V21 dynamic risks apply only to real leaves');
+assert.ok(!director.includes('v11-choice-risk')&&
+ !director.includes('v21ChoiceRisk(')&&
+ director.includes('v11DirectLeafMode'),
+ 'V22 normal choices show only the selected action, not consequence predictions');
 assert.ok(!/赋能|闭环|抓手|拉通/.test(JSON.stringify(arcs)),'product meeting words are not speech');
 // V14 moves the crisis AFTER the reader knows they were reading a novel.
 // Keep checking the actual spoken lines, not the obsolete V12 sudden start.

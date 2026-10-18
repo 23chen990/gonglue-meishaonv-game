@@ -63,6 +63,7 @@ def one_case(browser,name,scene,choice,width,height):
    visible=p.locator('[data-v11-choice^="intent:"]').evaluate_all(
     'els=>els.map(e=>({id:e.dataset.v11Choice.slice(7),label:e.querySelector(".v11-choice-main")?.innerText,risk:!!e.querySelector(".v11-choice-risk")}))')
    assert visible and all(x['label']==mapping.get(x['id']) and not x['risk'] for x in visible),('outdated technical intent label',scene,visible)
+  assert p.locator('.v11-choice-risk').count()==0,(scene,'spoiler subtitles reappeared')
   if name=='chromium' and scene in ('A2a','A3a','A4b','A6a','t03'):
    p.screenshot(path=str(OUT/(scene+'-'+str(width)+'-choices.png')))
   before=read_display(p)

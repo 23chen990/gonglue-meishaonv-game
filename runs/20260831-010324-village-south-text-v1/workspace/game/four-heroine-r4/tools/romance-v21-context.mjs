@@ -10,45 +10,46 @@ export function v21PriorRelationship(flags,scene){
   .map(c=>({code:c,name:V21_NAMES[c],scope:flags['scope_'+c]}));
  return others.find(x=>x.scope==='exclusive')||others[0]||null;
 }
-export function v21ChoiceRisk(flags,scene,id,otherwise){
- if(id!=='open'&&id!=='exclusive')return otherwise;
- const prior=v21PriorRelationship(flags,scene);
- if(!prior)return otherwise;
- if(prior.scope==='exclusive')return '你已答应只和'+prior.name+'交往';
- return id==='exclusive'?'你还在和'+prior.name+'约会，先讲清楚':
-  '你还在和'+prior.name+'约会，不能隐瞒';
-}
 export function v21FinaleLabel(flags,id,otherwise){
  const count=Object.keys(V21_NAMES).filter(c=>flags['active_'+c]===true).length;
  const none={
-  together:'把曾经的邀约与误会说清楚',
-  private:'单独找当事人把旧话说完',
-  separate:'先不解释过去，接受误会留下',
-  work:'今晚先谈作品，散场再回私信',
-  none:'不再许下自己不准备兑现的约'
+  together:'约几位熟人坐下来聊',
+  private:'单独找当事人谈谈',
+  separate:'先不回复那几条消息',
+  work:'演出结束后再回消息',
+  none:'不再发新的邀约'
  };
  const one={
-  together:'和她当面商量接下来怎么走',
-  private:'只和她私下把关系讲清楚',
-  separate:'先拖着不谈，接受关系变冷',
-  work:'今天先谈作品，散场后找她',
-  none:'不想继续，就亲口告诉她'
+  together:'约她见面，当面聊聊',
+  private:'给她发消息，单独聊',
+  separate:'暂时不回她的消息',
+  work:'先忙完这场演出',
+  none:'告诉她不想继续约会'
  };
- return count===0?(none[id]||otherwise):count===1?(one[id]||otherwise):otherwise;
+ const many={
+  together:'约她们出来坐坐',
+  private:'分别找她们聊聊',
+  separate:'暂时不回消息',
+  work:'先忙完这场演出',
+  none:'逐一结束这几段约会'
+ };
+ return count===0?(none[id]||otherwise):count===1?(one[id]||otherwise):(many[id]||otherwise);
 }
 export function v21FinaleReply(flags,id,otherwise){
  const count=Object.keys(V21_NAMES).filter(c=>flags['active_'+c]===true).length;
  const none={
-  together:'我把没说清的邀约一一解释了。没有恋人，也不需要硬编一个团圆。',
-  private:'我只找当事人说，不把私事拿到台上当表演。',
-  none:'不想继续的约定，我没有再留“改天一定”的话。',
-  work:'今晚我把工作讲完，私人消息就由我自己认真回复。'
+  together:'我约他们见了面。话聊到一半，大家都安静了下来。',
+  private:'人群散了，我终于有空和她单独谈一谈。',
+  none:'写好的邀约删掉了。屏幕恢复了安静。',
+  work:'我收好话筒，点开那几条还没回的消息。',
+  separate:'我把手机放回口袋，没回那几条消息。'
  };
  const one={
-  together:'我当面把约会的边界说清楚，接下来怎么走，也要听她的回答。',
-  private:'我们单独谈了这段关系，不再让群消息替我开口。',
-  none:'我亲口说了不打算继续。她没有立刻回复，我也没催。',
-  work:'工作说完，我去找她。公事不能代替私下的回答。'
+  together:'见面后，我把准备了很久的话说了。她没有马上回答。',
+  private:'我和她坐下来。她先问了我一个问题。',
+  none:'我说不想继续约会。她看了一会儿消息，没再打字。',
+  work:'演出散场，我找到她。她还在原来的位置等着。',
+  separate:'手机亮了一次，我没点开她的消息。'
  };
  return count===0?(none[id]||otherwise):count===1?(one[id]||otherwise):otherwise;
 }

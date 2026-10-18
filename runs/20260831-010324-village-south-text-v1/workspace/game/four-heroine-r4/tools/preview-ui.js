@@ -440,12 +440,12 @@ function openingHTML(cp){
  g:['先问清楚权限','晚棠查节目单；程放会注意到你的质疑'],
  self:['不替自己假装专业','你找盘，阿衡切换；陆景行协助过渡']
  };
- const action=o=>`<button type="button" class="rescue-option" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}" data-char="${esc(o.id)}"><span class="option-number">${opts.indexOf(o)+1}</span><span><strong>${esc(o.label)}</strong><small>${esc(hints[o.id][1])}</small></span><span aria-hidden="true">↗</span></button>`;
+ const action=o=>`<button type="button" class="rescue-option" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}" data-char="${esc(o.id)}"><span class="option-number">${opts.indexOf(o)+1}</span><span><strong>${esc(o.label)}</strong></span><span aria-hidden="true">↗</span></button>`;
  return `<div class="opening-mast"><span><i class="live-dot"></i>19:02 · 北岸艺术中心</span><span class="volume-label">原著已有了岔路</span></div>
  <section class="crisis-scene"><span class="kicker">原著：陆景行即将弹琴救场</span><h2>盘找到了。<em>你来改写。</em></h2></section>
- <div class="meta"><span>没有阅读倒计时，慢慢决定</span><span>${page+1} / ${cp.pages.length}</span></div>
+ <div class="meta"><span>后台 · 第一夜</span><span>${page+1} / ${cp.pages.length}</span></div>
  ${rowsHTML(cp.rows)}
- ${cp.last?`<div class="decision-title"><h3>怎么让找回来的原版真正改变现场？</h3></div><div class="rescue-options">${opts.map(action).join('')}</div><p class="small">这是救场方式，不是选定恋人。每条路都有人真正做事。</p>`:controls(cp)}`;
+ ${cp.last?`<div class="decision-title"><h3>怎么让找回来的原版真正改变现场？</h3></div><div class="rescue-options">${opts.map(action).join('')}</div>`:controls(cp)}`;
 }
 
 function firstForkHTML(cp){
@@ -460,7 +460,7 @@ function firstForkHTML(cp){
   rescue:'抢先救场：找出原版U盘',
   investigate:'先锁证据：找盘查错版'
  };
- const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
+ const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong></span><span aria-hidden="true">↗</span></button>`).join('');
  // Narrative is the main first-session experience, not an optional accordion.
  // Page progress is saved without issuing a story command. The first decisive
  // choice exists in the interpreter from the start but is not rendered or
@@ -478,8 +478,8 @@ function firstForkHTML(cp){
  }
  return `<div class="intro-progress"><span>第一章 · 原著的岔路口</span><span>${page+1} / ${cp.pages.length}</span></div>`+
   `<section class="intro-story-pages" aria-label="穿书经过最后一页">${rowsHTML(cp.rows)}</section>`+
-  `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
-  `<p class="small first-fork-disclaimer">选项会改变后续事件；不替你预先选定恋人。</p>`;
+  `<div class="first-fork-prompt"><strong>你会怎么做？</strong></div><div class="rescue-options first-fork-options">${actions}</div>`+
+  ``;
 }
 
 function sourceScene(){
@@ -545,7 +545,7 @@ function vnFrame(cp,interior,sceneTitle,bridge=null){
  const who=kind==='thought'?'许照 · 心声':kind==='narration'?'剧情旁白':kind==='system'?'现场信息':names[focus?.speaker]||'当前剧情';
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
- const cue=choice?'轮到你决定':phase==='reply'?'你的决定，有了回应':cp.pages.length>1?'轻触画面继续':'阅读当前剧情';
+ const cue='';
  const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${esc(cue)}</div></div></section>`;
  return `<div class="vn-frame" data-phase="${phase}" data-mode="${mode}" data-beat-kind="${kind}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><span class="vn-voice"><strong>${esc(who)}</strong><small>${cp.pages.length>1?page+1+' / '+cp.pages.length:choice?'选择':'剧情'}</small></span><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起 ↓':'展开 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }

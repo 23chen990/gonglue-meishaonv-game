@@ -1,17 +1,22 @@
-/* V11: the story already has real costs. Show them while people are choosing.
+/* V22: playable actions without advance moral labels or future-outcome spoilers.
  * This is a projection of 18 authored canonical scenes, NOT a second story engine.
  * Consent, routing, endings and saved effects come only from engine.choose().
  * Original rows and full replies remain in the scene source and read-only history.
  */
-const V11_VERSION=1;
+const V11_VERSION=2;
 const V11_ARCS=ROMANCE_V11_ARCS.arcs;
 let v11={v:V11_VERSION,key:'',step:0,page:0,after:null};
 function v11Safe(raw){
  const blank={v:V11_VERSION,key:'',step:0,page:0,after:null};
- if(!raw||raw.v!==V11_VERSION)return blank;
- if(typeof raw.key==='string'&&raw.key.length<120)blank.key=raw.key;
- if(Number.isInteger(raw.step)&&raw.step>=0&&raw.step<=5)blank.step=raw.step;
- if(Number.isInteger(raw.page)&&raw.page>=0&&raw.page<=12)blank.page=raw.page;
+ if(!raw||![1,V11_VERSION].includes(raw.v))return blank;
+ // V21 inserted a pre-choice moral lecture on certain routes; V22 removes it.
+ // Never reuse a V21 dialogue cursor or a paged decision position for the new
+ // shorter staging. Already-committed canonical choices and aftermath survive.
+ if(raw.v===V11_VERSION){
+  if(typeof raw.key==='string'&&raw.key.length<120)blank.key=raw.key;
+  if(Number.isInteger(raw.step)&&raw.step>=0&&raw.step<=5)blank.step=raw.step;
+  if(Number.isInteger(raw.page)&&raw.page>=0&&raw.page<=12)blank.page=raw.page;
+ }
  const a=raw.after;
  if(a&&typeof a.scene==='string'&&Object.hasOwn(V11_ARCS,a.scene)&&
     Object.hasOwn(V11_ARCS[a.scene].choices,a.choice)&&
@@ -115,36 +120,35 @@ function v11Props(){
  if(state.current==='A6a'&&state.f.proof_audio&&!state.f.canon_signed_blame)
   intro[1]={voice:'许照 · 心声',text:'视频只截了我碰设备箱的画面，见月录音却证明不是我换的伴奏。',shot:'console'};
  if(state.current==='A7a'&&active(state).length>1)
-  intro[1]={voice:'许照 · 心声',text:'我还答应过别人。再拖下去，她们只会更受伤。',shot:'stage'};
+  intro[1]={voice:'许照 · 心声',text:'手机屏幕亮了又暗。还有几条消息没回。',shot:'stage'};
  if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'我第一晚签过责任单，可视频剪掉了真正换伴奏的人。我得说清楚。',shot:'console'};
  if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove'||['public','partner','backstage'].includes(c.id))&&!second)
   intro[1]={voice:'许照 · 心声',text:'视频只截了我靠近设备箱的画面。我手里还没有能公开核验的证据。',shot:arc.shot};
- // We know our own prior commitments even if the new heroine does not.
- // Place this thought immediately before her final question, not after it.
- if(v11V21Presentation()&&!second&&/^[tslg]03$/.test(state.current)){
-  const other=v21PriorRelationship(state.f,state.current);
-  if(other)intro.splice(intro.length-1,0,{
-   voice:'许照 · 心声',shot:arc.shot,
-   text:other.scope==='exclusive'
-    ?'我已经答应只和'+other.name+'交往。再许一个同样的承诺，就是骗她们。'
-    :'我还在和'+other.name+'约会。要开始新的关系，必须把已有的约定讲清楚。'
-  });
- }
  // Do not fabricate multiple girlfriends when the player chose none or one.
  if(v11V21Presentation()&&state.current==='A7a'){
+  intro[0]={voice:'许照 · 心声',text:'第二十一天，散场的人声渐渐远了。手机又亮了。',shot:'stage'};
   const currentDates=active(state);
   if(currentDates.length===0)intro[1]={voice:'许照 · 心声',shot:arc.shot,
-   text:'我现在没有确定的恋人。之前的邀约与误会，还是得由我自己说清楚。'};
+   text:'最后一场演出结束了。手机里还留着几条没回的消息。'};
   else if(currentDates.length===1)intro[1]={voice:'许照 · 心声',shot:arc.shot,
-   text:'现在我只和'+V21_NAMES[currentDates[0]]+'约会。要继续，还是认真结束，别让她猜。'};
+   text:V21_NAMES[currentDates[0]]+'昨晚发来的消息，还在屏幕最上面。'};
  }
  return {arc,intro,choices};
 }
+// The old 2/3-choice paging was required by two-line outcome warnings.
+// With clean one-line actions, use the available scene height instead of
+// making players page through five answers one at a time.
+function v11PageSize(metrics){
+ const panel=Math.min(184,Math.max(144,Math.floor(metrics.h*.235)));
+ const minTouch=metrics.h<650?48:50;
+ const room=Math.max(0,metrics.h-panel-100);
+ return Math.max(2,Math.min(6,Math.floor((room+9)/(minTouch+9))));
+}
 function v11ChoicesHtml(choices,arc,metrics){
- const pageSize=metrics.h<650?2:3;
+ const pageSize=v11PageSize(metrics);
  const total=Math.max(1,Math.ceil(choices.length/pageSize));v11.page=Math.max(0,Math.min(v11.page,total-1));
  const part=choices.slice(v11.page*pageSize,(v11.page+1)*pageSize);
- return '<div class="v11-choices" role="group" aria-label="选一个真正影响剧情的行动">'+
+ return '<div class="v11-choices" role="group" aria-label="选择回应">'+
   part.map(c=>{
    const intent=c.id.startsWith('intent:');
    const info=intent?null:arc.choices[c.id];
@@ -158,9 +162,9 @@ function v11ChoicesHtml(choices,arc,metrics){
     label='去后街面馆吃饭';
    if(!intent&&state.current==='A7a'&&v11V21Presentation())
     label=v21FinaleLabel(state.f,c.id,label);
-   const cost=intent?'':v11V21Presentation()?v21ChoiceRisk(state.f,state.current,c.id,info.risk):info.risk;
-   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span>'+
-    (cost?'<span class="v11-choice-risk">'+esc(cost)+'</span>':'')+'</button>';
+   // One button = one player action. Risk metadata remains offline for QA;
+   // do NOT annotate the action with a prediction or a moral judgment.
+   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span></button>';
   }).join('')+
   (total>1?'<div class="v11-pages"><button type="button" data-v11-page="-1"'+(v11.page===0?' disabled':'')+'>上一组</button><span>'+ (v11.page+1)+' / '+total+'</span><button type="button" data-v11-page="1"'+(v11.page===total-1?' disabled':'')+'>下一组</button></div>':'')+'</div>';
 }

@@ -32,6 +32,8 @@ on:
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v19*'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v20*'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v21*'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v22*'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V22_UNPROMPTED_CHOICES_ZH.md'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v21-context.mjs'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V21_TRUTHFUL_RELATIONSHIPS_ZH.md'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V20_FIRST_PLAYER_CAUSALITY_ZH.md'
@@ -117,13 +119,14 @@ jobs:
           node --check "$R4/tools/test-romance-v20.mjs"
           node --check "$R4/tools/romance-v21-context.mjs"
           node --check "$R4/tools/test-romance-v21.mjs"
+          node --check "$R4/tools/test-romance-v22.mjs"
           node --check "$R4/tools/generate-romance-v13-fixtures.mjs"
           node --check "$R4/tools/test-romance-v11.mjs"
           node --check "$R4/tools/generate-romance-v11-fixtures.mjs"
           python -m py_compile "$R4/tools/test-romance-v9.py" "$R4/tools/test-romance-v10.py" "$R4/tools/test-romance-v11.py"
           python -m py_compile "$R4/tools/test-interactive-opening.py"
           python -m py_compile "$R4/tools/test-romance-v13.py"
-          python -m py_compile "$R4/tools/test-romance-v15.py" "$R4/tools/test-romance-v16.py" "$R4/tools/test-romance-v17.py" "$R4/tools/test-romance-v17-contrast.py" "$R4/tools/test-romance-v18.py" "$R4/tools/test-romance-v19.py" "$R4/tools/test-romance-v20.py" "$R4/tools/test-romance-v21.py"
+          python -m py_compile "$R4/tools/test-romance-v15.py" "$R4/tools/test-romance-v16.py" "$R4/tools/test-romance-v17.py" "$R4/tools/test-romance-v17-contrast.py" "$R4/tools/test-romance-v18.py" "$R4/tools/test-romance-v19.py" "$R4/tools/test-romance-v20.py" "$R4/tools/test-romance-v21.py" "$R4/tools/test-romance-v22.py"
       - name: Rebuild full offline H5 and all canonical narrative tests
         working-directory: ${{ env.R4 }}
         run: npm run verify
@@ -137,6 +140,7 @@ jobs:
           node tools/generate-romance-v11-fixtures.mjs
           node tools/test-romance-v20.mjs
           node tools/test-romance-v21.mjs
+          node tools/test-romance-v22.mjs
           node tools/test-romance-v13.mjs
           node tools/test-romance-v15.mjs
           node tools/test-romance-v16.mjs
@@ -169,6 +173,7 @@ jobs:
         working-directory: ${{ env.R4 }}
         run: |
           python tools/test-romance-v21.py
+          python tools/test-romance-v22.py
           python tools/test-interactive-opening.py
           python tools/test-romance-v9.py
           python tools/test-romance-v10.py
@@ -217,6 +222,8 @@ jobs:
             ${{ env.R4 }}/qa/current/browser/romance-v20/**
             ${{ env.R4 }}/qa/current/romance-v21-report.json
             ${{ env.R4 }}/qa/current/browser/romance-v21/**
+            ${{ env.R4 }}/qa/current/romance-v22-report.json
+            ${{ env.R4 }}/qa/current/browser/romance-v22/**
             ${{ env.R4 }}/qa/current/browser/romance-v15/**
           if-no-files-found: warn
           retention-days: 14

@@ -87,7 +87,7 @@ function v17AfterActive(){
 }
 function v17Options(){
  const candidates=renderScene(state,DATA).choices.filter(c=>c.enabled),id=state.current;
- const size=mobileMetrics().h<650?2:3,total=Math.max(1,Math.ceil(candidates.length/size));
+ const size=v11PageSize(mobileMetrics()),total=Math.max(1,Math.ceil(candidates.length/size));
  v17.page=Math.max(0,Math.min(total-1,v17.page));
  const part=candidates.slice(v17.page*size,(v17.page+1)*size);
  const buttons=part.map(c=>{
@@ -147,7 +147,7 @@ document.addEventListener('click',e=>{
   if(v17AfterActive())v17Advance();
   else if(btn?.dataset.v17Page){
    const count=renderScene(state,DATA).choices.filter(c=>c.enabled).length;
-   const limit=Math.max(1,Math.ceil(count/(mobileMetrics().h<650?2:3)));
+   const limit=Math.max(1,Math.ceil(count/v11PageSize(mobileMetrics())));
    v17.page=Math.max(0,Math.min(limit-1,v17.page+Number(btn.dataset.v17Page)));
   }else if(btn?.dataset.v17Choice){
    const choice=btn.dataset.v17Choice,valid=renderScene(state,DATA).choices.filter(c=>c.enabled);

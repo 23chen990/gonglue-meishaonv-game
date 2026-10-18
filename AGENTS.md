@@ -1,3 +1,13 @@
+## V22 产品交互硬约束（2026-10-18）：不要替玩家预判后果
+
+**用户否定 V21 的过度风险提示思路。** 恋爱视觉小说的自然选择只需要给出人物当前真实的话、玩家想说的话或可执行的行动；不要给每个按钮附“可能失去她／必须坦白／违背某人承诺”这类策划评语，也不要在下一次约会前自动插入“你再答应就是骗她们”的训话。
+
+**风险和实际后果保留，但不提前揭晓。** STORY.json、engine.mjs、78 个有效行动、60 个两命令场景和原结局不得更改。V22 从所有 18 个关键场景的 79 条可见选择移除风险副标题；36 场私人事件同样只显示对白型选项。选择卡现在按手机高度一次显示 2–6 条，不要强制每页 2/3 条。第 21 天根据实际 0/1/多位恋人表达不同的“见面／发消息／不回复”等动作，不写“接受关系变冷”这种后果预测。首夜旧版阅读界面的多余提示也已删，唯有存档失败提醒和关键背景应保留。
+
+旧 V11 UI v1 保存的游标不能直接当 V22 新文案页码，升级到 v2 应重播当前场景前两句、保存已执行的正典动作与选后回复。专门的 V22 QA：test-romance-v22.mjs 和 test-romance-v22.py；正式 Chromium/WebKit 必须检查同一 PR HEAD。参考文档 docs/ROMANCE_V22_UNPROMPTED_CHOICES_ZH.md。商用场景 CG、实体手机、真人盲玩尚未通过，PR #22 仍 Draft，不发布。下方旧文档如要求必须为每个选项显示风险，请视为已经废弃。
+
+---
+
 ## V21 CURRENT CONTRACT: truthful romance and consequences (2026-10-18)
 
 V20 full native Chromium/WebKit succeeded and a generated player was pushed. V21 fixes a clear contradiction: all four 'open' dating choices canonically set active=true/scope=open/commitment=dating, but 3 actresses previously replied that they were still considering and had NOT accepted. V21 responses accept a trial, non-exclusive date with boundaries, and show one concrete subsequent meeting. Risk text and an optional player thought reflect **actual** prior active exclusive/open commitment from story flags, not an invented romantic secret. Non-active/broken promises must not trigger warnings.
