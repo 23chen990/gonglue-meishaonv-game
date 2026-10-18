@@ -466,12 +466,12 @@ function openingHTML(cp){
  g:['先问清楚权限','晚棠查节目单；程放会注意到你的质疑'],
  self:['不替自己假装专业','你找盘，阿衡切换；陆景行协助过渡']
  };
- const action=o=>`<button type="button" class="rescue-option" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}" data-char="${esc(o.id)}"><span class="option-number">${opts.indexOf(o)+1}</span><span><strong>${esc(o.label)}</strong><small>${esc(hints[o.id][1])}</small></span><span aria-hidden="true">↗</span></button>`;
+ const action=o=>`<button type="button" class="rescue-option" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}" data-char="${esc(o.id)}"><span class="option-number">${opts.indexOf(o)+1}</span><span><strong>${esc(o.label)}</strong></span><span aria-hidden="true">↗</span></button>`;
  return `<div class="opening-mast"><span><i class="live-dot"></i>19:02 · 北岸艺术中心</span><span class="volume-label">原著已有了岔路</span></div>
  <section class="crisis-scene"><span class="kicker">原著：陆景行即将弹琴救场</span><h2>盘找到了。<em>你来改写。</em></h2></section>
- <div class="meta"><span>没有阅读倒计时，慢慢决定</span><span>${page+1} / ${cp.pages.length}</span></div>
+ <div class="meta"><span>后台 · 第一夜</span><span>${page+1} / ${cp.pages.length}</span></div>
  ${rowsHTML(cp.rows)}
- ${cp.last?`<div class="decision-title"><h3>怎么让找回来的原版真正改变现场？</h3></div><div class="rescue-options">${opts.map(action).join('')}</div><p class="small">这是救场方式，不是选定恋人。每条路都有人真正做事。</p>`:controls(cp)}`;
+ ${cp.last?`<div class="decision-title"><h3>怎么让找回来的原版真正改变现场？</h3></div><div class="rescue-options">${opts.map(action).join('')}</div>`:controls(cp)}`;
 }
 
 function firstForkHTML(cp){
@@ -486,7 +486,7 @@ function firstForkHTML(cp){
   rescue:'抢先救场：找出原版U盘',
   investigate:'先锁证据：找盘查错版'
  };
- const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong><small>${esc(notes[o.id])}</small></span><span aria-hidden="true">↗</span></button>`).join('');
+ const actions=opts.map((o,i)=>`<button type="button" class="rescue-option first-fork-choice" aria-label="${esc(o.label)}" data-choice="${esc(o.id)}" data-revision="${state.revision}" data-render="${renderToken}"><span class="option-number">${i+1}</span><span><strong>${esc(shortTitles[o.id]||o.label)}</strong></span><span aria-hidden="true">↗</span></button>`).join('');
  // Narrative is the main first-session experience, not an optional accordion.
  // Page progress is saved without issuing a story command. The first decisive
  // choice exists in the interpreter from the start but is not rendered or
@@ -504,8 +504,8 @@ function firstForkHTML(cp){
  }
  return `<div class="intro-progress"><span>第一章 · 原著的岔路口</span><span>${page+1} / ${cp.pages.length}</span></div>`+
   `<section class="intro-story-pages" aria-label="穿书经过最后一页">${rowsHTML(cp.rows)}</section>`+
-  `<div class="first-fork-prompt"><strong>你会怎么做？</strong><span>3 种选择 · 没有倒计时</span></div><div class="rescue-options first-fork-options">${actions}</div>`+
-  `<p class="small first-fork-disclaimer">选项会改变后续事件；不替你预先选定恋人。</p>`;
+  `<div class="first-fork-prompt"><strong>你会怎么做？</strong></div><div class="rescue-options first-fork-options">${actions}</div>`+
+  ``;
 }
 
 function sourceScene(){
@@ -571,7 +571,7 @@ function vnFrame(cp,interior,sceneTitle,bridge=null){
  const who=kind==='thought'?'许照 · 心声':kind==='narration'?'剧情旁白':kind==='system'?'现场信息':names[focus?.speaker]||'当前剧情';
  const portrait=c?`<div class="vn-portrait"><img src="${PORTRAITS[c]}" alt="" draggable="false" loading="eager"></div>`:'';
  const scenery=['stage','theatre','backstage','control','corridor'].includes(set)?`<div class="vn-scenery" style="background-image:url('${SCENERY}')"></div>`:'';
- const cue=choice?'轮到你决定':phase==='reply'?'你的决定，有了回应':cp.pages.length>1?'轻触画面继续':'阅读当前剧情';
+ const cue='';
  const stage=`<section class="vn-stage" data-char="${c||'none'}" data-set="${esc(set)}" data-mood="${mood}" aria-hidden="true">${scenery}<div class="vn-lights"></div>${portrait}<div class="vn-stage-top"><div class="vn-scene-label">${esc(chapter)}</div><div class="vn-scene-title">${esc(sceneTitle)}</div><div class="vn-scene-index">${esc(cue)}</div></div></section>`;
  return `<div class="vn-frame" data-phase="${phase}" data-mode="${mode}" data-beat-kind="${kind}" data-intro-decision="${state.current==='ENTRY_WAKE'&&phase==='scene'&&cp.last}" data-reader-key="${esc(state.current+':'+state.revision+':'+phase+':'+page)}" data-choice-page="${choicePage}">${stage}<section class="vn-sheet" aria-label="剧情与选择"><div class="vn-sheet-heading"><span class="vn-voice"><strong>${esc(who)}</strong><small>${cp.pages.length>1?page+1+' / '+cp.pages.length:choice?'选择':'剧情'}</small></span><button type="button" class="vn-reader-toggle" data-action="reader" aria-expanded="${readerExpanded}" aria-label="${readerExpanded?'收起阅读区，显示更多人物画面':'展开阅读区，看更多剧情文字'}">${readerExpanded?'收起 ↓':'展开 ↑'}</button></div><div class="vn-scroll" tabindex="0">${interior}</div><div class="vn-dock"></div></section></div>`;
 }
@@ -1876,7 +1876,7 @@ ioChoices=function(step){
   if(io.seen.includes('usb'))return html.replace('去处理舞台危机','先去侧幕');
   return html+'<button type="button" class="io-advance" data-io="move">现在去作决定 <span aria-hidden="true">›</span></button>';
  }
- if(step==='final'&&!io.seen.includes('usb'))return '<div class="io-choice-stack" role="group" aria-label="作出有代价的决定">'+
+ if(step==='final'&&!io.seen.includes('usb'))return '<div class="io-choice-stack" role="group" aria-label="选择下一步行动">'+
   '<button type="button" class="io-choice" data-io="canon">先别碰，我不能替人背锅 <span aria-hidden="true">↗</span></button>'+
   '<button type="button" class="io-choice" data-io="backsearch">等等，我还是回去找盘 <span aria-hidden="true">↗</span></button></div>';
  return v10BeforeChoices(step);
@@ -2031,63 +2031,69 @@ function v21PriorRelationship(flags,scene){
   .map(c=>({code:c,name:V21_NAMES[c],scope:flags['scope_'+c]}));
  return others.find(x=>x.scope==='exclusive')||others[0]||null;
 }
-function v21ChoiceRisk(flags,scene,id,otherwise){
- if(id!=='open'&&id!=='exclusive')return otherwise;
- const prior=v21PriorRelationship(flags,scene);
- if(!prior)return otherwise;
- if(prior.scope==='exclusive')return '你已答应只和'+prior.name+'交往';
- return id==='exclusive'?'你还在和'+prior.name+'约会，先讲清楚':
-  '你还在和'+prior.name+'约会，不能隐瞒';
-}
 function v21FinaleLabel(flags,id,otherwise){
  const count=Object.keys(V21_NAMES).filter(c=>flags['active_'+c]===true).length;
  const none={
-  together:'把曾经的邀约与误会说清楚',
-  private:'单独找当事人把旧话说完',
-  separate:'先不解释过去，接受误会留下',
-  work:'今晚先谈作品，散场再回私信',
-  none:'不再许下自己不准备兑现的约'
+  together:'约几位熟人坐下来聊',
+  private:'单独找当事人谈谈',
+  separate:'先不回复那几条消息',
+  work:'演出结束后再回消息',
+  none:'不再发新的邀约'
  };
  const one={
-  together:'和她当面商量接下来怎么走',
-  private:'只和她私下把关系讲清楚',
-  separate:'先拖着不谈，接受关系变冷',
-  work:'今天先谈作品，散场后找她',
-  none:'不想继续，就亲口告诉她'
+  together:'约她见面，当面聊聊',
+  private:'给她发消息，单独聊',
+  separate:'暂时不回她的消息',
+  work:'先忙完这场演出',
+  none:'告诉她不想继续约会'
  };
- return count===0?(none[id]||otherwise):count===1?(one[id]||otherwise):otherwise;
+ const many={
+  together:'约她们出来坐坐',
+  private:'分别找她们聊聊',
+  separate:'暂时不回消息',
+  work:'先忙完这场演出',
+  none:'逐一结束这几段约会'
+ };
+ return count===0?(none[id]||otherwise):count===1?(one[id]||otherwise):(many[id]||otherwise);
 }
 function v21FinaleReply(flags,id,otherwise){
  const count=Object.keys(V21_NAMES).filter(c=>flags['active_'+c]===true).length;
  const none={
-  together:'我把没说清的邀约一一解释了。没有恋人，也不需要硬编一个团圆。',
-  private:'我只找当事人说，不把私事拿到台上当表演。',
-  none:'不想继续的约定，我没有再留“改天一定”的话。',
-  work:'今晚我把工作讲完，私人消息就由我自己认真回复。'
+  together:'我约他们见了面。话聊到一半，大家都安静了下来。',
+  private:'人群散了，我终于有空和她单独谈一谈。',
+  none:'写好的邀约删掉了。屏幕恢复了安静。',
+  work:'我收好话筒，点开那几条还没回的消息。',
+  separate:'我把手机放回口袋，没回那几条消息。'
  };
  const one={
-  together:'我当面把约会的边界说清楚，接下来怎么走，也要听她的回答。',
-  private:'我们单独谈了这段关系，不再让群消息替我开口。',
-  none:'我亲口说了不打算继续。她没有立刻回复，我也没催。',
-  work:'工作说完，我去找她。公事不能代替私下的回答。'
+  together:'见面后，我把准备了很久的话说了。她没有马上回答。',
+  private:'我和她坐下来。她先问了我一个问题。',
+  none:'我说不想继续约会。她看了一会儿消息，没再打字。',
+  work:'演出散场，我找到她。她还在原来的位置等着。',
+  separate:'手机亮了一次，我没点开她的消息。'
  };
  return count===0?(none[id]||otherwise):count===1?(one[id]||otherwise):otherwise;
 }
 
-/* V11: the story already has real costs. Show them while people are choosing.
+/* V22: playable actions without advance moral labels or future-outcome spoilers.
  * This is a projection of 18 authored canonical scenes, NOT a second story engine.
  * Consent, routing, endings and saved effects come only from engine.choose().
  * Original rows and full replies remain in the scene source and read-only history.
  */
-const V11_VERSION=1;
+const V11_VERSION=2;
 const V11_ARCS=ROMANCE_V11_ARCS.arcs;
 let v11={v:V11_VERSION,key:'',step:0,page:0,after:null};
 function v11Safe(raw){
  const blank={v:V11_VERSION,key:'',step:0,page:0,after:null};
- if(!raw||raw.v!==V11_VERSION)return blank;
- if(typeof raw.key==='string'&&raw.key.length<120)blank.key=raw.key;
- if(Number.isInteger(raw.step)&&raw.step>=0&&raw.step<=5)blank.step=raw.step;
- if(Number.isInteger(raw.page)&&raw.page>=0&&raw.page<=12)blank.page=raw.page;
+ if(!raw||![1,V11_VERSION].includes(raw.v))return blank;
+ // V21 inserted a pre-choice moral lecture on certain routes; V22 removes it.
+ // Never reuse a V21 dialogue cursor or a paged decision position for the new
+ // shorter staging. Already-committed canonical choices and aftermath survive.
+ if(raw.v===V11_VERSION){
+  if(typeof raw.key==='string'&&raw.key.length<120)blank.key=raw.key;
+  if(Number.isInteger(raw.step)&&raw.step>=0&&raw.step<=5)blank.step=raw.step;
+  if(Number.isInteger(raw.page)&&raw.page>=0&&raw.page<=12)blank.page=raw.page;
+ }
  const a=raw.after;
  if(a&&typeof a.scene==='string'&&Object.hasOwn(V11_ARCS,a.scene)&&
     Object.hasOwn(V11_ARCS[a.scene].choices,a.choice)&&
@@ -2191,36 +2197,35 @@ function v11Props(){
  if(state.current==='A6a'&&state.f.proof_audio&&!state.f.canon_signed_blame)
   intro[1]={voice:'许照 · 心声',text:'视频只截了我碰设备箱的画面，见月录音却证明不是我换的伴奏。',shot:'console'};
  if(state.current==='A7a'&&active(state).length>1)
-  intro[1]={voice:'许照 · 心声',text:'我还答应过别人。再拖下去，她们只会更受伤。',shot:'stage'};
+  intro[1]={voice:'许照 · 心声',text:'手机屏幕亮了又暗。还有几条消息没回。',shot:'stage'};
  if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'我第一晚签过责任单，可视频剪掉了真正换伴奏的人。我得说清楚。',shot:'console'};
  if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove'||['public','partner','backstage'].includes(c.id))&&!second)
   intro[1]={voice:'许照 · 心声',text:'视频只截了我靠近设备箱的画面。我手里还没有能公开核验的证据。',shot:arc.shot};
- // We know our own prior commitments even if the new heroine does not.
- // Place this thought immediately before her final question, not after it.
- if(v11V21Presentation()&&!second&&/^[tslg]03$/.test(state.current)){
-  const other=v21PriorRelationship(state.f,state.current);
-  if(other)intro.splice(intro.length-1,0,{
-   voice:'许照 · 心声',shot:arc.shot,
-   text:other.scope==='exclusive'
-    ?'我已经答应只和'+other.name+'交往。再许一个同样的承诺，就是骗她们。'
-    :'我还在和'+other.name+'约会。要开始新的关系，必须把已有的约定讲清楚。'
-  });
- }
  // Do not fabricate multiple girlfriends when the player chose none or one.
  if(v11V21Presentation()&&state.current==='A7a'){
+  intro[0]={voice:'许照 · 心声',text:'第二十一天，散场的人声渐渐远了。手机又亮了。',shot:'stage'};
   const currentDates=active(state);
   if(currentDates.length===0)intro[1]={voice:'许照 · 心声',shot:arc.shot,
-   text:'我现在没有确定的恋人。之前的邀约与误会，还是得由我自己说清楚。'};
+   text:'最后一场演出结束了。手机里还留着几条没回的消息。'};
   else if(currentDates.length===1)intro[1]={voice:'许照 · 心声',shot:arc.shot,
-   text:'现在我只和'+V21_NAMES[currentDates[0]]+'约会。要继续，还是认真结束，别让她猜。'};
+   text:V21_NAMES[currentDates[0]]+'昨晚发来的消息，还在屏幕最上面。'};
  }
  return {arc,intro,choices};
 }
+// The old 2/3-choice paging was required by two-line outcome warnings.
+// With clean one-line actions, use the available scene height instead of
+// making players page through five answers one at a time.
+function v11PageSize(metrics){
+ const panel=Math.min(184,Math.max(144,Math.floor(metrics.h*.235)));
+ const minTouch=metrics.h<650?48:50;
+ const room=Math.max(0,metrics.h-panel-100);
+ return Math.max(2,Math.min(6,Math.floor((room+9)/(minTouch+9))));
+}
 function v11ChoicesHtml(choices,arc,metrics){
- const pageSize=metrics.h<650?2:3;
+ const pageSize=v11PageSize(metrics);
  const total=Math.max(1,Math.ceil(choices.length/pageSize));v11.page=Math.max(0,Math.min(v11.page,total-1));
  const part=choices.slice(v11.page*pageSize,(v11.page+1)*pageSize);
- return '<div class="v11-choices" role="group" aria-label="选一个真正影响剧情的行动">'+
+ return '<div class="v11-choices" role="group" aria-label="选择回应">'+
   part.map(c=>{
    const intent=c.id.startsWith('intent:');
    const info=intent?null:arc.choices[c.id];
@@ -2234,9 +2239,9 @@ function v11ChoicesHtml(choices,arc,metrics){
     label='去后街面馆吃饭';
    if(!intent&&state.current==='A7a'&&v11V21Presentation())
     label=v21FinaleLabel(state.f,c.id,label);
-   const cost=intent?'':v11V21Presentation()?v21ChoiceRisk(state.f,state.current,c.id,info.risk):info.risk;
-   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span>'+
-    (cost?'<span class="v11-choice-risk">'+esc(cost)+'</span>':'')+'</button>';
+   // One button = one player action. Risk metadata remains offline for QA;
+   // do NOT annotate the action with a prediction or a moral judgment.
+   return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span></button>';
   }).join('')+
   (total>1?'<div class="v11-pages"><button type="button" data-v11-page="-1"'+(v11.page===0?' disabled':'')+'>上一组</button><span>'+ (v11.page+1)+' / '+total+'</span><button type="button" data-v11-page="1"'+(v11.page===total-1?' disabled':'')+'>下一组</button></div>':'')+'</div>';
 }
@@ -2489,7 +2494,7 @@ function v17AfterActive(){
 }
 function v17Options(){
  const candidates=renderScene(state,DATA).choices.filter(c=>c.enabled),id=state.current;
- const size=mobileMetrics().h<650?2:3,total=Math.max(1,Math.ceil(candidates.length/size));
+ const size=v11PageSize(mobileMetrics()),total=Math.max(1,Math.ceil(candidates.length/size));
  v17.page=Math.max(0,Math.min(total-1,v17.page));
  const part=candidates.slice(v17.page*size,(v17.page+1)*size);
  const buttons=part.map(c=>{
@@ -2549,7 +2554,7 @@ document.addEventListener('click',e=>{
   if(v17AfterActive())v17Advance();
   else if(btn?.dataset.v17Page){
    const count=renderScene(state,DATA).choices.filter(c=>c.enabled).length;
-   const limit=Math.max(1,Math.ceil(count/(mobileMetrics().h<650?2:3)));
+   const limit=Math.max(1,Math.ceil(count/v11PageSize(mobileMetrics())));
    v17.page=Math.max(0,Math.min(limit-1,v17.page+Number(btn.dataset.v17Page)));
   }else if(btn?.dataset.v17Choice){
    const choice=btn.dataset.v17Choice,valid=renderScene(state,DATA).choices.filter(c=>c.enabled);
