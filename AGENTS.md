@@ -1,3 +1,12 @@
+## V21 CURRENT CONTRACT: truthful romance and consequences (2026-10-18)
+
+V20 full native Chromium/WebKit succeeded and a generated player was pushed. V21 fixes a clear contradiction: all four 'open' dating choices canonically set active=true/scope=open/commitment=dating, but 3 actresses previously replied that they were still considering and had NOT accepted. V21 responses accept a trial, non-exclusive date with boundaries, and show one concrete subsequent meeting. Risk text and an optional player thought reflect **actual** prior active exclusive/open commitment from story flags, not an invented romantic secret. Non-active/broken promises must not trigger warnings.
+
+At A7a, 0 active partners, 1 partner, and 2+ partners receive different labels and immediate replies; do not assume all routes are multi-romance. Seven refusals/nonparticipation actions now have distinct immediate aftermath. All engine effects, choices, consent, disclosures, saved history and ending rules remain canonical: do NOT edit data/STORY.json or tools/engine.mjs. See docs/ROMANCE_V21_TRUTHFUL_RELATIONSHIPS_ZH.md and tools/romance-v21-context.mjs, test-romance-v21.mjs and .py.
+
+User constraints remain: H5 mobile visual novel; one speaker/short text at a time; <=1/3 bottom dialogue sheet; player speaks via real choice buttons, not autospoken narrative; people, events, and romance consequences must be immediately comprehensible. Art, commercial licensing, physical-device and blind-play QA still block release. PR stays Draft, no merge/deployment.
+
+---
 ## V20 FIRST-PLAYER CAUSALITY & REAL CHOICE CONTRACT
 
 The player should understand WHERE, WHAT happened, WHY heroine speaks, and WHAT an action does. V19 fixed 36 personal scenes; V20 fixes mainline source contradictions and false two-step UX. Gu Wantang's fourth-night invitation in canon is back-street noodles, not accounting. Lin Jianyue has to APPLY for independent filming by the signup deadline, NOT finish the film tonight; privately recorded distressing footage requires consent. Day-seven propaganda video is cropped to make Xu Zhao appear responsible, while audio can rebut the allegation.

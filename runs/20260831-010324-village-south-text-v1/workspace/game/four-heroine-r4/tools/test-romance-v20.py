@@ -8,7 +8,7 @@ import os, json, sys, traceback
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
-BASE=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]
+BASE=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]+'?qa=v20'
 OUT=ROOT/'qa/current/browser/romance-v20'
 OUT.mkdir(parents=True,exist_ok=True)
 KEY='gonglue:revision-r4.5-portrait:canonical'

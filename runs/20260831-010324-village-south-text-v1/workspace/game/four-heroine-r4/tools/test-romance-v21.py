@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""V21 honest romance presentation on real HTTP touch Chromium/WebKit.
+Canonical open choices are executed from real replay fixtures; synthetic
+pre-existing relationships are used ONLY to test display/risk projections.
+No faked state is ever submitted as real game history.
+"""
+import json,os,sys,traceback
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+ROOT=Path(__file__).resolve().parents[1]
+URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]
+FIX=json.loads((ROOT/'qa/current/romance-v11-fixtures.json').read_text())['fixtures']
+ARCS=json.loads((ROOT/'tools/romance-v11-arcs.json').read_text())['arcs']
+KEY='gonglue:revision-r4.5-portrait:canonical'
+OUT=ROOT/'qa/current/browser/romance-v21';OUT.mkdir(parents=True,exist_ok=True)
+REPORT={'scope':'V21 real HTTP date acceptance + synthetic display-only promise conflict','cases':[]}
+DATES=['t03','s03','l03','g03']
+NAMES={'t03':'唐映雪','s03':'沈清辞','l03':'林见月','g03':'顾晚棠'}
+
+def tap(page,selector):
+ q=page.locator(selector).first
+ assert q.count()==1,(selector,page.locator('#app').inner_text()[-250:])
+ q.tap(timeout=15000)
+
+def load(browser,scene,w=390,h=844):
+ ctx=browser.new_context(viewport={'width':w,'height':h},is_mobile=True,has_touch=True)
+ page=ctx.new_page()
+ raw=json.dumps(FIX[scene],ensure_ascii=False)
+ page.add_init_script(script='if(localStorage.getItem('+json.dumps(KEY)+')===null)localStorage.setItem('+json.dumps(KEY)+','+json.dumps(raw,ensure_ascii=False)+');')
+ assert page.goto(URL,wait_until='load',timeout=45000).ok
+ assert page.locator('body').get_attribute('data-current')==scene
+ return ctx,page
+
+def advance(page):
+ for _ in range(5):
+  if page.locator('[data-v11-choice]').count():return
+  tap(page,'[data-v11-next]')
+ raise AssertionError('never reached real date options')
+
+def date_trial(browser,engine,scene,index):
+ ctx,page=load(browser,scene,*[(320,568),(390,844),(430,932)][index%3])
+ errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ try:
+  intro=page.evaluate('v11Props().intro')
+  assert len(intro)==2,(scene,intro)
+  advance(page)
+  assert page.locator('.v11-director[data-mode="decision"]').count()==1
+  action=page.locator('[data-v11-choice="open"]')
+  assert action.count()==1,(scene,'missing nonexclusive real date')
+  old=page.evaluate('state.history.length')
+  action.tap()
+  state=page.evaluate('''(id)=>({history:state.history.slice(-2),size:state.history.length,
+     active:state.f['active_'+id[0]],scope:state.f['scope_'+id[0]],
+     message:v11AfterLines().map(x=>({voice:x.voice,text:x.text}))})''',scene)
+  assert state['size']==old+2 and state['history'][-1]['id']=='open',(scene,state)
+  assert state['active'] and state['scope']=='open',(scene,'wrong relationship status',state)
+  assert len(state['message'])==2,(scene,'result never confirms accepted date',state)
+  assert state['message'][0]['text']==ARCS[scene]['choices']['open']['response']['text']
+  assert state['message'][1]['voice']==NAMES[scene]
+  assert page.locator('.v11-director[data-v11-after="1"]').count()==1
+  first=page.locator('.v11-director .mobile-text').inner_text()
+  assert first==state['message'][0]['text']
+  tap(page,'[data-v11-next]')
+  second=page.locator('.v11-director .mobile-text').inner_text()
+  assert second==state['message'][1]['text'],(scene,second)
+  if engine=='chromium':
+   page.screenshot(path=str(OUT/(scene+'-accepted.png')))
+   page.reload(wait_until='load')
+   assert page.locator('.v11-director .mobile-text').inner_text()==second,(scene,'lost second result after reload')
+  assert not errors,errors
+  return {'scene':scene,'savedCommands':2,'actualRelation':'open','afterBeats':2}
+ finally:ctx.close()
+
+def conflict_visual(browser,engine):
+ ctx,page=load(browser,'s03',390,844)
+ try:
+  # A legal prior-exclusive status exists in canonical game. This controlled
+  # flag change tests display logic only; we never call choose or save.
+  seen=page.evaluate('''()=>{
+    state.f.active_t=true;state.f.scope_t='exclusive';render();
+    return v11Props().intro.map(x=>({voice:x.voice,text:x.text}));
+  }''')
+  assert len(seen)==3,seen
+  assert seen[1]['voice']=='许照 · 心声' and '唐映雪' in seen[1]['text'],seen
+  assert seen[-1]['voice']=='沈清辞',seen
+  advance(page)
+  for action in ('open','exclusive'):
+   item=page.locator('[data-v11-choice="'+action+'"]')
+   assert item.count()==1,action
+   assert '唐映雪' in item.inner_text(),(action,item.inner_text())
+   assert '只和' in item.inner_text(),item.inner_text()
+  if engine=='chromium':page.screenshot(path=str(OUT/'s03-prior-exclusive-warning.png'))
+  return {'scene':'s03','prior':'t03/exclusive','riskVisible':True,'protagonistThought':True}
+ finally:ctx.close()
+
+def finale_visual(browser,engine):
+ ctx,page=load(browser,'A7a',430,932)
+ try:
+  for kind,active in [('none',[]),('one',['t']),('multiple',['t','s'])]:
+   visual=page.evaluate('''(active)=>{
+     for(const c of 'tslg'){state.f['active_'+c]=active.includes(c);state.f['scope_'+c]=active.includes(c)?'open':'none';}
+     v11.page=0;v11.step=0;
+     const props=v11Props(),lab=(id)=>v21FinaleLabel(state.f,id,props.arc.choices[id].label);
+     const result={intro:props.intro.map(x=>x.text),together:lab('together'),
+       none:lab('none'),reply:v21FinaleReply(state.f,'together',props.arc.choices.together.response.text)};
+     v11.step=props.intro.length;render();return result;
+   }''',active)
+   if kind=='none':
+    assert '没有确定的恋人' in visual['intro'][-1],visual
+    assert '曾经' in visual['together'] and '她们' not in visual['reply'],visual
+   elif kind=='one':
+    assert '唐映雪' in visual['intro'][-1],visual
+    assert '她' in visual['together'] and '她们' not in visual['reply'],visual
+   else:
+    assert '她们' in visual['together'] and '许' not in visual['together'],visual
+  if engine=='chromium':page.screenshot(path=str(OUT/'A7a-multiple-choices.png'))
+  return {'scene':'A7a','displayStates':['none','one','multiple']}
+ finally:ctx.close()
+
+with sync_playwright() as pw:
+ for engine in ['chromium']+(['webkit'] if os.getenv('R4_WEBKIT')=='1' else []):
+  opts={'headless':True,'args':['--no-sandbox']} if engine=='chromium' else {'headless':True}
+  if engine=='chromium' and os.getenv('R4_CHROMIUM_EXECUTABLE'):
+   opts['executable_path']=os.getenv('R4_CHROMIUM_EXECUTABLE')
+  browser=getattr(pw,engine).launch(**opts)
+  cases=[('date-'+scene,lambda s=scene,i=i:date_trial(browser,engine,s,i)) for i,scene in enumerate(DATES)]
+  cases.extend([('prior-exclusive',lambda:conflict_visual(browser,engine)),('zero-one-many-finale',lambda:finale_visual(browser,engine))])
+  for name,fn in cases:
+   try:
+    result=fn();REPORT['cases'].append({'engine':engine,'status':'PASS',**result})
+    print('PASS V21',engine,name,flush=True)
+   except Exception as error:
+    REPORT['cases'].append({'engine':engine,'status':'FAIL','name':name,'error':repr(error)})
+    print('FAIL V21',engine,name,repr(error),flush=True);traceback.print_exc()
+  browser.close()
+REPORT['status']='PASS' if all(x['status']=='PASS' for x in REPORT['cases']) else 'FAIL'
+(ROOT/'qa/current/romance-v21-report.json').write_text(json.dumps(REPORT,ensure_ascii=False,indent=2)+'\n')
+print('V21',REPORT['status'],len(REPORT['cases']))
+if REPORT['status']!='PASS':sys.exit(1)

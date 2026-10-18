@@ -55,6 +55,11 @@ function v11AfterActive(){
  try{v11BoundEffect(a.scene,a.choice);}catch{return false;}
  return true;
 }
+// qa=intent keeps the original two-step interaction; qa=v20 keeps last
+// release's date/finale phrasing while verifying direct concrete actions.
+function v11V21Presentation(){
+ return !['intent','v20','canonical'].includes(new URLSearchParams(location.search).get('qa'));
+}
 const V11_VOICES=Object.freeze({P:'许照',T:'唐映雪',S:'沈清辞',L:'林见月',G:'顾晚棠',C:'程放',A:'阿衡',LU:'陆景行',N:'许照 · 心声'});
 function v11AfterLines(){
  const a=v11.after,arc=V11_ARCS[a.scene],rule=arc.choices[a.choice];
@@ -65,7 +70,8 @@ function v11AfterLines(){
  // consequences below are guarded by real engine effects; complete source
  // replies remain available from history and are never mutated.
  const response=rule.response;
- const lines=[{voice:response.voice,shot:response.shot,text:response.text}];
+ const displayText=a.scene==='A7a'&&v11V21Presentation()?v21FinaleReply(state.f,a.choice,response.text):response.text;
+ const lines=[{voice:response.voice,shot:response.shot,text:displayText}];
  if(rule.afterBeat)lines.push({
   voice:rule.afterBeat.voice,shot:rule.afterBeat.shot||response.shot,
   text:rule.afterBeat.text
@@ -113,6 +119,25 @@ function v11Props(){
  if(state.current==='A6a'&&state.f.canon_signed_blame)intro[1]={voice:'许照 · 心声',text:'我第一晚签过责任单，可视频剪掉了真正换伴奏的人。我得说清楚。',shot:'console'};
  if(state.current==='A6a'&&!choices.some(c=>c.id==='intent:prove'||['public','partner','backstage'].includes(c.id))&&!second)
   intro[1]={voice:'许照 · 心声',text:'视频只截了我靠近设备箱的画面。我手里还没有能公开核验的证据。',shot:arc.shot};
+ // We know our own prior commitments even if the new heroine does not.
+ // Place this thought immediately before her final question, not after it.
+ if(v11V21Presentation()&&!second&&/^[tslg]03$/.test(state.current)){
+  const other=v21PriorRelationship(state.f,state.current);
+  if(other)intro.splice(intro.length-1,0,{
+   voice:'许照 · 心声',shot:arc.shot,
+   text:other.scope==='exclusive'
+    ?'我已经答应只和'+other.name+'交往。再许一个同样的承诺，就是骗她们。'
+    :'我还在和'+other.name+'约会。要开始新的关系，必须把已有的约定讲清楚。'
+  });
+ }
+ // Do not fabricate multiple girlfriends when the player chose none or one.
+ if(v11V21Presentation()&&state.current==='A7a'){
+  const currentDates=active(state);
+  if(currentDates.length===0)intro[1]={voice:'许照 · 心声',shot:arc.shot,
+   text:'我现在没有确定的恋人。之前的邀约与误会，还是得由我自己说清楚。'};
+  else if(currentDates.length===1)intro[1]={voice:'许照 · 心声',shot:arc.shot,
+   text:'现在我只和'+V21_NAMES[currentDates[0]]+'约会。要继续，还是认真结束，别让她猜。'};
+ }
  return {arc,intro,choices};
 }
 function v11ChoicesHtml(choices,arc,metrics){
@@ -131,7 +156,9 @@ function v11ChoicesHtml(choices,arc,metrics){
    if(!intent&&state.current==='A3b'&&c.id==='g'&&
       !state.f.source_programme_approval_note&&!state.f.opening_authorization_checked)
     label='去后街面馆吃饭';
-   const cost=intent?'':info.risk;
+   if(!intent&&state.current==='A7a'&&v11V21Presentation())
+    label=v21FinaleLabel(state.f,c.id,label);
+   const cost=intent?'':v11V21Presentation()?v21ChoiceRisk(state.f,state.current,c.id,info.risk):info.risk;
    return '<button type="button" class="v11-choice" data-v11-choice="'+esc(c.id)+'"><span class="v11-choice-main">'+esc(label)+'</span>'+
     (cost?'<span class="v11-choice-risk">'+esc(cost)+'</span>':'')+'</button>';
   }).join('')+
