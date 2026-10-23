@@ -1,0 +1,547 @@
+{
+  "version": 1,
+  "storyHash": "84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93",
+  "scope": "Human-spoken first question and one optical action cue for 36 personal scenes. Canonical choice IDs/effects untouched; scene-specific anchor hash verified in runtime.",
+  "moments": {
+    "t01": {
+      "cue": "她把筷子推到你面前",
+      "tone": "warm",
+      "camera": "near",
+      "voice": "唐映雪",
+      "lines": [
+        "我真不是挑食。可这饭里怎么全是胡萝卜？",
+        "你还笑？帮我想想办法。"
+      ],
+      "anchor": {
+        "id": "t01.r4.body.005",
+        "hash": "654648f7cf6eb127",
+        "speaker": "N"
+      }
+    },
+    "t02": {
+      "cue": "录音室里，你提前哼出新尾奏",
+      "tone": "tense",
+      "camera": "near",
+      "voice": "唐映雪",
+      "lines": [
+        "等等，你刚哼的，是我昨晚才写的。",
+        "这两个音，我还没唱给别人听过。"
+      ],
+      "anchor": {
+        "id": "t02.r4.body.001",
+        "hash": "afcaeb0326355967",
+        "speaker": "N"
+      }
+    },
+    "t04": {
+      "cue": "便利店窗外有人认出她",
+      "tone": "warm",
+      "camera": "mid",
+      "voice": "唐映雪",
+      "lines": [
+        "刚才外面那个人，是不是在拍我们？",
+        "照片这种事，我想自己决定。你呢？"
+      ],
+      "anchor": {
+        "id": "t04.body.001",
+        "hash": "fd057a0e51669331",
+        "speaker": "N"
+      }
+    },
+    "t05": {
+      "cue": "雨夜里，她把耳机线拉到你身旁",
+      "tone": "rain",
+      "camera": "near",
+      "voice": "唐映雪",
+      "lines": [
+        "两版尾奏都听完了，你一句话都不说。",
+        "是歌不好听，还是你不敢看我？"
+      ],
+      "anchor": {
+        "id": "t05.r4.body.001",
+        "hash": "8f2ccadc9fbbd842",
+        "speaker": "N"
+      }
+    },
+    "t06": {
+      "cue": "她合上歌词本，按住新写的一行",
+      "tone": "tense",
+      "camera": "near",
+      "voice": "唐映雪",
+      "lines": [
+        "上次那段歌，你接得比我还快。",
+        "我问真的。你是不是知道些什么？"
+      ],
+      "anchor": {
+        "id": "t06.r2.body.001",
+        "hash": "8de5707f87dd8b4c",
+        "speaker": "N"
+      }
+    },
+    "t07": {
+      "cue": "新场馆邀请函摊在两人之间",
+      "tone": "work",
+      "camera": "mid",
+      "voice": "唐映雪",
+      "lines": [
+        "他们要我唱别人的歌。我的歌得等以后。",
+        "可我也想站上那个大舞台。"
+      ],
+      "anchor": {
+        "id": "t07.body.001",
+        "hash": "192864950bc40457",
+        "speaker": "N"
+      }
+    },
+    "t08": {
+      "cue": "空荡的舞台；改时间的消息没发出",
+      "tone": "tense",
+      "camera": "mid",
+      "voice": "唐映雪",
+      "lines": [
+        "糟了，那条改时间的消息还在转圈。",
+        "你是不是白跑一趟？我真以为你不来了。"
+      ],
+      "anchor": {
+        "id": "t08.r2.body.001",
+        "hash": "e08846098f106542",
+        "speaker": "N"
+      }
+    },
+    "t09": {
+      "cue": "歌词纸上写着雨声与便利店铃声",
+      "tone": "warm",
+      "camera": "near",
+      "voice": "唐映雪",
+      "lines": [
+        "我写了两句新词。你先别偷看标题。",
+        "听完再猜，我写的是不是那天的事。"
+      ],
+      "anchor": {
+        "id": "t09.r4.body.001",
+        "hash": "972afaf85a0dc1f2",
+        "speaker": "N"
+      }
+    },
+    "t10": {
+      "cue": "她在乱成一团的线材旁腾出座位",
+      "tone": "quiet",
+      "camera": "mid",
+      "voice": "唐映雪",
+      "lines": [
+        "这些设备终于搬完了，我脚都快没知觉。",
+        "你今天还走吗？不走就陪我坐会儿。"
+      ],
+      "anchor": {
+        "id": "t10.body.001",
+        "hash": "78df15e286a3d350",
+        "speaker": "N"
+      }
+    },
+    "s01": {
+      "cue": "散了一地的排期单；她终于坐下",
+      "tone": "work",
+      "camera": "mid",
+      "voice": "沈清辞",
+      "lines": [
+        "你也是来找我签东西的吗？",
+        "要不是工作，就坐这儿陪我五分钟。"
+      ],
+      "anchor": {
+        "id": "s01.r4.body.001",
+        "hash": "095858140221e6d2",
+        "speaker": "N"
+      }
+    },
+    "s02": {
+      "cue": "小厅只亮着一盏灯，座位空荡",
+      "tone": "tense",
+      "camera": "mid",
+      "voice": "沈清辞",
+      "lines": [
+        "第一场只来了七个人，我还回去数空椅子。",
+        "明知道可能赔钱，我还是舍不得停。"
+      ],
+      "anchor": {
+        "id": "s02.r4.body.001",
+        "hash": "0341c85f7d92035c",
+        "speaker": "N"
+      }
+    },
+    "s04": {
+      "cue": "两家小店，一家贴着今日热汤",
+      "tone": "warm",
+      "camera": "mid",
+      "voice": "沈清辞",
+      "lines": [
+        "你刚才是不是差点替我把店选好了？",
+        "今天我想喝热的。你呢？"
+      ],
+      "anchor": {
+        "id": "s04.body.001",
+        "hash": "ee12e0a6a2caab1b",
+        "speaker": "N"
+      }
+    },
+    "s05": {
+      "cue": "工作通知被划掉；窗边有两把空椅",
+      "tone": "intimate",
+      "camera": "near",
+      "voice": "沈清辞",
+      "lines": [
+        "我把消息静音了。今晚不想再当负责人。",
+        "外套拿了，你就急着走？"
+      ],
+      "anchor": {
+        "id": "s05.r2.body.001",
+        "hash": "bfd16a86253193e8",
+        "speaker": "N"
+      }
+    },
+    "s06": {
+      "cue": "餐桌上，手机亮了一下",
+      "tone": "tense",
+      "camera": "near",
+      "voice": "沈清辞",
+      "lines": [
+        "你手机亮了。别紧张，我又不会翻。",
+        "要是有我不知道的事，你现在能说吗？"
+      ],
+      "anchor": {
+        "id": "s06.r4.body.002",
+        "hash": "d5fae43a816c9d29",
+        "speaker": "N"
+      }
+    },
+    "s07": {
+      "cue": "鼠标停在取消活动上",
+      "tone": "work",
+      "camera": "mid",
+      "voice": "沈清辞",
+      "lines": [
+        "我劝别人别怕冷场，轮到自己却不敢点确认。",
+        "你说，我是不是该直接取消？"
+      ],
+      "anchor": {
+        "id": "s07.r2.body.001",
+        "hash": "11d586f41720f20d",
+        "speaker": "N"
+      }
+    },
+    "s08": {
+      "cue": "她把最忙的那个周末划掉",
+      "tone": "warm",
+      "camera": "mid",
+      "voice": "沈清辞",
+      "lines": [
+        "我把最满的那天腾出来了。",
+        "现在轮到你。我们去哪儿？"
+      ],
+      "anchor": {
+        "id": "s08.body.001",
+        "hash": "82f37a7278559e56",
+        "speaker": "N"
+      }
+    },
+    "s09": {
+      "cue": "替班消息还亮着；她删掉了好字",
+      "tone": "quiet",
+      "camera": "near",
+      "voice": "沈清辞",
+      "lines": [
+        "他们又让我临时替班，我差点就回了好。",
+        "你别先给我工作建议，好不好？"
+      ],
+      "anchor": {
+        "id": "s09.r2.body.001",
+        "hash": "914c17a843db59f3",
+        "speaker": "N"
+      }
+    },
+    "s10": {
+      "cue": "她双手握着你带来的热饮",
+      "tone": "intimate",
+      "camera": "near",
+      "voice": "沈清辞",
+      "lines": [
+        "我今天提前出来了。不是突然没事做。",
+        "就是……想早点见到你。"
+      ],
+      "anchor": {
+        "id": "s10.body.001",
+        "hash": "546aa8b5976c5f95",
+        "speaker": "N"
+      }
+    },
+    "l01": {
+      "cue": "她停住录音，在备注里写先问本人",
+      "tone": "work",
+      "camera": "mid",
+      "voice": "林见月",
+      "lines": [
+        "这两秒我很想留，可当事人还没答应。",
+        "你说，是先放片，还是先问人？"
+      ],
+      "anchor": {
+        "id": "l01.r1.body.003",
+        "hash": "bd4437b5d1a0ce8c",
+        "speaker": "N"
+      }
+    },
+    "l02": {
+      "cue": "申请邮件停在发送之前",
+      "tone": "tense",
+      "camera": "near",
+      "voice": "林见月",
+      "lines": [
+        "机会不错，但我一直没敢点发送。",
+        "我怕去了以后，又只是给别人打下手。"
+      ],
+      "anchor": {
+        "id": "l02.r4.body.001",
+        "hash": "64de7fa419561b4e",
+        "speaker": "N"
+      }
+    },
+    "l04": {
+      "cue": "她举着相机，你手里的硬币快掉了",
+      "tone": "warm",
+      "camera": "mid",
+      "voice": "林见月",
+      "lines": [
+        "别躲！帮我试个对焦而已。",
+        "好，轮到你提要求。想怎么拍？"
+      ],
+      "anchor": {
+        "id": "l04.body.001",
+        "hash": "25f34da1072f20f2",
+        "speaker": "N"
+      }
+    },
+    "l05": {
+      "cue": "她护住相机跑到门廊，肩头都湿了",
+      "tone": "rain",
+      "camera": "near",
+      "voice": "林见月",
+      "lines": [
+        "相机没事，你倒淋湿了。",
+        "喂，你怎么突然看着我不说话？"
+      ],
+      "anchor": {
+        "id": "l05.r4.body.001",
+        "hash": "636c5286dd6458dd",
+        "speaker": "N"
+      }
+    },
+    "l06": {
+      "cue": "酸蛋糕旁，陆景行的来电刚结束",
+      "tone": "tense",
+      "camera": "near",
+      "voice": "林见月",
+      "lines": [
+        "陆景行让我临时剪片，我让他明天群里说。",
+        "你怎么连蛋糕都不吃了？"
+      ],
+      "anchor": {
+        "id": "l06.r4.body.001",
+        "hash": "e33cd5565b636890",
+        "speaker": "N"
+      }
+    },
+    "l07": {
+      "cue": "新片有末班车，也有陆景行的背影",
+      "tone": "tense",
+      "camera": "near",
+      "voice": "林见月",
+      "lines": [
+        "看见他了？那只是片子里的一段。",
+        "你想问为什么没拍到你，对不对？"
+      ],
+      "anchor": {
+        "id": "l07.r4.body.001",
+        "hash": "2a5f48adc0fe41d2",
+        "speaker": "N"
+      }
+    },
+    "l08": {
+      "cue": "她把两座城市的拍摄表铺开",
+      "tone": "quiet",
+      "camera": "mid",
+      "voice": "林见月",
+      "lines": [
+        "这两个地方我都想去。以前我总不敢争。",
+        "你会不会因为舍不得，就让我别去？"
+      ],
+      "anchor": {
+        "id": "l08.body.001",
+        "hash": "e93388f871354f04",
+        "speaker": "N"
+      }
+    },
+    "l09": {
+      "cue": "风声盖住了那段拍糊的录像",
+      "tone": "quiet",
+      "camera": "near",
+      "voice": "林见月",
+      "lines": [
+        "拍糊了，人声也录没了。",
+        "你是不是也觉得很烂？"
+      ],
+      "anchor": {
+        "id": "l09.body.001",
+        "hash": "a9c28a1c88f4e635",
+        "speaker": "N"
+      }
+    },
+    "l10": {
+      "cue": "她点开写着许照的文件夹，又关上",
+      "tone": "intimate",
+      "camera": "near",
+      "voice": "林见月",
+      "lines": [
+        "你刚才什么都没看见，对吧？",
+        "……算了。要不要听里面那段录音？"
+      ],
+      "anchor": {
+        "id": "l10.r2.body.001",
+        "hash": "7b84b5ecebb026a9",
+        "speaker": "N"
+      }
+    },
+    "g01": {
+      "cue": "她把手机反扣在桌上，拉开椅子",
+      "tone": "warm",
+      "camera": "mid",
+      "voice": "顾晚棠",
+      "lines": [
+        "今天先不谈合同。",
+        "你能不能坐下，像个普通人一样喝杯东西？"
+      ],
+      "anchor": {
+        "id": "g01.r1.body.003",
+        "hash": "39dca7beeffa6936",
+        "speaker": "N"
+      }
+    },
+    "g02": {
+      "cue": "一封授权邮件与合同草稿摊在桌上",
+      "tone": "work",
+      "camera": "mid",
+      "voice": "顾晚棠",
+      "lines": [
+        "我明明让他们保留小夜场，公告却说我同意砍掉。",
+        "邮件你也看了。你想怎么做？"
+      ],
+      "anchor": {
+        "id": "g02.r4.body.001",
+        "hash": "7c838b9ea0ac5d0c",
+        "speaker": "N"
+      }
+    },
+    "g04": {
+      "cue": "娃娃机吞掉她第四枚硬币",
+      "tone": "warm",
+      "camera": "near",
+      "voice": "顾晚棠",
+      "lines": [
+        "我知道，这破机器不值得再投钱。",
+        "……你还有两枚吗？就最后一次。"
+      ],
+      "anchor": {
+        "id": "g04.body.001",
+        "hash": "b6c3112bb4af218f",
+        "speaker": "N"
+      }
+    },
+    "g05": {
+      "cue": "她伸手摘掉你肩上的小纸片",
+      "tone": "intimate",
+      "camera": "near",
+      "voice": "顾晚棠",
+      "lines": [
+        "别动，你肩膀上有东西。",
+        "好了。你怎么反而不敢看我？"
+      ],
+      "anchor": {
+        "id": "g05.r4.body.001",
+        "hash": "72ff206135309612",
+        "speaker": "N"
+      }
+    },
+    "g06": {
+      "cue": "她合上菜单，没有碰你的手机",
+      "tone": "tense",
+      "camera": "near",
+      "voice": "顾晚棠",
+      "lines": [
+        "刚才消息来了，你就把手机扣过去。",
+        "我不会翻。你愿意自己告诉我吗？"
+      ],
+      "anchor": {
+        "id": "g06.r4.body.001",
+        "hash": "3ec6756cc0916f4a",
+        "speaker": "N"
+      }
+    },
+    "g07": {
+      "cue": "她承认曾挪走新人团队的演出时段",
+      "tone": "tense",
+      "camera": "mid",
+      "voice": "顾晚棠",
+      "lines": [
+        "我以前把新人团队的时间挪给了大团队。",
+        "那事我做得不对。你怎么看？"
+      ],
+      "anchor": {
+        "id": "g07.r4.body.001",
+        "hash": "220ede06b2971848",
+        "speaker": "N"
+      }
+    },
+    "g08": {
+      "cue": "小店木凳摇晃；她垫上一块纸巾",
+      "tone": "warm",
+      "camera": "mid",
+      "voice": "顾晚棠",
+      "lines": [
+        "这家店我小时候就来。凳子还是这么晃。",
+        "你别笑，坐稳了再点菜。"
+      ],
+      "anchor": {
+        "id": "g08.body.001",
+        "hash": "75a489e1693ddcbd",
+        "speaker": "N"
+      }
+    },
+    "g09": {
+      "cue": "旧名片在她手里折出一道痕",
+      "tone": "quiet",
+      "camera": "near",
+      "voice": "顾晚棠",
+      "lines": [
+        "这张名片，我用太久了。",
+        "如果我不做现在这份工作，你还会来见我吗？"
+      ],
+      "anchor": {
+        "id": "g09.r2.body.001",
+        "hash": "24acaef2b18cb716",
+        "speaker": "N"
+      }
+    },
+    "g10": {
+      "cue": "她把没选好的菜单递向你",
+      "tone": "intimate",
+      "camera": "near",
+      "voice": "顾晚棠",
+      "lines": [
+        "菜没想好，话也没想好。",
+        "许照，你会不会觉得我今天特别不专业？"
+      ],
+      "anchor": {
+        "id": "g10.body.001",
+        "hash": "8edb037653217565",
+        "speaker": "N"
+      }
+    }
+  }
+}

@@ -39,11 +39,14 @@ entry_tracked=stage("default-entry-tracked",
                     ["git","diff","--exit-code","--",str((M.parent/"index.html").relative_to(REPO))],
                     cwd=REPO) if ok and derived_tracked else False
 repo_ok=stage("repository-verify",["pnpm","verify"],cwd=REPO) if ok and entry_tracked else False
+# A second runtime compilation must never ship a different save/restore path.
+# The default production URL and the standalone H5 are byte-for-byte identical.
+entry_same=stage("published-player-parity",["node","tools/check-published-player.mjs"],cwd=REPO) if repo_ok else False
 entry=GAME/"src/main.ts";doc=GAME/"dist/index.html"
 wired=entry.is_file() and "import '../four-heroine-r4/runtime.mjs';" in entry.read_text()
 if not wired or not doc.exists():
  report["stages"].append({"name":"default-entry","status":"BLOCKED","reason":"Canonical runtime not wired or actual dist not built."});save()
-elif ok and repo_ok:
+elif ok and repo_ok and entry_same:
  report["builtEntryHash"]=hashlib.sha256(doc.read_bytes()).hexdigest()
  port=os.environ.get("R4_QA_PORT","8765")
  with (Q/"http-server.log").open("w") as log:
@@ -57,19 +60,26 @@ elif ok and repo_ok:
      break
     except OSError:time.sleep(.2)
    else:raise RuntimeError("Current build server did not start")
-   ui_ok=stage("native-v45-ui",[sys.executable,"tools/test-v45-browser.py"],env=env)
-   reader_ok=stage("native-v47-reader-and-save-migration",[sys.executable,"tools/test-v46-reader.py"],env=env)
-   first_ok=stage("native-v48-readable-first-choice",[sys.executable,"tools/test-v48-first-choice.py"],env=env)
-   save_ok=stage("native-v49-saved-session-continuity",[sys.executable,"tools/test-v49-save-migration.py"],env=env)
-   cinematic_ok=stage("native-v417-cinematic-chromium",[sys.executable,"tools/test-vn-cinematic.py"],env=env)
-   intent_ok=stage("native-v417-staged-intents",[sys.executable,"tools/test-v417-cinematic-intents.py"],env=env,timeout=1800)
-   webkit_ok=True
-   if os.environ.get("R4_WEBKIT")=="1":
-    webkit_ok=stage("native-v417-cinematic-webkit",[sys.executable,"tools/test-vn-cinematic.py"],
-                    env=dict(env,R4_BROWSER="webkit"))
-   if ui_ok and reader_ok and first_ok and save_ok and cinematic_ok and intent_ok and webkit_ok:
-    stage("native-v45-full-routes",[sys.executable,"tools/test-v45-route.py"],env=env,timeout=1800)
+   # Current default player changed by design: no six-page novel-like opening.
+   # Validate the shipped V9 UI in BOTH browsers, not the historical V4.17
+   # screenshot contract. STORY and engine are still exhaustively verified above.
+   first_ok=stage("native-v9-first-night-chromium-webkit",
+                  [sys.executable,"tools/test-interactive-opening.py"],
+                  env=dict(env,R4_WEBKIT="1"),timeout=1800)
+   emotion_ok=stage("native-v9-four-heroines-chromium-webkit",
+                    [sys.executable,"tools/test-romance-v9.py"],
+                    env=dict(env,R4_WEBKIT="1"),timeout=1800)
+   art_ok=stage("adv8-bundle-unique-cg-source",
+                ["node","tools/test-adv8-single-embedding.mjs"],env=env)
    stage("fixture-schedule-coverage",[sys.executable,"tools/test-v45-schedule.py"])
+   report["currentClientChecks"]={"newOpening":first_ok,"allFourHeroines":emotion_ok,
+      "sourceArtIntegrity":art_ok}
+   # Historical tests are recorded as superseded, NEVER reported as passes:
+   # they assert a required six-tap intro that the user explicitly rejected.
+   report["supersededHistoricalBrowserSuites"]=[
+     "test-v45-browser.py","test-v46-reader.py","test-v48-first-choice.py",
+     "test-v49-save-migration.py","test-vn-cinematic.py","test-v417-cinematic-intents.py"]
+   save()
   except Exception as e:
    report["stages"].append({"name":"actual-entry-serving","status":"BLOCKED","reason":str(e)})
   finally:

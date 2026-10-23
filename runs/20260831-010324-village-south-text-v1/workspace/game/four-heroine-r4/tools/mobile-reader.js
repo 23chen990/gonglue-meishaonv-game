@@ -128,11 +128,30 @@ function mobilePortrait(cp){
  if(sourceScene().id==='ENTRY_WAKE')return b._shot==='standoff'?'t':null;
  return activePortrait()||null;
 }
+function mobileEarlyEndRetryIndex(){
+ if(!state.complete||!state.f?.early_end)return -1;
+ // Replay the actual player actions until the first true failure. Rewinding
+ // the final epilogue sentence would leave the decision that ruined the route.
+ let probe=createState();
+ for(let i=0;i<state.history.length;i++){
+  const before=!!probe.f.early_end;
+  const next=choose(probe,DATA,state.history[i].id,probe.revision).state;
+  if(!before&&next.f.early_end)return i;
+  probe=next;
+ }
+ return -1;
+}
 function mobileButtons(cp){
  if(cp.last&&cp.bridge){
   const buttons=cp.bridge.next.choices.filter(o=>o.enabled).map(o=>
    `<button class="choice" data-choice="${esc(o.id)}" data-bridge="continue" data-revision="${state.revision}" data-render="${renderToken}">${esc(o.label)}</button>`).join('');
   return '<div class="choices">'+buttons+'</div>';
+ }
+ if(cp.view.terminal&&state.f?.early_end){
+  const index=mobileEarlyEndRetryIndex();
+  const retry=index>=0?'<button type="button" class="choice mobile-early-retry" data-restore="'+index+'">回到那次决定，换一种做法</button>':'';
+  return '<div class="choices mobile-ending-actions">'+retry+
+   '<button type="button" class="quiet mobile-ending-collection" data-nav="collection">查看已收录结局</button></div>';
  }
  const holder=document.createElement('div');holder.innerHTML=controls(cp);
  holder.querySelectorAll('[data-skip-read]').forEach(n=>n.remove());

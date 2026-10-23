@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+const read=p=>fs.readFileSync(new URL(p,import.meta.url),'utf8');
+const first=read('romance-v10.js'),base=read('interactive-opening.js');
+const arcs=JSON.parse(read('romance-v11-arcs.json')).arcs;
+const canon=JSON.parse(read('../data/STORY.json'));
+assert.equal(canon.scenes.ENTRY_WAKE.choices.length,3);
+assert.match(first,/ioActions\.crisis=\[/,'early crisis must allow a real fork');
+assert.ok(first.includes("['canon','我不碰设备，先保住自己']"));
+assert.ok(first.includes("io.step==='crisis'&&action==='canon'"));
+assert.ok(first.includes("io.step='final';v10BeforeAction('canon')"));
+assert.ok(base.includes('const out=choose(state,DATA,action,state.revision)'));
+assert.ok(first.includes("io.seen.includes('usb')?'原版盘在手"),'no false assertion that player holds the USB');
+assert.ok(first.includes("obey:'我怕丢工作，先把责任单签了'"));
+assert.ok(!first.includes("obey:'这上面不是我做的。我不能乱签'"));
+assert.ok(canon.scenes.ENTRY_CLUES.choices.find(c=>c.id==='obey').effects.some(e=>e.op==='set'&&e.key==='canon_signed_blame'&&e.value===true));
+assert.ok(arcs.A3b.intro[0].text.includes('后街吃面'));
+assert.ok(!arcs.A3b.intro[0].text.includes('对账'));
+assert.deepEqual(Object.keys(arcs.A3b.choices).sort(),canon.scenes.A3b.choices.map(c=>c.id).sort());
+for(const [id,c] of Object.entries(arcs.A3b.choices)){assert.ok(c.label.length<=23&&c.risk.length<=26,id);}
+assert.equal(createHash('sha256').update(read('../data/STORY.json')).digest('hex'),'84842ca69a861849f16b20d72b4b45421675ea5a934cad51d5f7866e703acf93');
+console.log('PASS V16 early canonical refusal, honest blame signature and newcomer knowledge');
