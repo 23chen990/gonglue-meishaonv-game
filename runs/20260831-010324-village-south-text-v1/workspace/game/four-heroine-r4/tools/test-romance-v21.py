@@ -1,3 +1,4 @@
+# V23: archived V22 exact-dialogue contract; current default covered by V23 suites.
 #!/usr/bin/env python3
 """V21 honest romance presentation on real HTTP touch Chromium/WebKit.
 Canonical open choices are executed from real replay fixtures; synthetic
@@ -8,7 +9,7 @@ import json,os,sys,traceback
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
-URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]
+URL=os.getenv('R4_REAL_URL','http://127.0.0.1:8765/index.html').split('?')[0]+'?qa=v22'
 FIX=json.loads((ROOT/'qa/current/romance-v11-fixtures.json').read_text())['fixtures']
 ARCS=json.loads((ROOT/'tools/romance-v11-arcs.json').read_text())['arcs']
 KEY='gonglue:revision-r4.5-portrait:canonical'
@@ -31,7 +32,7 @@ def load(browser,scene,w=390,h=844):
  if OFFLINE:
   script='''(()=>{const m=new Map([[__KEY__,__RAW__]]);const store={getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(k,String(v)),removeItem:k=>m.delete(k),clear:()=>m.clear(),key:i=>[...m.keys()][i]||null,get length(){return m.size}};Object.defineProperty(window,'localStorage',{value:store,configurable:true});})();'''.replace('__KEY__',json.dumps(KEY)).replace('__RAW__',json.dumps(raw,ensure_ascii=False))
   page.add_init_script(script=script)
-  page.goto('about:blank')
+  page.goto('about:blank?qa=v22')
   page.set_content(HTML,wait_until='load',timeout=50000)
  else:
   page.add_init_script(script='if(localStorage.getItem('+json.dumps(KEY)+')===null)localStorage.setItem('+json.dumps(KEY)+','+json.dumps(raw,ensure_ascii=False)+');')

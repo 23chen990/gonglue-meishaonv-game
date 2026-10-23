@@ -1,0 +1,5 @@
+/* A short description of an action already performed, not an outcome warning.
+ * The existing portraits are unchanged candidate art, not new event CGs. */
+.v23-directed .v23-physical-beat{position:absolute;z-index:5;left:14px;right:14px;bottom:calc(var(--mobile-panel) + 12px);padding:7px 11px;border-radius:9px;background:rgba(15,17,26,.82);color:#fff4ec;font-size:13px;line-height:1.45;pointer-events:none;max-width:calc(100% - 28px);box-sizing:border-box}
+.v23-directed[data-mode=decision] .v23-physical-beat{display:none}
+@media(max-height:650px){.v23-directed .v23-physical-beat{font-size:12px;padding:5px 9px;bottom:calc(var(--mobile-panel) + 8px)}}

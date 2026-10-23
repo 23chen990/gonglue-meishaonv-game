@@ -1,59 +1,13 @@
 name: Romance first-night interactive cinema H5
 on:
   push:
-    branches:
-      - feat/first-night-playable-unified-20261017
+    branches: [feat/first-night-playable-unified-20261017]
     paths:
       - '.github/workflows/romance-first-night-unified.yml'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/build-preview.mjs'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/mobile-reader.js'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.js'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-follow.js'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/interactive-opening.css'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-interactive-opening.py'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-v14-orientation.mjs'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v9.py'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v10.py'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V14_ENTRY_ORIENTATION_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v9.js'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v10.js'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v11*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v11*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-natural-dialogue-v12.mjs'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v13*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v13*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v15*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v16*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v17*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v17*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v18*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v18*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v19*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v19*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v20*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v21*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v22*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V22_UNPROMPTED_CHOICES_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/romance-v21-context.mjs'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V21_TRUTHFUL_RELATIONSHIPS_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V20_FIRST_PLAYER_CAUSALITY_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V19_CAUSAL_DIALOGUE_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V18_HEROINE_FIRST_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V17_PLAYABLE_DATES_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V16_EARLY_REAL_CHOICE_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V15_FIRST_MEET_KNOWLEDGE_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/generate-romance-v13*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V13_EVERYDAY_CONVERSATIONS_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V12_NATURAL_DIALOGUE_ZH.md'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/generate-romance-v11*'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v9.py'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v10.py'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-romance-v10.mjs'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/ROMANCE_V10_REAL_CHOICE_QA_ZH.md' 
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/test-adv8-single-embedding.mjs'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/art/heroines/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/tools/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/docs/**'
       - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/assets/adv8/**'
-      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/art/adv8/**'
+      - 'runs/20260831-010324-village-south-text-v1/workspace/game/four-heroine-r4/art/**'
   workflow_dispatch:
 concurrency:
   group: first-night-unified-${{ github.ref }}
@@ -82,8 +36,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      # A reproducible source bundle lets an external UX reviewer run the real
-      # game without scraping GitHub or relying on previously generated HTML.
       - name: Snapshot source for independent UX and browser QA
         run: |
           tar -czf /tmp/romance-vn-source.tgz --exclude=.git --exclude=node_modules --exclude=dist --exclude=qa/current --exclude=play.html --exclude=runtime.mjs --exclude=index.html .
@@ -93,102 +45,65 @@ jobs:
           path: /tmp/romance-vn-source.tgz
           if-no-files-found: error
           retention-days: 7
-      - name: Preserve story semantics and check syntax
+      - name: Preserve source and validate syntax
         run: |
           set -euo pipefail
           test "$(git branch --show-current)" = "feat/first-night-playable-unified-20261017"
           echo "$SOURCE_HASH  $R4/data/STORY.json" | sha256sum -c -
-          node --check "$R4/tools/interactive-opening.js"
-          node --check "$R4/tools/test-v14-orientation.mjs"
-          node --check "$R4/tools/interactive-follow.js"
-          node --check "$R4/tools/director-v6.js"
-          node --check "$R4/tools/build-preview.mjs"
-          node --check "$R4/tools/romance-v9.js"
-          node --check "$R4/tools/romance-v10.js"
-          node --check "$R4/tools/romance-v11.js"
-          node --check "$R4/tools/romance-v13.js"
-          node --check "$R4/tools/test-romance-v13.mjs"
-          node --check "$R4/tools/test-romance-v15.mjs"
-          node --check "$R4/tools/test-romance-v16.mjs"
-          node --check "$R4/tools/romance-v17.js"
-          node --check "$R4/tools/test-romance-v17.mjs"
-          node --check "$R4/tools/romance-v18.js"
-          node --check "$R4/tools/test-romance-v18.mjs"
-          node --check "$R4/tools/romance-v19.js"
-          node --check "$R4/tools/test-romance-v19.mjs"
-          node --check "$R4/tools/test-romance-v20.mjs"
-          node --check "$R4/tools/romance-v21-context.mjs"
-          node --check "$R4/tools/test-romance-v21.mjs"
-          node --check "$R4/tools/test-romance-v22.mjs"
-          node --check "$R4/tools/generate-romance-v13-fixtures.mjs"
-          node --check "$R4/tools/test-romance-v11.mjs"
-          node --check "$R4/tools/generate-romance-v11-fixtures.mjs"
-          python -m py_compile "$R4/tools/test-romance-v9.py" "$R4/tools/test-romance-v10.py" "$R4/tools/test-romance-v11.py"
-          python -m py_compile "$R4/tools/test-interactive-opening.py"
-          python -m py_compile "$R4/tools/test-romance-v13.py"
-          python -m py_compile "$R4/tools/test-romance-v15.py" "$R4/tools/test-romance-v16.py" "$R4/tools/test-romance-v17.py" "$R4/tools/test-romance-v17-contrast.py" "$R4/tools/test-romance-v18.py" "$R4/tools/test-romance-v19.py" "$R4/tools/test-romance-v20.py" "$R4/tools/test-romance-v21.py" "$R4/tools/test-romance-v22.py"
+          for file in "$R4"/tools/romance-v*.js "$R4"/tools/*v*.mjs "$R4"/tools/interactive-*.js "$R4"/tools/mobile-reader.js "$R4"/tools/director-v6.js "$R4"/tools/build-preview.mjs; do
+            node --check "$file"
+          done
+          python -m py_compile "$R4"/tools/test-romance-v*.py "$R4"/tools/test-interactive-opening.py
       - name: Rebuild full offline H5 and all canonical narrative tests
         working-directory: ${{ env.R4 }}
         run: npm run verify
-      - name: Verify real negative branch flags and action-linked consequence contracts
+      - name: Source-locked contracts and real replay fixtures
         working-directory: ${{ env.R4 }}
         run: |
-          node tools/test-romance-v10.mjs
-          node tools/test-romance-v11.mjs
+          set -euo pipefail
+          node tools/generate-romance-v11-fixtures.mjs
+          node tools/generate-romance-v13-fixtures.mjs
+          node tools/generate-romance-v23-fixtures.mjs
+          for version in 10 11 13 15 16 17 18 19 20 21 22 23; do
+            node "tools/test-romance-v${version}.mjs"
+          done
           node tools/test-natural-dialogue-v12.mjs
           node tools/test-v14-orientation.mjs
-          node tools/generate-romance-v11-fixtures.mjs
-          node tools/test-romance-v20.mjs
-          node tools/test-romance-v21.mjs
-          node tools/test-romance-v22.mjs
-          node tools/test-romance-v13.mjs
-          node tools/test-romance-v15.mjs
-          node tools/test-romance-v16.mjs
-          node tools/test-romance-v17.mjs
-          node tools/test-romance-v18.mjs
-          node tools/test-romance-v19.mjs
-          node tools/generate-romance-v13-fixtures.mjs
-      - name: Verify all eleven ADV8 sources are unique in runtime and standalone HTML
-        working-directory: ${{ env.R4 }}
-        run: node tools/test-adv8-single-embedding.mjs
-      - name: Run compiled default-entry lint, types and browser build
+          node tools/test-adv8-single-embedding.mjs
+      - name: Default-entry lint, types and production build
         run: |
           corepack enable
           corepack pnpm install --frozen-lockfile
           corepack pnpm verify
-      - name: Prepare headless Chromium and WebKit
+      - name: Prepare Chromium and WebKit
         run: |
           python -m pip install 'playwright==1.55.0'
           python -m playwright install --with-deps chromium webkit
-      - name: Serve actual newly generated HTML
+      - name: Serve actual rebuilt player
         run: |
           python -m http.server 8765 --bind 127.0.0.1 --directory "$R4" > /tmp/romance-first-night-http.log 2>&1 &
-          echo "$!" > /tmp/romance-first-night-http.pid
           for i in $(seq 1 30); do
-            if curl --fail --silent http://127.0.0.1:8765/index.html -o /dev/null; then break; fi
+            if curl --fail --silent "$R4_REAL_URL" -o /dev/null; then break; fi
             sleep 1
           done
-          curl --fail --silent http://127.0.0.1:8765/index.html -o /dev/null
-      - name: Native HTTP touchscreen acceptance in Chromium and WebKit
+          curl --fail --silent "$R4_REAL_URL" -o /dev/null
+      - name: V23 default player - every reachable action and four full routes
         working-directory: ${{ env.R4 }}
         run: |
+          python tools/test-romance-v23.py
+          python tools/test-romance-v23-routes.py
+      - name: Preserve all prior native touch regressions
+        working-directory: ${{ env.R4 }}
+        run: |
+          set -euo pipefail
           python tools/test-romance-v21.py
           python tools/test-romance-v22.py
           python tools/test-interactive-opening.py
-          python tools/test-romance-v9.py
-          python tools/test-romance-v10.py
-          python tools/test-romance-v11.py
-          python tools/test-romance-v13.py
-          python tools/test-romance-v15.py
-          python tools/test-romance-v16.py
-          python tools/test-romance-v17.py
-          python tools/test-romance-v17-contrast.py
-          python tools/test-romance-v18.py
-          python tools/test-romance-v19.py
-          python tools/test-romance-v20.py
-      - name: Preserve story hash; upload source and browser evidence
+          for version in 9 10 11 13 15 16 17 17-contrast 18 19 20; do
+            python "tools/test-romance-v${version}.py"
+          done
+      - name: Prove canonical story and engine unchanged
         run: |
-          set -euo pipefail
           echo "$SOURCE_HASH  $R4/data/STORY.json" | sha256sum -c -
           git diff --exit-code -- "$R4/data/STORY.json" "$R4/tools/engine.mjs"
           git diff --check
@@ -198,36 +113,11 @@ jobs:
           name: romance-first-night-unified-H5-and-browser-evidence
           path: |
             ${{ env.R4 }}/play.html
-            ${{ env.R4 }}/qa/current/browser/first-night/**
-            ${{ env.R4 }}/qa/current/first-night-interactive-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v9/**
-            ${{ env.R4 }}/qa/current/browser/romance-v10/**
-            ${{ env.R4 }}/qa/current/browser/romance-v11/**
-            ${{ env.R4 }}/qa/current/romance-v9-report.json
-            ${{ env.R4 }}/qa/current/romance-v10-report.json
-            ${{ env.R4 }}/qa/current/romance-v11-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v13/**
-            ${{ env.R4 }}/qa/current/romance-v13-report.json
-            ${{ env.R4 }}/qa/current/romance-v15-report.json
-            ${{ env.R4 }}/qa/current/romance-v16-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v16/**
-            ${{ env.R4 }}/qa/current/romance-v17-report.json
-            ${{ env.R4 }}/qa/current/romance-v17-contrast-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v17/**
-            ${{ env.R4 }}/qa/current/romance-v18-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v18/**
-            ${{ env.R4 }}/qa/current/romance-v19-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v19/**
-            ${{ env.R4 }}/qa/current/romance-v20-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v20/**
-            ${{ env.R4 }}/qa/current/romance-v21-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v21/**
-            ${{ env.R4 }}/qa/current/romance-v22-report.json
-            ${{ env.R4 }}/qa/current/browser/romance-v22/**
-            ${{ env.R4 }}/qa/current/browser/romance-v15/**
+            ${{ env.R4 }}/qa/current/*report.json
+            ${{ env.R4 }}/qa/current/browser/**
           if-no-files-found: warn
           retention-days: 14
-      - name: Persist generated standalone player and default entry if checks passed
+      - name: Persist only validated generated assets
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -235,7 +125,7 @@ jobs:
           git add -- "$R4/index.html" "$R4/play.html" "$R4/runtime.mjs" "$R4/repository-index.html" "$R4/build-meta.json" "$GAME/index.html"
           git diff --cached --check
           if test -n "$(git diff --cached --name-only)"; then
-            git commit -m "build(vn): regenerate validated single-CG interactive mobile H5"
+            git commit -m "build(vn): regenerate verified V23 chemistry and canonical H5"
             git fetch origin feat/first-night-playable-unified-20261017
             git rebase --autostash origin/feat/first-night-playable-unified-20261017
             git push origin HEAD:refs/heads/feat/first-night-playable-unified-20261017
